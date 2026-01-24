@@ -8,16 +8,16 @@
 void ABlunderbuss::PrimaryAttack(APlayerController* PlayerController)
 {
 	/// Get the player camera location and rotation for aiming
-	FVector CameraLocation;
-	FRotator CameraRotation;
-	PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+	FVector cameraLocation;
+	FRotator cameraRotation;
+	PlayerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
 	
 	/// Prepare a hit result to store the outcome of the line trace
-	FHitResult HitResult;
+	FHitResult hitResult;
 	
 	/// Calculate the end location of the trace based on weapon range
-	FVector CameraForwardVector = CameraRotation.Vector();
-	FVector EndLocation = CameraLocation + CameraForwardVector * Range;
+	FVector cameraForwardVector = cameraRotation.Vector();
+	FVector endLocation = cameraLocation + cameraForwardVector * Range;
 	
 	/// Setup collision parameters for the trace
 	FCollisionQueryParams TraceParams;
@@ -25,13 +25,13 @@ void ABlunderbuss::PrimaryAttack(APlayerController* PlayerController)
 	TraceParams.AddIgnoredActor(GetOwner());
 	
 	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, CameraLocation,EndLocation, ECC_Visibility, TraceParams);
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, cameraLocation,endLocation, ECC_Visibility, TraceParams);
 	
 	/// Draw a debug line showing the trace in the world
 	DrawDebugLine(
 	GetWorld(),
-	CameraLocation,
-	bHit ? HitResult.ImpactPoint : EndLocation,
+	cameraLocation,
+	bHit ? hitResult.ImpactPoint : endLocation,
 	FColor::Red,
 	false,
 	1.f,
@@ -45,12 +45,12 @@ void ABlunderbuss::PrimaryAttack(APlayerController* PlayerController)
 	PlayerController->AddPitchInput(CameraRecoil);
 	
 	/// Apply physical recoil to the player if airborne
-	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetOwner());
-	if (!PlayerCharacter->GetCharacterMovement()->IsMovingOnGround())
+	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
+	if (!playerCharacter->GetCharacterMovement()->IsMovingOnGround())
 	{
 		/// Launch the player backward based on knockback force and firing direction
-		FVector LaunchVelocity = -CameraForwardVector * KnockbackForce;
-		PlayerCharacter->LaunchCharacter(LaunchVelocity, false, false);
+		FVector launchVelocity = -cameraForwardVector * KnockbackForce;
+		playerCharacter->LaunchCharacter(launchVelocity, false, false);
 	}
 }
 
