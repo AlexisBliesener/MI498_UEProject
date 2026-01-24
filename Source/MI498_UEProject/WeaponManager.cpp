@@ -5,7 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "PlayerCharacter.h"
 
-
+/// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponLog);
 
 
@@ -13,35 +13,41 @@ void UWeaponManager::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	/// Ensure there is weapon blueprints to spawn and an owner for this manager
 	if (WeaponBlueprints.Num() == 0 || !GetOwner())
 	{
 		UE_LOG(WeaponLog, Warning, TEXT("No weapon blueprints or no owner!"));
 		return;
 	}
 
+	/// Set up spawn parameters so the weapons know their owner
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = GetOwner();
 	
+	/// Clear any previous weapon options to prepare for spawning
 	WeaponOptions.Empty();
 
+	/// Spawn each weapon blueprint and store as an interface
 	for (auto& WeaponBP : WeaponBlueprints)
 	{
 		if (!WeaponBP) continue;
 
+		/// Spawn weapon actor at the owner's location
 		AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(
 			WeaponBP,
 			GetOwner()->GetActorLocation() + FVector(0,0,0),
 			FRotator::ZeroRotator,
 			SpawnParams
 		);
-
+		
+		/// Ensure weapons implement the IWeaponInterface and add them to WeaponOptions
 		if (SpawnedActor && SpawnedActor->GetClass()->ImplementsInterface(UWeaponInterface::StaticClass()))
 		{
 			WeaponOptions.Add(TScriptInterface<IWeaponInterface>(SpawnedActor));
 		}
 	}
 
-	// Set the first weapon as current
+	/// Set the first weapon as the current active weapon
 	if (WeaponOptions.Num() > 0)
 	{
 		currentWeapon = WeaponOptions[0];
@@ -64,7 +70,6 @@ void UWeaponManager::BeginPlay()
 	
 	/// Get local player
 	APlayerController* PlayerController = Cast<APlayerController>(PlayerCharacter->GetController());
-
 	ULocalPlayer* LocalPlayer = PlayerController->GetLocalPlayer();
 	if (!IsValid(LocalPlayer))
 	{
@@ -148,7 +153,8 @@ void UWeaponManager::HandleSelectWeaponNext()
 void UWeaponManager::HandlePrimaryAttack()
 {
 	UE_LOG(WeaponLog, Log, TEXT("primary attack"));
-	currentWeapon->Fire(Cast<APlayerController>(PlayerCharacter->GetController()));
+	/// Call the weapon's PrimaryAttack function, passing the player controller
+	currentWeapon->PrimaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
 
 void UWeaponManager::HandleSecondaryAttack()

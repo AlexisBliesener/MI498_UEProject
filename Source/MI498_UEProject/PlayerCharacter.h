@@ -29,13 +29,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement");
 	int MaxSprintSpeed = 800;
 	
+	/// Component responsible for managing the player's weapons
+	/// Handles spawning, switching, and firing weapons
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
 
 private:
 	/// Tracks whether the player is currently sprinting
 	bool bIsSprinting = false;
-	
 	
 	GENERATED_BODY()
 };

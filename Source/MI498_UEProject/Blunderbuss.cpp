@@ -1,26 +1,33 @@
 #include "Blunderbuss.h"
-
 #include "PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-
-void ABlunderbuss::Fire(APlayerController* PlayerController)
+/// Implements the Blunderbuss' primary attack
+/// This function handles hitscan firing, camera recoil, and knockback
+/// @param PlayerController - The player who is firing the weapon
+void ABlunderbuss::PrimaryAttack(APlayerController* PlayerController)
 {
+	/// Get the player camera location and rotation for aiming
 	FVector CameraLocation;
 	FRotator CameraRotation;
 	PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
 	
+	/// Prepare a hit result to store the outcome of the line trace
 	FHitResult HitResult;
 	
+	/// Calculate the end location of the trace based on weapon range
 	FVector CameraForwardVector = CameraRotation.Vector();
 	FVector EndLocation = CameraLocation + CameraForwardVector * Range;
 	
+	/// Setup collision parameters for the trace
 	FCollisionQueryParams TraceParams;
 	TraceParams.AddIgnoredActor(this);
 	TraceParams.AddIgnoredActor(GetOwner());
 	
+	/// Perform a hitscan trace from the camera forward
 	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, CameraLocation,EndLocation, ECC_Visibility, TraceParams);
 	
+	/// Draw a debug line showing the trace in the world
 	DrawDebugLine(
 	GetWorld(),
 	CameraLocation,
@@ -32,25 +39,18 @@ void ABlunderbuss::Fire(APlayerController* PlayerController)
 	1.f
 	);
 	
-	// CHECK IF HITRESULT IS ENEMY IF SO DO DAMAGE
+	/// TODO: Check if HitResult hit an enemy and apply damage
 	
-	// Camera recoil
+	/// Apply camera recoil to simulate weapon kickback
 	PlayerController->AddPitchInput(CameraRecoil);
 	
-	// Recoil
-	// check for player is not on ground
+	/// Apply physical recoil to the player if airborne
 	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetOwner());
 	if (!PlayerCharacter->GetCharacterMovement()->IsMovingOnGround())
 	{
+		/// Launch the player backward based on knockback force and firing direction
 		FVector LaunchVelocity = -CameraForwardVector * KnockbackForce;
-		
 		PlayerCharacter->LaunchCharacter(LaunchVelocity, false, false);
-		GEngine->AddOnScreenDebugMessage(
-					-1,                // key (-1 = new message every time)
-					2.f,               // duration in seconds
-					FColor::Green,     // text color
-					TEXT("Player is not on the ground")
-				);
 	}
 }
 

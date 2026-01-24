@@ -5,9 +5,7 @@
 
 APlayerCharacter::APlayerCharacter()
 {
-	// Weapons Manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
-
 }
 
 void APlayerCharacter::ToggleSprint()
