@@ -1,5 +1,5 @@
 #include "Blunderbuss.h"
-#include "PlayerCharacter.h"
+#include "../Player/PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 /// Implements the Blunderbuss' primary attack

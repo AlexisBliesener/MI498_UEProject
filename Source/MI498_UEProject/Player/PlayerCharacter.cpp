@@ -1,6 +1,6 @@
 #include "PlayerCharacter.h"
 
-#include "WeaponManager.h"
+#include "../Weapons/WeaponManager.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 APlayerCharacter::APlayerCharacter()
