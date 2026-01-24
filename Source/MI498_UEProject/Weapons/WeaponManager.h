@@ -82,7 +82,11 @@ private:
 	
 	/// The currently selected weapon
 	UPROPERTY(VisibleAnywhere)
-	TScriptInterface<IWeaponInterface> currentWeapon;
+	TScriptInterface<IWeaponInterface> CurrentWeapon;
+	
+	/// The index in the weapon options array of the currently selected weapon
+	UPROPERTY()
+	int CurrentWeaponIndex = 0;
 
 	GENERATED_BODY()
 };
