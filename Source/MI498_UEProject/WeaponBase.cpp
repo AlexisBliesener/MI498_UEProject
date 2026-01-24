@@ -1,6 +1,5 @@
 #include "WeaponBase.h"
 
-
-void AWeaponBase::Fire(APlayerController* PlayerController)
+void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 {
 }
