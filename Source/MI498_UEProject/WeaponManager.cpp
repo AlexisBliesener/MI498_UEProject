@@ -21,29 +21,29 @@ void UWeaponManager::BeginPlay()
 	}
 
 	/// Set up spawn parameters so the weapons know their owner
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = GetOwner();
+	FActorSpawnParameters spawnParameters;
+	spawnParameters.Owner = GetOwner();
 	
 	/// Clear any previous weapon options to prepare for spawning
 	WeaponOptions.Empty();
 
 	/// Spawn each weapon blueprint and store as an interface
-	for (auto& WeaponBP : WeaponBlueprints)
+	for (auto& weaponBP : WeaponBlueprints)
 	{
-		if (!WeaponBP) continue;
+		if (!weaponBP) continue;
 
 		/// Spawn weapon actor at the owner's location
-		AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(
-			WeaponBP,
+		AActor* spawnedActor = GetWorld()->SpawnActor<AActor>(
+			weaponBP,
 			GetOwner()->GetActorLocation() + FVector(0,0,0),
 			FRotator::ZeroRotator,
-			SpawnParams
+			spawnParameters
 		);
 		
 		/// Ensure weapons implement the IWeaponInterface and add them to WeaponOptions
-		if (SpawnedActor && SpawnedActor->GetClass()->ImplementsInterface(UWeaponInterface::StaticClass()))
+		if (spawnedActor && spawnedActor->GetClass()->ImplementsInterface(UWeaponInterface::StaticClass()))
 		{
-			WeaponOptions.Add(TScriptInterface<IWeaponInterface>(SpawnedActor));
+			WeaponOptions.Add(TScriptInterface<IWeaponInterface>(spawnedActor));
 		}
 	}
 
@@ -69,24 +69,24 @@ void UWeaponManager::BeginPlay()
 	}
 	
 	/// Get local player
-	APlayerController* PlayerController = Cast<APlayerController>(PlayerCharacter->GetController());
-	ULocalPlayer* LocalPlayer = PlayerController->GetLocalPlayer();
-	if (!IsValid(LocalPlayer))
+	APlayerController* playerController = Cast<APlayerController>(PlayerCharacter->GetController());
+	ULocalPlayer* localPlayer = playerController->GetLocalPlayer();
+	if (!IsValid(localPlayer))
 	{
 		UE_LOG(WeaponLog, Error, TEXT("Unable to get LocalPlayer"));
 		return;
 	}
 	
 	/// Retrieve the enhanced input subsystem for this local player
-	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(LocalPlayer);
-	if (!IsValid(InputSubsystem))
+	UEnhancedInputLocalPlayerSubsystem* inputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(localPlayer);
+	if (!IsValid(inputSubsystem))
 	{
 		UE_LOG(WeaponLog, Error, TEXT("Unable to get reference to the UEnhancedInputLocalPlayerSubsystem"));
 	}
 	
 	/// Reset existing input mappings and apply this controller's mapping context
-	InputSubsystem->ClearAllMappings();
-	InputSubsystem->AddMappingContext(InputMappingContext, 0);
+	inputSubsystem->ClearAllMappings();
+	inputSubsystem->AddMappingContext(InputMappingContext, 0);
 	
 	/// Bind inputs
 	if (ActionWeaponOne)
