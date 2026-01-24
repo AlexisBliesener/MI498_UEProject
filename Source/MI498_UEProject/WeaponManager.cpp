@@ -148,7 +148,7 @@ void UWeaponManager::HandleSelectWeaponNext()
 void UWeaponManager::HandlePrimaryAttack()
 {
 	UE_LOG(WeaponLog, Log, TEXT("primary attack"));
-	currentWeapon->Fire();
+	currentWeapon->Fire(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
 
 void UWeaponManager::HandleSecondaryAttack()
