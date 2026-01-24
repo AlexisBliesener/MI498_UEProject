@@ -13,19 +13,12 @@ class UWeaponInterface : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class MI498_UEPROJECT_API IWeaponInterface
 {
-	GENERATED_BODY()
-	
-	
-
-	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void Fire() = 0;
+	virtual void Fire(APlayerController* PlayerController) = 0;
+
 protected:
 private:
-	
+	GENERATED_BODY()
 };

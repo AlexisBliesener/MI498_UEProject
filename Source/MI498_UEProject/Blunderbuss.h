@@ -3,27 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "WeaponBase.h"
 #include "WeaponInterface.h"
 #include "GameFramework/Actor.h"
 #include "Blunderbuss.generated.h"
 
+class APlayerController;
+
 UCLASS(Blueprintable)
-class MI498_UEPROJECT_API ABlunderbuss : public AActor, public IWeaponInterface
+class MI498_UEPROJECT_API ABlunderbuss : public AWeaponBase
 {
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	ABlunderbuss();
+	virtual void Fire(APlayerController* PlayerController) override;
 	
-	virtual void Fire() override;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int KnockbackForce = 500;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int CameraRecoil = -5;
+	
+	
 protected:
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };
