@@ -20,7 +20,7 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	
 	/// Cache the enhanced input component for action binding
 	EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
-	if (!IsValid(PlayerCharacter))
+	if (!IsValid(EnhancedInputComponent))
 	{
 		UE_LOG(PlayerLog, Error, TEXT("Unable to get reference to the EnhancedInputComponent"));
 	}
