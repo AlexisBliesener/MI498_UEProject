@@ -3,7 +3,7 @@
 #include "Blunderbuss.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "PlayerCharacter.h"
+#include "../Player/PlayerCharacter.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponLog);
