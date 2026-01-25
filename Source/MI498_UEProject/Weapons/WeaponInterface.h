@@ -18,6 +18,10 @@ public:
 	/// Called to use this weapons primary attack
 	/// /// @param PlayerController - Provides context about who is performing the attack
 	virtual void PrimaryAttack(APlayerController* PlayerController) = 0;
+	
+	/// Called to use this weapons secondary attack
+	/// /// @param PlayerController - Provides context about who is performing the attack
+	virtual void SecondaryAttack(APlayerController* PlayerController) = 0;
 
 protected:
 	
