@@ -192,4 +192,6 @@ void UWeaponManager::HandlePrimaryAttack()
 void UWeaponManager::HandleSecondaryAttack()
 {
 	UE_LOG(WeaponLog, Log, TEXT("secondary attack"));
+	/// Call the weapon's SecondaryAttack function, passing the player controller
+	CurrentWeapon->SecondaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
