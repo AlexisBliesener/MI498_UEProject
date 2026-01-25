@@ -21,6 +21,11 @@ protected:
 	/// @param PlayerController - The player performing the attack
 	/// This function will define the weapon's primary firing behavior
 	virtual void PrimaryAttack(APlayerController* PlayerController) override;
+	
+	/// Implementation of the SecondaryAttack function from IWeaponInterface
+	/// @param PlayerController - The player performing the attack
+	/// This function will define the weapon's secondary firing behavior
+	virtual void SecondaryAttack(APlayerController* PlayerController) override;
 
 private:	
 	GENERATED_BODY()

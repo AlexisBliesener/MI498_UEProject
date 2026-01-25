@@ -3,7 +3,7 @@
 #include "Blunderbuss.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "PlayerCharacter.h"
+#include "../Player/PlayerCharacter.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponLog);
@@ -25,6 +25,7 @@ void UWeaponManager::BeginPlay()
 	spawnParameters.Owner = GetOwner();
 	
 	/// Clear any previous weapon options to prepare for spawning
+	CurrentWeaponIndex = 0;
 	WeaponOptions.Empty();
 
 	/// Spawn each weapon blueprint and store as an interface
@@ -50,8 +51,8 @@ void UWeaponManager::BeginPlay()
 	/// Set the first weapon as the current active weapon
 	if (WeaponOptions.Num() > 0)
 	{
-		currentWeapon = WeaponOptions[0];
-		UE_LOG(WeaponLog, Log, TEXT("Current weapon: %s"), *currentWeapon.GetObject()->GetName());
+		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+		UE_LOG(WeaponLog, Log, TEXT("Current weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 	}
 	
 	/// Cache the possessed player character
@@ -116,48 +117,81 @@ void UWeaponManager::BeginPlay()
 	if (ActionSecondaryAttack)
 	{
 		EnhancedInputComponent->BindAction(ActionSecondaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttack);
-		
 	}
 }
 
 void UWeaponManager::HandleSelectWeaponOne()
 {
+	if (WeaponOptions.Num() > 0)
+	{
+		CurrentWeaponIndex = 0;
+		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	}
 	UE_LOG(WeaponLog, Log, TEXT("weapon one"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *currentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponTwo()
 {
+	if (WeaponOptions.Num() > 1)
+	{
+		CurrentWeaponIndex = 1;
+		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	}
 	UE_LOG(WeaponLog, Log, TEXT("weapon two"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *currentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponThree()
 {
+	if (WeaponOptions.Num() > 2)
+	{
+		CurrentWeaponIndex = 2;
+		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	}
+	
 	UE_LOG(WeaponLog, Log, TEXT("weapon three"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *currentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponPrev()
 {
+	CurrentWeaponIndex--;
+	if (CurrentWeaponIndex < 0)
+	{
+		CurrentWeaponIndex = WeaponOptions.Num() - 1;
+	}
+	
+	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	
 	UE_LOG(WeaponLog, Log, TEXT("weapon prev"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *currentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponNext()
 {
+	CurrentWeaponIndex++;
+	if (CurrentWeaponIndex >= WeaponOptions.Num())
+	{
+		CurrentWeaponIndex = 0;
+	}
+	
+	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	
 	UE_LOG(WeaponLog, Log, TEXT("weapon next"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *currentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandlePrimaryAttack()
 {
 	UE_LOG(WeaponLog, Log, TEXT("primary attack"));
 	/// Call the weapon's PrimaryAttack function, passing the player controller
-	currentWeapon->PrimaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
+	CurrentWeapon->PrimaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
 
 void UWeaponManager::HandleSecondaryAttack()
 {
 	UE_LOG(WeaponLog, Log, TEXT("secondary attack"));
+	/// Call the weapon's SecondaryAttack function, passing the player controller
+	CurrentWeapon->SecondaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
