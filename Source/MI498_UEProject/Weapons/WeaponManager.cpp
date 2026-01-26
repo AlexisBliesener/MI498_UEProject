@@ -1,12 +1,12 @@
 #include "WeaponManager.h"
 
-#include "Blunderbuss.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "../Player/PlayerCharacter.h"
+#include "WeaponInterface.h"
 
 /// Define a custom logging category for weapon manager messages
-DEFINE_LOG_CATEGORY(WeaponLog);
+DEFINE_LOG_CATEGORY(WeaponManagerLog);
 
 
 void UWeaponManager::BeginPlay()
@@ -16,7 +16,7 @@ void UWeaponManager::BeginPlay()
 	/// Ensure there is weapon blueprints to spawn and an owner for this manager
 	if (WeaponBlueprints.Num() == 0 || !GetOwner())
 	{
-		UE_LOG(WeaponLog, Warning, TEXT("No weapon blueprints or no owner!"));
+		UE_LOG(WeaponManagerLog, Warning, TEXT("No weapon blueprints or no owner!"));
 		return;
 	}
 
@@ -52,21 +52,21 @@ void UWeaponManager::BeginPlay()
 	if (WeaponOptions.Num() > 0)
 	{
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
-		UE_LOG(WeaponLog, Log, TEXT("Current weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+		UE_LOG(WeaponManagerLog, Log, TEXT("Current weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 	}
 	
 	/// Cache the possessed player character
 	PlayerCharacter = Cast<APlayerCharacter>(GetOwner());
 	if (!IsValid(PlayerCharacter))
 	{
-		UE_LOG(WeaponLog, Error, TEXT("APlayerCharacter can not be derived from the possessed pawn"));
+		UE_LOG(WeaponManagerLog, Error, TEXT("APlayerCharacter can not be derived from the possessed pawn"));
 	}
 	
 	/// Cache the enhanced input component for action binding
 	EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerCharacter->InputComponent);
 	if (!IsValid(EnhancedInputComponent))
 	{
-		UE_LOG(WeaponLog, Error, TEXT("Unable to get reference to the EnhancedInputComponent"));
+		UE_LOG(WeaponManagerLog, Error, TEXT("Unable to get reference to the EnhancedInputComponent"));
 	}
 	
 	/// Get local player
@@ -74,7 +74,7 @@ void UWeaponManager::BeginPlay()
 	ULocalPlayer* localPlayer = playerController->GetLocalPlayer();
 	if (!IsValid(localPlayer))
 	{
-		UE_LOG(WeaponLog, Error, TEXT("Unable to get LocalPlayer"));
+		UE_LOG(WeaponManagerLog, Error, TEXT("Unable to get LocalPlayer"));
 		return;
 	}
 	
@@ -82,7 +82,7 @@ void UWeaponManager::BeginPlay()
 	UEnhancedInputLocalPlayerSubsystem* inputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(localPlayer);
 	if (!IsValid(inputSubsystem))
 	{
-		UE_LOG(WeaponLog, Error, TEXT("Unable to get reference to the UEnhancedInputLocalPlayerSubsystem"));
+		UE_LOG(WeaponManagerLog, Error, TEXT("Unable to get reference to the UEnhancedInputLocalPlayerSubsystem"));
 	}
 	
 	/// Reset existing input mappings and apply this controller's mapping context
@@ -127,8 +127,8 @@ void UWeaponManager::HandleSelectWeaponOne()
 		CurrentWeaponIndex = 0;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
-	UE_LOG(WeaponLog, Log, TEXT("weapon one"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponManagerLog, Log, TEXT("weapon one"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponTwo()
@@ -138,8 +138,8 @@ void UWeaponManager::HandleSelectWeaponTwo()
 		CurrentWeaponIndex = 1;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
-	UE_LOG(WeaponLog, Log, TEXT("weapon two"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponManagerLog, Log, TEXT("weapon two"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponThree()
@@ -150,8 +150,8 @@ void UWeaponManager::HandleSelectWeaponThree()
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
 	
-	UE_LOG(WeaponLog, Log, TEXT("weapon three"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponManagerLog, Log, TEXT("weapon three"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponPrev()
@@ -164,8 +164,8 @@ void UWeaponManager::HandleSelectWeaponPrev()
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	
-	UE_LOG(WeaponLog, Log, TEXT("weapon prev"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponManagerLog, Log, TEXT("weapon prev"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponNext()
@@ -178,20 +178,20 @@ void UWeaponManager::HandleSelectWeaponNext()
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	
-	UE_LOG(WeaponLog, Log, TEXT("weapon next"));
-	UE_LOG(WeaponLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
+	UE_LOG(WeaponManagerLog, Log, TEXT("weapon next"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandlePrimaryAttack()
 {
-	UE_LOG(WeaponLog, Log, TEXT("primary attack"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("primary attack"));
 	/// Call the weapon's PrimaryAttack function, passing the player controller
 	CurrentWeapon->PrimaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
 
 void UWeaponManager::HandleSecondaryAttack()
 {
-	UE_LOG(WeaponLog, Log, TEXT("secondary attack"));
+	UE_LOG(WeaponManagerLog, Log, TEXT("secondary attack"));
 	/// Call the weapon's SecondaryAttack function, passing the player controller
 	CurrentWeapon->SecondaryAttack(Cast<APlayerController>(PlayerCharacter->GetController()));
 }
