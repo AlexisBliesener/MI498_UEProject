@@ -1,5 +1,7 @@
 #include "WeaponBase.h"
 
+DEFINE_LOG_CATEGORY(WeaponLog);
+
 void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 {
 	/// Get the player camera location and rotation for aiming
