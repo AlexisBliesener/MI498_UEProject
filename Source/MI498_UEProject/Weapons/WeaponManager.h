@@ -11,7 +11,7 @@ struct FInputActionValue;
 class IWeaponInterface;
 
 /// Declare a logging category specifically for the weapon manager
-DECLARE_LOG_CATEGORY_EXTERN(WeaponLog, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
 
 /// Component responsible for managing weapons for a player character
 /// Handles spawning, switching, and input bindings for weapons
