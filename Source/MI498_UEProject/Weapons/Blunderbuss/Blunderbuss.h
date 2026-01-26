@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "WeaponBase.h"
+#include "../WeaponBase.h"
 #include "GameFramework/Actor.h"
 #include "Blunderbuss.generated.h"
 

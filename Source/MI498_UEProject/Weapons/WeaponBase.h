@@ -5,6 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "WeaponBase.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(WeaponLog, Log, All);
+
 /// Base class for all weapons in the game
 /// Inherits from AActor so it can exist in the world
 /// Implements IWeaponInterface so it can be used generically by WeaponManager
