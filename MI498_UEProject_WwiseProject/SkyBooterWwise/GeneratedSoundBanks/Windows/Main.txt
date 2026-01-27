@@ -1,0 +1,12 @@
+Event	ID	Name			Wwise Object Path	Notes
+	483409990	GrapplingHook			\Default Work Unit\Weapons\GrapplingHook	
+	2344274070	Blunderbuss			\Default Work Unit\Weapons\Blunderbuss	
+	2454616260	Sword			\Default Work Unit\Weapons\Sword	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	105285806	SwordSlashExample	.cache\75\{75211C7A-F008-439F-A484-CB0CBF60EE41}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample		175696
+	111826284	SwordSlashExample_02	.cache\78\{789C3897-80F5-2CA5-1428-14E378459048}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample_02		214024
+	236241361	SwordSlashExample_01	.cache\24\{247CCE66-10FE-2A4D-0CE9-922EF84A81B8}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample_01		177480
+	714889148	GrappleGunExample2	.cache\4C\{4CE5D956-19D9-D7C9-086E-4B3490CA613F}.wem		\Containers\Default Work Unit\GrappleGunExample2		303412
+	751489706	Blunderbuss	.cache\A7\{A7655543-CA09-4C55-17BD-64EB9F5C0DB1}.wem		\Containers\Default Work Unit\Blunderbuss		341496
+
