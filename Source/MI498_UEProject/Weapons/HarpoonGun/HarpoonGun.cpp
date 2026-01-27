@@ -2,6 +2,8 @@
 
 void AHarpoonGun::PrimaryAttack(APlayerController* PlayerController)
 {
+	OnPrimaryAttack();
+
 	/// Get the player camera location and rotation for accurate aiming
 	FVector CameraLocation;
 	FRotator CameraRotation;

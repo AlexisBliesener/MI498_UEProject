@@ -4,6 +4,8 @@ DEFINE_LOG_CATEGORY(WeaponLog);
 
 void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 {
+	OnPrimaryAttack();
+
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;

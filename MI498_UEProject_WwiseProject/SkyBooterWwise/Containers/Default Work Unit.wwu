@@ -196,6 +196,7 @@
 				<Sound Name="Blunderbuss" ID="{59F0AD17-0EA3-4883-B097-98AB19F40ACC}" ShortID="997318437">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ReferenceList>
