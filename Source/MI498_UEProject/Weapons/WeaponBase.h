@@ -29,6 +29,10 @@ protected:
 	/// This function will define the weapon's secondary firing behavior
 	virtual void SecondaryAttack(APlayerController* PlayerController) override;
 
+	/// A Blueprintable function that will be called when primary attack is fired
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPrimaryAttack();
+
 private:	
 	GENERATED_BODY()
 
