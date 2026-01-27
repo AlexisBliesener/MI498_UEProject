@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9DFEC73C-183A-4F40-8B17-38B3055759B5}" SchemaVersion="133">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{9DFEC73C-183A-4F40-8B17-38B3055759B5}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Weapons" ID="{642E3959-22EF-49F8-993A-4FF50D2BD2BD}" ShortID="567234105">
+					<ChildrenList>
+						<Event Name="Blunderbuss" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
+							<ChildrenList>
+								<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Blunderbuss" ID="{59F0AD17-0EA3-4883-B097-98AB19F40ACC}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Sword" ID="{39D5BC54-B39B-40EC-B732-F5D21093F093}">
+							<ChildrenList>
+								<Action Name="" ID="{5FC43D9A-0FBA-4C97-9129-61D7137CE9F6}" ShortID="894626277">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SwordSwing" ID="{4C9B2756-FFC0-4AE2-899F-A96237177EB8}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="GrapplingHook" ID="{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}">
+							<ChildrenList>
+								<Action Name="" ID="{A43D6FE7-E01B-45A8-939D-11EBD0743CB9}" ShortID="217714286">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="GrappleGunExample2" ID="{663B2D29-2409-485A-9262-B5F28D06DE89}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

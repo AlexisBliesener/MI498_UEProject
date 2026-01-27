@@ -1,0 +1,113 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "3161908922",
+    "Type": "User",
+    "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
+    "Language": "SFX",
+    "Hash": "{904BA66F-5586-6331-D583-332E2D1CCD83}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
+    "ShortName": "Main",
+    "Path": "Main.bnk",
+    "Media": [
+     {
+      "Id": "105285806",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "75/{75211C7A-F008-439F-A484-CB0CBF60EE41}.wem"
+     },
+     {
+      "Id": "111826284",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "78/{789C3897-80F5-2CA5-1428-14E378459048}.wem"
+     },
+     {
+      "Id": "236241361",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "24/{247CCE66-10FE-2A4D-0CE9-922EF84A81B8}.wem"
+     },
+     {
+      "Id": "714889148",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "GrappleGunExample2.wav",
+      "CachePath": "4C/{4CE5D956-19D9-D7C9-086E-4B3490CA613F}.wem"
+     },
+     {
+      "Id": "751489706",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Blunderbuss.wav",
+      "CachePath": "A7/{A7655543-CA09-4C55-17BD-64EB9F5C0DB1}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "2344274070",
+      "Name": "Blunderbuss",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss",
+      "GUID": "{8A3E531E-9D84-40EC-848E-7294B0C39B8F}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.7781181",
+      "DurationMax": "1.7781181",
+      "MediaRefs": [
+       {
+        "Id": "751489706"
+       }
+      ]
+     },
+     {
+      "Id": "483409990",
+      "Name": "GrapplingHook",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\GrapplingHook",
+      "GUID": "{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}",
+      "DurationType": "OneShot",
+      "DurationMin": "1.5797702",
+      "DurationMax": "1.5797702",
+      "MediaRefs": [
+       {
+        "Id": "714889148"
+       }
+      ]
+     },
+     {
+      "Id": "2454616260",
+      "Name": "Sword",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword",
+      "GUID": "{39D5BC54-B39B-40EC-B732-F5D21093F093}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.85087836",
+      "DurationMax": "1.1804718",
+      "MediaRefs": [
+       {
+        "Id": "105285806"
+       },
+       {
+        "Id": "111826284"
+       },
+       {
+        "Id": "236241361"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{9A3E84E4-BCD2-A2C8-5567-116CF2BF2204}"
+ }
+}
