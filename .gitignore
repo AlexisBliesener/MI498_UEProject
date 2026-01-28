@@ -12,3 +12,12 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+
+# Wwise
+.cache
+*.akd
+*.prof
+*.validationcache
+*/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
+*.a
+*.lib
