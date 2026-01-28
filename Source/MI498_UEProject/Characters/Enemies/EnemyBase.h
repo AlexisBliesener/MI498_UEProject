@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
 #include "EnemyBase.generated.h"
 
@@ -12,11 +13,10 @@
  * Can attack, chase, and take damage.
  */
 UCLASS(Blueprintable, meta=(AllowDerivedTypes="true"))
-class MI498_UEPROJECT_API AEnemyBase : public ACharacter
+class MI498_UEPROJECT_API AEnemyBase : public ACharacterBase
 {
-	GENERATED_BODY()
-
 public:
+	GENERATED_BODY()
 	// Distance within which the enemy can attack a target.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Combat")
 	float AttackRange = 1000.f;
@@ -26,15 +26,11 @@ public:
 	// Speed at which the enemy chases the target.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Movement")
 	float ChaseSpeed = 450.f;
-	// Max Health
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Health")
-	float MaxHealth = 100.f;
 	UPROPERTY(EditDefaultsOnly, Category="Enemy|Combat")
 	TSubclassOf<APistolProjectile> ProjectileClass;
-	// Current Health 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Enemy|Health")
-	float CurrentHealth;
-	
+	/**
+	 * Initializes default properties and components for the enemy character
+	 */
 	AEnemyBase();
 	
 	virtual void Tick(float DeltaTime) override;

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
 class UWeaponManager;
@@ -9,15 +10,11 @@ class UWeaponManager;
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
 UCLASS()
-class MI498_UEPROJECT_API APlayerCharacter : public ACharacter
+class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase
 {
 public:
 	
 	APlayerCharacter();
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player|Health")
-	float MaxHealth = 100.f;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Player|Health")
-	float CurrentHealth;
 
 	/// Toggles sprinting on or off.
 	/// Updates the character movement speed based on the current sprint state.

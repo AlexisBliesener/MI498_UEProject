@@ -14,8 +14,7 @@ EStateTreeRunStatus FSendEventTask::EnterState(FStateTreeExecutionContext& Conte
 
 	if (Data.EventTag.IsValid())
 	{
-		AEnemyAIController* aiController = Cast<AEnemyAIController>(Context.GetOwner());
-		if (aiController)
+		if (AEnemyAIController* aiController = Cast<AEnemyAIController>(Context.GetOwner()))
 		{
 			if (IsValid(aiController->GetStateTreeAIComponent()))
 			{

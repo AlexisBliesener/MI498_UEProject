@@ -40,6 +40,7 @@ struct FSendEventTaskInstanceData
 USTRUCT(BlueprintType)
 struct MI498_UEPROJECT_API FSendEventTask : public FStateTreeTaskCommonBase
 {
+public:
 	GENERATED_BODY()
 	using FInstanceDataType = FSendEventTaskInstanceData;
 

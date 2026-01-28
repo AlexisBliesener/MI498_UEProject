@@ -12,7 +12,7 @@ void UEnemyPerception::TreeStart(FStateTreeExecutionContext& Context)
 	AEnemyAIController* aiController = Cast<AEnemyAIController>(Context.GetOwner());
 	if (!aiController)
 	{
-		UE_LOG(LogTemp, Error, TEXT(" StateTree owner is not an EnemyAIController!"));
+		UE_LOG(EnemyAILog, Error, TEXT(" StateTree owner is not an EnemyAIController!"));
 		return;
 	}
 	AIController = aiController;
@@ -28,21 +28,21 @@ void UEnemyPerception::TreeStart(FStateTreeExecutionContext& Context)
 	APawn* OwnerPawn = AIController->GetPawn();
 	if (!OwnerPawn)
 	{
-		UE_LOG(LogTemp, Error, TEXT("AIController has no Pawn!"));
+		UE_LOG(EnemyAILog, Error, TEXT("AIController has no Pawn!"));
 		return;
 	}
 	
 	Actor = Cast<AEnemyBase>(OwnerPawn);
 	if (!IsValid(Actor))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Pawn is not an AEnemyBase! Class is: %s"), *OwnerPawn->GetClass()->GetName());
+		UE_LOG(EnemyAILog, Warning, TEXT("Pawn is not an AEnemyBase! Class is: %s"), *OwnerPawn->GetClass()->GetName());
 		return;
 	}
 	
-	StateTreeAIComponent = AIController->FindComponentByClass<UStateTreeAIComponent>();
+	StateTreeAIComponent = AIController->GetStateTreeAIComponent();
 	if (!StateTreeAIComponent)
 	{
-		UE_LOG(LogTemp, Error, TEXT("No UStateTreeAIComponent found on Ai Controller!"));
+		UE_LOG(EnemyAILog, Error, TEXT("No UStateTreeAIComponent found on Ai Controller!"));
 		return;
 	}
 }

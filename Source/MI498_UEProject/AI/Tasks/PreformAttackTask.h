@@ -40,6 +40,7 @@ struct FPreformAttackTaskInstanceData
 USTRUCT(BlueprintType)
 struct MI498_UEPROJECT_API FPreformAttackTask : public FStateTreeTaskCommonBase
 {
+public:
 	GENERATED_BODY()
 	using FInstanceDataType = FPreformAttackTaskInstanceData;
 

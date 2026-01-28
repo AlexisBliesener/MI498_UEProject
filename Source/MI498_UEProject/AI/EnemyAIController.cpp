@@ -10,7 +10,7 @@
 #include "Perception/AISenseConfig_Prediction.h"
 #include "Perception/AISenseConfig_Sight.h"
 
-DEFINE_LOG_CATEGORY(EnemyLog);
+DEFINE_LOG_CATEGORY(EnemyAILog);
 AEnemyAIController::AEnemyAIController()
 {
 	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));

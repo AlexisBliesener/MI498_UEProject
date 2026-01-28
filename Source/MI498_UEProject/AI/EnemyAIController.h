@@ -18,7 +18,7 @@ class UAIPerceptionComponent;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPGASStimulusEventSignature, AActor*, Actor, const FAIStimulus&, Stimulus);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPGASStimulusForgottenSignature, AActor*, Actor);
 /// Log category for enemy messages
-DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(EnemyAILog, Log, All);
 
 /**
  * Enemy AI Controller class handles AI behaviors, including perception updates,
@@ -27,10 +27,8 @@ DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent, DisplayName = "Enemy AI Controller"))
 class MI498_UEPROJECT_API AEnemyAIController : public AAIController
 {
-	GENERATED_BODY()
-	
 public:
-	AEnemyAIController();
+	GENERATED_BODY()
 	// Holds the actor currently targeted by the AI.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AActor> AcquiredTarget = nullptr;
@@ -49,13 +47,16 @@ public:
 	// Triggered when the AI loses hearing of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Forgotten"))
 	FPGASStimulusForgottenSignature OnHearingStimulusForgotten;
-
 	// The current state of the AI's behavior
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	StateTreeEnemyEvents CurrentStateTreeState;
+
+	/**
+	* initializes the enemy AI controller by setting up the components 
+	*/
+	AEnemyAIController();
 	/**
 	 * Reports a damage event to the AI perception system.
-	 *
 	 * @param DamagedActor The actor that received the damage.
 	 * @param InstigatorActor The actor that caused the damage.
 	 * @param DamageAmount The amount of damage dealt.
@@ -64,7 +65,6 @@ public:
 	void ReportDamageEvent(AActor* DamagedActor, AActor* InstigatorActor, float DamageAmount);
 	/**
 	 * Gets the StateTree AI component associated with this AI controller.
-	 *
 	 * @return A pointer to the UStateTreeEnemyComponent, or nullptr if not.
 	 */
 	UStateTreeEnemyComponent* GetStateTreeAIComponent() const;
@@ -79,7 +79,6 @@ protected:
 
 	/**
 	 * Called when the AI perception system updates information about a perceived actor.
-	 *
 	 * @param Actor The actor that was perceived or updated.
 	 * @param Stimulus The stimulus data describing how the actor was perceived.
 	 */
@@ -88,7 +87,6 @@ protected:
 
 	/**
 	 * Called when the AI forgets about a previously perceived actor.
-	 *
 	 * @param Actor The actor that was forgotten by the AI perception system.
 	 */
 	UFUNCTION()

@@ -17,7 +17,6 @@ AEnemyBase::AEnemyBase()
 	StimuliSourceComponent->ComponentTags.Add(FName("Player"));
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	StimuliSourceComponent->RegisterWithPerceptionSystem();
-	CurrentHealth = MaxHealth;
 }
 
 void AEnemyBase::BeginPlay()
@@ -27,11 +26,7 @@ void AEnemyBase::BeginPlay()
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
-	if (DamageAmount <= 0.f || CurrentHealth <= 0.f)
-		return 0.f;
-
-	CurrentHealth = FMath::Clamp(CurrentHealth - DamageAmount, 0.f, MaxHealth);
-
+	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
 		// DIE i think
@@ -44,7 +39,6 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 			AI->UnPossess();
 		}
 
-		// Disable collision & movement
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
 

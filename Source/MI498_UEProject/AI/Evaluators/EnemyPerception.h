@@ -74,6 +74,16 @@ protected:
 	
 private:
 	/**
+	 * A component used by the state tree to manage AI behavior for the enemy.
+	 */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Enemy|AI", meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UStateTreeAIComponent> StateTreeAIComponent;
+
+	/**
+	 * Keeps track of the last behavior event of the enemy AI
+	 */
+	StateTreeEnemyEvents LastEvent = StateTreeEnemyEvents::Idle;
+	/**
 	 * Called when a sight stimulus is detected to manage player targeting and trigger state tree events.
 	 *
 	 * @param TargetActor The actor that triggered the sight stimulus.
@@ -123,16 +133,4 @@ private:
 	 */
 	UFUNCTION()
 	void SendEventToStateTree(const StateTreeEnemyEvents Event);
-
-
-	/**
-	 * A component used by the state tree to manage AI behavior for the enemy.
-	 */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Enemy|AI", meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<UStateTreeAIComponent> StateTreeAIComponent;
-
-	/**
-	 * Keeps track of the last behavior event of the enemy AI
-	 */
-	StateTreeEnemyEvents LastEvent = StateTreeEnemyEvents::Idle;
 };

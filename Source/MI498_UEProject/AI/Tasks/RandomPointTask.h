@@ -48,6 +48,7 @@ struct FGetRandomLocationTaskInstanceData
 USTRUCT(BlueprintType)
 struct MI498_UEPROJECT_API FRandomPointTask : public FStateTreeTaskCommonBase
 {
+public:
 	GENERATED_BODY()
 	using FInstanceDataType = FGetRandomLocationTaskInstanceData;
 

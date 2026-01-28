@@ -3,6 +3,8 @@
 
 #include "PistolProjectile.h"
 
+#include "Kismet/GameplayStatics.h"
+
 
 APistolProjectile::APistolProjectile()
 {
