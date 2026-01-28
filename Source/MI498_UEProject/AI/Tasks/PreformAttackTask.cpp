@@ -14,16 +14,8 @@ EStateTreeRunStatus FPreformAttackTask::EnterState(FStateTreeExecutionContext& C
 	// Get the instance data for this task
 	const FPreformAttackTaskInstanceData& Data = Context.GetInstanceData(*this);
 
-
 	if (!Data.Actor || !Data.Target)
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1, 5.f, FColor::Red,
-				TEXT("PerformAttackTask: Missing Actor or Target")
-			);
-		}
 		return EStateTreeRunStatus::Failed;
 	}
 	// TODO: Create a different task for set foucs!!

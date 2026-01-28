@@ -16,9 +16,9 @@ AEnemyAIController::AEnemyAIController()
 	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 	bAttachToPawn = true;
-	StateTreeAIComponent = CreateDefaultSubobject<UStateTreeEnemyComponent>(TEXT("BEEE"));
+	StateTreeAIComponent = CreateDefaultSubobject<UStateTreeEnemyComponent>(TEXT("StateTreeEnemyComponent"));
 	BrainComponent = StateTreeAIComponent;
-    PerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("Perception Component"));
+    PerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("PerceptionComponent"));
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
     SightConfig->SightRadius = 1000.0f;
     SightConfig->LoseSightRadius = 1500.0f;
@@ -88,7 +88,6 @@ void AEnemyAIController::ReportDamageEvent(AActor* DamagedActor, AActor* Instiga
 void AEnemyAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	// StateTreeAIComponent->RestartLogic();
 }
 
 void AEnemyAIController::OnPossess(APawn* InPawn)
@@ -98,80 +97,27 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	{
 		if (!StateTreeAIComponent)
 		{
-			GEngine->AddOnScreenDebugMessage(
-	-1,
-	5.0f,
-	FColor::Red,
-	TEXT("ERROR: StateTreeAiCompononet is not assigned MOhammed !!")
-);
+			UE_LOG(LogTemp, Warning, TEXT("no StateTreeAIComponent for enemy ai controller."));
 			return;
 		}
 		StateTreeAIComponent->StartStateTree(EnemyBase->GetStateTree());
-
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.0f,
-			FColor::Green,
-			TEXT("SUCCESS: EnemyBase possessed")
-		);
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.0f,
-			FColor::Red,
-			TEXT("ERROR: Pawn is not EnemyBase")
-		);
+		UE_LOG(LogTemp, Warning, TEXT("The enemy ai controller is not attached to an enemy base class!"));
 	}
 }
 
 void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.0f,  
-			FColor::Yellow, 
-			FString::Printf(TEXT("TargetPerceptionUpdated ")));
-	}else
-	{
-		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-	}
     if (!Actor)
     {
         return;
     }
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1, 
-			5.0f,  
-			FColor::Yellow, 
-			FString::Printf(TEXT("There is an acotr!! "))); 
-	}else
-	{
-		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-	}
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1, 
-			5.0f,    
-			FColor::Yellow, 
-			FString::Printf(TEXT("IT CHECK FOR HOSTILE! MOHAMMMMEDD! ")));
-	}else
-	{
-		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-	}
-	
     static const FAISenseID SightID = UAISense::GetSenseID(UAISense_Sight::StaticClass());
     static const FAISenseID HearingID = UAISense::GetSenseID(UAISense_Hearing::StaticClass());
     static const FAISenseID DamageID = UAISense::GetSenseID(UAISense_Damage::StaticClass());
-
-	UE_LOG(LogTemp, Error, TEXT("REACHED HEREEREERE!!"))
-        FString SenseName;
+    FString SenseName;
     if (Stimulus.Type == SightID)
         SenseName = TEXT("Sight");
     else if (Stimulus.Type == HearingID)
@@ -181,18 +127,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
     else {
         SenseName = TEXT("Unknown");
     }
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,        
-			5.0f,    
-			FColor::Yellow,
-			SenseName);
-	}else
-	{
-		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-	}
-	
     AActor* SensedActor = Actor;
     if (!SensedActor)
     {
@@ -202,17 +136,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 	// TODO: sw	
     if (Stimulus.Type == DamageID)
     {
-    	if (GEngine)
-    	{
-    		GEngine->AddOnScreenDebugMessage(
-				-1,    
-				10.00f,     
-				FColor::Yellow, 
-				FString::Printf(TEXT("HERE AT DAMAGE ID")));
-    	}else
-    	{
-    		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-    	}
         if (Stimulus.WasSuccessfullySensed())
         {
             OnDamageStimulusDetected.Broadcast(SensedActor, Stimulus);
@@ -220,17 +143,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
     }
     else if (Stimulus.Type == SightID)
     {
-    	if (GEngine)
-    	{
-    		GEngine->AddOnScreenDebugMessage(
-				-1,       
-				5.0f,      
-				FColor::Yellow,
-				FString::Printf(TEXT("here at sight id  ")));
-    	}else
-    	{
-    		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-    	}
         if (Stimulus.WasSuccessfullySensed())
         {
             OnSightStimulusDetected.Broadcast(SensedActor, Stimulus);
@@ -242,17 +154,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
     }
     else if (Stimulus.Type == HearingID)
     {
-    	if (GEngine)
-    	{
-    		GEngine->AddOnScreenDebugMessage(
-				-1,      
-				5.0f,   
-				FColor::Yellow,
-				FString::Printf(TEXT("here at hearing id  "))); 
-    	}else
-    	{
-    		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-    	}
         if (Stimulus.WasSuccessfullySensed())
         {
             OnHearingStimulusDetected.Broadcast(SensedActor, Stimulus);
@@ -261,19 +162,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
         {
             OnHearingStimulusForgotten.Broadcast(SensedActor);
         }
-    }else
-    {
-    	if (GEngine)
-    	{
-    		GEngine->AddOnScreenDebugMessage(
-				-1,     
-				5.0f,     
-				FColor::Yellow, 
-				FString::Printf(TEXT("SImulation not found mohammed "))); 
-    	}else
-    	{
-    		UE_LOG(LogTemp, Error, TEXT("SOMETHING NOT FOUND TargetPerceptionUpdated!!"));
-    	}
     }
 }
 

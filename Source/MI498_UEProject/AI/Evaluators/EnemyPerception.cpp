@@ -8,8 +8,7 @@
 void UEnemyPerception::TreeStart(FStateTreeExecutionContext& Context)
 {
 	Super::TreeStart(Context);
-	UE_LOG(LogTemp, Error, TEXT("TREE STARTED mmmmm!"));
-	// set a context sdo we can access it from the task 
+	// Get the AI controller from the context (from a state tree)
 	AEnemyAIController* aiController = Cast<AEnemyAIController>(Context.GetOwner());
 	if (!aiController)
 	{
@@ -24,10 +23,8 @@ void UEnemyPerception::TreeStart(FStateTreeExecutionContext& Context)
 	AIController->OnHearingStimulusForgotten.AddDynamic(this, &UEnemyPerception::HandleHearingStimulusForgotten);
 	AIController->OnDamageStimulusDetected.AddDynamic(this, &UEnemyPerception::HandleDamageStimulus);
 
-	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Unknown; // Update the ai controller state tree state
-	
+	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Unknown; 
 
-	// get the Pawn from the ai controller
 	APawn* OwnerPawn = AIController->GetPawn();
 	if (!OwnerPawn)
 	{
@@ -72,9 +69,9 @@ void UEnemyPerception::TreeStop(FStateTreeExecutionContext& Context)
 
 void UEnemyPerception::HandleSightStimulus(AActor* TargetActor, const FAIStimulus& Stimulus)
 {
-	UE_LOG(LogTemp, Error, TEXT("AAAAAAAAA!!"));
 	if (APlayerCharacter* player = Cast<APlayerCharacter>(TargetActor))
 	{
+		// We only want to send the event to the state tree once to avoid duplicated events  
 		if (AIController->CurrentStateTreeState != StateTreeEnemyEvents::Attack)
 		{
 			TargetPlayer = player;	
@@ -92,10 +89,6 @@ void UEnemyPerception::HandleSightStimulus(AActor* TargetActor, const FAIStimulu
 
 void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1,10.00f,FColor::Yellow,FString::Printf(TEXT("no sight du!!")));
-	}
 	TargetPlayer = nullptr;
 	if (IsValid(AIController))
 	{
@@ -127,7 +120,6 @@ void UEnemyPerception::HandleHearingStimulus(AActor* TargetActor, const FAIStimu
 
 void UEnemyPerception::HandleHearingStimulusForgotten(AActor* TargetActor)
 {
-	UE_LOG(LogTemp, Log, TEXT("Hearing forgotten for actor: %s"), *GetNameSafe(TargetActor));
 	TargetPlayer = nullptr;
 	if (IsValid(AIController))
 	{
@@ -159,25 +151,21 @@ void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimul
 
 void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 {
-	UE_LOG(LogTemp, Error, TEXT("AAAAAA!! EVENT SENTNTTTT"));
 	FGameplayTag EventTag;
 	switch (Event)
 	{
 	case StateTreeEnemyEvents::Idle:
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Idle"));
-		UE_LOG(LogTemp, Error, TEXT("TO IDLE !!"));
 
 		LastEvent = StateTreeEnemyEvents::Idle;
 		break;
 	case StateTreeEnemyEvents::Attack:
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Attack"));
-		UE_LOG(LogTemp, Error, TEXT("TO ATTACK!!"));
 
 		LastEvent = StateTreeEnemyEvents::Attack;
 		break;
 	case StateTreeEnemyEvents::Patrol:
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Patrol"));
-		UE_LOG(LogTemp, Error, TEXT("TO PATROL!!"));
 
 		LastEvent = StateTreeEnemyEvents::Patrol;
 		break;

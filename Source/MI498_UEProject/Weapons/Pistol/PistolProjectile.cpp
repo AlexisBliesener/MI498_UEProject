@@ -6,9 +6,7 @@
 
 APistolProjectile::APistolProjectile()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
 	Collision->InitSphereRadius(6.f);
 	RootComponent = Collision;
@@ -31,12 +29,9 @@ APistolProjectile::APistolProjectile()
 void APistolProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("PROJECTILE OVERLAPPED: %s"), OtherActor ? *OtherActor->GetName() : TEXT("NULL"));
-	
 	// don't hit the char itself and the owner (the projectile)
 	if (OtherActor && OtherActor != this && OtherActor != GetOwner())
 	{
-
 		UGameplayStatics::ApplyDamage(
 			OtherActor,
 			Damage,
@@ -44,19 +39,15 @@ void APistolProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 			this,
 			UDamageType::StaticClass()
 		);
-		
 		Destroy();
 	}
 }
 
-// Called when the game starts or when spawned
 void APistolProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
-// Called every frame
 void APistolProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

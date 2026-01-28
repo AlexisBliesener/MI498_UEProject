@@ -10,22 +10,8 @@
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
 
-
-void AEnemyBase::ShootPistol()
-{
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,    
-			5.0f,   
-			FColor::Yellow, 
-			FString::Printf(TEXT("UUUGGHHH")));
-	}
-}
-
 AEnemyBase::AEnemyBase()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	UAIPerceptionStimuliSourceComponent* StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimulusSourceComponent"));
 	StimuliSourceComponent->ComponentTags.Add(FName("Player"));
@@ -34,11 +20,9 @@ AEnemyBase::AEnemyBase()
 	CurrentHealth = MaxHealth;
 }
 
-// Called when the game starts or when spawned
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -48,21 +32,11 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 
 	CurrentHealth = FMath::Clamp(CurrentHealth - DamageAmount, 0.f, MaxHealth);
 
-	GEngine->AddOnScreenDebugMessage(
-		-1,
-		5.f,
-		FColor::Red,
-		FString::Printf(
-			TEXT("Enemy Health: %.1f / %.1f"),
-			CurrentHealth,
-			MaxHealth
-		)
-	);
 	if (CurrentHealth <= 0.f)
 	{
 		// DIE i think
 		UE_LOG(LogTemp, Error, TEXT("Enemy DIED"));
-
+		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))
 		{
@@ -80,7 +54,6 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	return DamageAmount;
 }
 
-// Called every frame
 void AEnemyBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -89,13 +62,11 @@ void AEnemyBase::Tick(float DeltaTime)
 void AEnemyBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-
 }
 
 void AEnemyBase::UnPossessed()
 {
 	Super::UnPossessed();
-	
 }
 
 UStateTree* AEnemyBase::GetStateTree() const
@@ -112,14 +83,6 @@ void AEnemyBase::Attack(AActor* Target)
 	const float Distance = FVector::Dist(GetActorLocation(), Target->GetActorLocation());
 	if (Distance > AttackRange)
 		return;
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,      
-			5.0f,   
-			FColor::Yellow,
-			FString::Printf(TEXT("ATTTACCKKKKIIINNNNGG!!"))); 
-	}
 	
 	FVector MuzzleLocation = GetMesh()->GetSocketLocation("middle_01_rSocket");
 	FRotator LookAtRot = (Target->GetActorLocation() - MuzzleLocation).Rotation();

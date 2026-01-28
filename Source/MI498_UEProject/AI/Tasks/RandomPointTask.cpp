@@ -41,8 +41,6 @@ EStateTreeRunStatus FRandomPointTask::EnterState(FStateTreeExecutionContext& Con
 	if (bFound)
 	{
 		Data.RandomLocation = NavLocation.Location;
-
-		UE_LOG(LogTemp, Warning, TEXT("PMEW SUCCENS AAAAA SUCCES. Name: %ls Location: %s"), *Data.Actor->GetName() ,*Data.RandomLocation.ToString());
 		return EStateTreeRunStatus::Succeeded;
 	}
 	else
