@@ -14,11 +14,16 @@ class MI498_UEPROJECT_API APlayerCharacter : public ACharacter
 public:
 	
 	APlayerCharacter();
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player|Health")
+	float MaxHealth = 100.f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Player|Health")
+	float CurrentHealth;
+
 	/// Toggles sprinting on or off.
 	/// Updates the character movement speed based on the current sprint state.
 	void ToggleSprint();
-
+	// Called when ApplyDamage is used
+	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
 protected:
 	
 	/// Maximum walking speed when the player is not sprinting

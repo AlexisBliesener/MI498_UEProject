@@ -18,6 +18,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	int Range = 1000;
 
+	/// The Damage amount of the weapon 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	float Damage = 5.0f;
 protected:
 	/// Implementation of the PrimaryAttack function from IWeaponInterface
 	/// @param PlayerController - The player performing the attack
