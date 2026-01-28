@@ -19,3 +19,5 @@ Saved
 *.prof
 *.validationcache
 */Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
+*.a
+*.lib
