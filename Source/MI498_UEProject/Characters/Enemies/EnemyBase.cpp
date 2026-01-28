@@ -48,7 +48,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
 
-		SetLifeSpan(0.5f); 
+		Destroy();
 	}
 
 	return DamageAmount;
