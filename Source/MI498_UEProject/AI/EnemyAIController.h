@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-#include "Components/StateTreeAIComponent.h"
-#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/AI/Components/StateTreeEnemyComponent.h"
 #include "EnemyAIController.generated.h"
 

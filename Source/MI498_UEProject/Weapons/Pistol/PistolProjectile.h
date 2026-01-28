@@ -6,7 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
-#include "Kismet/GameplayStatics.h"
 #include "PistolProjectile.generated.h"
 
 /**

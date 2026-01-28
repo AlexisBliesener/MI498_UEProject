@@ -1,5 +1,4 @@
 ﻿#include "SendEventTask.h"
-#include "NavigationSystem.h"
 #include "StateTreeExecutionContext.h"
 
 

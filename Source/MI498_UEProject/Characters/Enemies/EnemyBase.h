@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "MI498_UEProject/Player/PlayerCharacter.h"
 #include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
 #include "EnemyBase.generated.h"
 
