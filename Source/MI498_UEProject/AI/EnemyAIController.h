@@ -5,16 +5,15 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "MI498_UEProject/AI/Components/StateTreeEnemyComponent.h"
+#include "Perception/AISenseConfig_Sight.h"
+#include "Perception/AISenseConfig_Hearing.h"
+#include "Perception/AISenseConfig_Damage.h"
+#include "Perception/AISenseConfig_Prediction.h"
 #include "EnemyAIController.generated.h"
 
 
 enum class StateTreeEnemyEvents : uint8;
 class AEnemyBase;
-class UAISenseConfig_Sight;
-class UAISenseConfig_Hearing;
-class UAISenseConfig_Damage;
-class UAISenseConfig_Prediction;
-class UAIPerceptionComponent;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPGASStimulusEventSignature, AActor*, Actor, const FAIStimulus&, Stimulus);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPGASStimulusForgottenSignature, AActor*, Actor);
 /// Log category for enemy messages
@@ -68,7 +67,18 @@ public:
 	 * @return A pointer to the UStateTreeEnemyComponent, or nullptr if not.
 	 */
 	UStateTreeEnemyComponent* GetStateTreeAIComponent() const;
-	
+	/// Configuration for the AI's sight sense. 
+	UPROPERTY()
+	TObjectPtr<UAISenseConfig_Sight> SightConfig;
+	/// Configuration for the AI's Hearing sense. 
+	UPROPERTY()
+	TObjectPtr<UAISenseConfig_Hearing> HearingConfig;
+	/// Configuration for the AI's Damage sense. 
+	UPROPERTY()
+	TObjectPtr<UAISenseConfig_Damage> DamageConfig;
+	/// Configuration for the AI's Prediction sense. 
+	UPROPERTY()
+	TObjectPtr<UAISenseConfig_Prediction> PredictionConfig;
 protected:
 	// A reference to the AI's StateTree component 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI|References")
@@ -91,17 +101,4 @@ protected:
 	 */
 	UFUNCTION()
 	void OnTargetPerceptionForgotten(AActor* Actor);
-private:
-	/// Configuration for the AI's sight sense. 
-	UPROPERTY()
-	TObjectPtr<UAISenseConfig_Sight> SightConfig;
-	/// Configuration for the AI's Hearing sense. 
-	UPROPERTY()
-	TObjectPtr<UAISenseConfig_Hearing> HearingConfig;
-	/// Configuration for the AI's Damage sense. 
-	UPROPERTY()
-	TObjectPtr<UAISenseConfig_Damage> DamageConfig;
-	/// Configuration for the AI's Prediction sense. 
-	UPROPERTY()
-	TObjectPtr<UAISenseConfig_Prediction> PredictionConfig;
 };

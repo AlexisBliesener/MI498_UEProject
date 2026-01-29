@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
+#include "MI498_UEProject/AI/Settings/EnemySettings.h"
 #include "EnemyBase.generated.h"
-
 class AWeaponBase;
 DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 /**
@@ -51,6 +51,8 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category="Enemy|Combat")
 	void Attack(AActor* Target);
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="AI")
+	UEnemySettings* AISettings;
 protected:
 	virtual void BeginPlay() override;
 	/**

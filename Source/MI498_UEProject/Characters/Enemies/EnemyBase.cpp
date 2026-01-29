@@ -74,6 +74,27 @@ void AEnemyBase::Tick(float DeltaTime)
 void AEnemyBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+	// Apply the data asset settings for the specific enemy 
+	if (AISettings)
+	{
+		ChaseSpeed = AISettings->ChaseSpeed;
+		AttackRange = AISettings->AttackRange;
+		ShootCooldown = AISettings->ShootCooldown;
+
+		if (AEnemyAIController* AIController = Cast<AEnemyAIController>(NewController))
+		{
+			if (AIController->SightConfig)
+			{
+				AIController->SightConfig->SightRadius = AISettings->SightRadius;
+				AIController->SightConfig->LoseSightRadius = AISettings->LoseSightRadius;
+				AIController->SightConfig->PeripheralVisionAngleDegrees = AISettings->PeripheralVisionAngle;
+			}
+			if (AIController->HearingConfig)
+			{
+				AIController->HearingConfig->HearingRange = AISettings->HearingRange;
+			}
+		}
+	}
 }
 
 void AEnemyBase::UnPossessed()
