@@ -4,7 +4,7 @@
 
 DEFINE_LOG_CATEGORY(WeaponLog);
 
-void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
+void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 {
 	OnPrimaryAttack();
 
@@ -43,15 +43,7 @@ void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 	/// Check if HitResult hit an enemy and apply damage
 	if (bHit && hitResult.GetActor())
 	{
-		GEngine->AddOnScreenDebugMessage(
-	-1,
-	5.f,
-	FColor::Red,
-	FString::Printf(
-		TEXT("HHHIIIIITTTT %s"),*hitResult.GetActor()->GetName()
-
-	)
-);
+		
 		UGameplayStatics::ApplyDamage(
 			hitResult.GetActor(),
 			Damage, // weapon damage
@@ -62,6 +54,6 @@ void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 	}
 }
 
-void AWeaponBase::SecondaryAttack(APlayerController* PlayerController)
+void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
 }

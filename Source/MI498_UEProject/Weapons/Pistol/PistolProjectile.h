@@ -18,13 +18,13 @@ class MI498_UEPROJECT_API APistolProjectile : public AActor
 
 public:
 	APistolProjectile();
-	// Defines the collision behavior for the projectile using a sphere. 
+	/// Defines the collision behavior for the projectile using a sphere. 
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* Collision;
-	//  Manages projectile's speed, direction, and gravity behavior.
+	///  Manages projectile's speed, direction, and gravity behavior.
 	UPROPERTY(VisibleAnywhere)
 	UProjectileMovementComponent* Movement;
-	// Defines the amount of damage dealt by the projectile.=
+	/// Defines the amount of damage dealt by the projectile.=
 	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	float Damage = 15.f;
 	/**

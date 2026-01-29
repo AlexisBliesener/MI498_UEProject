@@ -66,7 +66,7 @@ void AEnemyAIController::ReportDamageEvent(AActor* DamagedActor, AActor* Instiga
 	UWorld* World = GetWorld();
 	if (!World || !DamagedActor)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("no world or no damaged actor."));
+		UE_LOG(EnemyAILog, Warning, TEXT("no world or no damaged actor."));
 		return;
 	}
 
@@ -93,18 +93,18 @@ void AEnemyAIController::BeginPlay()
 void AEnemyAIController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
-	if (AEnemyBase* EnemyBase = Cast<AEnemyBase>(InPawn))
+	if (AEnemyBase* enemyBase = Cast<AEnemyBase>(InPawn))
 	{
 		if (!StateTreeAIComponent)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("no StateTreeAIComponent for enemy ai controller."));
+			UE_LOG(EnemyAILog, Warning, TEXT("no StateTreeAIComponent for enemy ai controller."));
 			return;
 		}
-		StateTreeAIComponent->StartStateTree(EnemyBase->GetStateTree());
+		StateTreeAIComponent->StartStateTree(enemyBase->GetStateTree());
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("The enemy ai controller is not attached to an enemy base class!"));
+		UE_LOG(EnemyAILog, Warning, TEXT("The enemy ai controller is not attached to an enemy base class!"));
 	}
 }
 
@@ -114,55 +114,46 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
     {
         return;
     }
-    static const FAISenseID SightID = UAISense::GetSenseID(UAISense_Sight::StaticClass());
-    static const FAISenseID HearingID = UAISense::GetSenseID(UAISense_Hearing::StaticClass());
-    static const FAISenseID DamageID = UAISense::GetSenseID(UAISense_Damage::StaticClass());
-    FString SenseName;
-    if (Stimulus.Type == SightID)
-        SenseName = TEXT("Sight");
-    else if (Stimulus.Type == HearingID)
-        SenseName = TEXT("Hearing");
-    else if (Stimulus.Type == DamageID)
-        SenseName = TEXT("Damage");
-    else {
-        SenseName = TEXT("Unknown");
-    }
+    static const FAISenseID sightID = UAISense::GetSenseID(UAISense_Sight::StaticClass());
+    static const FAISenseID hearingID = UAISense::GetSenseID(UAISense_Hearing::StaticClass());
+    static const FAISenseID damageID = UAISense::GetSenseID(UAISense_Damage::StaticClass());
     AActor* SensedActor = Actor;
     if (!SensedActor)
     {
-        UE_LOG(LogTemp, Verbose, TEXT("Actor %s is not a valid actor."), *GetNameSafe(Actor));
+        UE_LOG(EnemyAILog, Error, TEXT("Actor %s is not a valid actor."), *GetNameSafe(Actor));
         return;
     }
-	// TODO: sw	
-    if (Stimulus.Type == DamageID)
-    {
-        if (Stimulus.WasSuccessfullySensed())
-        {
-            OnDamageStimulusDetected.Broadcast(SensedActor, Stimulus);
-        }
-    }
-    else if (Stimulus.Type == SightID)
-    {
-        if (Stimulus.WasSuccessfullySensed())
-        {
-            OnSightStimulusDetected.Broadcast(SensedActor, Stimulus);
-        }
-        else
-        {
-            OnSightStimulusForgotten.Broadcast(SensedActor);
-        }
-    }
-    else if (Stimulus.Type == HearingID)
-    {
-        if (Stimulus.WasSuccessfullySensed())
-        {
-            OnHearingStimulusDetected.Broadcast(SensedActor, Stimulus);
-        }
-        else
-        {
-            OnHearingStimulusForgotten.Broadcast(SensedActor);
-        }
-    }
+	if (Stimulus.Type == damageID)
+	{
+		if (Stimulus.WasSuccessfullySensed())
+		{
+			OnDamageStimulusDetected.Broadcast(SensedActor, Stimulus);
+		}
+	}
+	else if (Stimulus.Type == sightID)
+	{
+		if (Stimulus.WasSuccessfullySensed())
+		{
+			OnSightStimulusDetected.Broadcast(SensedActor, Stimulus);
+		}
+		else
+		{
+			OnSightStimulusForgotten.Broadcast(SensedActor);
+		}
+	}
+	else if (Stimulus.Type == hearingID)
+	{
+		if (Stimulus.WasSuccessfullySensed())
+		{
+			OnHearingStimulusDetected.Broadcast(SensedActor, Stimulus);
+		}
+		else
+		{
+			OnHearingStimulusForgotten.Broadcast(SensedActor);
+		}
+	}else{
+		UE_LOG(EnemyAILog,Warning,TEXT("Unknown stimulus type for actor %s"),*GetNameSafe(Actor));
+	}
 }
 
 void AEnemyAIController::OnTargetPerceptionForgotten(AActor* Actor)

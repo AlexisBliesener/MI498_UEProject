@@ -29,25 +29,25 @@ class MI498_UEPROJECT_API AEnemyAIController : public AAIController
 {
 public:
 	GENERATED_BODY()
-	// Holds the actor currently targeted by the AI.
+	/// Holds the actor currently targeted by the AI.
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AActor> AcquiredTarget = nullptr;
-	// Triggered when the AI detects a damage stimulus.
+	/// Triggered when the AI detects a damage stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Damage Stimulus Detected"))
 	FPGASStimulusEventSignature OnDamageStimulusDetected;
-	// Triggered when the AI detects a sight stimulus.
+	/// Triggered when the AI detects a sight stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Sight Stimulus Detected"))
 	FPGASStimulusEventSignature OnSightStimulusDetected;
-	// Triggered when the AI loses sight of the target
+	/// Triggered when the AI loses sight of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Sight Stimulus Forgotten"))
 	FPGASStimulusForgottenSignature OnSightStimulusForgotten;
-	// Triggered when the AI detects a hearing stimulus.
+	/// Triggered when the AI detects a hearing stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Detected"))
 	FPGASStimulusEventSignature OnHearingStimulusDetected;
-	// Triggered when the AI loses hearing of the target
+	/// Triggered when the AI loses hearing of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Forgotten"))
 	FPGASStimulusForgottenSignature OnHearingStimulusForgotten;
-	// The current state of the AI's behavior
+	/// The current state of the AI's behavior
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	StateTreeEnemyEvents CurrentStateTreeState;
 
@@ -92,16 +92,16 @@ protected:
 	UFUNCTION()
 	void OnTargetPerceptionForgotten(AActor* Actor);
 private:
-	// Configuration for the AI's sight sense. 
+	/// Configuration for the AI's sight sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Sight> SightConfig;
-	// Configuration for the AI's Hearing sense. 
+	/// Configuration for the AI's Hearing sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Hearing> HearingConfig;
-	// Configuration for the AI's Damage sense. 
+	/// Configuration for the AI's Damage sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Damage> DamageConfig;
-	// Configuration for the AI's Prediction sense. 
+	/// Configuration for the AI's Prediction sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Prediction> PredictionConfig;
 };

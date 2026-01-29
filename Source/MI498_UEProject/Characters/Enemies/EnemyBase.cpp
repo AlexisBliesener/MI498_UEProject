@@ -6,10 +6,12 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/Weapons/WeaponBase.h"
+#include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
-
+DEFINE_LOG_CATEGORY(EnemyLog);
 AEnemyBase::AEnemyBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -17,11 +19,27 @@ AEnemyBase::AEnemyBase()
 	StimuliSourceComponent->ComponentTags.Add(FName("Player"));
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	StimuliSourceComponent->RegisterWithPerceptionSystem();
+
 }
 
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
+	if (WeaponBlueprint)
+	{
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = this;
+
+		CurrentWeapon = GetWorld()->SpawnActor<AWeaponBase>(WeaponBlueprint, SpawnParams);
+		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("middle_01_rSocket"));
+
+	}
+	
+	if (!CurrentWeapon)
+	{
+		UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a weapon!!"), *GetName());
+	}
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -30,7 +48,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	if (CurrentHealth <= 0.f)
 	{
 		// DIE i think
-		UE_LOG(LogTemp, Error, TEXT("Enemy DIED"));
+		UE_LOG(EnemyLog, Error, TEXT("Enemy DIED"));
 		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))
@@ -65,32 +83,29 @@ void AEnemyBase::UnPossessed()
 
 UStateTree* AEnemyBase::GetStateTree() const
 {
-	return StateTreesss;
+	return CurrentStateTree;
 }
 
 void AEnemyBase::Attack(AActor* Target)
 {
 
-	if (!Target || !ProjectileClass || !bCanShoot)
+	if (!Target || !bCanShoot)
 		return;
 
 	const float Distance = FVector::Dist(GetActorLocation(), Target->GetActorLocation());
 	if (Distance > AttackRange)
+	{
 		return;
-	
-	FVector MuzzleLocation = GetMesh()->GetSocketLocation("middle_01_rSocket");
-	FRotator LookAtRot = (Target->GetActorLocation() - MuzzleLocation).Rotation();
-
-	FActorSpawnParameters Params;
-	Params.Owner = this;
-	Params.Instigator = this;
-
-	GetWorld()->SpawnActor<APistolProjectile>(
-		ProjectileClass,
-		MuzzleLocation,
-		LookAtRot,
-		Params
-	);
+	}
+	if (!CurrentWeapon)
+	{
+		UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a weapon!!"), *GetName());
+		return;
+	}
+	if (IWeaponInterface* Weapon = Cast<IWeaponInterface>(CurrentWeapon))
+	{
+		Weapon->PrimaryAttack(GetController(), Target);
+	}
 
 	// cooldown
 	GetWorldTimerManager().SetTimer(

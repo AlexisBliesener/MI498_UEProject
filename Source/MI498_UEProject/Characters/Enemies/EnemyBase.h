@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
-#include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
 #include "EnemyBase.generated.h"
 
+class AWeaponBase;
+DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 /**
  * Base class for enemy characters in the game.
  * Can attack, chase, and take damage.
@@ -17,17 +17,15 @@ class MI498_UEPROJECT_API AEnemyBase : public ACharacterBase
 {
 public:
 	GENERATED_BODY()
-	// Distance within which the enemy can attack a target.
+	/// Distance within which the enemy can attack a target.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Combat")
 	float AttackRange = 1000.f;
-	// Time between enemy shots, in seconds.
+	/// Time between enemy shots, in seconds.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Combat")
 	float ShootCooldown = 1.2f;
-	// Speed at which the enemy chases the target.
+	/// Speed at which the enemy chases the target.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Movement")
 	float ChaseSpeed = 450.f;
-	UPROPERTY(EditDefaultsOnly, Category="Enemy|Combat")
-	TSubclassOf<APistolProjectile> ProjectileClass;
 	/**
 	 * Initializes default properties and components for the enemy character
 	 */
@@ -42,7 +40,11 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Player|AI", meta = (DisplayName = "Get State Tree", ReturnDisplayName = "State Tree"))
 	UStateTree* GetStateTree() const;
-
+	/// The currently weapon
+	UPROPERTY()
+	AWeaponBase* CurrentWeapon;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon")
+	TSubclassOf<AWeaponBase> WeaponBlueprint;
 	/**
 	 * Makes the enemy attack the given target.
 	 * @param Target The actor to be attacked.
@@ -61,12 +63,12 @@ protected:
 	 */
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
 private:
-	//  State tree used for AI logic of the player or enemy.
+	///  State tree used for AI logic of the player or enemy.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player|AI", meta = (AllowPrivateAccess = "true"))
-	UStateTree* StateTreesss;
-	// Indicates if the enemy can currently shoot to prevents shooting during cooldown.
+	UStateTree* CurrentStateTree;
+	/// Indicates if the enemy can currently shoot to prevents shooting during cooldown.
 	bool bCanShoot = true;
-	// Timer used to manage the cooldown period between enemy shots
+	/// Timer used to manage the cooldown period between enemy shots
 	FTimerHandle ShootTimer;
 	/**
 	 * Resets the shooting ability of the enemy.

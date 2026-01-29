@@ -53,18 +53,18 @@ public:
 	virtual void TreeStop(FStateTreeExecutionContext& Context) override;
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
-	// Called when sight stimulus is detected
+	/// Called when sight stimulus is detected
 	void OnSightStimulus(AActor* TargetActor, const FAIStimulus& Stimulus);
 
-	// Called when sight stimulus is forgotten
+	/// Called when sight stimulus is forgotten
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
 	void OnSightStimulusForgotten(AActor* TargetActor);
 
-	// Called when hearing stimulus is detected 
+	/// Called when hearing stimulus is detected 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
 	void OnHearingStimulus(AActor* TargetActor, const FAIStimulus& Stimulus);
 
-	// Called when hearing stimulus is forgotten 
+	/// Called when hearing stimulus is forgotten 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
 	void OnHearingStimulusForgotten(AActor* TargetActor);
 

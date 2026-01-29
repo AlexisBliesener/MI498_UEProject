@@ -14,12 +14,14 @@ class MI498_UEPROJECT_API ABlunderbuss : public AWeaponBase
 {
 public:	
 	/// Override the PrimaryAttack function to implement Blunderbuss-specific firing behavior
-	/// @param PlayerController - Provides context about who is firing 
-	virtual void PrimaryAttack(APlayerController* PlayerController) override;
+	/// @param Controller - Provides context about who is firing 
+	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
+	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
 	/// Override the SecondaryAttack function to implement Blunderbuss-specific firing behavior
-	/// @param PlayerController - Provides context about who is firing 
-	virtual void SecondaryAttack(APlayerController* PlayerController) override;
+	/// @param Controller - Provides context about who is firing 
+	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
+	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
 	/// How much force is applied to the player when firing the weapon in air
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
