@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
 class UWeaponManager;
@@ -9,16 +10,17 @@ class UWeaponManager;
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
 UCLASS()
-class MI498_UEPROJECT_API APlayerCharacter : public ACharacter
+class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase
 {
 public:
 	
 	APlayerCharacter();
-	
+
 	/// Toggles sprinting on or off.
 	/// Updates the character movement speed based on the current sprint state.
 	void ToggleSprint();
-
+	// Called when ApplyDamage is used
+	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
 protected:
 	
 	/// Maximum walking speed when the player is not sprinting

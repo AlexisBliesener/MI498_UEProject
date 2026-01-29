@@ -1,23 +1,26 @@
 #include "Sword.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
-void ASword::PrimaryAttack(APlayerController* PlayerController)
+void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	Super::PrimaryAttack(PlayerController);
+	Super::PrimaryAttack(Controller);
 }
 
-void ASword::SecondaryAttack(APlayerController* PlayerController)
+void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 {
-	/// Get the player camera location and rotation for dash direction
-	FVector cameraLocation;
-	FRotator cameraRotation;
-	PlayerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	FVector cameraForwardVector = cameraRotation.Vector();
+	if (APlayerController* playerController = Cast<APlayerController>(Controller))
+	{
+		/// Get the player camera location and rotation for dash direction
+		FVector cameraLocation;
+		FRotator cameraRotation;
+		playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+		FVector cameraForwardVector = cameraRotation.Vector();
 	
-	/// Get a reference to the owning player character
-	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
+		/// Get a reference to the owning player character
+		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
 	
-	/// Dashes the player forward in look direction
-	FVector launchVelocity = cameraForwardVector * DashForce;
-	playerCharacter->LaunchCharacter(launchVelocity, true, true);
+		/// Dashes the player forward in look direction
+		FVector launchVelocity = cameraForwardVector * DashForce;
+		playerCharacter->LaunchCharacter(launchVelocity, true, true);
+	}
 }

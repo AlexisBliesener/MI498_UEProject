@@ -1,8 +1,10 @@
 #include "WeaponBase.h"
 
+#include "Kismet/GameplayStatics.h"
+
 DEFINE_LOG_CATEGORY(WeaponLog);
 
-void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
+void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 {
 	OnPrimaryAttack();
 
@@ -24,7 +26,7 @@ void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 	TraceParams.AddIgnoredActor(GetOwner());
 	
 	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, cameraLocation,endLocation, ECC_Visibility, TraceParams);
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, cameraLocation,endLocation, ECC_Pawn, TraceParams);
 	
 	/// Draw a debug line showing the trace in the world
 	DrawDebugLine(
@@ -38,9 +40,20 @@ void AWeaponBase::PrimaryAttack(APlayerController* PlayerController)
 	1.f
 	);
 	
-	/// TODO: Check if HitResult hit an enemy and apply damage
+	/// Check if HitResult hit an enemy and apply damage
+	if (bHit && hitResult.GetActor())
+	{
+		
+		UGameplayStatics::ApplyDamage(
+			hitResult.GetActor(),
+			Damage, // weapon damage
+			PlayerController,
+			this,
+			nullptr
+		);
+	}
 }
 
-void AWeaponBase::SecondaryAttack(APlayerController* PlayerController)
+void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
 }
