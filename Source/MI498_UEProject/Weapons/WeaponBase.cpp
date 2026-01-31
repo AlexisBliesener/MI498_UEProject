@@ -1,8 +1,14 @@
 #include "WeaponBase.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Math/UnitConversion.h"
 
-DEFINE_LOG_CATEGORY(WeaponLog);
+DEFINE_LOG_CATEGORY(WeaponLog)
+
+AWeaponBase::AWeaponBase()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
 
 void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 {
@@ -56,4 +62,22 @@ void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 
 void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
+}
+
+void AWeaponBase::Reload()
+{
+	bReloading = true;
+	ReloadTimer = GetWorld()->GetTimeSeconds();
+}
+
+void AWeaponBase::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	if (bReloading && GetWorld()->GetTimeSeconds() > ReloadTimer + ReloadTime)
+	{
+		bReloading = false;	
+		CurrentAmmo = MaxAmmo;
+		UE_LOG(LogTemp, Warning, TEXT("Current Ammo: %d"), CurrentAmmo);
+	}
 }

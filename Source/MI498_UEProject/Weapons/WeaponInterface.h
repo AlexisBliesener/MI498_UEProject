@@ -24,6 +24,8 @@ public:
 	/// @param Controller - Provides context about who is performing the 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) = 0;
+	
+	virtual void Reload() = 0;
 
 protected:
 	

@@ -118,6 +118,10 @@ void UWeaponManager::BeginPlay()
 	{
 		EnhancedInputComponent->BindAction(ActionSecondaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttack);
 	}
+	if (ActionReload)
+	{
+		EnhancedInputComponent->BindAction(ActionReload, ETriggerEvent::Triggered, this, &UWeaponManager::HandleReload);
+	}
 }
 
 void UWeaponManager::HandleSelectWeaponOne()
@@ -194,4 +198,10 @@ void UWeaponManager::HandleSecondaryAttack()
 	UE_LOG(WeaponManagerLog, Log, TEXT("secondary attack"));
 	/// Call the weapon's SecondaryAttack function, passing the player controller
 	CurrentWeapon->SecondaryAttack(PlayerCharacter->GetController());
+}
+
+void UWeaponManager::HandleReload()
+{
+	UE_LOG(WeaponManagerLog, Log, TEXT("reload"));
+	CurrentWeapon->Reload();
 }
