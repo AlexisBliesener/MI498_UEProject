@@ -10,13 +10,13 @@ ABlunderbuss::ABlunderbuss()
 
 void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	Super::PrimaryAttack(Controller, Target);
-	
 	// Check if there is enough ammo to perform the primary attack
 	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
 	{
 		return;
 	}
+	
+	Super::PrimaryAttack(Controller, Target);
 	
 	// Perform the actual weapon fire trace and damage calculation
 	Fire(Controller, Target, Damage);
