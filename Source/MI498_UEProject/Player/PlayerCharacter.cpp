@@ -1,6 +1,4 @@
 #include "PlayerCharacter.h"
-
-#include "VirtualShadowMapDefinitions.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -8,8 +6,10 @@
 
 APlayerCharacter::APlayerCharacter()
 {
+	/// Create weapon manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
 	
+	/// Add first person camera
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
 	Camera->SetupAttachment(RootComponent);
 	Camera->bUsePawnControlRotation = true;

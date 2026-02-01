@@ -1,8 +1,5 @@
 #include "WeaponBase.h"
 
-#include "Kismet/GameplayStatics.h"
-#include "Math/UnitConversion.h"
-
 DEFINE_LOG_CATEGORY(WeaponLog)
 
 AWeaponBase::AWeaponBase()
@@ -12,52 +9,8 @@ AWeaponBase::AWeaponBase()
 
 void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 {
+	// Triggers the attack event hook (animation/SFX/VFX)
 	OnPrimaryAttack();
-
-	/// Get the player camera location and rotation for aiming
-	FVector cameraLocation;
-	FRotator cameraRotation;
-	PlayerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	
-	/// Prepare a hit result to store the outcome of the line trace
-	FHitResult hitResult;
-	
-	/// Calculate the end location of the trace based on weapon range
-	FVector cameraForwardVector = cameraRotation.Vector();
-	FVector endLocation = cameraLocation + cameraForwardVector * Range;
-	
-	/// Setup collision parameters for the trace
-	FCollisionQueryParams TraceParams;
-	TraceParams.AddIgnoredActor(this);
-	TraceParams.AddIgnoredActor(GetOwner());
-	
-	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, cameraLocation,endLocation, ECC_Pawn, TraceParams);
-	
-	/// Draw a debug line showing the trace in the world
-	DrawDebugLine(
-	GetWorld(),
-	cameraLocation,
-	bHit ? hitResult.ImpactPoint : endLocation,
-	FColor::Red,
-	false,
-	1.f,
-	0,
-	1.f
-	);
-	
-	/// Check if HitResult hit an enemy and apply damage
-	if (bHit && hitResult.GetActor())
-	{
-		
-		UGameplayStatics::ApplyDamage(
-			hitResult.GetActor(),
-			Damage, // weapon damage
-			PlayerController,
-			this,
-			nullptr
-		);
-	}
 }
 
 void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
@@ -74,10 +27,11 @@ void AWeaponBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
+	// If currently reloading and enough time has passed,
+	// complete the reload and restore ammo
 	if (bReloading && GetWorld()->GetTimeSeconds() > ReloadTimer + ReloadTime)
 	{
 		bReloading = false;	
 		CurrentAmmo = MaxAmmo;
-		UE_LOG(LogTemp, Warning, TEXT("Current Ammo: %d"), CurrentAmmo);
 	}
 }

@@ -8,23 +8,23 @@ ABlunderbuss::ABlunderbuss()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-/// Implements the Blunderbuss' primary attack
-/// This function handles hitscan firing, camera recoil, and knockback
-/// @param Controller - The player who is firing the weapon
-/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	if (CurrentAmmo - 1 < 0)
+	Super::PrimaryAttack(Controller, Target);
+	
+	// Check if there is enough ammo to perform the primary attack
+	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
 	{
 		return;
 	}
 	
-	OnPrimaryAttack();
-	
+	// Perform the actual weapon fire trace and damage calculation
 	Fire(Controller, Target, Damage);
 	
-	CurrentAmmo--;
+	// Consume ammo required for a primary shot
+	CurrentAmmo -= PrimaryAttackNeededAmmo;
 	
+	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		PlayerKnockback(playerController, PrimaryAttackKnockbackForce);
@@ -33,15 +33,19 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 
 void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 {
-	if (CurrentAmmo - 2 < 0)
+	// Check if there is enough ammo to perform the secondary attack
+	if (CurrentAmmo - SecondaryAttackNeededAmmo < 0)
 	{
 		return;
 	}
 	
+	// Fire using multiplied damage for the double-shot behavior
 	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier);
 	
-	CurrentAmmo -= 2;
+	// Consume ammo required for a secondary shot
+	CurrentAmmo -= SecondaryAttackNeededAmmo;
 	
+	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		PlayerKnockback(playerController, SecondaryAttackKnockbackForce);
@@ -58,6 +62,7 @@ void ABlunderbuss::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
+	/// Auto reload
 	if (CurrentAmmo == 0)
 	{
 		Reload();
@@ -106,6 +111,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	TraceParams.AddIgnoredActor(this);
 	TraceParams.AddIgnoredActor(GetOwner());
 	
+	/// Half size of the box thats sweeps for damage
 	FVector halfSize = FVector(10, 50.f, 50); 
 	
 	/// Perform a hitscan trace from the camera forward
@@ -118,7 +124,6 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	FCollisionShape::MakeBox(halfSize),
 	TraceParams
 	);
-	
 	
 	/// Draw a debug line showing the trace in the world
 	DrawDebugBox(
@@ -133,14 +138,13 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	
 	//Calculate damage fall off
 	int hitDamage = ((Range - hitResult.Distance)/Range) * CurrentDamage;
-	UE_LOG(LogTemp, Warning, TEXT("hitDamage: %d"), hitDamage);
 	
 	/// Check if HitResult hit an enemy and apply damage
 	if (bHit && hitResult.GetActor())
 	{
 		UGameplayStatics::ApplyDamage(
 			hitResult.GetActor(),
-			hitDamage, // weapon damage
+			hitDamage, 
 			Controller,
 			GetOwner(),
 			nullptr

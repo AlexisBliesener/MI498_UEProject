@@ -2,7 +2,8 @@
 
 void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 {
-	OnPrimaryAttack();
+	Super::PrimaryAttack(Controller, Target);
+
 	if (APlayerController* playerController = Cast<APlayerController>(Controller) )
 	{
 		/// Get the player camera location and rotation for accurate aiming

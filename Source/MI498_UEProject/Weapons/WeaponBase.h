@@ -24,9 +24,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	float Damage = 30.0f;
 	
+	/// Maximum ammo capacity per mag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int MaxAmmo = 2;
 	
+	/// Time in seconds required to complete a reload
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float ReloadTime = 0.5;
 	
@@ -47,16 +49,21 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPrimaryAttack();
 	
+	/// Starts reload process — sets reload state and timer
 	virtual void Reload() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
+	// Current ammo remaining in the weapon
+	/// Initialized to MaxAmmo and refilled on reload
 	int CurrentAmmo = MaxAmmo;
 	
+	/// Whether the weapon is currently reloading
 	bool bReloading = false;
+	
+	/// Timestamp when reload started
 	float ReloadTimer = 0;
 
 private:	
 	GENERATED_BODY()
-
 };
