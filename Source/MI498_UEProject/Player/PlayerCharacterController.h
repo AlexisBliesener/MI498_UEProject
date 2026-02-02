@@ -54,6 +54,8 @@ public:
 	void OnStopMove();
 	
 protected:
+	virtual void Tick(float DeltaSeconds) override;
+	
 	/// Handles camera look input and applies rotation to the controlled pawn
 	/// @param InputActionValue Current look input value from the Enhanced Input system
 	void HandleLook(const FInputActionValue& InputActionValue);

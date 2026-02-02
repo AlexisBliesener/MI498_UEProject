@@ -62,6 +62,20 @@ void APlayerCharacterController::OnUnPossess()
 	EnhancedInputComponent->ClearActionBindings();
 }
 
+void APlayerCharacterController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	if (PlayerCharacter->GetCharacterMovement()->IsMovingOnGround())
+	{
+		OnMove();
+	}
+	else
+	{
+		OnStopMove();
+	}
+}
+
 void APlayerCharacterController::HandleLook(const FInputActionValue& InputActionValue)
 {
 	const FVector2D lookInput = InputActionValue.Get<FVector2D>();
@@ -76,15 +90,6 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 	
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(),moveInput.X);
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(),moveInput.Y);
-	
-	if (PlayerCharacter->GetCharacterMovement()->IsMovingOnGround())
-	{
-		OnMove();
-	}
-	else
-	{
-		OnStopMove();
-	}
 }
 
 void APlayerCharacterController::HandleJump()
