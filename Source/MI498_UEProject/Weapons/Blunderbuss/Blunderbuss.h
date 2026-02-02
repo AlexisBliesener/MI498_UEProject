@@ -13,6 +13,8 @@ UCLASS()
 class MI498_UEPROJECT_API ABlunderbuss : public AWeaponBase
 {
 public:	
+	ABlunderbuss();
+	
 	/// Override the PrimaryAttack function to implement Blunderbuss-specific firing behavior
 	/// @param Controller - Provides context about who is firing 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
@@ -23,16 +25,51 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
-	/// How much force is applied to the player when firing the weapon in air
+	/// Override of Reload from Weapon Base
+	/// Reloads to full ammo
+	virtual void Reload() override;
+	
+	/// How much force is applied to the player when firing the weapon in air during the primary attack
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int KnockbackForce = 500;
+	int PrimaryAttackKnockbackForce = 500;
+	
+	/// How much force is applied to the player when firing the weapon in air during the secondary attack
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int SecondaryAttackKnockbackForce = 1000;
 	
 	/// Vertical camera recoil applied to the player when firing
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int CameraRecoil = -5;
+	
+	/// Damage multiplier applied to the secondary (double) shot
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float DoubleShotDamageMultiplier = 2;
+	
+	/// The amount of ammo that a primary attack takes
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int PrimaryAttackNeededAmmo = 1;
+	
+	/// The amount of ammo that a secondary attack takes
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int SecondaryAttackNeededAmmo = 2;
 
 protected:
+	
+	virtual void Tick(float DeltaSeconds) override;
 
 private:
+	/// Applies physical knockback and camera recoil to the firing player
+	/// Launches the character opposite their view direction if airborne
+	/// @param PlayerController - Controller of the firing player
+	/// @param KnockbackForce - Strength of backward launch
+	void PlayerKnockback(APlayerController* PlayerController, int KnockbackForce) const;
+	
+	/// Performs the actual hitscan/sweep fire logic
+	/// Calculates trace, detects hit, applies falloff damage
+	/// @param Controller - Controller that initiated the shot
+	/// @param Target - Target reference
+	/// @param Damage - Base damage before falloff calculation
+	void Fire(AController* Controller, AActor* Target, int Damage) const;
+	
 	GENERATED_BODY()
 };

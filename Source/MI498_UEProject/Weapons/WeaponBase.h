@@ -14,6 +14,8 @@ UCLASS()
 class MI498_UEPROJECT_API AWeaponBase : public AActor,  public IWeaponInterface
 {
 public:	
+	AWeaponBase();
+	
 	/// The effective range of the weapon in Unreal units
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	int Range = 1000;
@@ -21,6 +23,15 @@ public:
 	/// The Damage amount of the weapon 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	float Damage = 30.0f;
+	
+	/// Maximum ammo capacity per mag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int MaxAmmo = 2;
+	
+	/// Time in seconds required to complete a reload
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float ReloadTime = 0.5;
+	
 protected:
 	/// Implementation of the PrimaryAttack function from IWeaponInterface
 	/// @param Controller - The controller performing the attack
@@ -37,8 +48,22 @@ protected:
 	/// A Blueprintable function that will be called when primary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPrimaryAttack();
+	
+	/// Starts reload process — sets reload state and timer
+	virtual void Reload() override;
+	
+	virtual void Tick(float DeltaSeconds) override;
+	
+	// Current ammo remaining in the weapon
+	/// Initialized to MaxAmmo and refilled on reload
+	int CurrentAmmo = MaxAmmo;
+	
+	/// Whether the weapon is currently reloading
+	bool bReloading = false;
+	
+	/// Timestamp when reload started
+	float ReloadTimer = 0;
 
 private:	
 	GENERATED_BODY()
-
 };

@@ -6,6 +6,8 @@
 #include "PlayerCharacter.generated.h"
 
 class UWeaponManager;
+class UCameraComponent;
+
 /// Character class representing the player-controlled pawn.
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
@@ -19,8 +21,14 @@ public:
 	/// Toggles sprinting on or off.
 	/// Updates the character movement speed based on the current sprint state.
 	void ToggleSprint();
+	
 	// Called when ApplyDamage is used
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
+
+	/// First person camera
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* Camera;
+	
 protected:
 	
 	/// Maximum walking speed when the player is not sprinting

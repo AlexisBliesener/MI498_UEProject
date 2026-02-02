@@ -1,13 +1,19 @@
 #include "PlayerCharacter.h"
-
-#include "VirtualShadowMapDefinitions.h"
 #include "../Weapons/WeaponManager.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 APlayerCharacter::APlayerCharacter()
 {
+	/// Create weapon manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
+	
+	/// Add first person camera
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
+	Camera->SetupAttachment(RootComponent);
+	Camera->bUsePawnControlRotation = true;
+	Camera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
 }
 
 void APlayerCharacter::ToggleSprint()
