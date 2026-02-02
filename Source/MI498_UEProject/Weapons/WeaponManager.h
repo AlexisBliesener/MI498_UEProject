@@ -56,6 +56,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TArray<TSubclassOf<AActor>> WeaponBlueprints;
 	
+	/// A Blueprintable function that will be called when weapons are switched
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void OnWeaponSwitch();
 

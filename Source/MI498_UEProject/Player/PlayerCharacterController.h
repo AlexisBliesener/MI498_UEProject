@@ -41,9 +41,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputMappingContext> InputMappingContext = nullptr;
 	
+	/// A Blueprintable function that will be called when the player jumps
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnJump();
 	
+	/// A Blueprintable function that will be called when the player is moving on the ground
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMove();
 	

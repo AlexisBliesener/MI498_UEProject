@@ -29,9 +29,11 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
 	
+	/// A Blueprintable function that will be called when the player lands on the ground
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPlayerLanded();
 	
+	/// A Blueprintable function that will be called when the player starts sprinting
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSprint();
 	
