@@ -39,6 +39,8 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 		return;
 	}
 	
+	Super::SecondaryAttack(Controller, Target);
+	
 	// Fire using multiplied damage for the double-shot behavior
 	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier);
 	

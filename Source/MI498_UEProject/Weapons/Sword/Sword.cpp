@@ -57,6 +57,8 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 {
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
+		Super::SecondaryAttack(Controller, Target);
+		
 		/// Get the player camera location and rotation for dash direction
 		FVector cameraLocation;
 		FRotator cameraRotation;

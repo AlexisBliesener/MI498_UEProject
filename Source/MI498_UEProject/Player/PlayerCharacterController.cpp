@@ -3,6 +3,7 @@
 #include "PlayerCharacter.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
@@ -61,6 +62,20 @@ void APlayerCharacterController::OnUnPossess()
 	EnhancedInputComponent->ClearActionBindings();
 }
 
+void APlayerCharacterController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	if (PlayerCharacter->GetCharacterMovement()->IsMovingOnGround() && !PlayerCharacter->GetVelocity().IsNearlyZero())
+	{
+		OnMove();
+	}
+	else
+	{
+		OnStopMove();
+	}
+}
+
 void APlayerCharacterController::HandleLook(const FInputActionValue& InputActionValue)
 {
 	const FVector2D lookInput = InputActionValue.Get<FVector2D>();
@@ -79,6 +94,7 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleJump()
 {
+	OnJump();
 	PlayerCharacter->Jump();
 }
 

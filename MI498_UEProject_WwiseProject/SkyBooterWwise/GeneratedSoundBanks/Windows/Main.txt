@@ -1,12 +1,39 @@
 Event	ID	Name			Wwise Object Path	Notes
 	483409990	GrapplingHook			\Default Work Unit\Weapons\GrapplingHook	
-	2344274070	Blunderbuss			\Default Work Unit\Weapons\Blunderbuss	
+	607254338	BlunderbussLight			\Default Work Unit\Weapons\BlunderbussLight	
+	846198821	PlayerLand			\Default Work Unit\Player\PlayerLand	
+	1159713994	MoveStop			\Default Work Unit\Player\MoveStop	
+	1296465089	Sprint			\Default Work Unit\Player\Sprint	
+	1571412035	WindStop			\Default Work Unit\Environment\WindStop	
+	2298039058	MoveStart			\Default Work Unit\Player\MoveStart	
+	2336641800	WeaponSwap			\Default Work Unit\Weapons\WeaponSwap	
+	2393348022	Cannon			\Default Work Unit\Environment\Cannon	
 	2454616260	Sword			\Default Work Unit\Weapons\Sword	
+	2673912475	BlunderbussHeavy			\Default Work Unit\Weapons\BlunderbussHeavy	
+	3084491839	PlayerSteps			\Default Work Unit\Player\PlayerSteps	
+	3414304297	WindStart			\Default Work Unit\Environment\WindStart	
+	4008126242	PlayerJump			\Default Work Unit\Player\PlayerJump	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
+
+State	ID	Name	State Group			Notes
+	748895195	None	IsMoving			
+	979470758	Yes	IsMoving			
+	1668749452	No	IsMoving			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	105285806	SwordSlashExample	.cache\75\{75211C7A-F008-439F-A484-CB0CBF60EE41}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample		175696
-	111826284	SwordSlashExample_02	.cache\78\{789C3897-80F5-2CA5-1428-14E378459048}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample_02		214024
-	236241361	SwordSlashExample_01	.cache\24\{247CCE66-10FE-2A4D-0CE9-922EF84A81B8}.wem		\Containers\Default Work Unit\SwordSwing\SwordSlashExample_01		177480
-	714889148	GrappleGunExample2	.cache\4C\{4CE5D956-19D9-D7C9-086E-4B3490CA613F}.wem		\Containers\Default Work Unit\GrappleGunExample2		303412
-	751489706	Blunderbuss	.cache\A7\{A7655543-CA09-4C55-17BD-64EB9F5C0DB1}.wem		\Containers\Default Work Unit\Blunderbuss		341496
+	105285806	SwordSlashExample	.cache\D5\{D5AC0645-EBD5-FBC7-8CD6-909D4A484855}.wem		\Containers\Default Work Unit\Weapons\SwordSwing\SwordSlashExample		175696
+	111826284	SwordSlashExample_02	.cache\C9\{C9904612-3AF4-0B88-1287-2CBE132FE390}.wem		\Containers\Default Work Unit\Weapons\SwordSwing\SwordSlashExample_02		214024
+	177743334	WindPassingThroughTravel_mixdown	.cache\FA\{FAEC21EB-114C-DCAE-9EFC-49CAAA55C62F}.wem		\Containers\Default Work Unit\WindPassingThroughTravel_mixdown		1324700
+	236241361	SwordSlashExample_01	.cache\76\{762D4D15-79AC-2850-5304-07F4C45CC769}.wem		\Containers\Default Work Unit\Weapons\SwordSwing\SwordSlashExample_01		177480
+	324476308	WeaponSwaps	.cache\80\{80B45CE4-CA1A-02A0-DBE2-6950875465C8}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		641672
+	508604440	Jump	.cache\86\{8651D4C5-9D3C-08AC-B205-A6EB9C868C2A}.wem		\Containers\Default Work Unit\PlayerMovement\Jump		164864
+	517972535	BlunderbussHeavy	.cache\B6\{B6619457-8012-A72C-1DAF-4CC68676994C}.wem		\Containers\Default Work Unit\Weapons\BlunderbussHeavy		346580
+	589461878	FootstepSFXExample	.cache\FA\{FA959CD3-8A02-A9F0-9BB1-32813ED78B73}.wem		\Containers\Default Work Unit\PlayerMovement\FootstepSFXExample		1149060
+	657630149	Land	.cache\B0\{B0D5FBA3-128D-6418-7F15-A03ED5F66D76}.wem		\Containers\Default Work Unit\PlayerMovement\Land		187716
+	714889148	GrappleGunExample2	.cache\11\{1114A103-4179-70CB-9620-984EB66F50F6}.wem		\Containers\Default Work Unit\Weapons\GrappleGunExample2		303412
+	751489706	Blunderbuss	.cache\86\{86890327-08F2-B674-4007-53CB8C19DCA4}.wem		\Containers\Default Work Unit\Weapons\Blunderbuss		341496
+	959332812	SprintExample	.cache\B8\{B8FAF61B-B707-0BFD-8A12-A08E0530CA5B}.wem		\Containers\Default Work Unit\SprintExample		662120
+	983159749	Cannon	.cache\3D\{3DD78A2F-D329-B401-E2AA-6043DED2C7A6}.wem		\Containers\Default Work Unit\Environment\Cannon		634388
 

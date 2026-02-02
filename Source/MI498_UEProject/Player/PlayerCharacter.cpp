@@ -19,6 +19,10 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::ToggleSprint()
 {
 	bIsSprinting = !bIsSprinting;
+	if (bIsSprinting)
+	{
+		OnSprint();
+	}
 	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? MaxSprintSpeed : MaxWalkSpeed;
 }
 
@@ -31,4 +35,11 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
 	}
 	return DamageAmount;
+}
+
+void APlayerCharacter::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+	
+	OnPlayerLanded();
 }

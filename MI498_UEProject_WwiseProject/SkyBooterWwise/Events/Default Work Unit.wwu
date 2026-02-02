@@ -4,8 +4,12 @@
 		<WorkUnit Name="Default Work Unit" ID="{9DFEC73C-183A-4F40-8B17-38B3055759B5}" PersistMode="Standalone">
 			<ChildrenList>
 				<Folder Name="Weapons" ID="{642E3959-22EF-49F8-993A-4FF50D2BD2BD}" ShortID="567234105">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="8"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
-						<Event Name="Blunderbuss" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
+						<Event Name="BlunderbussLight" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
 							<ChildrenList>
 								<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
 									<ReferenceList>
@@ -33,6 +37,153 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="GrappleGunExample2" ID="{663B2D29-2409-485A-9262-B5F28D06DE89}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BlunderbussHeavy" ID="{B70C78DE-A883-4F80-B775-CEFE5700B762}">
+							<ChildrenList>
+								<Action Name="" ID="{602F15FB-F041-4E8C-8B73-E599EE168089}" ShortID="442750104">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BlunderbussHeavy" ID="{C0CBAEF1-3788-4EAF-B526-6F3BEA4A8F66}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WeaponSwap" ID="{A09194FC-25A0-490C-9F40-E45B30804ED8}">
+							<ChildrenList>
+								<Action Name="" ID="{003BDB91-B4D5-48A5-88F8-1406C1A3B979}" ShortID="642293676">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WeaponSwaps" ID="{F2A231CD-37FB-4AA2-AE57-CB0FDCF07170}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="13"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="PlayerSteps" ID="{0240AB1B-95E9-4FC0-B202-4F2930A93539}">
+							<ChildrenList>
+								<Action Name="" ID="{7080B465-E657-4B64-851C-A9E68604F8BD}" ShortID="707106637">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FootstepSFXExample" ID="{FC79C19C-2A41-4BCB-8692-8E13AD861DCB}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerJump" ID="{4E7837E2-5BE7-4E49-B817-63E4FD5BC71A}">
+							<ChildrenList>
+								<Action Name="" ID="{CCF87C0B-2B1A-4FFC-9C63-0EBFE81CB2BA}" ShortID="221070967">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Jump" ID="{533F35AE-A5EF-41D0-B437-5A2D18B70FDD}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerLand" ID="{0CDA82E5-7E5B-4ADC-9AA7-88C67553740F}">
+							<ChildrenList>
+								<Action Name="" ID="{32462A90-488B-4472-A8C9-B5F7F9A109BD}" ShortID="299610363">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Land" ID="{08C3BBD9-2DE2-4A72-B342-58AB36F3751C}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MoveStop" ID="{9CEBCDB9-7681-4289-B777-90F92194FFE5}">
+							<ChildrenList>
+								<Action Name="" ID="{F1807059-C475-4411-BA54-1BCE6A941878}" ShortID="853046356">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="No" ID="{837C4033-06EA-4F8D-990E-47320598FB93}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MoveStart" ID="{C4BDA0F9-468B-418A-832F-D934497B809B}">
+							<ChildrenList>
+								<Action Name="" ID="{CFDC360B-FCDA-4924-AE45-138357702A1B}" ShortID="464640747">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Yes" ID="{74A4961F-F362-463A-B0EE-8C185800F48B}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Sprint" ID="{43B5DA10-ED82-4123-A823-D9782139ED41}">
+							<ChildrenList>
+								<Action Name="" ID="{56EB3682-3CE3-430E-9E0B-7A07579BFD00}" ShortID="406508474">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SprintExample" ID="{DDAAFD40-80B8-4E97-B326-D1FDD25BB447}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Environment" ID="{16397EDE-6014-43D5-A5A4-9556A5AA6E6C}" ShortID="756890054">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Cannon" ID="{F60E5D41-8921-41B6-9DAF-E41E617B2D7F}">
+							<ChildrenList>
+								<Action Name="" ID="{A3378187-B6A3-4FB8-9648-1CAE241AD548}" ShortID="576757680">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Cannon" ID="{7D774A91-630E-475C-A85F-FEE1B15CD54E}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WindStart" ID="{F277C3D5-B257-4013-A46F-3DCC3E8FBB6E}">
+							<ChildrenList>
+								<Action Name="" ID="{98D2AE99-B236-4C2F-9397-B34237E89885}" ShortID="20146793">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WindPassingThroughTravel_mixdown" ID="{C68A7C4B-797D-45D6-9044-03DCA2D162D6}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WindStop" ID="{3E73485F-C44C-4D59-878B-AD011F3379EA}">
+							<ChildrenList>
+								<Action Name="" ID="{30755515-F8E7-4016-A252-42008DF81F03}" ShortID="768597335">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WindPassingThroughTravel_mixdown" ID="{C68A7C4B-797D-45D6-9044-03DCA2D162D6}" WorkUnitID="{CA17E348-1310-405F-9BC2-2F206A568261}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

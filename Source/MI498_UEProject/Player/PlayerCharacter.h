@@ -29,8 +29,15 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
 	
-protected:
+	/// A Blueprintable function that will be called when the player lands on the ground
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPlayerLanded();
 	
+	/// A Blueprintable function that will be called when the player starts sprinting
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSprint();
+	
+protected:
 	/// Maximum walking speed when the player is not sprinting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement" );
 	int MaxWalkSpeed = 400;
@@ -45,6 +52,8 @@ protected:
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
 
 private:
+	virtual void Landed(const FHitResult& Hit) override;
+	
 	/// Tracks whether the player is currently sprinting
 	bool bIsSprinting = false;
 	

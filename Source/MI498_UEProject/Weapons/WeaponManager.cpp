@@ -126,6 +126,12 @@ void UWeaponManager::BeginPlay()
 
 void UWeaponManager::HandleSelectWeaponOne()
 {
+	if (CurrentWeaponIndex == 0)
+	{
+		return;
+	}
+	
+	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 0)
 	{
 		CurrentWeaponIndex = 0;
@@ -137,6 +143,12 @@ void UWeaponManager::HandleSelectWeaponOne()
 
 void UWeaponManager::HandleSelectWeaponTwo()
 {
+	if (CurrentWeaponIndex == 1)
+	{
+		return;
+	}
+	
+	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 1)
 	{
 		CurrentWeaponIndex = 1;
@@ -148,6 +160,12 @@ void UWeaponManager::HandleSelectWeaponTwo()
 
 void UWeaponManager::HandleSelectWeaponThree()
 {
+	if (CurrentWeaponIndex == 2)
+	{
+		return;
+	}
+	
+	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 2)
 	{
 		CurrentWeaponIndex = 2;
@@ -160,6 +178,7 @@ void UWeaponManager::HandleSelectWeaponThree()
 
 void UWeaponManager::HandleSelectWeaponPrev()
 {
+	OnWeaponSwitch.Broadcast();
 	CurrentWeaponIndex--;
 	if (CurrentWeaponIndex < 0)
 	{
@@ -174,6 +193,7 @@ void UWeaponManager::HandleSelectWeaponPrev()
 
 void UWeaponManager::HandleSelectWeaponNext()
 {
+	OnWeaponSwitch.Broadcast();
 	CurrentWeaponIndex++;
 	if (CurrentWeaponIndex >= WeaponOptions.Num())
 	{
