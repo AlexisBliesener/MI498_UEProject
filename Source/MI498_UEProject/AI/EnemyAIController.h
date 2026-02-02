@@ -14,8 +14,8 @@
 
 enum class StateTreeEnemyEvents : uint8;
 class AEnemyBase;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPGASStimulusEventSignature, AActor*, Actor, const FAIStimulus&, Stimulus);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPGASStimulusForgottenSignature, AActor*, Actor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSStimulusEventSignature, AActor*, Actor, const FAIStimulus&, Stimulus);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSStimulusForgottenSignature, AActor*, Actor);
 /// Log category for enemy messages
 DECLARE_LOG_CATEGORY_EXTERN(EnemyAILog, Log, All);
 
@@ -33,19 +33,19 @@ public:
 	TObjectPtr<AActor> AcquiredTarget = nullptr;
 	/// Triggered when the AI detects a damage stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Damage Stimulus Detected"))
-	FPGASStimulusEventSignature OnDamageStimulusDetected;
+	FSStimulusEventSignature OnDamageStimulusDetected;
 	/// Triggered when the AI detects a sight stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Sight Stimulus Detected"))
-	FPGASStimulusEventSignature OnSightStimulusDetected;
+	FSStimulusEventSignature OnSightStimulusDetected;
 	/// Triggered when the AI loses sight of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Sight Stimulus Forgotten"))
-	FPGASStimulusForgottenSignature OnSightStimulusForgotten;
+	FSStimulusForgottenSignature OnSightStimulusForgotten;
 	/// Triggered when the AI detects a hearing stimulus.
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Detected"))
-	FPGASStimulusEventSignature OnHearingStimulusDetected;
+	FSStimulusEventSignature OnHearingStimulusDetected;
 	/// Triggered when the AI loses hearing of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Forgotten"))
-	FPGASStimulusForgottenSignature OnHearingStimulusForgotten;
+	FSStimulusForgottenSignature OnHearingStimulusForgotten;
 	/// The current state of the AI's behavior
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	StateTreeEnemyEvents CurrentStateTreeState;
