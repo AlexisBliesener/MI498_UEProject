@@ -49,6 +49,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPrimaryAttack();
 	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSecondaryAttack();
+	
 	/// Starts reload process — sets reload state and timer
 	virtual void Reload() override;
 	

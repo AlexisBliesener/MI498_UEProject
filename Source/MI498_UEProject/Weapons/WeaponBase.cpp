@@ -15,6 +15,7 @@ void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 
 void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
+	OnSecondaryAttack();
 }
 
 void AWeaponBase::Reload()
