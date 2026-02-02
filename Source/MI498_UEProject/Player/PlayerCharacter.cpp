@@ -32,3 +32,10 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	}
 	return DamageAmount;
 }
+
+void APlayerCharacter::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+	
+	OnPlayerLanded();
+}

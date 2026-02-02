@@ -3,6 +3,7 @@
 #include "PlayerCharacter.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
@@ -75,10 +76,16 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 	
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(),moveInput.X);
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(),moveInput.Y);
+	
+	if (PlayerCharacter->GetCharacterMovement()->IsMovingOnGround())
+	{
+		OnMove();
+	}
 }
 
 void APlayerCharacterController::HandleJump()
 {
+	OnJump();
 	PlayerCharacter->Jump();
 }
 

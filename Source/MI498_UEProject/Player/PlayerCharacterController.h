@@ -41,6 +41,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputMappingContext> InputMappingContext = nullptr;
 	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnJump();
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnMove();
+	
 protected:
 	/// Handles camera look input and applies rotation to the controlled pawn
 	/// @param InputActionValue Current look input value from the Enhanced Input system

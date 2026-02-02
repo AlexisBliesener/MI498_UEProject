@@ -15,9 +15,10 @@ DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
 
 /// Component responsible for managing weapons for a player character
 /// Handles spawning, switching, and input bindings for weapons
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
 class MI498_UEPROJECT_API UWeaponManager : public UActorComponent
 {
+	GENERATED_BODY()
 
 public:	
 	/// Input actions for selecting individual weapons
@@ -54,6 +55,9 @@ public:
 	/// Array of weapon blueprints that will be spawned for the player
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TArray<TSubclassOf<AActor>> WeaponBlueprints;
+	
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	void OnWeaponSwitch();
 
 protected:
 	/// Called when the component is initialized at game start
@@ -94,5 +98,5 @@ private:
 	UPROPERTY()
 	int CurrentWeaponIndex = 0;
 
-	GENERATED_BODY()
+	
 };
