@@ -13,6 +13,10 @@ class IWeaponInterface;
 /// Declare a logging category specifically for the weapon manager
 DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
 
+/// Declares a dynamic multicast delegate that can be assigned in Blueprints
+/// Used to notify listeners when the weapon is switched
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnWeaponSwitch);
+
 /// Component responsible for managing weapons for a player character
 /// Handles spawning, switching, and input bindings for weapons
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
@@ -56,9 +60,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TArray<TSubclassOf<AActor>> WeaponBlueprints;
 	
-	/// A Blueprintable function that will be called when weapons are switched
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void OnWeaponSwitch();
+	/// Delegate that Blueprints can bind to, called when the weapon is switched
+	UPROPERTY(BlueprintAssignable)
+	FOnWeaponSwitch OnWeaponSwitch;
 
 protected:
 	/// Called when the component is initialized at game start
