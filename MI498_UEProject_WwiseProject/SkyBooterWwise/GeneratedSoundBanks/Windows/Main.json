@@ -10,114 +10,114 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{11706BEF-9825-917F-0D0E-D5DC132D7A6E}",
+    "Hash": "{B2B5B88A-871F-B928-9956-A1D720C18A7C}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
      {
-      "Id": "105285806",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "D5/{D5AC0645-EBD5-FBC7-8CD6-909D4A484855}.wem"
-     },
-     {
-      "Id": "111826284",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "C9/{C9904612-3AF4-0B88-1287-2CBE132FE390}.wem"
-     },
-     {
-      "Id": "177743334",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "WindPassingThroughTravel_mixdown.wav",
-      "CachePath": "FA/{FAEC21EB-114C-DCAE-9EFC-49CAAA55C62F}.wem"
-     },
-     {
-      "Id": "236241361",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "76/{762D4D15-79AC-2850-5304-07F4C45CC769}.wem"
-     },
-     {
-      "Id": "324476308",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "WeaponSwaps.wav",
-      "CachePath": "80/{80B45CE4-CA1A-02A0-DBE2-6950875465C8}.wem"
-     },
-     {
-      "Id": "508604440",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "PlayerJump+Landing2.wav",
-      "CachePath": "86/{8651D4C5-9D3C-08AC-B205-A6EB9C868C2A}.wem"
-     },
-     {
-      "Id": "517972535",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "BlunderbussHeavyExample3wav.wav",
-      "CachePath": "B6/{B6619457-8012-A72C-1DAF-4CC68676994C}.wem"
-     },
-     {
-      "Id": "589461878",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "FA/{FA959CD3-8A02-A9F0-9BB1-32813ED78B73}.wem"
-     },
-     {
-      "Id": "657630149",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "PlayerJump+Landing2.wav",
-      "CachePath": "B0/{B0D5FBA3-128D-6418-7F15-A03ED5F66D76}.wem"
-     },
-     {
-      "Id": "714889148",
+      "Id": "218262969",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleGunExample2.wav",
-      "CachePath": "11/{1114A103-4179-70CB-9620-984EB66F50F6}.wem"
+      "CachePath": "8F/{8F4DEE6B-5A2B-A947-1BDD-02BA7C32BA53}.wem"
      },
      {
-      "Id": "751489706",
+      "Id": "226120403",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
-      "ShortName": "Blunderbuss.wav",
-      "CachePath": "86/{86890327-08F2-B674-4007-53CB8C19DCA4}.wem"
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "92/{92780CD7-A7BF-CA87-5E07-794E960CFEF9}.wem"
      },
      {
-      "Id": "959332812",
+      "Id": "272125692",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SprintExample.wav",
-      "CachePath": "B8/{B8FAF61B-B707-0BFD-8A12-A08E0530CA5B}.wem"
+      "CachePath": "D7/{D784F0EB-EB71-65AC-5C79-37D440D19CC9}.wem"
      },
      {
-      "Id": "983159749",
+      "Id": "647190144",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerJump+Landing2.wav",
+      "CachePath": "7F/{7F44EDE6-F648-6DAD-2AD1-C4846C9CF013}.wem"
+     },
+     {
+      "Id": "649368430",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Cannon.wav",
-      "CachePath": "3D/{3DD78A2F-D329-B401-E2AA-6043DED2C7A6}.wem"
+      "CachePath": "1B/{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem"
+     },
+     {
+      "Id": "750876961",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "C5/{C514B3A1-EB40-EC1D-EDFD-42264DB2D6C3}.wem"
+     },
+     {
+      "Id": "751347334",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Blunderbuss.wav",
+      "CachePath": "79/{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem"
+     },
+     {
+      "Id": "818030058",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "D4/{D49A31DE-D499-7A5D-511E-196444254F19}.wem"
+     },
+     {
+      "Id": "841410472",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "B6/{B61A63F3-B365-8996-7365-41905F3A9313}.wem"
+     },
+     {
+      "Id": "921292567",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "WindPassingThroughTravel_mixdown.wav",
+      "CachePath": "E7/{E7255511-C985-66D5-E8E5-796FA62CF27D}.wem"
+     },
+     {
+      "Id": "924573326",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerJump+Landing2.wav",
+      "CachePath": "78/{7823E58A-7B03-447A-791C-B40F63E8246F}.wem"
+     },
+     {
+      "Id": "974919281",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BlunderbussHeavyExample3wav.wav",
+      "CachePath": "3A/{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem"
+     },
+     {
+      "Id": "1036155795",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "WeaponSwaps.wav",
+      "CachePath": "BA/{BAE91A6A-259E-351B-5AC9-E0898178B795}.wem"
      }
     ],
     "Events": [
@@ -128,11 +128,11 @@
       "GUID": "{B70C78DE-A883-4F80-B775-CEFE5700B762}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "1.6548302",
-      "DurationMax": "1.9679359",
+      "DurationMin": "1.857465",
+      "DurationMax": "2.2736368",
       "MediaRefs": [
        {
-        "Id": "517972535"
+        "Id": "974919281"
        }
       ]
      },
@@ -143,11 +143,11 @@
       "GUID": "{8A3E531E-9D84-40EC-848E-7294B0C39B8F}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "1.6305416",
-      "DurationMax": "1.9390516",
+      "DurationMin": "1.3985999",
+      "DurationMax": "1.5698755",
       "MediaRefs": [
        {
-        "Id": "751489706"
+        "Id": "751347334"
        }
       ]
      },
@@ -158,11 +158,11 @@
       "GUID": "{F60E5D41-8921-41B6-9DAF-E41E617B2D7F}",
       "Color": "4",
       "DurationType": "OneShot",
-      "DurationMin": "3.3035963",
-      "DurationMax": "3.3035963",
+      "DurationMin": "3.73828",
+      "DurationMax": "3.73828",
       "MediaRefs": [
        {
-        "Id": "983159749"
+        "Id": "649368430"
        }
       ]
      },
@@ -173,11 +173,11 @@
       "GUID": "{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "1.4074153",
-      "DurationMax": "1.7732321",
+      "DurationMin": "1.0603814",
+      "DurationMax": "1.3359969",
       "MediaRefs": [
        {
-        "Id": "714889148"
+        "Id": "218262969"
        }
       ]
      },
@@ -230,11 +230,11 @@
       "GUID": "{4E7837E2-5BE7-4E49-B817-63E4FD5BC71A}",
       "Color": "13",
       "DurationType": "OneShot",
-      "DurationMin": "0.8581619",
-      "DurationMax": "0.8581619",
+      "DurationMin": "0.81886554",
+      "DurationMax": "0.9191456",
       "MediaRefs": [
        {
-        "Id": "508604440"
+        "Id": "924573326"
        }
       ]
      },
@@ -245,11 +245,11 @@
       "GUID": "{0CDA82E5-7E5B-4ADC-9AA7-88C67553740F}",
       "Color": "13",
       "DurationType": "OneShot",
-      "DurationMin": "0.9771771",
-      "DurationMax": "0.9771771",
+      "DurationMin": "1.1525679",
+      "DurationMax": "1.3706418",
       "MediaRefs": [
        {
-        "Id": "657630149"
+        "Id": "647190144"
        }
       ]
      },
@@ -262,7 +262,7 @@
       "DurationType": "Infinite",
       "MediaRefs": [
        {
-        "Id": "589461878"
+        "Id": "841410472"
        }
       ]
      },
@@ -273,11 +273,11 @@
       "GUID": "{43B5DA10-ED82-4123-A823-D9782139ED41}",
       "Color": "13",
       "DurationType": "OneShot",
-      "DurationMin": "3.4480417",
-      "DurationMax": "3.4480417",
+      "DurationMin": "0.91393876",
+      "DurationMax": "0.91393876",
       "MediaRefs": [
        {
-        "Id": "959332812"
+        "Id": "272125692"
        }
       ]
      },
@@ -288,17 +288,17 @@
       "GUID": "{39D5BC54-B39B-40EC-B732-F5D21093F093}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "0.85087836",
-      "DurationMax": "1.1804718",
+      "DurationMin": "0.5335518",
+      "DurationMax": "0.87546635",
       "MediaRefs": [
        {
-        "Id": "105285806"
+        "Id": "226120403"
        },
        {
-        "Id": "111826284"
+        "Id": "750876961"
        },
        {
-        "Id": "236241361"
+        "Id": "818030058"
        }
       ]
      },
@@ -309,11 +309,11 @@
       "GUID": "{A09194FC-25A0-490C-9F40-E45B30804ED8}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "3.3415468",
-      "DurationMax": "3.3415468",
+      "DurationMin": "2.3544233",
+      "DurationMax": "2.3544233",
       "MediaRefs": [
        {
-        "Id": "324476308"
+        "Id": "1036155795"
        }
       ]
      },
@@ -324,11 +324,11 @@
       "GUID": "{F277C3D5-B257-4013-A46F-3DCC3E8FBB6E}",
       "Color": "4",
       "DurationType": "OneShot",
-      "DurationMin": "6.898986",
-      "DurationMax": "6.898986",
+      "DurationMin": "6.2018757",
+      "DurationMax": "6.2018757",
       "MediaRefs": [
        {
-        "Id": "177743334"
+        "Id": "921292567"
        }
       ]
      },
@@ -378,6 +378,6 @@
     ]
    }
   ],
-  "FileHash": "{0E4381BA-4B4B-79B7-0892-77617B8CDF54}"
+  "FileHash": "{AFA24CC2-78FA-D86A-68AF-B4FED45318C3}"
  }
 }
