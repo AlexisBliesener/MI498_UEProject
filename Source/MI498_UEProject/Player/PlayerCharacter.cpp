@@ -19,6 +19,10 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::ToggleSprint()
 {
 	bIsSprinting = !bIsSprinting;
+	if (bIsSprinting)
+	{
+		OnSprint();
+	}
 	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? MaxSprintSpeed : MaxWalkSpeed;
 }
 

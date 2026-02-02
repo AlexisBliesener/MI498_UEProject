@@ -32,6 +32,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPlayerLanded();
 	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSprint();
+	
 protected:
 	/// Maximum walking speed when the player is not sprinting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement" );
