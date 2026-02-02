@@ -81,6 +81,10 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 	{
 		OnMove();
 	}
+	else
+	{
+		OnStopMove();
+	}
 }
 
 void APlayerCharacterController::HandleJump()

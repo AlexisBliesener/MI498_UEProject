@@ -49,6 +49,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMove();
 	
+	/// A Blueprintable function that will be called when the player stops moving on the ground
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnStopMove();
+	
 protected:
 	/// Handles camera look input and applies rotation to the controlled pawn
 	/// @param InputActionValue Current look input value from the Enhanced Input system
