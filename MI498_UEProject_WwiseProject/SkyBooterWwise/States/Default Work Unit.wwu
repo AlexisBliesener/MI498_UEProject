@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}" SchemaVersion="133">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}" PersistMode="Standalone">
-			<ChildrenList>
-				<Folder Name="PlayerStates" ID="{1F09AEEE-DD75-4801-BB23-5B8021940370}" ShortID="1040169569">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="12"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<StateGroup Name="IsMoving" ID="{042C3B55-B43F-48CA-BA1C-E8832FF2C2CE}">
-							<PropertyList>
-								<Property Name="DefaultTransitionTime" Type="Real64" Value="0.2"/>
-							</PropertyList>
-							<ChildrenList>
-								<State Name="None" ID="{EAF74BE6-E1FE-4362-8686-4B1E1B750862}"/>
-								<State Name="Yes" ID="{74A4961F-F362-463A-B0EE-8C185800F48B}"/>
-								<State Name="No" ID="{837C4033-06EA-4F8D-990E-47320598FB93}"/>
-							</ChildrenList>
-						</StateGroup>
-						<StateGroup Name="IsSprinting" ID="{CC1711D8-096D-450C-A712-A1D67F1996E3}">
-							<ChildrenList>
-								<State Name="None" ID="{2F70E6C1-250C-4EDF-85C8-3E3A69A24856}"/>
-								<State Name="Yes" ID="{BBAF1EF1-C4F4-43C1-B3CD-A8009FE3C788}"/>
-								<State Name="No" ID="{DDCE2AF2-5CEC-421E-AB2E-B56674246487}"/>
-							</ChildrenList>
-						</StateGroup>
-					</ChildrenList>
-				</Folder>
-			</ChildrenList>
-		</WorkUnit>
+		<WorkUnit Name="Default Work Unit" ID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}" PersistMode="Standalone"/>
 	</States>
 </WwiseDocument>

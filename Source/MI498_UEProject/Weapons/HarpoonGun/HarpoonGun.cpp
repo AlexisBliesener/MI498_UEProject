@@ -31,11 +31,6 @@ void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 	}
 }
 
-void AHarpoonGun::PrimaryAttackHold(AController* Controller, AActor* Target)
-{
-	/// No functionality
-}
-
 void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)
 {
 	Super::SecondaryAttack(Controller);

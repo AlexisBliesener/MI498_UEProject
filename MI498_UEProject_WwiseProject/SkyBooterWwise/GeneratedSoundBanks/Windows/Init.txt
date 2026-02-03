@@ -1,15 +1,3 @@
-State Group	ID	Name			Wwise Object Path	Notes
-	100949179	IsSprinting			\Default Work Unit\PlayerStates\IsSprinting	
-	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
-
-State	ID	Name	State Group			Notes
-	748895195	None	IsSprinting			
-	979470758	Yes	IsSprinting			
-	1668749452	No	IsSprinting			
-	748895195	None	IsMoving			
-	979470758	Yes	IsMoving			
-	1668749452	No	IsMoving			
-
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
 

@@ -10,159 +10,64 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{B2B5B88A-871F-B928-9956-A1D720C18A7C}",
+    "Hash": "{43E76D9F-2F58-84FD-8807-B68D78EE9AA2}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
      {
-      "Id": "218262969",
+      "Id": "105285806",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "75/{75211C7A-F008-439F-A484-CB0CBF60EE41}.wem"
+     },
+     {
+      "Id": "111826284",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "78/{789C3897-80F5-2CA5-1428-14E378459048}.wem"
+     },
+     {
+      "Id": "236241361",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordSlashExample.wav",
+      "CachePath": "24/{247CCE66-10FE-2A4D-0CE9-922EF84A81B8}.wem"
+     },
+     {
+      "Id": "714889148",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleGunExample2.wav",
-      "CachePath": "8F/{8F4DEE6B-5A2B-A947-1BDD-02BA7C32BA53}.wem"
+      "CachePath": "4C/{4CE5D956-19D9-D7C9-086E-4B3490CA613F}.wem"
      },
      {
-      "Id": "226120403",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "92/{92780CD7-A7BF-CA87-5E07-794E960CFEF9}.wem"
-     },
-     {
-      "Id": "272125692",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SprintExample.wav",
-      "CachePath": "D7/{D784F0EB-EB71-65AC-5C79-37D440D19CC9}.wem"
-     },
-     {
-      "Id": "647190144",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "PlayerJump+Landing2.wav",
-      "CachePath": "7F/{7F44EDE6-F648-6DAD-2AD1-C4846C9CF013}.wem"
-     },
-     {
-      "Id": "649368430",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "Cannon.wav",
-      "CachePath": "1B/{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem"
-     },
-     {
-      "Id": "750876961",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "C5/{C514B3A1-EB40-EC1D-EDFD-42264DB2D6C3}.wem"
-     },
-     {
-      "Id": "751347334",
+      "Id": "751489706",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Blunderbuss.wav",
-      "CachePath": "79/{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem"
-     },
-     {
-      "Id": "818030058",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "SwordSlashExample.wav",
-      "CachePath": "D4/{D49A31DE-D499-7A5D-511E-196444254F19}.wem"
-     },
-     {
-      "Id": "841410472",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "B6/{B61A63F3-B365-8996-7365-41905F3A9313}.wem"
-     },
-     {
-      "Id": "921292567",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "WindPassingThroughTravel_mixdown.wav",
-      "CachePath": "E7/{E7255511-C985-66D5-E8E5-796FA62CF27D}.wem"
-     },
-     {
-      "Id": "924573326",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "PlayerJump+Landing2.wav",
-      "CachePath": "78/{7823E58A-7B03-447A-791C-B40F63E8246F}.wem"
-     },
-     {
-      "Id": "974919281",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "BlunderbussHeavyExample3wav.wav",
-      "CachePath": "3A/{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem"
-     },
-     {
-      "Id": "1036155795",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "WeaponSwaps.wav",
-      "CachePath": "BA/{BAE91A6A-259E-351B-5AC9-E0898178B795}.wem"
+      "CachePath": "A7/{A7655543-CA09-4C55-17BD-64EB9F5C0DB1}.wem"
      }
     ],
     "Events": [
      {
-      "Id": "2673912475",
-      "Name": "BlunderbussHeavy",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BlunderbussHeavy",
-      "GUID": "{B70C78DE-A883-4F80-B775-CEFE5700B762}",
-      "Color": "8",
-      "DurationType": "OneShot",
-      "DurationMin": "1.857465",
-      "DurationMax": "2.2736368",
-      "MediaRefs": [
-       {
-        "Id": "974919281"
-       }
-      ]
-     },
-     {
-      "Id": "607254338",
-      "Name": "BlunderbussLight",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BlunderbussLight",
+      "Id": "2344274070",
+      "Name": "Blunderbuss",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss",
       "GUID": "{8A3E531E-9D84-40EC-848E-7294B0C39B8F}",
-      "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "1.3985999",
-      "DurationMax": "1.5698755",
+      "DurationMin": "1.7781181",
+      "DurationMax": "1.7781181",
       "MediaRefs": [
        {
-        "Id": "751347334"
-       }
-      ]
-     },
-     {
-      "Id": "2393348022",
-      "Name": "Cannon",
-      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Cannon",
-      "GUID": "{F60E5D41-8921-41B6-9DAF-E41E617B2D7F}",
-      "Color": "4",
-      "DurationType": "OneShot",
-      "DurationMin": "3.73828",
-      "DurationMax": "3.73828",
-      "MediaRefs": [
-       {
-        "Id": "649368430"
+        "Id": "751489706"
        }
       ]
      },
@@ -171,113 +76,12 @@
       "Name": "GrapplingHook",
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\GrapplingHook",
       "GUID": "{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}",
-      "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "1.0603814",
-      "DurationMax": "1.3359969",
+      "DurationMin": "1.5797702",
+      "DurationMax": "1.5797702",
       "MediaRefs": [
        {
-        "Id": "218262969"
-       }
-      ]
-     },
-     {
-      "Id": "2298039058",
-      "Name": "MoveStart",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\MoveStart",
-      "GUID": "{C4BDA0F9-468B-418A-832F-D934497B809B}",
-      "Color": "13",
-      "MaxAttenuation": "0",
-      "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0",
-      "ActionSetState": [
-       {
-        "GroupId": "3940648127",
-        "Id": "979470758",
-        "Name": "Yes",
-        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\Yes",
-        "GUID": "{74A4961F-F362-463A-B0EE-8C185800F48B}",
-        "Color": "12"
-       }
-      ]
-     },
-     {
-      "Id": "1159713994",
-      "Name": "MoveStop",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\MoveStop",
-      "GUID": "{9CEBCDB9-7681-4289-B777-90F92194FFE5}",
-      "Color": "13",
-      "MaxAttenuation": "0",
-      "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0",
-      "ActionSetState": [
-       {
-        "GroupId": "3940648127",
-        "Id": "1668749452",
-        "Name": "No",
-        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\No",
-        "GUID": "{837C4033-06EA-4F8D-990E-47320598FB93}",
-        "Color": "12"
-       }
-      ]
-     },
-     {
-      "Id": "4008126242",
-      "Name": "PlayerJump",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerJump",
-      "GUID": "{4E7837E2-5BE7-4E49-B817-63E4FD5BC71A}",
-      "Color": "13",
-      "DurationType": "OneShot",
-      "DurationMin": "0.81886554",
-      "DurationMax": "0.9191456",
-      "MediaRefs": [
-       {
-        "Id": "924573326"
-       }
-      ]
-     },
-     {
-      "Id": "846198821",
-      "Name": "PlayerLand",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerLand",
-      "GUID": "{0CDA82E5-7E5B-4ADC-9AA7-88C67553740F}",
-      "Color": "13",
-      "DurationType": "OneShot",
-      "DurationMin": "1.1525679",
-      "DurationMax": "1.3706418",
-      "MediaRefs": [
-       {
-        "Id": "647190144"
-       }
-      ]
-     },
-     {
-      "Id": "3084491839",
-      "Name": "PlayerSteps",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerSteps",
-      "GUID": "{0240AB1B-95E9-4FC0-B202-4F2930A93539}",
-      "Color": "13",
-      "DurationType": "Infinite",
-      "MediaRefs": [
-       {
-        "Id": "841410472"
-       }
-      ]
-     },
-     {
-      "Id": "1296465089",
-      "Name": "Sprint",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\Sprint",
-      "GUID": "{43B5DA10-ED82-4123-A823-D9782139ED41}",
-      "Color": "13",
-      "DurationType": "OneShot",
-      "DurationMin": "0.91393876",
-      "DurationMax": "0.91393876",
-      "MediaRefs": [
-       {
-        "Id": "272125692"
+        "Id": "714889148"
        }
       ]
      },
@@ -286,98 +90,24 @@
       "Name": "Sword",
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword",
       "GUID": "{39D5BC54-B39B-40EC-B732-F5D21093F093}",
-      "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "0.5335518",
-      "DurationMax": "0.87546635",
+      "DurationMin": "0.85087836",
+      "DurationMax": "1.1804718",
       "MediaRefs": [
        {
-        "Id": "226120403"
+        "Id": "105285806"
        },
        {
-        "Id": "750876961"
+        "Id": "111826284"
        },
        {
-        "Id": "818030058"
-       }
-      ]
-     },
-     {
-      "Id": "2336641800",
-      "Name": "WeaponSwap",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\WeaponSwap",
-      "GUID": "{A09194FC-25A0-490C-9F40-E45B30804ED8}",
-      "Color": "8",
-      "DurationType": "OneShot",
-      "DurationMin": "2.3544233",
-      "DurationMax": "2.3544233",
-      "MediaRefs": [
-       {
-        "Id": "1036155795"
-       }
-      ]
-     },
-     {
-      "Id": "3414304297",
-      "Name": "WindStart",
-      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindStart",
-      "GUID": "{F277C3D5-B257-4013-A46F-3DCC3E8FBB6E}",
-      "Color": "4",
-      "DurationType": "OneShot",
-      "DurationMin": "6.2018757",
-      "DurationMax": "6.2018757",
-      "MediaRefs": [
-       {
-        "Id": "921292567"
-       }
-      ]
-     },
-     {
-      "Id": "1571412035",
-      "Name": "WindStop",
-      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindStop",
-      "GUID": "{3E73485F-C44C-4D59-878B-AD011F3379EA}",
-      "Color": "4",
-      "MaxAttenuation": "0",
-      "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0"
-     }
-    ],
-    "StateGroups": [
-     {
-      "Id": "3940648127",
-      "Name": "IsMoving",
-      "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving",
-      "GUID": "{042C3B55-B43F-48CA-BA1C-E8832FF2C2CE}",
-      "Color": "12",
-      "States": [
-       {
-        "Id": "748895195",
-        "Name": "None",
-        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\None",
-        "GUID": "{EAF74BE6-E1FE-4362-8686-4B1E1B750862}",
-        "Color": "12"
-       },
-       {
-        "Id": "979470758",
-        "Name": "Yes",
-        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\Yes",
-        "GUID": "{74A4961F-F362-463A-B0EE-8C185800F48B}",
-        "Color": "12"
-       },
-       {
-        "Id": "1668749452",
-        "Name": "No",
-        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\No",
-        "GUID": "{837C4033-06EA-4F8D-990E-47320598FB93}",
-        "Color": "12"
+        "Id": "236241361"
        }
       ]
      }
     ]
    }
   ],
-  "FileHash": "{AFA24CC2-78FA-D86A-68AF-B4FED45318C3}"
+  "FileHash": "{5F1C6005-126E-47EB-A1BC-0EF15558C6E6}"
  }
 }

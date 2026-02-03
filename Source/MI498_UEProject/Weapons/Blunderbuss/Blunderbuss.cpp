@@ -31,11 +31,6 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	}
 }
 
-void ABlunderbuss::PrimaryAttackHold(AController* Controller, AActor* Target)
-{
-	// No functionality
-}
-
 void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 {
 	// Check if there is enough ammo to perform the secondary attack
@@ -43,8 +38,6 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 	{
 		return;
 	}
-	
-	Super::SecondaryAttack(Controller, Target);
 	
 	// Fire using multiplied damage for the double-shot behavior
 	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier);
@@ -56,6 +49,23 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		PlayerKnockback(playerController, SecondaryAttackKnockbackForce);
+	}
+}
+
+void ABlunderbuss::Reload()
+{
+	if (bReloading) return;
+	Super::Reload();
+}
+
+void ABlunderbuss::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	/// Auto reload
+	if (CurrentAmmo == 0)
+	{
+		Reload();
 	}
 }
 

@@ -5,67 +5,8 @@
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	/// Check if there is enough ammo to perform the primary attack
-	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
-	{
-		return;
-	}
-	CurrentAmmo -= PrimaryAttackNeededAmmo;
-	
 	Super::PrimaryAttack(Controller);
 	
-	SwingSword(Controller, Target);
-}
-
-void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
-{
-	// Check if there is enough ammo to perform the primary attack
-	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
-	{
-		return;
-	}
-	CurrentAmmo -= PrimaryAttackNeededAmmo;
-	
-	Super::PrimaryAttackHold(Controller, Target);
-	
-	SwingSword(Controller, Target);
-}
-
-void ASword::SecondaryAttack(AController* Controller,AActor* Target)
-{
-	/// Check cooldown timer
-	if (GetWorld()->GetTimeSeconds() - SecondaryCooldownTimer < SecondaryCooldown)
-	{
-		return;
-	}
-	
-	/// Set cooldown timer
-	SecondaryCooldownTimer = GetWorld()->GetTimeSeconds();
-	
-	if (APlayerController* playerController = Cast<APlayerController>(Controller))
-	{
-		Super::SecondaryAttack(Controller, Target);
-		
-		/// Get the player camera location and rotation for dash direction
-		FVector cameraLocation;
-		FRotator cameraRotation;
-		playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-		FVector cameraForwardVector = cameraRotation.Vector();
-	
-		/// Get a reference to the owning player character
-		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
-	
-		/// Dashes the player forward in look direction
-		FVector launchVelocity = cameraForwardVector * DashForce;
-		playerCharacter->LaunchCharacter(launchVelocity, true, true);
-		
-		// Add invincibility 
-		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
-	}
-}
-
-void ASword::SwingSword(AController* Controller, AActor* Target)
-{
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
@@ -83,34 +24,25 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	TraceParams.AddIgnoredActor(this);
 	TraceParams.AddIgnoredActor(GetOwner());
 	
-	/// Half size of the box thats sweeps for damage
-	FVector halfSize = FVector(10, 70.f, 70); 
-	
 	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->SweepSingleByChannel(
-	hitResult,
-	cameraLocation,
-	endLocation,
-	cameraRotation.Quaternion(),
-	ECC_Pawn,
-	FCollisionShape::MakeBox(halfSize),
-	TraceParams
-	);
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, cameraLocation,endLocation, ECC_Pawn, TraceParams);
 	
 	/// Draw a debug line showing the trace in the world
-	DrawDebugBox(
+	DrawDebugLine(
 	GetWorld(),
-	 bHit ? hitResult.ImpactPoint : endLocation,
-	halfSize,
-	cameraRotation.Quaternion(),
+	cameraLocation,
+	bHit ? hitResult.ImpactPoint : endLocation,
 	FColor::Red,
 	false,
+	1.f,
+	0,
 	1.f
 	);
 	
 	/// Check if HitResult hit an enemy and apply damage
 	if (bHit && hitResult.GetActor())
 	{
+		
 		UGameplayStatics::ApplyDamage(
 			hitResult.GetActor(),
 			Damage, 
@@ -118,5 +50,24 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			this,
 			nullptr
 		);
+	}
+}
+
+void ASword::SecondaryAttack(AController* Controller,AActor* Target)
+{
+	if (APlayerController* playerController = Cast<APlayerController>(Controller))
+	{
+		/// Get the player camera location and rotation for dash direction
+		FVector cameraLocation;
+		FRotator cameraRotation;
+		playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+		FVector cameraForwardVector = cameraRotation.Vector();
+	
+		/// Get a reference to the owning player character
+		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
+	
+		/// Dashes the player forward in look direction
+		FVector launchVelocity = cameraForwardVector * DashForce;
+		playerCharacter->LaunchCharacter(launchVelocity, true, true);
 	}
 }

@@ -13,16 +13,11 @@ class IWeaponInterface;
 /// Declare a logging category specifically for the weapon manager
 DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
 
-/// Declares a dynamic multicast delegate that can be assigned in Blueprints
-/// Used to notify listeners when the weapon is switched
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnWeaponSwitch);
-
 /// Component responsible for managing weapons for a player character
 /// Handles spawning, switching, and input bindings for weapons
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MI498_UEPROJECT_API UWeaponManager : public UActorComponent
 {
-	GENERATED_BODY()
 
 public:	
 	/// Input actions for selecting individual weapons
@@ -47,9 +42,6 @@ public:
 	TObjectPtr<UInputAction> ActionPrimaryAttack = nullptr;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
-	TObjectPtr<UInputAction> ActionPrimaryAttackHold = nullptr;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TObjectPtr<UInputAction> ActionSecondaryAttack = nullptr;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
@@ -62,10 +54,6 @@ public:
 	/// Array of weapon blueprints that will be spawned for the player
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TArray<TSubclassOf<AActor>> WeaponBlueprints;
-	
-	/// Delegate that Blueprints can bind to, called when the weapon is switched
-	UPROPERTY(BlueprintAssignable)
-	FOnWeaponSwitch OnWeaponSwitch;
 
 protected:
 	/// Called when the component is initialized at game start
@@ -80,7 +68,6 @@ protected:
 	
 	/// Handlers for primary and secondary attack actions
 	void HandlePrimaryAttack();
-	void HandlePrimaryAttackHold();
 	void HandleSecondaryAttack();
 	
 	/// Handles reloading the current weapon
@@ -107,5 +94,5 @@ private:
 	UPROPERTY()
 	int CurrentWeaponIndex = 0;
 
-	
+	GENERATED_BODY()
 };

@@ -37,33 +37,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputAction> ActionLook = nullptr;
 	
-	/// Input action for interacting with interactables
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input")
-	TObjectPtr<UInputAction> ActionInteract = nullptr;
-	
 	/// Input mapping context applied when this controller possesses a pawn
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputMappingContext> InputMappingContext = nullptr;
 	
-	/// A Blueprintable function that will be called when the player jumps
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnJump();
-	
-	/// A Blueprintable function that will be called when the player is moving on the ground
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnMove();
-	
-	/// A Blueprintable function that will be called when the player stops moving on the ground
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnStopMove();
-	
-	/// The range that the player can interact from
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int InteractRange = 400;
-	
 protected:
-	virtual void Tick(float DeltaSeconds) override;
-	
 	/// Handles camera look input and applies rotation to the controlled pawn
 	/// @param InputActionValue Current look input value from the Enhanced Input system
 	void HandleLook(const FInputActionValue& InputActionValue);
@@ -77,9 +55,6 @@ protected:
 	
 	/// Handles sprint input and toggles sprint behavior on the PlayerCharacter
 	void HandleSprint();
-	
-	/// Handles interact input from the PlayerCharacter
-	void HandleInteract();
 	
 	/// Called when this controller takes possession of a pawn
 	/// Used to apply input mappings, and bind input actions
