@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{56A07E3C-882A-4509-AFC9-8758F72E8C79}",
+    "Hash": "{07EAFEA3-A02A-C7E1-F062-ED9CAFC26A9F}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -102,6 +102,68 @@
       "Name": "SS_Air_Turbulence",
       "ObjectPath": "\\Game Parameters\\Factory Soundseed Air Game Syncs\\SS_Air_Turbulence",
       "GUID": "{EDA87B19-73AA-40A0-9F19-2073606DB710}"
+     }
+    ],
+    "StateGroups": [
+     {
+      "Id": "100949179",
+      "Name": "IsSprinting",
+      "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsSprinting",
+      "GUID": "{CC1711D8-096D-450C-A712-A1D67F1996E3}",
+      "Color": "12",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsSprinting\\None",
+        "GUID": "{2F70E6C1-250C-4EDF-85C8-3E3A69A24856}",
+        "Color": "12"
+       },
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsSprinting\\Yes",
+        "GUID": "{BBAF1EF1-C4F4-43C1-B3CD-A8009FE3C788}",
+        "Color": "12"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsSprinting\\No",
+        "GUID": "{DDCE2AF2-5CEC-421E-AB2E-B56674246487}",
+        "Color": "12"
+       }
+      ]
+     },
+     {
+      "Id": "3940648127",
+      "Name": "IsMoving",
+      "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving",
+      "GUID": "{042C3B55-B43F-48CA-BA1C-E8832FF2C2CE}",
+      "Color": "12",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\None",
+        "GUID": "{EAF74BE6-E1FE-4362-8686-4B1E1B750862}",
+        "Color": "12"
+       },
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\Yes",
+        "GUID": "{74A4961F-F362-463A-B0EE-8C185800F48B}",
+        "Color": "12"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\No",
+        "GUID": "{837C4033-06EA-4F8D-990E-47320598FB93}",
+        "Color": "12"
+       }
+      ]
      }
     ],
     "AcousticTextures": [
@@ -583,6 +645,6 @@
     ]
    }
   ],
-  "FileHash": "{950940E8-91F1-9F50-14EC-3832A1991877}"
+  "FileHash": "{408526AC-09EB-48AC-BB94-C2E03D06263A}"
  }
 }
