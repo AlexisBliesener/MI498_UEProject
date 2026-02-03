@@ -7,6 +7,9 @@
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "Pistol.generated.h"
 
+/**
+ * Weapon that fires and manages the pistol projectile
+ */
 UCLASS()
 class MI498_UEPROJECT_API APistol : public AWeaponBase
 {
