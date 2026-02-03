@@ -14,6 +14,7 @@ APistol::APistol()
 
 void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 {
+	Super::PrimaryAttack(Controller, Target);
 	if (const ACharacter* character = Cast<ACharacter>(Controller->GetPawn()))
 	{
 		FVector MuzzleLocation = character->GetMesh()->GetSocketLocation("middle_01_rSocket");
