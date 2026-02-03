@@ -49,7 +49,7 @@ public:
 	bool bIsPlayerInRange = false;
 	
 	/**
-	 * Is player in range for this enemy? 
+	 * Cache the player for attack purpose 
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Output, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AActor> Player;
