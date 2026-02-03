@@ -4,6 +4,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "MI498_UEProject/Interactables/InteractableComponent.h"
 
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
@@ -54,6 +55,10 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	{
 		EnhancedInputComponent->BindAction(ActionSprint, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleSprint);
 	}
+	if (ActionInteract)
+	{
+		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleInteract);
+	}
 }
 
 void APlayerCharacterController::OnUnPossess()
@@ -101,4 +106,38 @@ void APlayerCharacterController::HandleJump()
 void APlayerCharacterController::HandleSprint()
 {
 	PlayerCharacter->ToggleSprint();
+}
+
+void APlayerCharacterController::HandleInteract()
+{
+	if (!GetPawn()) return;
+
+	// Get player viewpoint
+	FVector start;
+	FRotator viewRotation;
+	GetPawn()->GetActorEyesViewPoint(start, viewRotation);
+	
+	FVector end = start + (viewRotation.Vector() * InteractRange); 
+
+	FHitResult hitResult;
+
+	// Perform the line trace 
+	FCollisionQueryParams params;
+	params.AddIgnoredActor(GetPawn()); 
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hitResult, start, end, ECC_Visibility, params);
+
+	// Draw debug line
+	DrawDebugLine(GetWorld(), start, end, FColor::Green, false, 1.f, 0, 2.f);
+
+	if (bHit && hitResult.GetActor())
+	{
+		// Check if the hit actor has an InteractableComponent
+		UInteractableComponent* interactable = hitResult.GetActor()->FindComponentByClass<UInteractableComponent>();
+		if (interactable)
+		{
+			// Trigger the interact event
+			interactable->TriggerInteract(PlayerCharacter);
+		}
+	}
 }
