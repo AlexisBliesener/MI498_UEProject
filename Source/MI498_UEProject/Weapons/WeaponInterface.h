@@ -20,6 +20,12 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) = 0;
 	
+	/// Executes the held/continuous version of the primary attack
+	/// Called when the primary fire input is held down
+	/// @param Controller - Controller responsible for performing the attack
+	/// @param Target - Optional intended target actor
+	virtual void PrimaryAttackHold(AController* Controller, AActor* Target = nullptr) = 0;
+	
 	/// Called to use this weapons secondary attack
 	/// @param Controller - Provides context about who is performing the 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
