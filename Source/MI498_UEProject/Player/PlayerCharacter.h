@@ -37,7 +37,14 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSprint();
 	
+	/// Grants temporary invincibility for the specified duration
+	/// @param Seconds - How long invincibility should last
+	void AddInvincibility(float Seconds);
+	
 protected:
+	
+	virtual void Tick(float DeltaSeconds) override;
+	
 	/// Maximum walking speed when the player is not sprinting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement" );
 	int MaxWalkSpeed = 400;
@@ -52,10 +59,18 @@ protected:
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
 
 private:
+	/// Called automatically by the engine when the character lands on the ground
+	/// Used to trigger Blueprint landing events
 	virtual void Landed(const FHitResult& Hit) override;
 	
 	/// Tracks whether the player is currently sprinting
 	bool bIsSprinting = false;
+	
+	/// Whether the player is currently invincible
+	bool bIsInvincible = false;
+	
+	/// World time when invincibility expires
+	float InvincibilityTimer = 0.0f;
 	
 	GENERATED_BODY()
 };

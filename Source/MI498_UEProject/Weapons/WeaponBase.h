@@ -28,6 +28,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int MaxAmmo = 2;
 	
+	/// The amount of ammo that a primary attack takes
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int PrimaryAttackNeededAmmo = 1;
+	
+	/// The amount of ammo that a secondary attack takes
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int SecondaryAttackNeededAmmo = 2;
+	
 	/// Time in seconds required to complete a reload
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float ReloadTime = 0.5;
@@ -38,6 +46,11 @@ protected:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	/// This function will define the weapon's primary firing behavior
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the PrimaryAttackHold function from IWeaponInterface
+	/// @param Controller - The controller performing the attack
+	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
+	virtual void PrimaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
 	
 	/// Implementation of the SecondaryAttack function from IWeaponInterface
 	/// @param Controller - The controller performing the attack
