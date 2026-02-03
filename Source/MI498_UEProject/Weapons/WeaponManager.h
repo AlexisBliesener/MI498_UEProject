@@ -47,6 +47,9 @@ public:
 	TObjectPtr<UInputAction> ActionPrimaryAttack = nullptr;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
+	TObjectPtr<UInputAction> ActionPrimaryAttackHold = nullptr;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TObjectPtr<UInputAction> ActionSecondaryAttack = nullptr;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
@@ -77,6 +80,7 @@ protected:
 	
 	/// Handlers for primary and secondary attack actions
 	void HandlePrimaryAttack();
+	void HandlePrimaryAttackHold();
 	void HandleSecondaryAttack();
 	
 	/// Handles reloading the current weapon

@@ -114,6 +114,10 @@ void UWeaponManager::BeginPlay()
 	{
 		EnhancedInputComponent->BindAction(ActionPrimaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandlePrimaryAttack);
 	}
+	if (ActionPrimaryAttackHold)
+	{
+		EnhancedInputComponent->BindAction(ActionPrimaryAttackHold, ETriggerEvent::Triggered, this, &UWeaponManager::HandlePrimaryAttackHold);
+	}
 	if (ActionSecondaryAttack)
 	{
 		EnhancedInputComponent->BindAction(ActionSecondaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttack);
@@ -137,8 +141,6 @@ void UWeaponManager::HandleSelectWeaponOne()
 		CurrentWeaponIndex = 0;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
-	UE_LOG(WeaponManagerLog, Log, TEXT("weapon one"));
-	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponTwo()
@@ -154,8 +156,6 @@ void UWeaponManager::HandleSelectWeaponTwo()
 		CurrentWeaponIndex = 1;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
-	UE_LOG(WeaponManagerLog, Log, TEXT("weapon two"));
-	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponThree()
@@ -171,9 +171,6 @@ void UWeaponManager::HandleSelectWeaponThree()
 		CurrentWeaponIndex = 2;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
-	
-	UE_LOG(WeaponManagerLog, Log, TEXT("weapon three"));
-	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponPrev()
@@ -186,9 +183,6 @@ void UWeaponManager::HandleSelectWeaponPrev()
 	}
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
-	
-	UE_LOG(WeaponManagerLog, Log, TEXT("weapon prev"));
-	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandleSelectWeaponNext()
@@ -201,27 +195,27 @@ void UWeaponManager::HandleSelectWeaponNext()
 	}
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
-	
-	UE_LOG(WeaponManagerLog, Log, TEXT("weapon next"));
-	UE_LOG(WeaponManagerLog, Log, TEXT("Current Weapon: %s"), *CurrentWeapon.GetObject()->GetName());
 }
 
 void UWeaponManager::HandlePrimaryAttack()
 {
-	UE_LOG(WeaponManagerLog, Log, TEXT("primary attack"));
 	/// Call the weapon's PrimaryAttack function, passing the player controller
 	CurrentWeapon->PrimaryAttack(PlayerCharacter->GetController());
 }
 
+void UWeaponManager::HandlePrimaryAttackHold()
+{
+	/// Call the weapon's PrimaryAttack function, passing the player controller
+	CurrentWeapon->PrimaryAttackHold(PlayerCharacter->GetController());
+}
+
 void UWeaponManager::HandleSecondaryAttack()
 {
-	UE_LOG(WeaponManagerLog, Log, TEXT("secondary attack"));
 	/// Call the weapon's SecondaryAttack function, passing the player controller
 	CurrentWeapon->SecondaryAttack(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleReload()
 {
-	UE_LOG(WeaponManagerLog, Log, TEXT("reload"));
 	CurrentWeapon->Reload();
 }

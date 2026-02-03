@@ -6,6 +6,8 @@
 
 APlayerCharacter::APlayerCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	
 	/// Create weapon manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
 	
@@ -28,6 +30,11 @@ void APlayerCharacter::ToggleSprint()
 
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
+	if (bIsInvincible)
+	{
+		return 0;
+	}
+	
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
@@ -35,6 +42,18 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
 	}
 	return DamageAmount;
+}
+
+void APlayerCharacter::AddInvincibility(const float Seconds)
+{
+	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
+}
+
+void APlayerCharacter::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	bIsInvincible = InvincibilityTimer >= GetWorld()->GetTimeSeconds();
 }
 
 void APlayerCharacter::Landed(const FHitResult& Hit)

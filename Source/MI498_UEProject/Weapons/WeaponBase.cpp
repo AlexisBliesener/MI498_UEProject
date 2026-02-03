@@ -9,7 +9,11 @@ AWeaponBase::AWeaponBase()
 
 void AWeaponBase::PrimaryAttack(AController* PlayerController, AActor* Target)
 {
-	// Triggers the attack event hook (animation/SFX/VFX)
+	OnPrimaryAttack();
+}
+
+void AWeaponBase::PrimaryAttackHold(AController* Controller, AActor* Target)
+{
 	OnPrimaryAttack();
 }
 
@@ -20,6 +24,7 @@ void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 
 void AWeaponBase::Reload()
 {
+	if (bReloading) return;
 	bReloading = true;
 	ReloadTimer = GetWorld()->GetTimeSeconds();
 }
@@ -27,6 +32,12 @@ void AWeaponBase::Reload()
 void AWeaponBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	
+	/// Auto reload
+	if (CurrentAmmo == 0)
+	{
+		Reload();
+	}
 	
 	// If currently reloading and enough time has passed,
 	// complete the reload and restore ammo

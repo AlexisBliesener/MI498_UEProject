@@ -16,6 +16,12 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Called when the primary attack input is held
+	/// Not currently used for the harpoon gun
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void PrimaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
+	
 	/// Override the SecondaryAttack function to implement HarpoonGun-specific firing behavior
 	/// @param Controller - Provides context about who is firing 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
