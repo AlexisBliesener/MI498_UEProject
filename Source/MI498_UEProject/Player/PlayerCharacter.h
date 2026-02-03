@@ -46,11 +46,11 @@ protected:
 	virtual void Tick(float DeltaSeconds) override;
 	
 	/// Maximum walking speed when the player is not sprinting
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement" );
+	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	int MaxWalkSpeed = 400;
 	
 	/// Maximum movement speed when the player is sprinting
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CUSTOM Player|Movement");
+	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	int MaxSprintSpeed = 800;
 	
 	/// Component responsible for managing the player's weapons
