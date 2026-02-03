@@ -34,6 +34,10 @@ public:
 	/// Cooldown duration (in seconds) between secondary attacks
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float SecondaryCooldown = 1;
+	
+	/// How many seconds of invincibility the player will get after using the dash
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float DashInvincibilitySeconds = 0.5f;
 
 protected:
 

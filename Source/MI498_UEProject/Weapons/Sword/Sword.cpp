@@ -60,7 +60,7 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 		playerCharacter->LaunchCharacter(launchVelocity, true, true);
 		
 		// Add invincibility 
-		playerCharacter->AddInvincibility(0.5f);
+		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
 }
 
