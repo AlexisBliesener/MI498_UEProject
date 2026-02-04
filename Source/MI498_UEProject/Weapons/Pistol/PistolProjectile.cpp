@@ -4,6 +4,7 @@
 #include "PistolProjectile.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Player/PlayerCharacter.h"
 
 
 APistolProjectile::APistolProjectile()
@@ -32,7 +33,7 @@ void APistolProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	// don't hit the char itself and the owner (the projectile)
-	if (OtherActor && OtherActor != this && OtherActor != GetOwner())
+	if (OtherActor && OtherActor != this && OtherActor != GetOwner() && OtherActor->IsA(APlayerCharacter::StaticClass()))
 	{
 		UGameplayStatics::ApplyDamage(
 			OtherActor,

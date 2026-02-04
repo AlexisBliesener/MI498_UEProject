@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "CharacterBase.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDamage);
+
 UCLASS()
 class MI498_UEPROJECT_API ACharacterBase : public ACharacter
 {
@@ -20,6 +22,11 @@ public:
 	/// Current Health 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Health")
 	float CurrentHealth;
+	/// Damage event (event dispatcher)
+	UPROPERTY(BlueprintAssignable, Category="Health", meta = (ToolTip="Fires when the character is damaged"))
+	FOnDamage OnDamage;
+	
+	
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
 protected:
 	/// Called when the game starts or when spawned

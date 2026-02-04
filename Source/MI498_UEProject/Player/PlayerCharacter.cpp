@@ -1,6 +1,7 @@
 #include "PlayerCharacter.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -16,6 +17,8 @@ APlayerCharacter::APlayerCharacter()
 	Camera->SetupAttachment(RootComponent);
 	Camera->bUsePawnControlRotation = true;
 	Camera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
+	// ECC_GameTraceChannel1 is only for the player
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Block);
 }
 
 void APlayerCharacter::ToggleSprint()
