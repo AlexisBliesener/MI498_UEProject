@@ -155,6 +155,7 @@ void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 	switch (Event)
 	{
 	case StateTreeEnemyEvents::Idle:
+		return;
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Idle"));
 
 		LastEvent = StateTreeEnemyEvents::Idle;
@@ -165,6 +166,7 @@ void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 		LastEvent = StateTreeEnemyEvents::Attack;
 		break;
 	case StateTreeEnemyEvents::Patrol:
+		return;
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Patrol"));
 
 		LastEvent = StateTreeEnemyEvents::Patrol;
