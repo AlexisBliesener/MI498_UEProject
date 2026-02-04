@@ -5,6 +5,7 @@
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
+
 class UWeaponManager;
 class UCameraComponent;
 
@@ -36,6 +37,10 @@ public:
 	/// A Blueprintable function that will be called when the player starts sprinting
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSprint();
+	
+	/// A Blueprintable function that will be called when the player's health hits 0
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPlayerDied();
 	
 	/// Grants temporary invincibility for the specified duration
 	/// @param Seconds - How long invincibility should last
