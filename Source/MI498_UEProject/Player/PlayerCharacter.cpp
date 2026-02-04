@@ -39,7 +39,7 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	if (CurrentHealth <= 0.f)
 	{
 		// restart level for now..
-		UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
+		//UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
 	}
 	return DamageAmount;
 }
