@@ -29,10 +29,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputAction> ActionJump = nullptr;
 	
-	/// Input action for sprinting
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
-	TObjectPtr<UInputAction> ActionSprint = nullptr;
-	
 	/// Input action for camera look (mouse / right stick)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
 	TObjectPtr<UInputAction> ActionLook = nullptr;
@@ -74,9 +70,6 @@ protected:
 	
 	/// Handles jump input and triggers a jump on the PlayerCharacter
 	void HandleJump();
-	
-	/// Handles sprint input and toggles sprint behavior on the PlayerCharacter
-	void HandleSprint();
 	
 	/// Handles interact input from the PlayerCharacter
 	void HandleInteract();

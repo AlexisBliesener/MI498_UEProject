@@ -22,16 +22,6 @@ APlayerCharacter::APlayerCharacter()
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Block);
 }
 
-void APlayerCharacter::ToggleSprint()
-{
-	bIsSprinting = !bIsSprinting;
-	if (bIsSprinting)
-	{
-		OnSprint();
-	}
-	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? MaxSprintSpeed : MaxWalkSpeed;
-}
-
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
 	if (bIsInvincible)

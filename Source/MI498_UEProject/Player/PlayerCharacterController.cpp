@@ -51,10 +51,6 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	{
 		EnhancedInputComponent->BindAction(ActionLook, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleLook);
 	}
-	if (ActionSprint)
-	{
-		EnhancedInputComponent->BindAction(ActionSprint, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleSprint);
-	}
 	if (ActionInteract)
 	{
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleInteract);
@@ -101,11 +97,6 @@ void APlayerCharacterController::HandleJump()
 {
 	OnJump();
 	PlayerCharacter->Jump();
-}
-
-void APlayerCharacterController::HandleSprint()
-{
-	PlayerCharacter->ToggleSprint();
 }
 
 void APlayerCharacterController::HandleInteract()
