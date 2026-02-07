@@ -87,6 +87,7 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleMove(const FInputActionValue& InputActionValue)
 {
+	if (!bAcceptMovementInput) return;
 	const FVector2D moveInput = InputActionValue.Get<FVector2D>();
 	
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(),moveInput.X);
@@ -95,6 +96,7 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleJump()
 {
+	if (!bAcceptMovementInput) return;
 	OnJump();
 	PlayerCharacter->Jump();
 }

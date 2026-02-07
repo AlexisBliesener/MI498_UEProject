@@ -46,9 +46,49 @@ protected:
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
+	/// Scene component used as the start point for the upper ledge detection trace
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	USceneComponent* GrabRaycastOrigin;
+	
+	/// Scene component used as the start point for the body collision trace
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	USceneComponent* BodyRaycastOrigin;
+	
+	/// Forward trace distance used to check if there is empty space above a ledge
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MinLedgeSize = 200;
+	
+	/// Forward trace distance used to detect a wall at body level
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxDistanceFromLedge = 50;
+	
+	/// Min field of view
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MinFOV = 90;
+	
+	/// Max field of view
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxFOV = 180;
+	
+	/// How to interpolate over FOV
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UCurveFloat* FOVCurve;
+	
+	/// The max velocity that the player will be allowed to travel at
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxVelocity = 10000;
+	
 	/// Maximum walking speed when the player is not sprinting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	int MaxWalkSpeed = 400;
+	
+	/// Upward launch strength used during ledge pull-up step
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float PullUpToLedgeForce = 700;
+	
+	/// Forward launch strength used to move player onto ledge
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float StepForwardToLedgeForce = 400;
 	
 	/// Component responsible for managing the player's weapons
 	/// Handles spawning, switching, and firing weapons
@@ -59,6 +99,29 @@ private:
 	/// Called automatically by the engine when the character lands on the ground
 	/// Used to trigger Blueprint landing events
 	virtual void Landed(const FHitResult& Hit) override;
+	
+	/// Starts ledge grab sequence
+	/// Locks movement and schedules pull-up timer
+	void GrabLedge(const FVector& TowardsLedge);
+	
+	/// Launches player upward
+	/// Schedules StepForward
+	UFUNCTION()
+	void PullUp(const FVector& TowardsLedge);
+	
+	/// Launches player forward onto ledge
+	/// Schedules ReenableMovement
+	UFUNCTION()
+	void StepForward(const FVector& TowardsLedge);
+	
+	/// Restores walking movement + player input after climb
+	void ReenableMovement();
+	
+	/// True while player is in ledge grab state
+	bool bIsGrabbing = false;
+	
+	/// Timer handle used for ledge grab sequence steps
+	FTimerHandle TimerHandle;
 	
 	/// Whether the player is currently invincible
 	bool bIsInvincible = false;
