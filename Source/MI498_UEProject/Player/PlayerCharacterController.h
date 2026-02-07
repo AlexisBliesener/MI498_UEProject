@@ -53,6 +53,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnStopMove();
 	
+	/// Sets if the player is allowed to move 
+	void SetAcceptMovementInput(const bool Val) { bAcceptMovementInput = Val; }
+	
 	/// The range that the player can interact from
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int InteractRange = 400;
@@ -90,6 +93,9 @@ private:
 	/// Reference to the possessed PlayerCharacter
 	UPROPERTY()
 	TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
+	
+	/// True if the player is allowed to move
+	bool bAcceptMovementInput = true;
 	
 	GENERATED_BODY()
 };

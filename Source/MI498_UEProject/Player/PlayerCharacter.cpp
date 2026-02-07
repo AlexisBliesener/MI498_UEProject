@@ -1,4 +1,6 @@
 #include "PlayerCharacter.h"
+
+#include "PlayerCharacterController.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -12,6 +14,12 @@ APlayerCharacter::APlayerCharacter()
 	
 	/// Create weapon manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
+	
+	// Create raycast origins
+	GrabRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("GrabRaycastOrigin"));
+	GrabRaycastOrigin->SetupAttachment(RootComponent);
+	BodyRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("BodyRaycastOrigin"));
+	BodyRaycastOrigin->SetupAttachment(RootComponent);
 	
 	/// Add first person camera
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
@@ -65,10 +73,87 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		float NewFOV = FMath::Lerp(MinFOV, MaxFOV, CurveAlpha);
 
 		Camera->SetFieldOfView(NewFOV);
-
-		UE_LOG(LogTemp, Verbose, TEXT("SpeedAlpha: %.2f  Curve: %.2f  FOV: %.2f"),
-			SpeedAlpha, CurveAlpha, NewFOV);
 	}
+	
+	// Decide if the player can grab ledge
+	if (!GetCharacterMovement()->IsMovingOnGround() && !bIsGrabbing)
+	{
+		// Upper trace — checks if space above ledge is clear
+		FVector grabStart = GrabRaycastOrigin->GetComponentLocation();
+		FVector grabEnd = grabStart + GrabRaycastOrigin->GetForwardVector() * MinLedgeSize;
+		FHitResult grabHit;
+		bool grabResult = GetWorld()->LineTraceSingleByChannel(grabHit, grabStart, grabEnd, ECC_Visibility);
+	
+		// Lower trace — checks if wall exists in front of body
+		FVector bodyStart = BodyRaycastOrigin->GetComponentLocation();
+		FVector bodyEnd = bodyStart + BodyRaycastOrigin->GetForwardVector() * MaxDistanceFromLedge;
+		FHitResult bodyHit;
+		bool bodyResult = GetWorld()->LineTraceSingleByChannel(bodyHit, bodyStart, bodyEnd, ECC_Visibility);
+	
+		// If wall detected but upper space is clear, ledge detected
+		if (bodyResult && !grabResult)
+		{
+			GrabLedge(BodyRaycastOrigin->GetForwardVector());
+		}
+	}
+}
+
+void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
+{
+	// Get custom player controller and disable movement input
+	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
+	playerController->SetAcceptMovementInput(false);
+	
+	bIsGrabbing = true;
+
+	// stop movement and gravity
+	GetCharacterMovement()->SetMovementMode(MOVE_Flying);
+	GetCharacterMovement()->StopMovementImmediately();
+	
+	FTimerDelegate delegate;
+	delegate.BindUFunction(this, FName("PullUp"), TowardsLedge);
+	
+	GetWorld()->GetTimerManager().SetTimer(
+	TimerHandle,
+	delegate,
+	0.1f,   
+	false);
+}
+
+void APlayerCharacter::PullUp(const FVector& TowardsLedge)
+{
+	LaunchCharacter(GetActorUpVector() * PullUpToLedgeForce, true, true);
+	
+	FTimerDelegate delegate;
+	delegate.BindUFunction(this, FName("StepForward"), TowardsLedge);
+	
+	GetWorld()->GetTimerManager().SetTimer(
+	TimerHandle,
+	delegate,
+	0.5f,   
+	false  
+);
+}
+
+void APlayerCharacter::StepForward(const FVector& TowardsLedge)
+{
+	LaunchCharacter(TowardsLedge * StepForwardToLedgeForce, true, true);
+	GetWorld()->GetTimerManager().SetTimer(
+	TimerHandle,
+	this,
+	&APlayerCharacter::ReenableMovement,
+	0.1f,   
+	false  
+);
+
+}
+
+void APlayerCharacter::ReenableMovement()
+{
+	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
+	playerController->SetAcceptMovementInput(true);
+	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+	bIsGrabbing = false;
 }
 
 void APlayerCharacter::Landed(const FHitResult& Hit)
