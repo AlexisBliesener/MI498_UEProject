@@ -46,6 +46,18 @@ protected:
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
+	/// Min field of view
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MinFOV = 90;
+	
+	/// Max field of view
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxFOV = 180;
+	
+	/// How to interpolate over FOV
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UCurveFloat* FOVCurve;
+	
 	/// The max velocity that the player will be allowed to travel at
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxVelocity = 10000;

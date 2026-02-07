@@ -54,6 +54,21 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	{
 		GetCharacterMovement()->Velocity = GetCharacterMovement()->Velocity.GetClampedToMaxSize(MaxVelocity);
 	}
+	
+	// FOV change based on velocity
+	if (FOVCurve && Camera)
+	{
+		float SpeedAlpha = FMath::Clamp(velocity.Size() / MaxVelocity, 0.f, 1.f);
+
+		float CurveAlpha = FOVCurve->GetFloatValue(SpeedAlpha);
+
+		float NewFOV = FMath::Lerp(MinFOV, MaxFOV, CurveAlpha);
+
+		Camera->SetFieldOfView(NewFOV);
+
+		UE_LOG(LogTemp, Verbose, TEXT("SpeedAlpha: %.2f  Curve: %.2f  FOV: %.2f"),
+			SpeedAlpha, CurveAlpha, NewFOV);
+	}
 }
 
 void APlayerCharacter::Landed(const FHitResult& Hit)
