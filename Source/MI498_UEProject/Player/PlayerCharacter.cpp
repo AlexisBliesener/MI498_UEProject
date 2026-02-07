@@ -47,6 +47,13 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	
 	bIsInvincible = InvincibilityTimer >= GetWorld()->GetTimeSeconds();
+	
+	// Velocity cap
+	const FVector velocity = GetVelocity();
+	if (velocity.Size() > MaxVelocity)
+	{
+		GetCharacterMovement()->Velocity = GetCharacterMovement()->Velocity.GetClampedToMaxSize(MaxVelocity);
+	}
 }
 
 void APlayerCharacter::Landed(const FHitResult& Hit)

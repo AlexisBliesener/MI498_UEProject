@@ -46,6 +46,10 @@ protected:
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
+	/// The max velocity that the player will be allowed to travel at
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxVelocity = 10000;
+	
 	/// Maximum walking speed when the player is not sprinting
 	UPROPERTY(EditAnywhere, BlueprintReadWrite);
 	int MaxWalkSpeed = 400;
