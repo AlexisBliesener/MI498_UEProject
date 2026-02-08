@@ -31,12 +31,6 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
-	/// Called when the secondary attack input is held
-	/// Not currently used for Blunderbuss
-	/// @param Controller - Controller responsible for firing
-	/// @param Target - Optional target actor reference
-	virtual void SecondaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
-	
 	/// How much force is applied to the player when firing the weapon in air during the primary attack
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int PrimaryAttackKnockbackForce = 500;

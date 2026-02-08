@@ -59,11 +59,6 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 	}
 }
 
-void ABlunderbuss::SecondaryAttackHold(AController* Controller, AActor* Target)
-{
-	// No functionality
-}
-
 void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int KnockbackForce) const
 {
 	/// Get the player camera location and rotation for aiming

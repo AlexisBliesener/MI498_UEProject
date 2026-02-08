@@ -1,5 +1,8 @@
 ﻿#include "HarpoonGun.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Player/PlayerCharacter.h"
+
 void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 {
 	Super::PrimaryAttack(Controller, Target);
@@ -41,9 +44,20 @@ void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)
 	Super::SecondaryAttack(Controller);
 }
 
-void AHarpoonGun::SecondaryAttackHold(AController* Controller, AActor* Target)
+void AHarpoonGun::SecondaryAttackHoldStart(AController* Controller, AActor* Target)
 {
-	Super::SecondaryAttackHold(Controller, Target);
+	Super::SecondaryAttackHoldStart(Controller, Target);
+	
+	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	playerCharacter->SetOverrideCameraFOV(true,  ADSFOV);
+}
+
+void AHarpoonGun::SecondaryAttackHoldEnd(AController* Controller, AActor* Target)
+{
+	Super::SecondaryAttackHoldEnd(Controller, Target);
+	
+	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	playerCharacter->SetOverrideCameraFOV(false);
 }
 
 void AHarpoonGun::DestroyCurrentHarpoon()

@@ -85,7 +85,8 @@ protected:
 	void HandlePrimaryAttack();
 	void HandlePrimaryAttackHold();
 	void HandleSecondaryAttack();
-	void HandleSecondaryAttackHold();
+	void HandleSecondaryAttackHoldStart();
+	void HandleSecondaryAttackHoldEnd();
 	
 	/// Handles reloading the current weapon
 	void HandleReload();

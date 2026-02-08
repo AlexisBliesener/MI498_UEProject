@@ -1,6 +1,7 @@
 #include "PlayerCharacter.h"
 
 #include "PlayerCharacterController.h"
+#include "VectorTypes.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -64,7 +65,11 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	}
 	
 	// FOV change based on velocity
-	if (FOVCurve && Camera)
+	if (bOverrideCameraFOV)
+	{
+		Camera->SetFieldOfView(FMath::Lerp(Camera->FieldOfView, OverrideCameraFOV, LerpToNewFOVSpeed));
+	}
+	else if (FOVCurve && Camera)
 	{
 		float SpeedAlpha = FMath::Clamp(velocity.Size() / MaxVelocity, 0.f, 1.f);
 
@@ -72,7 +77,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 
 		float NewFOV = FMath::Lerp(MinFOV, MaxFOV, CurveAlpha);
 
-		Camera->SetFieldOfView(NewFOV);
+		Camera->SetFieldOfView(FMath::Lerp(Camera->FieldOfView, NewFOV, LerpToNewFOVSpeed));
 	}
 	
 	// Decide if the player can grab ledge
