@@ -1,5 +1,6 @@
 #include "Sword.h"
 
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
@@ -33,14 +34,22 @@ void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
 
 void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 {
-	/// Check cooldown timer
-	if (GetWorld()->GetTimeSeconds() - SecondaryCooldownTimer < SecondaryCooldown)
+	// Reduce charges
+	if (CurrentDashCharges == 0 || !bCanUseSecondary)
 	{
 		return;
 	}
+	CurrentDashCharges--;
 	
-	/// Set cooldown timer
-	SecondaryCooldownTimer = GetWorld()->GetTimeSeconds();
+	// Wait for cooldown to use again
+	SetCanUseSecondary(false);
+	FTimerDelegate delegate;
+	delegate.BindUFunction(this, FName("SetCanUseSecondary"), true);
+	GetWorld()->GetTimerManager().SetTimer(
+		SecondaryCooldownTimerHandle,
+		delegate,
+		SecondaryCooldownTime,   
+		false ); 
 	
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
@@ -61,6 +70,28 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 		
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
+	}
+}
+
+void ASword::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	// Reload if necessary
+	if (CurrentDashCharges != DashCharges && !bReloadingSecondary)
+	{
+		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+		if (playerCharacter->GetCharacterMovement()->IsMovingOnGround())
+		{
+			bCanUseSecondary = false;
+			bReloadingSecondary = true;
+			GetWorld()->GetTimerManager().SetTimer(
+				SecondaryReloadTimerHandle,
+				this,
+				&ASword::ReloadDashes,
+				SecondaryReloadTime,   
+				false ); 
+		}
 	}
 }
 
@@ -119,4 +150,11 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			nullptr
 		);
 	}
+}
+
+void ASword::ReloadDashes()
+{
+	bReloadingSecondary = false;
+	bCanUseSecondary = true;
+	CurrentDashCharges = DashCharges;
 }
