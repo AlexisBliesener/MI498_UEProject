@@ -53,6 +53,9 @@ public:
 	TObjectPtr<UInputAction> ActionSecondaryAttack = nullptr;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
+	TObjectPtr<UInputAction> ActionSecondaryAttackHold = nullptr;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Weapon Selection")
 	TObjectPtr<UInputAction> ActionReload = nullptr;
 	
 	/// Input mapping context applied when this controller possesses a pawn
@@ -82,6 +85,7 @@ protected:
 	void HandlePrimaryAttack();
 	void HandlePrimaryAttackHold();
 	void HandleSecondaryAttack();
+	void HandleSecondaryAttackHold();
 	
 	/// Handles reloading the current weapon
 	void HandleReload();

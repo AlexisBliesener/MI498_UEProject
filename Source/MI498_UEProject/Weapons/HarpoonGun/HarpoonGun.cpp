@@ -41,6 +41,11 @@ void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)
 	Super::SecondaryAttack(Controller);
 }
 
+void AHarpoonGun::SecondaryAttackHold(AController* Controller, AActor* Target)
+{
+	Super::SecondaryAttackHold(Controller, Target);
+}
+
 void AHarpoonGun::DestroyCurrentHarpoon()
 {
 	CurrentHarpoon->Destroy();

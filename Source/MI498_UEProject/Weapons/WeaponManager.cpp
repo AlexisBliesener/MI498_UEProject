@@ -122,6 +122,10 @@ void UWeaponManager::BeginPlay()
 	{
 		EnhancedInputComponent->BindAction(ActionSecondaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttack);
 	}
+	if (ActionSecondaryAttackHold)
+	{
+		EnhancedInputComponent->BindAction(ActionSecondaryAttackHold, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttackHold);
+	}
 	if (ActionReload)
 	{
 		EnhancedInputComponent->BindAction(ActionReload, ETriggerEvent::Triggered, this, &UWeaponManager::HandleReload);
@@ -205,7 +209,7 @@ void UWeaponManager::HandlePrimaryAttack()
 
 void UWeaponManager::HandlePrimaryAttackHold()
 {
-	/// Call the weapon's PrimaryAttack function, passing the player controller
+	/// Call the weapon's PrimaryAttackHold function, passing the player controller
 	CurrentWeapon->PrimaryAttackHold(PlayerCharacter->GetController());
 }
 
@@ -213,6 +217,12 @@ void UWeaponManager::HandleSecondaryAttack()
 {
 	/// Call the weapon's SecondaryAttack function, passing the player controller
 	CurrentWeapon->SecondaryAttack(PlayerCharacter->GetController());
+}
+
+void UWeaponManager::HandleSecondaryAttackHold()
+{
+	/// Call the weapon's SecondaryAttackHold function, passing the player controller
+	CurrentWeapon->SecondaryAttackHold(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleReload()

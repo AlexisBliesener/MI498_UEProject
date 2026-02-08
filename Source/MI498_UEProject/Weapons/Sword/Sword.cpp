@@ -73,6 +73,11 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 	}
 }
 
+void ASword::SecondaryAttackHold(AController* Controller, AActor* Target)
+{
+	// No Functionality
+}
+
 void ASword::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);

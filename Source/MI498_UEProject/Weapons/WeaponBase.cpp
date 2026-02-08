@@ -22,6 +22,11 @@ void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 	OnSecondaryAttack();
 }
 
+void AWeaponBase::SecondaryAttackHold(AController* Controller, AActor* Target)
+{
+	OnSecondaryAttack();
+}
+
 void AWeaponBase::Reload()
 {
 	if (bReloading) return;

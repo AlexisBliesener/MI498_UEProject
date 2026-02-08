@@ -27,6 +27,11 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Called when the secondary attack input is held
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void SecondaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
+	
 	/// Blueprint class used to spawn the harpoon projectile
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AHarpoon> HarpoonBlueprint;

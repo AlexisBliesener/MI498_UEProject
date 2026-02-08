@@ -57,6 +57,11 @@ protected:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	/// This function will define the weapon's secondary firing behavior
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the SecondaryAttackHold function from IWeaponInterface
+	/// @param Controller - The controller performing the attack
+	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
+	virtual void SecondaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
 
 	/// A Blueprintable function that will be called when primary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
