@@ -5,6 +5,8 @@
 
 void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 {
+	if (CurrentHarpoon != nullptr) return;
+	
 	Super::PrimaryAttack(Controller, Target);
 
 	if (APlayerController* playerController = Cast<APlayerController>(Controller) )
@@ -37,6 +39,18 @@ void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 void AHarpoonGun::PrimaryAttackHold(AController* Controller, AActor* Target)
 {
 	/// No functionality
+}
+
+void AHarpoonGun::PrimaryAttackHoldStart(AController* Controller, AActor* Target)
+{
+	Super::PrimaryAttackHoldStart(Controller, Target);
+	bSwingMode = true;
+}
+
+void AHarpoonGun::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
+{
+	Super::PrimaryAttackHoldEnd(Controller, Target);
+	bSwingMode = false;
 }
 
 void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)

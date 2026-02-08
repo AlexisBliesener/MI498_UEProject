@@ -84,6 +84,8 @@ protected:
 	/// Handlers for primary and secondary attack actions
 	void HandlePrimaryAttack();
 	void HandlePrimaryAttackHold();
+	void HandlePrimaryAttackHoldStart();
+	void HandlePrimaryAttackHoldEnd();
 	void HandleSecondaryAttack();
 	void HandleSecondaryAttackHoldStart();
 	void HandleSecondaryAttackHoldEnd();

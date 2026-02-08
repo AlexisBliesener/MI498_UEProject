@@ -17,6 +17,14 @@ void AWeaponBase::PrimaryAttackHold(AController* Controller, AActor* Target)
 	OnPrimaryAttack();
 }
 
+void AWeaponBase::PrimaryAttackHoldStart(AController* Controller, AActor* Target)
+{
+}
+
+void AWeaponBase::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
+{
+}
+
 void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
 	OnSecondaryAttack();

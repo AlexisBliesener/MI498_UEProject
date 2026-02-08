@@ -68,20 +68,41 @@ void AHarpoon::Tick(float DeltaTime)
 	/// Vector from player to harpoon
 	FVector toPlayer = GetActorLocation() - PlayerCharacter->GetActorLocation();
 	
-	if (Stuck)
+	if (HarpoonGun->IsSwingMode())
 	{
-		/// Enforce rope length by pulling the player back if they exceed it
-		if (toPlayer.Size() > CableLength)
+		UE_LOG(LogTemp, Log, TEXT("swing mode"));
+		if (Stuck)
 		{
-			PlayerCharacter->LaunchCharacter(toPlayer.GetSafeNormal() * PullStrength * DeltaTime, false, false);
+			/// Enforce rope length by pulling the player back if they exceed it
+			if (toPlayer.Size() > CableLength)
+			{
+				PlayerCharacter->LaunchCharacter(toPlayer.GetSafeNormal() * PullStrength * DeltaTime, false, false);
+			}
+		}
+		else
+		{
+			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			if (toPlayer.Size() > Range)
+			{
+				HarpoonGun->DestroyCurrentHarpoon();
+			}
 		}
 	}
 	else
 	{
-		/// Destroy the harpoon if it exceeds its maximum range without hitting
-		if (toPlayer.Size() > Range)
+		UE_LOG(LogTemp, Log, TEXT("zip mode"));
+		if (Stuck)
 		{
-			HarpoonGun->DestroyCurrentHarpoon();
+			PlayerCharacter->LaunchCharacter(toPlayer.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
+		}
+		else
+		{
+			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			if (toPlayer.Size() > Range)
+			{
+				HarpoonGun->DestroyCurrentHarpoon();
+			}
 		}
 	}
+
 }

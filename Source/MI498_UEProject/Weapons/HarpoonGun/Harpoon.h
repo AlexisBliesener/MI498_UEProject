@@ -40,6 +40,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	int PullStrength = 10000;
 	
+	UPROPERTY(EditDefaultsOnly)
+	int ZipPullStrength = 100000;
+	
 	/// The speed at which the harpoon will travel
 	UPROPERTY(EditDefaultsOnly)
 	float Speed = 6000;

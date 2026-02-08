@@ -118,6 +118,14 @@ void UWeaponManager::BeginPlay()
 	{
 		EnhancedInputComponent->BindAction(ActionPrimaryAttackHold, ETriggerEvent::Triggered, this, &UWeaponManager::HandlePrimaryAttackHold);
 	}
+	if (ActionPrimaryAttackHold)
+	{
+		EnhancedInputComponent->BindAction(ActionPrimaryAttackHold, ETriggerEvent::Started, this, &UWeaponManager::HandlePrimaryAttackHoldStart);
+	}
+	if (ActionPrimaryAttackHold)
+	{
+		EnhancedInputComponent->BindAction(ActionPrimaryAttackHold, ETriggerEvent::Completed, this, &UWeaponManager::HandlePrimaryAttackHoldEnd);
+	}
 	if (ActionSecondaryAttack)
 	{
 		EnhancedInputComponent->BindAction(ActionSecondaryAttack, ETriggerEvent::Triggered, this, &UWeaponManager::HandleSecondaryAttack);
@@ -215,6 +223,18 @@ void UWeaponManager::HandlePrimaryAttackHold()
 {
 	/// Call the weapon's PrimaryAttackHold function, passing the player controller
 	CurrentWeapon->PrimaryAttackHold(PlayerCharacter->GetController());
+}
+
+void UWeaponManager::HandlePrimaryAttackHoldStart()
+{
+	/// Call the weapon's SecondaryAttackHoldStart function, passing the player controller
+	CurrentWeapon->PrimaryAttackHoldStart(PlayerCharacter->GetController());
+}
+
+void UWeaponManager::HandlePrimaryAttackHoldEnd()
+{
+	/// Call the weapon's SecondaryAttackHoldEnd function, passing the player controller
+	CurrentWeapon->PrimaryAttackHoldEnd(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleSecondaryAttack()
