@@ -24,6 +24,8 @@ public:
 	/// Stores a reference back to the owning harpoon gun
 	void SetHarpoonGun(AHarpoonGun* HarpoonGunPtr) { HarpoonGun = HarpoonGunPtr; }
 	
+	void ReturnToPlayer() {bReturnToPlayer = true;}
+	
 	/// Projectile movement component controlling harpoon flight
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
@@ -74,6 +76,8 @@ private:
 	
 	/// Length of the cable at the moment the harpoon becomes stuck
 	float CableLength;
+	
+	bool bReturnToPlayer = false;
 
 	GENERATED_BODY()
 };

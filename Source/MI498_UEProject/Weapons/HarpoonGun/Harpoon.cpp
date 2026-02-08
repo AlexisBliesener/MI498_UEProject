@@ -68,7 +68,17 @@ void AHarpoon::Tick(float DeltaTime)
 	/// Vector from player to harpoon
 	FVector toPlayer = GetActorLocation() - PlayerCharacter->GetActorLocation();
 	
-	if (HarpoonGun->IsSwingMode())
+	if (bReturnToPlayer)
+	{
+		FVector Move = toPlayer.GetSafeNormal() * 10000 * DeltaTime;
+		SetActorLocation(GetActorLocation() - Move);
+		
+		if (toPlayer.Size() < 100.f) 
+		{
+			HarpoonGun->DestroyCurrentHarpoon();
+		}
+	}
+	else if (HarpoonGun->IsSwingMode())
 	{
 		UE_LOG(LogTemp, Log, TEXT("swing mode"));
 		if (Stuck)

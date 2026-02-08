@@ -21,12 +21,6 @@ void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = playerController->GetPawn();
 	
-		/// Destroy the existing harpoon if one is already active
-		if (CurrentHarpoon != nullptr)
-		{
-			DestroyCurrentHarpoon();
-		}
-	
 		/// Spawn the harpoon slightly in front of the camera to avoid self-collision
 		CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(HarpoonBlueprint, CameraLocation + CameraRotation.Vector() * 200, CameraRotation, SpawnParams);
 	
@@ -82,18 +76,14 @@ void AHarpoonGun::DestroyCurrentHarpoon()
 
 void AHarpoonGun::Reload()
 {
-	if (bReloading) return;
-	Super::Reload();
-	DestroyCurrentHarpoon();
+	// Do not want base reload
+	// Super::Reload();
+	
+	CurrentHarpoon->ReturnToPlayer();
 }
 
 void AHarpoonGun::Tick(float DeltaSeconds)
 {
 	// Do not want base auto reload
 	//Super::Tick(DeltaSeconds);
-	
-	if (bReloading && GetWorld()->GetTimeSeconds() > ReloadTimer + ReloadTime)
-	{
-		bReloading = false;
-	}
 }
