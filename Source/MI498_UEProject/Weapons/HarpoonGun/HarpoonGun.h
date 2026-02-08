@@ -62,8 +62,11 @@ public:
 	
 	/// Destroys the currently active harpoon if one exists
 	void DestroyCurrentHarpoon();
+	
+	virtual void Reload() override;
 
 protected:
+	virtual void Tick(float DeltaSeconds) override;
 
 private:
 	

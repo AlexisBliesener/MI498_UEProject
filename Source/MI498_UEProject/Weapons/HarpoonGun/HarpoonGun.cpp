@@ -79,3 +79,21 @@ void AHarpoonGun::DestroyCurrentHarpoon()
 	CurrentHarpoon->Destroy();
 	CurrentHarpoon = nullptr;
 }
+
+void AHarpoonGun::Reload()
+{
+	if (bReloading) return;
+	Super::Reload();
+	DestroyCurrentHarpoon();
+}
+
+void AHarpoonGun::Tick(float DeltaSeconds)
+{
+	// Do not want base auto reload
+	//Super::Tick(DeltaSeconds);
+	
+	if (bReloading && GetWorld()->GetTimeSeconds() > ReloadTimer + ReloadTime)
+	{
+		bReloading = false;
+	}
+}
