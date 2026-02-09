@@ -52,6 +52,12 @@ public:
 	/// @return True if swing mode is active, false if zip mode is active
 	bool IsSwingMode() const {return bSwingMode;}
 	
+	/// Destroys the currently active harpoon if one exists
+	void DestroyCurrentHarpoon();
+	
+	/// Override for the reload function from WeaponBase, pulls back the harpoon
+	virtual void Reload() override;
+	
 	/// Blueprint class used to spawn the harpoon projectile
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AHarpoon> HarpoonBlueprint;
@@ -63,11 +69,6 @@ public:
 	/// The percent movement and look will slow by when using ADX
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta=(ClampMin="0.0", ClampMax="1.0", UIMin="0.0", UIMax="1.0"))
 	float ADSSlowMovementPercentage = 0.4;
-	
-	/// Destroys the currently active harpoon if one exists
-	void DestroyCurrentHarpoon();
-	
-	virtual void Reload() override;
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;

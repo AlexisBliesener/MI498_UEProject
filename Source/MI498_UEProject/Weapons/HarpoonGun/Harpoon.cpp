@@ -1,6 +1,4 @@
 ﻿#include "Harpoon.h"
-
-#include "AIController.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "CableComponent.h"
@@ -55,7 +53,6 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	
 	/// Store the initial rope length when the harpoon hits
 	CableLength = FVector::Distance(Hit.ImpactPoint, GetOwner()->GetOwner()->GetActorLocation());
-	HitPoint = Hit.ImpactPoint;
 	
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
@@ -103,7 +100,7 @@ void AHarpoon::Tick(float DeltaTime)
 	
 	if (bReturnToPlayer)
 	{
-		SetActorLocation(GetActorLocation() - toHarpoon.GetSafeNormal() * 5000 * DeltaTime);
+		SetActorLocation(GetActorLocation() - toHarpoon.GetSafeNormal() * ReturnSpeed * DeltaTime);
 		
 		if (toHarpoon.Size() < 100.f) 
 		{
@@ -139,7 +136,7 @@ void AHarpoon::Tick(float DeltaTime)
 		{
 			if (toHarpoon.Size() > 100.f && bPullInEnemy)
 			{
-				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * 1000 * DeltaTime); 
+				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * EnemyPullStrength * DeltaTime); 
 				CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation()); 
 			}
 			else if (toHarpoon.Size() > 200.f)
