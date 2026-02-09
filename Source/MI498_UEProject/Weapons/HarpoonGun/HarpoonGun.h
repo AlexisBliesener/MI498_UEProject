@@ -60,6 +60,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int ADSFOV = 40;
 	
+	/// The percent movement and look will slow by when using ADX
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta=(ClampMin="0.0", ClampMax="1.0", UIMin="0.0", UIMax="1.0"))
+	float ADSSlowMovementPercentage = 0.4;
+	
 	/// Destroys the currently active harpoon if one exists
 	void DestroyCurrentHarpoon();
 	

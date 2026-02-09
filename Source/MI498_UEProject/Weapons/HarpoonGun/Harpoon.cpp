@@ -1,11 +1,17 @@
 ﻿#include "Harpoon.h"
 
+#include "AIController.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "CableComponent.h"
 #include "HarpoonGun.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
+
+class AAIController;
 
 AHarpoon::AHarpoon()
 {
@@ -13,7 +19,7 @@ AHarpoon::AHarpoon()
 	
 	/// Collision sphere used to detect impacts
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
-	Collision->InitSphereRadius(5.f);
+	Collision->InitSphereRadius(0.1f);
 	Collision->SetCollisionProfileName(TEXT("BlockAllDynamic"));
 	RootComponent = Collision;
 	Collision->SetNotifyRigidBodyCollision(true);
@@ -35,7 +41,7 @@ AHarpoon::AHarpoon()
 void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	/// Ignore further hits if already stuck, invalid actor, or hitting the owning player
-	if (Stuck || !OtherActor || OtherActor->GetUniqueID() == GetOwner()->GetOwner()->GetUniqueID())
+	if (bStuck || !OtherActor || OtherActor->GetUniqueID() == GetOwner()->GetOwner()->GetUniqueID())
 	{
 		return;
 	}
@@ -49,10 +55,37 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	
 	/// Store the initial rope length when the harpoon hits
 	CableLength = FVector::Distance(Hit.ImpactPoint, GetOwner()->GetOwner()->GetActorLocation());
+	HitPoint = Hit.ImpactPoint;
 	
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
-	Stuck = true;
+	bStuck = true;
+	
+	if (OtherActor)
+	{
+		Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+		AttachToComponent(
+			OtherActor->GetRootComponent(),
+			FAttachmentTransformRules::KeepWorldTransform
+		);
+	}
+	
+	/// Check if HitResult hit an enemy and apply damage
+	if (OtherActor && OtherActor->GetRootComponent()->GetCollisionObjectType() == ECC_Pawn)
+	{
+		bStuckToEnemy = true;
+		HarpoonedEnemy = Cast<AEnemyBase>(OtherActor);
+		HarpoonedEnemy->GetCharacterMovement()->DisableMovement();
+		
+		UGameplayStatics::ApplyDamage(
+			OtherActor,
+			HarpoonGun->Damage,
+			PlayerCharacter->GetController(),
+			GetOwner(),
+			nullptr
+		);
+	}
 }
 
 void AHarpoon::BeginPlay()
@@ -64,35 +97,37 @@ void AHarpoon::BeginPlay()
 void AHarpoon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+
 	/// Vector from player to harpoon
-	FVector toPlayer = GetActorLocation() - PlayerCharacter->GetActorLocation();
+	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
 	
 	if (bReturnToPlayer)
 	{
-		FVector Move = toPlayer.GetSafeNormal() * 10000 * DeltaTime;
-		SetActorLocation(GetActorLocation() - Move);
+		SetActorLocation(GetActorLocation() - toHarpoon.GetSafeNormal() * 5000 * DeltaTime);
 		
-		if (toPlayer.Size() < 100.f) 
+		if (toHarpoon.Size() < 100.f) 
 		{
 			HarpoonGun->DestroyCurrentHarpoon();
 		}
 	}
 	else if (HarpoonGun->IsSwingMode())
 	{
-		UE_LOG(LogTemp, Log, TEXT("swing mode"));
-		if (Stuck)
+		if (bStuck && bStuckToEnemy)
+		{
+			
+		}
+		else if (bStuck)
 		{
 			/// Enforce rope length by pulling the player back if they exceed it
-			if (toPlayer.Size() > CableLength)
+			if (toHarpoon.Size() > CableLength)
 			{
-				PlayerCharacter->LaunchCharacter(toPlayer.GetSafeNormal() * PullStrength * DeltaTime, false, false);
+				PlayerCharacter->LaunchCharacter(toHarpoon.GetSafeNormal() * PullStrength * DeltaTime, false, false);
 			}
 		}
 		else
 		{
 			/// Destroy the harpoon if it exceeds its maximum range without hitting
-			if (toPlayer.Size() > Range)
+			if (toHarpoon.Size() > Range)
 			{
 				HarpoonGun->DestroyCurrentHarpoon();
 			}
@@ -100,15 +135,31 @@ void AHarpoon::Tick(float DeltaTime)
 	}
 	else
 	{
-		UE_LOG(LogTemp, Log, TEXT("zip mode"));
-		if (Stuck)
+		if (bStuck && bStuckToEnemy)
 		{
-			PlayerCharacter->LaunchCharacter(toPlayer.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
+			if (toHarpoon.Size() > 100.f && bPullInEnemy)
+			{
+				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * 1000 * DeltaTime); 
+				CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation()); 
+			}
+			else if (toHarpoon.Size() > 200.f)
+			{
+				bPullInEnemy = true;
+			}
+			else
+			{
+				bPullInEnemy = false;
+			}
+		}
+		else if (bStuck)
+		{
+			PlayerCharacter->LaunchCharacter(toHarpoon.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
+			CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation());
 		}
 		else
 		{
 			/// Destroy the harpoon if it exceeds its maximum range without hitting
-			if (toPlayer.Size() > Range)
+			if (toHarpoon.Size() > Range)
 			{
 				HarpoonGun->DestroyCurrentHarpoon();
 			}

@@ -2,6 +2,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
+#include "MI498_UEProject/Player/PlayerCharacterController.h"
 
 void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 {
@@ -56,16 +57,30 @@ void AHarpoonGun::SecondaryAttackHoldStart(AController* Controller, AActor* Targ
 {
 	Super::SecondaryAttackHoldStart(Controller, Target);
 	
+	/// ADS
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	playerCharacter->SetOverrideCameraFOV(true,  ADSFOV);
+	
+	/// Slow Player Movement
+	if (APlayerCharacterController* playerController = Cast<APlayerCharacterController>(Controller))
+	{
+		playerController->SetMovementSlow(true, 0.4f); 
+	}
 }
 
 void AHarpoonGun::SecondaryAttackHoldEnd(AController* Controller, AActor* Target)
 {
 	Super::SecondaryAttackHoldEnd(Controller, Target);
 	
+	/// Remove ADS
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	playerCharacter->SetOverrideCameraFOV(false);
+	
+	/// Unslow Player Movement
+	if (APlayerCharacterController* playerController = Cast<APlayerCharacterController>(Controller))
+	{
+		playerController->SetMovementSlow(false); 
+	}
 }
 
 void AHarpoonGun::DestroyCurrentHarpoon()
@@ -78,6 +93,11 @@ void AHarpoonGun::Reload()
 {
 	// Do not want base reload
 	// Super::Reload();
+	
+	if (!CurrentHarpoon->IsStuck())
+	{
+		return;
+	}
 	
 	CurrentHarpoon->ReturnToPlayer();
 }
