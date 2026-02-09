@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "Harpoon.generated.h"
 
+class AEnemyBase;
 class AHarpoonGun;
 class APlayerCharacter;
 class UProjectileMovementComponent;
@@ -17,12 +18,18 @@ class MI498_UEPROJECT_API AHarpoon : public AActor
 {
 public:
 	AHarpoon();
-	
+
 	/// Sets the maximum range the harpoon can travel before despawning
 	void SetRange(const int HarpoonGunRange) { Range = HarpoonGunRange; }
 	
 	/// Stores a reference back to the owning harpoon gun
 	void SetHarpoonGun(AHarpoonGun* HarpoonGunPtr) { HarpoonGun = HarpoonGunPtr; }
+	
+	/// Forces the harpoon to begin returning to the player
+	void ReturnToPlayer() {bReturnToPlayer = true;}
+	
+	/// Returns whether the harpoon is currently embedded in something
+	bool IsStuck() const { return bStuck; }
 	
 	/// Projectile movement component controlling harpoon flight
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -40,9 +47,21 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	int PullStrength = 10000;
 	
+	/// The strength at which the harpoon will pull in the player during zip// 
+	UPROPERTY(EditDefaultsOnly)
+	int ZipPullStrength = 50000;
+	
+	/// The strength at which the harpoon will pull in enemies
+	UPROPERTY(EditDefaultsOnly)
+	int EnemyPullStrength = 1000;
+	
 	/// The speed at which the harpoon will travel
 	UPROPERTY(EditDefaultsOnly)
 	float Speed = 6000;
+	
+	/// The speed at which the harpoon will return when reloading
+	UPROPERTY(EditDefaultsOnly)
+	float ReturnSpeed = 5000;
 
 protected:
 	
@@ -53,6 +72,7 @@ protected:
 private:
 	
 	virtual void BeginPlay() override;
+	
 	virtual void Tick(float DeltaTime) override;
 	
 	/// Cached reference to the owning player character
@@ -64,13 +84,26 @@ private:
 	TObjectPtr<AHarpoonGun> HarpoonGun;
 	
 	/// Whether the harpoon has successfully stuck to a surface
-	bool Stuck = false;
+	bool bStuck = false;
 	
 	/// Maximum distance the harpoon can travel before despawning
 	int Range;
 	
 	/// Length of the cable at the moment the harpoon becomes stuck
 	float CableLength;
+	
+	/// Whether the harpoon is currently returning to the player
+	bool bReturnToPlayer = false;
+	
+	/// True if the harpoon is attached specifically to an enemy actor
+	bool bStuckToEnemy = false;
+	
+	/// Enemy currently attached to the harpoon (if any)
+	UPROPERTY()
+	TObjectPtr<AEnemyBase> HarpoonedEnemy  = nullptr;
+	
+	/// True if the harpoon should pull in the enemy
+	bool bPullInEnemy = true;
 
 	GENERATED_BODY()
 };

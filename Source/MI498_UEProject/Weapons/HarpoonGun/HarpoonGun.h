@@ -22,25 +22,65 @@ public:
 	/// @param Target - Optional target actor reference
 	virtual void PrimaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Called when the primary attack hold input is started
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void PrimaryAttackHoldStart(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Called when the primary attack hold input is ended
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void PrimaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
+	
 	/// Override the SecondaryAttack function to implement HarpoonGun-specific firing behavior
 	/// @param Controller - Provides context about who is firing 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Called when the secondary attack hold input is started
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void SecondaryAttackHoldStart(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Called when the secondary attack hold input is ended
+	/// @param Controller - Controller responsible for firing
+	/// @param Target - Optional target actor reference
+	virtual void SecondaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Returns whether the harpoon gun is currently in swing mode.
+	/// When true, the player will swing from the harpoon instead of zipping directly to it.
+	/// @return True if swing mode is active, false if zip mode is active
+	bool IsSwingMode() const {return bSwingMode;}
+	
+	/// Destroys the currently active harpoon if one exists
+	void DestroyCurrentHarpoon();
+	
+	/// Override for the reload function from WeaponBase, pulls back the harpoon
+	virtual void Reload() override;
+	
 	/// Blueprint class used to spawn the harpoon projectile
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AHarpoon> HarpoonBlueprint;
 	
-	/// Destroys the currently active harpoon if one exists
-	void DestroyCurrentHarpoon();
+	/// FOV will change to this value when ADS
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	int ADSFOV = 40;
+	
+	/// The percent movement and look will slow by when using ADX
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta=(ClampMin="0.0", ClampMax="1.0", UIMin="0.0", UIMax="1.0"))
+	float ADSSlowMovementPercentage = 0.4;
 
 protected:
+	virtual void Tick(float DeltaSeconds) override;
 
 private:
 	
 	/// Reference to the currently spawned harpoon instance
 	UPROPERTY()
 	TObjectPtr<AHarpoon> CurrentHarpoon = nullptr;
+	
+	/// True if player should swing on harpoon, false if player should zip to harpoon
+	bool bSwingMode = false;
 	
 	GENERATED_BODY()
 };

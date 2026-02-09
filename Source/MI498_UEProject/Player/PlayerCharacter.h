@@ -42,6 +42,15 @@ public:
 	/// @param Seconds - How long invincibility should last
 	void AddInvincibility(float Seconds);
 	
+	/// Enables or disables overriding the camera’s field of view (FOV).
+	/// @param bOverride - Whether the override FOV should be active
+	/// @param OverrideValue - Target FOV to use when override is enabled (ignored if bOverride is false)
+	void SetOverrideCameraFOV(const bool bOverride, const int OverrideValue = 0)
+	{
+		bOverrideCameraFOV = bOverride;
+		OverrideCameraFOV = OverrideValue;
+	}
+	
 protected:
 	
 	virtual void Tick(float DeltaSeconds) override;
@@ -69,6 +78,10 @@ protected:
 	/// Max field of view
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxFOV = 180;
+	
+	/// Camera lerp to new FOV speed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin="0.01", ClampMax="0.99", UIMin="0.01", UIMax="0.99"))
+	float LerpToNewFOVSpeed = 0.2;
 	
 	/// How to interpolate over FOV
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -128,6 +141,12 @@ private:
 	
 	/// World time when invincibility expires
 	float InvincibilityTimer = 0.0f;
+	
+	/// If the camera FOV is being overriden (ADS)
+	bool bOverrideCameraFOV = false;
+	
+	/// What value the camera FOV is being overriden to if enabled
+	int OverrideCameraFOV = 90;
 	
 	GENERATED_BODY()
 };
