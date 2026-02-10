@@ -35,6 +35,7 @@ public:
 	bool GetReturningToPlayer() const {return bReturnToPlayer;}
 	
 	/// Get the time that the harpoon has been reloading for
+	UFUNCTION(BlueprintCallable)
 	float GetCurrentReloadingTime() const { return GetWorld()->GetTimeSeconds() - CurrentReloadingTimeStarted; }
 	
 	/// Projectile movement component controlling harpoon flight
