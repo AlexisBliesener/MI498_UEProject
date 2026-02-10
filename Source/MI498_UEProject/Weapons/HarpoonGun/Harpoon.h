@@ -56,7 +56,7 @@ public:
 	
 	/// The strength at which the harpoon will pull in the player during zip// 
 	UPROPERTY(EditDefaultsOnly)
-	int ZipPullStrength = 50000;
+	int ZipPullStrength = 85000;
 	
 	/// The strength at which the harpoon will pull in enemies
 	UPROPERTY(EditDefaultsOnly)
