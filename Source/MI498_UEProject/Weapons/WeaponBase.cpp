@@ -17,14 +17,32 @@ void AWeaponBase::PrimaryAttackHold(AController* Controller, AActor* Target)
 	OnPrimaryAttack();
 }
 
+void AWeaponBase::PrimaryAttackHoldStart(AController* Controller, AActor* Target)
+{
+}
+
+void AWeaponBase::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
+{
+}
+
 void AWeaponBase::SecondaryAttack(AController* Controller,AActor* Target)
 {
 	OnSecondaryAttack();
 }
 
+void AWeaponBase::SecondaryAttackHoldStart(AController* Controller, AActor* Target)
+{
+}
+
+void AWeaponBase::SecondaryAttackHoldEnd(AController* Controller, AActor* Target)
+{
+}
+
 void AWeaponBase::Reload()
 {
 	if (bReloading) return;
+	
+	OnReload();
 	bReloading = true;
 	ReloadTimer = GetWorld()->GetTimeSeconds();
 }

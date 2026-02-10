@@ -53,6 +53,15 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnStopMove();
 	
+	/// Sets if the player is allowed to move 
+	void SetAcceptMovementInput(const bool Val) { bAcceptMovementInput = Val; }
+	
+	/// Enables or disables slowed player movement and camera look speed.
+	/// When enabled, movement and look input will be scaled by MovementSlowPercent.
+	/// @param bEnabled Whether slow movement should be applied
+	/// @param PercentSlow Percent multiplier applied to movement/look input (0.5 = 50% speed)
+	void SetMovementSlow(const bool bEnabled, float PercentSlow = 0) {bMovementBeingSlowed = bEnabled; MovementSlowPercent = PercentSlow; }
+	
 	/// The range that the player can interact from
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int InteractRange = 400;
@@ -90,6 +99,15 @@ private:
 	/// Reference to the possessed PlayerCharacter
 	UPROPERTY()
 	TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
+	
+	/// True if the player is allowed to move
+	bool bAcceptMovementInput = true;
+	
+	/// True if the player movement/look is currently being slowed
+	bool bMovementBeingSlowed = false;
+	
+	/// If movement/look is being slowed, it will be slowed by this percent
+	float MovementSlowPercent = 0.5;
 	
 	GENERATED_BODY()
 };

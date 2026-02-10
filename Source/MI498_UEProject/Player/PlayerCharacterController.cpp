@@ -79,7 +79,12 @@ void APlayerCharacterController::Tick(float DeltaSeconds)
 
 void APlayerCharacterController::HandleLook(const FInputActionValue& InputActionValue)
 {
-	const FVector2D lookInput = InputActionValue.Get<FVector2D>();
+	FVector2D lookInput = InputActionValue.Get<FVector2D>();
+	
+	if (bMovementBeingSlowed)
+	{
+		lookInput *= (1 - MovementSlowPercent);
+	}
 
 	AddYawInput(lookInput.X);
 	AddPitchInput(lookInput.Y);
@@ -87,7 +92,13 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleMove(const FInputActionValue& InputActionValue)
 {
-	const FVector2D moveInput = InputActionValue.Get<FVector2D>();
+	if (!bAcceptMovementInput) return;
+	FVector2D moveInput = InputActionValue.Get<FVector2D>();
+	
+	if (bMovementBeingSlowed)
+	{
+		moveInput *= (1 - MovementSlowPercent);
+	}
 	
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(),moveInput.X);
 	PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(),moveInput.Y);
@@ -95,6 +106,9 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleJump()
 {
+	if (!bAcceptMovementInput) return;
+	if (PlayerCharacter && PlayerCharacter->GetCharacterMovement()->IsFalling()) return;
+	
 	OnJump();
 	PlayerCharacter->Jump();
 }

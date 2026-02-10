@@ -52,11 +52,31 @@ protected:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void PrimaryAttackHold(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Implementation of the PrimaryAttackHoldStart function from IWeapon Interface
+	/// @param Controller - Controller responsible for performing the attack
+	/// @param Target - Optional intended target actor
+	virtual void PrimaryAttackHoldStart(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the PrimaryAttackHoldEnd function from IWeapon Interface
+	/// @param Controller - Controller responsible for performing the attack
+	/// @param Target - Optional intended target actor
+	virtual void PrimaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
+	
 	/// Implementation of the SecondaryAttack function from IWeaponInterface
 	/// @param Controller - The controller performing the attack
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	/// This function will define the weapon's secondary firing behavior
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the SecondaryAttackHoldStart function from IWeapon Interface
+	/// @param Controller - Controller responsible for performing the attack
+	/// @param Target - Optional intended target actor
+	virtual void SecondaryAttackHoldStart(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the SecondaryAttackHoldEnd function from IWeapon Interface
+	/// @param Controller - Controller responsible for performing the attack
+	/// @param Target - Optional intended target actor
+	virtual void SecondaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
 
 	/// A Blueprintable function that will be called when primary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
@@ -65,6 +85,10 @@ protected:
 	/// A Blueprintable function that will be called when secondary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSecondaryAttack();
+	
+	/// A Blueprintable function that will be called when reload is called
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnReload();
 	
 	/// Starts reload process — sets reload state and timer
 	virtual void Reload() override;

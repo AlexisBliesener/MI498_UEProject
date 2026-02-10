@@ -20,3 +20,5 @@ Saved
 *.validationcache
 */Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
 *.a
+Plugins/WwiseSoundEngine/Source/WwiseSoundEngine/Public/Generated/AkiOSPlugins.h
+Plugins/WwiseSoundEngine/Source/WwiseSoundEngine/Public/Generated/AktvOSPlugins.h
