@@ -106,6 +106,7 @@ void AHarpoon::Tick(float DeltaTime)
 		
 		if (toHarpoon.Size() < 100.f) 
 		{
+			OnLockIntoGun();
 			HarpoonGun->DestroyCurrentHarpoon();
 		}
 	}

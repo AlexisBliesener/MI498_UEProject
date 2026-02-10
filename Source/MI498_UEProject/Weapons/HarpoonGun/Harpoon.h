@@ -76,6 +76,10 @@ protected:
 	/// A Blueprintable function that will be called when harpoon pulls player in
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPullPlayer();
+	
+	/// A Blueprintable function that will be called when harpoon pulls player in
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLockIntoGun();
 
 private:
 	
