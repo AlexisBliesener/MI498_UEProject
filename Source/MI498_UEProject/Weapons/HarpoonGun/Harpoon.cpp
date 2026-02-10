@@ -44,6 +44,8 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 		return;
 	}
 	
+	OnAttach();
+	
 	/// Stop projectile movement when the harpoon sticks
 	ProjectileMovement->StopMovementImmediately();
 	ProjectileMovement->Deactivate();
@@ -150,6 +152,8 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else if (bStuck)
 		{
+			OnPullPlayer();
+			
 			PlayerCharacter->LaunchCharacter(toHarpoon.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
 			CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation());
 		}

@@ -86,6 +86,10 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSecondaryAttack();
 	
+	/// A Blueprintable function that will be called when reload is called
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnReload();
+	
 	/// Starts reload process — sets reload state and timer
 	virtual void Reload() override;
 	

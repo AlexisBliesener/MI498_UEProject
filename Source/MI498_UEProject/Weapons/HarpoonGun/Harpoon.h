@@ -68,6 +68,14 @@ protected:
 	/// Called when the harpoon collides with another actor
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	
+	/// A Blueprintable function that will be called when harpoon attaches to something
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnAttach();
+	
+	/// A Blueprintable function that will be called when harpoon pulls player in
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPullPlayer();
 
 private:
 	

@@ -99,6 +99,8 @@ void AHarpoonGun::Reload()
 		return;
 	}
 	
+	OnReload();
+	
 	CurrentHarpoon->ReturnToPlayer();
 }
 
