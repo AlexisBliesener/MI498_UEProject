@@ -41,6 +41,8 @@ void AWeaponBase::SecondaryAttackHoldEnd(AController* Controller, AActor* Target
 void AWeaponBase::Reload()
 {
 	if (bReloading) return;
+	
+	OnReload();
 	bReloading = true;
 	ReloadTimer = GetWorld()->GetTimeSeconds();
 }

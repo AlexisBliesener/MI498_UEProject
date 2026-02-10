@@ -107,6 +107,8 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 void APlayerCharacterController::HandleJump()
 {
 	if (!bAcceptMovementInput) return;
+	if (PlayerCharacter && PlayerCharacter->GetCharacterMovement()->IsFalling()) return;
+	
 	OnJump();
 	PlayerCharacter->Jump();
 }
