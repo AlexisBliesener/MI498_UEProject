@@ -10,11 +10,19 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{7FDC7403-A2B6-D423-019B-A5768952D8C5}",
+    "Hash": "{6A9FA87A-115A-AB09-85A3-FA4C3D7AB4F2}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
+     {
+      "Id": "26282397",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordDash_mixdown.wav",
+      "CachePath": "E0/{E0C148A3-2B83-8682-6F32-E49633E0222B}.wem"
+     },
      {
       "Id": "210626020",
       "Language": "SFX",
@@ -48,6 +56,22 @@
       "CachePath": "27/{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem"
      },
      {
+      "Id": "320129325",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordDash_mixdown.wav",
+      "CachePath": "50/{50A1FD98-1169-0747-1170-8C2C5A101A5D}.wem"
+     },
+     {
+      "Id": "373499443",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwordDash_mixdown.wav",
+      "CachePath": "86/{8688CC60-CAA8-2EF8-AE4C-E8F08839BDA1}.wem"
+     },
+     {
       "Id": "377840418",
       "Language": "SFX",
       "Streaming": "false",
@@ -69,7 +93,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookMissReel.wav",
-      "CachePath": "49/{49B8BBE2-A97A-B7D6-6629-38C8857B0135}.wem"
+      "CachePath": "0C/{0C9E6E99-E611-B7B4-862C-90D78382A753}.wem"
      },
      {
       "Id": "647190144",
@@ -253,7 +277,9 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleSnapBack",
       "GUID": "{00A47A02-2626-4A98-B179-3DF6382E6875}",
       "Color": "8",
-      "DurationType": "Infinite",
+      "DurationType": "OneShot",
+      "DurationMin": "0.6729308",
+      "DurationMax": "0.6729308",
       "MediaRefs": [
        {
         "Id": "615624964"
@@ -407,10 +433,20 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword\\SwordDash",
       "GUID": "{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}",
       "Color": "8",
-      "MaxAttenuation": "0",
       "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0"
+      "DurationMin": "0.9385009",
+      "DurationMax": "1.5396782",
+      "MediaRefs": [
+       {
+        "Id": "26282397"
+       },
+       {
+        "Id": "320129325"
+       },
+       {
+        "Id": "373499443"
+       }
+      ]
      },
      {
       "Id": "1328934038",
@@ -517,6 +553,6 @@
     ]
    }
   ],
-  "FileHash": "{CFFFA801-263F-1713-3DB0-259EFBCB3AD1}"
+  "FileHash": "{BC0DE26C-6885-2B4C-C606-3B2B929F1267}"
  }
 }

@@ -33,13 +33,16 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	3810384391	ReelInTime			\Default Work Unit\ReelInTime	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	26282397	SwordDash_mixdown_02	.cache\E0\{E0C148A3-2B83-8682-6F32-E49633E0222B}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		235452
 	210626020	GrappleStrikeLocation	.cache\1D\{1D24D5B8-D1B5-F1AE-B72C-9BC1F1DAE028}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleStrikeLocation		162608
 	218262969	Grapple	.cache\D8\{D8C45CA6-B050-D958-FA24-EAAC9F098E3E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		228620
 	226120403	SwordSlashExample_02	.cache\2B\{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		115084
 	272125692	Sprint	.cache\27\{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem		\Containers\Default Work Unit\Player\Sprint		175572
+	320129325	SwordDash_mixdown_01	.cache\50\{50A1FD98-1169-0747-1170-8C2C5A101A5D}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		267296
+	373499443	SwordDash_mixdown	.cache\86\{8688CC60-CAA8-2EF8-AE4C-E8F08839BDA1}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		199456
 	377840418	GrappleHookReelIn	.cache\91\{91E2F057-5A49-CA3B-7FDD-D568BED29FBB}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		220320
 	605770747	BlunderbussReload	.cache\6D\{6DCD70A2-B2EE-B4D2-0245-6FB1C7410DEF}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		426016
-	615624964	GrappleSnapBack	.cache\49\{49B8BBE2-A97A-B7D6-6629-38C8857B0135}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		129300
+	615624964	GrappleSnapBack	.cache\0C\{0C9E6E99-E611-B7B4-862C-90D78382A753}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		129300
 	647190144	Land	.cache\7F\{7F44EDE6-F648-6DAD-2AD1-C4846C9CF013}.wem		\Containers\Default Work Unit\Player\Land		221388
 	649368430	Cannon	.cache\1B\{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem		\Containers\Default Work Unit\Environment\Cannon		717844
 	750876961	SwordSlashExample_01	.cache\5B\{5B7EAD0C-3755-4266-496E-CDABBB6D7CB9}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_01		149844

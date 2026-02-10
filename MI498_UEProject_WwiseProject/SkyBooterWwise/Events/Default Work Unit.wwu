@@ -128,7 +128,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="SwordDash" ID="{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}"/>
+								<Event Name="SwordDash" ID="{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}">
+									<ChildrenList>
+										<Action Name="" ID="{53A3CE8B-EFDA-4889-8CF9-BF1D85F836B6}" ShortID="958352043">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SwordDash" ID="{EBC7C39E-C9E5-4B95-B9F9-7E4349CAD638}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Blunderbuss" ID="{8D2C942F-3786-4CC5-AC15-7264B1E5BF4C}" ShortID="711933565">

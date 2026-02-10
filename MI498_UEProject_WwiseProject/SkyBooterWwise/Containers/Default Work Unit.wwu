@@ -639,7 +639,6 @@
 								</Sound>
 								<Sound Name="GrappleSnapBack" ID="{84E9A814-F65E-4ABC-9C90-0336D15D914D}" ShortID="136498822">
 									<PropertyList>
-										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>4</Value>
@@ -710,6 +709,116 @@
 								<ActiveSource Name="BlunderbussReload" ID="{097DFC7C-D3EF-4718-AA72-5A6A84C44851}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="SwordDash" ID="{EBC7C39E-C9E5-4B95-B9F9-7E4349CAD638}" ShortID="811329018">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{D8649800-BADC-47B8-922C-2E4FBA561452}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="175"/>
+													<Property Name="Min" Type="Real64" Value="-175"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="SwordDash_mixdown" ID="{0FC6CFDC-0A90-4D68-9A30-0749BDCAC410}" ShortID="778353100">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SwordDash_mixdown" ID="{48037EDF-7F5D-4684-8124-6545F7073130}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.324477798967476"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.0383287201847"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>SwordDash_mixdown.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="373499443"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="SwordDash_mixdown" ID="{48037EDF-7F5D-4684-8124-6545F7073130}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="SwordDash_mixdown_01" ID="{11F5963B-AC00-4BC9-867D-739A49E44FFB}" ShortID="845103658">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SwordDash_mixdown" ID="{5649BA50-8EE1-44B5-848E-F489960CC9AE}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.324477798967476"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="4.10284150249987"/>
+												<Property Name="TrimEnd" Type="Real64" Value="5.49449049267137"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>SwordDash_mixdown.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="320129325"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="SwordDash_mixdown" ID="{5649BA50-8EE1-44B5-848E-F489960CC9AE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="SwordDash_mixdown_02" ID="{ED2DF933-FB6A-444F-B138-E3DC93474CC6}" ShortID="887897510">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SwordDash_mixdown" ID="{2ACCAA04-B306-4677-B97A-D02E856297A9}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.324477798967476"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.04781544237252"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.27362022418286"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>SwordDash_mixdown.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="26282397"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="SwordDash_mixdown" ID="{2ACCAA04-B306-4677-B97A-D02E856297A9}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{3F24F419-F6DE-40D0-80F3-7F65ABC5CCD2}" ShortID="676360628">
@@ -782,28 +891,6 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
-				<Sound Name="SwordDash_mixdown" ID="{0FC6CFDC-0A90-4D68-9A30-0749BDCAC410}" ShortID="778353100">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="SwordDash_mixdown" ID="{48037EDF-7F5D-4684-8124-6545F7073130}">
-							<Language>SFX</Language>
-							<AudioFile>SwordDash_mixdown.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="373499443"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="SwordDash_mixdown" ID="{48037EDF-7F5D-4684-8124-6545F7073130}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</Containers>
