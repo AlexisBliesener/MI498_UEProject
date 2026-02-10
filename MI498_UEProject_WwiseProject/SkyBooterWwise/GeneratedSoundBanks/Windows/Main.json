@@ -10,18 +10,26 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{B2B5B88A-871F-B928-9956-A1D720C18A7C}",
+    "Hash": "{7FDC7403-A2B6-D423-019B-A5768952D8C5}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
+     {
+      "Id": "210626020",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "GrappleStrikeLocation.wav",
+      "CachePath": "1D/{1D24D5B8-D1B5-F1AE-B72C-9BC1F1DAE028}.wem"
+     },
      {
       "Id": "218262969",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleGunExample2.wav",
-      "CachePath": "8F/{8F4DEE6B-5A2B-A947-1BDD-02BA7C32BA53}.wem"
+      "CachePath": "D8/{D8C45CA6-B050-D958-FA24-EAAC9F098E3E}.wem"
      },
      {
       "Id": "226120403",
@@ -29,7 +37,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordSlashExample.wav",
-      "CachePath": "92/{92780CD7-A7BF-CA87-5E07-794E960CFEF9}.wem"
+      "CachePath": "2B/{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem"
      },
      {
       "Id": "272125692",
@@ -37,7 +45,31 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SprintExample.wav",
-      "CachePath": "D7/{D784F0EB-EB71-65AC-5C79-37D440D19CC9}.wem"
+      "CachePath": "27/{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem"
+     },
+     {
+      "Id": "377840418",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "GrappleHookReelIn.wav",
+      "CachePath": "91/{91E2F057-5A49-CA3B-7FDD-D568BED29FBB}.wem"
+     },
+     {
+      "Id": "605770747",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BlunderbussReload.wav",
+      "CachePath": "6D/{6DCD70A2-B2EE-B4D2-0245-6FB1C7410DEF}.wem"
+     },
+     {
+      "Id": "615624964",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "GrappleHookMissReel.wav",
+      "CachePath": "49/{49B8BBE2-A97A-B7D6-6629-38C8857B0135}.wem"
      },
      {
       "Id": "647190144",
@@ -61,7 +93,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordSlashExample.wav",
-      "CachePath": "C5/{C514B3A1-EB40-EC1D-EDFD-42264DB2D6C3}.wem"
+      "CachePath": "5B/{5B7EAD0C-3755-4266-496E-CDABBB6D7CB9}.wem"
      },
      {
       "Id": "751347334",
@@ -77,7 +109,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordSlashExample.wav",
-      "CachePath": "D4/{D49A31DE-D499-7A5D-511E-196444254F19}.wem"
+      "CachePath": "53/{538A4E00-87E2-120D-FEB0-19B91BCC597E}.wem"
      },
      {
       "Id": "841410472",
@@ -93,7 +125,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "WindPassingThroughTravel_mixdown.wav",
-      "CachePath": "E7/{E7255511-C985-66D5-E8E5-796FA62CF27D}.wem"
+      "CachePath": "86/{864C7CB0-3924-533E-818B-DBD493B33686}.wem"
      },
      {
       "Id": "924573326",
@@ -112,19 +144,27 @@
       "CachePath": "3A/{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem"
      },
      {
+      "Id": "1014313509",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "GrappleHookReelLoop.wav",
+      "CachePath": "2A/{2A1D589D-E427-E573-572E-4A392E1CB071}.wem"
+     },
+     {
       "Id": "1036155795",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "WeaponSwaps.wav",
-      "CachePath": "BA/{BAE91A6A-259E-351B-5AC9-E0898178B795}.wem"
+      "CachePath": "46/{46CADBF3-564F-C1C4-4093-804615F5C3A0}.wem"
      }
     ],
     "Events": [
      {
       "Id": "2673912475",
       "Name": "BlunderbussHeavy",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BlunderbussHeavy",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss\\BlunderbussHeavy",
       "GUID": "{B70C78DE-A883-4F80-B775-CEFE5700B762}",
       "Color": "8",
       "DurationType": "OneShot",
@@ -139,7 +179,7 @@
      {
       "Id": "607254338",
       "Name": "BlunderbussLight",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BlunderbussLight",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss\\BlunderbussLight",
       "GUID": "{8A3E531E-9D84-40EC-848E-7294B0C39B8F}",
       "Color": "8",
       "DurationType": "OneShot",
@@ -148,6 +188,21 @@
       "MediaRefs": [
        {
         "Id": "751347334"
+       }
+      ]
+     },
+     {
+      "Id": "1723137725",
+      "Name": "BlunderbussReload",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss\\BlunderbussReload",
+      "GUID": "{83FB556A-763D-4E9C-822B-47610D6C2241}",
+      "Color": "8",
+      "DurationType": "OneShot",
+      "DurationMin": "2.2183414",
+      "DurationMax": "2.2183414",
+      "MediaRefs": [
+       {
+        "Id": "605770747"
        }
       ]
      },
@@ -167,9 +222,74 @@
       ]
      },
      {
+      "Id": "255568847",
+      "Name": "GrappleReelInMiss",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleReelInMiss",
+      "GUID": "{92AA4486-ECBD-441B-938C-A5830C550D17}",
+      "Color": "8",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1014313509"
+       }
+      ]
+     },
+     {
+      "Id": "2454571316",
+      "Name": "GrappleReelInPlayer",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleReelInPlayer",
+      "GUID": "{32082890-23CF-427F-83F7-FC822800C0DF}",
+      "Color": "8",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "377840418"
+       }
+      ]
+     },
+     {
+      "Id": "2300159583",
+      "Name": "GrappleSnapBack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleSnapBack",
+      "GUID": "{00A47A02-2626-4A98-B179-3DF6382E6875}",
+      "Color": "8",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "615624964"
+       }
+      ]
+     },
+     {
+      "Id": "921851654",
+      "Name": "GrappleStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleStop",
+      "GUID": "{DBD7C7E2-F1E2-47EF-A153-884D4A2FCFEF}",
+      "Color": "8",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
+      "Id": "2793670947",
+      "Name": "GrappleStrikeTarget",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrappleStrikeTarget",
+      "GUID": "{5782B2CF-0AF8-4F69-B2D0-A3A3CB0D22EC}",
+      "Color": "8",
+      "DurationType": "OneShot",
+      "DurationMin": "0.8464149",
+      "DurationMax": "0.8464149",
+      "MediaRefs": [
+       {
+        "Id": "210626020"
+       }
+      ]
+     },
+     {
       "Id": "483409990",
       "Name": "GrapplingHook",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\GrapplingHook",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Grapple\\GrapplingHook",
       "GUID": "{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}",
       "Color": "8",
       "DurationType": "OneShot",
@@ -282,9 +402,20 @@
       ]
      },
      {
-      "Id": "2454616260",
-      "Name": "Sword",
-      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword",
+      "Id": "3604541648",
+      "Name": "SwordDash",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword\\SwordDash",
+      "GUID": "{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}",
+      "Color": "8",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
+      "Id": "1328934038",
+      "Name": "SwordSwing",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword\\SwordSwing",
       "GUID": "{39D5BC54-B39B-40EC-B732-F5D21093F093}",
       "Color": "8",
       "DurationType": "OneShot",
@@ -344,6 +475,14 @@
       "DurationMax": "0"
      }
     ],
+    "GameParameters": [
+     {
+      "Id": "3810384391",
+      "Name": "ReelInTime",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\ReelInTime",
+      "GUID": "{66DA121B-6634-43F8-9BDA-80320199642D}"
+     }
+    ],
     "StateGroups": [
      {
       "Id": "3940648127",
@@ -378,6 +517,6 @@
     ]
    }
   ],
-  "FileHash": "{AFA24CC2-78FA-D86A-68AF-B4FED45318C3}"
+  "FileHash": "{CFFFA801-263F-1713-3DB0-259EFBCB3AD1}"
  }
 }

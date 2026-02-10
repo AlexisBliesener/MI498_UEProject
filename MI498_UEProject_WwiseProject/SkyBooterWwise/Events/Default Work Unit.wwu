@@ -9,50 +9,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="BlunderbussLight" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
-							<ChildrenList>
-								<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="BlunderbussLight" ID="{47116E79-D8FD-4CBE-9634-8BBF3B0F16C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Sword" ID="{39D5BC54-B39B-40EC-B732-F5D21093F093}">
-							<ChildrenList>
-								<Action Name="" ID="{5FC43D9A-0FBA-4C97-9129-61D7137CE9F6}" ShortID="894626277">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="SwordSlash" ID="{AC65C999-554B-4EE8-A333-31273A302808}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="GrapplingHook" ID="{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}">
-							<ChildrenList>
-								<Action Name="" ID="{A43D6FE7-E01B-45A8-939D-11EBD0743CB9}" ShortID="217714286">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Grapple" ID="{EDBAD3D2-9C3A-4E5E-ACC3-7BF09E8152C5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="BlunderbussHeavy" ID="{B70C78DE-A883-4F80-B775-CEFE5700B762}">
-							<ChildrenList>
-								<Action Name="" ID="{602F15FB-F041-4E8C-8B73-E599EE168089}" ShortID="442750104">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="BlunderbussHeavy" ID="{956379FF-9D57-4824-8085-9FB780ED1E11}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="WeaponSwap" ID="{A09194FC-25A0-490C-9F40-E45B30804ED8}">
 							<ChildrenList>
 								<Action Name="" ID="{003BDB91-B4D5-48A5-88F8-1406C1A3B979}" ShortID="642293676">
@@ -64,6 +20,154 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="Grapple" ID="{297A01C3-5ABE-4803-8A8B-FAB23C5D17D3}" ShortID="9543622">
+							<ChildrenList>
+								<Event Name="GrapplingHook" ID="{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}">
+									<ChildrenList>
+										<Action Name="" ID="{A43D6FE7-E01B-45A8-939D-11EBD0743CB9}" ShortID="217714286">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Grapple" ID="{EDBAD3D2-9C3A-4E5E-ACC3-7BF09E8152C5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleReelInMiss" ID="{92AA4486-ECBD-441B-938C-A5830C550D17}">
+									<ChildrenList>
+										<Action Name="" ID="{DE45981E-E4D9-4A9E-A325-B17ABDD3E683}" ShortID="484344728">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleReelInPlayer" ID="{32082890-23CF-427F-83F7-FC822800C0DF}">
+									<ChildrenList>
+										<Action Name="" ID="{D34B2201-97DD-4501-83C7-9822AE30440E}" ShortID="263199139">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleHookReelIn" ID="{2484B75F-BF8F-471C-9716-78D3C7397C62}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleStrikeTarget" ID="{5782B2CF-0AF8-4F69-B2D0-A3A3CB0D22EC}">
+									<ChildrenList>
+										<Action Name="" ID="{DFEC4D67-5A53-4300-B383-6767F90E3FCE}" ShortID="259917779">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleStrikeLocation" ID="{7EF47904-84AF-45C6-B450-ABECDF207F8C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleSnapBack" ID="{00A47A02-2626-4A98-B179-3DF6382E6875}">
+									<ChildrenList>
+										<Action Name="" ID="{E5632408-6648-412A-8540-BDA7E9577D94}" ShortID="982114211">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{09F836D1-B61D-4F60-84FD-E0A071564EC0}" ShortID="50199603">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleSnapBack" ID="{84E9A814-F65E-4ABC-9C90-0336D15D914D}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleStop" ID="{DBD7C7E2-F1E2-47EF-A153-884D4A2FCFEF}">
+									<ChildrenList>
+										<Action Name="" ID="{8E7B1637-2B39-480D-8AC4-8C72F6DC890D}" ShortID="146019191">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleHookReelIn" ID="{2484B75F-BF8F-471C-9716-78D3C7397C62}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{9C5AA39D-1EE6-40D1-9FFE-6BBE1B411CBF}" ShortID="169846344">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Sword" ID="{A4EFB160-34D8-434B-A05E-B280A1B4F857}" ShortID="720623214">
+							<ChildrenList>
+								<Event Name="SwordSwing" ID="{39D5BC54-B39B-40EC-B732-F5D21093F093}">
+									<ChildrenList>
+										<Action Name="" ID="{5FC43D9A-0FBA-4C97-9129-61D7137CE9F6}" ShortID="894626277">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SwordSlash" ID="{AC65C999-554B-4EE8-A333-31273A302808}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="SwordDash" ID="{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}"/>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Blunderbuss" ID="{8D2C942F-3786-4CC5-AC15-7264B1E5BF4C}" ShortID="711933565">
+							<ChildrenList>
+								<Event Name="BlunderbussLight" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
+									<ChildrenList>
+										<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussLight" ID="{47116E79-D8FD-4CBE-9634-8BBF3B0F16C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BlunderbussHeavy" ID="{B70C78DE-A883-4F80-B775-CEFE5700B762}">
+									<ChildrenList>
+										<Action Name="" ID="{602F15FB-F041-4E8C-8B73-E599EE168089}" ShortID="442750104">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussHeavy" ID="{956379FF-9D57-4824-8085-9FB780ED1E11}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BlunderbussReload" ID="{83FB556A-763D-4E9C-822B-47610D6C2241}">
+									<ChildrenList>
+										<Action Name="" ID="{87E392AF-1175-43D0-9ACD-AF709D13626B}" ShortID="1046945646">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussReload" ID="{80CE0EA0-51AB-4006-BBB6-772FDBCB9A03}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
