@@ -29,7 +29,7 @@ public:
 	
 	/// How much force is applied to the player when dashing
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int DashForce = 1300;
+	int DashForce = 700;
 	
 	/// Reload time for sword dash charges
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
