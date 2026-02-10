@@ -102,6 +102,8 @@ void AHarpoon::Tick(float DeltaTime)
 	
 	if (bReturnToPlayer)
 	{
+		bReelingPlayerInLastFrame = false;
+		
 		ProjectileMovement->StopMovementImmediately();
 		ProjectileMovement->Deactivate();
 		
@@ -115,6 +117,8 @@ void AHarpoon::Tick(float DeltaTime)
 	}
 	else if (HarpoonGun->IsSwingMode())
 	{
+		bReelingPlayerInLastFrame = false;
+		
 		if (bStuck && bStuckToEnemy)
 		{
 			
@@ -140,6 +144,8 @@ void AHarpoon::Tick(float DeltaTime)
 	{
 		if (bStuck && bStuckToEnemy)
 		{
+			bReelingPlayerInLastFrame = false;
+			
 			if (toHarpoon.Size() > 100.f && bPullInEnemy)
 			{
 				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * EnemyPullStrength * DeltaTime); 
@@ -156,13 +162,19 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else if (bStuck)
 		{
-			OnPullPlayer();
+			if (!bReelingPlayerInLastFrame)
+			{
+				OnPullPlayer();
+				bReelingPlayerInLastFrame = true;
+			}
 			
 			PlayerCharacter->LaunchCharacter(toHarpoon.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
 			CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation());
 		}
 		else
 		{
+			bReelingPlayerInLastFrame = false;
+			
 			/// Reload the harpoon if it exceeds its maximum range without hitting
 			if (toHarpoon.Size() > Range)
 			{

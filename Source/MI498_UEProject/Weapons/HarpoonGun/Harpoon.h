@@ -119,6 +119,9 @@ private:
 	
 	/// True if the harpoon should pull in the enemy
 	bool bPullInEnemy = true;
+	
+	/// True if last frame the harpoon was reeling the player in
+	bool bReelingPlayerInLastFrame = false;
 
 	GENERATED_BODY()
 };
