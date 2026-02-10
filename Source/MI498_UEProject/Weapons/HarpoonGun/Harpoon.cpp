@@ -102,6 +102,9 @@ void AHarpoon::Tick(float DeltaTime)
 	
 	if (bReturnToPlayer)
 	{
+		ProjectileMovement->StopMovementImmediately();
+		ProjectileMovement->Deactivate();
+		
 		SetActorLocation(GetActorLocation() - toHarpoon.GetSafeNormal() * ReturnSpeed * DeltaTime);
 		
 		if (toHarpoon.Size() < 100.f) 
@@ -126,10 +129,10 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else
 		{
-			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			/// Reload the harpoon if it exceeds its maximum range without hitting
 			if (toHarpoon.Size() > Range)
 			{
-				HarpoonGun->DestroyCurrentHarpoon();
+				HarpoonGun->Reload();
 			}
 		}
 	}
@@ -160,10 +163,10 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else
 		{
-			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			/// Reload the harpoon if it exceeds its maximum range without hitting
 			if (toHarpoon.Size() > Range)
 			{
-				HarpoonGun->DestroyCurrentHarpoon();
+				HarpoonGun->Reload();
 			}
 		}
 	}

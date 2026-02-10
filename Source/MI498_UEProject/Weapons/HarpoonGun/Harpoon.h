@@ -31,6 +31,9 @@ public:
 	/// Returns whether the harpoon is currently embedded in something
 	bool IsStuck() const { return bStuck; }
 	
+	/// Return true if the harpoon is traveling back to the player
+	bool GetReturningToPlayer() const {return bReturnToPlayer;}
+	
 	/// Projectile movement component controlling harpoon flight
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
