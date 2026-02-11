@@ -15,13 +15,16 @@ void AMissionController::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	/// Set how many bomb peices are needed to complete stage one
+	NeededBombPieces = BombPieces.Num();
+	
 	// Start Stage One timer
 	FTimerDelegate delegate;
 	delegate.BindUObject(this, &AMissionController::StageOneFinish, false);
 	GetWorldTimerManager().SetTimer(
 		MissionTimerHandle,
 		delegate,
-		240,
+		StageOneTimeLimit,
 		false
 		);
 	
@@ -60,7 +63,7 @@ void AMissionController::Tick(float DeltaSeconds)
 	/// Check Stage One completion condition
 	if (CurrentState == EMissionState::StageOne)
 	{
-		if (BombPiecesCollected == 3)
+		if (BombPiecesCollected == NeededBombPieces)
 		{
 			StageOneFinish(true);
 		}
@@ -93,12 +96,12 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 {
 	if (Status)
 	{
-		/// Start repeating 1-second timer while inside vault
+		/// Start repeating timer while inside vault
 		GetWorldTimerManager().SetTimer(
 			InVaultTimerHandle,
 			this,
 			&AMissionController::SecondInVault,
-			1.0f,
+			TimeInVaultToCollectSingleLoot,
 			true);
 	}
 	else
@@ -136,16 +139,16 @@ void AMissionController::SpawnEnemies()
 	}
 }
 
-void AMissionController::StageOneFinish(bool Result)
+void AMissionController::StageOneFinish(const bool Result)
 {
 	if (Result)
 	{
 		/// Start Stage 2
 		CurrentState = EMissionState::StageTwo;
 		
-		/// Extend remaining mission time by 120 seconds
+		/// Extend remaining mission time by StageTwoAdditionalTime seconds
 		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
-		seconds += 120;
+		seconds += StageTwoAdditionalTime;
 		
 		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 		
@@ -155,8 +158,7 @@ void AMissionController::StageOneFinish(bool Result)
 			MissionTimerHandle,
 			delegate,
 			seconds,
-			false
-			);
+			false);
 	}
 	else
 	{
@@ -164,16 +166,16 @@ void AMissionController::StageOneFinish(bool Result)
 	}
 }
 
-void AMissionController::StageTwoFinish(bool Result)
+void AMissionController::StageTwoFinish(const bool Result)
 {
 	if (Result)
 	{
 		/// Start Stage 3
 		CurrentState = EMissionState::StageThree;
 		
-		/// Extend remaining mission time by 60 seconds
+		/// Extend remaining mission time by StageThreeAdditionalTime seconds
 		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
-		seconds += 60;
+		seconds += StageThreeAdditionalTime;
 		
 		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 		
@@ -184,8 +186,7 @@ void AMissionController::StageTwoFinish(bool Result)
 			MissionTimerHandle,
 			delegate,
 			seconds,
-			false
-			);
+			false);
 		
 		/// Spawn initial enemy wave
 		SpawnEnemies();
@@ -195,7 +196,7 @@ void AMissionController::StageTwoFinish(bool Result)
 			EnemyWaveSpawnerTimerHandle,
 			this,
 			&AMissionController::SpawnEnemies,
-			15,
+			TimeInBetweenSpawningEnemyWaves,
 			true);
 	}
 	else
@@ -204,7 +205,7 @@ void AMissionController::StageTwoFinish(bool Result)
 	}
 }
 
-void AMissionController::StageThreeFinish(bool Result)
+void AMissionController::StageThreeFinish(const bool Result)
 {
 	if (Result)
 	{

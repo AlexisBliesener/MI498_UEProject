@@ -52,6 +52,26 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActor*> EnemySpawnPoints;
 	
+	/// How much time the player will have to complete stage one, in seconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int StageOneTimeLimit = 240;
+	
+	/// How much time the player will have to complete stage one, in seconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int StageTwoAdditionalTime = 120;
+	
+	/// How much time the player will have to complete stage one, in seconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int StageThreeAdditionalTime = 60;
+	
+	/// Time in the vault to add to score
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int TimeInVaultToCollectSingleLoot = 1;
+	
+	/// Time in between spawning waves of enemies
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int TimeInBetweenSpawningEnemyWaves = 15;
+	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	
@@ -94,6 +114,9 @@ private:
 
 	/// Handles completion or timeout of Stage Three
 	void StageThreeFinish(bool Result);
+	
+	/// How many bomb pieces are needed to make the bomb
+	int NeededBombPieces;
 	
 	/// Number of bomb pieces collected so far
 	int BombPiecesCollected = 0;
