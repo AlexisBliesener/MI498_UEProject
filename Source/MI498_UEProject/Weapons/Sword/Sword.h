@@ -28,7 +28,7 @@ public:
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
 	/// How much force is applied to the player when dashing
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int DashForce = 700;
 	
 	/// Reload time for sword dash charges
