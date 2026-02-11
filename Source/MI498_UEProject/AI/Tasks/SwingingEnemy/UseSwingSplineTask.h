@@ -3,53 +3,41 @@
 #include "CoreMinimal.h"
 #include "StateTreeTaskBase.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
-#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
-#include "PreformAttackTask.generated.h"
+#include "MI498_UEProject/Characters/Enemies/SwingingEnemy/SwingingEnemy.h"
+#include "UseSwingSplineTask.generated.h"
 
 
 /**
- * Holds data for the Perform Attack Task.
+ * StateTree instance data for the Use Swing Spline Task.
  */
-USTRUCT(BlueprintType, meta = (DisplayName = "Get Random Location Data"))
-struct FPreformAttackTaskInstanceData
+USTRUCT(BlueprintType,meta = (DisplayName = "Use Swing Spline Task"))
+struct FUseSwingSplineTaskInstanceData
 {
 	GENERATED_BODY()
 
 	/**
-	 * Pointer to an enemy actor used in the attack task.
+	 * Points to the enemy character being controlled by the AI.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
-	TObjectPtr<AEnemyBase> Actor;
+	TObjectPtr<ASwingingEnemy> Actor;
 
 	/**
-	 * Holds a reference to the Enemy AI Controller.
+	 * Points to the AI controller responsible for controlling the enemy actor.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<AEnemyAIController> AIController;
-	
-	
-	/**
-	 * Is this a secondary attack?
-	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config", meta = (Context, AllowDerivedTypes="true"))
-	bool bIsSecondaryAttack = false;
-
-	/**
-	 * Pointer to the target actor used in the task.
-	 */
-	UPROPERTY(EditAnywhere, Category="Input")
-	TObjectPtr<AActor> Target = nullptr;
 };
 
 /**
- * Executes a state tree task for managing attack behavior.
+ * This task is being used in the State Tree
+ * it sends an event to the state tree to transition from state to another state
  */
 USTRUCT(BlueprintType)
-struct MI498_UEPROJECT_API FPreformAttackTask : public FStateTreeTaskCommonBase
+struct MI498_UEPROJECT_API FUseSwingSplineTask : public FStateTreeTaskCommonBase
 {
 public:
 	GENERATED_BODY()
-	using FInstanceDataType = FPreformAttackTaskInstanceData;
+	using FInstanceDataType = FUseSwingSplineTaskInstanceData;
 
 	/**
 	 * Gets the type of instance data used by this task.
@@ -65,5 +53,7 @@ public:
 	 * @return The status of the task after execution.
 	 */
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context,
-										   const FStateTreeTransitionResult& Transition) const override;
+	                                       const FStateTreeTransitionResult& Transition) const override;
+	
+	
 };

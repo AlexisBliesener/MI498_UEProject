@@ -17,15 +17,9 @@ class MI498_UEPROJECT_API AEnemyBase : public ACharacterBase
 {
 public:
 	GENERATED_BODY()
-	/// Distance within which the enemy can attack a target.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Combat")
-	float AttackRange = 1000.f;
 	/// Time between enemy shots, in seconds.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Combat")
 	float ShootCooldown = 1.2f;
-	/// Speed at which the enemy chases the target.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enemy|Movement")
-	float ChaseSpeed = 450.f;
 	/**
 	 * Initializes default properties and components for the enemy character
 	 */
@@ -48,9 +42,10 @@ public:
 	/**
 	 * Makes the enemy attack the given target.
 	 * @param Target The actor to be attacked.
+	 * @param bIsSecondaryAttack is this a secondary attack?
 	 */
 	UFUNCTION(BlueprintCallable, Category="Enemy|Combat")
-	void Attack(AActor* Target);
+	virtual void Attack(AActor* Target, bool bIsSecondaryAttack = false);
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="AI")
 	UEnemySettings* AISettings;
 protected:
