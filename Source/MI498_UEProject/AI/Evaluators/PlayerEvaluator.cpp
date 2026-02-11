@@ -33,8 +33,12 @@ void UPlayerEvaluator::Tick(FStateTreeExecutionContext& Context, const float Del
 	}
 	// cache the player
 	Player = PlayerPawn;
+	if (!IsValid(Player))
+	{
+		return;
+	}
 	// calculate the distance to the player
-	DistanceToPlayer = FVector::Dist(Actor->GetActorLocation(), PlayerPawn->GetActorLocation());
+	DistanceToPlayer = FVector::Dist(Actor->GetActorLocation(), Player->GetActorLocation());
 	
 	
 	// change if the player is in range for attack

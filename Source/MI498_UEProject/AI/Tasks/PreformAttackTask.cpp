@@ -19,6 +19,6 @@ EStateTreeRunStatus FPreformAttackTask::EnterState(FStateTreeExecutionContext& C
 	}
 	// TODO: Create a different task for set foucs!!
 	Data.AIController->SetFocus(Data.Target);
-	Data.Actor->Attack(Data.Target);
+	Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
 	return EStateTreeRunStatus::Succeeded;
 }
