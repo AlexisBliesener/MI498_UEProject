@@ -15,10 +15,9 @@ void AMissionController::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Start Stage One timer
 	FTimerDelegate delegate;
 	delegate.BindUObject(this, &AMissionController::StageOneFinish, false);
-	
-	// Start Stage One timer
 	GetWorldTimerManager().SetTimer(
 		MissionTimerHandle,
 		delegate,
@@ -26,6 +25,7 @@ void AMissionController::BeginPlay()
 		false
 		);
 	
+	/// Bind to all bomb piece collected events
 	for (ABombPiece* Piece : BombPieces)
 	{
 		if (Piece)
@@ -37,14 +37,17 @@ void AMissionController::BeginPlay()
 		}
 	}
 	
+	/// Bind to vault door interaction event
 	VaultDoor->OnVaultDoorInteract.AddDynamic(
 		this,
 		&AMissionController::HandleVaultDoorInteract);
 	
+	/// Bind to vault room enter/exit status event
 	VaultRoom->OnVaultDoorInteract.AddDynamic(
 		this,
 		&AMissionController::HandleInVaultStatusChange);
 	
+	/// Bind to exit platform enter event
 	ExitPlatform->OnEnterExitPlatform.AddDynamic(
 		this,
 		&AMissionController::HandleOnEnterExitPlatform);
@@ -54,8 +57,7 @@ void AMissionController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	UE_LOG(LogTemp, Log, TEXT("Timer: %f" ), GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle));
-	
+	/// Check Stage One completion condition
 	if (CurrentState == EMissionState::StageOne)
 	{
 		if (BombPiecesCollected == 3)
@@ -67,7 +69,6 @@ void AMissionController::Tick(float DeltaSeconds)
 
 void AMissionController::HandleBombPieceCollected()
 {
-	UE_LOG(LogTemp, Log, TEXT("Bomb piece triggered"));
 	BombPiecesCollected++;
 }
 
@@ -92,18 +93,17 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 {
 	if (Status)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Player entered vault room"));
+		/// Start repeating 1-second timer while inside vault
 		GetWorldTimerManager().SetTimer(
 			InVaultTimerHandle,
 			this,
 			&AMissionController::SecondInVault,
 			1.0f,
-			true   // repeat every second
-			);
+			true);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Log, TEXT("Player left vault room"));
+		/// Stop vault timer when player exits
 		GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
 	}
 }
@@ -113,7 +113,6 @@ void AMissionController::SecondInVault()
 	if (CurrentState == EMissionState::StageThree)
 	{
 		SecondsInVault++;
-		UE_LOG(LogTemp, Log, TEXT("Sec in vault: %d"), SecondsInVault);
 	}
 }
 
@@ -128,6 +127,7 @@ void AMissionController::SpawnEnemies()
 		FVector Location = SpawnPoint->GetActorLocation();
 		FRotator Rotation = SpawnPoint->GetActorRotation();
 
+		/// Spawn enemy instance
 		GetWorld()->SpawnActor<AEnemyBase>(
 			AverageEnemy,
 			Location,
@@ -140,11 +140,10 @@ void AMissionController::StageOneFinish(bool Result)
 {
 	if (Result)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Stage 2 Start"));
-		
 		/// Start Stage 2
 		CurrentState = EMissionState::StageTwo;
 		
+		/// Extend remaining mission time by 120 seconds
 		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
 		seconds += 120;
 		
@@ -169,12 +168,10 @@ void AMissionController::StageTwoFinish(bool Result)
 {
 	if (Result)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Stage 3 Start"));
-		
-		
 		/// Start Stage 3
 		CurrentState = EMissionState::StageThree;
 		
+		/// Extend remaining mission time by 60 seconds
 		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
 		seconds += 60;
 		
@@ -190,16 +187,16 @@ void AMissionController::StageTwoFinish(bool Result)
 			false
 			);
 		
+		/// Spawn initial enemy wave
 		SpawnEnemies();
 		
-		/// Start enemy wave timer
+		/// Start repeating enemy wave spawner timer
 		GetWorldTimerManager().SetTimer(
 			EnemyWaveSpawnerTimerHandle,
 			this,
 			&AMissionController::SpawnEnemies,
 			15,
-			true   // repeat every second
-			);
+			true);
 	}
 	else
 	{
@@ -211,7 +208,7 @@ void AMissionController::StageThreeFinish(bool Result)
 {
 	if (Result)
 	{
-		OnSuccedMission();
+		OnSucceedMission();
 	}
 	else
 	{
