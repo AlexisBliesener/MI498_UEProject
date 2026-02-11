@@ -56,19 +56,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StageOneTimeLimit = 240;
 	
-	/// How much time the player will have to complete stage one, in seconds
+	/// How much additional time the player will get to complete stage two, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StageTwoAdditionalTime = 120;
 	
-	/// How much time the player will have to complete stage one, in seconds
+	/// How much additional time the player will get to complete stage three, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StageThreeAdditionalTime = 60;
 	
-	/// Time in the vault to add to score
+	/// Time that must be spent in the vault to gather one loot
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int TimeInVaultToCollectSingleLoot = 1;
 	
-	/// Time in between spawning waves of enemies
+	/// Time in between spawning waves of enemies in the vault room
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int TimeInBetweenSpawningEnemyWaves = 15;
 	
