@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{6A9FA87A-115A-AB09-85A3-FA4C3D7AB4F2}",
+    "Hash": "{36EDB7D4-381E-5AD2-2629-48D4A88B6D52}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -21,7 +21,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordDash_mixdown.wav",
-      "CachePath": "E0/{E0C148A3-2B83-8682-6F32-E49633E0222B}.wem"
+      "CachePath": "48/{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem"
+     },
+     {
+      "Id": "143782066",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Goku.wav",
+      "CachePath": "4C/{4CB88E5E-EAD5-6F7F-DFDB-9239C657EAD2}.wem"
      },
      {
       "Id": "210626020",
@@ -29,7 +37,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleStrikeLocation.wav",
-      "CachePath": "1D/{1D24D5B8-D1B5-F1AE-B72C-9BC1F1DAE028}.wem"
+      "CachePath": "56/{562A0475-5D7A-52FE-F6F4-491A555FECB6}.wem"
      },
      {
       "Id": "218262969",
@@ -61,7 +69,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordDash_mixdown.wav",
-      "CachePath": "50/{50A1FD98-1169-0747-1170-8C2C5A101A5D}.wem"
+      "CachePath": "9D/{9DFB04B2-257C-7790-7889-1ED3204FA7D2}.wem"
+     },
+     {
+      "Id": "326381219",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Fortnite Default Dance Greenscreen_01.wav",
+      "CachePath": "C6/{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem"
      },
      {
       "Id": "373499443",
@@ -69,7 +85,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordDash_mixdown.wav",
-      "CachePath": "86/{8688CC60-CAA8-2EF8-AE4C-E8F08839BDA1}.wem"
+      "CachePath": "AC/{AC8A441A-8542-2BBC-F2CB-F88CFE6DDE36}.wem"
      },
      {
       "Id": "377840418",
@@ -77,7 +93,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookReelIn.wav",
-      "CachePath": "91/{91E2F057-5A49-CA3B-7FDD-D568BED29FBB}.wem"
+      "CachePath": "64/{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem"
+     },
+     {
+      "Id": "490285420",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "IRON MAN - Opening_01.wav",
+      "CachePath": "5F/{5F721B62-6CC3-E6BE-9390-BC2FD55BD27B}.wem"
      },
      {
       "Id": "605770747",
@@ -85,7 +109,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BlunderbussReload.wav",
-      "CachePath": "6D/{6DCD70A2-B2EE-B4D2-0245-6FB1C7410DEF}.wem"
+      "CachePath": "47/{473E41FD-2FFC-D71D-1017-449C5A73E8E3}.wem"
      },
      {
       "Id": "615624964",
@@ -93,7 +117,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookMissReel.wav",
-      "CachePath": "0C/{0C9E6E99-E611-B7B4-862C-90D78382A753}.wem"
+      "CachePath": "D5/{D5251B48-CB9D-9088-6E71-8327C009F220}.wem"
      },
      {
       "Id": "647190144",
@@ -168,12 +192,20 @@
       "CachePath": "3A/{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem"
      },
      {
+      "Id": "985203243",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Avengers Suite (Theme)_01.wav",
+      "CachePath": "FE/{FEFCC2F1-C3E8-4AE1-83E3-6663DC7CF203}.wem"
+     },
+     {
       "Id": "1014313509",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookReelLoop.wav",
-      "CachePath": "2A/{2A1D589D-E427-E573-572E-4A392E1CB071}.wem"
+      "CachePath": "8E/{8EDAA84A-BDD6-61A8-036C-F00711942B1D}.wem"
      },
      {
       "Id": "1036155795",
@@ -242,6 +274,32 @@
       "MediaRefs": [
        {
         "Id": "649368430"
+       }
+      ]
+     },
+     {
+      "Id": "3203772045",
+      "Name": "FinalBattle",
+      "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\FinalBattle",
+      "GUID": "{E738BBE4-091B-4EE7-86FA-03E498E4C656}",
+      "MaxAttenuation": "2000",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "985203243"
+       }
+      ]
+     },
+     {
+      "Id": "735743455",
+      "Name": "Goku",
+      "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\Goku",
+      "GUID": "{2C2A3552-E5EA-496F-85E8-CFAFBC701111}",
+      "MaxAttenuation": "500",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "143782066"
        }
       ]
      },
@@ -324,6 +382,32 @@
       "MediaRefs": [
        {
         "Id": "218262969"
+       }
+      ]
+     },
+     {
+      "Id": "3934973449",
+      "Name": "IronMan",
+      "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\IronMan",
+      "GUID": "{1430E637-58AC-452B-A667-79846CD302AF}",
+      "MaxAttenuation": "500",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "490285420"
+       }
+      ]
+     },
+     {
+      "Id": "4034933843",
+      "Name": "Jonesy",
+      "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\Jonesy",
+      "GUID": "{E65EAB5C-43B8-49F6-9D31-FBB6DB99BEF0}",
+      "MaxAttenuation": "500",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "326381219"
        }
       ]
      },
@@ -553,6 +637,6 @@
     ]
    }
   ],
-  "FileHash": "{BC0DE26C-6885-2B4C-C606-3B2B929F1267}"
+  "FileHash": "{C8B32832-A14D-874C-1C3B-C57DC199B85E}"
  }
 }
