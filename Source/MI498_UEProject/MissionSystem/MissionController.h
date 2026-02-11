@@ -58,7 +58,7 @@ private:
 	void HandleBombPieceCollected();
 	
 	UFUNCTION()
-	void HandleVaultDoorOpen();
+	void HandleVaultDoorInteract();
 	
 	UFUNCTION()
 	void HandleOnEnterExitPlatform();

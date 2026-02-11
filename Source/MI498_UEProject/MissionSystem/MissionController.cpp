@@ -39,7 +39,7 @@ void AMissionController::BeginPlay()
 	
 	VaultDoor->OnVaultDoorInteract.AddDynamic(
 		this,
-		&AMissionController::HandleVaultDoorOpen);
+		&AMissionController::HandleVaultDoorInteract);
 	
 	VaultRoom->OnVaultDoorInteract.AddDynamic(
 		this,
@@ -71,11 +71,12 @@ void AMissionController::HandleBombPieceCollected()
 	BombPiecesCollected++;
 }
 
-void AMissionController::HandleVaultDoorOpen()
+void AMissionController::HandleVaultDoorInteract()
 {
 	if (CurrentState == EMissionState::StageTwo)
 	{
 		StageTwoFinish(true);
+		VaultDoor->Destroy();
 	}
 }
 

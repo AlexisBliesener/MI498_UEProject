@@ -1,16 +1,14 @@
 ﻿#include "ExitPlatform.h"
-
 #include "Components/BoxComponent.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
 AExitPlatform::AExitPlatform()
 {
-	PrimaryActorTick.bCanEverTick = false;
-
+	/// Create the box component used as the trigger volume
 	RoomTrigger = CreateDefaultSubobject<UBoxComponent>("RoomTrigger");
 	RootComponent = RoomTrigger;
 
-	// Set default size (rectangle prism)
+	// Set default size
 	RoomTrigger->SetBoxExtent(FVector(500, 500, 300));
 
 	// Make it a trigger
@@ -21,7 +19,8 @@ AExitPlatform::AExitPlatform()
 void AExitPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
+	/// Bind the overlap begin event to handler function
 	RoomTrigger->OnComponentBeginOverlap.AddDynamic(
 		this,
 		&AExitPlatform::OnRoomBeginOverlap
@@ -29,8 +28,9 @@ void AExitPlatform::BeginPlay()
 	
 }
 
-void AExitPlatform::EnterExitPlatform()
+void AExitPlatform::EnterExitPlatform() const
 {
+	/// Notify any listeners that the platform was entered
 	OnEnterExitPlatform.Broadcast();
 }
 
@@ -42,6 +42,7 @@ void AExitPlatform::OnRoomBeginOverlap(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
+	/// Fire exit platformed entered if the player entered the platform
 	if (Cast<APlayerCharacter>(OtherActor))
 	{
 		EnterExitPlatform();
