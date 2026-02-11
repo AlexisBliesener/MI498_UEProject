@@ -77,8 +77,6 @@ void AEnemyBase::PossessedBy(AController* NewController)
 	// Apply the data asset settings for the specific enemy 
 	if (AISettings)
 	{
-		ChaseSpeed = AISettings->ChaseSpeed;
-		AttackRange = AISettings->AttackRange;
 		ShootCooldown = AISettings->ShootCooldown;
 
 		if (AEnemyAIController* AIController = Cast<AEnemyAIController>(NewController))
@@ -107,17 +105,12 @@ UStateTree* AEnemyBase::GetStateTree() const
 	return CurrentStateTree;
 }
 
-void AEnemyBase::Attack(AActor* Target)
+void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 {
 
 	if (!Target || !bCanShoot)
 		return;
-
-	const float Distance = FVector::Dist(GetActorLocation(), Target->GetActorLocation());
-	if (Distance > AttackRange)
-	{
-		return;
-	}
+	
 	if (!CurrentWeapon)
 	{
 		UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a weapon!!"), *GetName());
@@ -125,7 +118,13 @@ void AEnemyBase::Attack(AActor* Target)
 	}
 	if (IWeaponInterface* Weapon = Cast<IWeaponInterface>(CurrentWeapon))
 	{
-		Weapon->PrimaryAttack(GetController(), Target);
+		if (bIsSecondaryAttack)
+		{
+			Weapon->SecondaryAttack(GetController(), Target);
+		}else
+		{
+			Weapon->PrimaryAttack(GetController(), Target);
+		}
 	}
 
 	// cooldown
