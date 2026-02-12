@@ -34,7 +34,10 @@ Copyright (c) 2025 Audiokinetic Inc.
 #include "Async/Async.h"
 #include "Misc/ScopeLock.h"
 #include "Misc/CoreDelegates.h"
+#if PLATFORM_MAC
 #include "Wwise/API/WAAPI.h"
+#endif
+
 
 #if AK_SUPPORT_WAAPI
 #include "Wwise/API/WAAPI.h"
