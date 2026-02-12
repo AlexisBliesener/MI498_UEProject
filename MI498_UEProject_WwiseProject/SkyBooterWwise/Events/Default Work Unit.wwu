@@ -305,6 +305,54 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="MemeEvents" ID="{29D172A6-0252-4F28-BE8B-4ECAD23BE8A7}" ShortID="421133730">
+					<ChildrenList>
+						<Event Name="Goku" ID="{2C2A3552-E5EA-496F-85E8-CFAFBC701111}">
+							<ChildrenList>
+								<Action Name="" ID="{F9B46F09-D181-434D-BF68-3A31633C0D92}" ShortID="956096847">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Goku" ID="{9255B32C-3024-4335-B408-CCCA73BDC647}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="IronMan" ID="{1430E637-58AC-452B-A667-79846CD302AF}">
+							<ChildrenList>
+								<Action Name="" ID="{89DC48D2-C8AE-4039-B1E3-C5607A1B94C2}" ShortID="744886727">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="IRON MAN - Opening_01" ID="{39FF8EB6-173A-4660-AB99-9F8D716B15BE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Jonesy" ID="{E65EAB5C-43B8-49F6-9D31-FBB6DB99BEF0}">
+							<ChildrenList>
+								<Action Name="" ID="{5294C16C-278B-4DFA-841E-444D2BA65173}" ShortID="933782617">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Fortnite Default Dance Greenscreen_01" ID="{C668F276-0239-4714-B102-907655E4B26B}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="FinalBattle" ID="{E738BBE4-091B-4EE7-86FA-03E498E4C656}">
+							<ChildrenList>
+								<Action Name="" ID="{D835A5B5-A52C-437B-B82A-53F29FC41487}" ShortID="618848803">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Avengers Suite (Theme)_01" ID="{2E8DFA50-3B9F-4583-AE15-D8E7EF7A1D93}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
