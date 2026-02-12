@@ -44,6 +44,8 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 		return;
 	}
 	
+	OnAttach();
+	
 	/// Stop projectile movement when the harpoon sticks
 	ProjectileMovement->StopMovementImmediately();
 	ProjectileMovement->Deactivate();
@@ -100,15 +102,23 @@ void AHarpoon::Tick(float DeltaTime)
 	
 	if (bReturnToPlayer)
 	{
+		bReelingPlayerInLastFrame = false;
+		
+		ProjectileMovement->StopMovementImmediately();
+		ProjectileMovement->Deactivate();
+		
 		SetActorLocation(GetActorLocation() - toHarpoon.GetSafeNormal() * ReturnSpeed * DeltaTime);
 		
 		if (toHarpoon.Size() < 100.f) 
 		{
+			OnLockIntoGun();
 			HarpoonGun->DestroyCurrentHarpoon();
 		}
 	}
 	else if (HarpoonGun->IsSwingMode())
 	{
+		bReelingPlayerInLastFrame = false;
+		
 		if (bStuck && bStuckToEnemy)
 		{
 			
@@ -123,10 +133,10 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else
 		{
-			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			/// Reload the harpoon if it exceeds its maximum range without hitting
 			if (toHarpoon.Size() > Range)
 			{
-				HarpoonGun->DestroyCurrentHarpoon();
+				HarpoonGun->Reload();
 			}
 		}
 	}
@@ -134,6 +144,8 @@ void AHarpoon::Tick(float DeltaTime)
 	{
 		if (bStuck && bStuckToEnemy)
 		{
+			bReelingPlayerInLastFrame = false;
+			
 			if (toHarpoon.Size() > 100.f && bPullInEnemy)
 			{
 				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * EnemyPullStrength * DeltaTime); 
@@ -150,15 +162,23 @@ void AHarpoon::Tick(float DeltaTime)
 		}
 		else if (bStuck)
 		{
+			if (!bReelingPlayerInLastFrame)
+			{
+				OnPullPlayer();
+				bReelingPlayerInLastFrame = true;
+			}
+			
 			PlayerCharacter->LaunchCharacter(toHarpoon.GetSafeNormal() * ZipPullStrength * DeltaTime, true, true);
 			CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation());
 		}
 		else
 		{
-			/// Destroy the harpoon if it exceeds its maximum range without hitting
+			bReelingPlayerInLastFrame = false;
+			
+			/// Reload the harpoon if it exceeds its maximum range without hitting
 			if (toHarpoon.Size() > Range)
 			{
-				HarpoonGun->DestroyCurrentHarpoon();
+				HarpoonGun->Reload();
 			}
 		}
 	}

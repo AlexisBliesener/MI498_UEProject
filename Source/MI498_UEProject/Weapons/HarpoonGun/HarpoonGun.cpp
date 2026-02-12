@@ -94,10 +94,12 @@ void AHarpoonGun::Reload()
 	// Do not want base reload
 	// Super::Reload();
 	
-	if (!CurrentHarpoon->IsStuck())
+	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer())
 	{
 		return;
 	}
+	
+	OnReload();
 	
 	CurrentHarpoon->ReturnToPlayer();
 }

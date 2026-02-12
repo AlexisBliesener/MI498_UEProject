@@ -26,10 +26,17 @@ public:
 	void SetHarpoonGun(AHarpoonGun* HarpoonGunPtr) { HarpoonGun = HarpoonGunPtr; }
 	
 	/// Forces the harpoon to begin returning to the player
-	void ReturnToPlayer() {bReturnToPlayer = true;}
+	void ReturnToPlayer() {bReturnToPlayer = true; CurrentReloadingTimeStarted = GetWorld()->GetTimeSeconds();}
 	
 	/// Returns whether the harpoon is currently embedded in something
 	bool IsStuck() const { return bStuck; }
+	
+	/// Return true if the harpoon is traveling back to the player
+	bool GetReturningToPlayer() const {return bReturnToPlayer;}
+	
+	/// Get the time that the harpoon has been reloading for
+	UFUNCTION(BlueprintCallable)
+	float GetCurrentReloadingTime() const { return GetWorld()->GetTimeSeconds() - CurrentReloadingTimeStarted; }
 	
 	/// Projectile movement component controlling harpoon flight
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -49,7 +56,7 @@ public:
 	
 	/// The strength at which the harpoon will pull in the player during zip// 
 	UPROPERTY(EditDefaultsOnly)
-	int ZipPullStrength = 50000;
+	int ZipPullStrength = 85000;
 	
 	/// The strength at which the harpoon will pull in enemies
 	UPROPERTY(EditDefaultsOnly)
@@ -68,6 +75,18 @@ protected:
 	/// Called when the harpoon collides with another actor
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	
+	/// A Blueprintable function that will be called when harpoon attaches to something
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnAttach();
+	
+	/// A Blueprintable function that will be called when harpoon pulls player in
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPullPlayer();
+	
+	/// A Blueprintable function that will be called when harpoon pulls player in
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLockIntoGun();
 
 private:
 	
@@ -104,6 +123,12 @@ private:
 	
 	/// True if the harpoon should pull in the enemy
 	bool bPullInEnemy = true;
+	
+	/// True if last frame the harpoon was reeling the player in
+	bool bReelingPlayerInLastFrame = false;
+	
+	/// The time the harpoon started to reload
+	float CurrentReloadingTimeStarted = 0;
 
 	GENERATED_BODY()
 };
