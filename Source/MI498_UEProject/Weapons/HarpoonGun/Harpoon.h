@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "Harpoon.generated.h"
 
+class UCharacterMovementComponent;
 class AEnemyBase;
 class AHarpoonGun;
 class APlayerCharacter;
@@ -26,11 +27,7 @@ public:
 	void SetHarpoonGun(AHarpoonGun* HarpoonGunPtr) { HarpoonGun = HarpoonGunPtr; }
 
 	/// Forces the harpoon to begin returning to the player
-	void ReturnToPlayer()
-	{
-		bReturnToPlayer = true;
-		CurrentReloadingTimeStarted = GetWorld()->GetTimeSeconds();
-	}
+	void ReturnToPlayer();
 
 	/// Returns whether the harpoon is currently embedded in something
 	bool IsStuck() const { return bStuck; }
@@ -73,12 +70,15 @@ public:
 	/// The speed at which the harpoon will return when reloading
 	UPROPERTY(EditDefaultsOnly)
 	float ReturnSpeed = 5000;
+	
+	/// The extra force added in proportion to velocity to the first swing 
+	UPROPERTY(EditDefaultsOnly)
+	float ExtraFirstSwingForce = 1000;
 
 protected:
 	/// Called when the harpoon collides with another actor
 	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-	           FVector NormalImpulse, const FHitResult& Hit);
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	/// A Blueprintable function that will be called when harpoon attaches to something
 	UFUNCTION(BlueprintImplementableEvent)
@@ -92,11 +92,19 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnLockIntoGun();
 
-
 private:
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
+	
+	/// Handles movement when returning back to the player
+	void HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToHarpoonNormal, float DeltaTime);
+	
+	/// Handles rope constraint and swinging logic
+	void HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNormal, float DeltaTime);
+	
+	/// Handles zip-to-point and enemy-pull behavior
+	void HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNormal, float DeltaTime);
 
 	/// Cached reference to the owning player character
 	UPROPERTY()
@@ -134,15 +142,21 @@ private:
 	/// The time the harpoon started to reload
 	float CurrentReloadingTimeStarted = 0;
 
-
+	/// Player height at the moment of attachment.
 	float AttachedPlayerHeight;
-	
+
+	/// Player height last frame.
 	float PrevPlayerHeight = 0;
+
+	/// Player height this frame.
 	float CurrentPlayerHeight = 0;
-	
+
+	/// True only for the first swing frame to initialize velocity.
 	bool bFirstSwing = true;
 	
-	float PrevRadialSpeed = 0.f;
+	/// The players character movement component
+	UPROPERTY()
+	UCharacterMovementComponent* PlayerCharacterMovementComponent = nullptr;
 
 	GENERATED_BODY()
 };
