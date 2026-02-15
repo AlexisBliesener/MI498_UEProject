@@ -150,7 +150,7 @@ void AHarpoon::Tick(float DeltaTime)
 				
 				if (bFirstSwing)
 				{
-					tangentialVel *= 5;
+					tangentialVel *= 1000/tangentialVel.Size();
 					bFirstSwing = false;
 				}
 				
