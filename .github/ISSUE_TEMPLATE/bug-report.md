@@ -2,7 +2,7 @@
 name: Bug Report
 about: Log a bug to be triaged and fixed
 title: ''
-labels: ''
+labels: Bug, Needs Triage
 assignees: ''
 
 ---
