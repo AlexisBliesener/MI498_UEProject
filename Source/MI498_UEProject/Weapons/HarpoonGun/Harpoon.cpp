@@ -3,6 +3,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "CableComponent.h"
 #include "HarpoonGun.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -178,9 +179,11 @@ void AHarpoon::Tick(float DeltaTime)
 
 			if (toHarpoon.Size() > 100.f && bPullInEnemy)
 			{
-				HarpoonedEnemy->SetActorLocation(
-					HarpoonedEnemy->GetActorLocation() - toHarpoon.GetSafeNormal() * EnemyPullStrength * DeltaTime);
-				CableLength = FVector::Distance(GetActorLocation(), GetOwner()->GetOwner()->GetActorLocation());
+				HarpoonedEnemy->GetCapsuleComponent()->IgnoreActorWhenMoving(this, true);
+				if (!HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation()- toHarpoon.GetSafeNormal() * EnemyPullStrength * DeltaTime,true))
+				{
+					HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation()- FVector(toHarpoon.X, toHarpoon.Y, 0.f).GetSafeNormal() * EnemyPullStrength * DeltaTime,true);
+				}
 			}
 			else if (toHarpoon.Size() > 200.f)
 			{
