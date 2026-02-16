@@ -4,6 +4,7 @@
 #include "VaultDoor.h"
 #include "VaultRoom.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
+#include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
 AMissionController::AMissionController()
@@ -14,6 +15,8 @@ AMissionController::AMissionController()
 void AMissionController::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 	
 	/// Set how many bomb peices are needed to complete stage one
 	NeededBombPieces = BombPieces.Num();
@@ -72,6 +75,7 @@ void AMissionController::Tick(float DeltaSeconds)
 
 void AMissionController::HandleBombPieceCollected()
 {
+	ScoringManager->AddBombPieceScore();
 	BombPiecesCollected++;
 }
 
@@ -79,6 +83,7 @@ void AMissionController::HandleVaultDoorInteract()
 {
 	if (CurrentState == EMissionState::StageTwo)
 	{
+		ScoringManager->AddOpenVaultScore();
 		StageTwoFinish(true);
 		VaultDoor->Destroy();
 	}
@@ -88,6 +93,7 @@ void AMissionController::HandleOnEnterExitPlatform()
 {
 	if (CurrentState == EMissionState::StageThree)
 	{
+		ScoringManager->AddFinishLevelScore();
 		StageThreeFinish(true);
 	}
 }
@@ -115,6 +121,7 @@ void AMissionController::SecondInVault()
 {
 	if (CurrentState == EMissionState::StageThree)
 	{
+		ScoringManager->AddVaultSecScore();
 		SecondsInVault++;
 	}
 }

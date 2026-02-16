@@ -8,7 +8,10 @@
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
+#include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
+#include "MI498_UEProject/Weapons/HarpoonGun/Harpoon.h"
 #include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
+#include "MI498_UEProject/Weapons/Sword/Sword.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
 DEFINE_LOG_CATEGORY(EnemyLog);
@@ -49,6 +52,15 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	{
 		// DIE i think
 		UE_LOG(EnemyLog, Error, TEXT("Enemy DIED"));
+		
+		/// Add to score
+		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
+		EKillType killType = EKillType::None;
+		if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
+		if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
+		if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
+
+		ScoringManager->AddKillEnemyScore(EnemyType, killType);
 		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))

@@ -95,7 +95,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 			OtherActor,
 			HarpoonGun->Damage,
 			PlayerCharacter->GetController(),
-			GetOwner(),
+			this,
 			nullptr
 		);
 	}

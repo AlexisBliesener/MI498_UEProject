@@ -5,9 +5,12 @@
 #include "CoreMinimal.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/AI/Settings/EnemySettings.h"
+#include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 #include "EnemyBase.generated.h"
+
 class AWeaponBase;
 DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
+
 /**
  * Base class for enemy characters in the game.
  * Can attack, chase, and take damage.
@@ -24,15 +27,21 @@ public:
 	 * Initializes default properties and components for the enemy character
 	 */
 	AEnemyBase();
-	
+
 	virtual void Tick(float DeltaTime) override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void UnPossessed() override;
+	
+	/// The type of this enemy used for scoring
+	UPROPERTY(EditAnywhere)
+	EEnemyType EnemyType;
+	
 	/**
 	 * Gets the state tree used by the enemy.
 	 * @return The state tree assigned to the enemy.
 	 */
-	UFUNCTION(BlueprintPure, Category = "Player|AI", meta = (DisplayName = "Get State Tree", ReturnDisplayName = "State Tree"))
+	UFUNCTION(BlueprintPure, Category = "Player|AI",
+		meta = (DisplayName = "Get State Tree", ReturnDisplayName = "State Tree"))
 	UStateTree* GetStateTree() const;
 	/// The currently weapon
 	UPROPERTY()
@@ -48,6 +57,7 @@ public:
 	virtual void Attack(AActor* Target, bool bIsSecondaryAttack = false);
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="AI")
 	UEnemySettings* AISettings;
+
 protected:
 	virtual void BeginPlay() override;
 	/**
@@ -58,7 +68,9 @@ protected:
 	 * @param DamageCauser The actor that caused the damage.
 	 * @return The actual amount of damage applied to the enemy.
 	 */
-	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+	                         class AController* EventInstigator, AActor* DamageCauser) override;
+
 private:
 	///  State tree used for AI logic of the player or enemy.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player|AI", meta = (AllowPrivateAccess = "true"))

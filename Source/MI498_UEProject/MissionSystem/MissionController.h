@@ -3,6 +3,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class UScoringManager;
 class AEnemyBase;
 class AExitPlatform;
 class AVaultRoom;
@@ -135,6 +136,10 @@ private:
 	
 	/// Current mission stage state
 	EMissionState CurrentState = EMissionState::StageOne;
+	
+	/// Scoring system instance
+	UPROPERTY()
+	UScoringManager * ScoringManager = nullptr;
 	
 	GENERATED_BODY()
 };
