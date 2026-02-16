@@ -39,6 +39,10 @@ public:
 
 	/// Returns the actual accumulated score
 	int GetScore() const { return Score; }
+	
+	/// Returns the score that should be shown on screen
+	UFUNCTION(BlueprintCallable)
+	int GetOnScreenScore() const { return OnScreenScore; }
 
 	/// Adds score for collecting a bomb piece
 	void AddBombPieceScore() { Score += BombPieceScore; }
