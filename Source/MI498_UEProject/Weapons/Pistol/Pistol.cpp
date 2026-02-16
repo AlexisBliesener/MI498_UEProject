@@ -17,16 +17,30 @@ void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 	Super::PrimaryAttack(Controller, Target);
 	if (const ACharacter* character = Cast<ACharacter>(Controller->GetPawn()))
 	{
-		FVector MuzzleLocation = character->GetMesh()->GetSocketLocation("middle_01_rSocket");
-		FRotator LookAtRot = (Target->GetActorLocation() - MuzzleLocation).Rotation();
-		FActorSpawnParameters Params;
-		Params.Owner = Controller->GetPawn();
-		Params.Instigator = Controller->GetPawn();
+		FActorSpawnParameters params;
+		params.Owner = Controller->GetPawn();
+		params.Instigator = Controller->GetPawn();
+		params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		
+		
+		USkeletalMeshComponent* enemyMesh = character->GetMesh();
+		FVector spawnLocation;
+		if (enemyMesh && enemyMesh->DoesSocketExist(SocketName))
+		{
+			spawnLocation = enemyMesh->GetSocketLocation(SocketName);
+		}
+		else
+		{
+			// fallback when there is no socket exists 
+			spawnLocation = character->GetActorLocation() + FVector(0.f, 20.f, 60.f);
+		}
+		FVector aimAtLocation = Target->GetActorLocation() + FVector(0.f, 0.f, 60.f);;
+		FRotator lookAtRot = (aimAtLocation - spawnLocation).Rotation();
 		GetWorld()->SpawnActor<APistolProjectile>(
 			ProjectileClass,
-			MuzzleLocation,
-			LookAtRot,
-			Params
+			spawnLocation,
+			lookAtRot,
+			params
 		);
 	}
 }
