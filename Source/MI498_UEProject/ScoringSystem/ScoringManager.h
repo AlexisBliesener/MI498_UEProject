@@ -32,7 +32,7 @@ enum class EKillType : uint8
 
 /// Scoring Manager
 /// Game-wide scoring system stored in GameInstance
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class MI498_UEPROJECT_API UScoringManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
 public:
@@ -68,7 +68,7 @@ public:
 
 	/// Calculates and applies score for killing an enemy
 	void AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy);
-
+	
 	/// Score awarded for collecting a single bomb piece
 	UPROPERTY(EditAnywhere)
 	int BombPieceScore = 5000;
