@@ -1,12 +1,11 @@
 #include "PlayerCharacter.h"
 
 #include "PlayerCharacterController.h"
-#include "VectorTypes.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -51,6 +50,14 @@ void APlayerCharacter::AddInvincibility(const float Seconds)
 	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
 }
 
+void APlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	/// Set Scoring Manager
+	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
+}
+
 void APlayerCharacter::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
@@ -78,6 +85,16 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		float NewFOV = FMath::Lerp(MinFOV, MaxFOV, CurveAlpha);
 
 		Camera->SetFieldOfView(FMath::Lerp(Camera->FieldOfView, NewFOV, LerpToNewFOVSpeed));
+	}
+	
+	/// Set if player is in air for score
+	if (GetCharacterMovement()->IsFalling())
+	{
+		ScoringManager->SetInAir(true);
+	}
+	else
+	{
+		ScoringManager->SetInAir(false);
 	}
 	
 	// Decide if the player can grab ledge

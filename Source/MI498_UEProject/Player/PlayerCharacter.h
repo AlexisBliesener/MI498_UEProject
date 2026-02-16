@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
 
 class UWeaponManager;
 class UCameraComponent;
+class UScoringManager;
 
 /// Character class representing the player-controlled pawn.
 ///
@@ -52,6 +52,7 @@ public:
 	}
 	
 protected:
+	virtual void BeginPlay() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
@@ -129,6 +130,10 @@ private:
 	
 	/// Restores walking movement + player input after climb
 	void ReenableMovement();
+	
+	/// Scoring system instance
+	UPROPERTY()
+	UScoringManager * ScoringManager = nullptr;
 	
 	/// True while player is in ledge grab state
 	bool bIsGrabbing = false;

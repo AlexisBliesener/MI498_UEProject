@@ -1,11 +1,11 @@
 #include "ScoringManager.h"
 
-#include "MI498_UEProject/Weapons/WeaponBase.h"
-
 void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 {
+	// Base score to be calculated for this kill
 	int add = 0;
 
+	/// Determine base score based on enemy type
 	switch (Killed)
 	{
 	case EEnemyType::AverageEnemy:
@@ -25,31 +25,62 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 	}
 
 
+	/// If the player switches weapons between kills
 	if (LastKilledWith != KilledBy && KilledBy != EKillType::Barrel)
 	{
 		CurrentComboKillMult += ComboKillModifier;
 		add *= CurrentComboKillMult;
 	}
+	/// If same weapon used consecutively, reset multiplier
 	else if (KilledBy != EKillType::Barrel)
 	{
 		CurrentComboKillMult = 1;
 	}
+
+	// Store last kill type for next combo comparison
 	LastKilledWith = KilledBy;
-	
+
+	/// Mid-air bonus
+	if (bInAir)
+	{
+		add += InAirKillBonus;
+	}
+
+	/// Apply global score multiplier
 	add *= GlobalScoreMult;
-	
+
+	/// Barrel bonus multiplier
 	if (KilledBy == EKillType::Barrel)
 	{
 		add *= BombBarrelKillModifier;
 	}
-	
+
+	/// Final score application
 	Score += add;
 }
 
-
 void UScoringManager::Tick(float DeltaTime)
 {
-	UE_LOG(LogTemp, Log, TEXT("Score: %d"), Score);
+	/// Airtime Bonus Timer Logic
+	if (bInAir && !bAirborneSet)
+	{
+		bAirborneSet = true;
+		GetWorld()->GetTimerManager().SetTimer(AirtimeTimerHandle, this, &UScoringManager::AddAirtimeScore,
+		                                       SecToAddAirtime, true);
+	}
+	else if (!bInAir && bAirborneSet)
+	{
+		bAirborneSet = false;
+		GetWorld()->GetTimerManager().ClearTimer(AirtimeTimerHandle);
+	}
+
+	/// On-Screen Score Smooth Update Logic
+	if (!bOnScreenScoreUpdating && OnScreenScore != Score)
+	{
+		bOnScreenScoreUpdating = true;
+		GetWorld()->GetTimerManager().SetTimer(OnScreenScoreTimerHandle, this, &UScoringManager::UpdateOnScreenScore,
+		                                       SecToUpdateOnScreenScore, true);
+	}
 }
 
 TStatId UScoringManager::GetStatId() const
@@ -60,4 +91,25 @@ TStatId UScoringManager::GetStatId() const
 bool UScoringManager::IsTickable() const
 {
 	return FTickableGameObject::IsTickable();
+}
+
+void UScoringManager::AddAirtimeScore()
+{
+	/// Adds score every second while player is airborne
+	Score += AirtimeScore * GlobalScoreMult;
+}
+
+void UScoringManager::UpdateOnScreenScore()
+{
+	/// Increment displayed score gradually for smooth UI effect
+	OnScreenScore++;
+
+	/// If display score catches up to real score clamp and stop updating
+	if (OnScreenScore >= Score)
+	{
+		OnScreenScore = Score;
+
+		GetWorld()->GetTimerManager().ClearTimer(OnScreenScoreTimerHandle);
+		bOnScreenScoreUpdating = false;
+	}
 }
