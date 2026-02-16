@@ -13,12 +13,9 @@ APistolProjectile::APistolProjectile()
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
 	Collision->InitSphereRadius(6.f);
 	RootComponent = Collision;
-	Collision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	Collision->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	Collision->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	Collision->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-	Collision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	Collision->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Overlap);
-	Collision->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
+	Collision->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	Collision->SetGenerateOverlapEvents(true);
 	Movement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Movement"));
 	Movement->UpdatedComponent = Collision;
@@ -26,14 +23,19 @@ APistolProjectile::APistolProjectile()
 	Movement->MaxSpeed = 3000.f;
 	Movement->bRotationFollowsVelocity = true;
 	Movement->ProjectileGravityScale = 0.f;
-	Collision->OnComponentBeginOverlap.AddDynamic(this, &APistolProjectile::OnOverlapBegin);
+	Collision->OnComponentHit.AddDynamic(this, &APistolProjectile::OnHit);
 }
 
-void APistolProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void APistolProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// don't hit the char itself and the owner (the projectile)
-	if (OtherActor && OtherActor != this && OtherActor != GetOwner() && OtherActor->IsA(APlayerCharacter::StaticClass()))
+	if (!OtherActor || OtherActor == this || OtherActor == GetOwner()) 
+	{
+		return;
+	}
+	
+	
+	if (OtherActor->IsA(APlayerCharacter::StaticClass()))
 	{
 		UGameplayStatics::ApplyDamage(
 			OtherActor,
@@ -42,13 +44,24 @@ void APistolProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 			this,
 			UDamageType::StaticClass()
 		);
-		Destroy();
 	}
+	
+	
+	Destroy();
 }
 
 void APistolProjectile::BeginPlay()
 {
+	
+	InitialLifeSpan = DestroyAfterTime; // This should be called before Super::BeginPlay!! why? because unreal said
+	
 	Super::BeginPlay();
+	
+	// ignore the bullet to hits 
+	if (AActor* owner = GetOwner())
+	{
+		Collision->IgnoreActorWhenMoving(owner, true);
+	}
 }
 
 void APistolProjectile::Tick(float DeltaTime)
