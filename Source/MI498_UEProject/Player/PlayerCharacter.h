@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
@@ -50,7 +51,7 @@ public:
 		bOverrideCameraFOV = bOverride;
 		OverrideCameraFOV = OverrideValue;
 	}
-	
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -152,6 +153,10 @@ private:
 	
 	/// What value the camera FOV is being overriden to if enabled
 	int OverrideCameraFOV = 90;
+	
+	/// Reference to the players animation controller
+	UPROPERTY()
+	UPlayerAnimation* PlayerAnimation;
 	
 	GENERATED_BODY()
 };
