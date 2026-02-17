@@ -53,6 +53,9 @@ void APlayerCharacter::AddInvincibility(const float Seconds)
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	/// Set animation controller
+	PlayerAnimation = Cast<UPlayerAnimation>(GetMesh()->GetAnimInstance());
 
 	/// Set Scoring Manager
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
@@ -61,6 +64,9 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	
+	/// Update speed on animation controller
+	PlayerAnimation->Speed = GetVelocity().Size();
 	
 	bIsInvincible = InvincibilityTimer >= GetWorld()->GetTimeSeconds();
 	
