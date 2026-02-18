@@ -36,4 +36,7 @@ private:
 	/// Second Attack radius
 	UPROPERTY(EditDefaultsOnly, Category="Weapon")
 	float SecondAttackRadius = 200.f;
+	/// Socket name for the pistol (we need this when the enemy character is ready, so it can shoot from the hand) 
+	UPROPERTY(EditDefaultsOnly, Category="Weapon")
+	FName SocketName;
 };

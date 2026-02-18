@@ -32,7 +32,7 @@ APlayerCharacter::APlayerCharacter()
 
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
-	if (bIsInvincible)
+	if (InvincibilityTimer >= GetWorld()->GetTimeSeconds())
 	{
 		return 0;
 	}
@@ -70,9 +70,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	
 	/// Update speed on animation controller
 	PlayerAnimation->Speed = GetVelocity().Size();
-	
-	bIsInvincible = InvincibilityTimer >= GetWorld()->GetTimeSeconds();
-	
+
 	// Velocity cap
 	const FVector velocity = GetVelocity();
 	if (velocity.Size() > MaxVelocity)

@@ -47,6 +47,9 @@ public:
 	/// @param Target - Optional target actor reference
 	virtual void SecondaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// Player jumped while holding the harpoon gun
+	virtual void JumpAction() override;
+	
 	/// Returns whether the harpoon gun is currently in swing mode.
 	/// When true, the player will swing from the harpoon instead of zipping directly to it.
 	/// @return True if swing mode is active, false if zip mode is active
@@ -69,6 +72,10 @@ public:
 	/// The percent movement and look will slow by when using ADX
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta=(ClampMin="0.0", ClampMax="1.0", UIMin="0.0", UIMax="1.0"))
 	float ADSSlowMovementPercentage = 0.4;
+	
+	/// The force added to the player when they release the harpoon with a jump
+	UPROPERTY(EditDefaultsOnly)
+	int HarpoonReleaseJumpForce = 600;
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;

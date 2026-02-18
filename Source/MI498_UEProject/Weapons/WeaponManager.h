@@ -71,9 +71,12 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnWeaponSwitch OnWeaponSwitch;
 	
+	/// Returns the current weapon the player is holding
 	UFUNCTION(BlueprintCallable)
 	TScriptInterface<IWeaponInterface> GetCurrentWeapon() const { return CurrentWeapon; }
-
+	
+	/// Handles calling the jump action function of each weapon
+	void HandleJump();
 
 protected:
 	/// Called when the component is initialized at game start

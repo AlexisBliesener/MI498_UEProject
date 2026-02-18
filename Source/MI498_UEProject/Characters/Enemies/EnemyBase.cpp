@@ -10,10 +10,12 @@
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
 #include "MI498_UEProject/Weapons/HarpoonGun/Harpoon.h"
-#include "MI498_UEProject/Weapons/Pistol/PistolProjectile.h"
 #include "MI498_UEProject/Weapons/Sword/Sword.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AISense_Sight.h"
+#if WITH_EDITOR
+#include "DrawDebugHelpers.h"
+#endif
 DEFINE_LOG_CATEGORY(EnemyLog);
 AEnemyBase::AEnemyBase()
 {
@@ -35,7 +37,8 @@ void AEnemyBase::BeginPlay()
 		SpawnParams.Instigator = this;
 
 		CurrentWeapon = GetWorld()->SpawnActor<AWeaponBase>(WeaponBlueprint, SpawnParams);
-		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("middle_01_rSocket"));
+		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		CurrentWeapon->Damage = DamagePrimaryWeapon;
 
 	}
 	
@@ -43,6 +46,9 @@ void AEnemyBase::BeginPlay()
 	{
 		UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a weapon!!"), *GetName());
 	}
+	
+	// initial location of the enemy when spawn
+	EnemyInitLocation = GetActorLocation();
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -78,33 +84,60 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	return DamageAmount;
 }
 
+bool AEnemyBase::ShouldTickIfViewportsOnly() const
+{
+	// Only tick in the editor if Debug is enabled 
+	return bDebug;
+}
+
 void AEnemyBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	
+#if WITH_EDITOR
+	if (bDebug)
+	{
+		if (GetWorld() && !GetWorld()->IsGameWorld())
+		{
+			FMatrix circleMatrix = FRotationMatrix::MakeFromX(FVector::UpVector) * FTranslationMatrix(GetActorLocation());
+			// Draw Attack Start Distance (YELLOW)
+			DrawDebugCircle(
+				GetWorld(),
+				circleMatrix,
+				AttackStartDistance,
+				32,             
+				FColor::Yellow,
+				false,          
+				-1.0f,          
+				0,               
+				2.0f,              
+				false             
+			);
+
+			// Draw Attack Perform Distance (RED)
+			DrawDebugCircle(
+				GetWorld(),
+				circleMatrix,
+				AttackPerformDistance,
+				32,
+				FColor::Red,
+				false,
+				-1.0f,
+				0,
+				2.0f,
+				false
+			);
+		}
+	}
+#endif
+	
+	
 }
 
 void AEnemyBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-	// Apply the data asset settings for the specific enemy 
-	if (AISettings)
-	{
-		ShootCooldown = AISettings->ShootCooldown;
-
-		if (AEnemyAIController* AIController = Cast<AEnemyAIController>(NewController))
-		{
-			if (AIController->SightConfig)
-			{
-				AIController->SightConfig->SightRadius = AISettings->SightRadius;
-				AIController->SightConfig->LoseSightRadius = AISettings->LoseSightRadius;
-				AIController->SightConfig->PeripheralVisionAngleDegrees = AISettings->PeripheralVisionAngle;
-			}
-			if (AIController->HearingConfig)
-			{
-				AIController->HearingConfig->HearingRange = AISettings->HearingRange;
-			}
-		}
-	}
 }
 
 void AEnemyBase::UnPossessed()
@@ -144,11 +177,12 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 		ShootTimer,
 		this,
 		&AEnemyBase::ResetShoot,
-		ShootCooldown,
+		AttackCooldown,
 		false
 	);
 	bCanShoot = false;
 }
+
 
 void AEnemyBase::ResetShoot()
 {

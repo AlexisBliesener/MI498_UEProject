@@ -260,6 +260,11 @@ void UWeaponManager::HandleSecondaryAttackHoldEnd()
 	CurrentWeapon->SecondaryAttackHoldEnd(PlayerCharacter->GetController());
 }
 
+void UWeaponManager::HandleJump()
+{
+	CurrentWeapon->JumpAction();
+}
+
 void UWeaponManager::HandleReload()
 {
 	CurrentWeapon->Reload();

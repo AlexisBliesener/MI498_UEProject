@@ -6,7 +6,6 @@
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Damage.h"
-#include "Perception/AISenseConfig_Hearing.h"
 #include "Perception/AISenseConfig_Prediction.h"
 #include "Perception/AISenseConfig_Sight.h"
 
@@ -23,7 +22,7 @@ AEnemyAIController::AEnemyAIController()
     SightConfig->SightRadius = 1000.0f;
     SightConfig->LoseSightRadius = 1500.0f;
     SightConfig->PeripheralVisionAngleDegrees = 35.0f;
-    // SightConfig->SetMaxAge(2.f); 
+    SightConfig->SetMaxAge(2.f); 
     // SightConfig->PointOfViewBackwardOffset = 150.0f; )
     // SightConfig->NearClippingRadius = 90.0f;
     SightConfig->AutoSuccessRangeFromLastSeenLocation = -1.0f;
@@ -33,16 +32,7 @@ AEnemyAIController::AEnemyAIController()
 
     PerceptionComponent->ConfigureSense(*SightConfig);
     PerceptionComponent->SetDominantSense(UAISense_Sight::StaticClass());
-
-    // hearing
-    HearingConfig = CreateDefaultSubobject<UAISenseConfig_Hearing>(TEXT("HearingConfig"));
-    HearingConfig->HearingRange = 1200.f;
-    // HearingConfig->SetMaxAge(3.f);
-    HearingConfig->DetectionByAffiliation.bDetectEnemies = true;
-    HearingConfig->DetectionByAffiliation.bDetectFriendlies = true;
-    HearingConfig->DetectionByAffiliation.bDetectNeutrals = true;
-    PerceptionComponent->ConfigureSense(*HearingConfig);
-
+	
     // damage perception
     DamageConfig = CreateDefaultSubobject<UAISenseConfig_Damage>(TEXT("DamageConfig"));
     PerceptionComponent->ConfigureSense(*DamageConfig);
@@ -115,7 +105,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
         return;
     }
     static const FAISenseID sightID = UAISense::GetSenseID(UAISense_Sight::StaticClass());
-    static const FAISenseID hearingID = UAISense::GetSenseID(UAISense_Hearing::StaticClass());
     static const FAISenseID damageID = UAISense::GetSenseID(UAISense_Damage::StaticClass());
     AActor* SensedActor = Actor;
     if (!SensedActor)
@@ -140,17 +129,6 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 		{
 			OnSightStimulusForgotten.Broadcast(SensedActor);
 		}
-	}
-	else if (Stimulus.Type == hearingID)
-	{
-		if (Stimulus.WasSuccessfullySensed())
-		{
-			OnHearingStimulusDetected.Broadcast(SensedActor, Stimulus);
-		}
-		else
-		{
-			OnHearingStimulusForgotten.Broadcast(SensedActor);
-		}
 	}else{
 		UE_LOG(EnemyAILog,Warning,TEXT("Unknown stimulus type for actor %s"),*GetNameSafe(Actor));
 	}
@@ -159,5 +137,4 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 void AEnemyAIController::OnTargetPerceptionForgotten(AActor* Actor)
 {
 	OnSightStimulusForgotten.Broadcast(Actor); 
-	OnHearingStimulusForgotten.Broadcast(Actor); 
 }
