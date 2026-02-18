@@ -40,6 +40,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float ReloadTime = 0.5;
 	
+	/// Getter for Current Ammo for the HUD Blueprint
+	UFUNCTION(BlueprintPure, Category="Weapon")
+	int GetCurrentAmmo() const { return CurrentAmmo; }
+
+	/// Getter for Max Ammo for the HUD Blueprint
+	UFUNCTION(BlueprintPure, Category="Weapon")
+	int GetMaxAmmo() const { return MaxAmmo; }
+	
 protected:
 	/// Implementation of the PrimaryAttack function from IWeaponInterface
 	/// @param Controller - The controller performing the attack
@@ -105,6 +113,12 @@ protected:
 	/// Timestamp when reload started
 	float ReloadTimer = 0;
 
+	/// Update if Ammo Changed for HUD
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAmmoChangedSignature, int, CurrentAmmo, int, MaxAmmo);
+	UPROPERTY(BlueprintAssignable, Category="Weapon")
+	FAmmoChangedSignature OnAmmoChanged;
+
+	
 private:	
 	GENERATED_BODY()
 };
