@@ -51,6 +51,9 @@ public:
 	/// @param Target - Optional intended target actor
 	virtual void SecondaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) = 0;
 	
+	/// Executes when the jump action is pressed
+	virtual void JumpAction() = 0;
+	
 	/// Trigger the weapon’s reload behavior
 	virtual void Reload() = 0;
 

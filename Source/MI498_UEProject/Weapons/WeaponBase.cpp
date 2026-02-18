@@ -38,6 +38,10 @@ void AWeaponBase::SecondaryAttackHoldEnd(AController* Controller, AActor* Target
 {
 }
 
+void AWeaponBase::JumpAction()
+{
+}
+
 void AWeaponBase::Reload()
 {
 	if (bReloading) return;
