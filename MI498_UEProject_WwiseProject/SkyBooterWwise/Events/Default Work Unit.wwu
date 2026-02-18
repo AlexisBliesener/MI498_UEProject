@@ -258,6 +258,46 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="PlayerVault" ID="{A981F8B3-936F-4C69-8561-BC8E36CB6D5D}">
+							<ChildrenList>
+								<Action Name="" ID="{419970CB-186F-462B-AF89-967BCC79855C}" ShortID="318818732">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerVaultDeeper" ID="{F3CC1D05-714B-43AA-8210-31E319C6D5E7}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerDamage" ID="{22185BE2-9F83-4131-AEFD-D28166116BD1}">
+							<ChildrenList>
+								<Action Name="" ID="{F6C3CBC4-77A3-4FEC-8DF3-20E73F54A5D9}" ShortID="987474392">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerDamage" ID="{4186738D-AD0B-4D0C-8D9C-444B7C3FB34C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerDeath" ID="{560EBDBD-52E8-4EC9-82B4-AB1D97D4FB92}">
+							<ChildrenList>
+								<Action Name="" ID="{81EB2A6A-D39E-4412-A832-54A3235A029C}" ShortID="211765899">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+								<Action Name="" ID="{397D6D34-2BFF-4ACF-BBFA-F0BCDCBF8F7D}" ShortID="281860066">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerDeath" ID="{7C32577C-9408-4C9D-A0ED-2BA464A218A6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{16397EDE-6014-43D5-A5A4-9556A5AA6E6C}" ShortID="756890054">
@@ -346,6 +386,179 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Avengers Suite (Theme)_01" ID="{2E8DFA50-3B9F-4583-AE15-D8E7EF7A1D93}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="VA" ID="{5AF250B0-095A-4570-861B-D8D074FC2FA5}" ShortID="646641120">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="6"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="StartMissionDialogue" ID="{7F385BCC-3E54-4AA7-8271-17030CDAC1BD}">
+							<ChildrenList>
+								<Action Name="" ID="{A4C662BD-4C51-4C98-B65B-C26A1C427875}" ShortID="143892525">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="StartMissionDialogue" ID="{19C701EC-6F70-4F55-BAB2-C5475E29F62A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="NearVaultDialogue" ID="{46FAAB44-0015-42BD-BF1B-8FD2E9A01D27}">
+							<ChildrenList>
+								<Action Name="" ID="{4338F7BA-8962-41AD-970A-375926D37AD6}" ShortID="147543622">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="OnceAllPiecesCollectedDialogue" ID="{08A34B90-DB61-4BD1-B360-41296580C959}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{6A304337-D784-4EE3-AE73-4DF0AE9680A6}" ShortID="515928292">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="NearVaultDialogue" ID="{6E843674-62C1-4E23-8F13-9E4C3709E5E1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="LeaveVaultDialogue" ID="{8C1B9EB7-BFF1-4848-8345-77DF0421B495}">
+							<ChildrenList>
+								<Action Name="" ID="{202DFF0C-737A-4E06-9D0F-9E0EEA5208C5}" ShortID="838402837">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombExplode" ID="{C35989FD-9E57-4AED-8D0A-3A1DA7046CAD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A644EE81-778E-4BD4-B87B-24E96FBAD088}" ShortID="1007000459">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LeaveVaultDialogue" ID="{48B2027D-EF51-4966-AAAA-F9BD98E55D33}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BombPlantDialogue" ID="{2262F973-D6C8-42DC-A9E8-FF6C4AE88189}">
+							<ChildrenList>
+								<Action Name="" ID="{73EF9F73-F0E4-43DF-8C1F-EFDBECFE10FA}" ShortID="792709783">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="NearVaultDialogue" ID="{6E843674-62C1-4E23-8F13-9E4C3709E5E1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{48B9DEAD-F5D4-43C2-8703-F043D4909FC1}" ShortID="263330915">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombPlant" ID="{8F9C246C-CFBE-48E8-8289-281E9D0D21C6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BombExplodedDialogue" ID="{9BA36833-F1FB-40BA-8255-37150F66A3E4}">
+							<ChildrenList>
+								<Action Name="" ID="{9FCE221C-F8CF-478E-9BBA-6E0D880E5A0C}" ShortID="144939682">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombPlant" ID="{8F9C246C-CFBE-48E8-8289-281E9D0D21C6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A1F9AA3E-5579-414F-AF12-14E26BBFAE8D}" ShortID="432055151">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombExplode" ID="{C35989FD-9E57-4AED-8D0A-3A1DA7046CAD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ONePIeceCollectedDialogue" ID="{BE4D7794-FE62-41C2-9897-3FF1AFC95644}">
+							<ChildrenList>
+								<Action Name="" ID="{9EFE1283-D794-4F98-866F-7ACD7A59CFC0}" ShortID="877602171">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="StartMissionDialogue" ID="{19C701EC-6F70-4F55-BAB2-C5475E29F62A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{23275C4F-F88B-44E5-BF04-79F478A70D9E}" ShortID="455457798">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FirstPieceCollectedDialogue" ID="{7D57644C-C9BE-430A-9BA8-345FC3AABD39}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="AllPiecesCollectedDialogue" ID="{DE755A3F-BCD6-43B8-80E2-2A47E7922E7D}">
+							<ChildrenList>
+								<Action Name="" ID="{05609638-2296-429A-8363-CEEB60C24329}" ShortID="308076587">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FirstPieceCollectedDialogue" ID="{7D57644C-C9BE-430A-9BA8-345FC3AABD39}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{B2C6A9C3-1259-41BD-A909-2B6FF8CD74BE}" ShortID="196080094">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="OnceAllPiecesCollectedDialogue" ID="{08A34B90-DB61-4BD1-B360-41296580C959}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="EscapeCannonDialogue" ID="{79D230BE-F7C4-4DAD-80E9-4FFCD80702F7}">
+							<ChildrenList>
+								<Action Name="" ID="{36BCDE72-4F73-4688-8582-EF395E95D48E}" ShortID="987037061">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LeaveVaultDialogue" ID="{48B2027D-EF51-4966-AAAA-F9BD98E55D33}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{13B3278F-79FA-47AC-9CA9-1E3045B6BBFB}" ShortID="623060964">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="EscapeShipDialogue" ID="{BA6EF528-CB73-4224-9227-A8E878273946}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{36EDB7D4-381E-5AD2-2629-48D4A88B6D52}",
+    "Hash": "{C22A9102-3D32-3EEC-AEB3-9C4C2729FF9F}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -24,12 +24,44 @@
       "CachePath": "48/{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem"
      },
      {
+      "Id": "101624672",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "All pieces collected, take 1.wav",
+      "CachePath": "63/{6303BF9F-736D-35EC-9793-B927A7DE9AFC}.wem"
+     },
+     {
+      "Id": "118074255",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "After planting the bomb, Take 2.wav",
+      "CachePath": "E3/{E38D7C96-B9DB-8308-CAF2-01647DFD1BA3}.wem"
+     },
+     {
+      "Id": "139026441",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Start Mission, Take 2.wav",
+      "CachePath": "EC/{ECD3C749-E947-BD71-E702-A3B8A0175664}.wem"
+     },
+     {
       "Id": "143782066",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Goku.wav",
       "CachePath": "4C/{4CB88E5E-EAD5-6F7F-DFDB-9239C657EAD2}.wem"
+     },
+     {
+      "Id": "151765295",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerDamageStuff.wav",
+      "CachePath": "02/{02E73E3A-52B9-9C2A-6588-D0C6069F814D}.wem"
      },
      {
       "Id": "210626020",
@@ -56,12 +88,52 @@
       "CachePath": "2B/{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem"
      },
      {
+      "Id": "257199122",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Within Range of escape ship, Take 1.wav",
+      "CachePath": "D6/{D6ADCEDD-AB97-6F0C-8FE4-858AC244CAB3}.wem"
+     },
+     {
+      "Id": "264388359",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Leave the Vault or maximum loot, Take 1.wav",
+      "CachePath": "CC/{CCEDAF6C-94DE-A8AB-2591-211B67F9F7C3}.wem"
+     },
+     {
       "Id": "272125692",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SprintExample.wav",
       "CachePath": "27/{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem"
+     },
+     {
+      "Id": "283319554",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "All pieces collected, take 1.wav",
+      "CachePath": "17/{17DF5C56-139F-F17D-3BD2-8004EA4E4E2D}.wem"
+     },
+     {
+      "Id": "287285638",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerDeath.wav",
+      "CachePath": "7D/{7D7D3402-ACB3-694F-2B0B-93F28358927B}.wem"
+     },
+     {
+      "Id": "319526224",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Start Mission, Take 2.wav",
+      "CachePath": "2A/{2A50D19D-B1B1-06ED-6A3F-1A435EBC5E6A}.wem"
      },
      {
       "Id": "320129325",
@@ -96,12 +168,60 @@
       "CachePath": "64/{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem"
      },
      {
+      "Id": "413622913",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "One piece collected, Take 2.wav",
+      "CachePath": "02/{02207653-E990-B03D-5675-3BABEE78C5DB}.wem"
+     },
+     {
+      "Id": "435335955",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Within Range of escape ship, Take 1.wav",
+      "CachePath": "3A/{3AB4C8F5-984A-ADF6-90E8-C6E2B19E3E27}.wem"
+     },
+     {
+      "Id": "446377387",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "After planting the bomb, Take 2.wav",
+      "CachePath": "68/{688F7454-F16A-F086-6735-297E07C12C31}.wem"
+     },
+     {
+      "Id": "485182822",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerVaultDeeper.wav",
+      "CachePath": "D5/{D5608145-12E9-963A-10E9-D10D760BCDE1}.wem"
+     },
+     {
       "Id": "490285420",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "IRON MAN - Opening_01.wav",
       "CachePath": "5F/{5F721B62-6CC3-E6BE-9390-BC2FD55BD27B}.wem"
+     },
+     {
+      "Id": "577135639",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Within Range of bomb location, Take 2.wav",
+      "CachePath": "91/{9119C012-E1C3-60D4-C12B-0CBEC792BD0F}.wem"
+     },
+     {
+      "Id": "604625095",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Leave the Vault or maximum loot, Take 1.wav",
+      "CachePath": "83/{830DCB24-7369-9E2E-732F-2C371F5533E6}.wem"
      },
      {
       "Id": "605770747",
@@ -152,6 +272,14 @@
       "CachePath": "79/{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem"
      },
      {
+      "Id": "765843477",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "One piece collected, Take 2.wav",
+      "CachePath": "FE/{FE1E914C-D4BA-F72A-38ED-E5DAA7C5FDDF}.wem"
+     },
+     {
       "Id": "818030058",
       "Language": "SFX",
       "Streaming": "false",
@@ -160,12 +288,28 @@
       "CachePath": "53/{538A4E00-87E2-120D-FEB0-19B91BCC597E}.wem"
      },
      {
+      "Id": "818367138",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerDamageStuff.wav",
+      "CachePath": "94/{941C149A-2749-8559-BD94-D7BD80478108}.wem"
+     },
+     {
       "Id": "841410472",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
       "CachePath": "B6/{B61A63F3-B365-8996-7365-41905F3A9313}.wem"
+     },
+     {
+      "Id": "894087048",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PlayerDamageStuff.wav",
+      "CachePath": "EF/{EF71B80C-638C-B9ED-93F5-01F91214C80A}.wem"
      },
      {
       "Id": "921292567",
@@ -184,6 +328,30 @@
       "CachePath": "78/{7823E58A-7B03-447A-791C-B40F63E8246F}.wem"
      },
      {
+      "Id": "941547104",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Within Range of bomb location, Take 2.wav",
+      "CachePath": "AB/{AB2F497B-1324-93CD-009C-CEFA70B569D9}.wem"
+     },
+     {
+      "Id": "960224522",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Start Mission, Take 2.wav",
+      "CachePath": "79/{792B3A59-3B10-4BAA-575F-05719875E194}.wem"
+     },
+     {
+      "Id": "964124677",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Start Mission, Take 2.wav",
+      "CachePath": "EA/{EAA10D1D-2855-F87B-BE15-E003039FB345}.wem"
+     },
+     {
       "Id": "974919281",
       "Language": "SFX",
       "Streaming": "false",
@@ -198,6 +366,14 @@
       "Location": "Memory",
       "ShortName": "Avengers Suite (Theme)_01.wav",
       "CachePath": "FE/{FEFCC2F1-C3E8-4AE1-83E3-6663DC7CF203}.wem"
+     },
+     {
+      "Id": "990222415",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "One piece collected, Take 2.wav",
+      "CachePath": "EA/{EAAF1A7F-DB0D-5D87-6D54-674CFE548695}.wem"
      },
      {
       "Id": "1014313509",
@@ -217,6 +393,24 @@
      }
     ],
     "Events": [
+     {
+      "Id": "2719541090",
+      "Name": "AllPiecesCollectedDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\AllPiecesCollectedDialogue",
+      "GUID": "{DE755A3F-BCD6-43B8-80E2-2A47E7922E7D}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "5.954541",
+      "DurationMax": "5.954541",
+      "MediaRefs": [
+       {
+        "Id": "101624672"
+       },
+       {
+        "Id": "283319554"
+       }
+      ]
+     },
      {
       "Id": "2673912475",
       "Name": "BlunderbussHeavy",
@@ -263,6 +457,36 @@
       ]
      },
      {
+      "Id": "3655061974",
+      "Name": "BombExplodedDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\BombExplodedDialogue",
+      "GUID": "{9BA36833-F1FB-40BA-8255-37150F66A3E4}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "7.081101",
+      "DurationMax": "7.081101",
+      "MediaRefs": [
+       {
+        "Id": "118074255"
+       }
+      ]
+     },
+     {
+      "Id": "1111375134",
+      "Name": "BombPlantDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\BombPlantDialogue",
+      "GUID": "{2262F973-D6C8-42DC-A9E8-FF6C4AE88189}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "4.870124",
+      "DurationMax": "4.870124",
+      "MediaRefs": [
+       {
+        "Id": "446377387"
+       }
+      ]
+     },
+     {
       "Id": "2393348022",
       "Name": "Cannon",
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Cannon",
@@ -274,6 +498,24 @@
       "MediaRefs": [
        {
         "Id": "649368430"
+       }
+      ]
+     },
+     {
+      "Id": "2811709593",
+      "Name": "EscapeCannonDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\EscapeCannonDialogue",
+      "GUID": "{79D230BE-F7C4-4DAD-80E9-4FFCD80702F7}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "4.819742",
+      "DurationMax": "4.819742",
+      "MediaRefs": [
+       {
+        "Id": "257199122"
+       },
+       {
+        "Id": "435335955"
        }
       ]
      },
@@ -412,6 +654,24 @@
       ]
      },
      {
+      "Id": "2810013852",
+      "Name": "LeaveVaultDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\LeaveVaultDialogue",
+      "GUID": "{8C1B9EB7-BFF1-4848-8345-77DF0421B495}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "8.145646",
+      "DurationMax": "8.145646",
+      "MediaRefs": [
+       {
+        "Id": "264388359"
+       },
+       {
+        "Id": "604625095"
+       }
+      ]
+     },
+     {
       "Id": "2298039058",
       "Name": "MoveStart",
       "ObjectPath": "\\Events\\Default Work Unit\\Player\\MoveStart",
@@ -450,6 +710,81 @@
         "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\No",
         "GUID": "{837C4033-06EA-4F8D-990E-47320598FB93}",
         "Color": "12"
+       }
+      ]
+     },
+     {
+      "Id": "3533915211",
+      "Name": "NearVaultDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\NearVaultDialogue",
+      "GUID": "{46FAAB44-0015-42BD-BF1B-8FD2E9A01D27}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "11.164797",
+      "DurationMax": "11.164797",
+      "MediaRefs": [
+       {
+        "Id": "577135639"
+       },
+       {
+        "Id": "941547104"
+       }
+      ]
+     },
+     {
+      "Id": "317696810",
+      "Name": "ONePIeceCollectedDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\ONePIeceCollectedDialogue",
+      "GUID": "{BE4D7794-FE62-41C2-9897-3FF1AFC95644}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "13.0102415",
+      "DurationMax": "13.0102415",
+      "MediaRefs": [
+       {
+        "Id": "413622913"
+       },
+       {
+        "Id": "765843477"
+       },
+       {
+        "Id": "990222415"
+       }
+      ]
+     },
+     {
+      "Id": "337406793",
+      "Name": "PlayerDamage",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerDamage",
+      "GUID": "{22185BE2-9F83-4131-AEFD-D28166116BD1}",
+      "Color": "13",
+      "DurationType": "OneShot",
+      "DurationMin": "0.5856397",
+      "DurationMax": "0.71395403",
+      "MediaRefs": [
+       {
+        "Id": "151765295"
+       },
+       {
+        "Id": "818367138"
+       },
+       {
+        "Id": "894087048"
+       }
+      ]
+     },
+     {
+      "Id": "1656947812",
+      "Name": "PlayerDeath",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerDeath",
+      "GUID": "{560EBDBD-52E8-4EC9-82B4-AB1D97D4FB92}",
+      "Color": "13",
+      "DurationType": "OneShot",
+      "DurationMin": "2.5586762",
+      "DurationMax": "2.5586762",
+      "MediaRefs": [
+       {
+        "Id": "287285638"
        }
       ]
      },
@@ -497,6 +832,21 @@
       ]
      },
      {
+      "Id": "3276975558",
+      "Name": "PlayerVault",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerVault",
+      "GUID": "{A981F8B3-936F-4C69-8561-BC8E36CB6D5D}",
+      "Color": "13",
+      "DurationType": "OneShot",
+      "DurationMin": "1.1070541",
+      "DurationMax": "1.1070541",
+      "MediaRefs": [
+       {
+        "Id": "485182822"
+       }
+      ]
+     },
+     {
       "Id": "1296465089",
       "Name": "Sprint",
       "ObjectPath": "\\Events\\Default Work Unit\\Player\\Sprint",
@@ -508,6 +858,30 @@
       "MediaRefs": [
        {
         "Id": "272125692"
+       }
+      ]
+     },
+     {
+      "Id": "1147677277",
+      "Name": "StartMissionDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\StartMissionDialogue",
+      "GUID": "{7F385BCC-3E54-4AA7-8271-17030CDAC1BD}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "28.888329",
+      "DurationMax": "28.888329",
+      "MediaRefs": [
+       {
+        "Id": "139026441"
+       },
+       {
+        "Id": "319526224"
+       },
+       {
+        "Id": "960224522"
+       },
+       {
+        "Id": "964124677"
        }
       ]
      },
@@ -637,6 +1011,6 @@
     ]
    }
   ],
-  "FileHash": "{C8B32832-A14D-874C-1C3B-C57DC199B85E}"
+  "FileHash": "{EACE5343-EEB4-8E26-40E8-9512C1138DB4}"
  }
 }

@@ -57,7 +57,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	
 	/// Set player height variables
 	AttachedPlayerHeight = PlayerCharacter->GetActorLocation().Z;
-	PrevPlayerHeight = INFINITY;
+	PrevPlayerHeight = 1000000000000000000;
 	CurrentPlayerHeight = PlayerCharacter->GetActorLocation().Z;
 
 	/// Stop projectile movement when the harpoon sticks

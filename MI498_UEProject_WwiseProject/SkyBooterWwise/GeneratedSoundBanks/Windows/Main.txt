@@ -1,14 +1,19 @@
 Event	ID	Name			Wwise Object Path	Notes
 	255568847	GrappleReelInMiss			\Default Work Unit\Weapons\Grapple\GrappleReelInMiss	
+	317696810	ONePIeceCollectedDialogue			\Default Work Unit\VA\ONePIeceCollectedDialogue	
+	337406793	PlayerDamage			\Default Work Unit\Player\PlayerDamage	
 	483409990	GrapplingHook			\Default Work Unit\Weapons\Grapple\GrapplingHook	
 	607254338	BlunderbussLight			\Default Work Unit\Weapons\Blunderbuss\BlunderbussLight	
 	735743455	Goku			\Default Work Unit\MemeEvents\Goku	
 	846198821	PlayerLand			\Default Work Unit\Player\PlayerLand	
 	921851654	GrappleStop			\Default Work Unit\Weapons\Grapple\GrappleStop	
+	1111375134	BombPlantDialogue			\Default Work Unit\VA\BombPlantDialogue	
+	1147677277	StartMissionDialogue			\Default Work Unit\VA\StartMissionDialogue	
 	1159713994	MoveStop			\Default Work Unit\Player\MoveStop	
 	1296465089	Sprint			\Default Work Unit\Player\Sprint	
 	1328934038	SwordSwing			\Default Work Unit\Weapons\Sword\SwordSwing	
 	1571412035	WindStop			\Default Work Unit\Environment\WindStop	
+	1656947812	PlayerDeath			\Default Work Unit\Player\PlayerDeath	
 	1723137725	BlunderbussReload			\Default Work Unit\Weapons\Blunderbuss\BlunderbussReload	
 	2298039058	MoveStart			\Default Work Unit\Player\MoveStart	
 	2300159583	GrappleSnapBack			\Default Work Unit\Weapons\Grapple\GrappleSnapBack	
@@ -16,11 +21,17 @@ Event	ID	Name			Wwise Object Path	Notes
 	2393348022	Cannon			\Default Work Unit\Environment\Cannon	
 	2454571316	GrappleReelInPlayer			\Default Work Unit\Weapons\Grapple\GrappleReelInPlayer	
 	2673912475	BlunderbussHeavy			\Default Work Unit\Weapons\Blunderbuss\BlunderbussHeavy	
+	2719541090	AllPiecesCollectedDialogue			\Default Work Unit\VA\AllPiecesCollectedDialogue	
 	2793670947	GrappleStrikeTarget			\Default Work Unit\Weapons\Grapple\GrappleStrikeTarget	
+	2810013852	LeaveVaultDialogue			\Default Work Unit\VA\LeaveVaultDialogue	
+	2811709593	EscapeCannonDialogue			\Default Work Unit\VA\EscapeCannonDialogue	
 	3084491839	PlayerSteps			\Default Work Unit\Player\PlayerSteps	
 	3203772045	FinalBattle			\Default Work Unit\MemeEvents\FinalBattle	
+	3276975558	PlayerVault			\Default Work Unit\Player\PlayerVault	
 	3414304297	WindStart			\Default Work Unit\Environment\WindStart	
+	3533915211	NearVaultDialogue			\Default Work Unit\VA\NearVaultDialogue	
 	3604541648	SwordDash			\Default Work Unit\Weapons\Sword\SwordDash	
+	3655061974	BombExplodedDialogue			\Default Work Unit\VA\BombExplodedDialogue	
 	3934973449	IronMan			\Default Work Unit\MemeEvents\IronMan	
 	4008126242	PlayerJump			\Default Work Unit\Player\PlayerJump	
 	4034933843	Jonesy			\Default Work Unit\MemeEvents\Jonesy	
@@ -38,28 +49,50 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	26282397	SwordDash_mixdown_02	.cache\48\{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		235452
+	101624672	Line3	.cache\63\{6303BF9F-736D-35EC-9793-B927A7DE9AFC}.wem		\Containers\Default Work Unit\VA\OnceAllPiecesCollectedDialogue\Line3		415976
+	118074255	AfterBombExplode	.cache\E3\{E38D7C96-B9DB-8308-CAF2-01647DFD1BA3}.wem		\Containers\Default Work Unit\VA\AfterBombExplode		1359664
+	139026441	Line3	.cache\EC\{ECD3C749-E947-BD71-E702-A3B8A0175664}.wem		\Containers\Default Work Unit\VA\StartMissionDialogue\Line3		1381312
 	143782066	Goku	.cache\4C\{4CB88E5E-EAD5-6F7F-DFDB-9239C657EAD2}.wem		\Containers\Default Work Unit\MemeStuff\Goku		282720
+	151765295	PlayerDamageStuff	.cache\02\{02E73E3A-52B9-9C2A-6588-D0C6069F814D}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff		118224
 	210626020	GrappleStrikeLocation	.cache\56\{562A0475-5D7A-52FE-F6F4-491A555FECB6}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleStrikeLocation		162608
 	218262969	Grapple	.cache\D8\{D8C45CA6-B050-D958-FA24-EAAC9F098E3E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		228620
 	226120403	SwordSlashExample_02	.cache\2B\{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		115084
+	257199122	Line1	.cache\D6\{D6ADCEDD-AB97-6F0C-8FE4-858AC244CAB3}.wem		\Containers\Default Work Unit\VA\EscapeShipDialogue\Line1		553188
+	264388359	Line2	.cache\CC\{CCEDAF6C-94DE-A8AB-2591-211B67F9F7C3}.wem		\Containers\Default Work Unit\VA\LeaveVaultDialogue\Line2		685104
 	272125692	Sprint	.cache\27\{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem		\Containers\Default Work Unit\Player\Sprint		175572
+	283319554	Line4	.cache\17\{17DF5C56-139F-F17D-3BD2-8004EA4E4E2D}.wem		\Containers\Default Work Unit\VA\OnceAllPiecesCollectedDialogue\Line4		727488
+	287285638	PlayerDeath	.cache\7D\{7D7D3402-ACB3-694F-2B0B-93F28358927B}.wem		\Containers\Default Work Unit\Player\PlayerDeath		491360
+	319526224	Line1	.cache\2A\{2A50D19D-B1B1-06ED-6A3F-1A435EBC5E6A}.wem		\Containers\Default Work Unit\VA\StartMissionDialogue\Line1		1366848
 	320129325	SwordDash_mixdown_01	.cache\9D\{9DFB04B2-257C-7790-7889-1ED3204FA7D2}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		267296
 	326381219	Fortnite Default Dance Greenscreen_01	.cache\C6\{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		1273952
 	373499443	SwordDash_mixdown	.cache\AC\{AC8A441A-8542-2BBC-F2CB-F88CFE6DDE36}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		199456
 	377840418	GrappleHookReelIn	.cache\64\{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		220320
+	413622913	Line2	.cache\02\{02207653-E990-B03D-5675-3BABEE78C5DB}.wem		\Containers\Default Work Unit\VA\FirstPieceCollectedDialogue\Line2		1216500
+	435335955	Line2	.cache\3A\{3AB4C8F5-984A-ADF6-90E8-C6E2B19E3E27}.wem		\Containers\Default Work Unit\VA\EscapeShipDialogue\Line2		372396
+	446377387	AfterBombPlant	.cache\68\{688F7454-F16A-F086-6735-297E07C12C31}.wem		\Containers\Default Work Unit\VA\AfterBombPlant		935160
+	485182822	PlayerVaultDeeper	.cache\D5\{D5608145-12E9-963A-10E9-D10D760BCDE1}.wem		\Containers\Default Work Unit\Player\PlayerVaultDeeper		212652
 	490285420	IRON MAN - Opening_01	.cache\5F\{5F721B62-6CC3-E6BE-9390-BC2FD55BD27B}.wem		\Containers\Default Work Unit\MemeStuff\IRON MAN - Opening_01		7290932
+	577135639	Line1	.cache\91\{9119C012-E1C3-60D4-C12B-0CBEC792BD0F}.wem		\Containers\Default Work Unit\VA\NearVaultDialogue\Line1		1126468
+	604625095	Line1	.cache\83\{830DCB24-7369-9E2E-732F-2C371F5533E6}.wem		\Containers\Default Work Unit\VA\LeaveVaultDialogue\Line1		879052
 	605770747	BlunderbussReload	.cache\47\{473E41FD-2FFC-D71D-1017-449C5A73E8E3}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		426016
 	615624964	GrappleSnapBack	.cache\D5\{D5251B48-CB9D-9088-6E71-8327C009F220}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		129300
 	647190144	Land	.cache\7F\{7F44EDE6-F648-6DAD-2AD1-C4846C9CF013}.wem		\Containers\Default Work Unit\Player\Land		221388
 	649368430	Cannon	.cache\1B\{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem		\Containers\Default Work Unit\Environment\Cannon		717844
 	750876961	SwordSlashExample_01	.cache\5B\{5B7EAD0C-3755-4266-496E-CDABBB6D7CB9}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_01		149844
 	751347334	BlunderbussLight	.cache\79\{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem		\Containers\Default Work Unit\Weapons\BlunderbussLight		284596
+	765843477	Line4	.cache\FE\{FE1E914C-D4BA-F72A-38ED-E5DAA7C5FDDF}.wem		\Containers\Default Work Unit\VA\FirstPieceCollectedDialogue\Line4		630016
 	818030058	SwordSlashExample	.cache\53\{538A4E00-87E2-120D-FEB0-19B91BCC597E}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample		133800
+	818367138	PlayerDamageStuff_02	.cache\94\{941C149A-2749-8559-BD94-D7BD80478108}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_02		112540
 	841410472	FootstepSFXExample	.cache\B6\{B61A63F3-B365-8996-7365-41905F3A9313}.wem		\Containers\Default Work Unit\Player\FootstepSFXExample		1161896
+	894087048	PlayerDamageStuff_01	.cache\EF\{EF71B80C-638C-B9ED-93F5-01F91214C80A}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_01		137172
 	921292567	WindStart	.cache\86\{864C7CB0-3924-533E-818B-DBD493B33686}.wem		\Containers\Default Work Unit\Environment\WindStart		1190856
 	924573326	Jump	.cache\78\{7823E58A-7B03-447A-791C-B40F63E8246F}.wem		\Containers\Default Work Unit\Player\Jump		166668
+	941547104	Line2	.cache\AB\{AB2F497B-1324-93CD-009C-CEFA70B569D9}.wem		\Containers\Default Work Unit\VA\NearVaultDialogue\Line2		1017368
+	960224522	Line5	.cache\79\{792B3A59-3B10-4BAA-575F-05719875E194}.wem		\Containers\Default Work Unit\VA\StartMissionDialogue\Line5		1092052
+	964124677	Line4	.cache\EA\{EAA10D1D-2855-F87B-BE15-E003039FB345}.wem		\Containers\Default Work Unit\VA\StartMissionDialogue\Line4		1706728
 	974919281	BlunderbussHeavy	.cache\3A\{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem		\Containers\Default Work Unit\Weapons\BlunderbussHeavy		356728
 	985203243	Avengers Suite (Theme)_01	.cache\FE\{FEFCC2F1-C3E8-4AE1-83E3-6663DC7CF203}.wem		\Containers\Default Work Unit\MemeStuff\Avengers Suite (Theme)_01		9116700
+	990222415	Line5	.cache\EA\{EAAF1A7F-DB0D-5D87-6D54-674CFE548695}.wem		\Containers\Default Work Unit\VA\FirstPieceCollectedDialogue\Line5		651736
 	1014313509	GrappleMissReel	.cache\8E\{8EDAA84A-BDD6-61A8-036C-F00711942B1D}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleMissReel		244864
 	1036155795	WeaponSwaps	.cache\46\{46CADBF3-564F-C1C4-4093-804615F5C3A0}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		452144
 
