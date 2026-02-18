@@ -297,3 +297,8 @@ void AMissionController::StageThreeFinish(const bool Result)
 		OnFailedMission();
 	}
 }
+
+float AMissionController::GetRemainingMissionTime() const
+{
+	return GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
+}

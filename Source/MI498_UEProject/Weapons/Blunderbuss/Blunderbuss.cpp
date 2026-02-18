@@ -23,6 +23,8 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
+	// Update HUD
+	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
 	
 	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
@@ -51,6 +53,8 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 	
 	// Consume ammo required for a secondary shot
 	CurrentAmmo -= SecondaryAttackNeededAmmo;
+	// Update HUD
+	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, true);
 	
 	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))

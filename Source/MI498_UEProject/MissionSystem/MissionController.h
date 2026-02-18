@@ -22,7 +22,7 @@ enum class EMissionState : uint8
 
 /// Central mission flow controller
 /// Coordinates objectives, timers, enemy waves, and stage transitions
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class MI498_UEPROJECT_API AMissionController : public AActor
 {
 public:
@@ -117,6 +117,10 @@ public:
 	/// Time in between spawning waves of enemies in the vault room
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int TimeInBetweenSpawningEnemyWaves = 15;
+	
+	/// Get remaining time
+	UFUNCTION(BlueprintCallable, Category = "Mission|Timer")
+	float GetRemainingMissionTime() const;
 	
 protected:
 	virtual void Tick(float DeltaSeconds) override;

@@ -67,5 +67,6 @@ void AWeaponBase::Tick(float DeltaSeconds)
 	{
 		bReloading = false;	
 		CurrentAmmo = MaxAmmo;
+		OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
 	}
 }

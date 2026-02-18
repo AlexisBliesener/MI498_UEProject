@@ -49,7 +49,9 @@ public:
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;
-
+	UPROPERTY(BlueprintReadOnly)
+	/// Current remaining dash charges.
+	int CurrentDashCharges = DashCharges;
 private:
 	/// Performs the actual sword swing hit detection
 	/// Uses a forward sweep to detect and damage actors in range
@@ -70,9 +72,6 @@ private:
 	
 	/// Timer handle for dash charge reload delay.
 	FTimerHandle SecondaryReloadTimerHandle;
-	
-	/// Current remaining dash charges.
-	int CurrentDashCharges = DashCharges;
 	
 	/// Whether the secondary ability is currently allowed.
 	bool bCanUseSecondary = true;
