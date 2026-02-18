@@ -115,7 +115,7 @@ void AMissionController::HandleVaultDoorInteract()
 			MissionTimerHandle,
 			this,
 			&AMissionController::ExplodeVaultDoor,
-			2,
+			7,
 			false);
 	}
 }
