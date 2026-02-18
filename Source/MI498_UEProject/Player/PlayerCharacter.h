@@ -39,6 +39,14 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerDied();
 	
+	/// A Blueprintable function that will be called when the player takes damage
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPlayerTakeDamage();
+	
+	/// A Blueprintable function that will be called when the player ledge grabs
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPlayerGrabLedge();
+	
 	/// Grants temporary invincibility for the specified duration
 	/// @param Seconds - How long invincibility should last
 	void AddInvincibility(float Seconds);
