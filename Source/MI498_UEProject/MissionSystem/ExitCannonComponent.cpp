@@ -1,8 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ExitCannonComponent.h"
-
 #include "Components/BoxComponent.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 

@@ -6,11 +6,14 @@
 
 class UBoxComponent;
 
-/// Dynamic multicast delegate fired when the player enters the exit platform trigger
+/// Fired when the player enters the exit cannon trigger volume
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNearExitCannon);
 
+/// Fired when the player is launched from the cannon
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShotFromCannon);
 
+/// Exit Cannon Component
+/// Handles trigger detection and event broadcasting for the exit cannon
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class MI498_UEPROJECT_API UExitCannonComponent : public UActorComponent
 {
@@ -21,12 +24,14 @@ public:
 	/// Event broadcast when the player is near the exit cannon
 	FOnNearExitCannon OnNearExitCannon;
 	
+	/// Multicast event broadcast when the player is shot from the cannon
 	FOnShotFromCannon OnShotFromCannon;
 	
 	/// Called when the player is near the exit cannon
 	/// Broadcasts the enter event
 	void NearExitCannon() const;
 	
+	/// Triggers the shot event
 	UFUNCTION(BlueprintCallable)
 	void ShotFromCannon() const;
 

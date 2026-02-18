@@ -1,5 +1,6 @@
 ﻿#include "MissionController.h"
 #include "BombPiece.h"
+#include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
@@ -28,8 +29,7 @@ void AMissionController::BeginPlay()
 		MissionTimerHandle,
 		delegate,
 		StageOneTimeLimit,
-		false
-		);
+		false);
 	
 	OnMissionStarted();
 	
@@ -45,8 +45,8 @@ void AMissionController::BeginPlay()
 		}
 	}
 	
-	UExitCannonComponent* CannonComp =
-	ExitCannon->FindComponentByClass<UExitCannonComponent>();
+	/// Bind to exit cannon component events
+	UExitCannonComponent* CannonComp = ExitCannon->FindComponentByClass<UExitCannonComponent>();
 	
 	CannonComp->OnNearExitCannon.AddDynamic(
 		this,
@@ -88,9 +88,11 @@ void AMissionController::Tick(float DeltaSeconds)
 
 void AMissionController::HandleBombPieceCollected()
 {
+	/// Award score for collecting bomb piece
 	ScoringManager->AddBombPieceScore();
 	BombPiecesCollected++;
 	
+	/// Trigger contextual VA based on progress
 	if (BombPiecesCollected == 1)
 	{
 		OnFirstBombPieceCollected();
@@ -107,10 +109,12 @@ void AMissionController::HandleBombPieceCollected()
 
 void AMissionController::HandleVaultDoorInteract()
 {
+	/// Only allow bomb planting during Stage Two
 	if (CurrentState == EMissionState::StageTwo)
 	{
 		OnBombPlanted();
 		
+		/// Delay vault explosion
 		GetWorldTimerManager().SetTimer(
 			MissionTimerHandle,
 			this,
@@ -122,6 +126,7 @@ void AMissionController::HandleVaultDoorInteract()
 
 void AMissionController::ExplodeVaultDoor()
 {
+	/// Trigger explosion effects and scoring
 	OnBombExplode();
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
@@ -130,6 +135,7 @@ void AMissionController::ExplodeVaultDoor()
 
 void AMissionController::HandleOnEnterExitPlatform()
 {
+	/// Level completion condition (Stage Three)
 	if (CurrentState == EMissionState::StageThree)
 	{
 		ScoringManager->AddFinishLevelScore();
