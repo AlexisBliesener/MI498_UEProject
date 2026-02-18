@@ -9,50 +9,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="BlunderbussLight" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
-							<ChildrenList>
-								<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="BlunderbussLight" ID="{47116E79-D8FD-4CBE-9634-8BBF3B0F16C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Sword" ID="{39D5BC54-B39B-40EC-B732-F5D21093F093}">
-							<ChildrenList>
-								<Action Name="" ID="{5FC43D9A-0FBA-4C97-9129-61D7137CE9F6}" ShortID="894626277">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="SwordSlash" ID="{AC65C999-554B-4EE8-A333-31273A302808}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="GrapplingHook" ID="{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}">
-							<ChildrenList>
-								<Action Name="" ID="{A43D6FE7-E01B-45A8-939D-11EBD0743CB9}" ShortID="217714286">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Grapple" ID="{EDBAD3D2-9C3A-4E5E-ACC3-7BF09E8152C5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="BlunderbussHeavy" ID="{B70C78DE-A883-4F80-B775-CEFE5700B762}">
-							<ChildrenList>
-								<Action Name="" ID="{602F15FB-F041-4E8C-8B73-E599EE168089}" ShortID="442750104">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="BlunderbussHeavy" ID="{956379FF-9D57-4824-8085-9FB780ED1E11}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="WeaponSwap" ID="{A09194FC-25A0-490C-9F40-E45B30804ED8}">
 							<ChildrenList>
 								<Action Name="" ID="{003BDB91-B4D5-48A5-88F8-1406C1A3B979}" ShortID="642293676">
@@ -64,6 +20,164 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="Grapple" ID="{297A01C3-5ABE-4803-8A8B-FAB23C5D17D3}" ShortID="9543622">
+							<ChildrenList>
+								<Event Name="GrapplingHook" ID="{B10CCD30-F9BF-45C3-81B8-70F7979D4CFE}">
+									<ChildrenList>
+										<Action Name="" ID="{A43D6FE7-E01B-45A8-939D-11EBD0743CB9}" ShortID="217714286">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Grapple" ID="{EDBAD3D2-9C3A-4E5E-ACC3-7BF09E8152C5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleReelInMiss" ID="{92AA4486-ECBD-441B-938C-A5830C550D17}">
+									<ChildrenList>
+										<Action Name="" ID="{DE45981E-E4D9-4A9E-A325-B17ABDD3E683}" ShortID="484344728">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleReelInPlayer" ID="{32082890-23CF-427F-83F7-FC822800C0DF}">
+									<ChildrenList>
+										<Action Name="" ID="{D34B2201-97DD-4501-83C7-9822AE30440E}" ShortID="263199139">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleHookReelIn" ID="{2484B75F-BF8F-471C-9716-78D3C7397C62}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleStrikeTarget" ID="{5782B2CF-0AF8-4F69-B2D0-A3A3CB0D22EC}">
+									<ChildrenList>
+										<Action Name="" ID="{DFEC4D67-5A53-4300-B383-6767F90E3FCE}" ShortID="259917779">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleStrikeLocation" ID="{7EF47904-84AF-45C6-B450-ABECDF207F8C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleSnapBack" ID="{00A47A02-2626-4A98-B179-3DF6382E6875}">
+									<ChildrenList>
+										<Action Name="" ID="{E5632408-6648-412A-8540-BDA7E9577D94}" ShortID="982114211">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{09F836D1-B61D-4F60-84FD-E0A071564EC0}" ShortID="50199603">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleSnapBack" ID="{84E9A814-F65E-4ABC-9C90-0336D15D914D}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="GrappleStop" ID="{DBD7C7E2-F1E2-47EF-A153-884D4A2FCFEF}">
+									<ChildrenList>
+										<Action Name="" ID="{8E7B1637-2B39-480D-8AC4-8C72F6DC890D}" ShortID="146019191">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleHookReelIn" ID="{2484B75F-BF8F-471C-9716-78D3C7397C62}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{9C5AA39D-1EE6-40D1-9FFE-6BBE1B411CBF}" ShortID="169846344">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="GrappleMissReel" ID="{A5BF595B-2897-4842-B7C1-13840E889D54}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Sword" ID="{A4EFB160-34D8-434B-A05E-B280A1B4F857}" ShortID="720623214">
+							<ChildrenList>
+								<Event Name="SwordSwing" ID="{39D5BC54-B39B-40EC-B732-F5D21093F093}">
+									<ChildrenList>
+										<Action Name="" ID="{5FC43D9A-0FBA-4C97-9129-61D7137CE9F6}" ShortID="894626277">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SwordSlash" ID="{AC65C999-554B-4EE8-A333-31273A302808}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="SwordDash" ID="{74FB96D1-01AF-4121-AD3D-DC7C4D39965F}">
+									<ChildrenList>
+										<Action Name="" ID="{53A3CE8B-EFDA-4889-8CF9-BF1D85F836B6}" ShortID="958352043">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SwordDash" ID="{EBC7C39E-C9E5-4B95-B9F9-7E4349CAD638}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Blunderbuss" ID="{8D2C942F-3786-4CC5-AC15-7264B1E5BF4C}" ShortID="711933565">
+							<ChildrenList>
+								<Event Name="BlunderbussLight" ID="{8A3E531E-9D84-40EC-848E-7294B0C39B8F}">
+									<ChildrenList>
+										<Action Name="" ID="{B2E54AED-F2BA-4F4E-8DFE-B2F0F1A98C8A}" ShortID="1066127710">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussLight" ID="{47116E79-D8FD-4CBE-9634-8BBF3B0F16C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BlunderbussHeavy" ID="{B70C78DE-A883-4F80-B775-CEFE5700B762}">
+									<ChildrenList>
+										<Action Name="" ID="{602F15FB-F041-4E8C-8B73-E599EE168089}" ShortID="442750104">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussHeavy" ID="{956379FF-9D57-4824-8085-9FB780ED1E11}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BlunderbussReload" ID="{83FB556A-763D-4E9C-822B-47610D6C2241}">
+									<ChildrenList>
+										<Action Name="" ID="{87E392AF-1175-43D0-9ACD-AF709D13626B}" ShortID="1046945646">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BlunderbussReload" ID="{80CE0EA0-51AB-4006-BBB6-772FDBCB9A03}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
@@ -144,6 +258,46 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="PlayerVault" ID="{A981F8B3-936F-4C69-8561-BC8E36CB6D5D}">
+							<ChildrenList>
+								<Action Name="" ID="{419970CB-186F-462B-AF89-967BCC79855C}" ShortID="318818732">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerVaultDeeper" ID="{F3CC1D05-714B-43AA-8210-31E319C6D5E7}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerDamage" ID="{22185BE2-9F83-4131-AEFD-D28166116BD1}">
+							<ChildrenList>
+								<Action Name="" ID="{F6C3CBC4-77A3-4FEC-8DF3-20E73F54A5D9}" ShortID="987474392">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerDamage" ID="{4186738D-AD0B-4D0C-8D9C-444B7C3FB34C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerDeath" ID="{560EBDBD-52E8-4EC9-82B4-AB1D97D4FB92}">
+							<ChildrenList>
+								<Action Name="" ID="{81EB2A6A-D39E-4412-A832-54A3235A029C}" ShortID="211765899">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+								<Action Name="" ID="{397D6D34-2BFF-4ACF-BBFA-F0BCDCBF8F7D}" ShortID="281860066">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerDeath" ID="{7C32577C-9408-4C9D-A0ED-2BA464A218A6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{16397EDE-6014-43D5-A5A4-9556A5AA6E6C}" ShortID="756890054">
@@ -184,6 +338,227 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="WindStart" ID="{EE9A67D5-B120-4A7C-8C9E-84C00266B837}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="MemeEvents" ID="{29D172A6-0252-4F28-BE8B-4ECAD23BE8A7}" ShortID="421133730">
+					<ChildrenList>
+						<Event Name="Goku" ID="{2C2A3552-E5EA-496F-85E8-CFAFBC701111}">
+							<ChildrenList>
+								<Action Name="" ID="{F9B46F09-D181-434D-BF68-3A31633C0D92}" ShortID="956096847">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Goku" ID="{9255B32C-3024-4335-B408-CCCA73BDC647}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="IronMan" ID="{1430E637-58AC-452B-A667-79846CD302AF}">
+							<ChildrenList>
+								<Action Name="" ID="{89DC48D2-C8AE-4039-B1E3-C5607A1B94C2}" ShortID="744886727">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="IRON MAN - Opening_01" ID="{39FF8EB6-173A-4660-AB99-9F8D716B15BE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Jonesy" ID="{E65EAB5C-43B8-49F6-9D31-FBB6DB99BEF0}">
+							<ChildrenList>
+								<Action Name="" ID="{5294C16C-278B-4DFA-841E-444D2BA65173}" ShortID="933782617">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Fortnite Default Dance Greenscreen_01" ID="{C668F276-0239-4714-B102-907655E4B26B}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="FinalBattle" ID="{E738BBE4-091B-4EE7-86FA-03E498E4C656}">
+							<ChildrenList>
+								<Action Name="" ID="{D835A5B5-A52C-437B-B82A-53F29FC41487}" ShortID="618848803">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Avengers Suite (Theme)_01" ID="{2E8DFA50-3B9F-4583-AE15-D8E7EF7A1D93}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="VA" ID="{5AF250B0-095A-4570-861B-D8D074FC2FA5}" ShortID="646641120">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="6"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="StartMissionDialogue" ID="{7F385BCC-3E54-4AA7-8271-17030CDAC1BD}">
+							<ChildrenList>
+								<Action Name="" ID="{A4C662BD-4C51-4C98-B65B-C26A1C427875}" ShortID="143892525">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="StartMissionDialogue" ID="{19C701EC-6F70-4F55-BAB2-C5475E29F62A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="NearVaultDialogue" ID="{46FAAB44-0015-42BD-BF1B-8FD2E9A01D27}">
+							<ChildrenList>
+								<Action Name="" ID="{4338F7BA-8962-41AD-970A-375926D37AD6}" ShortID="147543622">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="OnceAllPiecesCollectedDialogue" ID="{08A34B90-DB61-4BD1-B360-41296580C959}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{6A304337-D784-4EE3-AE73-4DF0AE9680A6}" ShortID="515928292">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="NearVaultDialogue" ID="{6E843674-62C1-4E23-8F13-9E4C3709E5E1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="LeaveVaultDialogue" ID="{8C1B9EB7-BFF1-4848-8345-77DF0421B495}">
+							<ChildrenList>
+								<Action Name="" ID="{202DFF0C-737A-4E06-9D0F-9E0EEA5208C5}" ShortID="838402837">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombExplode" ID="{C35989FD-9E57-4AED-8D0A-3A1DA7046CAD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A644EE81-778E-4BD4-B87B-24E96FBAD088}" ShortID="1007000459">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LeaveVaultDialogue" ID="{48B2027D-EF51-4966-AAAA-F9BD98E55D33}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BombPlantDialogue" ID="{2262F973-D6C8-42DC-A9E8-FF6C4AE88189}">
+							<ChildrenList>
+								<Action Name="" ID="{73EF9F73-F0E4-43DF-8C1F-EFDBECFE10FA}" ShortID="792709783">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="NearVaultDialogue" ID="{6E843674-62C1-4E23-8F13-9E4C3709E5E1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{48B9DEAD-F5D4-43C2-8703-F043D4909FC1}" ShortID="263330915">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombPlant" ID="{8F9C246C-CFBE-48E8-8289-281E9D0D21C6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BombExplodedDialogue" ID="{9BA36833-F1FB-40BA-8255-37150F66A3E4}">
+							<ChildrenList>
+								<Action Name="" ID="{9FCE221C-F8CF-478E-9BBA-6E0D880E5A0C}" ShortID="144939682">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombPlant" ID="{8F9C246C-CFBE-48E8-8289-281E9D0D21C6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A1F9AA3E-5579-414F-AF12-14E26BBFAE8D}" ShortID="432055151">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="AfterBombExplode" ID="{C35989FD-9E57-4AED-8D0A-3A1DA7046CAD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ONePIeceCollectedDialogue" ID="{BE4D7794-FE62-41C2-9897-3FF1AFC95644}">
+							<ChildrenList>
+								<Action Name="" ID="{9EFE1283-D794-4F98-866F-7ACD7A59CFC0}" ShortID="877602171">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="StartMissionDialogue" ID="{19C701EC-6F70-4F55-BAB2-C5475E29F62A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{23275C4F-F88B-44E5-BF04-79F478A70D9E}" ShortID="455457798">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FirstPieceCollectedDialogue" ID="{7D57644C-C9BE-430A-9BA8-345FC3AABD39}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="AllPiecesCollectedDialogue" ID="{DE755A3F-BCD6-43B8-80E2-2A47E7922E7D}">
+							<ChildrenList>
+								<Action Name="" ID="{05609638-2296-429A-8363-CEEB60C24329}" ShortID="308076587">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="FirstPieceCollectedDialogue" ID="{7D57644C-C9BE-430A-9BA8-345FC3AABD39}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{B2C6A9C3-1259-41BD-A909-2B6FF8CD74BE}" ShortID="196080094">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="OnceAllPiecesCollectedDialogue" ID="{08A34B90-DB61-4BD1-B360-41296580C959}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="EscapeCannonDialogue" ID="{79D230BE-F7C4-4DAD-80E9-4FFCD80702F7}">
+							<ChildrenList>
+								<Action Name="" ID="{36BCDE72-4F73-4688-8582-EF395E95D48E}" ShortID="987037061">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LeaveVaultDialogue" ID="{48B2027D-EF51-4966-AAAA-F9BD98E55D33}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{13B3278F-79FA-47AC-9CA9-1E3045B6BBFB}" ShortID="623060964">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="EscapeShipDialogue" ID="{BA6EF528-CB73-4224-9227-A8E878273946}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

@@ -22,6 +22,9 @@ public:
 protected:
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;
 
+	/// Socket name for the pistol (we need this when the enemy character is ready, so it can shoot from the hand) 
+	UPROPERTY(EditDefaultsOnly, Category="Weapon")
+	FName SocketName;
 private:
 	/// Projectile class for the bullet of the pistol 
 	UPROPERTY(EditDefaultsOnly, Category="Weapon")

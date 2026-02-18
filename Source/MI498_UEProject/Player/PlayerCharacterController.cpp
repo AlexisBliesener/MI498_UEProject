@@ -5,6 +5,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/Interactables/InteractableComponent.h"
+#include "MI498_UEProject/Weapons/WeaponManager.h"
 
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
@@ -106,7 +107,11 @@ void APlayerCharacterController::HandleMove(const FInputActionValue& InputAction
 
 void APlayerCharacterController::HandleJump()
 {
+	PlayerCharacter->GetWeaponManager()->HandleJump();
+	
 	if (!bAcceptMovementInput) return;
+	if (PlayerCharacter && PlayerCharacter->GetCharacterMovement()->IsFalling()) return;
+	
 	OnJump();
 	PlayerCharacter->Jump();
 }

@@ -82,7 +82,7 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	}
 }
 
-void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage) const
+void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
 {
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
@@ -118,7 +118,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	/// Draw a debug line showing the trace in the world
 	DrawDebugBox(
 	GetWorld(),
-	 bHit ? hitResult.ImpactPoint : endLocation,
+	 bHit ? hitResult.Location : endLocation,
 	halfSize,
 	cameraRotation.Quaternion(),
 	FColor::Red,
@@ -136,7 +136,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 			hitResult.GetActor(),
 			hitDamage, 
 			Controller,
-			GetOwner(),
+			this,
 			nullptr
 		);
 	}

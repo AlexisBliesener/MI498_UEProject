@@ -60,14 +60,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
 	void OnSightStimulusForgotten(AActor* TargetActor);
 
-	/// Called when hearing stimulus is detected 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
-	void OnHearingStimulus(AActor* TargetActor, const FAIStimulus& Stimulus);
-
-	/// Called when hearing stimulus is forgotten 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
-	void OnHearingStimulusForgotten(AActor* TargetActor);
-
 	/// Called when damage stimulus is detected
 	UFUNCTION(BlueprintImplementableEvent, Category = "Perception")
 	void OnDamageStimulus(AActor* TargetActor, const FAIStimulus& Stimulus);
@@ -99,23 +91,6 @@ private:
 	 */
 	UFUNCTION()
 	void HandleSightStimulusForgotten(AActor* TargetActor);
-
-	/**
-	 * Handles hearing stimulus events to update the target and trigger state transitions.
-	 *
-	 * @param TargetActor The actor that caused the hearing stimulus.
-	 * @param Stimulus Information about the hearing stimulus.
-	 */
-	UFUNCTION()
-	void HandleHearingStimulus(AActor* TargetActor, const FAIStimulus& Stimulus);
-
-	/**
-	 * Handles the event when a hearing stimulus is no longer detected by the AI.
-	 *
-	 * @param TargetActor The actor whose hearing stimulus was forgotten.
-	 */
-	UFUNCTION()
-	void HandleHearingStimulusForgotten(AActor* TargetActor);
 
 	/**
 	 * Handles the detection of a damage stimulus and triggers state changes if required.

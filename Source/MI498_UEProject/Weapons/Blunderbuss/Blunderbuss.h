@@ -61,7 +61,7 @@ private:
 	/// @param Controller - Controller that initiated the shot
 	/// @param Target - Target reference
 	/// @param Damage - Base damage before falloff calculation
-	void Fire(AController* Controller, AActor* Target, int Damage) const;
+	void Fire(AController* Controller, AActor* Target, int Damage);
 	
 	GENERATED_BODY()
 };

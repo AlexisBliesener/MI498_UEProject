@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "EnhancedInputComponent.h"
 #include "PlayerCharacterController.generated.h"
 
 class UInputMappingContext;
@@ -20,6 +21,9 @@ DECLARE_LOG_CATEGORY_EXTERN(PlayerLog, Log, All);
 UCLASS(Abstract)
 class MI498_UEPROJECT_API APlayerCharacterController : public APlayerController
 {
+	
+	GENERATED_BODY()
+	
 public:
 	/// Input action for character movement (WASD / left stick)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Player Input|Character Movement")
@@ -109,5 +113,4 @@ private:
 	/// If movement/look is being slowed, it will be slowed by this percent
 	float MovementSlowPercent = 0.5;
 	
-	GENERATED_BODY()
 };

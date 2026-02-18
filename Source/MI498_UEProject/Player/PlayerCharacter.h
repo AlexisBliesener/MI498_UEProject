@@ -1,13 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
 
 class UWeaponManager;
 class UCameraComponent;
+class UScoringManager;
 
 /// Character class representing the player-controlled pawn.
 ///
@@ -38,6 +39,14 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerDied();
 	
+	/// A Blueprintable function that will be called when the player takes damage
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPlayerTakeDamage();
+	
+	/// A Blueprintable function that will be called when the player ledge grabs
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPlayerGrabLedge();
+	
 	/// Grants temporary invincibility for the specified duration
 	/// @param Seconds - How long invincibility should last
 	void AddInvincibility(float Seconds);
@@ -51,7 +60,11 @@ public:
 		OverrideCameraFOV = OverrideValue;
 	}
 	
+	/// Returns the weapons manager
+	UWeaponManager* GetWeaponManager() {return WeaponManager;}
+
 protected:
+	virtual void BeginPlay() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
 	
@@ -130,14 +143,15 @@ private:
 	/// Restores walking movement + player input after climb
 	void ReenableMovement();
 	
+	/// Scoring system instance
+	UPROPERTY()
+	UScoringManager * ScoringManager = nullptr;
+	
 	/// True while player is in ledge grab state
 	bool bIsGrabbing = false;
 	
 	/// Timer handle used for ledge grab sequence steps
 	FTimerHandle TimerHandle;
-	
-	/// Whether the player is currently invincible
-	bool bIsInvincible = false;
 	
 	/// World time when invincibility expires
 	float InvincibilityTimer = 0.0f;
@@ -147,6 +161,10 @@ private:
 	
 	/// What value the camera FOV is being overriden to if enabled
 	int OverrideCameraFOV = 90;
+	
+	/// Reference to the players animation controller
+	UPROPERTY()
+	UPlayerAnimation* PlayerAnimation;
 	
 	GENERATED_BODY()
 };

@@ -26,6 +26,13 @@ struct FPreformAttackTaskInstanceData
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<AEnemyAIController> AIController;
+	
+	
+	/**
+	 * Is this a secondary attack?
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config", meta = (Context, AllowDerivedTypes="true"))
+	bool bIsSecondaryAttack = false;
 
 	/**
 	 * Pointer to the target actor used in the task.

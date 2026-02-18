@@ -2,13 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "WeaponInterface.h"
 #include "WeaponManager.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
 class APlayerCharacter;
 struct FInputActionValue;
-class IWeaponInterface;
+//class IWeaponInterface;
 
 /// Declare a logging category specifically for the weapon manager
 DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
@@ -69,6 +70,13 @@ public:
 	/// Delegate that Blueprints can bind to, called when the weapon is switched
 	UPROPERTY(BlueprintAssignable)
 	FOnWeaponSwitch OnWeaponSwitch;
+	
+	/// Returns the current weapon the player is holding
+	UFUNCTION(BlueprintCallable)
+	TScriptInterface<IWeaponInterface> GetCurrentWeapon() const { return CurrentWeapon; }
+	
+	/// Handles calling the jump action function of each weapon
+	void HandleJump();
 
 protected:
 	/// Called when the component is initialized at game start

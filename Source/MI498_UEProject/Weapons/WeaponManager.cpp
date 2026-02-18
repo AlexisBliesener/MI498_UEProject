@@ -151,12 +151,13 @@ void UWeaponManager::HandleSelectWeaponOne()
 		return;
 	}
 	
-	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 0)
 	{
 		CurrentWeaponIndex = 0;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
+	
+	OnWeaponSwitch.Broadcast();
 }
 
 void UWeaponManager::HandleSelectWeaponTwo()
@@ -166,12 +167,13 @@ void UWeaponManager::HandleSelectWeaponTwo()
 		return;
 	}
 	
-	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 1)
 	{
 		CurrentWeaponIndex = 1;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
+	
+	OnWeaponSwitch.Broadcast();
 }
 
 void UWeaponManager::HandleSelectWeaponThree()
@@ -181,17 +183,17 @@ void UWeaponManager::HandleSelectWeaponThree()
 		return;
 	}
 	
-	OnWeaponSwitch.Broadcast();
 	if (WeaponOptions.Num() > 2)
 	{
 		CurrentWeaponIndex = 2;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
+	
+	OnWeaponSwitch.Broadcast();
 }
 
 void UWeaponManager::HandleSelectWeaponPrev()
 {
-	OnWeaponSwitch.Broadcast();
 	CurrentWeaponIndex--;
 	if (CurrentWeaponIndex < 0)
 	{
@@ -199,11 +201,12 @@ void UWeaponManager::HandleSelectWeaponPrev()
 	}
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	
+	OnWeaponSwitch.Broadcast();
 }
 
 void UWeaponManager::HandleSelectWeaponNext()
 {
-	OnWeaponSwitch.Broadcast();
 	CurrentWeaponIndex++;
 	if (CurrentWeaponIndex >= WeaponOptions.Num())
 	{
@@ -211,6 +214,8 @@ void UWeaponManager::HandleSelectWeaponNext()
 	}
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	
+	OnWeaponSwitch.Broadcast();
 }
 
 void UWeaponManager::HandlePrimaryAttack()
@@ -253,6 +258,11 @@ void UWeaponManager::HandleSecondaryAttackHoldEnd()
 {
 	/// Call the weapon's SecondaryAttackHoldEnd function, passing the player controller
 	CurrentWeapon->SecondaryAttackHoldEnd(PlayerCharacter->GetController());
+}
+
+void UWeaponManager::HandleJump()
+{
+	CurrentWeapon->JumpAction();
 }
 
 void UWeaponManager::HandleReload()

@@ -77,6 +77,9 @@ protected:
 	/// @param Controller - Controller responsible for performing the attack
 	/// @param Target - Optional intended target actor
 	virtual void SecondaryAttackHoldEnd(AController* Controller, AActor* Target = nullptr) override;
+	
+	/// Implementation of the JumpAction function from IWeapon Interface
+	virtual void JumpAction() override;	
 
 	/// A Blueprintable function that will be called when primary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
@@ -85,6 +88,10 @@ protected:
 	/// A Blueprintable function that will be called when secondary attack is fired
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSecondaryAttack();
+	
+	/// A Blueprintable function that will be called when reload is called
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnReload();
 	
 	/// Starts reload process — sets reload state and timer
 	virtual void Reload() override;

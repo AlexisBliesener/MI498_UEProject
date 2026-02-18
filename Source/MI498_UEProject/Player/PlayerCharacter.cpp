@@ -1,12 +1,11 @@
 #include "PlayerCharacter.h"
 
 #include "PlayerCharacterController.h"
-#include "VectorTypes.h"
 #include "../Weapons/WeaponManager.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -33,7 +32,7 @@ APlayerCharacter::APlayerCharacter()
 
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
-	if (bIsInvincible)
+	if (InvincibilityTimer >= GetWorld()->GetTimeSeconds())
 	{
 		return 0;
 	}
@@ -43,6 +42,9 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	{
 		OnPlayerDied();
 	}
+	
+	OnPlayerTakeDamage();
+	
 	return DamageAmount;
 }
 
@@ -51,12 +53,24 @@ void APlayerCharacter::AddInvincibility(const float Seconds)
 	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
 }
 
+void APlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	/// Set animation controller
+	PlayerAnimation = Cast<UPlayerAnimation>(GetMesh()->GetAnimInstance());
+
+	/// Set Scoring Manager
+	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
+}
+
 void APlayerCharacter::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	bIsInvincible = InvincibilityTimer >= GetWorld()->GetTimeSeconds();
-	
+	/// Update speed on animation controller
+	PlayerAnimation->Speed = GetVelocity().Size();
+
 	// Velocity cap
 	const FVector velocity = GetVelocity();
 	if (velocity.Size() > MaxVelocity)
@@ -78,6 +92,16 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		float NewFOV = FMath::Lerp(MinFOV, MaxFOV, CurveAlpha);
 
 		Camera->SetFieldOfView(FMath::Lerp(Camera->FieldOfView, NewFOV, LerpToNewFOVSpeed));
+	}
+	
+	/// Set if player is in air for score
+	if (GetCharacterMovement()->IsFalling())
+	{
+		ScoringManager->SetInAir(true);
+	}
+	else
+	{
+		ScoringManager->SetInAir(false);
 	}
 	
 	// Decide if the player can grab ledge
@@ -105,6 +129,8 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
+	OnPlayerGrabLedge();
+	
 	// Get custom player controller and disable movement input
 	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 	playerController->SetAcceptMovementInput(false);
