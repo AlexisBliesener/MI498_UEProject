@@ -1,5 +1,6 @@
 ﻿#include "HarpoonGun.h"
 
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 #include "MI498_UEProject/Player/PlayerCharacterController.h"
@@ -81,6 +82,24 @@ void AHarpoonGun::SecondaryAttackHoldEnd(AController* Controller, AActor* Target
 	{
 		playerController->SetMovementSlow(false); 
 	}
+}
+
+void AHarpoonGun::JumpAction()
+{
+	Super::JumpAction();
+	
+	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer())
+	{
+		return;
+	}
+	
+	if (ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner()))
+	{
+		FVector LaunchVelocity = FVector(0.f, 0.f, HarpoonReleaseJumpForce); 
+		CharacterOwner->LaunchCharacter(LaunchVelocity, false, true);
+	}
+	
+	Reload();
 }
 
 void AHarpoonGun::DestroyCurrentHarpoon()

@@ -59,6 +59,9 @@ public:
 		bOverrideCameraFOV = bOverride;
 		OverrideCameraFOV = OverrideValue;
 	}
+	
+	/// Returns the weapons manager
+	UWeaponManager* GetWeaponManager() {return WeaponManager;}
 
 protected:
 	virtual void BeginPlay() override;
