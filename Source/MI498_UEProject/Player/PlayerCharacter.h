@@ -153,9 +153,6 @@ private:
 	/// Timer handle used for ledge grab sequence steps
 	FTimerHandle TimerHandle;
 	
-	/// Whether the player is currently invincible
-	bool bIsInvincible = false;
-	
 	/// World time when invincibility expires
 	float InvincibilityTimer = 0.0f;
 	

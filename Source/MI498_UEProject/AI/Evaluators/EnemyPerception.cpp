@@ -19,8 +19,6 @@ void UEnemyPerception::TreeStart(FStateTreeExecutionContext& Context)
 
 	AIController->OnSightStimulusDetected.AddDynamic(this, &UEnemyPerception::HandleSightStimulus);
 	AIController->OnSightStimulusForgotten.AddDynamic(this, &UEnemyPerception::HandleSightStimulusForgotten);
-	AIController->OnHearingStimulusDetected.AddDynamic(this, &UEnemyPerception::HandleHearingStimulus);
-	AIController->OnHearingStimulusForgotten.AddDynamic(this, &UEnemyPerception::HandleHearingStimulusForgotten);
 	AIController->OnDamageStimulusDetected.AddDynamic(this, &UEnemyPerception::HandleDamageStimulus);
 
 	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Unknown; 
@@ -55,8 +53,6 @@ void UEnemyPerception::TreeStop(FStateTreeExecutionContext& Context)
 	{
 		AIController->OnSightStimulusDetected.RemoveDynamic(this, &UEnemyPerception::HandleSightStimulus);
 		AIController->OnSightStimulusForgotten.RemoveDynamic(this, &UEnemyPerception::HandleSightStimulusForgotten);
-		AIController->OnHearingStimulusDetected.RemoveDynamic(this, &UEnemyPerception::HandleHearingStimulus);
-		AIController->OnHearingStimulusForgotten.RemoveDynamic(this, &UEnemyPerception::HandleHearingStimulusForgotten);
 		AIController->OnDamageStimulusDetected.RemoveDynamic(this, &UEnemyPerception::HandleDamageStimulus);
 		SendEventToStateTree(StateTreeEnemyEvents::Idle);
 		AIController->CurrentStateTreeState = StateTreeEnemyEvents::Idle;
@@ -98,36 +94,6 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	
 	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Patrol;
 	OnSightStimulusForgotten(TargetActor);
-}
-
-void UEnemyPerception::HandleHearingStimulus(AActor* TargetActor, const FAIStimulus& Stimulus)
-{
-	if (APlayerCharacter* player = Cast<APlayerCharacter>(TargetActor))
-	{
-		if (AIController->CurrentStateTreeState != StateTreeEnemyEvents::Attack)
-		{
-			TargetPlayer = player;
-			if (IsValid(AIController))
-			{
-				AIController->AcquiredTarget = TargetActor; 
-			}
-			OnHearingStimulus(TargetActor, Stimulus);
-			SendEventToStateTree(StateTreeEnemyEvents::Attack);
-			AIController->CurrentStateTreeState = StateTreeEnemyEvents::Attack;
-		}
-	}
-}
-
-void UEnemyPerception::HandleHearingStimulusForgotten(AActor* TargetActor)
-{
-	TargetPlayer = nullptr;
-	if (IsValid(AIController))
-	{
-		AIController->AcquiredTarget = nullptr; 
-	}
-	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Patrol; 
-	SendEventToStateTree(StateTreeEnemyEvents::Patrol);
-	OnHearingStimulusForgotten(TargetActor);
 }
 
 void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimulus& Stimulus)

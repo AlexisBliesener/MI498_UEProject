@@ -118,7 +118,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	/// Draw a debug line showing the trace in the world
 	DrawDebugBox(
 	GetWorld(),
-	 bHit ? hitResult.ImpactPoint : endLocation,
+	 bHit ? hitResult.Location : endLocation,
 	halfSize,
 	cameraRotation.Quaternion(),
 	FColor::Red,

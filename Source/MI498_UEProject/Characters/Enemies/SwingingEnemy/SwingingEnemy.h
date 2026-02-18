@@ -63,9 +63,6 @@ public:
 	/// This is used in run time to determine if the enemy swinging right now... 
 	UPROPERTY()
 	bool bIsSwinging = false;
-	/// THIS IS A TEMP DEBUG FOR DEV
-	UPROPERTY(EditAnywhere, Category=Default)
-	bool bDebug = false;
 
 protected:
 	// Called when the game starts or when spawned
