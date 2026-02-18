@@ -114,7 +114,7 @@ protected:
 	float ReloadTimer = 0;
 
 	/// Update if Ammo Changed for HUD
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAmmoChangedSignature, int, CurrentAmmo, int, MaxAmmo);
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FAmmoChangedSignature, int, CurrentAmmo, int, MaxAmmo, bool, bIsSecondary);
 	UPROPERTY(BlueprintAssignable, Category="Weapon")
 	FAmmoChangedSignature OnAmmoChanged;
 

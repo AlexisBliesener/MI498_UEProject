@@ -41,7 +41,7 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 	}
 	CurrentDashCharges--;
 	// Update HUD
-	OnAmmoChanged.Broadcast(CurrentDashCharges, 3);
+	OnAmmoChanged.Broadcast(CurrentDashCharges, DashCharges, true);
 	
 	// Wait for cooldown to use again
 	SetCanUseSecondary(false);
@@ -160,5 +160,5 @@ void ASword::ReloadDashes()
 	bCanUseSecondary = true;
 	CurrentDashCharges = DashCharges;
 	// Update HUD
-	OnAmmoChanged.Broadcast(CurrentDashCharges, 3);
+	OnAmmoChanged.Broadcast(CurrentDashCharges,DashCharges,true);
 }
