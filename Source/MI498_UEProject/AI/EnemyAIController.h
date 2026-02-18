@@ -6,7 +6,6 @@
 #include "AIController.h"
 #include "MI498_UEProject/AI/Components/StateTreeEnemyComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
-#include "Perception/AISenseConfig_Hearing.h"
 #include "Perception/AISenseConfig_Damage.h"
 #include "Perception/AISenseConfig_Prediction.h"
 #include "EnemyAIController.generated.h"
@@ -40,12 +39,6 @@ public:
 	/// Triggered when the AI loses sight of the target
 	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Sight Stimulus Forgotten"))
 	FSStimulusForgottenSignature OnSightStimulusForgotten;
-	/// Triggered when the AI detects a hearing stimulus.
-	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Detected"))
-	FSStimulusEventSignature OnHearingStimulusDetected;
-	/// Triggered when the AI loses hearing of the target
-	UPROPERTY(BlueprintAssignable, Category = "Player|AI|Events", meta = (DisplayName = "On Hearing Stimulus Forgotten"))
-	FSStimulusForgottenSignature OnHearingStimulusForgotten;
 	/// The current state of the AI's behavior
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	StateTreeEnemyEvents CurrentStateTreeState;
@@ -70,9 +63,6 @@ public:
 	/// Configuration for the AI's sight sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Sight> SightConfig;
-	/// Configuration for the AI's Hearing sense. 
-	UPROPERTY()
-	TObjectPtr<UAISenseConfig_Hearing> HearingConfig;
 	/// Configuration for the AI's Damage sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Damage> DamageConfig;

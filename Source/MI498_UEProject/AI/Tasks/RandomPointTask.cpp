@@ -34,7 +34,7 @@ EStateTreeRunStatus FRandomPointTask::EnterState(FStateTreeExecutionContext& Con
 		return EStateTreeRunStatus::Failed;
 	}
 
-	FVector Origin = Data.Actor->GetActorLocation();
+	FVector Origin = Data.Actor->EnemyInitLocation;
 	FNavLocation NavLocation;
 
 	const bool bFound = NavSys->GetRandomReachablePointInRadius(Origin, Data.SearchRadius, NavLocation);

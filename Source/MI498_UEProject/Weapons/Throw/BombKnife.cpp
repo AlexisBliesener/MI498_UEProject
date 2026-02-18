@@ -24,8 +24,18 @@ void ABombKnife::PrimaryAttack(AController* Controller, AActor* Target)
 	
 	ASwingingEnemy* character = Cast<ASwingingEnemy>(Controller->GetPawn());
 	if (!character || !Target) return;
-
-	FVector startLocation = character->GetMesh()->GetSocketLocation("middle_01_rSocket") + FVector(0.f, 0.f, character->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + 120.f) + (character->GetActorForwardVector() *60.f);
+	USkeletalMeshComponent* enemyMesh = character->GetMesh();
+	FVector startLocation;
+	if (enemyMesh && enemyMesh->DoesSocketExist(SocketName))
+	{
+		startLocation = enemyMesh->GetSocketLocation(SocketName) + FVector(0.f, 0.f, character->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + 120.f) + (character->GetActorForwardVector() *60.f);
+	}
+	else
+	{
+		// fallback when there is no socket exists 
+		startLocation = character->GetActorLocation()  + FVector(0.f, 0.f, character->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() + 120.f) + (character->GetActorForwardVector() *60.f);
+	}
+	
 	FVector endLocation = Target->GetActorLocation();
 	FVector launchVelocity;
 	

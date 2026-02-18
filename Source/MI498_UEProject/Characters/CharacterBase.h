@@ -17,18 +17,21 @@ public:
 	/// Sets default values for this character's properties
 	ACharacterBase();
 	/// Max health
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Health")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default|Health")
 	float MaxHealth = 100.f;
 	/// Current Health 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Health")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Default|Health")
 	float CurrentHealth;
 	/// Damage event (event dispatcher)
 	UPROPERTY(BlueprintAssignable, Category="Health", meta = (ToolTip="Fires when the character is damaged"))
 	FOnDamage OnDamage;
 	
-	
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
 protected:
 	/// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	/// Whether the player is currently invincible
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Default|Health")
+	bool bIsInvincible = false;
 };

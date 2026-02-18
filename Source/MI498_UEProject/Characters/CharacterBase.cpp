@@ -14,7 +14,7 @@ ACharacterBase::ACharacterBase()
 float ACharacterBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
 	class AController* EventInstigator, AActor* DamageCauser)
 {
-	if (DamageAmount <= 0.f || CurrentHealth <= 0.f)
+	if (DamageAmount <= 0.f || CurrentHealth <= 0.f || bIsInvincible)
 		return 0.f;
 
 	CurrentHealth = FMath::Clamp(CurrentHealth - DamageAmount, 0.f, MaxHealth);
