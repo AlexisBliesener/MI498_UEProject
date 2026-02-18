@@ -42,6 +42,9 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	{
 		OnPlayerDied();
 	}
+	
+	OnPlayerTakeDamage();
+	
 	return DamageAmount;
 }
 
@@ -128,6 +131,8 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
+	OnPlayerGrabLedge();
+	
 	// Get custom player controller and disable movement input
 	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 	playerController->SetAcceptMovementInput(false);

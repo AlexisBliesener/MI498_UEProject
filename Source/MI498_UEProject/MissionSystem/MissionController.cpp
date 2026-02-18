@@ -1,5 +1,6 @@
 ﻿#include "MissionController.h"
 #include "BombPiece.h"
+#include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
@@ -28,8 +29,9 @@ void AMissionController::BeginPlay()
 		MissionTimerHandle,
 		delegate,
 		StageOneTimeLimit,
-		false
-		);
+		false);
+	
+	OnMissionStarted();
 	
 	/// Bind to all bomb piece collected events
 	for (ABombPiece* Piece : BombPieces)
@@ -42,6 +44,17 @@ void AMissionController::BeginPlay()
 			);
 		}
 	}
+	
+	/// Bind to exit cannon component events
+	UExitCannonComponent* CannonComp = ExitCannon->FindComponentByClass<UExitCannonComponent>();
+	
+	CannonComp->OnNearExitCannon.AddDynamic(
+		this,
+		&AMissionController::HandleOnNearExitCannon);
+	
+	CannonComp->OnShotFromCannon.AddDynamic(
+		this,
+		&AMissionController::HandleOnNearExitCannon);
 	
 	/// Bind to vault door interaction event
 	VaultDoor->OnVaultDoorInteract.AddDynamic(
@@ -75,22 +88,54 @@ void AMissionController::Tick(float DeltaSeconds)
 
 void AMissionController::HandleBombPieceCollected()
 {
+	/// Award score for collecting bomb piece
 	ScoringManager->AddBombPieceScore();
 	BombPiecesCollected++;
+	
+	/// Trigger contextual VA based on progress
+	if (BombPiecesCollected == 1)
+	{
+		OnFirstBombPieceCollected();
+	}
+	else if (BombPiecesCollected == 2)
+	{
+		OnSecondBombPieceCollected();
+	}
+	else
+	{
+		OnThirdBombPieceCollected();
+	}
 }
 
 void AMissionController::HandleVaultDoorInteract()
 {
+	/// Only allow bomb planting during Stage Two
 	if (CurrentState == EMissionState::StageTwo)
 	{
-		ScoringManager->AddOpenVaultScore();
-		StageTwoFinish(true);
-		VaultDoor->Destroy();
+		OnBombPlanted();
+		
+		/// Delay vault explosion
+		GetWorldTimerManager().SetTimer(
+			MissionTimerHandle,
+			this,
+			&AMissionController::ExplodeVaultDoor,
+			7,
+			false);
 	}
+}
+
+void AMissionController::ExplodeVaultDoor()
+{
+	/// Trigger explosion effects and scoring
+	OnBombExplode();
+	ScoringManager->AddOpenVaultScore();
+	StageTwoFinish(true);
+	VaultDoor->Destroy();
 }
 
 void AMissionController::HandleOnEnterExitPlatform()
 {
+	/// Level completion condition (Stage Three)
 	if (CurrentState == EMissionState::StageThree)
 	{
 		ScoringManager->AddFinishLevelScore();
@@ -102,6 +147,12 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 {
 	if (Status)
 	{
+		if (!bNearVaultVaLinePlayed)
+		{
+			bNearVaultVaLinePlayed = true;
+			OnNearVault();
+		}
+		
 		/// Start repeating timer while inside vault
 		GetWorldTimerManager().SetTimer(
 			InVaultTimerHandle,
@@ -114,6 +165,29 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 	{
 		/// Stop vault timer when player exits
 		GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+		
+		if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
+		{
+			bOnLeaveVaultVaLinePlayed = true;
+			OnLeaveVault();
+		}
+	}
+}
+
+void AMissionController::HandleOnNearExitCannon()
+{
+	if (!bOnNearExitCannonVaLinePlayed)
+	{
+		bOnNearExitCannonVaLinePlayed = true;
+		OnNearExitCannon();
+	}
+}
+
+void AMissionController::HandleOnShotFromExitCannon()
+{
+	if (CurrentState == EMissionState::StageThree)
+	{
+		OnShotFromExitCannon();
 	}
 }
 

@@ -9,6 +9,58 @@
 							<ObjectRef Name="System" ID="{0AC8750D-F17C-4C30-B38C-733E39E09BE8}" WorkUnitID="{9A045F2D-4144-4A96-9C3C-71487FFBB5F1}"/>
 						</Reference>
 					</ReferenceList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<RTPC Name="" ID="{B82335DD-7025-4C68-BFA8-10365FDB4B10}" ShortID="608352387">
+								<PropertyList>
+									<Property Name="PropertyName" Type="string" Value="Lowpass"/>
+								</PropertyList>
+								<ReferenceList>
+									<Reference Name="ControlInput">
+										<ObjectRef Name="HPValue" ID="{EC028FB9-F690-40EB-9590-53FA988AD2D3}" WorkUnitID="{77BEE622-1575-46BF-9780-FD4792159506}"/>
+									</Reference>
+									<Reference Name="Curve">
+										<Custom>
+											<Curve Name="" ID="{367A8D55-BDF3-4E60-9EE8-35E9B8A88E05}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>75</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>19.86644</XPos>
+														<YPos>75</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>20.36728</XPos>
+														<YPos>0</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</Custom>
+									</Reference>
+								</ReferenceList>
+							</RTPC>
+						</ObjectList>
+					</ObjectLists>
+				</Bus>
+				<Bus Name="PlayerDeathBus" ID="{977C7EA2-D77B-4510-B8E3-823E4464FF9B}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{0AC8750D-F17C-4C30-B38C-733E39E09BE8}" WorkUnitID="{9A045F2D-4144-4A96-9C3C-71487FFBB5F1}"/>
+						</Reference>
+					</ReferenceList>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>

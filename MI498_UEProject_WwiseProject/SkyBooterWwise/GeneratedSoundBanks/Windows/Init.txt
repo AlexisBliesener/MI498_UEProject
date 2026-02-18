@@ -10,8 +10,12 @@ State	ID	Name	State Group			Notes
 	979470758	Yes	IsMoving			
 	1668749452	No	IsMoving			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1440535996	HPValue			\Default Work Unit\HPValue	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
+	4112775838	PlayerDeathBus			\Default Work Unit\PlayerDeathBus	
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			

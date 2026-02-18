@@ -3,6 +3,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class UExitCannonComponent;
 class UScoringManager;
 class AEnemyBase;
 class AExitPlatform;
@@ -53,6 +54,50 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActor*> EnemySpawnPoints;
 	
+	/// Actor containing the exit cannon component
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> ExitCannon;
+	
+	/// A Blueprintable function that will be called when the mission starts
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnMissionStarted();
+	
+	/// Fired when player approaches the vault
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnNearVault();
+	
+	/// Fired when player leaves the vault
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLeaveVault();
+	
+	/// Fired when the vault bomb explodes
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnBombExplode();
+	
+	/// Fired when the bomb is planted
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnBombPlanted();
+
+	/// Fired when first bomb piece is collected
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnFirstBombPieceCollected();
+
+	/// Fired when second bomb piece is collected
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSecondBombPieceCollected();
+
+	/// Fired when third bomb piece is collected
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnThirdBombPieceCollected();
+
+	/// Fired when player approaches exit cannon
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnNearExitCannon();
+
+	/// Fired when player is launched from exit cannon
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnShotFromExitCannon();
+	
 	/// How much time the player will have to complete stage one, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StageOneTimeLimit = 240;
@@ -101,6 +146,17 @@ private:
 	UFUNCTION()
 	void HandleInVaultStatusChange(bool Status);
 	
+	/// Handles player entering exit cannon trigger
+	UFUNCTION()
+	void HandleOnNearExitCannon();
+	
+	/// Handles player being launched from exit cannon
+	UFUNCTION()
+	void HandleOnShotFromExitCannon();
+	
+	/// Called to explode the vault door
+	void ExplodeVaultDoor();
+	
 	/// Called once per second while player remains inside the vault
 	void SecondInVault();
 
@@ -125,6 +181,9 @@ private:
 	/// Timer handle for tracking time spent inside the vault
 	FTimerHandle InVaultTimerHandle;
 	
+	/// Timer handle for when the bomb is going to explode
+	FTimerHandle BombExplosionTimerHandle;
+	
 	/// Seconds the player has remained inside the vault
 	int SecondsInVault = 0;
 	
@@ -136,6 +195,15 @@ private:
 	
 	/// Current mission stage state
 	EMissionState CurrentState = EMissionState::StageOne;
+	
+	/// If the near vault va line has played
+	bool bNearVaultVaLinePlayed = false;
+	
+	/// If the on leave vault va line has played
+	bool bOnLeaveVaultVaLinePlayed = false;
+	
+	/// If the near exit cannon VA line has played
+	bool bOnNearExitCannonVaLinePlayed = false;
 	
 	/// Scoring system instance
 	UPROPERTY()
