@@ -17,14 +17,15 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShotFromCannon);
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class MI498_UEPROJECT_API UExitCannonComponent : public UActorComponent
 {
+	GENERATED_BODY()
 
 public:
-	UExitCannonComponent();
-	
 	/// Event broadcast when the player is near the exit cannon
+	UPROPERTY()
 	FOnNearExitCannon OnNearExitCannon;
 	
 	/// Multicast event broadcast when the player is shot from the cannon
+	UPROPERTY()
 	FOnShotFromCannon OnShotFromCannon;
 	
 	/// Called when the player is near the exit cannon
@@ -37,11 +38,10 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
-	/// Box collision component used as the near object trigger volume
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UBoxComponent> NearObjectTrigger;
 
 	/// Handler for trigger begin-overlap events
 	UFUNCTION()
@@ -53,6 +53,4 @@ private:
 		bool bFromSweep,
 		const FHitResult& SweepResult
 	);
-	
-	GENERATED_BODY()
 };
