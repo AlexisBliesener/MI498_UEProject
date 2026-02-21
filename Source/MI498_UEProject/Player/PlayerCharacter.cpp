@@ -134,7 +134,6 @@ void APlayerCharacter::Jump()
 	Super::Jump();
 	
 	PlayerAnimation->SetJumped(true);
-	
 }
 
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)

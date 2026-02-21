@@ -120,9 +120,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TScriptInterface<IWeaponInterface> CurrentWeapon;
 	
+	/// Reference to the player's animation instance.
 	UPROPERTY()
 	TObjectPtr<UPlayerAnimation> PlayerAnimation;
 	
+	/// Updates animation state based on the current weapon.
 	void UpdateWeaponAnimation();
 	
 	/// The index in the weapon options array of the currently selected weapon

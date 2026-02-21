@@ -99,9 +99,8 @@ void ASword::Tick(float DeltaSeconds)
 
 void ASword::SwingSword(AController* Controller, AActor* Target)
 {
-	
+	/// Set combo reset timer
 	GetWorld()->GetTimerManager().ClearTimer(ComboResetTimer);
-	
 	GetWorld()->GetTimerManager().SetTimer(
 	ComboResetTimer,
 	this,
@@ -171,6 +170,7 @@ void ASword::ReloadDashes()
 	bReloadingSecondary = false;
 	bCanUseSecondary = true;
 	CurrentDashCharges = DashCharges;
+	
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentDashCharges,DashCharges,true);
 }
