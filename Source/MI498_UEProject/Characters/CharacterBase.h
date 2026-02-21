@@ -34,4 +34,8 @@ protected:
 	/// Whether the player is currently invincible
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Default|Health")
 	bool bIsInvincible = false;
+
+	// Give health to the character
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void HealCharacter(float HealAmount);
 };

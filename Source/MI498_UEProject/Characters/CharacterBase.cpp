@@ -31,3 +31,11 @@ void ACharacterBase::BeginPlay()
 	CurrentHealth = MaxHealth;
 }
 
+void ACharacterBase::HealCharacter(float HealAmount)
+{
+	if (HealAmount <= 0.f || CurrentHealth <= 0.f || CurrentHealth >= MaxHealth)
+		return;
+
+	CurrentHealth = FMath::Clamp(CurrentHealth + HealAmount, 0.f, MaxHealth);
+}
+
