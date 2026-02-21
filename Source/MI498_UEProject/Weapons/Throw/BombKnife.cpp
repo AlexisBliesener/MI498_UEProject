@@ -67,6 +67,7 @@ void ABombKnife::PrimaryAttack(AController* Controller, AActor* Target)
 	if (bomb)
 	{
 		bomb->Damage = Damage; // Set weapon damage to the projectile 
+		bomb->ExplosionRadius = ExplosionRadius;
 		bomb->Collision->IgnoreActorWhenMoving(character, true);
 		bomb->Movement->Velocity = launchVelocity;
 		bomb->Movement->Activate(); // go fly 

@@ -7,7 +7,7 @@
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/SwingingEnemy/SwingSpline.h"
 #include "MI498_UEProject/AI/SwingingEnemy/SwingSplineManager.h"
-
+#include "MI498_UEProject/Weapons/Throw/BombKnife.h"
 
 
 // Sets default values
@@ -30,6 +30,15 @@ void ASwingingEnemy::BeginPlay()
 	{
 		Manager = *It;
 		break;
+	}
+	
+	if (ABombKnife* weapon = Cast<ABombKnife>(CurrentWeapon))
+	{
+		weapon->Damage = DamagePrimaryWeapon;
+		weapon->SecondAttackDamage = DamageMeleeWeapon;
+		weapon->ExplosionRadius = ExplosionRadius;
+		weapon->LaunchSpeed = LaunchSpeed;
+		weapon->SecondAttackRadius = SecondAttackRadius;
 	}
 }
 

@@ -14,6 +14,7 @@ class MI498_UEPROJECT_API ABombProjectile : public AActor
 	GENERATED_BODY()
 public:
 	ABombProjectile();
+	UPROPERTY(NotBlueprintable)
 	/// Damage amount for the bomb, this is going to be set by the weapon!
 	float Damage = 8.f;
 	/// Collision component for the projectile 
@@ -22,8 +23,9 @@ public:
 	/// Movement component for the projectile 
 	UPROPERTY(VisibleAnywhere)
 	UProjectileMovementComponent* Movement;
-	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
-	UPROPERTY(EditDefaultsOnly)
+	/// The explosion radius of the bomb, any object/characters on this radius will get damage!
+	/// going to be set by the weapon
+	UPROPERTY(NotBlueprintable)
 	float ExplosionRadius = 300.f;
 	virtual float TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator,
 		AActor* DamageCauser) override;
