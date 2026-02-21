@@ -70,6 +70,8 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	
 	/// Update speed on animation controller
 	PlayerAnimation->Speed = GetVelocity().Size();
+	PlayerAnimation->SetInAir(GetCharacterMovement()->IsFalling());
+	PlayerAnimation->SetJumped(false);
 
 	// Velocity cap
 	const FVector velocity = GetVelocity();
@@ -125,6 +127,13 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 			GrabLedge(BodyRaycastOrigin->GetForwardVector());
 		}
 	}
+}
+
+void APlayerCharacter::Jump()
+{
+	Super::Jump();
+	
+	PlayerAnimation->SetJumped(true);
 }
 
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)

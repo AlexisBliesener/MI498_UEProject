@@ -49,9 +49,15 @@ public:
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;
-	UPROPERTY(BlueprintReadOnly)
+	
 	/// Current remaining dash charges.
+	UPROPERTY(BlueprintReadOnly)
 	int CurrentDashCharges = DashCharges;
+	
+	/// Tracks whether the next attack is the first in a combo sequence.
+	UPROPERTY(BlueprintReadOnly)
+	bool bFirstAttackInSequence = true;
+	
 private:
 	/// Performs the actual sword swing hit detection
 	/// Uses a forward sweep to detect and damage actors in range
@@ -67,6 +73,9 @@ private:
 	UFUNCTION()
 	void SetCanUseSecondary(const bool Val) {bCanUseSecondary = Val;}
 	
+	/// Timer handle used to reset the combo sequence
+	FTimerHandle ComboResetTimer;
+	
 	/// Timer handle for dash cooldown between uses.
 	FTimerHandle SecondaryCooldownTimerHandle;
 	
@@ -76,8 +85,14 @@ private:
 	/// Whether the secondary ability is currently allowed.
 	bool bCanUseSecondary = true;
 	
+	/// Time window (in seconds) before combo resets
+	float ComboResetTime = 0.8f;
+	
 	/// Whether a dash reload timer is currently running.
 	bool bReloadingSecondary = false;
+	
+	/// Resets the combo sequence back to the first attack.
+	void ResetCombo();
 	
 	GENERATED_BODY()
 };

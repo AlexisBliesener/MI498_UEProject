@@ -62,6 +62,9 @@ public:
 	
 	/// Returns the weapons manager
 	UWeaponManager* GetWeaponManager() {return WeaponManager;}
+	
+	/// Override of the ACharacter Jump functions
+	virtual void Jump() override;
 
 protected:
 	virtual void BeginPlay() override;
