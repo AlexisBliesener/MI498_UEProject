@@ -52,6 +52,12 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	/// Current remaining dash charges.
 	int CurrentDashCharges = DashCharges;
+	
+	UPROPERTY(BlueprintReadOnly)
+	bool bFirstAttackInSequence = true;
+	
+	float ComboResetTime = 0.8f;
+	
 private:
 	/// Performs the actual sword swing hit detection
 	/// Uses a forward sweep to detect and damage actors in range
@@ -67,6 +73,8 @@ private:
 	UFUNCTION()
 	void SetCanUseSecondary(const bool Val) {bCanUseSecondary = Val;}
 	
+	FTimerHandle ComboResetTimer;
+	
 	/// Timer handle for dash cooldown between uses.
 	FTimerHandle SecondaryCooldownTimerHandle;
 	
@@ -78,6 +86,8 @@ private:
 	
 	/// Whether a dash reload timer is currently running.
 	bool bReloadingSecondary = false;
+	
+	void ResetCombo();
 	
 	GENERATED_BODY()
 };

@@ -99,6 +99,16 @@ void ASword::Tick(float DeltaSeconds)
 
 void ASword::SwingSword(AController* Controller, AActor* Target)
 {
+	
+	GetWorld()->GetTimerManager().ClearTimer(ComboResetTimer);
+	
+	GetWorld()->GetTimerManager().SetTimer(
+	ComboResetTimer,
+	this,
+	&ASword::ResetCombo,
+	ComboResetTime,
+	false   );
+	
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
@@ -152,6 +162,8 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			nullptr
 		);
 	}
+
+	bFirstAttackInSequence = !bFirstAttackInSequence;
 }
 
 void ASword::ReloadDashes()
@@ -161,4 +173,9 @@ void ASword::ReloadDashes()
 	CurrentDashCharges = DashCharges;
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentDashCharges,DashCharges,true);
+}
+
+void ASword::ResetCombo()
+{
+	bFirstAttackInSequence = true;
 }

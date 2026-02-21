@@ -62,11 +62,14 @@ public:
 	
 	/// Returns the weapons manager
 	UWeaponManager* GetWeaponManager() {return WeaponManager;}
+	
+	virtual void Jump() override;
 
 protected:
 	virtual void BeginPlay() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
+	
 	
 	/// Scene component used as the start point for the upper ledge detection trace
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
