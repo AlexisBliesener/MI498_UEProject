@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: download reppoo
         uses: actions/checkout@v4
-	with:
+	      with:
           lfs: true
 
       - name: start packaging the porject
