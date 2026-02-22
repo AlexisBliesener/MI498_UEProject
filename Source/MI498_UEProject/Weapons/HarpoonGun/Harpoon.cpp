@@ -7,10 +7,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
-
-
-class AAIController;
 
 AHarpoon::AHarpoon()
 {
@@ -73,6 +71,17 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
 	bStuck = true;
+	
+	/// If hit an exploding barrel
+	if (OtherActor)
+	{
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(OtherActor))
+		{
+			barrel->Explode();
+			HarpoonGun->Reload();
+			return;
+		}
+	}
 
 	if (OtherActor)
 	{

@@ -2,6 +2,7 @@
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
@@ -134,7 +135,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	cameraLocation,
 	endLocation,
 	cameraRotation.Quaternion(),
-	ECC_Pawn,
+	ECC_Visibility,
 	FCollisionShape::MakeBox(halfSize),
 	TraceParams
 	);
@@ -149,6 +150,15 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	false,
 	1.f
 	);
+	
+	/// If an exploding barrel was hit
+	if (bHit)
+	{
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitResult.GetActor()))
+		{
+			barrel->Explode();
+		}
+	}
 	
 	/// Check if HitResult hit an enemy and apply damage
 	if (bHit && hitResult.GetActor())

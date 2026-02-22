@@ -2,6 +2,7 @@
 #include "../../Player/PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 
 ABlunderbuss::ABlunderbuss()
 {
@@ -81,8 +82,7 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	if (!playerCharacter->GetCharacterMovement()->IsMovingOnGround())
 	{
 		/// Launch the player backward based on knockback force and firing direction
-		FVector launchVelocity = -cameraForwardVector * KnockbackForce;
-		playerCharacter->LaunchCharacter(launchVelocity, false, false);
+		playerCharacter->GetCharacterMovement()->AddImpulse(-cameraForwardVector * KnockbackForce,true);
 	}
 }
 
@@ -114,7 +114,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	cameraLocation,
 	endLocation,
 	cameraRotation.Quaternion(),
-	ECC_Pawn,
+	ECC_Visibility,
 	FCollisionShape::MakeBox(halfSize),
 	TraceParams
 	);
@@ -129,6 +129,15 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	false,
 	1.f
 	);
+	
+	/// If an exploding barrel was hit
+	if (bHit)
+	{
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitResult.GetActor()))
+		{
+			barrel->Explode();
+		}
+	}
 	
 	//Calculate damage fall off
 	int hitDamage = ((Range - hitResult.Distance)/Range) * CurrentDamage;
