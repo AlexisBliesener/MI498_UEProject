@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: download reppoo
         uses: actions/checkout@v4
+	with:
+          lfs: true
 
       - name: start packaging the porject
         uses: OrchidIsle/UE5-Build-Project@latest
