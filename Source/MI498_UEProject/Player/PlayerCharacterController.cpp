@@ -56,6 +56,7 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	{
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleInteract);
 	}
+	
 }
 
 void APlayerCharacterController::OnUnPossess()
@@ -86,6 +87,9 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 	{
 		lookInput *= (1 - MovementSlowPercent);
 	}
+	
+	PlayerCameraManager->ViewPitchMax = 80;
+	PlayerCameraManager->ViewPitchMin = -80;
 
 	AddYawInput(lookInput.X);
 	AddPitchInput(lookInput.Y);

@@ -46,8 +46,14 @@ public:
 
 	/// Sets whether the character has initiated a jump.
 	void SetJumped(const bool Val) { bJumped = Val; }
+	
+	void SetLookRotation(float Val) { LookRotation = Val; }
 
 protected:
+	/// The rotation of the look directions
+	UPROPERTY(BlueprintReadOnly)
+	float LookRotation = 0;
+	
 	/// True when the character has triggered a jump.
 	UPROPERTY(BlueprintReadOnly)
 	bool bJumped = false;
