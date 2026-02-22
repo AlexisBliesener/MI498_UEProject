@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
@@ -56,15 +57,13 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
-		// DIE i think
-		UE_LOG(EnemyLog, Error, TEXT("Enemy DIED"));
-		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 		EKillType killType = EKillType::None;
 		if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
 		if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
 		if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
+		if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::Barrel;
 
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
 		
