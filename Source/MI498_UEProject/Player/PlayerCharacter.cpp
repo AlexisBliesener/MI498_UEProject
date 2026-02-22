@@ -222,12 +222,12 @@ void APlayerCharacter::UpdateCameraOffset() const
 	// Adjust offsets depending on look direction
 	if (cosVal > 0)
 	{
-		newX = cosVal * 35.f - 5.f;
-		newZ = sinVal * 40.f + 64.f;
+		newX = cosVal * 25.f;
+		newZ = sinVal * 50.f + 64.f;
 	}
 	else
 	{
-		newX = cosVal * 37.5f - 5.f;
+		newX = cosVal * 40.f;
 		newZ = sinVal * 30.f + 64.f;
 	}
 
