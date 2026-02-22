@@ -47,6 +47,7 @@ public:
 	/// Sets whether the character has initiated a jump.
 	void SetJumped(const bool Val) { bJumped = Val; }
 	
+	/// Sets the look direction of the player for animation movement
 	void SetLookRotation(float Val) { LookRotation = Val; }
 
 protected:

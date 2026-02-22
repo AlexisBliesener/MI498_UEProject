@@ -206,27 +206,31 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 	OnPlayerLanded();
 }
 
-void APlayerCharacter::UpdateCameraOffset()
+void APlayerCharacter::UpdateCameraOffset() const
 {
-	float PitchDeg = GetControlRotation().Pitch -90;
-	float Rad = FMath::DegreesToRadians(PitchDeg);
-	
-	float CosVal =  -(FMath::Cos(Rad));
-	float SinVal = -(1 + FMath::Sin(Rad));
+	// Convert pitch to radians 
+	const float pitchDeg = GetControlRotation().Pitch - 90.f;
+	const float rad = FMath::DegreesToRadians(pitchDeg);
 
-	float NewX;
-	float NewZ;
-	if(CosVal > 0)
+	// Calculate forward (X) and vertical (Z) 
+	const float cosVal = -FMath::Cos(rad);
+	const float sinVal = -(1 + FMath::Sin(rad));
+
+	float newX;
+	float newZ;
+
+	// Adjust offsets depending on look direction
+	if (cosVal > 0)
 	{
-		NewX = CosVal * 35.f - 5;
-		NewZ = SinVal * 40.f + 64.0f;
+		newX = cosVal * 35.f - 5.f;
+		newZ = sinVal * 40.f + 64.f;
 	}
 	else
 	{
-		NewX = CosVal * 37.5f - 5;
-		NewZ = SinVal * 30.f + 64.0f;
+		newX = cosVal * 37.5f - 5.f;
+		newZ = sinVal * 30.f + 64.f;
 	}
 
-	FVector NewLocation(NewX, 0.f, NewZ);
-	Camera->SetRelativeLocation(NewLocation);
+	// Apply new relative camera position
+	Camera->SetRelativeLocation(FVector(newX, 0.f, newZ));
 }

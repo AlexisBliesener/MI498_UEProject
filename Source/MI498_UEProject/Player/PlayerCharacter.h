@@ -128,7 +128,9 @@ private:
 	/// Called automatically by the engine when the character lands on the ground
 	/// Used to trigger Blueprint landing events
 	virtual void Landed(const FHitResult& Hit) override;
-	void UpdateCameraOffset();
+	
+	/// Updates the camera position so the camera is staying near the neck while it rotates
+	void UpdateCameraOffset() const;
 
 	/// Starts ledge grab sequence
 	/// Locks movement and schedules pull-up timer

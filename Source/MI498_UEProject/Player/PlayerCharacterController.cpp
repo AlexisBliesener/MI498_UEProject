@@ -88,8 +88,8 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 		lookInput *= (1 - MovementSlowPercent);
 	}
 	
-	PlayerCameraManager->ViewPitchMax = 80;
-	PlayerCameraManager->ViewPitchMin = -80;
+	PlayerCameraManager->ViewPitchMax = ViewPitchMax;
+	PlayerCameraManager->ViewPitchMin = ViewPitchMin;
 
 	AddYawInput(lookInput.X);
 	AddPitchInput(lookInput.Y);
