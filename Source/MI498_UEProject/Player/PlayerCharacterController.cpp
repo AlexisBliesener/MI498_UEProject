@@ -14,6 +14,9 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 {
 	Super::OnPossess(PossessedPawn);
 	
+	PlayerCameraManager->ViewPitchMax = ViewPitchMax;
+	PlayerCameraManager->ViewPitchMin = ViewPitchMin;
+	
 	/// Cache the possessed player character
 	PlayerCharacter = Cast<APlayerCharacter>(PossessedPawn);
 	if (!IsValid(PlayerCharacter))
@@ -56,6 +59,7 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	{
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleInteract);
 	}
+	
 }
 
 void APlayerCharacterController::OnUnPossess()

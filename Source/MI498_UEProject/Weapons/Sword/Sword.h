@@ -86,7 +86,7 @@ private:
 	bool bCanUseSecondary = true;
 	
 	/// Time window (in seconds) before combo resets
-	float ComboResetTime = 0.8f;
+	float ComboResetTime = 0.6f;
 	
 	/// Whether a dash reload timer is currently running.
 	bool bReloadingSecondary = false;

@@ -72,6 +72,9 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	PlayerAnimation->Speed = GetVelocity().Size();
 	PlayerAnimation->SetInAir(GetCharacterMovement()->IsFalling());
 	PlayerAnimation->SetJumped(false);
+	PlayerAnimation->SetLookRotation(GetControlRotation().Pitch);
+	
+	UpdateCameraOffset();
 
 	// Velocity cap
 	const FVector velocity = GetVelocity();
@@ -201,4 +204,33 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 	Super::Landed(Hit);
 	
 	OnPlayerLanded();
+}
+
+void APlayerCharacter::UpdateCameraOffset() const
+{
+	// Convert pitch to radians 
+	const float pitchDeg = GetControlRotation().Pitch - 90.f;
+	const float rad = FMath::DegreesToRadians(pitchDeg);
+
+	// Calculate forward (X) and vertical (Z) 
+	const float cosVal = -FMath::Cos(rad);
+	const float sinVal = -(1 + FMath::Sin(rad));
+
+	float newX;
+	float newZ;
+
+	// Adjust offsets depending on look direction
+	if (cosVal > 0)
+	{
+		newX = cosVal * 25.f;
+		newZ = sinVal * 50.f + 64.f;
+	}
+	else
+	{
+		newX = cosVal * 40.f;
+		newZ = sinVal * 30.f + 64.f;
+	}
+
+	// Apply new relative camera position
+	Camera->SetRelativeLocation(FVector(newX, 0.f, newZ));
 }
