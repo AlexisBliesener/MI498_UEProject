@@ -3,7 +3,7 @@ name: Build Project
 on:
   workflow_dispatch: 
   push:
-    branches:
+    branches: # a
       - main         
   pull_request:      
 
