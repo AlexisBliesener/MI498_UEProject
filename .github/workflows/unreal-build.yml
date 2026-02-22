@@ -3,7 +3,7 @@ name: Build Project
 on:
   workflow_dispatch: 
   push:
-    branches: # aA
+    branches: # aAA
       - main         
   pull_request:      
 
@@ -17,7 +17,9 @@ jobs:
         with:
           lfs: false
       - name: get lfs cache
-        run: git lfs install && git config --global url."https://${{ github.token }}@github.com/".insteadOf "https://github.com/" && git lfs pull
+        run: |
+            git lfs install \
+            git lfs pull
 
       - name: start packaging the porject
         uses: OrchidIsle/UE5-Build-Project@latest
