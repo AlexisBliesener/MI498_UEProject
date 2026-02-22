@@ -14,6 +14,9 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 {
 	Super::OnPossess(PossessedPawn);
 	
+	PlayerCameraManager->ViewPitchMax = ViewPitchMax;
+	PlayerCameraManager->ViewPitchMin = ViewPitchMin;
+	
 	/// Cache the possessed player character
 	PlayerCharacter = Cast<APlayerCharacter>(PossessedPawn);
 	if (!IsValid(PlayerCharacter))
@@ -87,9 +90,6 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 	{
 		lookInput *= (1 - MovementSlowPercent);
 	}
-	
-	PlayerCameraManager->ViewPitchMax = ViewPitchMax;
-	PlayerCameraManager->ViewPitchMin = ViewPitchMin;
 
 	AddYawInput(lookInput.X);
 	AddPitchInput(lookInput.Y);
