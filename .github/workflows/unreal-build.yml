@@ -23,6 +23,8 @@ jobs:
 
       - name: start packaging the porject
         uses: OrchidIsle/UE5-Build-Project@latest
+        env:
+          UE-LocalDataCachePath: "D:\\UE_DDC"
         with:
           RUNUAT_PATH: 'D:/Epic Games/UE_5.7/Engine/Build/BatchFiles/RunUAT.bat'
           UPROJECT_PATH: ${{ github.workspace }}/MI498_UEProject.uproject
@@ -33,3 +35,4 @@ jobs:
           STAGE: true
           PACKAGE: true
           NULLRHI: true
+          CUSTOM_ARGS: '-iterate -AdditionalCookerOptions="-cookprocesscount=4"'
