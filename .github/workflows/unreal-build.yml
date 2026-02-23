@@ -18,21 +18,12 @@ jobs:
           lfs: false
       - name: get lfs cache
         run: |
-            git lfs install \
+            git config --global url."https://${{ github.token }}@github.com/".insteadOf "https://github.com/"
+            git lfs install
             git lfs pull
 
-      - name: start packaging the porject
-        uses: OrchidIsle/UE5-Build-Project@latest
+        name: start packaging the project
         env:
           UE-LocalDataCachePath: "D:\\UE_DDC"
-        with:
-          RUNUAT_PATH: 'D:/Epic Games/UE_5.7/Engine/Build/BatchFiles/RunUAT.bat'
-          UPROJECT_PATH: ${{ github.workspace }}/MI498_UEProject.uproject
-          BUILD_CONFIG: Development
-          PLATFORM: Win64
-          CLEAN: false
-          COOK: true
-          STAGE: true
-          PACKAGE: true
-          NULLRHI: true
-          CUSTOM_ARGS: '-iterate -AdditionalCookerOptions="-cookprocesscount=4"'
+        run: |
+          & "D:\Epic Games\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -package -nullrhi -iterate -AdditionalCookerOptions="-cookprocesscount=4"
