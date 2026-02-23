@@ -33,5 +33,3 @@ jobs:
           STAGE: true
           PACKAGE: true
           NULLRHI: true
-      - name: cache stats
-        run: octocache stats
