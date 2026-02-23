@@ -22,7 +22,7 @@ jobs:
             git lfs install
             git lfs pull
 
-        name: start packaging the project
+      - name: start packaging the project
         env:
           UE-LocalDataCachePath: "D:\\UE_DDC"
         run: |
