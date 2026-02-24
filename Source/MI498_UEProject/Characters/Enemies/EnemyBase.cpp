@@ -55,8 +55,13 @@ void AEnemyBase::BeginPlay()
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	
+	OnTakeDamage();
+	
 	if (CurrentHealth <= 0.f)
 	{
+		OnDeath();
+		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 		EKillType killType = EKillType::None;
