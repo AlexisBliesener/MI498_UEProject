@@ -60,6 +60,18 @@ public:
 	/// Cached reference to the SwingSplineManager 
 	UPROPERTY()
 	TObjectPtr<ASwingSplineManager> Manager;
+	/**
+	 * Damage amount for the enemy secondary attack
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
+	float DamageMeleeWeapon  = 3.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
+	float LaunchSpeed = 1200.f;
+	/// Second Attack radius
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
+	float SecondAttackRadius = 200.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
+	float ExplosionRadius = 300.f;
 	/// This is used in run time to determine if the enemy swinging right now... 
 	UPROPERTY()
 	bool bIsSwinging = false;
