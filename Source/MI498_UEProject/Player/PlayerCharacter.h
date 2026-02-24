@@ -62,6 +62,9 @@ public:
 	
 	/// Returns the weapons manager
 	UWeaponManager* GetWeaponManager() {return WeaponManager;}
+	
+	/// Override of the ACharacter Jump functions
+	virtual void Jump() override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -126,6 +129,9 @@ private:
 	/// Used to trigger Blueprint landing events
 	virtual void Landed(const FHitResult& Hit) override;
 	
+	/// Updates the camera position so the camera is staying near the neck while it rotates
+	void UpdateCameraOffset() const;
+
 	/// Starts ledge grab sequence
 	/// Locks movement and schedules pull-up timer
 	void GrabLedge(const FVector& TowardsLedge);

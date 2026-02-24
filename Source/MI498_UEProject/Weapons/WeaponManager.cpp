@@ -4,6 +4,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "../Player/PlayerCharacter.h"
 #include "WeaponInterface.h"
+#include "Blunderbuss/Blunderbuss.h"
+#include "HarpoonGun/HarpoonGun.h"
+#include "Sword/Sword.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponManagerLog);
@@ -45,6 +48,12 @@ void UWeaponManager::BeginPlay()
 		if (spawnedActor && spawnedActor->GetClass()->ImplementsInterface(UWeaponInterface::StaticClass()))
 		{
 			WeaponOptions.Add(TScriptInterface<IWeaponInterface>(spawnedActor));
+			
+			// Cache Harpoon Gun if this is one
+			if (AHarpoonGun* Harpoon = Cast<AHarpoonGun>(spawnedActor))
+			{
+				HarpoonGunWeapon = Harpoon;
+			}
 		}
 	}
 
@@ -60,6 +69,16 @@ void UWeaponManager::BeginPlay()
 	if (!IsValid(PlayerCharacter))
 	{
 		UE_LOG(WeaponManagerLog, Error, TEXT("APlayerCharacter can not be derived from the possessed pawn"));
+	}
+	
+	/// Get Player Animation Script
+	if (PlayerCharacter)
+	{
+		USkeletalMeshComponent* Mesh = PlayerCharacter->GetMesh();
+		if (!Mesh) return;
+
+		PlayerAnimation = Cast<UPlayerAnimation>(Mesh->GetAnimInstance());
+		
 	}
 	
 	/// Cache the enhanced input component for action binding
@@ -157,6 +176,8 @@ void UWeaponManager::HandleSelectWeaponOne()
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
 	
+	UpdateWeaponAnimation();
+	
 	OnWeaponSwitch.Broadcast();
 }
 
@@ -172,6 +193,8 @@ void UWeaponManager::HandleSelectWeaponTwo()
 		CurrentWeaponIndex = 1;
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
+	
+	UpdateWeaponAnimation();
 	
 	OnWeaponSwitch.Broadcast();
 }
@@ -189,6 +212,8 @@ void UWeaponManager::HandleSelectWeaponThree()
 		CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	}
 	
+	UpdateWeaponAnimation();
+	
 	OnWeaponSwitch.Broadcast();
 }
 
@@ -202,6 +227,8 @@ void UWeaponManager::HandleSelectWeaponPrev()
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
 	
+	UpdateWeaponAnimation();
+	
 	OnWeaponSwitch.Broadcast();
 }
 
@@ -214,6 +241,8 @@ void UWeaponManager::HandleSelectWeaponNext()
 	}
 	
 	CurrentWeapon = WeaponOptions[CurrentWeaponIndex];
+	
+	UpdateWeaponAnimation();
 	
 	OnWeaponSwitch.Broadcast();
 }
@@ -263,9 +292,43 @@ void UWeaponManager::HandleSecondaryAttackHoldEnd()
 void UWeaponManager::HandleJump()
 {
 	CurrentWeapon->JumpAction();
+	
+	/// Handle harpoon jump if it is not the current weapon
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
+	if (WeaponObject->WeaponType != EWeaponType::HarpoonGun)
+	{
+		HarpoonGunWeapon->JumpAction();
+	}
 }
 
 void UWeaponManager::HandleReload()
 {
 	CurrentWeapon->Reload();
+	
+	// Reload harpoon additionally if it is not the current weapon
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
+	if (WeaponObject->WeaponType != EWeaponType::HarpoonGun)
+	{
+		HarpoonGunWeapon->Reload();
+	}
+}
+
+void UWeaponManager::UpdateWeaponAnimation()
+{
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
+
+	switch (WeaponObject->WeaponType)
+	{
+	case EWeaponType::Blunderbuss:
+		PlayerAnimation->SetCurrentWeapon(EWeaponType::Blunderbuss);
+		break;
+	case EWeaponType::HarpoonGun:
+		PlayerAnimation->SetCurrentWeapon(EWeaponType::HarpoonGun);
+		break;
+	case EWeaponType::Sword:
+		PlayerAnimation->SetCurrentWeapon(EWeaponType::Sword);
+		break;
+	case EWeaponType::Other:
+		break;
+	}
 }

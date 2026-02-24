@@ -70,6 +70,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int InteractRange = 400;
 	
+	/// The max viewing angle of the camera
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int ViewPitchMax = 80;
+	
+	/// The min viewing angle of the camera
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int ViewPitchMin = -80;
+	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	

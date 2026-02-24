@@ -11,6 +11,8 @@ class MI498_UEPROJECT_API AHarpoonGun : public AWeaponBase
 {
 
 public:
+	AHarpoonGun();
+	
 	/// Override the PrimaryAttack function to implement HarpoonGun-specific firing behavior
 	/// @param Controller - Provides context about who is firing 
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
@@ -87,7 +89,7 @@ private:
 	TObjectPtr<AHarpoon> CurrentHarpoon = nullptr;
 	
 	/// True if player should swing on harpoon, false if player should zip to harpoon
-	bool bSwingMode = false;
+	bool bSwingMode = true;
 	
 	GENERATED_BODY()
 };

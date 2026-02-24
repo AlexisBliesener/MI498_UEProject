@@ -2,7 +2,13 @@
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
+
+ASword::ASword()
+{
+	WeaponType = EWeaponType::Sword;
+}
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
@@ -99,6 +105,15 @@ void ASword::Tick(float DeltaSeconds)
 
 void ASword::SwingSword(AController* Controller, AActor* Target)
 {
+	/// Set combo reset timer
+	GetWorld()->GetTimerManager().ClearTimer(ComboResetTimer);
+	GetWorld()->GetTimerManager().SetTimer(
+	ComboResetTimer,
+	this,
+	&ASword::ResetCombo,
+	ComboResetTime,
+	false   );
+	
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
@@ -125,7 +140,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	cameraLocation,
 	endLocation,
 	cameraRotation.Quaternion(),
-	ECC_Pawn,
+	ECC_Visibility,
 	FCollisionShape::MakeBox(halfSize),
 	TraceParams
 	);
@@ -141,6 +156,15 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	1.f
 	);
 	
+	/// If an exploding barrel was hit
+	if (bHit)
+	{
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitResult.GetActor()))
+		{
+			barrel->Explode();
+		}
+	}
+	
 	/// Check if HitResult hit an enemy and apply damage
 	if (bHit && hitResult.GetActor())
 	{
@@ -152,6 +176,8 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			nullptr
 		);
 	}
+
+	bFirstAttackInSequence = !bFirstAttackInSequence;
 }
 
 void ASword::ReloadDashes()
@@ -159,6 +185,12 @@ void ASword::ReloadDashes()
 	bReloadingSecondary = false;
 	bCanUseSecondary = true;
 	CurrentDashCharges = DashCharges;
+	
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentDashCharges,DashCharges,true);
+}
+
+void ASword::ResetCombo()
+{
+	bFirstAttackInSequence = true;
 }
