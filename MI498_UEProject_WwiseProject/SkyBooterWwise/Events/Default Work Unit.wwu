@@ -385,6 +385,28 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="BombPiecePickUp" ID="{38799A19-9279-413A-8027-58CC0B0A1E63}">
+							<ChildrenList>
+								<Action Name="" ID="{E41F998C-5265-4379-88FE-6A817FE3B5F8}" ShortID="603417219">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PickUpBombPiecePickUp" ID="{D40D1564-4A90-46C4-A434-7AF8552EFF08}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="VaultExplosion" ID="{64439EEE-0F85-4632-81AB-D90B65589F09}">
+							<ChildrenList>
+								<Action Name="" ID="{66713C38-DEA4-4216-AA36-BF29DF08DFE6}" ShortID="334255148">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BombExplosionMOREBASS" ID="{319D78D7-FEBA-4019-990C-77ED3CA08416}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="MemeEvents" ID="{29D172A6-0252-4F28-BE8B-4ECAD23BE8A7}" ShortID="421133730">
@@ -531,10 +553,10 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
-								<Action Name="" ID="{A1F9AA3E-5579-414F-AF12-14E26BBFAE8D}" ShortID="432055151">
+								<Action Name="" ID="{7C473520-5E5D-4A3A-A4B6-02164D848582}" ShortID="965019701">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="AfterBombExplode" ID="{C35989FD-9E57-4AED-8D0A-3A1DA7046CAD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+											<ObjectRef Name="AfterBombExplode" ID="{3F0C0627-9A69-4F98-A31D-E533A193C1D7}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

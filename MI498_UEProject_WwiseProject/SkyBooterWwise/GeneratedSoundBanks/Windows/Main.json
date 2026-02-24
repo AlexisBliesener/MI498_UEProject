@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{43072DC9-CFC0-1C60-B891-12D0927A46E9}",
+    "Hash": "{67993B19-6C6A-A76F-8772-9C5773CA825F}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -30,6 +30,14 @@
       "Location": "Memory",
       "ShortName": "OnceLeaveVaultLine3.wav",
       "CachePath": "31/{3182F71C-2D60-E03D-7674-C776E2F8AB1D}.wem"
+     },
+     {
+      "Id": "17125242",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PickUpBombPiecePickUp.wav",
+      "CachePath": "DA/{DAD73010-EC2E-61C9-B888-0690428E0523}.wem"
      },
      {
       "Id": "26282397",
@@ -208,6 +216,14 @@
       "CachePath": "C6/{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem"
      },
      {
+      "Id": "362207851",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BombExplosionMOREBASS.wav",
+      "CachePath": "B2/{B272D07C-BAA7-21A4-1150-5A1F2CA3A4C2}.wem"
+     },
+     {
       "Id": "373499443",
       "Language": "SFX",
       "Streaming": "false",
@@ -278,6 +294,14 @@
       "Location": "Memory",
       "ShortName": "After planting the bomb, Take 2.wav",
       "CachePath": "63/{63AD5E25-CC66-B812-32E5-1ECC3D376821}.wem"
+     },
+     {
+      "Id": "467384341",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AfterPlantingBombLine3.wav",
+      "CachePath": "CC/{CC0E3780-2C70-C656-0918-801F520FC1A4}.wem"
      },
      {
       "Id": "485182822",
@@ -690,6 +714,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDamage",
       "GUID": "{4650E42F-F860-4747-A419-3DDF5B650D04}",
       "Color": "6",
+      "MaxAttenuation": "100",
       "DurationType": "OneShot",
       "DurationMin": "0.18763855",
       "DurationMax": "1",
@@ -718,6 +743,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDeath",
       "GUID": "{C4D36737-4FD3-4D61-8834-CECC25CC0A14}",
       "Color": "6",
+      "MaxAttenuation": "100",
       "DurationType": "OneShot",
       "DurationMin": "0.65947",
       "DurationMax": "1.7565691",
@@ -803,11 +829,32 @@
       "GUID": "{9BA36833-F1FB-40BA-8255-37150F66A3E4}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "7.081101",
-      "DurationMax": "7.081101",
+      "DurationMin": "11.1829605",
+      "DurationMax": "11.1829605",
       "MediaRefs": [
        {
         "Id": "118074255"
+       },
+       {
+        "Id": "362207851"
+       },
+       {
+        "Id": "467384341"
+       }
+      ]
+     },
+     {
+      "Id": "1091988965",
+      "Name": "BombPiecePickUp",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\BombPiecePickUp",
+      "GUID": "{38799A19-9279-413A-8027-58CC0B0A1E63}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "0.42430744",
+      "DurationMax": "0.42430744",
+      "MediaRefs": [
+       {
+        "Id": "17125242"
        }
       ]
      },
@@ -1329,6 +1376,21 @@
       ]
      },
      {
+      "Id": "3524716652",
+      "Name": "VaultExplosion",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\VaultExplosion",
+      "GUID": "{64439EEE-0F85-4632-81AB-D90B65589F09}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "2.6714392",
+      "DurationMax": "2.6714392",
+      "MediaRefs": [
+       {
+        "Id": "362207851"
+       }
+      ]
+     },
+     {
       "Id": "2336641800",
       "Name": "WeaponSwap",
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\WeaponSwap",
@@ -1412,6 +1474,6 @@
     ]
    }
   ],
-  "FileHash": "{30FE6FE6-F3F3-0AB6-49FE-5F4B4C222B24}"
+  "FileHash": "{DE54FFDB-1318-AF61-3DDB-73261B5E9D67}"
  }
 }
