@@ -3,9 +3,12 @@
 #include "CoreMinimal.h"
 #include "WeaponInterface.h"
 #include "GameFramework/Actor.h"
+#include "WeaponTypes.h"
 #include "WeaponBase.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(WeaponLog, Log, All);
+
+
 
 /// Base class for all weapons in the game
 /// Inherits from AActor so it can exist in the world
@@ -15,6 +18,10 @@ class MI498_UEPROJECT_API AWeaponBase : public AActor,  public IWeaponInterface
 {
 public:	
 	AWeaponBase();
+	
+	/// What type of weapon this is
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	EWeaponType WeaponType = EWeaponType::Other;
 	
 	/// The effective range of the weapon in Unreal units
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
