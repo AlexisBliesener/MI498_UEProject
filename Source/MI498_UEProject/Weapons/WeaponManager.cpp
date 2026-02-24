@@ -48,6 +48,12 @@ void UWeaponManager::BeginPlay()
 		if (spawnedActor && spawnedActor->GetClass()->ImplementsInterface(UWeaponInterface::StaticClass()))
 		{
 			WeaponOptions.Add(TScriptInterface<IWeaponInterface>(spawnedActor));
+			
+			// Cache Harpoon Gun if this is one
+			if (AHarpoonGun* Harpoon = Cast<AHarpoonGun>(spawnedActor))
+			{
+				HarpoonGunWeapon = Harpoon;
+			}
 		}
 	}
 
@@ -286,27 +292,43 @@ void UWeaponManager::HandleSecondaryAttackHoldEnd()
 void UWeaponManager::HandleJump()
 {
 	CurrentWeapon->JumpAction();
+	
+	/// Handle harpoon jump if it is not the current weapon
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
+	if (WeaponObject->WeaponType != EWeaponType::HarpoonGun)
+	{
+		HarpoonGunWeapon->JumpAction();
+	}
 }
 
 void UWeaponManager::HandleReload()
 {
 	CurrentWeapon->Reload();
+	
+	// Reload harpoon additionally if it is not the current weapon
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
+	if (WeaponObject->WeaponType != EWeaponType::HarpoonGun)
+	{
+		HarpoonGunWeapon->Reload();
+	}
 }
 
 void UWeaponManager::UpdateWeaponAnimation()
 {
-	UObject* WeaponObject = WeaponOptions[CurrentWeaponIndex].GetObject();
+	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
 
-	if (Cast<ABlunderbuss>(WeaponObject))
+	switch (WeaponObject->WeaponType)
 	{
+	case EWeaponType::Blunderbuss:
 		PlayerAnimation->SetCurrentWeapon(EWeaponType::Blunderbuss);
-	}
-	else if (Cast<ASword>(WeaponObject))
-	{
-		PlayerAnimation->SetCurrentWeapon(EWeaponType::Sword);
-	}
-	else if (Cast<AHarpoonGun>(WeaponObject))
-	{
+		break;
+	case EWeaponType::HarpoonGun:
 		PlayerAnimation->SetCurrentWeapon(EWeaponType::HarpoonGun);
+		break;
+	case EWeaponType::Sword:
+		PlayerAnimation->SetCurrentWeapon(EWeaponType::Sword);
+		break;
+	case EWeaponType::Other:
+		break;
 	}
 }

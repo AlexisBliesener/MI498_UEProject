@@ -7,6 +7,7 @@
 ABlunderbuss::ABlunderbuss()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	WeaponType = EWeaponType::Blunderbuss;
 }
 
 void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
