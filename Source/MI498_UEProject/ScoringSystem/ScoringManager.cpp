@@ -24,7 +24,6 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 		break;
 	}
 
-
 	/// If the player switches weapons between kills
 	if (LastKilledWith != KilledBy && KilledBy != EKillType::Barrel)
 	{
@@ -57,6 +56,46 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 
 	/// Final score application
 	Score += add;
+	
+	/// Add to specific kill enemy score total
+	switch (Killed)
+	{
+	case EEnemyType::AverageEnemy:
+		AverageEnemyKillsVal += add;
+		break;
+
+	case EEnemyType::Brute:
+		BruteKillsVal += add;
+		break;
+
+	case EEnemyType::Swinger:
+		SwingerKillVal += add;
+		break;
+
+	default:
+		break;
+	}
+}
+
+FString UScoringManager::GetRank() const
+{
+	if (Score < CRankScore)
+	{
+		return TEXT("D");
+	}
+	if (Score < BRankScore)
+	{
+		return TEXT("C");
+	}
+	if (Score < ARankScore)
+	{
+		return TEXT("B");
+	}
+	if (Score < SRankScore)
+	{
+		return TEXT("A");
+	}
+	return TEXT("S");
 }
 
 void UScoringManager::Tick(float DeltaTime)
@@ -97,6 +136,7 @@ void UScoringManager::AddAirtimeScore()
 {
 	/// Adds score every second while player is airborne
 	Score += AirtimeScore * GlobalScoreMult;
+	AirtimeVal += AirtimeScore * GlobalScoreMult;
 }
 
 void UScoringManager::UpdateOnScreenScore()
