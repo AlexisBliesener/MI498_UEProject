@@ -66,7 +66,7 @@ public:
 	
 	/// Generic score adder accessible from Blueprint
 	UFUNCTION(BlueprintCallable)
-	void AddLootPickupScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
+	void AddGenericScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
 
 	/// Sets the global score multiplier
 	void SetGlobalScoreMult(const int Val) { GlobalScoreMult = Val; }
