@@ -33,7 +33,7 @@ struct FJumpFromSwingInstanceData
 	 * The location of the target jump 
 	 */
 	UPROPERTY(EditAnywhere, Category = Context, meta = (Context, AllowDerivedTypes="true"))
-	FVector Result;
+	FVector Result = FVector::ZeroVector;
 };
 
 /**
