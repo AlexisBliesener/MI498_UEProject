@@ -51,9 +51,12 @@ void ASwingingEnemy::BeginPlay()
     if (ABombKnife* weapon = Cast<ABombKnife>(CurrentWeapon))
     {
         weapon->LaunchSpeed = LaunchSpeedBomb;
-        weapon->SecondAttackDamage = SecondAttackDamage;
-        weapon->SecondAttackRadius = SecondAttackRadius;
+        weapon->KnifeAttackDamage = KnifeAttackDamage;
+        weapon->KnifeAttackRadius = KnifeAttackRadius;
+        weapon->ExplosionRadius = ExplosionRadius;
     }
+    
+    GridSizeEQS = AttackStartDistance - 300.f;
 }
 
 void ASwingingEnemy::Tick(float DeltaTime)
@@ -241,16 +244,35 @@ void ASwingingEnemy::HandleSwinging(float DeltaTime)
     }
     else
     {
-        // instead of a hard stopping we're just going to 
-        if (!moveComp->Velocity.IsNearlyZero(5.f))
+        // if the enemy doesn't move (Stuck for some reason) we will try to push him and hope he gets out 
+        if (moveComp->Velocity.IsNearlyZero(15.f))
         {
+            StuckTimer += DeltaTime;
+            
+            // if stuck longer than threshold then push!
+            if (StuckTimer >= StuckTimeThreshold)
+            {
+                moveComp->SetMovementMode(MOVE_Falling);
+                
+                FVector kickDir = FVector::CrossProduct(SwingPlaneNormal, toAnchorNormal).GetSafeNormal();
+                
+                moveComp->Velocity += (kickDir * StuckPush);
+                StuckTimer = 0.f; 
+            }
+        }
+        else
+        {
+            // he's SWINGING 
+            StuckTimer = 0.f;
+            
             FVector moveDir = moveComp->Velocity.GetSafeNormal();
             moveComp->Velocity += (moveDir * SwingThrustForce * DeltaTime);
-        }
-        else if (currentAngleDeg < 5.f) 
-        {
-            FVector kickDir = FVector::CrossProduct(SwingPlaneNormal, toAnchorNormal).GetSafeNormal();
-            moveComp->Velocity += (kickDir * SwingThrustForce * DeltaTime);
+            
+            if (currentAngleDeg < 5.f) 
+            {
+                FVector kickDir = FVector::CrossProduct(SwingPlaneNormal, toAnchorNormal).GetSafeNormal();
+                moveComp->Velocity += (kickDir * SwingThrustForce * DeltaTime);
+            }
         }
     }
 }

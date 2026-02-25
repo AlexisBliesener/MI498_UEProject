@@ -80,10 +80,16 @@ public:
 	float LaunchSpeedBomb = 1500.f;
 	/// Second Attack damage for this weapon 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Weapon")
-	float SecondAttackDamage = 2.f;
+	float KnifeAttackDamage = 2.f;
 	/// Second Attack radius
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Weapon")
-	float SecondAttackRadius = 200.f;
+	float KnifeAttackRadius = 200.f;
+	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Weapon")
+	float ExplosionRadius = 300.f;
+	/// To run eqs it should be attackstartdistance - 100
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default|Dev")
+	float GridSizeEQS = 100.f;
 	/// distance for the enemy to see and run to the player
 	virtual void Tick(float DeltaTime) override;
 
@@ -121,7 +127,16 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	/// Tracks how long the enemy has been stuck
+	float StuckTimer = 0.f;
 
+	/// How many seconds the enemy must be standing still before we push them
+	UPROPERTY(EditAnywhere, Category = "Default|Dev")
+	float StuckTimeThreshold = 0.9f; 
+
+	/// How hard to push them to restart the swing
+	UPROPERTY(EditAnywhere, Category = "Default|Dev")
+	float StuckPush = 800.f;
 private:
 	/// direction of the  2D wall for swing math
 	FVector SwingPlaneNormal;
