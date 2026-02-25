@@ -69,10 +69,13 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	
 	/// Update speed on animation controller
-	PlayerAnimation->Speed = GetVelocity().Size();
-	PlayerAnimation->SetInAir(GetCharacterMovement()->IsFalling());
-	PlayerAnimation->SetJumped(false);
-	PlayerAnimation->SetLookRotation(GetControlRotation().Pitch);
+	if (PlayerAnimation != nullptr)
+	{
+		PlayerAnimation->Speed = GetVelocity().Size();
+		PlayerAnimation->SetInAir(GetCharacterMovement()->IsFalling());
+		PlayerAnimation->SetJumped(false);
+		PlayerAnimation->SetLookRotation(GetControlRotation().Pitch);
+	}
 	
 	UpdateCameraOffset();
 
@@ -136,7 +139,10 @@ void APlayerCharacter::Jump()
 {
 	Super::Jump();
 	
-	PlayerAnimation->SetJumped(true);
+	if (PlayerAnimation != nullptr)
+	{
+		PlayerAnimation->SetJumped(true);
+	}
 }
 
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
