@@ -10,11 +10,35 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{C22A9102-3D32-3EEC-AEB3-9C4C2729FF9F}",
+    "Hash": "{67993B19-6C6A-A76F-8772-9C5773CA825F}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
     "Media": [
+     {
+      "Id": "6767003",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Damage 2.wav",
+      "CachePath": "7E/{7E2D8530-4F8C-F802-EB20-27C4EAC437CC}.wem"
+     },
+     {
+      "Id": "9982857",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "OnceLeaveVaultLine3.wav",
+      "CachePath": "31/{3182F71C-2D60-E03D-7674-C776E2F8AB1D}.wem"
+     },
+     {
+      "Id": "17125242",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PickUpBombPiecePickUp.wav",
+      "CachePath": "DA/{DAD73010-EC2E-61C9-B888-0690428E0523}.wem"
+     },
      {
       "Id": "26282397",
       "Language": "SFX",
@@ -24,12 +48,28 @@
       "CachePath": "48/{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem"
      },
      {
+      "Id": "34328720",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Cannon.wav",
+      "CachePath": "F9/{F9E922C6-B1D1-33D8-154A-88426BBC4459}.wem"
+     },
+     {
+      "Id": "97296079",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AfterBlastingOut.wav",
+      "CachePath": "07/{072B326D-D54F-BFCC-142F-8EF6C0FDD7F2}.wem"
+     },
+     {
       "Id": "101624672",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "All pieces collected, take 1.wav",
-      "CachePath": "63/{6303BF9F-736D-35EC-9793-B927A7DE9AFC}.wem"
+      "CachePath": "4B/{4B05221A-9C07-8161-4460-0A51FF6CE1E2}.wem"
      },
      {
       "Id": "118074255",
@@ -37,7 +77,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "After planting the bomb, Take 2.wav",
-      "CachePath": "E3/{E38D7C96-B9DB-8308-CAF2-01647DFD1BA3}.wem"
+      "CachePath": "CF/{CFC6995C-9ED5-FEAD-3340-8F3A77C510B2}.wem"
      },
      {
       "Id": "139026441",
@@ -45,7 +85,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Start Mission, Take 2.wav",
-      "CachePath": "EC/{ECD3C749-E947-BD71-E702-A3B8A0175664}.wem"
+      "CachePath": "59/{5912B1E8-748E-7C47-50B0-6C41FD06B6D8}.wem"
      },
      {
       "Id": "143782066",
@@ -61,7 +101,23 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "02/{02E73E3A-52B9-9C2A-6588-D0C6069F814D}.wem"
+      "CachePath": "CA/{CA6FE52F-7B85-3C06-825A-3D659E3773D6}.wem"
+     },
+     {
+      "Id": "190724134",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Jump2.wav",
+      "CachePath": "58/{589D0093-EB03-910C-E9A6-03C8CFCC6F17}.wem"
+     },
+     {
+      "Id": "208714548",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "StartMissionLine2.wav",
+      "CachePath": "32/{321A1F4D-CAD4-9174-C282-460CD9759B39}.wem"
      },
      {
       "Id": "210626020",
@@ -93,7 +149,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Within Range of escape ship, Take 1.wav",
-      "CachePath": "D6/{D6ADCEDD-AB97-6F0C-8FE4-858AC244CAB3}.wem"
+      "CachePath": "E9/{E998DAB1-9AE6-B1A1-311A-4E7A238AB1E6}.wem"
      },
      {
       "Id": "264388359",
@@ -101,7 +157,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Leave the Vault or maximum loot, Take 1.wav",
-      "CachePath": "CC/{CCEDAF6C-94DE-A8AB-2591-211B67F9F7C3}.wem"
+      "CachePath": "41/{411C75AD-45AB-BBF9-6EE5-BE47024AD65F}.wem"
      },
      {
       "Id": "272125692",
@@ -117,7 +173,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "All pieces collected, take 1.wav",
-      "CachePath": "17/{17DF5C56-139F-F17D-3BD2-8004EA4E4E2D}.wem"
+      "CachePath": "39/{39CD1AFE-3743-139B-C3DD-633A45A6056B}.wem"
      },
      {
       "Id": "287285638",
@@ -125,7 +181,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDeath.wav",
-      "CachePath": "7D/{7D7D3402-ACB3-694F-2B0B-93F28358927B}.wem"
+      "CachePath": "2B/{2B8C7A85-C3A8-0B96-8247-EB06D6A82485}.wem"
      },
      {
       "Id": "319526224",
@@ -133,7 +189,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Start Mission, Take 2.wav",
-      "CachePath": "2A/{2A50D19D-B1B1-06ED-6A3F-1A435EBC5E6A}.wem"
+      "CachePath": "12/{12217EDA-12AF-ED26-7BA7-93659E0231E2}.wem"
      },
      {
       "Id": "320129325",
@@ -144,12 +200,28 @@
       "CachePath": "9D/{9DFB04B2-257C-7790-7889-1ED3204FA7D2}.wem"
      },
      {
+      "Id": "324181781",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AllPiecesCollectedLine1.wav",
+      "CachePath": "4B/{4B0A90F1-3D1E-D428-848C-699DB4091A0E}.wem"
+     },
+     {
       "Id": "326381219",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Fortnite Default Dance Greenscreen_01.wav",
       "CachePath": "C6/{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem"
+     },
+     {
+      "Id": "362207851",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BombExplosionMOREBASS.wav",
+      "CachePath": "B2/{B272D07C-BAA7-21A4-1150-5A1F2CA3A4C2}.wem"
      },
      {
       "Id": "373499443",
@@ -168,12 +240,36 @@
       "CachePath": "64/{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem"
      },
      {
+      "Id": "397614194",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Damage2AverageEnemy.wav",
+      "CachePath": "BB/{BB0609E4-47BE-089C-69DD-61FA478CB9B3}.wem"
+     },
+     {
+      "Id": "398618583",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AllPiecesCollectedLine2.wav",
+      "CachePath": "F6/{F60E9C8F-6439-324B-30A9-36D02BD9E7D1}.wem"
+     },
+     {
+      "Id": "410939690",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "OnceInRangeBombLine4.wav",
+      "CachePath": "66/{6653DE94-D8B3-0642-F3E2-C9D037F81D92}.wem"
+     },
+     {
       "Id": "413622913",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
-      "CachePath": "02/{02207653-E990-B03D-5675-3BABEE78C5DB}.wem"
+      "CachePath": "77/{77E71579-0F17-7284-4DB3-2B541F85E7FE}.wem"
      },
      {
       "Id": "435335955",
@@ -181,7 +277,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Within Range of escape ship, Take 1.wav",
-      "CachePath": "3A/{3AB4C8F5-984A-ADF6-90E8-C6E2B19E3E27}.wem"
+      "CachePath": "56/{561EEADF-B793-0C6E-38B9-E3F8B8971957}.wem"
+     },
+     {
+      "Id": "440570578",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Damage1AverageEnemy.wav",
+      "CachePath": "0D/{0DB29B4B-70E7-6EA0-85E8-E9C81F46C46F}.wem"
      },
      {
       "Id": "446377387",
@@ -189,7 +293,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "After planting the bomb, Take 2.wav",
-      "CachePath": "68/{688F7454-F16A-F086-6735-297E07C12C31}.wem"
+      "CachePath": "63/{63AD5E25-CC66-B812-32E5-1ECC3D376821}.wem"
+     },
+     {
+      "Id": "467384341",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AfterPlantingBombLine3.wav",
+      "CachePath": "CC/{CC0E3780-2C70-C656-0918-801F520FC1A4}.wem"
      },
      {
       "Id": "485182822",
@@ -197,7 +309,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerVaultDeeper.wav",
-      "CachePath": "D5/{D5608145-12E9-963A-10E9-D10D760BCDE1}.wem"
+      "CachePath": "CE/{CE4FC585-4E58-47E1-32AB-451EC2113FA2}.wem"
+     },
+     {
+      "Id": "490112550",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AdditionalPieceCollectedLine1.wav",
+      "CachePath": "9F/{9F38DF0D-A369-9CFF-5C83-3BEA1CF63DBB}.wem"
      },
      {
       "Id": "490285420",
@@ -208,12 +328,52 @@
       "CachePath": "5F/{5F721B62-6CC3-E6BE-9390-BC2FD55BD27B}.wem"
      },
      {
+      "Id": "515834822",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "1PieceCollectedLine1.wav",
+      "CachePath": "CC/{CC6BC0E3-EEA5-D41F-9325-420CAAED41C8}.wem"
+     },
+     {
+      "Id": "526140554",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death1AverageEnemy.wav",
+      "CachePath": "A8/{A8DC8C42-6558-10FD-B618-00FC6BD31286}.wem"
+     },
+     {
+      "Id": "528352743",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Damage1.wav",
+      "CachePath": "05/{05739AD0-3D39-8F88-781E-10514CE52153}.wem"
+     },
+     {
+      "Id": "554459309",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "StartMissionLine6.wav",
+      "CachePath": "B0/{B09E8D78-0742-8F17-9ADD-C5A7C46112F6}.wem"
+     },
+     {
       "Id": "577135639",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Within Range of bomb location, Take 2.wav",
-      "CachePath": "91/{9119C012-E1C3-60D4-C12B-0CBEC792BD0F}.wem"
+      "CachePath": "47/{47E945D3-84CD-A977-DC85-3707DDE9DDC1}.wem"
+     },
+     {
+      "Id": "594437619",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death4AverageEnemy.wav",
+      "CachePath": "98/{98A820B5-C95B-85B3-0237-3EF42B1E23FB}.wem"
      },
      {
       "Id": "604625095",
@@ -221,7 +381,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Leave the Vault or maximum loot, Take 1.wav",
-      "CachePath": "83/{830DCB24-7369-9E2E-732F-2C371F5533E6}.wem"
+      "CachePath": "A7/{A72B0244-77C1-91B6-E9C7-437982A3B536}.wem"
+     },
+     {
+      "Id": "605626282",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AllPiecesLine2.wav",
+      "CachePath": "81/{8119BC92-6537-B11B-7172-B8E25CE7D66B}.wem"
      },
      {
       "Id": "605770747",
@@ -232,12 +400,36 @@
       "CachePath": "47/{473E41FD-2FFC-D71D-1017-449C5A73E8E3}.wem"
      },
      {
+      "Id": "606848002",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Damage3AverageEnemy.wav",
+      "CachePath": "08/{08F5E8EC-5200-10DF-B512-74E8E3F559FC}.wem"
+     },
+     {
       "Id": "615624964",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookMissReel.wav",
       "CachePath": "D5/{D5251B48-CB9D-9088-6E71-8327C009F220}.wem"
+     },
+     {
+      "Id": "634837452",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death3Average1.wav",
+      "CachePath": "F0/{F0D99758-2FE5-2439-2BB0-4CACC3C08DE3}.wem"
+     },
+     {
+      "Id": "636053045",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death5Average1.wav",
+      "CachePath": "B9/{B9F147E8-7A1F-8EE6-51F7-0A11C5D17B6C}.wem"
      },
      {
       "Id": "647190144",
@@ -256,6 +448,14 @@
       "CachePath": "1B/{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem"
      },
      {
+      "Id": "664087683",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Jump1.wav",
+      "CachePath": "EB/{EB6AC422-D1B9-4FB4-35B4-AC2A79372EB4}.wem"
+     },
+     {
       "Id": "750876961",
       "Language": "SFX",
       "Streaming": "false",
@@ -272,12 +472,28 @@
       "CachePath": "79/{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem"
      },
      {
+      "Id": "754839197",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "1PIeceCollectedLine6.wav",
+      "CachePath": "8B/{8B87D3B9-4179-2BB1-F410-D5ECE9ACE889}.wem"
+     },
+     {
+      "Id": "762224343",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AdditionalPieceCollectedLine2.wav",
+      "CachePath": "38/{38BD83BC-C29E-C48A-D6D5-5B332DFDA5EB}.wem"
+     },
+     {
       "Id": "765843477",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
-      "CachePath": "FE/{FE1E914C-D4BA-F72A-38ED-E5DAA7C5FDDF}.wem"
+      "CachePath": "7A/{7AFEF005-CB97-8CB8-570F-6D6A096FC8AC}.wem"
      },
      {
       "Id": "818030058",
@@ -293,7 +509,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "94/{941C149A-2749-8559-BD94-D7BD80478108}.wem"
+      "CachePath": "05/{056F466C-4538-ABD4-4512-1909D6EF4E6F}.wem"
      },
      {
       "Id": "841410472",
@@ -309,7 +525,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "EF/{EF71B80C-638C-B9ED-93F5-01F91214C80A}.wem"
+      "CachePath": "A1/{A125061D-ED48-DDFC-B05C-C339804BDAC6}.wem"
+     },
+     {
+      "Id": "901896633",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death2.wav",
+      "CachePath": "BF/{BFC96EB1-8EFE-ECAC-CF6F-AD2C05F78A5E}.wem"
      },
      {
       "Id": "921292567",
@@ -333,7 +557,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Within Range of bomb location, Take 2.wav",
-      "CachePath": "AB/{AB2F497B-1324-93CD-009C-CEFA70B569D9}.wem"
+      "CachePath": "DC/{DCBA4F37-AF0F-F91F-2BEB-4F43A4722621}.wem"
+     },
+     {
+      "Id": "952159520",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "OnceInRangeBombLine3.wav",
+      "CachePath": "23/{23D8A81E-ACFF-403D-730B-A257FAC80B70}.wem"
      },
      {
       "Id": "960224522",
@@ -341,7 +573,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Start Mission, Take 2.wav",
-      "CachePath": "79/{792B3A59-3B10-4BAA-575F-05719875E194}.wem"
+      "CachePath": "8D/{8D543DE5-3CF1-9269-C9C3-A27BC2FA7E83}.wem"
      },
      {
       "Id": "964124677",
@@ -349,7 +581,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Start Mission, Take 2.wav",
-      "CachePath": "EA/{EAA10D1D-2855-F87B-BE15-E003039FB345}.wem"
+      "CachePath": "1E/{1EBB2E7D-64FE-875B-1AD5-2C98D13C3A46}.wem"
      },
      {
       "Id": "974919281",
@@ -373,7 +605,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
-      "CachePath": "EA/{EAAF1A7F-DB0D-5D87-6D54-674CFE548695}.wem"
+      "CachePath": "EB/{EBCD3EC3-130B-3292-7B11-56C5E271680F}.wem"
+     },
+     {
+      "Id": "1005692176",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "1PieceCollectedLine3.wav",
+      "CachePath": "5A/{5A1EA79F-45E1-36B6-D8A5-05FC3E324069}.wem"
      },
      {
       "Id": "1014313509",
@@ -390,9 +630,57 @@
       "Location": "Memory",
       "ShortName": "WeaponSwaps.wav",
       "CachePath": "46/{46CADBF3-564F-C1C4-4093-804615F5C3A0}.wem"
+     },
+     {
+      "Id": "1037545113",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Death1.wav",
+      "CachePath": "04/{04B96288-D578-4119-0B93-3DCE4F0336AB}.wem"
      }
     ],
+    "Plugins": {
+     "Custom": [
+      {
+       "Id": "432135930",
+       "Name": "Silence",
+       "ObjectPath": "\\Containers\\Default Work Unit\\VA\\DamageAverageEnemy\\New Silence\\Silence",
+       "GUID": "{92D24850-F78C-4769-B23E-1FD08FF7EFB5}",
+       "Color": "6",
+       "LibName": "Wwise Silence",
+       "LibId": "6619138"
+      },
+      {
+       "Id": "809094466",
+       "Name": "Silence",
+       "ObjectPath": "\\Containers\\Default Work Unit\\Player\\DamageGrunt\\Silence\\Silence",
+       "GUID": "{FDC00623-BE33-4B8F-A6AF-50314526167D}",
+       "Color": "13",
+       "LibName": "Wwise Silence",
+       "LibId": "6619138"
+      }
+     ]
+    },
     "Events": [
+     {
+      "Id": "1924096561",
+      "Name": "AdditionalPieceCollected",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\AdditionalPieceCollected",
+      "GUID": "{E2D48174-52A6-40BE-8228-A9F7BED515C3}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "5.5461607",
+      "DurationMax": "5.5461607",
+      "MediaRefs": [
+       {
+        "Id": "490112550"
+       },
+       {
+        "Id": "762224343"
+       }
+      ]
+     },
      {
       "Id": "2719541090",
       "Name": "AllPiecesCollectedDialogue",
@@ -400,14 +688,92 @@
       "GUID": "{DE755A3F-BCD6-43B8-80E2-2A47E7922E7D}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "5.954541",
-      "DurationMax": "5.954541",
+      "DurationMin": "9.0878105",
+      "DurationMax": "9.0878105",
       "MediaRefs": [
        {
         "Id": "101624672"
        },
        {
         "Id": "283319554"
+       },
+       {
+        "Id": "324181781"
+       },
+       {
+        "Id": "398618583"
+       },
+       {
+        "Id": "605626282"
+       }
+      ]
+     },
+     {
+      "Id": "2113341929",
+      "Name": "AverageEnemyDamage",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDamage",
+      "GUID": "{4650E42F-F860-4747-A419-3DDF5B650D04}",
+      "Color": "6",
+      "MaxAttenuation": "100",
+      "DurationType": "OneShot",
+      "DurationMin": "0.18763855",
+      "DurationMax": "1",
+      "MediaRefs": [
+       {
+        "Id": "397614194"
+       },
+       {
+        "Id": "440570578"
+       },
+       {
+        "Id": "606848002"
+       }
+      ],
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "432135930"
+        }
+       ]
+      }
+     },
+     {
+      "Id": "4004669316",
+      "Name": "AverageEnemyDeath",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDeath",
+      "GUID": "{C4D36737-4FD3-4D61-8834-CECC25CC0A14}",
+      "Color": "6",
+      "MaxAttenuation": "100",
+      "DurationType": "OneShot",
+      "DurationMin": "0.65947",
+      "DurationMax": "1.7565691",
+      "MediaRefs": [
+       {
+        "Id": "526140554"
+       },
+       {
+        "Id": "594437619"
+       },
+       {
+        "Id": "634837452"
+       },
+       {
+        "Id": "636053045"
+       }
+      ]
+     },
+     {
+      "Id": "2359243714",
+      "Name": "BlastingOff",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\BlastingOff",
+      "GUID": "{B1B38890-7DB2-4E68-BB13-2AFDC4F01173}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "1.356419",
+      "DurationMax": "1.356419",
+      "MediaRefs": [
+       {
+        "Id": "97296079"
        }
       ]
      },
@@ -463,11 +829,32 @@
       "GUID": "{9BA36833-F1FB-40BA-8255-37150F66A3E4}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "7.081101",
-      "DurationMax": "7.081101",
+      "DurationMin": "11.1829605",
+      "DurationMax": "11.1829605",
       "MediaRefs": [
        {
         "Id": "118074255"
+       },
+       {
+        "Id": "362207851"
+       },
+       {
+        "Id": "467384341"
+       }
+      ]
+     },
+     {
+      "Id": "1091988965",
+      "Name": "BombPiecePickUp",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\BombPiecePickUp",
+      "GUID": "{38799A19-9279-413A-8027-58CC0B0A1E63}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "0.42430744",
+      "DurationMax": "0.42430744",
+      "MediaRefs": [
+       {
+        "Id": "17125242"
        }
       ]
      },
@@ -502,14 +889,27 @@
       ]
      },
      {
+      "Id": "960593693",
+      "Name": "CannonFuse",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\CannonFuse",
+      "GUID": "{9B0DF441-B439-4EC8-B9A2-9B4E5E980A76}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "34328720"
+       }
+      ]
+     },
+     {
       "Id": "2811709593",
       "Name": "EscapeCannonDialogue",
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\EscapeCannonDialogue",
       "GUID": "{79D230BE-F7C4-4DAD-80E9-4FFCD80702F7}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "4.819742",
-      "DurationMax": "4.819742",
+      "DurationMin": "4.987143",
+      "DurationMax": "4.987143",
       "MediaRefs": [
        {
         "Id": "257199122"
@@ -645,7 +1045,6 @@
       "Name": "Jonesy",
       "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\Jonesy",
       "GUID": "{E65EAB5C-43B8-49F6-9D31-FBB6DB99BEF0}",
-      "MaxAttenuation": "500",
       "DurationType": "Infinite",
       "MediaRefs": [
        {
@@ -660,9 +1059,12 @@
       "GUID": "{8C1B9EB7-BFF1-4848-8345-77DF0421B495}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "8.145646",
-      "DurationMax": "8.145646",
+      "DurationMin": "11.305146",
+      "DurationMax": "11.305146",
       "MediaRefs": [
+       {
+        "Id": "9982857"
+       },
        {
         "Id": "264388359"
        },
@@ -720,14 +1122,20 @@
       "GUID": "{46FAAB44-0015-42BD-BF1B-8FD2E9A01D27}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "11.164797",
-      "DurationMax": "11.164797",
+      "DurationMin": "14.662733",
+      "DurationMax": "14.662733",
       "MediaRefs": [
+       {
+        "Id": "410939690"
+       },
        {
         "Id": "577135639"
        },
        {
         "Id": "941547104"
+       },
+       {
+        "Id": "952159520"
        }
       ]
      },
@@ -738,17 +1146,26 @@
       "GUID": "{BE4D7794-FE62-41C2-9897-3FF1AFC95644}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "13.0102415",
-      "DurationMax": "13.0102415",
+      "DurationMin": "18.94581",
+      "DurationMax": "18.94581",
       "MediaRefs": [
        {
         "Id": "413622913"
+       },
+       {
+        "Id": "515834822"
+       },
+       {
+        "Id": "754839197"
        },
        {
         "Id": "765843477"
        },
        {
         "Id": "990222415"
+       },
+       {
+        "Id": "1005692176"
        }
       ]
      },
@@ -760,10 +1177,16 @@
       "Color": "13",
       "DurationType": "OneShot",
       "DurationMin": "0.5856397",
-      "DurationMax": "0.71395403",
+      "DurationMax": "1",
       "MediaRefs": [
        {
+        "Id": "6767003"
+       },
+       {
         "Id": "151765295"
+       },
+       {
+        "Id": "528352743"
        },
        {
         "Id": "818367138"
@@ -771,7 +1194,14 @@
        {
         "Id": "894087048"
        }
-      ]
+      ],
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "809094466"
+        }
+       ]
+      }
      },
      {
       "Id": "1656947812",
@@ -780,11 +1210,17 @@
       "GUID": "{560EBDBD-52E8-4EC9-82B4-AB1D97D4FB92}",
       "Color": "13",
       "DurationType": "OneShot",
-      "DurationMin": "2.5586762",
-      "DurationMax": "2.5586762",
+      "DurationMin": "2.6430833",
+      "DurationMax": "2.7033541",
       "MediaRefs": [
        {
         "Id": "287285638"
+       },
+       {
+        "Id": "901896633"
+       },
+       {
+        "Id": "1037545113"
        }
       ]
      },
@@ -798,6 +1234,12 @@
       "DurationMin": "0.81886554",
       "DurationMax": "0.9191456",
       "MediaRefs": [
+       {
+        "Id": "190724134"
+       },
+       {
+        "Id": "664087683"
+       },
        {
         "Id": "924573326"
        }
@@ -868,14 +1310,20 @@
       "GUID": "{7F385BCC-3E54-4AA7-8271-17030CDAC1BD}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "28.888329",
-      "DurationMax": "28.888329",
+      "DurationMin": "36.199135",
+      "DurationMax": "36.199135",
       "MediaRefs": [
        {
         "Id": "139026441"
        },
        {
+        "Id": "208714548"
+       },
+       {
         "Id": "319526224"
+       },
+       {
+        "Id": "554459309"
        },
        {
         "Id": "960224522"
@@ -924,6 +1372,21 @@
        },
        {
         "Id": "818030058"
+       }
+      ]
+     },
+     {
+      "Id": "3524716652",
+      "Name": "VaultExplosion",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\VaultExplosion",
+      "GUID": "{64439EEE-0F85-4632-81AB-D90B65589F09}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "2.6714392",
+      "DurationMax": "2.6714392",
+      "MediaRefs": [
+       {
+        "Id": "362207851"
        }
       ]
      },
@@ -1011,6 +1474,6 @@
     ]
    }
   ],
-  "FileHash": "{EACE5343-EEB4-8E26-40E8-9512C1138DB4}"
+  "FileHash": "{DE54FFDB-1318-AF61-3DDB-73261B5E9D67}"
  }
 }
