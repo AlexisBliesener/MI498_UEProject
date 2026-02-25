@@ -131,6 +131,12 @@ void AMissionController::ExplodeVaultDoor()
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
 	VaultDoor->Destroy();
+
+	/// Start falling ships
+	for (TObjectPtr<AShip> ship : Ships)
+	{
+		ship->StartFalling();
+	}
 }
 
 void AMissionController::HandleOnEnterExitPlatform()
