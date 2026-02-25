@@ -1,28 +1,29 @@
-﻿#pragma once
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
 
 #include "CoreMinimal.h"
 #include "StateTreeTaskBase.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/Characters/Enemies/SwingingEnemy/SwingingEnemy.h"
-#include "ReleaseSwingSplineTask.generated.h"
-
+#include "BackToSwing.generated.h"
 
 /**
- * StateTree instance data for the Release Swing Spline Task.
+ * StateTree instance data for the BackToSwing task.
  */
-USTRUCT(BlueprintType,meta = (DisplayName = "Release Swing Spline Task"))
-struct FReleaseSwingSplineTaskInstanceData
+USTRUCT(BlueprintType, meta = (DisplayName = "BackToSwing"))
+struct FBackToSwingInstanceData
 {
 	GENERATED_BODY()
 
 	/**
-	 * Pointer to an enemy actor instance.
+	 * Points to the enemy character being controlled by the AI.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<ASwingingEnemy> Actor;
 
 	/**
-	 * Pointer to the AI controller for an enemy.
+	 * Points to the AI controller responsible for controlling the enemy actor.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<AEnemyAIController> AIController;
@@ -30,14 +31,14 @@ struct FReleaseSwingSplineTaskInstanceData
 
 /**
  * This task is being used in the State Tree
- * it sends an event to the state tree to transition from state to another state
+ * it 
  */
 USTRUCT(BlueprintType)
-struct MI498_UEPROJECT_API FReleaseSwingSplineTask : public FStateTreeTaskCommonBase
+struct MI498_UEPROJECT_API FBackToSwing : public FStateTreeTaskCommonBase
 {
 public:
 	GENERATED_BODY()
-	using FInstanceDataType = FReleaseSwingSplineTaskInstanceData;
+	using FInstanceDataType = FBackToSwingInstanceData;
 
 	/**
 	 * Gets the type of instance data used by this task.

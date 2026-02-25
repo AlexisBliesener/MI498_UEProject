@@ -1,17 +1,19 @@
-﻿#pragma once
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
 
 #include "CoreMinimal.h"
 #include "StateTreeTaskBase.h"
+#include "StateTreePropertyRef.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/Characters/Enemies/SwingingEnemy/SwingingEnemy.h"
-#include "UseSwingSplineTask.generated.h"
-
+#include "JumpFromSwing.generated.h"
 
 /**
- * StateTree instance data for the Use Swing Spline Task.
+ * StateTree instance data for the JumpFromSwing task.
  */
-USTRUCT(BlueprintType,meta = (DisplayName = "Use Swing Spline Task"))
-struct FUseSwingSplineTaskInstanceData
+USTRUCT(BlueprintType, meta = (DisplayName = "JumpFromSwing"))
+struct FJumpFromSwingInstanceData
 {
 	GENERATED_BODY()
 
@@ -26,34 +28,42 @@ struct FUseSwingSplineTaskInstanceData
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<AEnemyAIController> AIController;
+	
+	/**
+	 * The location of the target jump 
+	 */
+	UPROPERTY(EditAnywhere, Category = Context, meta = (Context, AllowDerivedTypes="true"))
+	FVector Result;
 };
 
 /**
  * This task is being used in the State Tree
- * it sends an event to the state tree to transition from state to another state
+ * it 
  */
 USTRUCT(BlueprintType)
-struct MI498_UEPROJECT_API FUseSwingSplineTask : public FStateTreeTaskCommonBase
+struct MI498_UEPROJECT_API FJumpFromSwing : public FStateTreeTaskCommonBase
 {
 public:
 	GENERATED_BODY()
-	using FInstanceDataType = FUseSwingSplineTaskInstanceData;
+	using FInstanceDataType = FJumpFromSwingInstanceData;
 
 	/**
 	 * Gets the type of instance data used by this task.
 	 * @return The UStruct representing the instance data type.
 	 */
 	virtual const UStruct* GetInstanceDataType() const override;
+
+
 	/**
-	 * Executes the EnterState logic for the Send Event Task.
-	 * Handles sending a state tree event to the AI component if a valid event tag is provided.
+	 * Executes the EnterState logic for the task when a StateTree enters this state.
+	 * This function is invoked to initialize the state and prepare it for execution.
 	 *
-	 * @param Context The execution context providing necessary runtime data.
-	 * @param Transition Contains data about the state transition.
-	 * @return The status of the task after execution.
+	 * @param Context The execution context providing necessary runtime data and state information.
+	 * @param Transition Contains details about the state transition that triggered the EnterState call.
+	 * @return The status of the task after the EnterState operation.
 	 */
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context,
 	                                       const FStateTreeTransitionResult& Transition) const override;
-	
-	
+
+
 };
