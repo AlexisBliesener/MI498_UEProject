@@ -61,7 +61,7 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	6767003	Damage 2	.cache\7E\{7E2D8530-4F8C-F802-EB20-27C4EAC437CC}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage 2		51062
 	9982857	OnceLeaveVaultLine3	.cache\31\{3182F71C-2D60-E03D-7674-C776E2F8AB1D}.wem		\Containers\Default Work Unit\VA\LeaveVaultDialogue\OnceLeaveVaultLine3		303408
-	17125242	PickUpBombPiecePickUp	.cache\DA\{DAD73010-EC2E-61C9-B888-0690428E0523}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		81564
+	17125242	PickUpBombPiecePickUp	.cache\99\{998A6B92-F3CA-AF10-E7C7-57D9F77A55F7}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		81564
 	26282397	SwordDash_mixdown_02	.cache\48\{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		235452
 	34328720	CannonFuseLoop	.cache\F9\{F9E922C6-B1D1-33D8-154A-88426BBC4459}.wem		\Containers\Default Work Unit\Environment\CannonFireSequence\CannonFuseLoop		464176
 	97296079	AfterBlastingOut	.cache\07\{072B326D-D54F-BFCC-142F-8EF6C0FDD7F2}.wem		\Containers\Default Work Unit\VA\AfterBlastingOut		130312
@@ -84,7 +84,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	320129325	SwordDash_mixdown_01	.cache\9D\{9DFB04B2-257C-7790-7889-1ED3204FA7D2}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		267296
 	324181781	AllPiecesCollectedLine1	.cache\4B\{4B0A90F1-3D1E-D428-848C-699DB4091A0E}.wem		\Containers\Default Work Unit\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine1		154400
 	326381219	Fortnite Default Dance Greenscreen_01	.cache\C6\{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		1273952
-	362207851	BombExplosionMOREBASS	.cache\B2\{B272D07C-BAA7-21A4-1150-5A1F2CA3A4C2}.wem		\Containers\Default Work Unit\VA\AfterBombExplode\BombExplosionMOREBASS		513012
+	362207851	BombExplosionMOREBASS	.cache\30\{3056BCC4-960B-EF5D-A51C-F6132568DCF3}.wem		\Containers\Default Work Unit\VA\AfterBombExplode\BombExplosionMOREBASS		513012
 	373499443	SwordDash_mixdown	.cache\AC\{AC8A441A-8542-2BBC-F2CB-F88CFE6DDE36}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		199456
 	377840418	GrappleHookReelIn	.cache\64\{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		220320
 	397614194	Damage2AverageEnemy	.cache\BB\{BB0609E4-47BE-089C-69DD-61FA478CB9B3}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage2AverageEnemy		33192
