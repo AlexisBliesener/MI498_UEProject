@@ -97,10 +97,16 @@ void ASwingingEnemy::Tick(float DeltaTime)
     
 
 #if WITH_EDITOR
-    if (bDrawDebugSwinging && GetWorld()->WorldType == EWorldType::Editor)
+    if (GetWorld()->WorldType == EWorldType::Editor)
     {
-        DrawSwingPathEditor();
-        DrawCombatRangesEditor();
+        if (bDrawDebugSwinging )
+        {
+            DrawSwingPathEditor();
+        }
+        if (bDebug)
+        {
+            DrawCombatRangesEditor();
+        }
     }
 #endif
     
@@ -341,7 +347,7 @@ bool ASwingingEnemy::ShouldTickIfViewportsOnly() const
 }
 void ASwingingEnemy::DrawCombatRangesEditor()
 {
-    if (!bDrawDebugSwinging) return;
+    if (!bDebug) return;
     FVector center = GetActorLocation();
     UWorld* world = GetWorld();
 
