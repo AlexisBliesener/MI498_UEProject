@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "CoreMinimal.h"
+#include "Ship.h"
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
@@ -57,6 +58,10 @@ public:
 	/// Actor containing the exit cannon component
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
+	
+	/// Array of ships in the level
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<AShip>> Ships;
 	
 	/// A Blueprintable function that will be called when the mission starts
 	UFUNCTION(BlueprintImplementableEvent)
