@@ -25,7 +25,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UProjectileMovementComponent* Movement;
 	/// Defines the amount of damage dealt by the projectile.=
-	UPROPERTY(EditDefaultsOnly, Category="Damage")
+	UPROPERTY(NotBlueprintable)
 	float Damage = 15.f;
 	/**
 	 * Called when the projectile hits with another object to apply damage and destroy itself.

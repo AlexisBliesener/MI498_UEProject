@@ -5,6 +5,11 @@
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
+ASword::ASword()
+{
+	WeaponType = EWeaponType::Sword;
+}
+
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
 	/// Check if there is enough ammo to perform the primary attack

@@ -12,6 +12,8 @@ class MI498_UEPROJECT_API ASword : public AWeaponBase
 {
 
 public:
+	ASword();
+	
 	/// Override the PrimaryAttack function to implement Sword specific attacking behavior
 	/// @param Controller - Provides context about who is attacking 
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;

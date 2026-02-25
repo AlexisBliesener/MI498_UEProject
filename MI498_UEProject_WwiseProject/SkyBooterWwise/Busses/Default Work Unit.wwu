@@ -9,6 +9,82 @@
 							<ObjectRef Name="System" ID="{0AC8750D-F17C-4C30-B38C-733E39E09BE8}" WorkUnitID="{9A045F2D-4144-4A96-9C3C-71487FFBB5F1}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="Steps_Bus" ID="{4A92AAF7-13C0-42A6-97F6-A627FA41DC2C}">
+							<ObjectLists>
+								<ObjectList Name="RTPC">
+									<RTPC Name="" ID="{3B0C4A72-FDD5-4E79-889B-05DC8D15225E}" ShortID="679939196">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="Combat_Effect" ID="{3900F363-CE27-4E44-91D6-D7A93A9B574D}" WorkUnitID="{77BEE622-1575-46BF-9780-FD4792159506}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{E5AC400C-A876-4EE9-A314-677401860DA2}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>-48</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>-25.01868</XPos>
+																<YPos>0.06515</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Log2</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>-16.78778</XPos>
+																<YPos>-11.96223</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Exp2</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>-12.3861</XPos>
+																<YPos>-11.88005</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Exp2</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>-5.5416</XPos>
+																<YPos>-21.30787</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Log2</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</ObjectList>
+							</ObjectLists>
+						</Bus>
+						<Bus Name="Combat_Bus" ID="{EC0CC6D6-D072-45BC-8438-01172C0A4CDE}">
+							<ObjectLists>
+								<ObjectList Name="Effects">
+									<EffectSlot Name="" ID="{B6F886D4-9F7A-4E2F-8E88-9E1AEF5E1E2D}" ShortID="828570227">
+										<ReferenceList>
+											<Reference Name="Effect" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+												<ObjectRef Name="StepSideChainMeter" ID="{2FF5B593-E914-4060-A469-7BDBECA19377}" WorkUnitID="{6F7604A2-2A30-4B2D-A39B-F223E2EC5D4E}"/>
+											</Reference>
+										</ReferenceList>
+									</EffectSlot>
+								</ObjectList>
+							</ObjectLists>
+						</Bus>
+					</ChildrenList>
 					<ObjectLists>
 						<ObjectList Name="RTPC">
 							<RTPC Name="" ID="{B82335DD-7025-4C68-BFA8-10365FDB4B10}" ShortID="608352387">
@@ -56,6 +132,13 @@
 					</ObjectLists>
 				</Bus>
 				<Bus Name="PlayerDeathBus" ID="{977C7EA2-D77B-4510-B8E3-823E4464FF9B}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{0AC8750D-F17C-4C30-B38C-733E39E09BE8}" WorkUnitID="{9A045F2D-4144-4A96-9C3C-71487FFBB5F1}"/>
+						</Reference>
+					</ReferenceList>
+				</Bus>
+				<Bus Name="TestBus" ID="{F482BAD0-64FE-46DB-97D2-04C0D4AF50FE}">
 					<ReferenceList>
 						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
 							<ObjectRef Name="System" ID="{0AC8750D-F17C-4C30-B38C-733E39E09BE8}" WorkUnitID="{9A045F2D-4144-4A96-9C3C-71487FFBB5F1}"/>

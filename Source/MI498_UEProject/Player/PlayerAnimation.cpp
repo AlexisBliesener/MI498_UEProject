@@ -1,4 +1,5 @@
 #include "PlayerAnimation.h"
+#include "../Weapons/WeaponTypes.h"
 
 void UPlayerAnimation::SetCurrentWeapon(EWeaponType Weapon)
 {

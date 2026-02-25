@@ -2,17 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "MI498_UEProject/Weapons/WeaponTypes.h"
 #include "PlayerAnimation.generated.h"
-
-/// Enum representing the currently equipped weapon type.
-UENUM(BlueprintType)
-enum class EWeaponType : uint8
-{
-	Blunderbuss,
-	Sword,
-	HarpoonGun
-};
-
 
 /// Animation Instance class for the player character.
 /// Responsible for updating animation-related variables

@@ -10,11 +10,21 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{CEAD2C91-0330-8BA5-9162-202900126F0E}",
+    "Hash": "{4E24C19F-119D-0873-7C95-7C90ED4BEB7C}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
     "Plugins": {
+     "ShareSets": [
+      {
+       "Id": "1939654936",
+       "Name": "StepSideChainMeter",
+       "ObjectPath": "\\Effects\\Default Work Unit\\StepSideChainMeter",
+       "GUID": "{2FF5B593-E914-4060-A469-7BDBECA19377}",
+       "LibName": "Wwise Meter",
+       "LibId": "8454147"
+      }
+     ],
      "AudioDevices": [
       {
        "Id": "2317455096",
@@ -36,19 +46,50 @@
     },
     "Busses": [
      {
+      "Id": "1966988073",
+      "Name": "TestBus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\TestBus",
+      "GUID": "{F482BAD0-64FE-46DB-97D2-04C0D4AF50FE}"
+     },
+     {
       "Id": "2246998526",
       "Name": "Main Audio Bus",
       "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus",
       "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
      },
      {
+      "Id": "2769824834",
+      "Name": "Combat_Bus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\Combat_Bus",
+      "GUID": "{EC0CC6D6-D072-45BC-8438-01172C0A4CDE}",
+      "PluginRefs": {
+       "ShareSets": [
+        {
+         "Id": "1939654936"
+        }
+       ]
+      }
+     },
+     {
       "Id": "4112775838",
       "Name": "PlayerDeathBus",
       "ObjectPath": "\\Busses\\Default Work Unit\\PlayerDeathBus",
       "GUID": "{977C7EA2-D77B-4510-B8E3-823E4464FF9B}"
+     },
+     {
+      "Id": "4293657029",
+      "Name": "Steps_Bus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\Steps_Bus",
+      "GUID": "{4A92AAF7-13C0-42A6-97F6-A627FA41DC2C}"
      }
     ],
     "GameParameters": [
+     {
+      "Id": "457444899",
+      "Name": "Combat_Effect",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Combat_Effect",
+      "GUID": "{3900F363-CE27-4E44-91D6-D7A93A9B574D}"
+     },
      {
       "Id": "822163944",
       "Name": "SS_Air_RPM",
@@ -663,6 +704,6 @@
     ]
    }
   ],
-  "FileHash": "{1519A19F-5F77-8206-CF52-386A37B8A4DE}"
+  "FileHash": "{2BC8D49D-C4C1-3560-9F57-4DDE8A1A6BEE}"
  }
 }
