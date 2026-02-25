@@ -11,11 +11,18 @@ State	ID	Name	State Group			Notes
 	1668749452	No	IsMoving			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
+	457444899	Combat_Effect			\Default Work Unit\Combat_Effect	
 	1440535996	HPValue			\Default Work Unit\HPValue	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	1966988073	TestBus			\Default Work Unit\TestBus	
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
+	2769824834	Combat_Bus			\Default Work Unit\Main Audio Bus\Combat_Bus	
 	4112775838	PlayerDeathBus			\Default Work Unit\PlayerDeathBus	
+	4293657029	Steps_Bus			\Default Work Unit\Main Audio Bus\Steps_Bus	
+
+Effect plug-ins	ID	Name	Type				Notes
+	1939654936	StepSideChainMeter	Wwise Meter			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			
