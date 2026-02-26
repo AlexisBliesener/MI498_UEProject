@@ -29,7 +29,7 @@ jobs:
           else
             echo "Nothing found try to create a new one ."
             
-            SIZES="gpu-h200x1-141gb gpu-h100x1-80gb gpu-l40sx1-48gb gpu-6000adax1-48gb gpu-4000adax1-20gb"
+            SIZES="gpu-h200x1-141gb gpu-h100x1-80gb gpu-mi300x1-192gb gpu-4000adax1-20gb gpu-l40sx1-48gb gpu-6000adax1-48gb"
             VOLUME_ID="796843d4-1345-11f1-98a0-0a58ac14ed6f"
             
             GOT_GPU=false
