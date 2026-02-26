@@ -22,15 +22,6 @@ void AMissionController::BeginPlay()
 	/// Set how many bomb peices are needed to complete stage one
 	NeededBombPieces = BombPieces.Num();
 	
-	// Start Stage One timer
-	FTimerDelegate delegate;
-	delegate.BindUObject(this, &AMissionController::StageOneFinish, false);
-	GetWorldTimerManager().SetTimer(
-		MissionTimerHandle,
-		delegate,
-		StageOneTimeLimit,
-		false);
-	
 	OnMissionStarted();
 	
 	/// Bind to all bomb piece collected events
@@ -232,20 +223,6 @@ void AMissionController::StageOneFinish(const bool Result)
 	{
 		/// Start Stage 2
 		CurrentState = EMissionState::StageTwo;
-		
-		/// Extend remaining mission time by StageTwoAdditionalTime seconds
-		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
-		seconds += StageTwoAdditionalTime;
-		
-		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
-		
-		FTimerDelegate delegate;
-		delegate.BindUObject(this, &AMissionController::StageTwoFinish, false);
-		GetWorldTimerManager().SetTimer(
-			MissionTimerHandle,
-			delegate,
-			seconds,
-			false);
 	}
 	else
 	{
@@ -306,5 +283,9 @@ void AMissionController::StageThreeFinish(const bool Result)
 
 float AMissionController::GetRemainingMissionTime() const
 {
+	if (GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle) < 0)
+	{
+		return 0;
+	}
 	return GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
 }
