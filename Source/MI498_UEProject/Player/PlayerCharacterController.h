@@ -8,6 +8,7 @@
 class UInputMappingContext;
 class APlayerCharacter;
 class UInputAction;
+class UGameInstanceMain;
 struct FInputActionValue;
 
 /// Log category for player controller–related messages
@@ -102,6 +103,9 @@ protected:
 	/// Called when this controller releases possession of a pawn
 	/// Used to clean up input bindings
 	virtual void OnUnPossess() override;
+
+	UPROPERTY()
+	UGameInstanceMain* GameInstanceMain;
 	
 private:
 	/// Enhanced input component used for binding input actions
