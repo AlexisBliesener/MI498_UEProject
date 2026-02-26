@@ -36,7 +36,7 @@ jobs:
             
             for S in $SIZES; do
               echo "GETTING GPU $S"
-              if doctl compute droplet create gpu-builder-machine --region tor1 --size $S --image 218623417 --volumes $VOLUME_ID --ssh-keys="4b:4c:11:0f:43:e2:82:cc:db:58:be:2c:93:65:6c:e6" --wait; then
+              if doctl compute droplet create gpu-builder-machine --region tor1 --size $S --image 218624341 --volumes $VOLUME_ID --ssh-keys="4b:4c:11:0f:43:e2:82:cc:db:58:be:2c:93:65:6c:e6" --wait; then
                 echo "CReated GPU AND READY TO RUN"
                 GOT_GPU=true
                 break 
