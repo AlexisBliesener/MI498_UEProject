@@ -59,6 +59,7 @@ jobs:
         with:
           lfs: false
       - name: get lfs cache
+        working-directory: ${{ github.workspace }}
         run: |
             git lfs install
             git lfs pull
