@@ -2,7 +2,6 @@
 
 
 #include "PlayerLocationEvaluator.h"
-#include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 void UPlayerLocationEvaluator::TreeStart(FStateTreeExecutionContext& Context)
@@ -19,50 +18,74 @@ void UPlayerLocationEvaluator::TreeStop(FStateTreeExecutionContext& Context)
 
 void UPlayerLocationEvaluator::Tick(FStateTreeExecutionContext& Context, const float DeltaTime)
 {
-	UWorld* World = Actor->GetWorld();
-	if (!World)
-	{
-		bPlayerUnderEnemy = false;
-		bPlayerInXYRange = false;
-		bPlayerInMeleeRange = false;
-		return;
-	}
-
-	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(World, 0);
-	if (!PlayerPawn)
-	{
-		bPlayerUnderEnemy = false;
-		bPlayerInXYRange = false;
-		bPlayerInMeleeRange = false;
-		return;
-	}
-	// cache the player
-	Player = PlayerPawn;
-	bPlayerInXYRange = false;
-	bPlayerUnderEnemy = false;
-	bPlayerInMeleeRange = false;
-	if (!IsValid(Actor) || !IsValid(Player))
-	{
-		UE_LOG(EnemyAILog, Error, TEXT("Actor or player not found on Player Location Evaluator! "))
-		return;
-	}
-
-	const FVector EnemyLoc = Actor->GetActorLocation();
-	const FVector PlayerLoc = Player->GetActorLocation();
+	bTargetInBombRange = false;
+	bTargetChaseRange = false;
+	bTargetInMeleeRange = false;
+	TargetActor = nullptr;
 	
-	const FVector EnemyXY(EnemyLoc.X, EnemyLoc.Y, 0.f); // ignore z axis 
-	const FVector PlayerXY(PlayerLoc.X, PlayerLoc.Y, 0.f);   // ignore z axis 
+	if (!IsValid(Actor) || !IsValid(AIController))
+	{
+		return;
+	}
 
-	const float DistSqXY = FVector::DistSquared(EnemyXY, PlayerXY);
+	AActor* currentTarget = AIController->AcquiredTarget;
+	if (!IsValid(currentTarget))
+	{
+		return;
+	}
+	TargetActor = currentTarget;
 
-	bPlayerInXYRange = DistSqXY <= FMath::Square(Actor->XYDetectionRadius);
+	const FVector enemyLoc = Actor->GetActorLocation();
+	const FVector targetLoc = currentTarget->GetActorLocation();
 	
-	const float DistZ = FMath::Abs(PlayerLoc.Z - EnemyLoc.Z);
-	// Player under enemy? (vertical check only!)
-	bPlayerUnderEnemy = bPlayerInXYRange && (PlayerLoc.Z < EnemyLoc.Z) &&
-		FMath::Abs(PlayerLoc.Z - EnemyLoc.Z) <= Actor->UnderEnemyTolerance;
-		
-	// check for melee range with a tolerance for the height 
-	bPlayerInMeleeRange = (DistSqXY <= FMath::Square(Actor->MeleeRange)) &&
-					  (DistZ <= Actor->MeleeZTolerance);
+	const float distSquared = FVector::DistSquared(enemyLoc, targetLoc);
+	const float distZ = FMath::Abs(targetLoc.Z - enemyLoc.Z);
+
+	bTargetInBombRange = distSquared <= FMath::Square(Actor->AttackStartDistance);
+	bTargetChaseRange = distSquared <= FMath::Square(Actor->ChaseRange);
+    
+	// melee range
+	bTargetInMeleeRange = (distSquared <= FMath::Square(Actor->MeleeRange)) && (distZ <= Actor->MeleeZTolerance);
+
+	
+	if (bTargetInMeleeRange && !(Actor->bIsSwinging))
+	{
+		if ( LastEvent == SwingingEnemyEnums::Melee)
+		{
+			return;
+		}
+       
+		AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.Melee")));
+		LastEvent = SwingingEnemyEnums::Melee;
+
+
+	}
+	else if (bTargetChaseRange && !(Actor->bIsSwinging))
+	{
+		if ( LastEvent == SwingingEnemyEnums::Chase)
+		{
+			return;
+		}
+       
+		AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.Chase")));
+		LastEvent = SwingingEnemyEnums::Chase;
+
+
+	}
+	else if (bTargetInBombRange)
+	{
+		if (LastEvent == SwingingEnemyEnums::ThrowABomb)
+		{
+			return;
+		}
+		AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.ThrowABomb")));
+		LastEvent = SwingingEnemyEnums::ThrowABomb;
+
+	}
+	else if (LastEvent != SwingingEnemyEnums::Swing)
+	{
+		AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.Swinging")));
+		LastEvent = SwingingEnemyEnums::Swing;
+
+	}
 }

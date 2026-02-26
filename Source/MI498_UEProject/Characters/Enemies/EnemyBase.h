@@ -23,19 +23,19 @@ public:
 	 * This is the range when enemy start to start the attacking behavior.
 	 * For example, if this player is in this distance, that means the enemy sees the player
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Default)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
 	float AttackStartDistance = 1000.f;
 	/**
 	 * This is the range when enemy start to preform the attack (Shooting for example).
 	 * Usually is less than the attack start distance.
 	 * So the enemy can get closer to the player and then ATTACK!
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Default)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
 	float AttackPerformDistance  = 500.f;
 	/**
 	 * The radius to generate a random patrol point around the spawn point of the enemy.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Default)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
 	float PatrolRadius  = 1000.f;
 	/// Time between enemy shots, in seconds.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")

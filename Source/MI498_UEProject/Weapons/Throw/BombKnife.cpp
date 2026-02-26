@@ -49,7 +49,7 @@ void ABombKnife::PrimaryAttack(AController* Controller, AActor* Target)
 	if (!bSuccess)
 	{
 		UE_LOG(EnemyAILog, Error, TEXT("Could not calculate projectile velocity!!"));
-		return;
+		launchVelocity = (endLocation - startLocation).GetSafeNormal() * LaunchSpeed;
 	}
 
 	FActorSpawnParameters spawnParams;
@@ -93,7 +93,7 @@ void ABombKnife::SecondaryAttack(AController* Controller, AActor* Target)
 	// ECC_GameTraceChannel1 is only for the player
 	ETraceTypeQuery traceChannel = UEngineTypes::ConvertToTraceType(ECC_GameTraceChannel1);
 	
-	const bool bHit = UKismetSystemLibrary::SphereTraceSingle(GetWorld(),startLocation,endLocation,SecondAttackRadius,traceChannel,false,
+	const bool bHit = UKismetSystemLibrary::SphereTraceSingle(GetWorld(),startLocation,endLocation,KnifeAttackRadius,traceChannel,false,
 		TArray<AActor*>(), // we don't need to ignore anything since the trace channel is dedicated only to the player
 		EDrawDebugTrace::None,
 		hitResult,
@@ -104,6 +104,6 @@ void ABombKnife::SecondaryAttack(AController* Controller, AActor* Target)
 	{
 		AActor* hitActor = hitResult.GetActor();
 		// apply damage 
-		UGameplayStatics::ApplyDamage(hitActor, SecondAttackDamage, Controller, ownerPawn, UDamageType::StaticClass());
+		UGameplayStatics::ApplyDamage(hitActor, KnifeAttackDamage, Controller, ownerPawn, UDamageType::StaticClass());
 	}
 }

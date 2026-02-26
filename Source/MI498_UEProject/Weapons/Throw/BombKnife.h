@@ -16,17 +16,13 @@ class MI498_UEPROJECT_API ABombKnife : public AWeaponBase
 public:
 	// Sets default values for this actor's properties
 	ABombKnife();
-	
 	/// Launch speed multiplier for arc
-	UPROPERTY(NotBlueprintable)
 	float LaunchSpeed = 1200.f;
 	/// Second Attack damage for this weapon 
-	UPROPERTY(NotBlueprintable)
-	float SecondAttackDamage = 2.f;
+	float KnifeAttackDamage = 2.f;
 	/// Second Attack radius
-	UPROPERTY(NotBlueprintable)
-	float SecondAttackRadius = 200.f;
-	UPROPERTY(NotBlueprintable)
+	float KnifeAttackRadius = 200.f;
+	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
 	float ExplosionRadius = 300.f;
 protected:
 	virtual void PrimaryAttack(AController* Controller, AActor* Target = nullptr) override;
