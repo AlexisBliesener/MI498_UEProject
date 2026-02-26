@@ -3,16 +3,58 @@ name: Build Project
 on:
   workflow_dispatch: 
   push:
-    branches: # aAAA
+    branches: 
       - main         
   pull_request:      
 
+concurrency:
+  group: unreal-engine-build
+  cancel-in-progress: false
+
 jobs:
+  create-droplet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: connect to digial ocean
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+          
+      - name: get first gpu 
+        timeout-minutes: 30
+        run: |
+          echo "see if there is any gpu devices avaliable"
+          if doctl compute droplet get gpu-builder-machine > /dev/null 2>&1; then
+            echo "FOUND 1!"
+          else
+            echo "Nothing found try to create a new one ."
+            
+            SIZES="gpu-h200x1-141gb gpu-h100x1-80gb gpu-l40sx1-48gb gpu-6000adax1-48gb gpu-4000adax1-20gb"
+            VOLUME_ID="796843d4-1345-11f1-98a0-0a58ac14ed6f"
+            
+            GOT_GPU=false
+            
+            for S in $SIZES; do
+              echo "GETTING GPU $S"
+              if doctl compute droplet create gpu-builder-machine --region tor1 --size $S --image your-snapshot-id --volumes $VOLUME_ID --wait; then
+                echo "CReated GPU AND READY TO RUN"
+                GOT_GPU=true
+                break 
+              fi
+            done
+            
+            if [ "$GOT_GPU" = false ]; then
+              echo "NO GPUS FOUND!!"
+              exit 1 
+            fi
+          fi
+
   build-and-package:
+    needs: create-droplet
     runs-on: self-hosted 
 
     steps:
-      - name: download reppoo
+      - name: download repo
         uses: actions/checkout@v4
         with:
           lfs: false
@@ -25,4 +67,29 @@ jobs:
         env:
           UE-LocalDataCachePath: "D:\\UE_DDC"
         run: |
-          & "D:\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -package -nullrhi -iterate
+          & "D:\Epic Games\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -package -nullrhi -iterate -AdditionalCookerOptions="-cookprocesscount=4"
+
+  delete-droplet:
+    needs: [create-droplet, build-and-package]
+    if: always() 
+    runs-on: ubuntu-latest
+    steps:
+      - name: CONNECT TO DIGITALOCEAN
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+          
+      - name: DELETE IF THERE IS ANY DROPLET
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        run: |
+          QUEUED=$(gh api repos/${{ github.repository }}/actions/runs?status=queued --jq '.total_count')
+          
+          echo "THERE ARE $QUEUED ACTIONS DON'T DELETE THIS "
+          
+          if [ "$QUEUED" -gt 0 ]; then
+            echo "FOUND AN ACTION, DON'T DESTORY DROPLET"
+          else
+            echo "DELETE IT !!!!!!"
+            doctl compute droplet delete gpu-builder-machine --force
+          fi
