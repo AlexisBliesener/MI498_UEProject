@@ -39,6 +39,8 @@ struct FGetRandomLocationTaskInstanceData
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Output, meta = (Output))
 	FVector RandomLocation = FVector::ZeroVector;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Output, meta = (Output))
+	FVector RandomLocationSA = FVector::ZeroVector;
 };
 
 /**

@@ -45,7 +45,7 @@ EStateTreeRunStatus FRandomPointTask::EnterState(FStateTreeExecutionContext& Con
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Could not find random location"));
+		UE_LOG(LogTemp, Warning, TEXT("Could not find random location TEST 123"));
 		return EStateTreeRunStatus::Failed;
 	}
 }
