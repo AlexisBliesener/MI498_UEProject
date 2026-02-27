@@ -43,7 +43,7 @@ jobs:
         env:
           UE-LocalDataCachePath: "F:\\UE_Cache"
         run: |
-          & "F:\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -package -nullrhi -iterate -AdditionalCookerOptions="-cookprocesscount=4"
+          & "F:\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Shipping -build -cook -stage -package -nullrhi -iterate -AdditionalCookerOptions="-cookprocesscount=4"
 
   stop-azure-vm:
     needs: [start-azure-vm, build-and-package]
