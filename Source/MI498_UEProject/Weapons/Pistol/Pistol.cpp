@@ -36,12 +36,16 @@ void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 		}
 		FVector aimAtLocation = Target->GetActorLocation() + FVector(0.f, 0.f, 60.f);;
 		FRotator lookAtRot = (aimAtLocation - spawnLocation).Rotation();
-		GetWorld()->SpawnActor<APistolProjectile>(
+		APistolProjectile* projectile = GetWorld()->SpawnActor<APistolProjectile>(
 			ProjectileClass,
 			spawnLocation,
 			lookAtRot,
 			params
 		);
+		if (projectile)
+		{
+			projectile->Damage = Damage;
+		}
 	}
 }
 

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{6F7604A2-2A30-4B2D-A39B-F223E2EC5D4E}" SchemaVersion="133">
 	<Effects>
-		<WorkUnit Name="Default Work Unit" ID="{6F7604A2-2A30-4B2D-A39B-F223E2EC5D4E}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{6F7604A2-2A30-4B2D-A39B-F223E2EC5D4E}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="StepSideChainMeter" ID="{2FF5B593-E914-4060-A469-7BDBECA19377}" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+					<ReferenceList>
+						<Reference Name="GameParameter">
+							<ObjectRef Name="Combat_Effect" ID="{3900F363-CE27-4E44-91D6-D7A93A9B574D}" WorkUnitID="{77BEE622-1575-46BF-9780-FD4792159506}"/>
+						</Reference>
+					</ReferenceList>
+				</Effect>
+			</ChildrenList>
+		</WorkUnit>
 	</Effects>
 </WwiseDocument>

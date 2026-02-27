@@ -23,7 +23,6 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UProjectileMovementComponent* Movement;
 	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
-	UPROPERTY(EditDefaultsOnly)
 	float ExplosionRadius = 300.f;
 	virtual float TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator,
 		AActor* DamageCauser) override;

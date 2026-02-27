@@ -88,7 +88,7 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	TargetPlayer = nullptr;
 	if (IsValid(AIController))
 	{
-		AIController->AcquiredTarget = nullptr; 
+		//AIController->AcquiredTarget = nullptr; 
 	}
 	SendEventToStateTree(StateTreeEnemyEvents::Patrol);
 	

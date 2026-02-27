@@ -3,8 +3,11 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "WeaponInterface.h"
+#include "HarpoonGun/HarpoonGun.h"
+#include "MI498_UEProject/Player/PlayerAnimation.h"
 #include "WeaponManager.generated.h"
 
+class UPlayerAnimation;
 class UInputMappingContext;
 class UInputAction;
 class APlayerCharacter;
@@ -117,6 +120,17 @@ private:
 	/// The currently selected weapon
 	UPROPERTY(VisibleAnywhere)
 	TScriptInterface<IWeaponInterface> CurrentWeapon;
+	
+	/// Reference to the player's animation instance.
+	UPROPERTY()
+	TObjectPtr<UPlayerAnimation> PlayerAnimation;
+	
+	/// Updates animation state based on the current weapon.
+	void UpdateWeaponAnimation();
+	
+	/// Cache of the harpoon gun 
+	UPROPERTY()
+	AHarpoonGun* HarpoonGunWeapon = nullptr;
 	
 	/// The index in the weapon options array of the currently selected weapon
 	UPROPERTY()

@@ -6,6 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/Interactables/InteractableComponent.h"
 #include "MI498_UEProject/Weapons/WeaponManager.h"
+#include "GameInstanceMain.h"
 
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
@@ -13,6 +14,9 @@ DEFINE_LOG_CATEGORY(PlayerLog);
 void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 {
 	Super::OnPossess(PossessedPawn);
+	
+	PlayerCameraManager->ViewPitchMax = ViewPitchMax;
+	PlayerCameraManager->ViewPitchMin = ViewPitchMin;
 	
 	/// Cache the possessed player character
 	PlayerCharacter = Cast<APlayerCharacter>(PossessedPawn);
@@ -56,6 +60,14 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	{
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &APlayerCharacterController::HandleInteract);
 	}
+	
+	/// Cache the game instance for variable access and setting
+	GameInstanceMain = Cast<UGameInstanceMain>(GetGameInstance());
+	if (!IsValid(GameInstanceMain))
+	{
+		UE_LOG(PlayerLog, Error, TEXT("Unable to get reference to the GameInstanceMain"));
+	}
+
 }
 
 void APlayerCharacterController::OnUnPossess()
@@ -86,6 +98,9 @@ void APlayerCharacterController::HandleLook(const FInputActionValue& InputAction
 	{
 		lookInput *= (1 - MovementSlowPercent);
 	}
+	
+	if (!IsValid(GameInstanceMain)) return;
+	lookInput *= GameInstanceMain->MouseSens;
 
 	AddYawInput(lookInput.X);
 	AddPitchInput(lookInput.Y);

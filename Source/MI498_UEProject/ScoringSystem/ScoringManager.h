@@ -36,8 +36,8 @@ UCLASS(BlueprintType, Blueprintable)
 class MI498_UEPROJECT_API UScoringManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
 public:
-	UFUNCTION(BlueprintCallable)
 	/// Returns the actual accumulated score
+	UFUNCTION(BlueprintCallable)
 	int GetScore() const { return Score; }
 	
 	/// Returns the score that should be shown on screen
@@ -45,33 +45,78 @@ public:
 	int GetOnScreenScore() const { return OnScreenScore; }
 
 	/// Adds score for collecting a bomb piece
-	void AddBombPieceScore() { Score += BombPieceScore; }
+	void AddBombPieceScore() { Score += BombPieceScore; BombPiecesVal += BombPieceScore;}
 
 	/// Adds score for opening vault and updates global multiplier
 	void AddOpenVaultScore()
 	{
 		Score += OpenVaultScore;
+		OpenVaultVal += OpenVaultScore;
 		SetGlobalScoreMult(AfterBombPlantGlobalMult);
 	}
 
 	/// Adds score when finishing the level
-	void AddFinishLevelScore() { Score += FinishLevelScore; }
+	void AddFinishLevelScore() { Score += FinishLevelScore; EscapedVal += FinishLevelScore;}
 
 	/// Adds score for each vault second survived
-	void AddVaultSecScore() { Score += VaultSecScore; }
+	void AddVaultSecScore() { Score += VaultSecScore; VaultLootVal += VaultSecScore;}
 	
 	/// Sets airborne state (used for airtime scoring & midair bonuses)
 	void SetInAir(bool val) { bInAir = val; }
 	
 	/// Generic score adder accessible from Blueprint
 	UFUNCTION(BlueprintCallable)
-	void AddGenericScore(int Amount) { Score += Amount * GlobalScoreMult; }
+	void AddGenericScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
 
 	/// Sets the global score multiplier
 	void SetGlobalScoreMult(const int Val) { GlobalScoreMult = Val; }
 
 	/// Calculates and applies score for killing an enemy
 	void AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy);
+	
+	/// Returns total score earned from successfully escaping / finishing the level
+	UFUNCTION(BlueprintCallable)
+	int GetEscapedVal() const { return EscapedVal; }
+
+	/// Returns total score earned from opening the vault
+	UFUNCTION(BlueprintCallable)
+	int GetOpenVaultVal() const { return OpenVaultVal; }
+
+	/// Returns total score accumulated from collecting bomb pieces
+	UFUNCTION(BlueprintCallable)
+	int GetBombPiecesVal() const { return BombPiecesVal; }
+
+	/// Returns total score gained from vault loot time 
+	UFUNCTION(BlueprintCallable)
+	int GetVaultLootVal() const { return VaultLootVal; }
+
+	/// Returns cumulative score from defeating Average enemies
+	UFUNCTION(BlueprintCallable)
+	int GetAverageEnemyKillsVal() const { return AverageEnemyKillsVal; }
+
+	/// Returns cumulative score from defeating Brute enemies
+	UFUNCTION(BlueprintCallable)
+	int GetBruteKillsVal() const { return BruteKillsVal; }
+
+	/// Returns cumulative score from defeating Swinger enemies
+	UFUNCTION(BlueprintCallable)
+	int GetSwingerKillVal() const { return SwingerKillVal; }
+
+	/// Returns total score gained from generic loot pickups 
+	UFUNCTION(BlueprintCallable)
+	int GetLootPickupVal() const { return LootPickupVal; }
+
+	/// Returns total score gained from destroying breakable walls
+	UFUNCTION(BlueprintCallable)
+	int GetBreakableWallsVal() const { return BreakableWallsVal; }
+
+	/// Returns total score accumulated from airtime bonuses
+	UFUNCTION(BlueprintCallable)
+	int GetAirtimeVal() const { return AirtimeVal; }
+	
+	/// Returns player rank string based on total score thresholds (D, C, B, A, S)
+	UFUNCTION(BlueprintCallable)
+	FString GetRank() const;
 	
 	/// Score awarded for collecting a single bomb piece
 	UPROPERTY(EditAnywhere)
@@ -115,7 +160,7 @@ public:
 
 	/// Interval between UI score increments
 	UPROPERTY(EditAnywhere)
-	float SecToUpdateOnScreenScore = 0.01;
+	float SecToUpdateOnScreenScore = 0.001;
 
 	/// Interval between airtime score additions
 	UPROPERTY(EditAnywhere)
@@ -132,6 +177,22 @@ public:
 	/// Multiplier applied to barrel kills
 	UPROPERTY(EditAnywhere)
 	float BombBarrelKillModifier = 1.5;
+	
+	/// Minimum score required to achieve C rank
+	UPROPERTY(EditAnywhere)
+	float CRankScore = 25000;
+	
+	/// Minimum score required to achieve B rank
+	UPROPERTY(EditAnywhere)
+	float BRankScore = 40000;
+	
+	/// Minimum score required to achieve A rank
+	UPROPERTY(EditAnywhere)
+	float ARankScore = 55000;
+	
+	/// Minimum score required to achieve S rank
+	UPROPERTY(EditAnywhere)
+	float SRankScore = 75000;
 
 protected:
 	virtual void Tick(float DeltaTime) override;
@@ -180,6 +241,36 @@ private:
 	/// Stores the previous kill type for combo logic comparison
 	UPROPERTY()
 	EKillType LastKilledWith = EKillType::None;
+	
+	/// Total score earned from completing / escaping the level
+	int EscapedVal = 0;
+
+	/// Total score earned from opening the vault
+	int OpenVaultVal = 0;
+
+	/// Total score accumulated from collecting bomb pieces
+	int BombPiecesVal = 0;
+
+	/// Total score gained from vault defense time (per-second vault scoring)
+	int VaultLootVal = 0;
+
+	/// Total score accumulated from defeating Average enemies
+	int AverageEnemyKillsVal = 0;
+
+	/// Total score accumulated from defeating Brute enemies
+	int BruteKillsVal = 0;
+
+	/// Total score accumulated from defeating Swinger enemies
+	int SwingerKillVal = 0;
+
+	/// Total score gained from generic loot pickups 
+	int LootPickupVal = 0;
+
+	/// Total score gained from destroying breakable walls
+	int BreakableWallsVal = 0;
+
+	/// Total score accumulated from airtime bonuses
+	int AirtimeVal = 0;
 
 	GENERATED_BODY()
 };

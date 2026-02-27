@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/StateTreeEvaluatorBlueprintBase.h"
+#include "MI498_UEProject/AI/Enums/SwingingEnemyEnums.h"
 #include "MI498_UEProject/Characters/Enemies/SwingingEnemy/SwingingEnemy.h"
 #include "PlayerLocationEvaluator.generated.h"
 
@@ -30,28 +31,28 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = Context, meta = (Context, AllowDerivedTypes="true"))
 	TObjectPtr<AEnemyAIController> AIController;
 	
-	
-	
 	/**
-	 * Is player under enemy?
+	 * If the player in this range, the swinging enemy will jump and start attack the player!
 	 */
-	UPROPERTY(EditAnywhere,BlueprintReadOnly, Category= Output, meta = (AllowPrivateAccess = "true"))
-	bool bPlayerUnderEnemy = false;	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Output, meta = (AllowPrivateAccess = "true"))
+	bool bTargetInBombRange = false;
+
 	/**
-	 * Is player in x and y range? it ignore z axis
+	 * If the player in this range, the chase state will be triggered 
 	 */
-	UPROPERTY(EditAnywhere,BlueprintReadOnly, Category= Output,  meta = (AllowPrivateAccess = "true"))
-	bool bPlayerInXYRange = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Output, meta = (AllowPrivateAccess = "true"))
+	bool bTargetChaseRange = false;
+
 	/**
-	 * if this true, it will trigger melee attack 
+	 * If the player in this range, the melee state will be triggered (chase is going to be ignored!) 
 	 */
-	UPROPERTY(EditAnywhere,BlueprintReadOnly, Category= Output,  meta = (AllowPrivateAccess = "true"))
-	bool bPlayerInMeleeRange = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Output, meta = (AllowPrivateAccess = "true"))
+	bool bTargetInMeleeRange = false;
 	/**
 	 * Cache the player for attack purpose 
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Output, meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<AActor> Player;
+	TObjectPtr<AActor> TargetActor;
 	/**
 	 * Prepares the AI controller and enemy actor for executing the state tree.
 	 *
@@ -66,4 +67,8 @@ public:
 	virtual void TreeStop(FStateTreeExecutionContext& Context) override;
 	
 	virtual void Tick(FStateTreeExecutionContext& Context, const float DeltaTime) override;
+	
+private:
+	/// Last event for the swinging enemy 
+	SwingingEnemyEnums LastEvent = SwingingEnemyEnums::Idle;
 };

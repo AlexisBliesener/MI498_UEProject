@@ -85,6 +85,25 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	Super::OnPossess(InPawn);
 	if (AEnemyBase* enemyBase = Cast<AEnemyBase>(InPawn))
 	{
+		if (PerceptionComponent)
+		{
+			FAISenseID sightID = UAISense::GetSenseID(UAISense_Sight::StaticClass());
+			if (UAISenseConfig_Sight* ActiveSightConfig = Cast<UAISenseConfig_Sight>(PerceptionComponent->GetSenseConfig(sightID)))
+			{
+				ActiveSightConfig->SightRadius = enemyBase->AttackStartDistance;
+				ActiveSightConfig->LoseSightRadius = enemyBase->AttackStartDistance + 200.0f;
+              
+				PerceptionComponent->ConfigureSense(*ActiveSightConfig);
+			}
+			else
+			{
+				UE_LOG(EnemyAILog, Warning, TEXT("active sight config not found"));
+			}
+		}
+		else
+		{
+			UE_LOG(EnemyAILog, Warning, TEXT("PerceptionComponent is null!"));
+		}
 		if (!StateTreeAIComponent)
 		{
 			UE_LOG(EnemyAILog, Warning, TEXT("no StateTreeAIComponent for enemy ai controller."));

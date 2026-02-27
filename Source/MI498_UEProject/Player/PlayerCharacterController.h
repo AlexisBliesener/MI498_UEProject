@@ -8,6 +8,7 @@
 class UInputMappingContext;
 class APlayerCharacter;
 class UInputAction;
+class UGameInstanceMain;
 struct FInputActionValue;
 
 /// Log category for player controller–related messages
@@ -70,6 +71,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int InteractRange = 400;
 	
+	/// The max viewing angle of the camera
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int ViewPitchMax = 80;
+	
+	/// The min viewing angle of the camera
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int ViewPitchMin = -80;
+	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	
@@ -94,6 +103,9 @@ protected:
 	/// Called when this controller releases possession of a pawn
 	/// Used to clean up input bindings
 	virtual void OnUnPossess() override;
+
+	UPROPERTY()
+	UGameInstanceMain* GameInstanceMain;
 	
 private:
 	/// Enhanced input component used for binding input actions

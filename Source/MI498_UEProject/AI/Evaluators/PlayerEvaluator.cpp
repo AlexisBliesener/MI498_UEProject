@@ -3,6 +3,7 @@
 
 #include "PlayerEvaluator.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/AI/EnemyAIController.h"
 
 void UPlayerEvaluator::TreeStart(FStateTreeExecutionContext& Context)
 {
@@ -24,9 +25,13 @@ void UPlayerEvaluator::Tick(FStateTreeExecutionContext& Context, const float Del
 		DistanceToPlayer = 0.0f;
 		return;
 	}
+	if (!IsValid(Actor) || !IsValid(AIController))
+	{
+		return;
+	}
 
-	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(World, 0);
-	if (!PlayerPawn)
+	AActor* PlayerPawn = AIController->AcquiredTarget;
+	if (!IsValid(PlayerPawn))
 	{
 		DistanceToPlayer = 0.0f;
 		return;

@@ -5,6 +5,11 @@
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 #include "MI498_UEProject/Player/PlayerCharacterController.h"
 
+AHarpoonGun::AHarpoonGun()
+{
+	WeaponType = EWeaponType::HarpoonGun;
+}
+
 void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 {
 	if (CurrentHarpoon != nullptr) return;
@@ -40,13 +45,13 @@ void AHarpoonGun::PrimaryAttackHold(AController* Controller, AActor* Target)
 void AHarpoonGun::PrimaryAttackHoldStart(AController* Controller, AActor* Target)
 {
 	Super::PrimaryAttackHoldStart(Controller, Target);
-	bSwingMode = true;
+	bSwingMode = false;
 }
 
 void AHarpoonGun::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
 {
 	Super::PrimaryAttackHoldEnd(Controller, Target);
-	bSwingMode = false;
+	bSwingMode = true;
 }
 
 void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)

@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "CoreMinimal.h"
+#include "Ship.h"
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
@@ -58,6 +59,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
 	
+	/// Array of ships in the level
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<AShip>> Ships;
+	
 	/// A Blueprintable function that will be called when the mission starts
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMissionStarted();
@@ -98,17 +103,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnShotFromExitCannon();
 	
-	/// How much time the player will have to complete stage one, in seconds
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageOneTimeLimit = 240;
-	
-	/// How much additional time the player will get to complete stage two, in seconds
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageTwoAdditionalTime = 120;
-	
 	/// How much additional time the player will get to complete stage three, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageThreeAdditionalTime = 60;
+	int StageThreeAdditionalTime = 180;
 	
 	/// Time that must be spent in the vault to gather one loot
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
