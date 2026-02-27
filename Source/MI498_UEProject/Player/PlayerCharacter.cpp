@@ -16,7 +16,7 @@ APlayerCharacter::APlayerCharacter()
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
 	
 	// Create raycast origins
-	GrabRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("GrabRaycastOrigin"));
+	GrabRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("GrabRaycastOrigin test name"));
 	GrabRaycastOrigin->SetupAttachment(RootComponent);
 	BodyRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("BodyRaycastOrigin"));
 	BodyRaycastOrigin->SetupAttachment(RootComponent);
