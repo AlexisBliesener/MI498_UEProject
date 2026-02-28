@@ -46,6 +46,20 @@ public:
 	/// Damage multiplier applied to the secondary (double) shot
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float DoubleShotDamageMultiplier = 2;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UCurveFloat* PrimaryRecoilCurve;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UCurveFloat* SecondaryRecoilCurve;
+
+	FTimerHandle RecoilTimerHandle;
+	
+	int CurrentRecoilStep = 0;
+	float CurrentRecoilTime = 0;
+	bool bResetRecoil = false;
+	int RecoilSteps = 50;
+	float RecoilTime = 0;
 
 protected:
 
@@ -55,6 +69,8 @@ private:
 	/// @param PlayerController - Controller of the firing player
 	/// @param KnockbackForce - Strength of backward launch
 	void PlayerKnockback(APlayerController* PlayerController, int KnockbackForce) const;
+	
+	void ApplyCameraRecoil(APlayerController* PlayerController, bool Primary);
 	
 	/// Performs the actual hitscan/sweep fire logic
 	/// Calculates trace, detects hit, applies falloff damage

@@ -32,6 +32,7 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		PlayerKnockback(playerController, PrimaryAttackKnockbackForce);
+		ApplyCameraRecoil(playerController, true);
 	}
 }
 
@@ -62,6 +63,7 @@ void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		PlayerKnockback(playerController, SecondaryAttackKnockbackForce);
+		ApplyCameraRecoil(playerController, false);
 	}
 }
 
@@ -75,9 +77,6 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	/// Calculate the end location of the trace based on weapon range
 	FVector cameraForwardVector = cameraRotation.Vector();
 	
-	/// Apply camera recoil to simulate weapon kickback
-	PlayerController->AddPitchInput(CameraRecoil);
-	
 	/// Apply physical recoil to the player if airborne
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
 	if (!playerCharacter->GetCharacterMovement()->IsMovingOnGround())
@@ -85,6 +84,82 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 		/// Launch the player backward based on knockback force and firing direction
 		playerCharacter->GetCharacterMovement()->AddImpulse(-cameraForwardVector * KnockbackForce,true);
 	}
+}
+
+
+void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool Primary)
+{
+	if (!PlayerController) return;
+	
+	
+	CurrentRecoilStep = 0;
+	CurrentRecoilTime = 0;
+	
+	if (Primary)
+	{
+		if (PrimaryRecoilCurve)
+		{
+			// Access the internal rich curve
+			FRichCurve* richCurve = &PrimaryRecoilCurve->FloatCurve;
+
+			if (richCurve)
+			{
+				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
+				RecoilTime = Keys[Keys.Num()-1].Time;
+			}
+		}
+	
+	}
+	else
+	{
+		if (SecondaryRecoilCurve)
+		{
+			// Access the internal rich curve
+			FRichCurve* richCurve = &SecondaryRecoilCurve->FloatCurve;
+
+			if (richCurve)
+			{
+				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
+				RecoilTime = Keys[Keys.Num()-1].Time;
+			}
+		}
+	
+	}
+	
+	// Apply recoil gradually using a timer
+	GetWorld()->GetTimerManager().SetTimer(
+		RecoilTimerHandle,
+		FTimerDelegate::CreateLambda([this, PlayerController, Primary]()
+		{
+			if (!PlayerController) return;
+
+			if (Primary)
+			{
+				PlayerController->AddPitchInput(PrimaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
+			}
+			else
+			{
+				PlayerController->AddPitchInput(SecondaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
+			}
+		
+
+			CurrentRecoilStep++;
+			CurrentRecoilTime += RecoilTime / RecoilSteps;
+
+			if (CurrentRecoilStep >= RecoilSteps/2 && !bResetRecoil)
+			{
+				CurrentRecoilStep = 0;
+				bResetRecoil = true;
+			}
+			else if (CurrentRecoilStep >= RecoilSteps/2 && bResetRecoil)
+			{
+				bResetRecoil = false;
+				GetWorld()->GetTimerManager().ClearTimer(RecoilTimerHandle);
+			}
+		}),
+		RecoilTime / RecoilSteps,
+		true
+	);
 }
 
 void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
@@ -117,8 +192,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	cameraRotation.Quaternion(),
 	ECC_Visibility,
 	FCollisionShape::MakeBox(halfSize),
-	TraceParams
-	);
+	TraceParams);
 	
 	/// Draw a debug line showing the trace in the world
 	DrawDebugBox(
