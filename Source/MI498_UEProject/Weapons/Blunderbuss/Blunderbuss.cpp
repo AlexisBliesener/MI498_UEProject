@@ -164,65 +164,105 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 
 void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
 {
+
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	Controller->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	
+
 	/// Prepare a hit result to store the outcome of the line trace
-	FHitResult hitResult;
-	
-	/// Calculate the end location of the trace based on weapon range
-	FVector cameraForwardVector = cameraRotation.Vector();
-	FVector endLocation = cameraLocation + cameraForwardVector * Range;
+	TArray<FHitResult> hitResults;
 	
 	/// Setup collision parameters for the trace
-	FCollisionQueryParams TraceParams;
-	TraceParams.AddIgnoredActor(this);
-	TraceParams.AddIgnoredActor(GetOwner());
-	
+	FCollisionQueryParams traceParams;
+	traceParams.AddIgnoredActor(this);
+	traceParams.AddIgnoredActor(GetOwner());
+
 	/// Half size of the box thats sweeps for damage
-	FVector halfSize = FVector(10, 50.f, 50); 
-	
-	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->SweepSingleByChannel(
-	hitResult,
-	cameraLocation,
-	endLocation,
-	cameraRotation.Quaternion(),
-	ECC_Visibility,
-	FCollisionShape::MakeBox(halfSize),
-	TraceParams);
-	
-	/// Draw a debug line showing the trace in the world
-	DrawDebugBox(
-	GetWorld(),
-	 bHit ? hitResult.Location : endLocation,
-	halfSize,
-	cameraRotation.Quaternion(),
-	FColor::Red,
-	false,
-	1.f
-	);
-	
-	/// If an exploding barrel was hit
-	if (bHit)
+	FVector halfSize = FVector(10, 10, 10);
+
+	/// Calculate Direction Vectors from Camera Rotation
+	FVector forward = cameraRotation.Vector();
+	FVector right = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Y);
+	FVector up = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Z);
+
+	/// Track Unique Damaged Actors
+	TMap<AActor*, float> damagedActors;
+
+	// Perform Multi-Slice Box Sweeps
+	// Creates a 2 (vertical) x 3 (horizontal) grid of box sweeps
+	for (float i = -2; i < 3; i++)
 	{
-		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitResult.GetActor()))
+		for (int j = -2; j < 3; j++)
 		{
-			barrel->Explode();
+			/// Offset each slice relative to camera
+			FVector offset = right * j * 50.f + up * i * 50.f;
+
+			/// Start position of this slice
+			FVector start = cameraLocation;
+
+			/// End position extends forward by weapon range
+			FVector end = (start + offset) + forward * Range;
+
+			/// Store hits for this individual slice
+			TArray<FHitResult> sliceHits;
+
+			/// Perform box sweep along the slice path
+			GetWorld()->SweepMultiByChannel(
+				sliceHits,
+				start,
+				end,
+				cameraRotation.Quaternion(),
+				ECC_Visibility,
+				FCollisionShape::MakeBox(halfSize),
+				traceParams
+			);
+
+			/// Process all hits from this slice
+			for (const FHitResult& hit : sliceHits)
+			{
+				AActor* hitActor = hit.GetActor();
+				if (!hitActor) continue;
+
+				float hitDistance = hit.Distance;
+
+				// If actor already hit, keep the closest hit
+				if (damagedActors.Contains(hitActor))
+				{
+					if (hitDistance < damagedActors[hitActor])
+					{
+						damagedActors[hitActor] = hitDistance;
+					}
+				}
+				else
+				{
+					damagedActors.Add(hitActor, hitDistance);
+				}
+			}
 		}
 	}
 	
-	//Calculate damage fall off
-	int hitDamage = ((Range - hitResult.Distance)/Range) * CurrentDamage;
-	
-	/// Check if HitResult hit an enemy and apply damage
-	if (bHit && hitResult.GetActor())
+	/// Apply Effects to all Unique Hit Actors
+	for (auto& pair : damagedActors)
 	{
+		AActor* hitActor = pair.Key;
+		float hitDistance = pair.Value;
+		
+		if (!hitActor) continue;
+		
+		// Exploding barrel
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
+		{
+			barrel->Explode();
+		}
+		
+		//Calculate damage fall off
+		int hitDamage = ((Range - hitDistance)/Range) * CurrentDamage;
+		
+		// Apply damage
 		UGameplayStatics::ApplyDamage(
-			hitResult.GetActor(),
-			hitDamage, 
+			hitActor,
+			hitDamage,
 			Controller,
 			this,
 			nullptr
