@@ -4,19 +4,25 @@
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 #include "MI498_UEProject/Player/PlayerCharacterController.h"
+#include "MI498_UEProject/Weapons/WeaponManager.h"
 
 AHarpoonGun::AHarpoonGun()
 {
 	WeaponType = EWeaponType::HarpoonGun;
 }
 
-void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
+void AHarpoonGun::PrimaryAttack(AController* Controller, AActor* Target)
 {
 	if (CurrentHarpoon != nullptr) return;
-	
+
 	Super::PrimaryAttack(Controller, Target);
 
-	if (APlayerController* playerController = Cast<APlayerController>(Controller) )
+	if (bUsingADS)
+	{
+		SecondaryAttackHoldEnd(Controller, Target);
+	}
+
+	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		/// Get the player camera location and rotation for accurate aiming
 		FVector CameraLocation;
@@ -27,10 +33,12 @@ void AHarpoonGun::PrimaryAttack(AController* Controller,AActor* Target)
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = playerController->GetPawn();
-	
+
 		/// Spawn the harpoon slightly in front of the camera to avoid self-collision
-		CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(HarpoonBlueprint, CameraLocation + CameraRotation.Vector() * 200, CameraRotation, SpawnParams);
-	
+		CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(HarpoonBlueprint,
+		                                                  CameraLocation + CameraRotation.Vector() * 200,
+		                                                  CameraRotation, SpawnParams);
+
 		/// Initialize harpoon properties after spawning
 		CurrentHarpoon->SetRange(Range);
 		CurrentHarpoon->SetHarpoonGun(this);
@@ -54,7 +62,7 @@ void AHarpoonGun::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
 	bSwingMode = true;
 }
 
-void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)
+void AHarpoonGun::SecondaryAttack(AController* Controller, AActor* Target)
 {
 	Super::SecondaryAttack(Controller);
 }
@@ -62,48 +70,52 @@ void AHarpoonGun::SecondaryAttack(AController* Controller,AActor* Target)
 void AHarpoonGun::SecondaryAttackHoldStart(AController* Controller, AActor* Target)
 {
 	Super::SecondaryAttackHoldStart(Controller, Target);
-	
+
+	bUsingADS = true;
+
 	/// ADS
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	playerCharacter->SetOverrideCameraFOV(true,  ADSFOV);
-	
+	playerCharacter->SetOverrideCameraFOV(true, ADSFOV);
+
 	/// Slow Player Movement
 	if (APlayerCharacterController* playerController = Cast<APlayerCharacterController>(Controller))
 	{
-		playerController->SetMovementSlow(true, 0.4f); 
+		playerController->SetMovementSlow(true, 0.4f);
 	}
 }
 
 void AHarpoonGun::SecondaryAttackHoldEnd(AController* Controller, AActor* Target)
 {
 	Super::SecondaryAttackHoldEnd(Controller, Target);
-	
+
+	bUsingADS = false;
+
 	/// Remove ADS
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	playerCharacter->SetOverrideCameraFOV(false);
-	
+
 	/// Unslow Player Movement
 	if (APlayerCharacterController* playerController = Cast<APlayerCharacterController>(Controller))
 	{
-		playerController->SetMovementSlow(false); 
+		playerController->SetMovementSlow(false);
 	}
 }
 
 void AHarpoonGun::JumpAction()
 {
 	Super::JumpAction();
-	
-	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer())
+
+	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer() || !CurrentHarpoon->IsStuck())
 	{
 		return;
 	}
-	
-	if (ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner()))
+
+	if (CharacterOwner)
 	{
-		FVector LaunchVelocity = FVector(0.f, 0.f, HarpoonReleaseJumpForce); 
+		FVector LaunchVelocity = FVector(0.f, 0.f, HarpoonReleaseJumpForce);
 		CharacterOwner->LaunchCharacter(LaunchVelocity, false, true);
 	}
-	
+
 	Reload();
 }
 
@@ -117,19 +129,36 @@ void AHarpoonGun::Reload()
 {
 	// Do not want base reload
 	// Super::Reload();
-	
+
 	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer())
 	{
 		return;
 	}
-	
+
 	OnReload();
-	
+
 	CurrentHarpoon->ReturnToPlayer();
+}
+
+void AHarpoonGun::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CharacterOwner = Cast<APlayerCharacter>(GetOwner());
+
+	CharacterOwner->GetWeaponManager()->OnWeaponSwitch.AddDynamic(this, &AHarpoonGun::OnWeaponSwitched);
 }
 
 void AHarpoonGun::Tick(float DeltaSeconds)
 {
 	// Do not want base auto reload
 	//Super::Tick(DeltaSeconds);
+}
+
+void AHarpoonGun::OnWeaponSwitched()
+{
+	if (bUsingADS && !Cast<AHarpoonGun>(CharacterOwner->GetWeaponManager()->GetCurrentWeapon().GetObject()))
+	{
+		SecondaryAttackHoldEnd(GetInstigatorController(), nullptr);
+	}
 }

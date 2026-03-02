@@ -6,7 +6,6 @@
 #include "WeaponInterface.h"
 #include "Blunderbuss/Blunderbuss.h"
 #include "HarpoonGun/HarpoonGun.h"
-#include "Sword/Sword.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponManagerLog);

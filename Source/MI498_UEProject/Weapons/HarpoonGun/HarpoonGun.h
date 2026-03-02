@@ -80,9 +80,14 @@ public:
 	int HarpoonReleaseJumpForce = 600;
 
 protected:
+	virtual void BeginPlay() override;
+	
 	virtual void Tick(float DeltaSeconds) override;
 
 private:
+	
+	UFUNCTION()
+	void OnWeaponSwitched();
 	
 	/// Reference to the currently spawned harpoon instance
 	UPROPERTY()
@@ -90,6 +95,11 @@ private:
 	
 	/// True if player should swing on harpoon, false if player should zip to harpoon
 	bool bSwingMode = true;
+	
+	bool bUsingADS = false;
+	
+	UPROPERTY()
+	APlayerCharacter* CharacterOwner = nullptr;
 	
 	GENERATED_BODY()
 };

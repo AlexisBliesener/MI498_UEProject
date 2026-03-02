@@ -12,7 +12,6 @@ class UInputMappingContext;
 class UInputAction;
 class APlayerCharacter;
 struct FInputActionValue;
-//class IWeaponInterface;
 
 /// Declare a logging category specifically for the weapon manager
 DECLARE_LOG_CATEGORY_EXTERN(WeaponManagerLog, Log, All);
