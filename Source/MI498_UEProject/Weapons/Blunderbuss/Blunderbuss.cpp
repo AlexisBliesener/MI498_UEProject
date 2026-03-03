@@ -86,53 +86,57 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	}
 }
 
-
 void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool Primary)
 {
+	/// Ensure we have a valid player controller before applying recoil
 	if (!PlayerController) return;
 	
-	
+	/// Reset recoil tracking variables at the start of each shot
 	CurrentRecoilStep = 0;
 	CurrentRecoilTime = 0;
 	
 	if (Primary)
 	{
+		/// Use the primary recoil curve if firing primary
 		if (PrimaryRecoilCurve)
 		{
-			// Access the internal rich curve
+			/// Access the internal rich curve to determine total recoil duration
 			FRichCurve* richCurve = &PrimaryRecoilCurve->FloatCurve;
 
 			if (richCurve)
 			{
+				/// Get the last keyframe time to determine total recoil time
 				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
 				RecoilTime = Keys[Keys.Num()-1].Time;
 			}
 		}
-	
 	}
 	else
 	{
+		/// Use the secondary recoil curve if firing secondary
 		if (SecondaryRecoilCurve)
 		{
-			// Access the internal rich curve
+			/// Access the internal rich curve to determine total recoil duration
 			FRichCurve* richCurve = &SecondaryRecoilCurve->FloatCurve;
 
 			if (richCurve)
 			{
+				/// Get the last keyframe time to determine total recoil time
 				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
 				RecoilTime = Keys[Keys.Num()-1].Time;
 			}
 		}
-	
 	}
 	
-	// Apply recoil gradually using a timer
+	/// Apply recoil gradually over time using a repeating timer
 	GetWorld()->GetTimerManager().SetTimer(
 		RecoilTimerHandle,
 		FTimerDelegate::CreateLambda([this, PlayerController, Primary]()
 		{
+			/// Validate controller again inside timer callback
 			if (!PlayerController) return;
 
+			/// Apply pitch input based on the current recoil curve value
 			if (Primary)
 			{
 				PlayerController->AddPitchInput(PrimaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
@@ -142,21 +146,24 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 				PlayerController->AddPitchInput(SecondaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
 			}
 		
-
+			/// Advance recoil step and time
 			CurrentRecoilStep++;
 			CurrentRecoilTime += RecoilTime / RecoilSteps;
 
+			/// After half the steps, begin reset phase
 			if (CurrentRecoilStep >= RecoilSteps/2 && !bResetRecoil)
 			{
 				CurrentRecoilStep = 0;
 				bResetRecoil = true;
 			}
+			/// After completing reset phase, stop the timer
 			else if (CurrentRecoilStep >= RecoilSteps/2 && bResetRecoil)
 			{
 				bResetRecoil = false;
 				GetWorld()->GetTimerManager().ClearTimer(RecoilTimerHandle);
 			}
 		}),
+		/// Interval between recoil updates
 		RecoilTime / RecoilSteps,
 		true
 	);

@@ -85,7 +85,7 @@ protected:
 	virtual void Tick(float DeltaSeconds) override;
 
 private:
-	
+	/// Called when the player switches to or from this weapon.
 	UFUNCTION()
 	void OnWeaponSwitched();
 	
@@ -96,8 +96,10 @@ private:
 	/// True if player should swing on harpoon, false if player should zip to harpoon
 	bool bSwingMode = true;
 	
+	/// True when the player is currently aiming down sights.
 	bool bUsingADS = false;
 	
+	/// Cached reference to the owning player character.
 	UPROPERTY()
 	APlayerCharacter* CharacterOwner = nullptr;
 	
