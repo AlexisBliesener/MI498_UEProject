@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class APlantedBomb;
 class UExitCannonComponent;
 class UScoringManager;
 class AEnemyBase;
@@ -58,6 +59,9 @@ public:
 	/// Actor containing the exit cannon component
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlantedBomb> PlantedBomb;
 	
 	/// Array of ships in the level
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
