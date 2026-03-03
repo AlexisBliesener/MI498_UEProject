@@ -60,6 +60,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
 	
+	/// Bomb that will explode the vault door
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<APlantedBomb> PlantedBomb;
 	
