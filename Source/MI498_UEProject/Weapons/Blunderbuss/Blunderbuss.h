@@ -39,10 +39,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int SecondaryAttackKnockbackForce = 1000;
 	
-	/// Vertical camera recoil applied to the player when firing
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int CameraRecoil = -5;
-	
 	/// Damage multiplier applied to the secondary (double) shot
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float DoubleShotDamageMultiplier = 2;
