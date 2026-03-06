@@ -86,7 +86,7 @@ private:
 	bool bResetRecoil = false;
 	
 	/// Total number of discrete steps used to evaluate recoil curve.
-	int RecoilSteps = 70;
+	int RecoilSteps = 50;
 	
 	/// Total duration of the recoil curve.
 	/// Determined dynamically from the last keyframe.
