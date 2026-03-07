@@ -84,6 +84,8 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 void ASword::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	
+	ComboResetTime = ReloadTime + 0.1f;
 
 	// Reload if necessary
 	if (CurrentDashCharges != DashCharges && !bReloadingSecondary)

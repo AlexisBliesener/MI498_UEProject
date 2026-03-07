@@ -129,6 +129,8 @@ void AHarpoonGun::Reload()
 {
 	// Do not want base reload
 	// Super::Reload();
+	
+	UE_LOG(LogTemp,Log,TEXT("Reloading"));
 
 	if (CurrentHarpoon == nullptr || CurrentHarpoon->GetReturningToPlayer())
 	{

@@ -33,6 +33,7 @@ public:
 	bool IsStuck() const { return bStuck; }
 
 	/// Return true if the harpoon is traveling back to the player
+	UFUNCTION(BlueprintCallable)
 	bool GetReturningToPlayer() const { return bReturnToPlayer; }
 
 	/// Get the time that the harpoon has been reloading for

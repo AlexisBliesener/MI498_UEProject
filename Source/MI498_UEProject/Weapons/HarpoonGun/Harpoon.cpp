@@ -26,6 +26,7 @@ AHarpoon::AHarpoon()
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
 	ProjectileMovement->InitialSpeed = Speed;
 	ProjectileMovement->MaxSpeed = Speed;
+	ProjectileMovement->MaxSpeed = Speed;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
 	ProjectileMovement->ProjectileGravityScale = 0.f;
