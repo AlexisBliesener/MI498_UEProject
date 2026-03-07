@@ -123,6 +123,10 @@ protected:
 	/// Handles spawning, switching, and firing weapons
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
+	
+	/// Returns the players animation script
+	UFUNCTION(BlueprintCallable)
+	UPlayerAnimation* GetPlayerAnimation() {return PlayerAnimation;}
 
 private:
 	/// Called automatically by the engine when the character lands on the ground

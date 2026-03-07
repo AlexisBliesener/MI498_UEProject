@@ -8,6 +8,7 @@
 ASword::ASword()
 {
 	WeaponType = EWeaponType::Sword;
+	ComboResetTime = ReloadTime + 0.1f;
 }
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
