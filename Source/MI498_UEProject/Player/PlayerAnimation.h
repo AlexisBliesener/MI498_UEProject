@@ -56,6 +56,7 @@ public:
 	/// Sets the look direction of the player for animation movement
 	void SetLookRotation(float Val) { LookRotation = Val; }
 
+	/// Returns the correct transition animation for prev and current weapon
 	UFUNCTION(BlueprintCallable)
 	EWeaponTransitionMontageToPlay GetTransitionMontageToPlay();
 
@@ -73,7 +74,10 @@ protected:
 	bool bInAir = false;
 
 private:
+	/// The weapon the player held previous to current
 	EWeaponType PrevWeapon = EWeaponType::Blunderbuss;
+	
+	/// The weapon the player is currently holding
 	EWeaponType CurrentWeapon = EWeaponType::Blunderbuss;
 
 	GENERATED_BODY()

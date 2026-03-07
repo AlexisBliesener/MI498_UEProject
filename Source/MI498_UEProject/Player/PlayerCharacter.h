@@ -124,6 +124,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
 	
+	/// Returns the players animation script
 	UFUNCTION(BlueprintCallable)
 	UPlayerAnimation* GetPlayerAnimation() {return PlayerAnimation;}
 
