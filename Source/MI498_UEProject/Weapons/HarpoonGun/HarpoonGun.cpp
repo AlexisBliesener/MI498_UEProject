@@ -1,6 +1,4 @@
 ﻿#include "HarpoonGun.h"
-
-#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 #include "MI498_UEProject/Player/PlayerCharacterController.h"
@@ -24,42 +22,60 @@ void AHarpoonGun::PrimaryAttack(AController* Controller, AActor* Target)
 
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
-		/// Get the player camera location and rotation for accurate aiming
-		FVector CameraLocation;
-		FRotator CameraRotation;
-		playerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+		if (ACharacter* Character = Cast<ACharacter>(playerController->GetPawn()))
+		{
+			FTransform SocketTransform =
+				Character->GetMesh()->GetSocketTransform("HarpoonGunBaseSocket");
+		
+			FVector CameraLocation;
+			FRotator CameraRotation;
+			playerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+		
 
-		/// Configure spawn parameters for ownership and instigation
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-		SpawnParams.Instigator = playerController->GetPawn();
+			/// Configure spawn parameters for ownership and instigation
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = playerController->GetPawn();
 
-		/// Spawn the harpoon slightly in front of the camera to avoid self-collision
-		CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(HarpoonBlueprint,
-		                                                  CameraLocation + CameraRotation.Vector() * 200,
-		                                                  CameraRotation, SpawnParams);
+			CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(
+		HarpoonBlueprint,
+		SocketTransform.GetLocation(),
+		CameraRotation,
+		SpawnParams
+	);
 
-		/// Initialize harpoon properties after spawning
-		CurrentHarpoon->SetRange(Range);
-		CurrentHarpoon->SetHarpoonGun(this);
+			/// Initialize harpoon properties after spawning
+			CurrentHarpoon->SetRange(Range);
+			CurrentHarpoon->SetHarpoonGun(this);
+		}
 	}
 }
 
 void AHarpoonGun::PrimaryAttackHold(AController* Controller, AActor* Target)
 {
 	/// No functionality
+
+	if (bHolding && GetWorld()->GetTimeSeconds() - HeldTime > HoldTime)
+	{
+		bSwingMode = false;
+	}
 }
 
 void AHarpoonGun::PrimaryAttackHoldStart(AController* Controller, AActor* Target)
 {
 	Super::PrimaryAttackHoldStart(Controller, Target);
-	bSwingMode = false;
+	if (!bHolding)
+	{
+		bHolding = true;
+		HeldTime = GetWorld()->GetTimeSeconds();
+	}
 }
 
 void AHarpoonGun::PrimaryAttackHoldEnd(AController* Controller, AActor* Target)
 {
 	Super::PrimaryAttackHoldEnd(Controller, Target);
 	bSwingMode = true;
+	bHolding = false;
 }
 
 void AHarpoonGun::SecondaryAttack(AController* Controller, AActor* Target)

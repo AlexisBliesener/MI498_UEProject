@@ -103,5 +103,9 @@ private:
 	UPROPERTY()
 	APlayerCharacter* CharacterOwner = nullptr;
 	
+	float HoldTime = 0.1;
+	float HeldTime = 0;
+	bool bHolding = false;
+	
 	GENERATED_BODY()
 };

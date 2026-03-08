@@ -52,10 +52,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<USphereComponent> Collision;
 
-	/// The strength at which the rope will pull against the player
-	UPROPERTY(EditDefaultsOnly)
-	int PullStrength = 10000;
-
 	/// The strength at which the harpoon will pull in the player during zip// 
 	UPROPERTY(EditDefaultsOnly)
 	int ZipPullStrength = 85000;
@@ -123,6 +119,8 @@ private:
 
 	/// Length of the cable at the moment the harpoon becomes stuck
 	float CableLength;
+	
+	float VisualCableLength;
 
 	/// Whether the harpoon is currently returning to the player
 	bool bReturnToPlayer = false;
@@ -136,7 +134,7 @@ private:
 
 	/// True if the harpoon should pull in the enemy
 	bool bPullInEnemy = true;
-
+	
 	/// True if last frame the harpoon was reeling the player in
 	bool bReelingPlayerInLastFrame = false;
 
