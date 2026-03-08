@@ -2,6 +2,7 @@
 
 
 #include "EnvQueryContext_ProjectedPlayer.h"
+#include "NavigationSystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -32,6 +33,17 @@ void UEnvQueryContext_ProjectedPlayer::ProvideContext(FEnvQueryInstance& QueryIn
           {
              FVector localPos = enemy->RealShip->GetActorTransform().InverseTransformPosition(playerController->GetPawn()->GetActorLocation());
              FVector hiddenLocation = enemy->HiddenShip->GetActorTransform().TransformPosition(localPos);
+             UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(QueryInstance.World);
+             if (navSys)
+             {
+                FNavLocation groundLocation;
+                // find the floor this is help when the player is flyign 
+                FVector lookBox = FVector(500.f, 500.f, 10000.f); 
+                if (navSys->ProjectPointToNavigation(hiddenLocation, groundLocation, lookBox))
+                {
+                   hiddenLocation = groundLocation.Location;
+                }
+             }
              UEnvQueryItemType_Point::SetContextHelper(ContextData, hiddenLocation);
           }
        }

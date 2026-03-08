@@ -67,6 +67,9 @@ public:
 	/// Initial location of the enemy when spawns
 	UPROPERTY(BlueprintReadOnly)
 	FVector EnemyInitLocation;
+	/// Initial local location of the enemy when spawns
+	UPROPERTY(BlueprintReadOnly)
+	FVector LocalInitLocation;
 	/// A reference to the real ship that the enemy is on it 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> RealShip;

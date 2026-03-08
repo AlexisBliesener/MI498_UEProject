@@ -40,6 +40,10 @@ void ASwingingEnemy::BeginPlay()
     Super::BeginPlay();
     
     CachedWorldPivot = GetActorTransform().TransformPosition(SwingCenterOffset);
+    if (RealShip)
+    {
+        LocalSwingPivot = RealShip->GetActorTransform().InverseTransformPosition(CachedWorldPivot);
+    }
     // This is used when the enemy wants to swing again, so they go to this point and then SWING
     GroundPointUnderSwing = GetGroundPointUnderSwing();
     // set the end of the cable to always follow the enemy mesh
@@ -65,6 +69,10 @@ void ASwingingEnemy::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     
+    if (RealShip)
+    {
+        CachedWorldPivot = RealShip->GetActorTransform().TransformPosition(LocalSwingPivot);
+    }
     if (bIsShootingRope)
     {
         FVector currentAnchorLoc = AnchorMesh->GetComponentLocation();
@@ -121,7 +129,20 @@ void ASwingingEnemy::AttachToSurface()
     if (!GetWorld() || !AnchorMesh || !SwingCable) return;
 
     FVector startLoc = GetActorLocation();
-    AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    if (RealShip)
+    {
+        AnchorMesh->AttachToComponent(RealShip->GetRootComponent(), FAttachmentTransformRules::KeepWorldTransform);
+    }
+    else
+    {
+        AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    }
+
+    // Update point before setting it
+    if (RealShip)
+    {
+        CachedWorldPivot = RealShip->GetActorTransform().TransformPosition(LocalSwingPivot);
+    }
     AnchorMesh->SetWorldLocation(CachedWorldPivot);
 
     RecordedCableLength = CableLength;
@@ -332,7 +353,14 @@ void ASwingingEnemy::ShootRopeAndSwing()
     bIsReelingIn = false;
     bIsSwinging = false;
 
-    AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    if (RealShip)
+    {
+        AnchorMesh->AttachToComponent(RealShip->GetRootComponent(), FAttachmentTransformRules::KeepWorldTransform);
+    }
+    else
+    {
+        AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    }
     AnchorMesh->SetWorldLocation(GetActorLocation());
 
     // make the rope 0 length so it grows 
@@ -349,14 +377,18 @@ FVector ASwingingEnemy::GetGroundPointUnderSwing() const
         FNavLocation groundLocation;
         
         FVector startPoint = CachedWorldPivot; 
-        
+        FVector localPivot = RealShip->GetActorTransform().InverseTransformPosition(startPoint);
+        FVector fakePivot = HiddenShip->GetActorTransform().TransformPosition(localPivot);
         FVector lookBox = FVector(500.f, 500.f, 10000.f); 
 
-        bool bFoundFloor = navSys->ProjectPointToNavigation(startPoint, groundLocation, lookBox);
+        bool bFoundFloor = navSys->ProjectPointToNavigation(fakePivot, groundLocation, lookBox);
         
         if (bFoundFloor)
         {
-            return groundLocation.Location; 
+            // translate the result from the nav mesh to the real ship 
+            FVector localGround = HiddenShip->GetActorTransform().InverseTransformPosition(groundLocation.Location);
+            FVector realGround = RealShip->GetActorTransform().TransformPosition(localGround);
+            return realGround;
         }
     }
 

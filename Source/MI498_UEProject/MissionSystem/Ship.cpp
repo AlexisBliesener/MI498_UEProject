@@ -37,7 +37,7 @@ void AShip::Fall(const float DeltaTime)
 
 void AShip::DuplicateShipForNavigation()
 {
-    FVector goDown = FVector(0.f, 0.f, -3500.f);
+    FVector goDown = FVector(0.f, 0.f, -100000.f);
     FVector hiddenShipLocation = GetActorLocation() + goDown;
     FRotator hiddenShipRotation = GetActorRotation();
     

@@ -52,6 +52,10 @@ void AEnemyBase::BeginPlay()
 	
 	// initial location of the enemy when spawn
 	EnemyInitLocation = GetActorLocation();
+	if (RealShip)
+	{
+		LocalInitLocation = RealShip->GetActorTransform().InverseTransformPosition(EnemyInitLocation);
+	}
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)

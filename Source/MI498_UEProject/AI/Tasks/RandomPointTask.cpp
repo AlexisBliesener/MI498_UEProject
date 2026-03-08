@@ -44,8 +44,8 @@ EStateTreeRunStatus FRandomPointTask::EnterState(FStateTreeExecutionContext& Con
 		UE_LOG(EnemyAILog, Warning, TEXT("HiddenShip is null"));
 		return EStateTreeRunStatus::Failed;
 	}
-	FVector localOrigin = Data.Actor->RealShip->GetActorTransform().InverseTransformPosition(Data.Actor->EnemyInitLocation);
-	FVector hiddenOrigin = Data.Actor->HiddenShip->GetActorTransform().TransformPosition(localOrigin);
+	
+	FVector hiddenOrigin = Data.Actor->HiddenShip->GetActorTransform().TransformPosition(Data.Actor->LocalInitLocation);
 
 	FNavLocation NavLocation;
 

@@ -149,6 +149,8 @@ private:
 	bool bIsReelingIn = false;
 	/// saved world position for the top swing point
 	FVector CachedWorldPivot;
+	/// local swing pivot on the real ship 
+	FVector LocalSwingPivot;
 	/**
 	 * the math for swing movement....
 	 * @param DeltaTime time
