@@ -16,6 +16,7 @@ class MI498_UEPROJECT_API ACharacterBase : public ACharacter
 public:
 	/// Sets default values for this character's properties
 	ACharacterBase();
+	ACharacterBase(const FObjectInitializer& ObjectInitializer);
 	/// Max health
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default|Health")
 	float MaxHealth = 100.f;

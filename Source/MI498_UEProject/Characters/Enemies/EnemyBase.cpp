@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
@@ -18,7 +19,8 @@
 #include "DrawDebugHelpers.h"
 #endif
 DEFINE_LOG_CATEGORY(EnemyLog);
-AEnemyBase::AEnemyBase()
+AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	PrimaryActorTick.bCanEverTick = true;
 	UAIPerceptionStimuliSourceComponent* StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimulusSourceComponent"));

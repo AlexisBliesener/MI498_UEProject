@@ -10,10 +10,12 @@
 #include "TimerManager.h"
 #include "DrawDebugHelpers.h"
 #include "NavigationSystem.h"
+#include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Weapons/Throw/BombKnife.h"
 
 // Sets default values
-ASwingingEnemy::ASwingingEnemy()
+ASwingingEnemy::ASwingingEnemy(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
     // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;

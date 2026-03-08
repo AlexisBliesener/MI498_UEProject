@@ -84,6 +84,14 @@ void AMissionController::Tick(float DeltaSeconds)
 			StageOneFinish(true);
 		}
 	}
+	if (APlayerController* playrController = GetWorld()->GetFirstPlayerController())
+	{
+		if (playrController->WasInputKeyJustPressed(EKeys::F7))
+		{
+
+			ExplodeVaultDoor();
+		}
+	}
 }
 
 void AMissionController::HandleBombPieceCollected()

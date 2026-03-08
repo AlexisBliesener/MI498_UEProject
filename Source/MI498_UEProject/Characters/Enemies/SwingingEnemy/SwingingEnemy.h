@@ -19,7 +19,7 @@ class MI498_UEPROJECT_API ASwingingEnemy : public AEnemyBase
 
 public:
 	// Sets default values for this character's properties
-	ASwingingEnemy();
+	ASwingingEnemy(const FObjectInitializer& ObjectInitializer);
 
 	/// If the player was in the melee range, then melee attack will trigger! 
 	UPROPERTY(EditAnywhere, Category="Default|Combat")

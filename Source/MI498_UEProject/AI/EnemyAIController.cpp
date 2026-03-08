@@ -7,6 +7,8 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Damage.h"
 #include "Perception/AISenseConfig_Prediction.h"
+#include "AITypes.h"
+#include "Navigation/PathFollowingComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 
 DEFINE_LOG_CATEGORY(EnemyAILog);
@@ -44,6 +46,49 @@ AEnemyAIController::AEnemyAIController()
     PerceptionComponent->ConfigureSense(*PredictionConfig);
     PerceptionComponent->OnTargetPerceptionUpdated.AddDynamic(this, &AEnemyAIController::OnTargetPerceptionUpdated);
     PerceptionComponent->OnTargetPerceptionForgotten.AddDynamic(this, &AEnemyAIController::OnTargetPerceptionForgotten);
+}
+
+FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& MoveRequest, FNavPathSharedPtr* OutPath)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(GetPawn());
+	if (enemy && enemy->RealShip && enemy->HiddenShip)
+	{
+		FVector realTarget;
+       
+		// check if the "move to" is actor or a location 
+		if (MoveRequest.IsMoveToActorRequest() && MoveRequest.GetGoalActor())
+		{
+			realTarget = MoveRequest.GetGoalActor()->GetActorLocation();
+		}
+		else 
+		{
+			realTarget = MoveRequest.GetGoalLocation();
+		}
+
+		FVector hiddenTarget;
+
+		float distToFakeShip = FVector::DistSquared(realTarget, enemy->HiddenShip->GetActorLocation());
+		float distToRealShip = FVector::DistSquared(realTarget, enemy->RealShip->GetActorLocation());
+
+		// check if the point is on the fake ship or the real one... 
+		if (distToFakeShip < distToRealShip)
+		{
+			hiddenTarget = realTarget;
+		}
+		else
+		{
+			FVector localTarget = enemy->RealShip->GetActorTransform().InverseTransformPosition(realTarget);
+			hiddenTarget = enemy->HiddenShip->GetActorTransform().TransformPosition(localTarget);
+		}
+
+		FAIMoveRequest newRequest = MoveRequest;
+		// update the request to use it on the raal ship 
+		newRequest.UpdateGoalLocation(hiddenTarget);
+       
+		return Super::MoveTo(newRequest, OutPath);
+	}
+
+	return Super::MoveTo(MoveRequest, OutPath);
 }
 
 UStateTreeEnemyComponent* AEnemyAIController::GetStateTreeAIComponent() const

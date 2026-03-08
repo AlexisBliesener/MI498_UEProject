@@ -67,6 +67,12 @@ public:
 	/// Initial location of the enemy when spawns
 	UPROPERTY(BlueprintReadOnly)
 	FVector EnemyInitLocation;
+	/// A reference to the real ship that the enemy is on it 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> RealShip;
+	/// A reference to the fake ship (that has the nav mesh) that the enemy is on it 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> HiddenShip;
 	/**
 	 * Makes the enemy attack the given target.
 	 * @param Target The actor to be attacked.
@@ -77,7 +83,7 @@ public:
 	/**
 	 * Initializes default properties and components for the enemy character
 	 */
-	AEnemyBase();
+	AEnemyBase(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Tick(float DeltaTime) override;
 	virtual void PossessedBy(AController* NewController) override;
