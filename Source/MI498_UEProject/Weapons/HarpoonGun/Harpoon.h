@@ -153,6 +153,8 @@ private:
 	/// True only for the first swing frame to initialize velocity.
 	bool bFirstSwing = true;
 	
+	float PrevTileMaterial = 10;
+	
 	/// The players character movement component
 	UPROPERTY()
 	UCharacterMovementComponent* PlayerCharacterMovementComponent = nullptr;

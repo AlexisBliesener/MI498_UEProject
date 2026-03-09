@@ -147,7 +147,14 @@ void AHarpoon::Tick(float DeltaTime)
 	FVector toHarpoonNormal = toHarpoon.GetSafeNormal();
 	
 	VisualCableLength = FVector::Distance(GetActorLocation(), PlayerCharacter->GetActorLocation());
-	CableComponent->TileMaterial = VisualCableLength/50;
+	
+	float tileMaterial = VisualCableLength/30.f;
+	if (!FMath::IsNearlyEqual(tileMaterial, PrevTileMaterial, 0.01f))
+	{
+		CableComponent->TileMaterial = tileMaterial;
+		CableComponent->MarkRenderStateDirty();
+		PrevTileMaterial = tileMaterial;
+	}
 	
 	CableComponent->CableLength = VisualCableLength;
 	
