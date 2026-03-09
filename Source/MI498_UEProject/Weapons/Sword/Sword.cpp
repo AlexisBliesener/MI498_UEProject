@@ -80,6 +80,11 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
+	
+	// Deal Damage
+	bSwordDashHitboxActive = true;
+	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
+	DashHitActors.Empty();
 }
 
 void ASword::Tick(float DeltaSeconds)
@@ -101,6 +106,73 @@ void ASword::Tick(float DeltaSeconds)
 				SecondaryReloadTime,
 				false);
 		}
+	}
+	
+	if (bSwordDashHitboxActive)
+	{
+		float elapsed = GetWorld()->GetTimeSeconds() - SwordDashHitboxStartTime;
+
+		if (elapsed > SwordDashHitboxDuration)
+		{
+			bSwordDashHitboxActive = false;
+			return;
+		}
+
+		DashHitbox(DeltaSeconds);
+	}
+}
+
+void ASword::DashHitbox(float DeltaTime)
+{
+	TArray<FHitResult> hitResults;
+	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
+	
+	FCollisionQueryParams traceParams;
+	traceParams.AddIgnoredActor(this);
+	traceParams.AddIgnoredActor(GetOwner());
+
+	FVector halfSize = FVector(10, 10, 10);
+
+	FVector cameraLocation;
+	FRotator cameraRotation;
+	playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+
+	FVector forward = cameraRotation.Vector();
+
+	FVector start = cameraLocation;
+	FVector end = start + forward * 200.f; // short step each frame
+
+	GetWorld()->SweepMultiByChannel(
+		hitResults,
+		start,
+		end,
+		cameraRotation.Quaternion(),
+		ECC_Visibility,
+		FCollisionShape::MakeBox(halfSize),
+		traceParams
+	);
+
+	for (const FHitResult& hit : hitResults)
+	{
+		AActor* actor = hit.GetActor();
+		if (!actor || DashHitActors.Contains(actor))
+			continue;
+
+		DashHitActors.Add(actor);
+		
+
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(actor))
+		{
+			barrel->Explode();
+		}
+
+		UGameplayStatics::ApplyDamage(
+			actor,
+			DashDamage,
+			playerController,
+			this,
+			nullptr
+		);
 	}
 }
 

@@ -51,7 +51,7 @@ public:
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;
-	
+
 	/// Current remaining dash charges.
 	UPROPERTY(BlueprintReadOnly)
 	int CurrentDashCharges = DashCharges;
@@ -75,6 +75,8 @@ private:
 	UFUNCTION()
 	void SetCanUseSecondary(const bool Val) {bCanUseSecondary = Val;}
 	
+	void DashHitbox(float DeltaTime);
+	
 	/// Timer handle used to reset the combo sequence
 	FTimerHandle ComboResetTimer;
 	
@@ -95,6 +97,14 @@ private:
 	
 	/// Resets the combo sequence back to the first attack.
 	void ResetCombo();
+	
+	bool bSwordDashHitboxActive = false;
+	float SwordDashHitboxDuration = 0.25f;
+	float SwordDashHitboxStartTime = 0.f;
+	int DashDamage = 6;
+
+	UPROPERTY()
+	TSet<AActor*> DashHitActors;
 	
 	GENERATED_BODY()
 };
