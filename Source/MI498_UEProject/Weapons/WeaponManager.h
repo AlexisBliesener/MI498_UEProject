@@ -79,6 +79,9 @@ public:
 	
 	/// Handles calling the jump action function of each weapon
 	void HandleJump();
+	
+	UFUNCTION(BlueprintCallable)
+	void SetCanUseWeapons(bool Val) {bCanUseWeapons = Val;}
 
 protected:
 	/// Called when the component is initialized at game start
@@ -135,5 +138,5 @@ private:
 	UPROPERTY()
 	int CurrentWeaponIndex = 0;
 
-	
+	bool bCanUseWeapons = true;
 };
