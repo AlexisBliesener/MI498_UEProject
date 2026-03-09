@@ -171,7 +171,6 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 
 void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
 {
-
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;

@@ -180,6 +180,7 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	// Update states
 	bFirstSwing = true;
 	bReelingPlayerInLastFrame = false;
+	bSwingingPlayerLastFrame = false;
 	
 	Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
@@ -206,6 +207,12 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 {
 	// Update states
 	bReelingPlayerInLastFrame = false;
+	
+	if (!bSwingingPlayerLastFrame)
+	{
+		OnSwingingPlayer();
+		bSwingingPlayerLastFrame = true;
+	}
 
 	// If the harpoon is stuck in the world (but not attached to an enemy)
 	if (bStuck && !bStuckToEnemy)
@@ -263,6 +270,7 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 {
 	/// Update states
 	bFirstSwing = true;
+	bSwingingPlayerLastFrame = false;
 	AttachedPlayerHeight = PlayerCharacter->GetActorLocation().Z;
 	
 	// Harpoon is stuck and attached to an enemy

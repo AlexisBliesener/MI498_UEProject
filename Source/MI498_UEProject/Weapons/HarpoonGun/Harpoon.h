@@ -84,6 +84,9 @@ protected:
 	/// A Blueprintable function that will be called when harpoon pulls player in
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPullPlayer();
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSwingingPlayer();
 
 	/// A Blueprintable function that will be called when harpoon pulls player in
 	UFUNCTION(BlueprintImplementableEvent)
@@ -154,6 +157,8 @@ private:
 	bool bFirstSwing = true;
 	
 	float PrevTileMaterial = 10;
+	
+	bool bSwingingPlayerLastFrame= false;
 	
 	/// The players character movement component
 	UPROPERTY()
