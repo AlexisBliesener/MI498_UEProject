@@ -80,6 +80,7 @@ public:
 	/// Handles calling the jump action function of each weapon
 	void HandleJump();
 	
+	/// Sets if weapons are allowed to be used or not
 	UFUNCTION(BlueprintCallable)
 	void SetCanUseWeapons(bool Val) {bCanUseWeapons = Val;}
 
@@ -138,5 +139,6 @@ private:
 	UPROPERTY()
 	int CurrentWeaponIndex = 0;
 
+	/// True if weapons are currently allowed to be used
 	bool bCanUseWeapons = true;
 };

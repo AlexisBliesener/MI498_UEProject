@@ -9,7 +9,6 @@
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
-#include "MI498_UEProject/Player/PlayerCharacterController.h"
 
 AHarpoon::AHarpoon()
 {
@@ -19,7 +18,6 @@ AHarpoon::AHarpoon()
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
 	Collision->InitSphereRadius(0.1f);
 	Collision->SetCollisionProfileName(TEXT("BlockAllDynamic"));
-	
 	RootComponent = Collision;
 	Collision->SetNotifyRigidBodyCollision(true);
 	Collision->OnComponentHit.AddDynamic(this, &AHarpoon::OnHit);
@@ -64,12 +62,8 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	ProjectileMovement->StopMovementImmediately();
 	ProjectileMovement->Deactivate();
 
-	/// Attach the cable end to the owning player's root component
-//	CableComponent->SetAttachEndToComponent(GetOwner()->GetOwner()->GetRootComponent());
-
 	/// Store the initial rope length when the harpoon hits
 	CableLength = FVector::Distance(Hit.ImpactPoint, PlayerCharacter->GetActorLocation());
-	
 
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
@@ -85,7 +79,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 			return;
 		}
 	}
-
+	
 	if (OtherActor)
 	{
 		Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -126,16 +120,15 @@ void AHarpoon::BeginPlay()
 	PlayerCharacter = Cast<APlayerCharacter>(GetOwner()->GetOwner());
 	PlayerCharacterMovementComponent = PlayerCharacter->GetCharacterMovement();
 	
+	/// Do not allow the harpoon to collide with the player
 	if (PlayerCharacter)
 	{
 		Collision->IgnoreActorWhenMoving(PlayerCharacter, true);
 	}
 	
+	/// Attach end of the rope to the harpoon gun socket
 	CableComponent->bAttachEnd = true;
-	CableComponent->SetAttachEndToComponent(
-	PlayerCharacter->GetMesh(),
-	TEXT("HarpoonGunBaseSocket")
-);
+	CableComponent->SetAttachEndToComponent(PlayerCharacter->GetMesh(),TEXT("HarpoonGunBaseSocket"));
 }
 
 void AHarpoon::Tick(float DeltaTime)
@@ -146,8 +139,8 @@ void AHarpoon::Tick(float DeltaTime)
 	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
 	FVector toHarpoonNormal = toHarpoon.GetSafeNormal();
 	
+	/// Set up the cable visually to tile the material
 	VisualCableLength = FVector::Distance(GetActorLocation(), PlayerCharacter->GetActorLocation());
-	
 	float tileMaterial = VisualCableLength/30.f;
 	if (!FMath::IsNearlyEqual(tileMaterial, PrevTileMaterial, 0.01f))
 	{
@@ -156,11 +149,14 @@ void AHarpoon::Tick(float DeltaTime)
 		PrevTileMaterial = tileMaterial;
 	}
 	
+	/// Set rope cable length
 	CableComponent->CableLength = VisualCableLength;
 	
+	/// Cache player height
 	PrevPlayerHeight = CurrentPlayerHeight;
 	CurrentPlayerHeight = PlayerCharacter->GetActorLocation().Z;
 
+	/// Select harpoon mode
 	if (bReturnToPlayer)
 	{
 		HandleReturnToPlayer(toHarpoon, toHarpoonNormal, DeltaTime);
@@ -181,12 +177,11 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	bFirstSwing = true;
 	bReelingPlayerInLastFrame = false;
 	bSwingingPlayerLastFrame = false;
-	
-	Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	// Stop any projectile physics so manual movement takes over
 	ProjectileMovement->StopMovementImmediately();
 	ProjectileMovement->Deactivate();
+	Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	
 	FVector toSocket = (GetActorLocation() - PlayerCharacter->GetMesh()->GetSocketLocation("HarpoonGunBaseSocket")).GetSafeNormal();
 
@@ -207,7 +202,6 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 {
 	// Update states
 	bReelingPlayerInLastFrame = false;
-	
 	if (!bSwingingPlayerLastFrame)
 	{
 		OnSwingingPlayer();

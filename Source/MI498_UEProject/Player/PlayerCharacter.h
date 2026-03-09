@@ -27,6 +27,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UCameraComponent* Camera;
 	
+	/// Returns the walk speed of the player
 	int GetMaxWalkSpeed() const {return MaxWalkSpeed;}
 	
 	/// A Blueprintable function that will be called when the player lands on the ground

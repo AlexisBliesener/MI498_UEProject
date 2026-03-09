@@ -85,6 +85,7 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPullPlayer();
 	
+	/// A Blueprintable function that will be called when the harpoon enters swinging mode
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSwingingPlayer();
 
@@ -120,9 +121,10 @@ private:
 	/// Maximum distance the harpoon can travel before despawning
 	int Range;
 
-	/// Length of the cable at the moment the harpoon becomes stuck
+	/// The physics enforced length of the cable
 	float CableLength;
 	
+	/// The length of the cable visually
 	float VisualCableLength;
 
 	/// Whether the harpoon is currently returning to the player
@@ -156,8 +158,10 @@ private:
 	/// True only for the first swing frame to initialize velocity.
 	bool bFirstSwing = true;
 	
+	/// The previous set tile material value for the cable
 	float PrevTileMaterial = 10;
 	
+	/// True if the player was swinging last frame
 	bool bSwingingPlayerLastFrame= false;
 	
 	/// The players character movement component
