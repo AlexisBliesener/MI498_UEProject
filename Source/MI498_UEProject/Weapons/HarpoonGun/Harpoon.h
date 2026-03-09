@@ -52,10 +52,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<USphereComponent> Collision;
 
-	/// The strength at which the rope will pull against the player
-	UPROPERTY(EditDefaultsOnly)
-	int PullStrength = 10000;
-
 	/// The strength at which the harpoon will pull in the player during zip// 
 	UPROPERTY(EditDefaultsOnly)
 	int ZipPullStrength = 85000;
@@ -88,6 +84,10 @@ protected:
 	/// A Blueprintable function that will be called when harpoon pulls player in
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPullPlayer();
+	
+	/// A Blueprintable function that will be called when the harpoon enters swinging mode
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSwingingPlayer();
 
 	/// A Blueprintable function that will be called when harpoon pulls player in
 	UFUNCTION(BlueprintImplementableEvent)
@@ -121,8 +121,11 @@ private:
 	/// Maximum distance the harpoon can travel before despawning
 	int Range;
 
-	/// Length of the cable at the moment the harpoon becomes stuck
+	/// The physics enforced length of the cable
 	float CableLength;
+	
+	/// The length of the cable visually
+	float VisualCableLength;
 
 	/// Whether the harpoon is currently returning to the player
 	bool bReturnToPlayer = false;
@@ -136,7 +139,7 @@ private:
 
 	/// True if the harpoon should pull in the enemy
 	bool bPullInEnemy = true;
-
+	
 	/// True if last frame the harpoon was reeling the player in
 	bool bReelingPlayerInLastFrame = false;
 
@@ -154,6 +157,12 @@ private:
 
 	/// True only for the first swing frame to initialize velocity.
 	bool bFirstSwing = true;
+	
+	/// The previous set tile material value for the cable
+	float PrevTileMaterial = 10;
+	
+	/// True if the player was swinging last frame
+	bool bSwingingPlayerLastFrame= false;
 	
 	/// The players character movement component
 	UPROPERTY()

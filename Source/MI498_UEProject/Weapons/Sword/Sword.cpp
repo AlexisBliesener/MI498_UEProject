@@ -80,6 +80,11 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
+	
+	// Deal Damage
+	bSwordDashHitboxActive = true;
+	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
+	DashHitActors.Empty();
 }
 
 void ASword::Tick(float DeltaSeconds)
@@ -101,6 +106,85 @@ void ASword::Tick(float DeltaSeconds)
 				SecondaryReloadTime,
 				false);
 		}
+	}
+	
+	/// Activate dash hitbox if necessary
+	if (bSwordDashHitboxActive)
+	{
+		if (GetWorld()->GetTimeSeconds() - SwordDashHitboxStartTime > SwordDashHitboxDuration)
+		{
+			bSwordDashHitboxActive = false;
+			return;
+		}
+
+		DashHitbox();
+	}
+}
+
+void ASword::DashHitbox()
+{
+	/// Array to store all hit results from the sweep
+	TArray<FHitResult> hitResults;
+
+	/// Get the player controller that owns this weapon
+	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
+	
+	/// Ignore player and self collision
+	FCollisionQueryParams traceParams;
+	traceParams.AddIgnoredActor(this);
+	traceParams.AddIgnoredActor(GetOwner());
+
+	/// Half size of the box used for the sweep collision
+	FVector halfSize = FVector(10, 10, 10);
+
+	/// Get the current viewpoint of the player (camera position and direction)
+	FVector cameraLocation;
+	FRotator cameraRotation;
+	playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+	FVector forward = cameraRotation.Vector();
+
+	/// Calculate start and end positions of the hitbox
+	FVector start = cameraLocation;
+	FVector end = start + forward * 200.f;
+
+	/// Perform a box sweep from start to end to detect actors in the dash path
+	GetWorld()->SweepMultiByChannel(
+		hitResults,
+		start,
+		end,
+		cameraRotation.Quaternion(),
+		ECC_Visibility,
+		FCollisionShape::MakeBox(halfSize),
+		traceParams);
+
+	/// Loop through every actor hit by the sweep
+	for (const FHitResult& hit : hitResults)
+	{
+		AActor* actor = hit.GetActor();
+
+		/// Skip if the actor is invalid or has already been hit during this dash
+		if (!actor || DashHitActors.Contains(actor))
+		{
+			continue;
+		}
+
+		/// Add actor to the list so it can't be hit again during the same dash
+		DashHitActors.Add(actor);
+		
+		/// If the actor is an exploding barrel, trigger its explosion
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(actor))
+		{
+			barrel->Explode();
+		}
+
+		/// Apply damage to the actor that was hit
+		UGameplayStatics::ApplyDamage(
+			actor,
+			DashDamage,
+			playerController,
+			this,
+			nullptr
+		);
 	}
 }
 
