@@ -80,10 +80,20 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 			FVector localTarget = enemy->RealShip->GetActorTransform().InverseTransformPosition(realTarget);
 			hiddenTarget = enemy->HiddenShip->GetActorTransform().TransformPosition(localTarget);
 		}
-
-		FAIMoveRequest newRequest = MoveRequest;
-		// update the request to use it on the raal ship 
-		newRequest.UpdateGoalLocation(hiddenTarget);
+		// This fixes when the MoveTo task has a target as an ACTOR not a destination  
+		// because we're using the fake ship for the navmesh, so we need to ignore the given actor and translate it to the fake ship
+		// and unreal doesn't allow changing FAIMoveRequest to use a destination instead of an actor after it's created
+		// so we had to create a new move request and pass the old params to the new one and this is how lovely unreal is...
+		FAIMoveRequest newRequest(hiddenTarget);
+		newRequest.SetAcceptanceRadius(MoveRequest.GetAcceptanceRadius());
+		newRequest.SetUsePathfinding(MoveRequest.IsUsingPathfinding());
+		newRequest.SetAllowPartialPath(MoveRequest.IsUsingPartialPaths());
+		newRequest.SetProjectGoalLocation(MoveRequest.IsProjectingGoal());
+		newRequest.SetNavigationFilter(MoveRequest.GetNavigationFilter());
+		newRequest.SetCanStrafe(MoveRequest.CanStrafe());
+		newRequest.SetReachTestIncludesAgentRadius(MoveRequest.IsReachTestIncludingAgentRadius());
+		newRequest.SetReachTestIncludesGoalRadius(MoveRequest.IsReachTestIncludingGoalRadius());
+		newRequest.SetRequireNavigableEndLocation(MoveRequest.IsNavigableEndLocationRequired());
        
 		return Super::MoveTo(newRequest, OutPath);
 	}
