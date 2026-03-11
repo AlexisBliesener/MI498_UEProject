@@ -2,6 +2,7 @@
 
 
 #include "PlayerLocationEvaluator.h"
+#include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 void UPlayerLocationEvaluator::TreeStart(FStateTreeExecutionContext& Context)
@@ -21,24 +22,34 @@ void UPlayerLocationEvaluator::Tick(FStateTreeExecutionContext& Context, const f
 	bTargetInBombRange = false;
 	bTargetChaseRange = false;
 	bTargetInMeleeRange = false;
-	TargetActor = nullptr;
 	
 	if (!IsValid(Actor) || !IsValid(AIController))
 	{
 		return;
 	}
 
-	AActor* currentTarget = AIController->AcquiredTarget;
-	if (!IsValid(currentTarget))
+	if (IsValid(AIController->AcquiredTarget))
+	{
+		if (!IsValid(TargetActor))
+		{
+			TargetActor = AIController->AcquiredTarget;
+		}
+	}else
+	{
+		if (!IsValid(TargetActor))
+		{
+			TargetActor = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+		}
+	}
+
+	if (!IsValid(TargetActor))
 	{
 		return;
 	}
-	TargetActor = currentTarget;
-
 	const FVector enemyLoc = Actor->GetActorLocation();
-	const FVector targetLoc = currentTarget->GetActorLocation();
+	const FVector targetLoc = TargetActor->GetActorLocation();
 	
-	const float distSquared = FVector::DistSquared(enemyLoc, targetLoc);
+	const float distSquared = FVector::DistSquared2D(enemyLoc, targetLoc);
 	const float distZ = FMath::Abs(targetLoc.Z - enemyLoc.Z);
 
 	bTargetInBombRange = distSquared <= FMath::Square(Actor->AttackStartDistance);
@@ -82,10 +93,10 @@ void UPlayerLocationEvaluator::Tick(FStateTreeExecutionContext& Context, const f
 		LastEvent = SwingingEnemyEnums::ThrowABomb;
 
 	}
-	else if (LastEvent != SwingingEnemyEnums::Swing)
-	{
-		AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.Swinging")));
-		LastEvent = SwingingEnemyEnums::Swing;
+	//else if (LastEvent != SwingingEnemyEnums::Swing)
+	//{
+	//	AIController->GetStateTreeAIComponent()->SendStateTreeEvent(FGameplayTag::RequestGameplayTag(FName("StateTree.SwingingEnemy.Swinging")));
+	//	LastEvent = SwingingEnemyEnums::Swing;
 
-	}
+	//}
 }

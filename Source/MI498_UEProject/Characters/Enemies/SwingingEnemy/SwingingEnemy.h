@@ -87,9 +87,6 @@ public:
 	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Weapon")
 	float ExplosionRadius = 300.f;
-	/// To run eqs it should be attackstartdistance - 100
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default|Dev")
-	float GridSizeEQS = 100.f;
 	/// distance for the enemy to see and run to the player
 	virtual void Tick(float DeltaTime) override;
 

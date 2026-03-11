@@ -139,6 +139,10 @@ void APlayerCharacter::Jump()
 	PlayerAnimation->SetJumped(true);
 }
 
+FGenericTeamId APlayerCharacter::GetGenericTeamId() const
+{
+	return FGenericTeamId(0);
+}
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
 	OnPlayerGrabLedge();

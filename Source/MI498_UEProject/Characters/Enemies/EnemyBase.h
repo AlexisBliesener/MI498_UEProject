@@ -41,14 +41,34 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
 	float AttackCooldown = 1.2f;
 	/**
+	 * How high the eyes are from the center of the enemy (it used to detect the player) 
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
+	float EyeHeightOffset = 50.f;
+	/**
+	 * How many seconds the enemy waits at the last known player location
+	 * after losing sight and before returning to patrol
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
+	float WaitAtLastKnownLocationTime = 3.f;
+	/** Maximum sight distance to not see the target that has been already seen. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
+	float LoseSightRadius = AttackStartDistance + 300.f;
+	/**
 	 * Damage amount for the enemy primary attack
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
 	float DamagePrimaryWeapon  = 3.f;
+	/// To run eqs it should be attackstartdistance - 100
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default|Dev")
+	float GridSizeEQS = 100.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Dev")
+	float AutoSuccessRange = -1.0f;
 	/// The type of this enemy used for scoring
 	UPROPERTY(EditAnywhere)
 	EEnemyType EnemyType;
-	
+	UPROPERTY()
+	FVector AssignedLocation;
 	/**
 	 * Gets the state tree used by the enemy.
 	 * @return The state tree assigned to the enemy.
@@ -99,7 +119,7 @@ public:
 	/// Event for when the enemy dies
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDeath();
-	
+	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
 protected:
 	virtual void BeginPlay() override;
 	/**

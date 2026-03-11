@@ -23,14 +23,14 @@ AEnemyAIController::AEnemyAIController()
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
     SightConfig->SightRadius = 1000.0f;
     SightConfig->LoseSightRadius = 1500.0f;
-    SightConfig->PeripheralVisionAngleDegrees = 35.0f;
-    SightConfig->SetMaxAge(2.f); 
+    SightConfig->PeripheralVisionAngleDegrees = 90.f;
+    SightConfig->SetMaxAge(5.f); 
     // SightConfig->PointOfViewBackwardOffset = 150.0f; )
     // SightConfig->NearClippingRadius = 90.0f;
     SightConfig->AutoSuccessRangeFromLastSeenLocation = -1.0f;
     SightConfig->DetectionByAffiliation.bDetectEnemies = true; 
     SightConfig->DetectionByAffiliation.bDetectFriendlies = true; 
-    SightConfig->DetectionByAffiliation.bDetectNeutrals = true; 
+    SightConfig->DetectionByAffiliation.bDetectNeutrals = false; 
 
     PerceptionComponent->ConfigureSense(*SightConfig);
     PerceptionComponent->SetDominantSense(UAISense_Sight::StaticClass());
@@ -59,6 +59,7 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 		if (MoveRequest.IsMoveToActorRequest() && MoveRequest.GetGoalActor())
 		{
 			realTarget = MoveRequest.GetGoalActor()->GetActorLocation();
+			realTarget.Z = enemy->GetActorLocation().Z; // ignore the height in enemy movement since most of the time the player will be in the air 
 		}
 		else 
 		{
@@ -106,6 +107,11 @@ UStateTreeEnemyComponent* AEnemyAIController::GetStateTreeAIComponent() const
 	return StateTreeAIComponent;
 }
 
+FGenericTeamId AEnemyAIController::GetGenericTeamId() const
+{
+	return FGenericTeamId(1);
+}
+
 void AEnemyAIController::ReportDamageEvent(AActor* DamagedActor, AActor* InstigatorActor, float DamageAmount)
 {
 	UWorld* World = GetWorld();
@@ -146,8 +152,9 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 			if (UAISenseConfig_Sight* ActiveSightConfig = Cast<UAISenseConfig_Sight>(PerceptionComponent->GetSenseConfig(sightID)))
 			{
 				ActiveSightConfig->SightRadius = enemyBase->AttackStartDistance;
-				ActiveSightConfig->LoseSightRadius = enemyBase->AttackStartDistance + 200.0f;
               
+				ActiveSightConfig->LoseSightRadius = enemyBase->LoseSightRadius;
+				ActiveSightConfig->AutoSuccessRangeFromLastSeenLocation = enemyBase->AutoSuccessRange;
 				PerceptionComponent->ConfigureSense(*ActiveSightConfig);
 			}
 			else
@@ -211,4 +218,27 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 void AEnemyAIController::OnTargetPerceptionForgotten(AActor* Actor)
 {
 	OnSightStimulusForgotten.Broadcast(Actor); 
+}
+
+void AEnemyAIController::SetFocalPoint(FVector NewFocus, EAIFocusPriority::Type InPriority)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(GetPawn());
+	if (enemy && enemy->RealShip && enemy->HiddenShip)
+	{
+		float distToFakeShip = FVector::DistSquared(NewFocus, enemy->HiddenShip->GetActorLocation());
+		float distToRealShip = FVector::DistSquared(NewFocus, enemy->RealShip->GetActorLocation());
+
+		if (distToFakeShip < distToRealShip)
+		{
+			// translate to the real ship
+			FVector localPos = enemy->HiddenShip->GetActorTransform().InverseTransformPosition(NewFocus);
+			FVector realFocus = enemy->RealShip->GetActorTransform().TransformPosition(localPos);
+            
+			Super::SetFocalPoint(realFocus, InPriority);
+			return;
+		}
+	}
+
+	// If it's already on the real ship 
+	Super::SetFocalPoint(NewFocus, InPriority);
 }

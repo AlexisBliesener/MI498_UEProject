@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GenericTeamAgentInterface.h"
 #include "PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
@@ -14,7 +15,7 @@ class UScoringManager;
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
 UCLASS()
-class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase
+class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase, public IGenericTeamAgentInterface
 {
 public:
 	
@@ -65,7 +66,8 @@ public:
 	
 	/// Override of the ACharacter Jump functions
 	virtual void Jump() override;
-
+	// Override of the team id and set it to 0 for the player 
+	virtual FGenericTeamId GetGenericTeamId() const override;
 protected:
 	virtual void BeginPlay() override;
 	

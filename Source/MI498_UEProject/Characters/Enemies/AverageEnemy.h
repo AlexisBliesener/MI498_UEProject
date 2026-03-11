@@ -16,4 +16,10 @@ class MI498_UEPROJECT_API AAverageEnemy : public AEnemyBase
 public:
 	// Sets default values for this character's properties
 	AAverageEnemy(const FObjectInitializer& ObjectInitializer);
+	
+	/**
+	 * How many seconds the enemy waits after shooting before moving again?
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
+	float DelayAfterShootBeforeMove = 0.5f;
 };

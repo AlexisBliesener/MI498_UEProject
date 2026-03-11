@@ -30,6 +30,14 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 
 }
 
+
+void AEnemyBase::GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const
+{
+	OutLocation = GetActorLocation();
+	OutLocation.Z += EyeHeightOffset; 
+	OutRotation = GetActorRotation();
+}
+
 void AEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
@@ -56,6 +64,8 @@ void AEnemyBase::BeginPlay()
 	{
 		LocalInitLocation = RealShip->GetActorTransform().InverseTransformPosition(EnemyInitLocation);
 	}
+	
+    GridSizeEQS = AttackStartDistance - 300.f;
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)

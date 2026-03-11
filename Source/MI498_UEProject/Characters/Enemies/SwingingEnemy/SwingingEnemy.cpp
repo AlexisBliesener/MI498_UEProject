@@ -62,7 +62,6 @@ void ASwingingEnemy::BeginPlay()
         weapon->ExplosionRadius = ExplosionRadius;
     }
     
-    GridSizeEQS = AttackStartDistance - 300.f;
 }
 
 void ASwingingEnemy::Tick(float DeltaTime)
@@ -372,7 +371,7 @@ void ASwingingEnemy::ShootRopeAndSwing()
 FVector ASwingingEnemy::GetGroundPointUnderSwing() const
 {
     UNavigationSystemV1* navSys = UNavigationSystemV1::GetCurrent(GetWorld());
-    if (navSys != nullptr)
+    if (navSys != nullptr && HiddenShip != nullptr && RealShip != nullptr)
     {
         FNavLocation groundLocation;
         

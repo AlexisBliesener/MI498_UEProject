@@ -2,6 +2,7 @@
 #include "BombPiece.h"
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
+#include "NavigationSystem.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -90,6 +91,16 @@ void AMissionController::Tick(float DeltaSeconds)
 		{
 
 			ExplodeVaultDoor();
+		}
+		if (playrController->WasInputKeyJustPressed(EKeys::F10))
+		{
+			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			NavSys->AddNavigationBuildLock(1);
+		}
+		if (playrController->WasInputKeyJustPressed(EKeys::F9))
+		{
+			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			NavSys->RemoveNavigationBuildLock(1);
 		}
 	}
 }
