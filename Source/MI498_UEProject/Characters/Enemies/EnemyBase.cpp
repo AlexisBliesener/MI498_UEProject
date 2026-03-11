@@ -5,6 +5,7 @@
 
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
@@ -163,6 +164,22 @@ void AEnemyBase::PossessedBy(AController* NewController)
 void AEnemyBase::UnPossessed()
 {
 	Super::UnPossessed();
+}
+
+void AEnemyBase::Destroyed()
+{
+	Super::Destroyed();
+	
+	float randomFloat = UKismetMathLibrary::RandomFloatInRange(0.0f, 100.0f);
+
+	if (randomFloat <= PercentChanceOfHealthDrop && HealthItemClass)
+	{
+		// spawn the health item at enemy's location
+		FActorSpawnParameters spawnParams;
+		spawnParams.Owner = this;
+		spawnParams.Instigator = GetInstigator();
+		GetWorld()->SpawnActor<AActor>(HealthItemClass, GetActorTransform(), spawnParams);
+	}
 }
 
 UStateTree* AEnemyBase::GetStateTree() const

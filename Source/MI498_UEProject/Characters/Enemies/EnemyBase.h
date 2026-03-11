@@ -59,11 +59,24 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Weapon")
 	float DamagePrimaryWeapon  = 3.f;
+	/**
+	 * the percent chance of health drop
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Drops", meta=(ClampMin="0.0", ClampMax="100.0", UIMin="0.0", UIMax="100.0"))
+	float PercentChanceOfHealthDrop  = 50.f;
 	/// To run eqs it should be attackstartdistance - 100
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default|Dev")
 	float GridSizeEQS = 100.f;
+	/**
+	 * If not an InvalidRange (which is the default), we will always be able to see the target that has already been seen if they are within this range of their last seen location.
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Dev")
 	float AutoSuccessRange = -1.0f;
+	/**
+	 * The health item class to spawn 
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Dev")
+	TSubclassOf<AActor> HealthItemClass;
 	/// The type of this enemy used for scoring
 	UPROPERTY(EditAnywhere)
 	EEnemyType EnemyType;
@@ -111,6 +124,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void UnPossessed() override;
+	virtual void Destroyed() override;
 	
 	/// Event for when the enemy takes damage
 	UFUNCTION(BlueprintImplementableEvent)
