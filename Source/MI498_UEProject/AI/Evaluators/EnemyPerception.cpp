@@ -83,10 +83,6 @@ void UEnemyPerception::HandleSightStimulus(AActor* TargetActor, const FAIStimulu
 			AIController->CurrentStateTreeState = StateTreeEnemyEvents::Attack; 
 		}
 	}
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("ATTTTACCCKKKK")));
-	}
 }
 
 void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
@@ -148,11 +144,7 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	}
 
 	OnSightStimulusForgotten(TargetActor);
-
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("FORGOOOOOTTT")));
-	}
+	
 }
 
 void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimulus& Stimulus)
@@ -171,10 +163,6 @@ void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimul
 			SendEventToStateTree(StateTreeEnemyEvents::Attack);
 			AIController->CurrentStateTreeState = StateTreeEnemyEvents::Attack;
 		}
-	}
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("ATTTTACCCKKKK")));
 	}
 }
 
