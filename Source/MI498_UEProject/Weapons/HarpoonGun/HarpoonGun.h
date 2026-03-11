@@ -5,6 +5,7 @@
 #include "../WeaponBase.h"
 #include "HarpoonGun.generated.h"
 
+class APlayerCharacterController;
 /// Weapon that fires and manages a single harpoon projectile
 UCLASS()
 class MI498_UEPROJECT_API AHarpoonGun : public AWeaponBase
@@ -101,7 +102,20 @@ private:
 	
 	/// Cached reference to the owning player character.
 	UPROPERTY()
-	APlayerCharacter* CharacterOwner = nullptr;
+	APlayerCharacter* PlayerCharacter = nullptr;
+	
+	/// Cached reference to the player character controller
+	UPROPERTY()
+	APlayerCharacterController* PlayerController = nullptr;
+	
+	/// How long primary needs to be held to enter reel in mode
+	float HoldTime = 0.1;
+	
+	/// How long primary attack has been held
+	float HeldTime = 0;
+	
+	/// If the player is currently holding primary attack
+	bool bHolding = false;
 	
 	GENERATED_BODY()
 };

@@ -48,10 +48,14 @@ public:
 	/// How many seconds of invincibility the player will get after using the dash
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float DashInvincibilitySeconds = 0.5f;
+	
+	/// Amount of damage applied to actors hit during the dash
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int DashDamage = 6;
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;
-	
+
 	/// Current remaining dash charges.
 	UPROPERTY(BlueprintReadOnly)
 	int CurrentDashCharges = DashCharges;
@@ -75,6 +79,9 @@ private:
 	UFUNCTION()
 	void SetCanUseSecondary(const bool Val) {bCanUseSecondary = Val;}
 	
+	/// Activate the sword dash hitbox
+	void DashHitbox();
+	
 	/// Timer handle used to reset the combo sequence
 	FTimerHandle ComboResetTimer;
 	
@@ -95,6 +102,20 @@ private:
 	
 	/// Resets the combo sequence back to the first attack.
 	void ResetCombo();
+	
+	/// Whether the sword dash hitbox is currently active
+	bool bSwordDashHitboxActive = false;
+
+	/// Duration the dash hitbox remains active
+	float SwordDashHitboxDuration = 0.25f;
+
+	/// Time when the dash hitbox was activated
+	float SwordDashHitboxStartTime = 0.f;
+
+	/// Tracks actors already hit during the current dash
+	/// Prevents hitting the same actor multiple times
+	UPROPERTY()
+	TSet<AActor*> DashHitActors;
 	
 	GENERATED_BODY()
 };

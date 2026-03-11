@@ -44,7 +44,7 @@ void AWeaponBase::JumpAction()
 
 void AWeaponBase::Reload()
 {
-	if (bReloading) return;
+	if (bReloading || CurrentAmmo == MaxAmmo) return;
 	
 	OnReload();
 	bReloading = true;
