@@ -5,6 +5,22 @@
 #include "MI498_UEProject/Weapons/WeaponTypes.h"
 #include "PlayerAnimation.generated.h"
 
+/// Enum representing all weapon transition montages in the game.
+UENUM(BlueprintType)
+enum class EWeaponTransitionMontageToPlay : uint8
+{
+	BlunderbussToSword UMETA(DisplayName = "Blunderbuss To Sword"),
+	BlunderbussToHarpoonGun UMETA(DisplayName = "Blunderbuss To Harpoon Gun"),
+
+	SwordToBlunderbuss UMETA(DisplayName = "Sword To Blunderbuss"),
+	SwordToHarpoonGun UMETA(DisplayName = "Sword To Harpoon Gun"),
+
+	HarpoonGunToBlunderbuss UMETA(DisplayName = "Harpoon Gun To Blunderbuss"),
+	HarpoonGunToSword UMETA(DisplayName = "Harpoon Gun To Sword"),
+
+	None UMETA(DisplayName = "None")
+};
+
 /// Animation Instance class for the player character.
 /// Responsible for updating animation-related variables
 /// that are exposed to and read by the Animation Blueprint.
@@ -12,7 +28,6 @@ UCLASS()
 class MI498_UEPROJECT_API UPlayerAnimation : public UAnimInstance
 {
 public:
-
 	/// Current movement speed of the character.
 	UPROPERTY(BlueprintReadOnly)
 	float Speed;
@@ -37,15 +52,19 @@ public:
 
 	/// Sets whether the character has initiated a jump.
 	void SetJumped(const bool Val) { bJumped = Val; }
-	
+
 	/// Sets the look direction of the player for animation movement
 	void SetLookRotation(float Val) { LookRotation = Val; }
+
+	/// Returns the correct transition animation for prev and current weapon
+	UFUNCTION(BlueprintCallable)
+	EWeaponTransitionMontageToPlay GetTransitionMontageToPlay();
 
 protected:
 	/// The rotation of the look directions
 	UPROPERTY(BlueprintReadOnly)
 	float LookRotation = 0;
-	
+
 	/// True when the character has triggered a jump.
 	UPROPERTY(BlueprintReadOnly)
 	bool bJumped = false;
@@ -55,6 +74,11 @@ protected:
 	bool bInAir = false;
 
 private:
+	/// The weapon the player held previous to current
+	EWeaponType PrevWeapon = EWeaponType::Blunderbuss;
+	
+	/// The weapon the player is currently holding
+	EWeaponType CurrentWeapon = EWeaponType::Blunderbuss;
 
 	GENERATED_BODY()
 };

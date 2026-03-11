@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class APlantedBomb;
 class UExitCannonComponent;
 class UScoringManager;
 class AEnemyBase;
@@ -59,6 +60,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
 	
+	/// Bomb that will explode the vault door
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlantedBomb> PlantedBomb;
+	
 	/// Array of ships in the level
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<AShip>> Ships;
@@ -103,17 +108,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnShotFromExitCannon();
 	
-	/// How much time the player will have to complete stage one, in seconds
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageOneTimeLimit = 240;
-	
-	/// How much additional time the player will get to complete stage two, in seconds
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageTwoAdditionalTime = 120;
-	
 	/// How much additional time the player will get to complete stage three, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int StageThreeAdditionalTime = 60;
+	int StageThreeAdditionalTime = 180;
 	
 	/// Time that must be spent in the vault to gather one loot
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

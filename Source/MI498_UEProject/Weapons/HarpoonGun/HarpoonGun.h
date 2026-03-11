@@ -5,6 +5,7 @@
 #include "../WeaponBase.h"
 #include "HarpoonGun.generated.h"
 
+class APlayerCharacterController;
 /// Weapon that fires and manages a single harpoon projectile
 UCLASS()
 class MI498_UEPROJECT_API AHarpoonGun : public AWeaponBase
@@ -80,9 +81,14 @@ public:
 	int HarpoonReleaseJumpForce = 600;
 
 protected:
+	virtual void BeginPlay() override;
+	
 	virtual void Tick(float DeltaSeconds) override;
 
 private:
+	/// Called when the player switches to or from this weapon.
+	UFUNCTION()
+	void OnWeaponSwitched();
 	
 	/// Reference to the currently spawned harpoon instance
 	UPROPERTY()
@@ -90,6 +96,26 @@ private:
 	
 	/// True if player should swing on harpoon, false if player should zip to harpoon
 	bool bSwingMode = true;
+	
+	/// True when the player is currently aiming down sights.
+	bool bUsingADS = false;
+	
+	/// Cached reference to the owning player character.
+	UPROPERTY()
+	APlayerCharacter* PlayerCharacter = nullptr;
+	
+	/// Cached reference to the player character controller
+	UPROPERTY()
+	APlayerCharacterController* PlayerController = nullptr;
+	
+	/// How long primary needs to be held to enter reel in mode
+	float HoldTime = 0.1;
+	
+	/// How long primary attack has been held
+	float HeldTime = 0;
+	
+	/// If the player is currently holding primary attack
+	bool bHolding = false;
 	
 	GENERATED_BODY()
 };

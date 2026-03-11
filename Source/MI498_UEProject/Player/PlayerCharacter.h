@@ -28,6 +28,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UCameraComponent* Camera;
 	
+	/// Returns the walk speed of the player
+	int GetMaxWalkSpeed() const {return MaxWalkSpeed;}
+	
 	/// A Blueprintable function that will be called when the player lands on the ground
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPlayerLanded();
@@ -125,6 +128,10 @@ protected:
 	/// Handles spawning, switching, and firing weapons
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<UWeaponManager> WeaponManager = nullptr;
+	
+	/// Returns the players animation script
+	UFUNCTION(BlueprintCallable)
+	UPlayerAnimation* GetPlayerAnimation() {return PlayerAnimation;}
 
 private:
 	/// Called automatically by the engine when the character lands on the ground

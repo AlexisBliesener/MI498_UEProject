@@ -3,6 +3,7 @@
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "NavigationSystem.h"
+#include "PlantedBomb.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -22,15 +23,6 @@ void AMissionController::BeginPlay()
 	
 	/// Set how many bomb peices are needed to complete stage one
 	NeededBombPieces = BombPieces.Num();
-	
-	// Start Stage One timer
-	FTimerDelegate delegate;
-	delegate.BindUObject(this, &AMissionController::StageOneFinish, false);
-	GetWorldTimerManager().SetTimer(
-		MissionTimerHandle,
-		delegate,
-		StageOneTimeLimit,
-		false);
 	
 	OnMissionStarted();
 	
@@ -133,6 +125,8 @@ void AMissionController::HandleVaultDoorInteract()
 	{
 		OnBombPlanted();
 		
+		PlantedBomb->BombAppear();
+		
 		/// Delay vault explosion
 		GetWorldTimerManager().SetTimer(
 			MissionTimerHandle,
@@ -146,6 +140,7 @@ void AMissionController::HandleVaultDoorInteract()
 void AMissionController::ExplodeVaultDoor()
 {
 	/// Trigger explosion effects and scoring
+	PlantedBomb->BombExplode();
 	OnBombExplode();
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
@@ -201,7 +196,7 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 
 void AMissionController::HandleOnNearExitCannon()
 {
-	if (!bOnNearExitCannonVaLinePlayed)
+	if (!bOnNearExitCannonVaLinePlayed && CurrentState == EMissionState::StageThree)
 	{
 		bOnNearExitCannonVaLinePlayed = true;
 		OnNearExitCannon();
@@ -251,20 +246,6 @@ void AMissionController::StageOneFinish(const bool Result)
 	{
 		/// Start Stage 2
 		CurrentState = EMissionState::StageTwo;
-		
-		/// Extend remaining mission time by StageTwoAdditionalTime seconds
-		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
-		seconds += StageTwoAdditionalTime;
-		
-		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
-		
-		FTimerDelegate delegate;
-		delegate.BindUObject(this, &AMissionController::StageTwoFinish, false);
-		GetWorldTimerManager().SetTimer(
-			MissionTimerHandle,
-			delegate,
-			seconds,
-			false);
 	}
 	else
 	{
@@ -325,5 +306,9 @@ void AMissionController::StageThreeFinish(const bool Result)
 
 float AMissionController::GetRemainingMissionTime() const
 {
+	if (GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle) < 0)
+	{
+		return 0;
+	}
 	return GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
 }
