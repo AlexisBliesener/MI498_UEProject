@@ -8,6 +8,7 @@
 ASword::ASword()
 {
 	WeaponType = EWeaponType::Sword;
+	ComboResetTime = ReloadTime + 0.1f;
 }
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
@@ -18,9 +19,9 @@ void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 		return;
 	}
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
-	
+
 	Super::PrimaryAttack(Controller);
-	
+
 	SwingSword(Controller, Target);
 }
 
@@ -32,13 +33,13 @@ void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
 		return;
 	}
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
-	
+
 	Super::PrimaryAttackHold(Controller, Target);
-	
+
 	SwingSword(Controller, Target);
 }
 
-void ASword::SecondaryAttack(AController* Controller,AActor* Target)
+void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 {
 	// Reduce charges
 	if (CurrentDashCharges == 0 || !bCanUseSecondary)
@@ -48,7 +49,7 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 	CurrentDashCharges--;
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentDashCharges, DashCharges, true);
-	
+
 	// Wait for cooldown to use again
 	SetCanUseSecondary(false);
 	FTimerDelegate delegate;
@@ -56,35 +57,40 @@ void ASword::SecondaryAttack(AController* Controller,AActor* Target)
 	GetWorld()->GetTimerManager().SetTimer(
 		SecondaryCooldownTimerHandle,
 		delegate,
-		SecondaryCooldownTime,   
-		false ); 
-	
+		SecondaryCooldownTime,
+		false);
+
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
 		Super::SecondaryAttack(Controller, Target);
-		
+
 		/// Get the player camera location and rotation for dash direction
 		FVector cameraLocation;
 		FRotator cameraRotation;
 		playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
 		FVector cameraForwardVector = cameraRotation.Vector();
-	
+
 		/// Get a reference to the owning player character
 		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
-	
+
 		/// Dashes the player forward in look direction
 		FVector launchVelocity = cameraForwardVector * DashForce;
 		playerCharacter->LaunchCharacter(launchVelocity, true, true);
-		
+
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
+	
+	// Deal Damage
+	bSwordDashHitboxActive = true;
+	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
+	DashHitActors.Empty();
 }
 
 void ASword::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	
+
 	// Reload if necessary
 	if (CurrentDashCharges != DashCharges && !bReloadingSecondary)
 	{
@@ -97,9 +103,88 @@ void ASword::Tick(float DeltaSeconds)
 				SecondaryReloadTimerHandle,
 				this,
 				&ASword::ReloadDashes,
-				SecondaryReloadTime,   
-				false ); 
+				SecondaryReloadTime,
+				false);
 		}
+	}
+	
+	/// Activate dash hitbox if necessary
+	if (bSwordDashHitboxActive)
+	{
+		if (GetWorld()->GetTimeSeconds() - SwordDashHitboxStartTime > SwordDashHitboxDuration)
+		{
+			bSwordDashHitboxActive = false;
+			return;
+		}
+
+		DashHitbox();
+	}
+}
+
+void ASword::DashHitbox()
+{
+	/// Array to store all hit results from the sweep
+	TArray<FHitResult> hitResults;
+
+	/// Get the player controller that owns this weapon
+	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
+	
+	/// Ignore player and self collision
+	FCollisionQueryParams traceParams;
+	traceParams.AddIgnoredActor(this);
+	traceParams.AddIgnoredActor(GetOwner());
+
+	/// Half size of the box used for the sweep collision
+	FVector halfSize = FVector(10, 10, 10);
+
+	/// Get the current viewpoint of the player (camera position and direction)
+	FVector cameraLocation;
+	FRotator cameraRotation;
+	playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+	FVector forward = cameraRotation.Vector();
+
+	/// Calculate start and end positions of the hitbox
+	FVector start = cameraLocation;
+	FVector end = start + forward * 200.f;
+
+	/// Perform a box sweep from start to end to detect actors in the dash path
+	GetWorld()->SweepMultiByChannel(
+		hitResults,
+		start,
+		end,
+		cameraRotation.Quaternion(),
+		ECC_Visibility,
+		FCollisionShape::MakeBox(halfSize),
+		traceParams);
+
+	/// Loop through every actor hit by the sweep
+	for (const FHitResult& hit : hitResults)
+	{
+		AActor* actor = hit.GetActor();
+
+		/// Skip if the actor is invalid or has already been hit during this dash
+		if (!actor || DashHitActors.Contains(actor))
+		{
+			continue;
+		}
+
+		/// Add actor to the list so it can't be hit again during the same dash
+		DashHitActors.Add(actor);
+		
+		/// If the actor is an exploding barrel, trigger its explosion
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(actor))
+		{
+			barrel->Explode();
+		}
+
+		/// Apply damage to the actor that was hit
+		UGameplayStatics::ApplyDamage(
+			actor,
+			DashDamage,
+			playerController,
+			this,
+			nullptr
+		);
 	}
 }
 
@@ -108,69 +193,96 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	/// Set combo reset timer
 	GetWorld()->GetTimerManager().ClearTimer(ComboResetTimer);
 	GetWorld()->GetTimerManager().SetTimer(
-	ComboResetTimer,
-	this,
-	&ASword::ResetCombo,
-	ComboResetTime,
-	false   );
-	
+		ComboResetTimer,
+		this,
+		&ASword::ResetCombo,
+		ComboResetTime,
+		false);
+
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	Controller->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	
+
 	/// Prepare a hit result to store the outcome of the line trace
-	FHitResult hitResult;
-	
-	/// Calculate the end location of the trace based on weapon range
-	FVector cameraForwardVector = cameraRotation.Vector();
-	FVector endLocation = cameraLocation + cameraForwardVector * Range;
+	TArray<FHitResult> hitResults;
 	
 	/// Setup collision parameters for the trace
-	FCollisionQueryParams TraceParams;
-	TraceParams.AddIgnoredActor(this);
-	TraceParams.AddIgnoredActor(GetOwner());
-	
+	FCollisionQueryParams traceParams;
+	traceParams.AddIgnoredActor(this);
+	traceParams.AddIgnoredActor(GetOwner());
+
 	/// Half size of the box thats sweeps for damage
-	FVector halfSize = FVector(10, 70.f, 70); 
-	
-	/// Perform a hitscan trace from the camera forward
-	bool bHit = GetWorld()->SweepSingleByChannel(
-	hitResult,
-	cameraLocation,
-	endLocation,
-	cameraRotation.Quaternion(),
-	ECC_Visibility,
-	FCollisionShape::MakeBox(halfSize),
-	TraceParams
-	);
-	
-	/// Draw a debug line showing the trace in the world
-	DrawDebugBox(
-	GetWorld(),
-	 bHit ? hitResult.ImpactPoint : endLocation,
-	halfSize,
-	cameraRotation.Quaternion(),
-	FColor::Red,
-	false,
-	1.f
-	);
-	
-	/// If an exploding barrel was hit
-	if (bHit)
+	FVector halfSize = FVector(30, 33, 50);
+
+	/// Calculate Direction Vectors from Camera Rotation
+	FVector forward = cameraRotation.Vector();
+	FVector right = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Y);
+	FVector up = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Z);
+
+	/// Track Unique Damaged Actors
+	TSet<AActor*> damagedActors;
+
+	// Perform Multi-Slice Box Sweeps
+	// Creates a 2 (vertical) x 3 (horizontal) grid of box sweeps
+	for (int i = 0; i < 2; i++)
 	{
-		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitResult.GetActor()))
+		for (int j = -1; j <= 1; j++)
 		{
-			barrel->Explode();
+			/// Offset each slice relative to camera
+			FVector offset = right * j * 33.f + up * i * 50.f;
+
+			/// Start position of this slice
+			FVector start = cameraLocation + offset;
+
+			/// End position extends forward by weapon range
+			FVector end = start + forward * Range;
+
+			/// Store hits for this individual slice
+			TArray<FHitResult> sliceHits;
+
+			/// Perform box sweep along the slice path
+			GetWorld()->SweepMultiByChannel(
+				sliceHits,
+				start,
+				end,
+				cameraRotation.Quaternion(),
+				ECC_Visibility,
+				FCollisionShape::MakeBox(halfSize),
+				traceParams
+			);
+
+			/// Process all hits from this slice
+			for (const FHitResult& hit : sliceHits)
+			{
+				AActor* hitActor = hit.GetActor();
+				if (!hitActor) continue;
+
+				/// Skip actors already processed
+				if (damagedActors.Contains(hitActor))
+					continue;
+
+				/// Add unique actor to damage list
+				damagedActors.Add(hitActor);
+			}
 		}
 	}
 	
-	/// Check if HitResult hit an enemy and apply damage
-	if (bHit && hitResult.GetActor())
+	/// Apply Effects to all Unique Hit Actors
+	for (AActor* hitActor : damagedActors)
 	{
+		if (!hitActor) continue;
+		
+		// Exploding barrel
+		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
+		{
+			barrel->Explode();
+		}
+
+		// Apply damage
 		UGameplayStatics::ApplyDamage(
-			hitResult.GetActor(),
-			Damage, 
+			hitActor,
+			Damage,
 			Controller,
 			this,
 			nullptr
@@ -185,9 +297,9 @@ void ASword::ReloadDashes()
 	bReloadingSecondary = false;
 	bCanUseSecondary = true;
 	CurrentDashCharges = DashCharges;
-	
+
 	// Update HUD
-	OnAmmoChanged.Broadcast(CurrentDashCharges,DashCharges,true);
+	OnAmmoChanged.Broadcast(CurrentDashCharges, DashCharges, true);
 }
 
 void ASword::ResetCombo()

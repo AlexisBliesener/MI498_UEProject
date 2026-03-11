@@ -6,7 +6,6 @@
 #include "WeaponInterface.h"
 #include "Blunderbuss/Blunderbuss.h"
 #include "HarpoonGun/HarpoonGun.h"
-#include "Sword/Sword.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponManagerLog);
@@ -165,6 +164,8 @@ void UWeaponManager::BeginPlay()
 
 void UWeaponManager::HandleSelectWeaponOne()
 {
+	if (!bCanUseWeapons) return;
+	
 	if (CurrentWeaponIndex == 0)
 	{
 		return;
@@ -183,6 +184,8 @@ void UWeaponManager::HandleSelectWeaponOne()
 
 void UWeaponManager::HandleSelectWeaponTwo()
 {
+	if (!bCanUseWeapons) return;
+	
 	if (CurrentWeaponIndex == 1)
 	{
 		return;
@@ -201,6 +204,8 @@ void UWeaponManager::HandleSelectWeaponTwo()
 
 void UWeaponManager::HandleSelectWeaponThree()
 {
+	if (!bCanUseWeapons) return;
+	
 	if (CurrentWeaponIndex == 2)
 	{
 		return;
@@ -219,6 +224,8 @@ void UWeaponManager::HandleSelectWeaponThree()
 
 void UWeaponManager::HandleSelectWeaponPrev()
 {
+	if (!bCanUseWeapons) return;
+	
 	CurrentWeaponIndex--;
 	if (CurrentWeaponIndex < 0)
 	{
@@ -234,6 +241,8 @@ void UWeaponManager::HandleSelectWeaponPrev()
 
 void UWeaponManager::HandleSelectWeaponNext()
 {
+	if (!bCanUseWeapons) return;
+	
 	CurrentWeaponIndex++;
 	if (CurrentWeaponIndex >= WeaponOptions.Num())
 	{
@@ -249,48 +258,64 @@ void UWeaponManager::HandleSelectWeaponNext()
 
 void UWeaponManager::HandlePrimaryAttack()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's PrimaryAttack function, passing the player controller
 	CurrentWeapon->PrimaryAttack(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandlePrimaryAttackHold()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's PrimaryAttackHold function, passing the player controller
 	CurrentWeapon->PrimaryAttackHold(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandlePrimaryAttackHoldStart()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's SecondaryAttackHoldStart function, passing the player controller
 	CurrentWeapon->PrimaryAttackHoldStart(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandlePrimaryAttackHoldEnd()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's SecondaryAttackHoldEnd function, passing the player controller
 	CurrentWeapon->PrimaryAttackHoldEnd(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleSecondaryAttack()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's SecondaryAttack function, passing the player controller
 	CurrentWeapon->SecondaryAttack(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleSecondaryAttackHoldStart()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's SecondaryAttackHoldStart function, passing the player controller
 	CurrentWeapon->SecondaryAttackHoldStart(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleSecondaryAttackHoldEnd()
 {
+	if (!bCanUseWeapons) return;
+	
 	/// Call the weapon's SecondaryAttackHoldEnd function, passing the player controller
 	CurrentWeapon->SecondaryAttackHoldEnd(PlayerCharacter->GetController());
 }
 
 void UWeaponManager::HandleJump()
 {
+	if (!bCanUseWeapons) return;
+	
 	CurrentWeapon->JumpAction();
 	
 	/// Handle harpoon jump if it is not the current weapon
@@ -303,6 +328,8 @@ void UWeaponManager::HandleJump()
 
 void UWeaponManager::HandleReload()
 {
+	if (!bCanUseWeapons) return;
+	
 	CurrentWeapon->Reload();
 	
 	// Reload harpoon additionally if it is not the current weapon

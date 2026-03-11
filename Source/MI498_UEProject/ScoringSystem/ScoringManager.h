@@ -66,13 +66,17 @@ public:
 	
 	/// Generic score adder accessible from Blueprint
 	UFUNCTION(BlueprintCallable)
-	void AddGenericScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
+	void AddLootScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
 
 	/// Sets the global score multiplier
 	void SetGlobalScoreMult(const int Val) { GlobalScoreMult = Val; }
 
 	/// Calculates and applies score for killing an enemy
 	void AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy);
+	
+	/// Adds score when a breakable wall is broken
+	UFUNCTION(BlueprintCallable)
+	void AddBreakableWallScore() {Score += BreakableWallScore * GlobalScoreMult; BreakableWallsVal += BreakableWallScore * GlobalScoreMult;}
 	
 	/// Returns total score earned from successfully escaping / finishing the level
 	UFUNCTION(BlueprintCallable)
@@ -149,6 +153,10 @@ public:
 	/// Score added per second while airborne
 	UPROPERTY(EditAnywhere)
 	int AirtimeScore = 100;
+	
+	/// Score awarded for breaking a breakable wall
+	UPROPERTY(EditAnywhere)
+	int BreakableWallScore = 1000;
 
 	/// Flat bonus added if a kill happens midair
 	UPROPERTY(EditAnywhere)

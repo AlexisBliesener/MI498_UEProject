@@ -1,0 +1,59 @@
+name: Build Project
+
+on:
+  workflow_dispatch: 
+  push:
+    branches: 
+      - main         
+  pull_request:      
+
+concurrency:
+  group: unreal-engine-build
+  cancel-in-progress: false
+
+jobs:
+  start-azure-vm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Start VM
+        run: az vm start --resource-group MI498_UEProject --name WindowsWithUnrealInstalled
+
+  build-and-package:
+    needs: start-azure-vm
+    runs-on: self-hosted 
+
+    steps:
+      - name: Download repo
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Get lfs cache
+        working-directory: ${{ github.workspace }}
+        run: |
+            git config lfs.storage "F:/lfs_cache"
+            git lfs install
+            git lfs pull
+
+      - name: Start build and cook the project
+        env:
+          UE-LocalDataCachePath: "F:\\UE_Cache"
+        run: |
+          & "F:\UE_5.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="${{ github.workspace }}\MI498_UEProject.uproject" -noP4 -platform=Win64 -clientconfig=Shipping -build -cook -stage -package -nullrhi -iterate -AdditionalCookerOptions="-cookprocesscount=4"
+
+  stop-azure-vm:
+    needs: [start-azure-vm, build-and-package]
+    if: always() 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Turn off VM
+        run: az vm deallocate --resource-group MI498_UEProject --name WindowsWithUnrealInstalled
