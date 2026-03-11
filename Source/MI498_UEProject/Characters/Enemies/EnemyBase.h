@@ -124,7 +124,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void UnPossessed() override;
-	virtual void Destroyed() override;
+	virtual void Die() override;
 	
 	/// Event for when the enemy takes damage
 	UFUNCTION(BlueprintImplementableEvent)

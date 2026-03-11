@@ -26,7 +26,10 @@ float ACharacterBase::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	CurrentHealth = FMath::Clamp(CurrentHealth - DamageAmount, 0.f, MaxHealth);
 	// Send an event to OnDamage 
 	OnDamage.Broadcast();
-	
+	if (CurrentHealth <= 0.f)
+	{
+		Die();
+	}
 	return DamageAmount;
 }
 

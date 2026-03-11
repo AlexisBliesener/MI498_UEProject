@@ -166,9 +166,9 @@ void AEnemyBase::UnPossessed()
 	Super::UnPossessed();
 }
 
-void AEnemyBase::Destroyed()
+void AEnemyBase::Die()
 {
-	Super::Destroyed();
+	Super::Die();
 	
 	float randomFloat = UKismetMathLibrary::RandomFloatInRange(0.0f, 100.0f);
 
