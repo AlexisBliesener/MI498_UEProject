@@ -37,7 +37,7 @@ void AShip::Fall(const float DeltaTime)
 
 void AShip::DuplicateShipForNavigation()
 {
-    FVector goDown = FVector(-5000.f, 0.f, -0.f);
+    FVector goDown = FVector(-0.f, 0.f, -100000.f);
     FVector hiddenShipLocation = GetActorLocation() + goDown;
     FRotator hiddenShipRotation = GetActorRotation();
     
@@ -83,7 +83,7 @@ void AShip::DuplicateShipForNavigation()
             hiddenChild->SetActorRelativeLocation(child->GetRootComponent()->GetRelativeLocation());
             hiddenChild->SetActorRelativeRotation(child->GetRootComponent()->GetRelativeRotation());
             hiddenChild->SetActorRelativeScale3D(child->GetRootComponent()->GetRelativeScale3D());
-            hiddenChild->SetActorHiddenInGame(false); 
+            hiddenChild->SetActorHiddenInGame(true); 
             // hiddenChild->GetRootComponent()->SetCanEverAffectNavigation(true);
             hiddenChild->GetRootComponent()->UpdateBounds();
         }
