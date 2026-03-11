@@ -178,6 +178,71 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="EnemyWeapon" ID="{B76E8E7F-3BFB-4B2E-BA75-56ED46B4AB2E}" ShortID="928251717">
+							<ChildrenList>
+								<Event Name="SwingerBombExplode" ID="{621D51FD-01A7-4A65-969B-F54A859172AF}">
+									<ChildrenList>
+										<Action Name="" ID="{ADAB8FCE-4F1D-4BCA-9035-5250152EF252}" ShortID="1013897723">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="2"/>
+												<Property Name="Scope" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="KitchenTimerClick" ID="{26A7F183-3670-45D5-8221-F655D5127DF8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{412AA319-D9B2-4301-823D-4631943EB728}" ShortID="682001605">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="OvenDingDone" ID="{F5F2250B-79E5-4232-AD73-DB506B6821E9}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{71083D6A-64B2-4B30-B2F7-4F934406E6F4}" ShortID="223537229">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BombExplode" ID="{FB47D254-9C02-4ECD-95ED-FAAE31595234}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="AverageShot" ID="{ABECBF33-B4BA-4333-8C08-326D535D504A}">
+									<ChildrenList>
+										<Action Name="" ID="{8F952226-7D3E-4F66-A5E0-772096782237}" ShortID="765085274">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="EnemyShot" ID="{617F919F-15DB-4D36-BF9B-81CF09B522C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BombTravel" ID="{61C08C02-27BD-40D1-AA64-253664F409EE}">
+									<ChildrenList>
+										<Action Name="" ID="{DEC86176-AB50-49B4-937F-F6D4545293B5}" ShortID="358136695">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BombThrowWoosh" ID="{C15CB963-8190-4795-A8B2-AB9E4C5C6AE3}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{734626B8-58F8-4AD6-B74F-7607A30B2880}" ShortID="973497604">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="KitchenTimerClick" ID="{26A7F183-3670-45D5-8221-F655D5127DF8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
@@ -402,6 +467,17 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="BombExplosionMOREBASS" ID="{319D78D7-FEBA-4019-990C-77ED3CA08416}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="CombatMusic" ID="{8D5F3422-297B-460F-B95A-20213D3F8F66}">
+							<ChildrenList>
+								<Action Name="" ID="{B51614E0-AB4E-4908-BB53-92B32E659A90}" ShortID="882831173">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -655,6 +731,13 @@
 								<Action Name="" ID="{3C79EAB7-E2AD-4F7C-910C-DB7537FDA52F}" ShortID="130345864">
 									<ReferenceList>
 										<Reference Name="Target">
+											<ObjectRef Name="DamageBase" ID="{A39C9457-6EA5-4717-A095-B2BACFB2FDFE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{1DCCE883-F590-418C-95FC-322CF35B9E46}" ShortID="765946549">
+									<ReferenceList>
+										<Reference Name="Target">
 											<ObjectRef Name="DamageAverageEnemy" ID="{68CF3BC8-E366-4D54-9B8E-CE7519A55419}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
@@ -667,6 +750,42 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="DeathAverageEnemy" ID="{8D554F26-0861-4ECC-B437-E22AAF5C034C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BruteDamage" ID="{31812B2E-7C1D-4359-BE9B-3FFE6DF503A6}">
+							<ChildrenList>
+								<Action Name="" ID="{2BCFE8E6-DA61-4A9F-A523-B211231C1095}" ShortID="938991340">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DamageBase" ID="{A39C9457-6EA5-4717-A095-B2BACFB2FDFE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{3AF84A75-4716-4B0A-A4B5-4D017D504ED3}" ShortID="490288293">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DamageBruteEnemy" ID="{418E5FDB-F5BF-4924-9457-E3126D346AA5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SwingEnemyDamage" ID="{FDC70206-0AC4-4365-8FD3-676BCEDF069B}">
+							<ChildrenList>
+								<Action Name="" ID="{5E55FD44-D623-44E7-B7AA-EF3EC2C6654E}" ShortID="462208600">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DamageBase" ID="{A39C9457-6EA5-4717-A095-B2BACFB2FDFE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A97A6796-DAE6-4D86-A5C5-4F6BEB115D2D}" ShortID="774663646">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DamageSwingEnemy" ID="{E68BD8EB-A563-4997-B57D-48E88DF901DD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

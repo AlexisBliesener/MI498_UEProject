@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{89163332-E53D-4FEC-AD48-EC61704C4834}",
     "Language": "SFX",
-    "Hash": "{C735BEF3-F1BF-0F29-4F78-5BE6CEEB9E3F}",
+    "Hash": "{40C44F0A-7D13-1CF7-A327-AE959D1F878B}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -48,12 +48,28 @@
       "CachePath": "48/{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem"
      },
      {
+      "Id": "30228862",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BombExplode.wav",
+      "CachePath": "6E/{6EC0832E-E992-9DF3-BF58-BCBCECD7D6E9}.wem"
+     },
+     {
       "Id": "34328720",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Cannon.wav",
       "CachePath": "F9/{F9E922C6-B1D1-33D8-154A-88426BBC4459}.wem"
+     },
+     {
+      "Id": "93500891",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "A9/{A922106B-E4D1-60D5-6969-973CC12808A2}.wem"
      },
      {
       "Id": "97296079",
@@ -78,6 +94,14 @@
       "Location": "Memory",
       "ShortName": "After planting the bomb, Take 2.wav",
       "CachePath": "CF/{CFC6995C-9ED5-FEAD-3340-8F3A77C510B2}.wem"
+     },
+     {
+      "Id": "122737040",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "89/{897A395E-A65E-48D1-4FC0-5719385297F0}.wem"
      },
      {
       "Id": "139026441",
@@ -144,6 +168,14 @@
       "CachePath": "2B/{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem"
      },
      {
+      "Id": "252701458",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "5D/{5D017984-B184-55DD-80D9-4FCC6D457EC5}.wem"
+     },
+     {
       "Id": "257199122",
       "Language": "SFX",
       "Streaming": "false",
@@ -184,6 +216,14 @@
       "CachePath": "2B/{2B8C7A85-C3A8-0B96-8247-EB06D6A82485}.wem"
      },
      {
+      "Id": "307726770",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "C4/{C441B59B-4B7E-10A0-170E-F94971117193}.wem"
+     },
+     {
       "Id": "319526224",
       "Language": "SFX",
       "Streaming": "false",
@@ -216,6 +256,30 @@
       "CachePath": "C6/{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem"
      },
      {
+      "Id": "334114902",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "0A/{0AEDF61B-835E-688F-C3C5-205ECC225FC9}.wem"
+     },
+     {
+      "Id": "347333693",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "31/{31C5D3CB-BB5B-282F-F1DB-61D9116B7ACC}.wem"
+     },
+     {
+      "Id": "352819618",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "00/{004B8DB6-DE31-7A6E-B945-252ACF3C389A}.wem"
+     },
+     {
       "Id": "362207851",
       "Language": "SFX",
       "Streaming": "false",
@@ -238,6 +302,14 @@
       "Location": "Memory",
       "ShortName": "GrappleHookReelIn.wav",
       "CachePath": "64/{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem"
+     },
+     {
+      "Id": "395064389",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "41/{41080FB1-B33D-2120-8A20-D0A0138C26B5}.wem"
      },
      {
       "Id": "397614194",
@@ -270,6 +342,14 @@
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
       "CachePath": "77/{77E71579-0F17-7284-4DB3-2B541F85E7FE}.wem"
+     },
+     {
+      "Id": "417942832",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "F1/{F197358A-D62F-4FE9-028A-00A73594335D}.wem"
      },
      {
       "Id": "435335955",
@@ -344,6 +424,14 @@
       "CachePath": "A8/{A8DC8C42-6558-10FD-B618-00FC6BD31286}.wem"
      },
      {
+      "Id": "528280226",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "EnemyShot.wav",
+      "CachePath": "50/{50F55FD6-684C-6443-422D-18FA2CFB4249}.wem"
+     },
+     {
       "Id": "528352743",
       "Language": "SFX",
       "Streaming": "false",
@@ -368,12 +456,36 @@
       "CachePath": "47/{47E945D3-84CD-A977-DC85-3707DDE9DDC1}.wem"
      },
      {
+      "Id": "579126070",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Woosh.wav",
+      "CachePath": "5A/{5ADFA33D-2CCE-CD98-A9CD-B7E27D0B43C3}.wem"
+     },
+     {
+      "Id": "590484918",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TakeDamageBase.wav",
+      "CachePath": "FB/{FBC6F204-03E1-1AA9-A995-F0FC0AE11091}.wem"
+     },
+     {
       "Id": "594437619",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Death4AverageEnemy.wav",
       "CachePath": "98/{98A820B5-C95B-85B3-0237-3EF42B1E23FB}.wem"
+     },
+     {
+      "Id": "597547971",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn. Kick).wav",
+      "CachePath": "DE/{DE668578-DF8E-70F4-A3EE-CF39B2CD14E1}.wem"
      },
      {
       "Id": "604625095",
@@ -416,6 +528,14 @@
       "CachePath": "D5/{D5251B48-CB9D-9088-6E71-8327C009F220}.wem"
      },
      {
+      "Id": "622150877",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Woosh.wav",
+      "CachePath": "8C/{8C788045-D206-5F6C-D16D-7AD76AA169A7}.wem"
+     },
+     {
       "Id": "634837452",
       "Language": "SFX",
       "Streaming": "false",
@@ -430,6 +550,14 @@
       "Location": "Memory",
       "ShortName": "Death5Average1.wav",
       "CachePath": "B9/{B9F147E8-7A1F-8EE6-51F7-0A11C5D17B6C}.wem"
+     },
+     {
+      "Id": "642013019",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Brass.wav",
+      "CachePath": "99/{99FD7307-D396-E1C9-AA2A-9FD5AD40106F}.wem"
      },
      {
       "Id": "647190144",
@@ -454,6 +582,22 @@
       "Location": "Memory",
       "ShortName": "Jump1.wav",
       "CachePath": "EB/{EB6AC422-D1B9-4FB4-35B4-AC2A79372EB4}.wem"
+     },
+     {
+      "Id": "672011565",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Woodwinds.wav",
+      "CachePath": "B7/{B724056B-080D-807B-8FE5-BFDF25D15B46}.wem"
+     },
+     {
+      "Id": "713593597",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Woosh.wav",
+      "CachePath": "01/{01D7A279-D8BC-4F8A-C700-4C2E8B9B572F}.wem"
      },
      {
       "Id": "750876961",
@@ -496,6 +640,22 @@
       "CachePath": "7A/{7AFEF005-CB97-8CB8-570F-6D6A096FC8AC}.wem"
      },
      {
+      "Id": "811032749",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "38/{381CB5DA-C943-F60E-B116-4CD22098CE0A}.wem"
+     },
+     {
+      "Id": "817289263",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "OvenDingDone.wav",
+      "CachePath": "FF/{FF5FCD2A-9BC0-F29B-5615-6F23B59FB7E5}.wem"
+     },
+     {
       "Id": "818030058",
       "Language": "SFX",
       "Streaming": "false",
@@ -512,12 +672,36 @@
       "CachePath": "05/{056F466C-4538-ABD4-4512-1909D6EF4E6F}.wem"
      },
      {
+      "Id": "834233048",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "86/{86C9E3A1-3EC6-3E36-F111-6E75AB112080}.wem"
+     },
+     {
       "Id": "841410472",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
       "CachePath": "B6/{B61A63F3-B365-8996-7365-41905F3A9313}.wem"
+     },
+     {
+      "Id": "842662115",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp).wav",
+      "CachePath": "FB/{FBB5D593-4632-60B4-7930-B4EB55AA5981}.wem"
+     },
+     {
+      "Id": "845335227",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingingEnemyVA.wav",
+      "CachePath": "69/{693DC8CA-D3FB-EFE3-843C-69E2EAB74F58}.wem"
      },
      {
       "Id": "894087048",
@@ -528,12 +712,28 @@
       "CachePath": "A1/{A125061D-ED48-DDFC-B05C-C339804BDAC6}.wem"
      },
      {
+      "Id": "894823102",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Woosh.wav",
+      "CachePath": "FD/{FDFB1C03-876B-4F3F-2F27-FC65128F533C}.wem"
+     },
+     {
       "Id": "901896633",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Death2.wav",
       "CachePath": "BF/{BFC96EB1-8EFE-ECAC-CF6F-AD2C05F78A5E}.wem"
+     },
+     {
+      "Id": "912806009",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "KitchenTimerClick.wav",
+      "CachePath": "D8/{D826F09B-C8BE-E144-F35A-E5A541BEC3C0}.wem"
      },
      {
       "Id": "921292567",
@@ -550,6 +750,22 @@
       "Location": "Memory",
       "ShortName": "PlayerJump+Landing2.wav",
       "CachePath": "78/{7823E58A-7B03-447A-791C-B40F63E8246F}.wem"
+     },
+     {
+      "Id": "926414663",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Woosh.wav",
+      "CachePath": "55/{55E43D89-4FA1-797D-C4FD-E4A264A51C9B}.wem"
+     },
+     {
+      "Id": "940533753",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BruteVA.wav",
+      "CachePath": "5B/{5BC525EC-70AA-9AEC-9DB1-DC32938465DC}.wem"
      },
      {
       "Id": "941547104",
@@ -608,6 +824,14 @@
       "CachePath": "EB/{EBCD3EC3-130B-3292-7B11-56C5E271680F}.wem"
      },
      {
+      "Id": "1003084449",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Strings.wav",
+      "CachePath": "D9/{D95777CC-6D88-E3FA-70A0-CBDA44F7D98C}.wem"
+     },
+     {
       "Id": "1005692176",
       "Language": "SFX",
       "Streaming": "false",
@@ -638,19 +862,18 @@
       "Location": "Memory",
       "ShortName": "Death1.wav",
       "CachePath": "04/{04B96288-D578-4119-0B93-3DCE4F0336AB}.wem"
+     },
+     {
+      "Id": "1051686944",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TakeDamageBase.wav",
+      "CachePath": "76/{76095843-DE08-8C73-7D0B-9C474FB2B717}.wem"
      }
     ],
     "Plugins": {
      "Custom": [
-      {
-       "Id": "432135930",
-       "Name": "Silence",
-       "ObjectPath": "\\Containers\\Default Work Unit\\VA\\DamageAverageEnemy\\New Silence\\Silence",
-       "GUID": "{92D24850-F78C-4769-B23E-1FD08FF7EFB5}",
-       "Color": "6",
-       "LibName": "Wwise Silence",
-       "LibId": "6619138"
-      },
       {
        "Id": "809094466",
        "Name": "Silence",
@@ -714,10 +937,9 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDamage",
       "GUID": "{4650E42F-F860-4747-A419-3DDF5B650D04}",
       "Color": "6",
-      "MaxAttenuation": "1000",
       "DurationType": "OneShot",
-      "DurationMin": "0.18763855",
-      "DurationMax": "1",
+      "DurationMin": "0.5854354",
+      "DurationMax": "1.2066284",
       "MediaRefs": [
        {
         "Id": "397614194"
@@ -726,16 +948,15 @@
         "Id": "440570578"
        },
        {
+        "Id": "590484918"
+       },
+       {
         "Id": "606848002"
+       },
+       {
+        "Id": "1051686944"
        }
-      ],
-      "PluginRefs": {
-       "Custom": [
-        {
-         "Id": "432135930"
-        }
-       ]
-      }
+      ]
      },
      {
       "Id": "4004669316",
@@ -743,7 +964,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDeath",
       "GUID": "{C4D36737-4FD3-4D61-8834-CECC25CC0A14}",
       "Color": "6",
-      "MaxAttenuation": "1000",
+      "MaxAttenuation": "5000",
       "DurationType": "OneShot",
       "DurationMin": "0.65947",
       "DurationMax": "1.7565691",
@@ -759,6 +980,22 @@
        },
        {
         "Id": "636053045"
+       }
+      ]
+     },
+     {
+      "Id": "1911574110",
+      "Name": "AverageShot",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\AverageShot",
+      "GUID": "{ABECBF33-B4BA-4333-8C08-326D535D504A}",
+      "Color": "8",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "1.5157181",
+      "DurationMax": "2.1128173",
+      "MediaRefs": [
+       {
+        "Id": "528280226"
        }
       ]
      },
@@ -874,6 +1111,71 @@
       ]
      },
      {
+      "Id": "2892267865",
+      "Name": "BombTravel",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\BombTravel",
+      "GUID": "{61C08C02-27BD-40D1-AA64-253664F409EE}",
+      "Color": "8",
+      "MaxAttenuation": "5000",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "579126070"
+       },
+       {
+        "Id": "622150877"
+       },
+       {
+        "Id": "713593597"
+       },
+       {
+        "Id": "894823102"
+       },
+       {
+        "Id": "912806009"
+       },
+       {
+        "Id": "926414663"
+       }
+      ]
+     },
+     {
+      "Id": "3292859028",
+      "Name": "BruteDamage",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\BruteDamage",
+      "GUID": "{31812B2E-7C1D-4359-BE9B-3FFE6DF503A6}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "1.0059592",
+      "DurationMax": "1.7788303",
+      "MediaRefs": [
+       {
+        "Id": "122737040"
+       },
+       {
+        "Id": "352819618"
+       },
+       {
+        "Id": "395064389"
+       },
+       {
+        "Id": "417942832"
+       },
+       {
+        "Id": "590484918"
+       },
+       {
+        "Id": "834233048"
+       },
+       {
+        "Id": "940533753"
+       },
+       {
+        "Id": "1051686944"
+       }
+      ]
+     },
+     {
       "Id": "2393348022",
       "Name": "Cannon",
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Cannon",
@@ -898,6 +1200,31 @@
       "MediaRefs": [
        {
         "Id": "34328720"
+       }
+      ]
+     },
+     {
+      "Id": "3733692670",
+      "Name": "CombatMusic",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\CombatMusic",
+      "GUID": "{8D5F3422-297B-460F-B95A-20213D3F8F66}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "597547971"
+       },
+       {
+        "Id": "642013019"
+       },
+       {
+        "Id": "672011565"
+       },
+       {
+        "Id": "842662115"
+       },
+       {
+        "Id": "1003084449"
        }
       ]
      },
@@ -1334,6 +1661,64 @@
       ]
      },
      {
+      "Id": "2283933872",
+      "Name": "SwingEnemyDamage",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\SwingEnemyDamage",
+      "GUID": "{FDC70206-0AC4-4365-8FD3-676BCEDF069B}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "0.5854354",
+      "DurationMax": "2.1427417",
+      "MediaRefs": [
+       {
+        "Id": "93500891"
+       },
+       {
+        "Id": "252701458"
+       },
+       {
+        "Id": "307726770"
+       },
+       {
+        "Id": "334114902"
+       },
+       {
+        "Id": "347333693"
+       },
+       {
+        "Id": "590484918"
+       },
+       {
+        "Id": "811032749"
+       },
+       {
+        "Id": "845335227"
+       },
+       {
+        "Id": "1051686944"
+       }
+      ]
+     },
+     {
+      "Id": "223829835",
+      "Name": "SwingerBombExplode",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\SwingerBombExplode",
+      "GUID": "{621D51FD-01A7-4A65-969B-F54A859172AF}",
+      "Color": "8",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "1.2734656",
+      "DurationMax": "1.2734656",
+      "MediaRefs": [
+       {
+        "Id": "30228862"
+       },
+       {
+        "Id": "817289263"
+       }
+      ]
+     },
+     {
       "Id": "3604541648",
       "Name": "SwordDash",
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword\\SwordDash",
@@ -1474,6 +1859,6 @@
     ]
    }
   ],
-  "FileHash": "{9597F583-C1E8-B90D-4D36-15A699670720}"
+  "FileHash": "{7192F354-3820-5A06-BBA6-AC2CF01D9F14}"
  }
 }
