@@ -11,7 +11,7 @@
  * Holds data for the Perform Attack Task.
  */
 USTRUCT(BlueprintType, meta = (DisplayName = "Get Random Location Data"))
-struct FPreformAttackTaskInstanceData
+struct FPreformAttacksTaskInstanceData
 {
 	GENERATED_BODY()
 
@@ -49,7 +49,7 @@ struct MI498_UEPROJECT_API FPreformAttackTask : public FStateTreeTaskCommonBase
 {
 public:
 	GENERATED_BODY()
-	using FInstanceDataType = FPreformAttackTaskInstanceData;
+	using FInstanceDataType = FPreformAttacksTaskInstanceData;
 
 	/**
 	 * Gets the type of instance data used by this task.

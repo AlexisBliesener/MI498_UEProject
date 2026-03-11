@@ -4,14 +4,14 @@
 
 const UStruct* FPreformAttackTask::GetInstanceDataType() const
 {
-	return FPreformAttackTaskInstanceData::StaticStruct(); 
+	return FPreformAttacksTaskInstanceData::StaticStruct(); 
 }
 
 EStateTreeRunStatus FPreformAttackTask::EnterState(FStateTreeExecutionContext& Context,
 	const FStateTreeTransitionResult& Transition) const
 {
 	// Get the instance data for this task
-	const FPreformAttackTaskInstanceData& Data = Context.GetInstanceData(*this);
+	const FPreformAttacksTaskInstanceData& Data = Context.GetInstanceData(*this);
 
 	if (!Data.Actor || !Data.Target)
 	{
