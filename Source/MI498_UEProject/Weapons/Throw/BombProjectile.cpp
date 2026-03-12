@@ -55,6 +55,9 @@ void ABombProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 			true
 		);
 		SetActorScale3D(FVector::ZeroVector);
+		
+		OnExplode();
+		
 		Destroy();
 	}
 }
@@ -63,6 +66,8 @@ void ABombProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 void ABombProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	OnThrown();
 }
 
 float ABombProjectile::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator,
@@ -72,6 +77,9 @@ float ABombProjectile::TakeDamage(float DamageAmount, const FDamageEvent& Damage
 	{
 		return 0.f;
 	}
+	
+	OnExplode();
+	
     // If player shoots the bomb early it explodes mid air
 	Destroy(); 
 

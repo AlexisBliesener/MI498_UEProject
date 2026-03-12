@@ -3,38 +3,7 @@
 	<SoundcasterSessions>
 		<WorkUnit Name="Default Work Unit" ID="{AE3500BE-0752-4EFF-8528-97462887C453}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundcasterSession Name="TestCaster" ID="{53C1996B-1859-49A3-884E-532BC7025009}">
-					<ModuleList>
-						<Module>
-							<ObjectRef Name="FootstepSFXExample" ID="{7BF22196-A95D-415A-A3B4-667F3AACA6C9}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="0" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="BlunderbussLight" ID="{47116E79-D8FD-4CBE-9634-8BBF3B0F16C8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="0" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="BlunderbussHeavy" ID="{956379FF-9D57-4824-8085-9FB780ED1E11}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="1" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="BlunderbussReload" ID="{80CE0EA0-51AB-4006-BBB6-772FDBCB9A03}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="1" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="SwordDash" ID="{EBC7C39E-C9E5-4B95-B9F9-7E4349CAD638}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="2" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="WeaponSwaps" ID="{73FCC72E-ED93-409A-AE0E-1D5365E5E820}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="2" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="SwordSlash" ID="{AC65C999-554B-4EE8-A333-31273A302808}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-							<Position X="3" Y="0"/>
-						</Module>
-					</ModuleList>
-				</SoundcasterSession>
+				<SoundcasterSession Name="TestCaster" ID="{53C1996B-1859-49A3-884E-532BC7025009}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundcasterSessions>
