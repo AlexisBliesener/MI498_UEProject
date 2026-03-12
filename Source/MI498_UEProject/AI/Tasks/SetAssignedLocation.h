@@ -32,7 +32,7 @@ struct FSetAssignedLocationInstanceData
 	 * The location to assign it to the enemy 
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config")
-	FVector AssignedLocation;
+	FVector AssignedLocation = FVector::ZeroVector;
 };
 
 /**
