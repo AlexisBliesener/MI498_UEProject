@@ -2,6 +2,8 @@
 
 
 #include "EnemyPerception.h"
+
+#include "NavigationSystem.h"
 #include "StateTreeExecutionContext.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
@@ -67,14 +69,14 @@ void UEnemyPerception::HandleSightStimulus(AActor* TargetActor, const FAIStimulu
 {
 	if (APlayerCharacter* player = Cast<APlayerCharacter>(TargetActor))
 	{
+		TargetPlayer = player;
+		if (IsValid(AIController))
+		{
+			AIController->AcquiredTarget = player; // Clear the AIController target
+		}
 		// We only want to send the event to the state tree once to avoid duplicated events  
 		if (AIController->CurrentStateTreeState != StateTreeEnemyEvents::Attack)
 		{
-			TargetPlayer = player;	
-			if (IsValid(AIController))
-			{
-				AIController->AcquiredTarget = TargetActor; // Clear the AIController target
-			}
 			OnSightStimulus(TargetActor, Stimulus);
 
 			SendEventToStateTree(StateTreeEnemyEvents::Attack); // Send event to StateTree
@@ -85,15 +87,64 @@ void UEnemyPerception::HandleSightStimulus(AActor* TargetActor, const FAIStimulu
 
 void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 {
+	if (TargetActor && IsValid(Actor) && Actor->RealShip && Actor->HiddenShip)
+	{
+		FVector realPos = TargetActor->GetActorLocation();
+		FVector playerSpeed = TargetActor->GetVelocity();
+
+		FVector localPos = Actor->RealShip->GetActorTransform().InverseTransformPosition(realPos);
+		FVector localSpeed = Actor->RealShip->GetActorTransform().InverseTransformVector(playerSpeed);
+
+		localSpeed.Z = 0.f;
+
+		FVector predictedLocalPos = localPos + (localSpeed * 1.3f); // 1.3 is predicted time 
+
+		FVector fakeLoc = Actor->HiddenShip->GetActorTransform().TransformPosition(predictedLocalPos);
+
+		UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(Actor->GetWorld());
+		if (navSys)
+		{
+			FNavLocation groundLocation;
+			FVector lookBox = FVector(500.f, 500.f, 10000.f);
+
+			if (navSys->ProjectPointToNavigation(fakeLoc, groundLocation, lookBox))
+			{
+				fakeLoc = groundLocation.Location;
+			}
+			else
+			{
+				// if the location is outside the map after the predication then fallback to the ground loc 
+				FVector currentFakeLoc = Actor->HiddenShip->GetActorTransform().TransformPosition(localPos);
+				if (navSys->ProjectPointToNavigation(currentFakeLoc, groundLocation, lookBox))
+				{
+					fakeLoc = groundLocation.Location;
+				}
+				else
+				{
+					fakeLoc = currentFakeLoc; 
+				}
+			}
+		}
+
+		// translate the location to the real ship
+		FVector localGround = Actor->HiddenShip->GetActorTransform().InverseTransformPosition(fakeLoc);
+		FVector realGround = Actor->RealShip->GetActorTransform().TransformPosition(localGround);
+
+		LastSeenLocation = realGround;
+	}
+
 	TargetPlayer = nullptr;
+	
+	SendEventToStateTree(StateTreeEnemyEvents::Search);
+
 	if (IsValid(AIController))
 	{
-		//AIController->AcquiredTarget = nullptr; 
+		AIController->CurrentStateTreeState = StateTreeEnemyEvents::Search;
+		AIController->AcquiredTarget = nullptr;
 	}
-	SendEventToStateTree(StateTreeEnemyEvents::Patrol);
-	
-	AIController->CurrentStateTreeState = StateTreeEnemyEvents::Patrol;
+
 	OnSightStimulusForgotten(TargetActor);
+	
 }
 
 void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimulus& Stimulus)
@@ -117,6 +168,11 @@ void UEnemyPerception::HandleDamageStimulus(AActor* TargetActor, const FAIStimul
 
 void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 {
+	if (LastEvent == Event)
+	{
+		// duplicated event...
+		return;
+	}
 	FGameplayTag EventTag;
 	switch (Event)
 	{
@@ -136,6 +192,11 @@ void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Patrol"));
 
 		LastEvent = StateTreeEnemyEvents::Patrol;
+		break;
+	case StateTreeEnemyEvents::Search:
+
+		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Search"));
+		LastEvent = StateTreeEnemyEvents::Search;
 		break;
 	default:
 		return; 

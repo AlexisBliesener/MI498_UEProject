@@ -19,7 +19,7 @@ class MI498_UEPROJECT_API ASwingingEnemy : public AEnemyBase
 
 public:
 	// Sets default values for this character's properties
-	ASwingingEnemy();
+	ASwingingEnemy(const FObjectInitializer& ObjectInitializer);
 
 	/// If the player was in the melee range, then melee attack will trigger! 
 	UPROPERTY(EditAnywhere, Category="Default|Combat")
@@ -87,9 +87,6 @@ public:
 	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Weapon")
 	float ExplosionRadius = 300.f;
-	/// To run eqs it should be attackstartdistance - 100
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default|Dev")
-	float GridSizeEQS = 100.f;
 	/// distance for the enemy to see and run to the player
 	virtual void Tick(float DeltaTime) override;
 
@@ -149,6 +146,8 @@ private:
 	bool bIsReelingIn = false;
 	/// saved world position for the top swing point
 	FVector CachedWorldPivot;
+	/// local swing pivot on the real ship 
+	FVector LocalSwingPivot;
 	/**
 	 * the math for swing movement....
 	 * @param DeltaTime time
