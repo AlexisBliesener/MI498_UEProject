@@ -15,13 +15,16 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	1440535996	HPValue			\Default Work Unit\HPValue	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	309504875	DialogueBus			\Default Work Unit\Main Audio Bus\DialogueBus	
 	1966988073	TestBus			\Default Work Unit\TestBus	
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
 	2769824834	Combat_Bus			\Default Work Unit\Main Audio Bus\Combat_Bus	
+	2886307548	MusicBus			\Default Work Unit\Main Audio Bus\MusicBus	
 	4112775838	PlayerDeathBus			\Default Work Unit\PlayerDeathBus	
 	4293657029	Steps_Bus			\Default Work Unit\Main Audio Bus\Steps_Bus	
 
 Effect plug-ins	ID	Name	Type				Notes
+	941062734	DialogueMeter	Wwise Meter			
 	1939654936	StepSideChainMeter	Wwise Meter			
 
 Audio Devices	ID	Name	Type				Notes
