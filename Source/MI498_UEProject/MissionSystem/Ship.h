@@ -24,8 +24,14 @@ public:
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 
+	virtual void BeginPlay() override;
 	/// Applies downward movement each frame.
 	void Fall(float DeltaTime);
+	/**
+	 * it makes a copy ship far under the map and 
+	 * moves the nav mesh on the ship to the copy one so the ai can use it 
+	 */
+	void DuplicateShipForNavigation();
 
 private:
 	/// Tracks whether the ship is currently falling.

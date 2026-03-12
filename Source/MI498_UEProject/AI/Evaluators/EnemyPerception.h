@@ -40,6 +40,11 @@ public:
 	TObjectPtr<APlayerCharacter> TargetPlayer = nullptr;
 
 	/**
+	 * The last location the player was seen.
+	 */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
+	FVector LastSeenLocation = FVector::ZeroVector;
+	/**
 	 * Prepares the AI controller and enemy actor for executing the state tree.
 	 *
 	 * @param Context The execution context provided by the state tree.

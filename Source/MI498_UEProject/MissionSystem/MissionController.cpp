@@ -2,6 +2,7 @@
 #include "BombPiece.h"
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
+#include "NavigationSystem.h"
 #include "PlantedBomb.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
@@ -74,6 +75,24 @@ void AMissionController::Tick(float DeltaSeconds)
 		if (BombPiecesCollected == NeededBombPieces)
 		{
 			StageOneFinish(true);
+		}
+	}
+	if (APlayerController* playrController = GetWorld()->GetFirstPlayerController())
+	{
+		if (playrController->WasInputKeyJustPressed(EKeys::F7))
+		{
+
+			ExplodeVaultDoor();
+		}
+		if (playrController->WasInputKeyJustPressed(EKeys::F10))
+		{
+			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			NavSys->AddNavigationBuildLock(1);
+		}
+		if (playrController->WasInputKeyJustPressed(EKeys::F9))
+		{
+			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			NavSys->RemoveNavigationBuildLock(1);
 		}
 	}
 }

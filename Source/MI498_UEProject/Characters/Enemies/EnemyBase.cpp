@@ -5,7 +5,9 @@
 
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
@@ -18,7 +20,8 @@
 #include "DrawDebugHelpers.h"
 #endif
 DEFINE_LOG_CATEGORY(EnemyLog);
-AEnemyBase::AEnemyBase()
+AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	PrimaryActorTick.bCanEverTick = true;
 	UAIPerceptionStimuliSourceComponent* StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimulusSourceComponent"));
@@ -26,6 +29,14 @@ AEnemyBase::AEnemyBase()
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	StimuliSourceComponent->RegisterWithPerceptionSystem();
 
+}
+
+
+void AEnemyBase::GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const
+{
+	OutLocation = GetActorLocation();
+	OutLocation.Z += EyeHeightOffset; 
+	OutRotation = GetActorRotation();
 }
 
 void AEnemyBase::BeginPlay()
@@ -50,6 +61,12 @@ void AEnemyBase::BeginPlay()
 	
 	// initial location of the enemy when spawn
 	EnemyInitLocation = GetActorLocation();
+	if (RealShip)
+	{
+		LocalInitLocation = RealShip->GetActorTransform().InverseTransformPosition(EnemyInitLocation);
+	}
+	
+    GridSizeEQS = AttackStartDistance - 300.f;
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -147,6 +164,22 @@ void AEnemyBase::PossessedBy(AController* NewController)
 void AEnemyBase::UnPossessed()
 {
 	Super::UnPossessed();
+}
+
+void AEnemyBase::Die()
+{
+	Super::Die();
+	
+	float randomFloat = UKismetMathLibrary::RandomFloatInRange(0.0f, 100.0f);
+
+	if (randomFloat <= PercentChanceOfHealthDrop && HealthItemClass)
+	{
+		// spawn the health item at enemy's location
+		FActorSpawnParameters spawnParams;
+		spawnParams.Owner = this;
+		spawnParams.Instigator = GetInstigator();
+		GetWorld()->SpawnActor<AActor>(HealthItemClass, GetActorTransform(), spawnParams);
+	}
 }
 
 UStateTree* AEnemyBase::GetStateTree() const

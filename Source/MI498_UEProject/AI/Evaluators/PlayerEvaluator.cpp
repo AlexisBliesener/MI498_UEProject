@@ -2,7 +2,6 @@
 
 
 #include "PlayerEvaluator.h"
-#include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 void UPlayerEvaluator::TreeStart(FStateTreeExecutionContext& Context)
@@ -23,27 +22,25 @@ void UPlayerEvaluator::Tick(FStateTreeExecutionContext& Context, const float Del
 	if (!World)
 	{
 		DistanceToPlayer = 0.0f;
+		bIsPlayerInRange = false;
 		return;
 	}
 	if (!IsValid(Actor) || !IsValid(AIController))
 	{
+		bIsPlayerInRange = false;
 		return;
 	}
 
-	AActor* PlayerPawn = AIController->AcquiredTarget;
-	if (!IsValid(PlayerPawn))
+	AActor* playerPawn = AIController->AcquiredTarget;
+	if (!IsValid(playerPawn))
 	{
 		DistanceToPlayer = 0.0f;
+		bIsPlayerInRange = false;
 		return;
 	}
-	// cache the player
-	Player = PlayerPawn;
-	if (!IsValid(Player))
-	{
-		return;
-	}
+
 	// calculate the distance to the player
-	DistanceToPlayer = FVector::Dist(Actor->GetActorLocation(), Player->GetActorLocation());
+	DistanceToPlayer = FVector::Dist(Actor->GetActorLocation(), playerPawn->GetActorLocation());
 	
 	
 	// change if the player is in range for attack

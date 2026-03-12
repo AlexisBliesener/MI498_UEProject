@@ -7,6 +7,8 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Damage.h"
 #include "Perception/AISenseConfig_Prediction.h"
+#include "AITypes.h"
+#include "Navigation/PathFollowingComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 
 DEFINE_LOG_CATEGORY(EnemyAILog);
@@ -21,14 +23,14 @@ AEnemyAIController::AEnemyAIController()
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
     SightConfig->SightRadius = 1000.0f;
     SightConfig->LoseSightRadius = 1500.0f;
-    SightConfig->PeripheralVisionAngleDegrees = 35.0f;
-    SightConfig->SetMaxAge(2.f); 
+    SightConfig->PeripheralVisionAngleDegrees = 90.f;
+    SightConfig->SetMaxAge(5.f); 
     // SightConfig->PointOfViewBackwardOffset = 150.0f; )
     // SightConfig->NearClippingRadius = 90.0f;
     SightConfig->AutoSuccessRangeFromLastSeenLocation = -1.0f;
     SightConfig->DetectionByAffiliation.bDetectEnemies = true; 
     SightConfig->DetectionByAffiliation.bDetectFriendlies = true; 
-    SightConfig->DetectionByAffiliation.bDetectNeutrals = true; 
+    SightConfig->DetectionByAffiliation.bDetectNeutrals = false; 
 
     PerceptionComponent->ConfigureSense(*SightConfig);
     PerceptionComponent->SetDominantSense(UAISense_Sight::StaticClass());
@@ -46,9 +48,68 @@ AEnemyAIController::AEnemyAIController()
     PerceptionComponent->OnTargetPerceptionForgotten.AddDynamic(this, &AEnemyAIController::OnTargetPerceptionForgotten);
 }
 
+FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& MoveRequest, FNavPathSharedPtr* OutPath)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(GetPawn());
+	if (enemy && enemy->RealShip && enemy->HiddenShip)
+	{
+		FVector realTarget;
+       
+		// check if the "move to" is actor or a location 
+		if (MoveRequest.IsMoveToActorRequest() && MoveRequest.GetGoalActor())
+		{
+			realTarget = MoveRequest.GetGoalActor()->GetActorLocation();
+			realTarget.Z = enemy->GetActorLocation().Z; // ignore the height in enemy movement since most of the time the player will be in the air 
+		}
+		else 
+		{
+			realTarget = MoveRequest.GetGoalLocation();
+		}
+
+		FVector hiddenTarget;
+
+		float distToFakeShip = FVector::DistSquared(realTarget, enemy->HiddenShip->GetActorLocation());
+		float distToRealShip = FVector::DistSquared(realTarget, enemy->RealShip->GetActorLocation());
+
+		// check if the point is on the fake ship or the real one... 
+		if (distToFakeShip < distToRealShip)
+		{
+			hiddenTarget = realTarget;
+		}
+		else
+		{
+			FVector localTarget = enemy->RealShip->GetActorTransform().InverseTransformPosition(realTarget);
+			hiddenTarget = enemy->HiddenShip->GetActorTransform().TransformPosition(localTarget);
+		}
+		// This fixes when the MoveTo task has a target as an ACTOR not a destination  
+		// because we're using the fake ship for the navmesh, so we need to ignore the given actor and translate it to the fake ship
+		// and unreal doesn't allow changing FAIMoveRequest to use a destination instead of an actor after it's created
+		// so we had to create a new move request and pass the old params to the new one and this is how lovely unreal is...
+		FAIMoveRequest newRequest(hiddenTarget);
+		newRequest.SetAcceptanceRadius(MoveRequest.GetAcceptanceRadius());
+		newRequest.SetUsePathfinding(MoveRequest.IsUsingPathfinding());
+		newRequest.SetAllowPartialPath(MoveRequest.IsUsingPartialPaths());
+		newRequest.SetProjectGoalLocation(MoveRequest.IsProjectingGoal());
+		newRequest.SetNavigationFilter(MoveRequest.GetNavigationFilter());
+		newRequest.SetCanStrafe(MoveRequest.CanStrafe());
+		newRequest.SetReachTestIncludesAgentRadius(MoveRequest.IsReachTestIncludingAgentRadius());
+		newRequest.SetReachTestIncludesGoalRadius(MoveRequest.IsReachTestIncludingGoalRadius());
+		newRequest.SetRequireNavigableEndLocation(MoveRequest.IsNavigableEndLocationRequired());
+       
+		return Super::MoveTo(newRequest, OutPath);
+	}
+
+	return Super::MoveTo(MoveRequest, OutPath);
+}
+
 UStateTreeEnemyComponent* AEnemyAIController::GetStateTreeAIComponent() const
 {
 	return StateTreeAIComponent;
+}
+
+FGenericTeamId AEnemyAIController::GetGenericTeamId() const
+{
+	return FGenericTeamId(1);
 }
 
 void AEnemyAIController::ReportDamageEvent(AActor* DamagedActor, AActor* InstigatorActor, float DamageAmount)
@@ -91,8 +152,9 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 			if (UAISenseConfig_Sight* ActiveSightConfig = Cast<UAISenseConfig_Sight>(PerceptionComponent->GetSenseConfig(sightID)))
 			{
 				ActiveSightConfig->SightRadius = enemyBase->AttackStartDistance;
-				ActiveSightConfig->LoseSightRadius = enemyBase->AttackStartDistance + 200.0f;
               
+				ActiveSightConfig->LoseSightRadius = enemyBase->LoseSightRadius;
+				ActiveSightConfig->AutoSuccessRangeFromLastSeenLocation = enemyBase->AutoSuccessRange;
 				PerceptionComponent->ConfigureSense(*ActiveSightConfig);
 			}
 			else
@@ -156,4 +218,27 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 void AEnemyAIController::OnTargetPerceptionForgotten(AActor* Actor)
 {
 	OnSightStimulusForgotten.Broadcast(Actor); 
+}
+
+void AEnemyAIController::SetFocalPoint(FVector NewFocus, EAIFocusPriority::Type InPriority)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(GetPawn());
+	if (enemy && enemy->RealShip && enemy->HiddenShip)
+	{
+		float distToFakeShip = FVector::DistSquared(NewFocus, enemy->HiddenShip->GetActorLocation());
+		float distToRealShip = FVector::DistSquared(NewFocus, enemy->RealShip->GetActorLocation());
+
+		if (distToFakeShip < distToRealShip)
+		{
+			// translate to the real ship
+			FVector localPos = enemy->HiddenShip->GetActorTransform().InverseTransformPosition(NewFocus);
+			FVector realFocus = enemy->RealShip->GetActorTransform().TransformPosition(localPos);
+            
+			Super::SetFocalPoint(realFocus, InPriority);
+			return;
+		}
+	}
+
+	// If it's already on the real ship 
+	Super::SetFocalPoint(NewFocus, InPriority);
 }
