@@ -50,6 +50,14 @@ public:
 	/// Float curve that defines how recoil is applied over time for the secondary shot.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	UCurveFloat* SecondaryRecoilCurve;
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FVector2D EnemyKnockbackForcePrimary = FVector2D(800, 500);
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
+	FVector2D EnemyKnockbackForceSecondary = FVector2D(1200, 600);
 
 protected:
 
@@ -71,7 +79,8 @@ private:
 	/// @param Controller - Controller that initiated the shot
 	/// @param Target - Target reference
 	/// @param Damage - Base damage before falloff calculation
-	void Fire(AController* Controller, AActor* Target, int Damage);
+	/// @param EnemyKnockbackForce - The amount of force that will push the enemy away and up
+	void Fire(AController* Controller, AActor* Target, int Damage, FVector2D EnemyKnockbackForce);
 	
 	/// Timer handle used to repeatedly apply recoil over time.
 	FTimerHandle RecoilTimerHandle;

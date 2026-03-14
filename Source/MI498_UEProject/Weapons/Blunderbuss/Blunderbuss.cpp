@@ -2,6 +2,7 @@
 #include "../../Player/PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 
 ABlunderbuss::ABlunderbuss()
@@ -17,17 +18,17 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	{
 		return;
 	}
-	
+
 	Super::PrimaryAttack(Controller, Target);
-	
+
 	// Perform the actual weapon fire trace and damage calculation
-	Fire(Controller, Target, Damage);
-	
+	Fire(Controller, Target, Damage, EnemyKnockbackForcePrimary);
+
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
-	
+
 	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
@@ -41,24 +42,24 @@ void ABlunderbuss::PrimaryAttackHold(AController* Controller, AActor* Target)
 	// No functionality
 }
 
-void ABlunderbuss::SecondaryAttack(AController* Controller,AActor* Target)
+void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 {
 	// Check if there is enough ammo to perform the secondary attack
 	if (CurrentAmmo - SecondaryAttackNeededAmmo < 0)
 	{
 		return;
 	}
-	
+
 	Super::SecondaryAttack(Controller, Target);
-	
+
 	// Fire using multiplied damage for the double-shot behavior
-	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier);
-	
+	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier, EnemyKnockbackForceSecondary);
+
 	// Consume ammo required for a secondary shot
 	CurrentAmmo -= SecondaryAttackNeededAmmo;
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, true);
-	
+
 	// If the firing controller is a player, apply recoil knockback
 	if (APlayerController* playerController = Cast<APlayerController>(Controller))
 	{
@@ -73,16 +74,16 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	PlayerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	
+
 	/// Calculate the end location of the trace based on weapon range
 	FVector cameraForwardVector = cameraRotation.Vector();
-	
+
 	/// Apply physical recoil to the player if airborne
 	APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
 	if (!playerCharacter->GetCharacterMovement()->IsMovingOnGround())
 	{
 		/// Launch the player backward based on knockback force and firing direction
-		playerCharacter->GetCharacterMovement()->AddImpulse(-cameraForwardVector * KnockbackForce,true);
+		playerCharacter->GetCharacterMovement()->AddImpulse(-cameraForwardVector * KnockbackForce, true);
 	}
 }
 
@@ -90,11 +91,11 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 {
 	/// Ensure we have a valid player controller before applying recoil
 	if (!PlayerController) return;
-	
+
 	/// Reset recoil tracking variables at the start of each shot
 	CurrentRecoilStep = 0;
 	CurrentRecoilTime = 0;
-	
+
 	if (Primary)
 	{
 		/// Use the primary recoil curve if firing primary
@@ -107,7 +108,7 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 			{
 				/// Get the last keyframe time to determine total recoil time
 				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
-				RecoilTime = Keys[Keys.Num()-1].Time;
+				RecoilTime = Keys[Keys.Num() - 1].Time;
 			}
 		}
 	}
@@ -123,11 +124,11 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 			{
 				/// Get the last keyframe time to determine total recoil time
 				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
-				RecoilTime = Keys[Keys.Num()-1].Time;
+				RecoilTime = Keys[Keys.Num() - 1].Time;
 			}
 		}
 	}
-	
+
 	/// Apply recoil gradually over time using a repeating timer
 	GetWorld()->GetTimerManager().SetTimer(
 		RecoilTimerHandle,
@@ -139,25 +140,25 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 			/// Apply pitch input based on the current recoil curve value
 			if (Primary)
 			{
-				PlayerController->AddPitchInput(PrimaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
+				PlayerController->AddPitchInput(PrimaryRecoilCurve->GetFloatValue(CurrentRecoilTime));
 			}
 			else
 			{
-				PlayerController->AddPitchInput(SecondaryRecoilCurve->GetFloatValue(CurrentRecoilTime));	
+				PlayerController->AddPitchInput(SecondaryRecoilCurve->GetFloatValue(CurrentRecoilTime));
 			}
-		
+
 			/// Advance recoil step and time
 			CurrentRecoilStep++;
 			CurrentRecoilTime += RecoilTime / RecoilSteps;
 
 			/// After half the steps, begin reset phase
-			if (CurrentRecoilStep >= RecoilSteps/2 && !bResetRecoil)
+			if (CurrentRecoilStep >= RecoilSteps / 2 && !bResetRecoil)
 			{
 				CurrentRecoilStep = 0;
 				bResetRecoil = true;
 			}
 			/// After completing reset phase, stop the timer
-			else if (CurrentRecoilStep >= RecoilSteps/2 && bResetRecoil)
+			else if (CurrentRecoilStep >= RecoilSteps / 2 && bResetRecoil)
 			{
 				bResetRecoil = false;
 				GetWorld()->GetTimerManager().ClearTimer(RecoilTimerHandle);
@@ -169,7 +170,7 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 	);
 }
 
-void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
+void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage, FVector2D EnemyKnockbackForce)
 {
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
@@ -178,7 +179,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 
 	/// Prepare a hit result to store the outcome of the line trace
 	TArray<FHitResult> hitResults;
-	
+
 	/// Setup collision parameters for the trace
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
@@ -247,25 +248,46 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 			}
 		}
 	}
-	
+
 	/// Apply Effects to all Unique Hit Actors
 	for (auto& pair : damagedActors)
 	{
 		AActor* hitActor = pair.Key;
 		float hitDistance = pair.Value;
-		
+
 		if (!hitActor) continue;
-		
-		// Exploding barrel
+
+		/// Exploding barrel
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
 		{
 			barrel->Explode();
 		}
-		
-		//Calculate damage fall off
-		int hitDamage = ((Range - hitDistance)/Range) * CurrentDamage;
-		
-		// Apply damage
+
+		/// Calculate damage fall off
+		int hitDamage = ((Range - hitDistance) / Range) * CurrentDamage;
+
+		/// Calculate Knockback Direction
+		FVector KnockbackDir = hitActor->GetActorLocation() - GetOwner()->GetActorLocation();
+		if (KnockbackDir.Z < 0)
+		{
+			KnockbackDir.Z = 0;
+		}
+		KnockbackDir.Normalize();
+
+		/// Apply knockback to Character
+
+		if (AEnemyBase* HitEnemy = Cast<AEnemyBase>(hitActor))
+		{
+			if (AController* SolCon = HitEnemy->GetController())
+			{
+				SolCon->StopMovement();
+			}
+			// Apply the physical launch
+			HitEnemy->LaunchCharacter(
+				(KnockbackDir * EnemyKnockbackForce.X) + FVector::UpVector * EnemyKnockbackForce.Y, true, true);
+		}
+
+		/// Apply damage
 		UGameplayStatics::ApplyDamage(
 			hitActor,
 			hitDamage,
@@ -275,6 +297,3 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 		);
 	}
 }
-
-
-

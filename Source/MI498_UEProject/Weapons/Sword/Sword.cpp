@@ -2,6 +2,7 @@
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
@@ -80,7 +81,7 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
-	
+
 	// Deal Damage
 	bSwordDashHitboxActive = true;
 	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
@@ -107,7 +108,7 @@ void ASword::Tick(float DeltaSeconds)
 				false);
 		}
 	}
-	
+
 	/// Activate dash hitbox if necessary
 	if (bSwordDashHitboxActive)
 	{
@@ -128,7 +129,7 @@ void ASword::DashHitbox()
 
 	/// Get the player controller that owns this weapon
 	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
-	
+
 	/// Ignore player and self collision
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
@@ -170,11 +171,31 @@ void ASword::DashHitbox()
 
 		/// Add actor to the list so it can't be hit again during the same dash
 		DashHitActors.Add(actor);
-		
+
 		/// If the actor is an exploding barrel, trigger its explosion
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(actor))
 		{
 			barrel->Explode();
+		}
+
+		/// Calculate Knockback Direction
+		FVector KnockbackDir = actor->GetActorLocation() - GetOwner()->GetActorLocation();
+		if (KnockbackDir.Z < 0)
+		{
+			KnockbackDir.Z = 0;
+		}
+		KnockbackDir.Normalize();
+
+		/// Apply knockback to Character
+		if (AEnemyBase* HitEnemy = Cast<AEnemyBase>(actor))
+		{
+			if (AController* SolCon = HitEnemy->GetController())
+			{
+				SolCon->StopMovement();
+			}
+			// Apply the physical launch
+			HitEnemy->LaunchCharacter(
+				(KnockbackDir * EnemyKnockbackForce.X) + FVector::UpVector * EnemyKnockbackForce.Y, true, true);
 		}
 
 		/// Apply damage to the actor that was hit
@@ -206,7 +227,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 
 	/// Prepare a hit result to store the outcome of the line trace
 	TArray<FHitResult> hitResults;
-	
+
 	/// Setup collision parameters for the trace
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
@@ -267,12 +288,12 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			}
 		}
 	}
-	
+
 	/// Apply Effects to all Unique Hit Actors
 	for (AActor* hitActor : damagedActors)
 	{
 		if (!hitActor) continue;
-		
+
 		// Exploding barrel
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
 		{
