@@ -22,7 +22,7 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	Super::PrimaryAttack(Controller, Target);
 
 	// Perform the actual weapon fire trace and damage calculation
-	Fire(Controller, Target, Damage);
+	Fire(Controller, Target, Damage, EnemyKnockbackForcePrimary);
 
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
@@ -53,7 +53,7 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 	Super::SecondaryAttack(Controller, Target);
 
 	// Fire using multiplied damage for the double-shot behavior
-	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier);
+	Fire(Controller, Target, Damage * DoubleShotDamageMultiplier, EnemyKnockbackForceSecondary);
 
 	// Consume ammo required for a secondary shot
 	CurrentAmmo -= SecondaryAttackNeededAmmo;
@@ -170,7 +170,7 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 	);
 }
 
-void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage)
+void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage, FVector2D EnemyKnockbackForce)
 {
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
@@ -268,7 +268,10 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 
 		/// Calculate Knockback Direction
 		FVector KnockbackDir = hitActor->GetActorLocation() - GetOwner()->GetActorLocation();
-		KnockbackDir.Z = 0;
+		if (KnockbackDir.Z < 0)
+		{
+			KnockbackDir.Z = 0;
+		}
 		KnockbackDir.Normalize();
 
 		/// Apply knockback to Character

@@ -180,7 +180,10 @@ void ASword::DashHitbox()
 
 		/// Calculate Knockback Direction
 		FVector KnockbackDir = actor->GetActorLocation() - GetOwner()->GetActorLocation();
-		KnockbackDir.Z = 0;
+		if (KnockbackDir.Z < 0)
+		{
+			KnockbackDir.Z = 0;
+		}
 		KnockbackDir.Normalize();
 
 		/// Apply knockback to Character

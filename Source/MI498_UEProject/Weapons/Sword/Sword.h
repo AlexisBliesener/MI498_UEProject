@@ -54,7 +54,7 @@ public:
 	int DashDamage = 6;
 	
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
-	FVector2D EnemyKnockbackForce = FVector2D(700, 800);
+	FVector2D EnemyKnockbackForce = FVector2D(800, 500);
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;

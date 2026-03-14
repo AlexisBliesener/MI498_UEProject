@@ -52,7 +52,10 @@ public:
 	UCurveFloat* SecondaryRecoilCurve;
 	
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
-	FVector2D EnemyKnockbackForce = FVector2D(700, 800);
+	FVector2D EnemyKnockbackForcePrimary = FVector2D(800, 500);
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	FVector2D EnemyKnockbackForceSecondary = FVector2D(1200, 600);
 
 protected:
 
@@ -74,7 +77,8 @@ private:
 	/// @param Controller - Controller that initiated the shot
 	/// @param Target - Target reference
 	/// @param Damage - Base damage before falloff calculation
-	void Fire(AController* Controller, AActor* Target, int Damage);
+	/// @param EnemyKnockbackForce - The amount of force that will push the enemy away and up
+	void Fire(AController* Controller, AActor* Target, int Damage, FVector2D EnemyKnockbackForce);
 	
 	/// Timer handle used to repeatedly apply recoil over time.
 	FTimerHandle RecoilTimerHandle;
