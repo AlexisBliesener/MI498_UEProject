@@ -51,10 +51,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	UCurveFloat* SecondaryRecoilCurve;
 	
-	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	/// Strength of knockback in forward and upward direction added to an enemy when hit	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FVector2D EnemyKnockbackForcePrimary = FVector2D(800, 500);
 	
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FVector2D EnemyKnockbackForceSecondary = FVector2D(1200, 600);
 
 protected:

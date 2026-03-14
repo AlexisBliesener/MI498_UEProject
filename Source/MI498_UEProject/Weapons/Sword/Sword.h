@@ -54,6 +54,7 @@ public:
 	int DashDamage = 6;
 	
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FVector2D EnemyKnockbackForce = FVector2D(800, 500);
 
 protected:
