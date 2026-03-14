@@ -11,6 +11,12 @@ ACharacterBase::ACharacterBase()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+ACharacterBase::ACharacterBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+{
+	/// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+}
+
 float ACharacterBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
 	class AController* EventInstigator, AActor* DamageCauser)
 {
@@ -20,7 +26,10 @@ float ACharacterBase::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	CurrentHealth = FMath::Clamp(CurrentHealth - DamageAmount, 0.f, MaxHealth);
 	// Send an event to OnDamage 
 	OnDamage.Broadcast();
-	
+	if (CurrentHealth <= 0.f)
+	{
+		Die();
+	}
 	return DamageAmount;
 }
 

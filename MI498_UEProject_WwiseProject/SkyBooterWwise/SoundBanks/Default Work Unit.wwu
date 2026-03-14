@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{BC723B16-D51D-4F99-A308-CF0DD50DF743}" SchemaVersion="133">
+<WwiseDocument Type="WorkUnit" ID="{6513BA37-2EC9-4017-89EF-10447036547F}" SchemaVersion="133">
 	<SoundBanks>
-		<WorkUnit Name="Default Work Unit" ID="{BC723B16-D51D-4F99-A308-CF0DD50DF743}" PersistMode="Standalone">
+		<WorkUnit Name="Default Work Unit" ID="{6513BA37-2EC9-4017-89EF-10447036547F}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundBank Name="Main" ID="{89163332-E53D-4FEC-AD48-EC61704C4834}">
+				<SoundBank Name="Main" ID="{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>48234496</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="Default Work Unit" ID="{9DFEC73C-183A-4F40-8B17-38B3055759B5}" WorkUnitID="{9DFEC73C-183A-4F40-8B17-38B3055759B5}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
