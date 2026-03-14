@@ -52,6 +52,9 @@ public:
 	/// Amount of damage applied to actors hit during the dash
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int DashDamage = 6;
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	FVector2D EnemyKnockbackForce = FVector2D(700, 800);
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;

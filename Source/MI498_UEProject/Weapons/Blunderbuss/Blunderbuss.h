@@ -50,6 +50,9 @@ public:
 	/// Float curve that defines how recoil is applied over time for the secondary shot.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	UCurveFloat* SecondaryRecoilCurve;
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	FVector2D EnemyKnockbackForce = FVector2D(700, 800);
 
 protected:
 
