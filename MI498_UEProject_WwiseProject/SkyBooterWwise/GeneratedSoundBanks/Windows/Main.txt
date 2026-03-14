@@ -64,111 +64,111 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	809094466	Silence	Wwise Silence		\Containers\Default Work Unit\Player\DamageGrunt\Silence\Silence	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	6767003	Damage 2	.cache\7E\{7E2D8530-4F8C-F802-EB20-27C4EAC437CC}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage 2		51062
-	9982857	OnceLeaveVaultLine3	.cache\31\{3182F71C-2D60-E03D-7674-C776E2F8AB1D}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\OnceLeaveVaultLine3		303408
-	17125242	PickUpBombPiecePickUp	.cache\99\{998A6B92-F3CA-AF10-E7C7-57D9F77A55F7}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		81564
-	26282397	SwordDash_mixdown_02	.cache\48\{48A85E12-D63C-C7EE-25E6-A748547AF4E7}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		235452
-	30228862	BombExplode	.cache\9A\{9A41BBF9-39EF-3049-8C73-21AB1CD21CC5}.wem		\Containers\Default Work Unit\Weapons\BombExplode		225400
-	34328720	CannonFuseLoop	.cache\F9\{F9E922C6-B1D1-33D8-154A-88426BBC4459}.wem		\Containers\Default Work Unit\Environment\CannonFireSequence\CannonFuseLoop		464176
-	93500891	SwingingEnemyVA_03	.cache\84\{841B44D9-E7F0-2CA7-F65C-7B0F77B66305}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_03		377780
-	97296079	AfterBlastingOut	.cache\07\{072B326D-D54F-BFCC-142F-8EF6C0FDD7F2}.wem		\Containers\Default Work Unit\VA\VA\AfterBlastingOut		130312
-	101624672	Line3	.cache\4B\{4B05221A-9C07-8161-4460-0A51FF6CE1E2}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line3		415976
-	118074255	AfterBombExplode	.cache\CF\{CFC6995C-9ED5-FEAD-3340-8F3A77C510B2}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterBombExplode		1359664
-	122737040	BruteVA	.cache\E6\{E675E684-B326-23E0-7896-2C1007D32A19}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA		263904
-	139026441	Line3	.cache\59\{5912B1E8-748E-7C47-50B0-6C41FD06B6D8}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line3		1381312
-	143782066	Goku	.cache\4C\{4CB88E5E-EAD5-6F7F-DFDB-9239C657EAD2}.wem		\Containers\Default Work Unit\MemeStuff\Goku		282720
-	151765295	PlayerDamageStuff	.cache\CA\{CA6FE52F-7B85-3C06-825A-3D659E3773D6}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff		118224
-	190724134	Jump2	.cache\58\{589D0093-EB03-910C-E9A6-03C8CFCC6F17}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump2		54572
-	208714548	StartMissionLine2	.cache\32\{321A1F4D-CAD4-9174-C282-460CD9759B39}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine2		392770
-	210626020	GrappleStrikeLocation	.cache\56\{562A0475-5D7A-52FE-F6F4-491A555FECB6}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleStrikeLocation		162608
-	218262969	Grapple	.cache\D8\{D8C45CA6-B050-D958-FA24-EAAC9F098E3E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		228620
-	226120403	SwordSlashExample_02	.cache\2B\{2BD761C9-AE79-DEA9-B1E1-E9A188A442F0}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		115084
-	252701458	SwingingEnemyVA_06	.cache\27\{273AC265-3011-7125-D5AB-1B9EEAC9429A}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_06		111376
-	257199122	Line1	.cache\E9\{E998DAB1-9AE6-B1A1-311A-4E7A238AB1E6}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line1		585328
-	264388359	Line2	.cache\41\{411C75AD-45AB-BBF9-6EE5-BE47024AD65F}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line2		685104
-	272125692	Sprint	.cache\27\{27E3B32A-4E9B-1F57-9C81-754E495EBB53}.wem		\Containers\Default Work Unit\Player\Sprint		175572
-	283319554	Line4	.cache\39\{39CD1AFE-3743-139B-C3DD-633A45A6056B}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line4		727488
-	287285638	PlayerDeath	.cache\2B\{2B8C7A85-C3A8-0B96-8247-EB06D6A82485}.wem		\Containers\Default Work Unit\Player\PlayerDeath		491360
-	307726770	SwingingEnemyVA_01	.cache\6C\{6C3E85B3-FDA9-620A-CD12-F09A86DEA747}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_01		371036
-	319526224	Line1	.cache\12\{12217EDA-12AF-ED26-7BA7-93659E0231E2}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line1		1366848
-	320129325	SwordDash_mixdown_01	.cache\9D\{9DFB04B2-257C-7790-7889-1ED3204FA7D2}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		267296
-	324181781	AllPiecesCollectedLine1	.cache\4B\{4B0A90F1-3D1E-D428-848C-699DB4091A0E}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine1		154400
-	326381219	Fortnite Default Dance Greenscreen_01	.cache\C6\{C650094E-1890-FBAC-C273-0F87095A5BA7}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		1273952
-	334114902	SwingingEnemyVA_02	.cache\75\{75A44BBA-C26A-05B2-B902-0F7EB8BEBFD3}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_02		276612
-	347333693	SwingingEnemyVA	.cache\C4\{C46AEE8E-7E45-342C-77DA-44708BC1ABAC}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA		411500
-	352819618	BruteVA_03	.cache\D2\{D24EF9E7-45E7-D7B5-9FB7-62E2EB9E8F48}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_03		226216
-	362207851	BombExplosionMOREBASS	.cache\30\{3056BCC4-960B-EF5D-A51C-F6132568DCF3}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\BombExplosionMOREBASS		513012
-	373499443	SwordDash_mixdown	.cache\AC\{AC8A441A-8542-2BBC-F2CB-F88CFE6DDE36}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		199456
-	377840418	GrappleHookReelIn	.cache\64\{64FBB121-9857-F254-2A34-6B13DE03EA6C}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		220320
-	395064389	BruteVA_01	.cache\69\{69CCD1B0-EF17-E346-EAA8-B5F741BF9A82}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_01		341632
-	397614194	Damage2AverageEnemy	.cache\BB\{BB0609E4-47BE-089C-69DD-61FA478CB9B3}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage2AverageEnemy		33192
-	398618583	AllPiecesCollectedLine2	.cache\F6\{F60E9C8F-6439-324B-30A9-36D02BD9E7D1}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine2		143182
-	410939690	OnceInRangeBombLine4	.cache\66\{6653DE94-D8B3-0642-F3E2-C9D037F81D92}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine4		171920
-	413622913	Line2	.cache\77\{77E71579-0F17-7284-4DB3-2B541F85E7FE}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line2		1216500
-	417942832	BruteVA_05	.cache\06\{06B64D6D-EDBD-76AE-8012-A33ABB8182B2}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_05		207372
-	435335955	Line2	.cache\56\{561EEADF-B793-0C6E-38B9-E3F8B8971957}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line2		372396
-	440570578	Damage1AverageEnemy	.cache\0D\{0DB29B4B-70E7-6EA0-85E8-E9C81F46C46F}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage1AverageEnemy		122100
-	446377387	AfterBombPlant	.cache\63\{63AD5E25-CC66-B812-32E5-1ECC3D376821}.wem		\Containers\Default Work Unit\VA\VA\AfterBombPlant		935160
-	467384341	AfterPlantingBombLine3	.cache\CC\{CC0E3780-2C70-C656-0918-801F520FC1A4}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterPlantingBombLine3		393874
-	485182822	PlayerVaultDeeper	.cache\CE\{CE4FC585-4E58-47E1-32AB-451EC2113FA2}.wem		\Containers\Default Work Unit\Player\PlayerVaultDeeper		212652
-	490112550	AdditionalPieceCollectedLine1	.cache\9F\{9F38DF0D-A369-9CFF-5C83-3BEA1CF63DBB}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine1		260488
-	490285420	IRON MAN - Opening_01	.cache\5F\{5F721B62-6CC3-E6BE-9390-BC2FD55BD27B}.wem		\Containers\Default Work Unit\MemeStuff\IRON MAN - Opening_01		7290932
-	515834822	1PieceCollectedLine1	.cache\CC\{CC6BC0E3-EEA5-D41F-9325-420CAAED41C8}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine1		302850
-	526140554	Death1AverageEnemy	.cache\A8\{A8DC8C42-6558-10FD-B618-00FC6BD31286}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death1AverageEnemy		116428
-	528280226	EnemyShot	.cache\CD\{CD555C25-5D24-6932-E14C-2EAF6088422D}.wem		\Containers\Default Work Unit\Weapons\EnemyShot		356316
-	528352743	Damage1	.cache\05\{05739AD0-3D39-8F88-781E-10514CE52153}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage1		58478
-	554459309	StartMissionLine6	.cache\B0\{B09E8D78-0742-8F17-9ADD-C5A7C46112F6}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine6		309260
-	577135639	Line1	.cache\47\{47E945D3-84CD-A977-DC85-3707DDE9DDC1}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line1		1126468
-	579126070	Woosh	.cache\A2\{A2C28472-0968-933D-71E3-F9C03B00097E}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh		126076
-	590484918	TakeDamageBase_01	.cache\5D\{5DE9665E-B6CC-9496-83A7-78458CA984CF}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase_01		129960
-	594437619	Death4AverageEnemy	.cache\98\{98A820B5-C95B-85B3-0237-3EF42B1E23FB}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death4AverageEnemy		234456
-	597547971	Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)	.cache\DE\{DE668578-DF8E-70F4-A3EE-CF39B2CD14E1}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)		33578732
-	604625095	Line1	.cache\A7\{A72B0244-77C1-91B6-E9C7-437982A3B536}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line1		879052
-	605626282	AllPiecesLine2	.cache\81\{8119BC92-6537-B11B-7172-B8E25CE7D66B}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesLine2		146586
-	605770747	BlunderbussReload	.cache\47\{473E41FD-2FFC-D71D-1017-449C5A73E8E3}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		426016
-	606848002	Damage3AverageEnemy	.cache\08\{08F5E8EC-5200-10DF-B512-74E8E3F559FC}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage3AverageEnemy		81908
-	615624964	GrappleSnapBack	.cache\D5\{D5251B48-CB9D-9088-6E71-8327C009F220}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		129300
-	622150877	Woosh_04	.cache\D6\{D626ED14-8A9A-41C7-C0DB-F73B01B54D1E}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_04		101428
-	634837452	Death3Average1	.cache\F0\{F0D99758-2FE5-2439-2BB0-4CACC3C08DE3}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death3Average1		204584
-	636053045	Death5Average1	.cache\B9\{B9F147E8-7A1F-8EE6-51F7-0A11C5D17B6C}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death5Average1		309956
-	642013019	Song of the Boats in the Sky - Battle Brass	.cache\99\{99FD7307-D396-E1C9-AA2A-9FD5AD40106F}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Brass		33578732
-	647190144	Land	.cache\7F\{7F44EDE6-F648-6DAD-2AD1-C4846C9CF013}.wem		\Containers\Default Work Unit\Player\Land		221388
-	649368430	CannonShot	.cache\1B\{1B82B936-152D-74E5-03E6-0A1344543AD2}.wem		\Containers\Default Work Unit\Environment\CannonShot		717844
-	664087683	Jump1	.cache\EB\{EB6AC422-D1B9-4FB4-35B4-AC2A79372EB4}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump1		44660
-	672011565	Song of the Boats in the Sky - Battle Woodwinds	.cache\B7\{B724056B-080D-807B-8FE5-BFDF25D15B46}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Woodwinds		33578732
-	713593597	Woosh_01	.cache\54\{54B1F335-67AB-424E-5842-605FCE6C51BC}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_01		174000
-	750876961	SwordSlashExample_01	.cache\5B\{5B7EAD0C-3755-4266-496E-CDABBB6D7CB9}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_01		149844
-	751347334	BlunderbussLight	.cache\79\{7922665D-F6F6-FC55-A71B-82212D4EB139}.wem		\Containers\Default Work Unit\Weapons\BlunderbussLight		284596
-	754839197	1PIeceCollectedLine6	.cache\8B\{8B87D3B9-4179-2BB1-F410-D5ECE9ACE889}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PIeceCollectedLine6		79584
-	762224343	AdditionalPieceCollectedLine2	.cache\38\{38BD83BC-C29E-C48A-D6D5-5B332DFDA5EB}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine2		272134
-	765843477	Line4	.cache\7A\{7AFEF005-CB97-8CB8-570F-6D6A096FC8AC}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line4		630016
-	811032749	SwingingEnemyVA_04	.cache\22\{229CE416-968F-3711-CBD6-DFDB94940999}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_04		317080
-	817289263	OvenDingDone	.cache\B7\{B7421D03-BFCA-95E7-15E1-73B439497FD4}.wem		\Containers\Default Work Unit\Weapons\OvenDingDone		142800
-	818030058	SwordSlashExample	.cache\53\{538A4E00-87E2-120D-FEB0-19B91BCC597E}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample		133800
-	818367138	PlayerDamageStuff_02	.cache\05\{056F466C-4538-ABD4-4512-1909D6EF4E6F}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_02		112540
-	834233048	BruteVA_02	.cache\A6\{A62AD754-513B-CDE5-2187-539962B6E86D}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_02		245060
-	841410472	FootstepSFXExample	.cache\B6\{B61A63F3-B365-8996-7365-41905F3A9313}.wem		\Containers\Default Work Unit\Player\FootstepSFXExample		1161896
-	842662115	Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)	.cache\FB\{FBB5D593-4632-60B4-7930-B4EB55AA5981}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)		33578732
-	845335227	SwingingEnemyVA_05	.cache\2A\{2A4D44D5-6C7F-45DC-79B4-0D149E447E2C}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_05		303592
-	894087048	PlayerDamageStuff_01	.cache\A1\{A125061D-ED48-DDFC-B05C-C339804BDAC6}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_01		137172
-	894823102	Woosh_03	.cache\AB\{ABB05DFA-8479-6FDD-A536-9240585F2910}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_03		109644
-	901896633	Death2	.cache\BF\{BFC96EB1-8EFE-ECAC-CF6F-AD2C05F78A5E}.wem		\Containers\Default Work Unit\Player\DeathCry\Death2		259618
-	912806009	KitchenTimerClick	.cache\37\{37A7A03C-E947-17D9-477D-5FE0338E172C}.wem		\Containers\Default Work Unit\Weapons\KitchenTimerClick		635048
-	921292567	WindStart	.cache\86\{864C7CB0-3924-533E-818B-DBD493B33686}.wem		\Containers\Default Work Unit\Environment\WindStart		1190856
-	924573326	Jump	.cache\78\{7823E58A-7B03-447A-791C-B40F63E8246F}.wem		\Containers\Default Work Unit\Player\Jump		166668
-	926414663	Woosh_02	.cache\F6\{F62AE0AF-520C-CFD1-9B17-75C0EC284B40}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_02		156200
-	940533753	BruteVA_04	.cache\AA\{AADD03FF-D42D-7F86-E85A-E93E99C91CB2}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_04		193240
-	941547104	Line2	.cache\DC\{DCBA4F37-AF0F-F91F-2BEB-4F43A4722621}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line2		1017368
-	952159520	OnceInRangeBombLine3	.cache\23\{23D8A81E-ACFF-403D-730B-A257FAC80B70}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine3		164074
-	960224522	Line5	.cache\8D\{8D543DE5-3CF1-9269-C9C3-A27BC2FA7E83}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line5		1092052
-	964124677	Line4	.cache\1E\{1EBB2E7D-64FE-875B-1AD5-2C98D13C3A46}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line4		1706728
-	974919281	BlunderbussHeavy	.cache\3A\{3A92F46D-4AB6-821F-DCEC-528F084D50FE}.wem		\Containers\Default Work Unit\Weapons\BlunderbussHeavy		356728
-	985203243	Avengers Suite (Theme)_01	.cache\FE\{FEFCC2F1-C3E8-4AE1-83E3-6663DC7CF203}.wem		\Containers\Default Work Unit\MemeStuff\Avengers Suite (Theme)_01		9116700
-	990222415	Line5	.cache\EB\{EBCD3EC3-130B-3292-7B11-56C5E271680F}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line5		651736
-	1003084449	Song of the Boats in the Sky - Battle Strings	.cache\D9\{D95777CC-6D88-E3FA-70A0-CBDA44F7D98C}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Strings		33578732
-	1005692176	1PieceCollectedLine3	.cache\5A\{5A1EA79F-45E1-36B6-D8A5-05FC3E324069}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine3		187668
-	1014313509	GrappleMissReel	.cache\8E\{8EDAA84A-BDD6-61A8-036C-F00711942B1D}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleMissReel		244864
-	1036155795	WeaponSwaps	.cache\46\{46CADBF3-564F-C1C4-4093-804615F5C3A0}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		452144
-	1037545113	Death1	.cache\04\{04B96288-D578-4119-0B93-3DCE4F0336AB}.wem		\Containers\Default Work Unit\Player\DeathCry\Death1		253832
-	1051686944	TakeDamageBase	.cache\5C\{5CBE822B-4D77-57FC-7902-D16A8D6FFE26}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase		203532
+	6767003	Damage 2	.cache\CB\{CB603883-E93A-89FC-B41F-84701AF690D2}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage 2		13534
+	9982857	OnceLeaveVaultLine3	.cache\FB\{FBD48F18-D80F-456F-A406-FCF6D4EFF51F}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\OnceLeaveVaultLine3		84510
+	17125242	PickUpBombPiecePickUp	.cache\6C\{6CE4066B-816A-2749-EF6E-79CEE1A15D71}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		30514
+	26282397	SwordDash_mixdown_02	.cache\70\{708C8043-853C-35EB-FE15-B5DA476E92EC}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		57691
+	30228862	BombExplode	.cache\46\{46F816B7-EB3C-49E4-96DB-6C74815CC49F}.wem		\Containers\Default Work Unit\Weapons\BombExplode		71607
+	34328720	CannonFuseLoop	.cache\92\{923110F5-2A28-15FE-B105-9EA4FED9A9E9}.wem		\Containers\Default Work Unit\Environment\CannonFireSequence\CannonFuseLoop		91911
+	93500891	SwingingEnemyVA_03	.cache\64\{64F0B032-32E4-DB52-5FDE-23D4A5D6332F}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_03		49405
+	97296079	AfterBlastingOut	.cache\2E\{2E6AA071-7382-2EB9-FEBB-4C566F06B500}.wem		\Containers\Default Work Unit\VA\VA\AfterBlastingOut		37895
+	101624672	Line3	.cache\60\{60204F27-74D7-E28B-BE0E-36C502B4F578}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line3		94892
+	118074255	AfterBombExplode	.cache\88\{88A03933-9BAF-59E8-699F-8B7516F65616}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterBombExplode		286116
+	122737040	BruteVA	.cache\A7\{A75759FC-4C2C-9E1F-EF2B-B57671F5060C}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA		38724
+	139026441	Line3	.cache\CA\{CAE31E66-43FE-E183-28E0-83D7E7BDF309}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line3		309519
+	143782066	Goku	.cache\7C\{7CD19F03-9372-E627-D96C-0C74D62BB677}.wem		\Containers\Default Work Unit\MemeStuff\Goku		63188
+	151765295	PlayerDamageStuff	.cache\B9\{B92FE5B5-FE05-919D-8456-9E169F583A4B}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff		27539
+	190724134	Jump2	.cache\6C\{6CF1D943-FC66-BE38-99B1-864AE09B5800}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump2		13314
+	208714548	StartMissionLine2	.cache\F7\{F7F5B1E9-2524-553C-75AE-F4587ED48807}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine2		120328
+	210626020	GrappleStrikeLocation	.cache\C8\{C8F23ADB-4E28-F926-A497-EEBABD66A00D}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleStrikeLocation		60471
+	218262969	Grapple	.cache\F5\{F5BEF37A-F2FC-8D98-4F73-F93EA8BDA20E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		64900
+	226120403	SwordSlashExample_02	.cache\A2\{A2D0096C-AE2F-87C9-572E-058A28DE8C57}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		32852
+	252701458	SwingingEnemyVA_06	.cache\26\{26E5597D-18DA-9EF5-2AFB-20CE016B3AF3}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_06		27395
+	257199122	Line1	.cache\F7\{F70E13AA-6812-DCA3-F2AB-375165920867}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line1		130287
+	264388359	Line2	.cache\26\{26BB7528-4E80-14E2-B045-AD9D657D00B2}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line2		154536
+	272125692	Sprint	.cache\92\{92C28E82-427F-0688-3A4A-C55AFFC2C8B1}.wem		\Containers\Default Work Unit\Player\Sprint		43740
+	283319554	Line4	.cache\74\{74F9264F-7BC0-8DDD-2899-5128DC4DEFD2}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line4		176295
+	287285638	PlayerDeath	.cache\19\{198F06B3-C9CA-ACD1-74AA-8D2A18E9034E}.wem		\Containers\Default Work Unit\Player\PlayerDeath		139958
+	307726770	SwingingEnemyVA_01	.cache\72\{7231FA18-263F-CC2C-AF66-1DD5BDFCAD8A}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_01		45207
+	319526224	Line1	.cache\A3\{A3508C5E-0D3E-4EEA-1481-F75ED9B906D3}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line1		331215
+	320129325	SwordDash_mixdown_01	.cache\77\{772C43EA-03B8-116D-3F7C-9A819D7FB91D}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		63999
+	324181781	AllPiecesCollectedLine1	.cache\DA\{DA953890-6D3D-25BA-DEDC-0066ED8916C4}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine1		42009
+	326381219	Fortnite Default Dance Greenscreen_01	.cache\52\{529BF466-3592-112B-FDA2-1681F6809AD2}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		316974
+	334114902	SwingingEnemyVA_02	.cache\CB\{CB32A65C-0170-611C-AC16-11A14858B477}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_02		44328
+	347333693	SwingingEnemyVA	.cache\46\{4673CDEC-DFD3-B48B-4686-FE805E1CDB97}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA		51721
+	352819618	BruteVA_03	.cache\B1\{B11A9F2F-6DE8-76BF-600E-15FC24DF083F}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_03		40333
+	362207851	BombExplosionMOREBASS	.cache\33\{33D3AA89-8962-D491-FC31-16115CF692F3}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\BombExplosionMOREBASS		134342
+	373499443	SwordDash_mixdown	.cache\44\{44A40850-85CE-755C-EA97-2C7BFE70E62C}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		53162
+	377840418	GrappleHookReelIn	.cache\E9\{E959B35C-95AB-4273-73D3-DE1FDFFDCDC2}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		88227
+	395064389	BruteVA_01	.cache\94\{948429D5-7C30-2879-E798-56881889D985}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_01		48999
+	397614194	Damage2AverageEnemy	.cache\FB\{FBFFF844-145A-C323-E303-5FCD3CD327EF}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage2AverageEnemy		9926
+	398618583	AllPiecesCollectedLine2	.cache\13\{13AB6852-0045-2A41-99D5-8AE306B53083}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine2		40933
+	410939690	OnceInRangeBombLine4	.cache\5F\{5FA1E1A4-F532-9C61-069D-7D5851503B3B}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine4		52328
+	413622913	Line2	.cache\D8\{D8714FBD-C022-C5DA-918E-50F355266FA8}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line2		294236
+	417942832	BruteVA_05	.cache\D0\{D0933FA9-A933-9ECF-EF9D-1E610AA94513}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_05		35993
+	435335955	Line2	.cache\3A\{3A47EA05-01CA-FD98-5A14-AB615472A318}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line2		90255
+	440570578	Damage1AverageEnemy	.cache\DC\{DC895CB6-A423-0530-DE2A-7FDC3856B782}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage1AverageEnemy		31240
+	446377387	AfterBombPlant	.cache\0C\{0CE85249-F44A-211C-6EA7-6059A99B7954}.wem		\Containers\Default Work Unit\VA\VA\AfterBombPlant		217236
+	467384341	AfterPlantingBombLine3	.cache\E9\{E9F79973-E995-6455-6AA4-671EF89A9671}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterPlantingBombLine3		110352
+	485182822	PlayerVaultDeeper	.cache\CF\{CFA21932-266A-4721-D419-877700EA9AAB}.wem		\Containers\Default Work Unit\Player\PlayerVaultDeeper		66320
+	490112550	AdditionalPieceCollectedLine1	.cache\D4\{D4E384BB-969C-F30F-8C56-955182CC6126}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine1		80534
+	490285420	IRON MAN - Opening_01	.cache\7E\{7ED2E3B7-1631-A57D-D9F7-2249CB7FAB4A}.wem		\Containers\Default Work Unit\MemeStuff\IRON MAN - Opening_01		2008067
+	515834822	1PieceCollectedLine1	.cache\FB\{FB9CF5D7-D3F8-8F32-7CA9-EAB37CB7DA54}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine1		86865
+	526140554	Death1AverageEnemy	.cache\F9\{F968AA32-37AC-61D3-97E2-369458A9A0EA}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death1AverageEnemy		27430
+	528280226	EnemyShot	.cache\45\{452131ED-97AB-472D-617B-E644860BB15B}.wem		\Containers\Default Work Unit\Weapons\EnemyShot		102002
+	528352743	Damage1	.cache\A4\{A4591057-30D6-0C6F-FFC3-9AE75DF5E888}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage1		15434
+	554459309	StartMissionLine6	.cache\BA\{BA8E9358-E98F-D366-FB66-1692482E1EDA}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine6		90887
+	577135639	Line1	.cache\69\{69440CB6-767B-E11C-986C-3DB3FCB2952D}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line1		275984
+	579126070	Woosh	.cache\F1\{F18727EF-C9DF-C19D-6CF0-6D72246662DE}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh		22262
+	590484918	TakeDamageBase_01	.cache\8F\{8F1768F9-301D-0521-73C5-778808FA75F8}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase_01		38521
+	594437619	Death4AverageEnemy	.cache\B9\{B9ADB74E-D9C6-801B-83D7-735CF9ED6C69}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death4AverageEnemy		58745
+	597547971	Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)	.cache\34\{34C39319-749E-F363-488A-82E46C730CBE}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)		8908382
+	604625095	Line1	.cache\7C\{7CBD7927-85F3-9AB8-81FE-9B4C03FBC218}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line1		204820
+	605626282	AllPiecesLine2	.cache\7C\{7C650FF2-2ED7-D5D0-55A0-32E71EFA6A95}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesLine2		40487
+	605770747	BlunderbussReload	.cache\B3\{B3FC2A95-1343-73D3-4230-D00E04106DF1}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		99242
+	606848002	Damage3AverageEnemy	.cache\3A\{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage3AverageEnemy		25059
+	615624964	GrappleSnapBack	.cache\53\{53038523-3F0A-43DE-3CB4-C746E737E8F1}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		40748
+	622150877	Woosh_04	.cache\21\{2196D982-96E9-494D-0F52-0CD6BC96FB9F}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_04		17963
+	634837452	Death3Average1	.cache\0D\{0D942964-85FD-B753-E28D-800018C7FE9B}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death3Average1		48846
+	636053045	Death5Average1	.cache\A0\{A09F3856-A775-6063-BAE9-51F67DDBB6BA}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death5Average1		82683
+	642013019	Song of the Boats in the Sky - Battle Brass	.cache\AC\{AC01DCA3-4CB0-08DD-4EBA-28B2602C8EA0}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Brass		7423840
+	647190144	Land	.cache\30\{30D08F5C-DB0C-0A32-2E12-EF7AF69098C5}.wem		\Containers\Default Work Unit\Player\Land		49346
+	649368430	CannonShot	.cache\9F\{9F8D0FAF-C5B0-DF41-56BC-E19B08E0DFCF}.wem		\Containers\Default Work Unit\Environment\CannonShot		146532
+	664087683	Jump1	.cache\5B\{5B2F8639-24A5-3E2C-A1A1-CDFA21CDFEA9}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump1		11775
+	672011565	Song of the Boats in the Sky - Battle Woodwinds	.cache\5A\{5AE3F790-AE5E-474E-EE7F-A7CCE0FD22FF}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Woodwinds		6902639
+	713593597	Woosh_01	.cache\68\{689AD3F6-A335-1468-1D31-7A1C52D98D17}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_01		29567
+	750876961	SwordSlashExample_01	.cache\05\{0586ECD5-E996-20B6-F1A8-96E2DD847F11}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_01		40933
+	751347334	BlunderbussLight	.cache\EC\{ECDAA65E-D20F-57B3-6CA9-4F797940DB13}.wem		\Containers\Default Work Unit\Weapons\BlunderbussLight		86555
+	754839197	1PIeceCollectedLine6	.cache\2F\{2F79BAC2-DF89-B41A-6036-DC085DC75C7A}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PIeceCollectedLine6		23051
+	762224343	AdditionalPieceCollectedLine2	.cache\33\{334D844B-58AF-EB13-0BC6-ADA1E8FBD636}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine2		80428
+	765843477	Line4	.cache\B3\{B3ECC5DD-2F69-33BE-3CF8-D092BD0C1EE0}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line4		145332
+	811032749	SwingingEnemyVA_04	.cache\55\{55D2E159-3803-E640-6039-ED6C1CA4B67B}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_04		39330
+	817289263	OvenDingDone	.cache\55\{554EF721-0AAF-B965-0A84-B578B293BD5E}.wem		\Containers\Default Work Unit\Weapons\OvenDingDone		22390
+	818030058	SwordSlashExample	.cache\73\{734AC0ED-05EF-1EA2-CA02-4F3D98848254}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample		37924
+	818367138	PlayerDamageStuff_02	.cache\03\{03BC741C-56A0-9893-FB22-2A6D25FE19D0}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_02		29505
+	834233048	BruteVA_02	.cache\5D\{5D7C6F77-079C-41DF-8470-535934000A87}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_02		43700
+	841410472	FootstepSFXExample	.cache\52\{52A7AA0D-F402-37C7-1205-352799D471B5}.wem		\Containers\Default Work Unit\Player\FootstepSFXExample		304179
+	842662115	Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)	.cache\F4\{F473B4D0-8B6C-3883-FE2D-1EA3B4005834}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)		2999431
+	845335227	SwingingEnemyVA_05	.cache\16\{168F7ECD-B2EB-DC5C-A2F2-32B5BBABF22C}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_05		47288
+	894087048	PlayerDamageStuff_01	.cache\F7\{F783D4AD-1B62-26EC-50F9-2BFE47D44D19}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_01		32673
+	894823102	Woosh_03	.cache\E0\{E0F37F6A-5684-8673-4B92-EE50530EAEAB}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_03		19776
+	901896633	Death2	.cache\4D\{4D65DB4C-3BAF-AB81-EA84-F978E63D2A48}.wem		\Containers\Default Work Unit\Player\DeathCry\Death2		65015
+	912806009	KitchenTimerClick	.cache\80\{806D8BE6-4F8C-0641-03F6-8CEFB89A0A22}.wem		\Containers\Default Work Unit\Weapons\KitchenTimerClick		190883
+	921292567	WindStart	.cache\D0\{D07408BE-F3C6-63A0-E7C9-6137A5E49E30}.wem		\Containers\Default Work Unit\Environment\WindStart		202053
+	924573326	Jump	.cache\3D\{3D496F86-AD3A-13BA-1E2A-06E32D3E7529}.wem		\Containers\Default Work Unit\Player\Jump		44176
+	926414663	Woosh_02	.cache\6F\{6FB3D05B-49CC-1069-2ECC-B8082F40B149}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_02		24888
+	940533753	BruteVA_04	.cache\D8\{D8A4F405-1525-C53C-371D-9755D1962B66}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_04		33962
+	941547104	Line2	.cache\AE\{AEA4BC9D-4C1D-69EB-850D-1E180461ECA5}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line2		243244
+	952159520	OnceInRangeBombLine3	.cache\27\{276DFA58-5649-3AE1-B651-B7F1C0A8F25B}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine3		48327
+	960224522	Line5	.cache\F4\{F4F6CD16-92F2-FE71-48E5-A011B6DF261C}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line5		254374
+	964124677	Line4	.cache\AC\{ACAAA037-7324-C5B4-5824-BFB4334C586F}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line4		402502
+	974919281	BlunderbussHeavy	.cache\24\{246E5509-5B49-C324-6C3E-75B18FA36D1B}.wem		\Containers\Default Work Unit\Weapons\BlunderbussHeavy		93696
+	985203243	Avengers Suite (Theme)_01	.cache\7C\{7CDE9A25-3BBF-F41A-0662-4BBEF74DF76F}.wem		\Containers\Default Work Unit\MemeStuff\Avengers Suite (Theme)_01		2481779
+	990222415	Line5	.cache\CA\{CA65100F-7AC6-FC10-790A-C875F5B1DCEE}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line5		140332
+	1003084449	Song of the Boats in the Sky - Battle Strings	.cache\3B\{3BC44EA1-B040-6615-8D6C-610ED2621DBB}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Strings		8331505
+	1005692176	1PieceCollectedLine3	.cache\06\{0661CD17-F3BC-0EBE-8E8D-178BEB6A2219}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine3		51171
+	1014313509	GrappleMissReel	.cache\9E\{9EFD9CA6-F03D-19D6-1BFC-A8693CF1EB95}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleMissReel		98332
+	1036155795	WeaponSwaps	.cache\4C\{4C84019C-F0CE-58D3-1D45-ED78325C5833}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		127128
+	1037545113	Death1	.cache\C7\{C74E6475-C6BC-1267-2221-2BC22BD172CD}.wem		\Containers\Default Work Unit\Player\DeathCry\Death1		58920
+	1051686944	TakeDamageBase	.cache\B3\{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase		45722
 
