@@ -640,7 +640,7 @@
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+									<ObjectRef Name="SFX" ID="{131FFFE2-5B65-4E6B-80D3-3E887497BEE3}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
 								</Reference>
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Combat_Bus" ID="{EC0CC6D6-D072-45BC-8438-01172C0A4CDE}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
@@ -1538,6 +1538,48 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<Sound Name="BlunderbussHeavy_01" ID="{33D3886F-CB19-4189-BF9B-4D3CC10BF5A7}" ShortID="1007950304">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{6BBEF15C-053C-45CF-87C6-580FEF0B9E5E}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Min" Type="Real64" Value="-350"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Combat_Bus" ID="{EC0CC6D6-D072-45BC-8438-01172C0A4CDE}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="BlunderbussHeavyExample3wav" ID="{C91AE02E-E363-4A0A-AD34-A640EAB04118}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.293956627615963"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.0426024097994149"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.90006746370247"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>BlunderbussHeavyExample3wav.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="974919281"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="BlunderbussHeavyExample3wav" ID="{C91AE02E-E363-4A0A-AD34-A640EAB04118}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{3F24F419-F6DE-40D0-80F3-7F65ABC5CCD2}" ShortID="676360628">
