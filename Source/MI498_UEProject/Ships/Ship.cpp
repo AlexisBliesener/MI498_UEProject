@@ -33,6 +33,9 @@ void AShip::Fall(const float DeltaTime)
 {
 	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
 	AddActorWorldOffset(FallOffset, true);
+    
+    /// Tell all connected rowboats to fall
+    OnShipFall.Broadcast(FallSpeed);
 }
 
 void AShip::DuplicateShipForNavigation()

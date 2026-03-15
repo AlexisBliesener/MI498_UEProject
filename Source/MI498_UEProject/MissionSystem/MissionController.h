@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "CoreMinimal.h"
-#include "Ship.h"
+#include "../Ships/Ship.h"
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 

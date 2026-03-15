@@ -2,8 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GameFramework/MovementComponent.h"
 #include "Ship.generated.h"
+
+/// Delegate that calls when the ship begins to falls
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
+	FOnShipFall,
+	float,
+	speed
+);
 
 /// falls downward when triggered.
 UCLASS()
@@ -15,8 +21,11 @@ public:
 	AShip();
 
 	/// Speed at which the ship falls (units per second).
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int FallSpeed = 100;
+	
+	/// Event broadcast when the ship begins to fall
+	FOnShipFall OnShipFall;
 
 	/// Starts the falling behavior.
 	void StartFalling() { bFalling = true; }
