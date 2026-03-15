@@ -10,12 +10,20 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{4E24C19F-119D-0873-7C95-7C90ED4BEB7C}",
+    "Hash": "{28AB4F05-884A-98FC-D0E3-0F513A9A735B}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
     "Plugins": {
      "ShareSets": [
+      {
+       "Id": "941062734",
+       "Name": "DialogueMeter",
+       "ObjectPath": "\\Effects\\Default Work Unit\\DialogueMeter",
+       "GUID": "{B6DB0502-556E-49C9-8ADD-FEFD7E8FD00C}",
+       "LibName": "Wwise Meter",
+       "LibId": "8454147"
+      },
       {
        "Id": "1939654936",
        "Name": "StepSideChainMeter",
@@ -46,6 +54,12 @@
     },
     "Busses": [
      {
+      "Id": "309504875",
+      "Name": "DialogueBus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\DialogueBus",
+      "GUID": "{7AB74CEF-B203-45A3-A661-020B11678DEC}"
+     },
+     {
       "Id": "1966988073",
       "Name": "TestBus",
       "ObjectPath": "\\Busses\\Default Work Unit\\TestBus",
@@ -55,7 +69,14 @@
       "Id": "2246998526",
       "Name": "Main Audio Bus",
       "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus",
-      "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
+      "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}",
+      "PluginRefs": {
+       "ShareSets": [
+        {
+         "Id": "941062734"
+        }
+       ]
+      }
      },
      {
       "Id": "2769824834",
@@ -69,6 +90,12 @@
         }
        ]
       }
+     },
+     {
+      "Id": "2886307548",
+      "Name": "MusicBus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\MusicBus",
+      "GUID": "{F0694937-29F4-4E28-8ADA-52B396A6D9AA}"
      },
      {
       "Id": "4112775838",
@@ -113,6 +140,12 @@
       "Name": "HPValue",
       "ObjectPath": "\\Game Parameters\\Default Work Unit\\HPValue",
       "GUID": "{EC028FB9-F690-40EB-9590-53FA988AD2D3}"
+     },
+     {
+      "Id": "1866264637",
+      "Name": "DialogueVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\DialogueVolume",
+      "GUID": "{63FDC56C-3FFB-4E77-AEBF-2E19A35CA15D}"
      },
      {
       "Id": "2648548617",
@@ -704,6 +737,6 @@
     ]
    }
   ],
-  "FileHash": "{2BC8D49D-C4C1-3560-9F57-4DDE8A1A6BEE}"
+  "FileHash": "{452FAE5E-9F3F-A179-7F8F-814D4BF51127}"
  }
 }
