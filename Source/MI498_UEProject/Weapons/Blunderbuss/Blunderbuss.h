@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NiagaraSystem.h"
 #include "../WeaponBase.h"
 #include "GameFramework/Actor.h"
 #include "Blunderbuss.generated.h"
@@ -58,6 +59,9 @@ public:
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FVector2D EnemyKnockbackForceSecondary = FVector2D(1200, 600);
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UNiagaraSystem* HitVFX;
 
 protected:
 

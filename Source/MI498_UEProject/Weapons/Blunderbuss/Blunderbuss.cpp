@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
+#include "NiagaraFunctionLibrary.h"
 
 ABlunderbuss::ABlunderbuss()
 {
@@ -196,12 +197,18 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 	/// Track Unique Damaged Actors
 	TMap<AActor*, float> damagedActors;
 
+	float radius = 2.f;
+
 	// Perform Multi-Slice Box Sweeps
 	// Creates a 2 (vertical) x 3 (horizontal) grid of box sweeps
 	for (float i = -2; i < 3; i++)
 	{
 		for (int j = -2; j < 3; j++)
 		{
+			/// Skip points outside the circle
+			if ((i * i + j * j) > radius * radius)
+				continue;
+
 			/// Offset each slice relative to camera
 			FVector offset = right * j * 50.f + up * i * 50.f;
 
@@ -230,6 +237,20 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 			{
 				AActor* hitActor = hit.GetActor();
 				if (!hitActor) continue;
+
+				float jitter = 20.f;
+				FVector jitterOffset(
+					FMath::FRandRange(-jitter, jitter),
+					FMath::FRandRange(-jitter, jitter),
+					0.f
+				);
+
+				UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+					GetWorld(),
+					HitVFX,
+					hit.ImpactPoint + jitterOffset,
+					hit.ImpactNormal.Rotation()
+				);
 
 				float hitDistance = hit.Distance;
 
