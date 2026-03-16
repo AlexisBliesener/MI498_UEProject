@@ -6,6 +6,7 @@
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "SwingingEnemy.generated.h"
 
+class UEnemyAnimation;
 class UStaticMeshComponent;
 class UCableComponent;
 
@@ -20,6 +21,13 @@ class MI498_UEPROJECT_API ASwingingEnemy : public AEnemyBase
 public:
 	// Sets default values for this character's properties
 	ASwingingEnemy(const FObjectInitializer& ObjectInitializer);
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnStartSwing();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnEndSwing();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLandedSwing();
 
 	/// If the player was in the melee range, then melee attack will trigger! 
 	UPROPERTY(EditAnywhere, Category="Default|Combat")
@@ -124,6 +132,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
 	/// Tracks how long the enemy has been stuck
 	float StuckTimer = 0.f;
 
@@ -162,6 +171,10 @@ private:
 	 * Hide the rope 
 	 */
 	void Drop();
+	
+	virtual void Landed(const FHitResult& Hit) override;
+	
+	UEnemyAnimation* SwingingEnemyAnimation;
 	
 #if WITH_EDITOR
 	void DrawSwingPathEditor();

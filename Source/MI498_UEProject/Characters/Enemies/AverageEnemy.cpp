@@ -4,9 +4,26 @@
 #include "MI498_UEProject/Characters/Enemies/AverageEnemy.h"
 
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
+#include "MI498_UEProject/Animation/EnemyAnimation.h"
 
 AAverageEnemy::AAverageEnemy(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+}
+
+void AAverageEnemy::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	if (AverageEnemyAnimation)
+	{
+		AverageEnemyAnimation->Speed = GetVelocity().Size();
+	}
+}
+
+void AAverageEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	AverageEnemyAnimation = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
 }
