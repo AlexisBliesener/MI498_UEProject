@@ -1,5 +1,5 @@
 #include "Sword.h"
-
+#include "NiagaraFunctionLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -9,21 +9,13 @@
 ASword::ASword()
 {
 	WeaponType = EWeaponType::Sword;
-	ComboResetTime = ReloadTime + 0.1f;
+	ComboResetTime = ReloadTime - 0.05f;
+	CurrentAmmo = 1;
 }
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	/// Check if there is enough ammo to perform the primary attack
-	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
-	{
-		return;
-	}
-	CurrentAmmo -= PrimaryAttackNeededAmmo;
-
-	Super::PrimaryAttack(Controller);
-
-	SwingSword(Controller, Target);
+	/// No functionality
 }
 
 void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
@@ -34,7 +26,6 @@ void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
 		return;
 	}
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
-
 	Super::PrimaryAttackHold(Controller, Target);
 
 	SwingSword(Controller, Target);
@@ -120,6 +111,13 @@ void ASword::Tick(float DeltaSeconds)
 
 		DashHitbox();
 	}
+}
+
+void ASword::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	bFirstAttackInSequence = true;
 }
 
 void ASword::DashHitbox()
@@ -219,12 +217,46 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 		&ASword::ResetCombo,
 		ComboResetTime,
 		false);
+	
+	bool cacheSwingDirection = bFirstAttackInSequence;
+	bFirstAttackInSequence = !bFirstAttackInSequence;
 
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	Controller->GetPlayerViewPoint(cameraLocation, cameraRotation);
 
+	if (SlashVFX)
+	{
+		FVector forward = cameraRotation.Vector();
+		FVector up = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Z);
+
+		FVector spawnLocation = cameraLocation + forward * 50.f - up * 20.f; // move down
+		FRotator spawnRotation = cameraRotation;
+
+		FVector spawnScale = FVector(0.5f, 0.5f, 1.f); 
+		
+		if (cacheSwingDirection)
+		{
+			spawnRotation.Roll += 30.f;
+			spawnRotation.Pitch += -180.f;
+		}
+		else
+		{
+			spawnRotation.Roll += -30.f;
+			spawnRotation.Pitch += 0.f;
+			spawnRotation.Yaw += 180.f;
+		}
+
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+			GetWorld(),
+			SlashVFX,
+			spawnLocation,
+			spawnRotation,
+			spawnScale 
+		);
+	}
+	
 	/// Prepare a hit result to store the outcome of the line trace
 	TArray<FHitResult> hitResults;
 
@@ -309,8 +341,6 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			nullptr
 		);
 	}
-
-	bFirstAttackInSequence = !bFirstAttackInSequence;
 }
 
 void ASword::ReloadDashes()
