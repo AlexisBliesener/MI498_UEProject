@@ -1,5 +1,7 @@
 #include "Sword.h"
 #include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
@@ -228,33 +230,43 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 
 	if (SlashVFX)
 	{
-		FVector forward = cameraRotation.Vector();
-		FVector up = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Z);
+		FVector spawnOffset = FVector(50.f, 0.f, -20.f);
+		FVector spawnScale = FVector(0.5f, 0.5f, 1.f);
 
-		FVector spawnLocation = cameraLocation + forward * 50.f - up * 20.f; // move down
-		FRotator spawnRotation = cameraRotation;
+		FRotator slashOffset;
 
-		FVector spawnScale = FVector(0.5f, 0.5f, 1.f); 
-		
 		if (cacheSwingDirection)
 		{
-			spawnRotation.Roll += 30.f;
-			spawnRotation.Pitch += -180.f;
+			slashOffset = FRotator(-180.f, 0.f, 30.f);
 		}
 		else
 		{
-			spawnRotation.Roll += -30.f;
-			spawnRotation.Pitch += 0.f;
-			spawnRotation.Yaw += 180.f;
+			slashOffset = FRotator(0.f, 180.f, -30.f);
 		}
+		ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner());
+		UCameraComponent* Camera = nullptr ;
 
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(
-			GetWorld(),
-			SlashVFX,
-			spawnLocation,
-			spawnRotation,
-			spawnScale 
-		);
+		if (CharacterOwner)
+		{
+			Camera =
+				CharacterOwner->FindComponentByClass<UCameraComponent>();
+		}
+		
+		UNiagaraComponent* NiagaraComp =
+			UNiagaraFunctionLibrary::SpawnSystemAttached(
+				SlashVFX,
+				Camera,     
+				NAME_None,
+				spawnOffset,
+				slashOffset,
+				EAttachLocation::KeepRelativeOffset,
+				true
+			);
+
+		if (NiagaraComp)
+		{
+			NiagaraComp->SetRelativeScale3D(spawnScale);
+		}
 	}
 	
 	/// Prepare a hit result to store the outcome of the line trace
