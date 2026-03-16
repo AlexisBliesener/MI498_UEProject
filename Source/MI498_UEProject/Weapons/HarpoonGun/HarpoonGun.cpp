@@ -167,8 +167,14 @@ void AHarpoonGun::Tick(float DeltaSeconds)
 
 void AHarpoonGun::OnWeaponSwitched()
 {
-	if (bUsingADS && !Cast<AHarpoonGun>(PlayerCharacter->GetWeaponManager()->GetCurrentWeapon().GetObject()))
+	AHarpoonGun* reference = Cast<AHarpoonGun>(PlayerCharacter->GetWeaponManager()->GetCurrentWeapon().GetObject());
+	if (bUsingADS && reference == nullptr)
 	{
 		SecondaryAttackHoldEnd(GetInstigatorController(), nullptr);
+	}
+	
+	if (CurrentHarpoon != nullptr)
+	{
+		CurrentHarpoon->ChangeSocketAttachment(reference != nullptr);
 	}
 }

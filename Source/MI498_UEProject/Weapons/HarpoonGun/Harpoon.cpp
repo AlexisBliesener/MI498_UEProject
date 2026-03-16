@@ -41,6 +41,32 @@ void AHarpoon::ReturnToPlayer()
 	CurrentReloadingTimeStarted = GetWorld()->GetTimeSeconds();
 }
 
+void AHarpoon::ChangeSocketAttachment(bool HarpoonGunOut)
+{
+	GetWorld()->GetTimerManager().SetTimer(
+		SocketSwitchTimer,
+		FTimerDelegate::CreateLambda([this, HarpoonGunOut]()
+		{
+			if (HarpoonGunOut)
+			{
+				CableComponent->SetAttachEndToComponent(
+					PlayerCharacter->GetMesh(),
+					TEXT("HarpoonGunBaseSocket")
+				);
+			}
+			else
+			{
+				CableComponent->SetAttachEndToComponent(
+					PlayerCharacter->GetMesh(),
+					TEXT("Thigh_LSocket")
+				);
+			}
+		}),
+		0.1f,
+		false
+	);
+}
+
 void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
                      FVector NormalImpulse, const FHitResult& Hit)
 {

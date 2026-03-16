@@ -39,6 +39,8 @@ public:
 	/// Get the time that the harpoon has been reloading for
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentReloadingTime() const { return GetWorld()->GetTimeSeconds() - CurrentReloadingTimeStarted; }
+	
+	void ChangeSocketAttachment(bool HarpoonGunOut);
 
 	/// Projectile movement component controlling harpoon flight
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
@@ -163,6 +165,8 @@ private:
 	
 	/// True if the player was swinging last frame
 	bool bSwingingPlayerLastFrame= false;
+	
+	FTimerHandle SocketSwitchTimer;
 	
 	/// The players character movement component
 	UPROPERTY()
