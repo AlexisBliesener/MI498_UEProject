@@ -4,7 +4,6 @@
 #include "MI498_UEProject/Characters/Enemies/BruteEnemy.h"
 
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
-#include "MI498_UEProject/AI/Systems/EnemyManagerSubsystem.h"
 
 ABruteEnemy::ABruteEnemy(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
@@ -12,6 +11,26 @@ ABruteEnemy::ABruteEnemy(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	PrimaryActorTick.bCanEverTick = true;
 	
 	AutoSuccessRange = AttackStartDistance;
+}
+
+void ABruteEnemy::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	/// Sets the movement speed of the enemy for animation
+	if (AnimationScript)
+	{
+		AnimationScript->Speed = GetVelocity().Size();
+	}
+	
+}
+
+void ABruteEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	/// Gets reference to the animation script connected on the blueprint
+	AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
 }
 
 

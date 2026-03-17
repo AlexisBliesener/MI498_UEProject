@@ -11,6 +11,7 @@
 #include "DrawDebugHelpers.h"
 #include "NavigationSystem.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
+#include "MI498_UEProject/Animation/EnemyAnimation.h"
 #include "MI498_UEProject/Weapons/Throw/BombKnife.h"
 
 // Sets default values
@@ -39,6 +40,9 @@ void ASwingingEnemy::BeginPlay()
 {
     Super::BeginPlay();
     
+    /// Gets reference to the animation script connected on the blueprint
+    AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
+    
     CachedWorldPivot = GetActorTransform().TransformPosition(SwingCenterOffset);
     if (RealShip)
     {
@@ -62,11 +66,18 @@ void ASwingingEnemy::BeginPlay()
         weapon->ExplosionRadius = ExplosionRadius;
     }
     
+    OnStartSwing();
 }
 
 void ASwingingEnemy::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    
+    /// Sets the movement speed of the enemy for animation
+    if (AnimationScript)
+    {
+        AnimationScript->Speed = GetVelocity().Size();
+    }
     
     if (RealShip)
     {
@@ -198,6 +209,12 @@ void ASwingingEnemy::Drop()
 
 }
 
+void ASwingingEnemy::Landed(const FHitResult& Hit)
+{
+    Super::Landed(Hit);
+    OnLandedSwing();
+}
+
 void ASwingingEnemy::HandleSwinging(float DeltaTime)
 {
     if (!AnchorMesh) return;
@@ -303,6 +320,8 @@ void ASwingingEnemy::DetachAndJumpToGround(FVector TargetLocation)
 {
     // drop the rope 
     Drop(); 
+    
+    OnEndSwing();
 
     FVector startLoc = GetActorLocation();
     UCharacterMovementComponent* moveComp = GetCharacterMovement();
@@ -348,6 +367,9 @@ void ASwingingEnemy::DetachAndJumpToGround(FVector TargetLocation)
 void ASwingingEnemy::ShootRopeAndSwing()
 {
     if (!GetWorld() || !AnchorMesh) return;
+    
+    OnStartSwing();
+    
     bIsShootingRope = true;
     bIsReelingIn = false;
     bIsSwinging = false;

@@ -6,6 +6,7 @@
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "AverageEnemy.generated.h"
 
+class UEnemyAnimation;
 /**
  * 
  */
@@ -22,4 +23,13 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
 	float DelayAfterShootBeforeMove = 0.5f;
+	
+protected:
+	virtual void Tick(float DeltaSeconds) override;
+	virtual void BeginPlay() override;
+	
+private:
+	/// This enemies animation script
+	UPROPERTY()
+ 	UEnemyAnimation* AnimationScript = nullptr;
 };

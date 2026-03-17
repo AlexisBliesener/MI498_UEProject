@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
+#include "NiagaraFunctionLibrary.h"
 
 ABlunderbuss::ABlunderbuss()
 {
@@ -172,49 +173,52 @@ void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool P
 
 void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDamage, FVector2D EnemyKnockbackForce)
 {
-	/// Get the player camera location and rotation for aiming
+	/// Get the camera position and rotation so the weapon fires where the player is aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	Controller->GetPlayerViewPoint(cameraLocation, cameraRotation);
 
-	/// Prepare a hit result to store the outcome of the line trace
+	/// Stores all hit results from the sweeps
 	TArray<FHitResult> hitResults;
 
-	/// Setup collision parameters for the trace
+	/// Setup collision query parameters and ignore the weapon and its owner
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
 	traceParams.AddIgnoredActor(GetOwner());
 
-	/// Half size of the box thats sweeps for damage
+	/// Size of the box used for each sweep trace
 	FVector halfSize = FVector(10, 10, 10);
 
-	/// Calculate Direction Vectors from Camera Rotation
+	/// Create forward, right, and up vectors from the camera rotation
 	FVector forward = cameraRotation.Vector();
 	FVector right = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Y);
 	FVector up = FRotationMatrix(cameraRotation).GetUnitAxis(EAxis::Z);
 
-	/// Track Unique Damaged Actors
+	/// Track actors hit and the closest hit distance for each
 	TMap<AActor*, float> damagedActors;
-
-	// Perform Multi-Slice Box Sweeps
-	// Creates a 2 (vertical) x 3 (horizontal) grid of box sweeps
+	
+	/// Perform multiple box sweeps arranged in a circular grid pattern
 	for (float i = -2; i < 3; i++)
 	{
 		for (int j = -2; j < 3; j++)
 		{
-			/// Offset each slice relative to camera
+			/// Skip grid positions outside the circular spread
+			if ((i * i + j * j) > 2.f * 2.f)
+				continue;
+
+			/// Offset each sweep to simulate shotgun pellet spread
 			FVector offset = right * j * 50.f + up * i * 50.f;
 
-			/// Start position of this slice
+			/// Starting point of the sweep
 			FVector start = cameraLocation;
 
-			/// End position extends forward by weapon range
+			/// End point extends forward based on weapon range
 			FVector end = (start + offset) + forward * Range;
 
-			/// Store hits for this individual slice
+			/// Store hits detected by this specific sweep
 			TArray<FHitResult> sliceHits;
 
-			/// Perform box sweep along the slice path
+			/// Sweep a box from start to end to detect hit actors
 			GetWorld()->SweepMultiByChannel(
 				sliceHits,
 				start,
@@ -225,15 +229,30 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				traceParams
 			);
 
-			/// Process all hits from this slice
+			/// Process every hit detected in this sweep
 			for (const FHitResult& hit : sliceHits)
 			{
 				AActor* hitActor = hit.GetActor();
 				if (!hitActor) continue;
 
+				/// Add a small random offset so impact VFX are less uniform
+				FVector jitterOffset(
+					FMath::FRandRange(-20.f, 20.f),
+					FMath::FRandRange(-20.f, 20.f),
+					0.f
+				);
+
+				/// Spawn impact vfx
+				UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+					GetWorld(),
+					HitVFX,
+					hit.ImpactPoint + jitterOffset,
+					hit.ImpactNormal.Rotation()
+				);
+
 				float hitDistance = hit.Distance;
 
-				// If actor already hit, keep the closest hit
+				/// Track only the closest hit for each actor
 				if (damagedActors.Contains(hitActor))
 				{
 					if (hitDistance < damagedActors[hitActor])
@@ -249,7 +268,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 		}
 	}
 
-	/// Apply Effects to all Unique Hit Actors
+	/// Apply damage and effects to all unique actors that were hit
 	for (auto& pair : damagedActors)
 	{
 		AActor* hitActor = pair.Key;
@@ -257,16 +276,16 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 
 		if (!hitActor) continue;
 
-		/// Exploding barrel
+		/// Trigger explosion if the actor is an explosive barrel
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
 		{
 			barrel->Explode();
 		}
 
-		/// Calculate damage fall off
+		/// Calculate damage falloff based on distance from the player
 		int hitDamage = ((Range - hitDistance) / Range) * CurrentDamage;
 
-		/// Calculate Knockback Direction
+		/// Determine knockback direction from player to hit actor
 		FVector KnockbackDir = hitActor->GetActorLocation() - GetOwner()->GetActorLocation();
 		if (KnockbackDir.Z < 0)
 		{
@@ -274,20 +293,21 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 		}
 		KnockbackDir.Normalize();
 
-		/// Apply knockback to Character
-
+		/// Apply knockback if the hit actor is an enemy
 		if (AEnemyBase* HitEnemy = Cast<AEnemyBase>(hitActor))
 		{
+			/// Stop AI movement before applying launch force
 			if (AController* SolCon = HitEnemy->GetController())
 			{
 				SolCon->StopMovement();
 			}
-			// Apply the physical launch
+
+			/// Launch enemy using horizontal and vertical knockback forces
 			HitEnemy->LaunchCharacter(
 				(KnockbackDir * EnemyKnockbackForce.X) + FVector::UpVector * EnemyKnockbackForce.Y, true, true);
 		}
 
-		/// Apply damage
+		/// Apply damage to the actor
 		UGameplayStatics::ApplyDamage(
 			hitActor,
 			hitDamage,
