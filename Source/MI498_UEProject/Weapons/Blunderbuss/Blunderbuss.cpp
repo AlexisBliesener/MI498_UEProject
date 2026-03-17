@@ -237,8 +237,8 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 
 				/// Add a small random offset so impact VFX are less uniform
 				FVector jitterOffset(
-					FMath::FRandRange(-20, 20),
-					FMath::FRandRange(-20, 20),
+					FMath::FRandRange(-20.f, 20.f),
+					FMath::FRandRange(-20.f, 20.f),
 					0.f
 				);
 
