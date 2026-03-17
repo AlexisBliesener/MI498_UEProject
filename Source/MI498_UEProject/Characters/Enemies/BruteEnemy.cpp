@@ -17,9 +17,10 @@ void ABruteEnemy::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	if (BruteAnimation)
+	/// Sets the movement speed of the enemy for animation
+	if (AnimationScript)
 	{
-		BruteAnimation->Speed = GetVelocity().Size();
+		AnimationScript->Speed = GetVelocity().Size();
 	}
 	
 }
@@ -28,8 +29,8 @@ void ABruteEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	BruteAnimation = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
-	
+	/// Gets reference to the animation script connected on the blueprint
+	AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
 }
 
 

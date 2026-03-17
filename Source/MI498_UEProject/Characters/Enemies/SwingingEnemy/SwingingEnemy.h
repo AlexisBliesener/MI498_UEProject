@@ -21,11 +21,16 @@ class MI498_UEPROJECT_API ASwingingEnemy : public AEnemyBase
 public:
 	// Sets default values for this character's properties
 	ASwingingEnemy(const FObjectInitializer& ObjectInitializer);
-	
+
+	/// A Blueprintable function that will be called when the enemy begins swinging
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnStartSwing();
+
+	/// A Blueprintable function that will be called when the enemy lets go of the rope
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnEndSwing();
+
+	/// A Blueprintable function that will be called when the enemy lands after swinging
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnLandedSwing();
 
@@ -43,7 +48,7 @@ public:
 	/// This is used in run time to determine if the enemy swinging right now... 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsSwinging = false;
-	
+
 	/// How long does the enemy wait before go back to swinging?
 	UPROPERTY(EditAnywhere, Category = "Default|Combat")
 	float WaitBeforeReturnToSwing = 3.f;
@@ -66,7 +71,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging")
 	float CableLength = 500.f;
 	/// Max angle for the swing 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging", meta = (ClampMin = "0.0", ClampMax = "180.0"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging",
+		meta = (ClampMin = "0.0", ClampMax = "180.0"))
 	float MaxSwingAngleDegrees = 60.f;
 	/// speed for the rope to go up to the ceiling when the it gets back to swinging!
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging")
@@ -78,7 +84,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging")
 	bool bStartAtMaxAngle = true;
 	/// If true, start swing on the right, false? left!
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging", meta = (EditCondition = "bStartAtMaxAngle"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Swinging",
+		meta = (EditCondition = "bStartAtMaxAngle"))
 	bool bStartOnRightSide = true;
 	/// distance for the enemy to see and run to the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Combat")
@@ -110,7 +117,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Swinging|Actions")
 	void AttachToSurface();
-	
+
 
 	/**
 	 * This is used when the enemy wants to swing again, 
@@ -124,7 +131,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable)
 	void ShootRopeAndSwing();
-	
+
 #if WITH_EDITOR
 	virtual bool ShouldTickIfViewportsOnly() const override;
 #endif
@@ -132,18 +139,21 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
+
 	/// Tracks how long the enemy has been stuck
 	float StuckTimer = 0.f;
 
 	/// How many seconds the enemy must be standing still before we push them
 	UPROPERTY(EditAnywhere, Category = "Default|Dev")
-	float StuckTimeThreshold = 0.9f; 
+	float StuckTimeThreshold = 0.9f;
 
 	/// How hard to push them to restart the swing
 	UPROPERTY(EditAnywhere, Category = "Default|Dev")
 	float StuckPush = 800.f;
+
 private:
+	virtual void Landed(const FHitResult& Hit) override;
+
 	/// direction of the  2D wall for swing math
 	FVector SwingPlaneNormal;
 
@@ -171,11 +181,11 @@ private:
 	 * Hide the rope 
 	 */
 	void Drop();
-	
-	virtual void Landed(const FHitResult& Hit) override;
-	
-	UEnemyAnimation* SwingingEnemyAnimation;
-	
+
+	/// This enemies animation script
+	UPROPERTY()
+	UEnemyAnimation* AnimationScript = nullptr;
+
 #if WITH_EDITOR
 	void DrawSwingPathEditor();
 	void DrawCombatRangesEditor();

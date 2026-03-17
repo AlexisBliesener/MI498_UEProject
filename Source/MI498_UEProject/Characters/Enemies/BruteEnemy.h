@@ -23,6 +23,8 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UEnemyAnimation* BruteAnimation;
+	/// This enemies animation script
+	UPROPERTY()
+	UEnemyAnimation* AnimationScript = nullptr;
 
 };

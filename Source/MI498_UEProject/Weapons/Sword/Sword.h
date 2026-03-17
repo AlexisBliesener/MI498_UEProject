@@ -58,6 +58,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FVector2D EnemyKnockbackForce = FVector2D(800, 500);
 	
+	/// The vfx that plays when the sword is swung
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UNiagaraSystem* SlashVFX;
 

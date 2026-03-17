@@ -230,11 +230,16 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 
 	if (SlashVFX)
 	{
+		/// Offset where the slash effect appears relative to the camera
 		FVector spawnOffset = FVector(50.f, 0.f, -20.f);
+
+		/// Scale of the slash visual effect
 		FVector spawnScale = FVector(0.5f, 0.5f, 1.f);
 
+		/// Rotation offset used to orient the slash effect
 		FRotator slashOffset;
 
+		/// Flip the slash direction depending on swing order
 		if (cacheSwingDirection)
 		{
 			slashOffset = FRotator(-180.f, 0.f, 30.f);
@@ -243,19 +248,24 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 		{
 			slashOffset = FRotator(0.f, 180.f, -30.f);
 		}
-		ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner());
-		UCameraComponent* Camera = nullptr ;
 
+		/// Get the owning character
+		ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner());
+
+		/// Camera used as the attachment point for the VFX
+		UCameraComponent* Camera = nullptr;
+
+		/// Find the camera component on the character
 		if (CharacterOwner)
 		{
-			Camera =
-				CharacterOwner->FindComponentByClass<UCameraComponent>();
+			Camera = CharacterOwner->FindComponentByClass<UCameraComponent>();
 		}
-		
+	
+		/// Spawn the slash Niagara system attached to the camera
 		UNiagaraComponent* NiagaraComp =
 			UNiagaraFunctionLibrary::SpawnSystemAttached(
 				SlashVFX,
-				Camera,     
+				Camera,
 				NAME_None,
 				spawnOffset,
 				slashOffset,
@@ -263,6 +273,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 				true
 			);
 
+		/// Apply scale to the Niagara effect 
 		if (NiagaraComp)
 		{
 			NiagaraComp->SetRelativeScale3D(spawnScale);

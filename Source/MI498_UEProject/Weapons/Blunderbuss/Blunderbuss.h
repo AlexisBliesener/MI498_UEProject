@@ -60,6 +60,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) 
 	FVector2D EnemyKnockbackForceSecondary = FVector2D(1200, 600);
 	
+	/// The vfx that will be played when the blunderbuss shot hits something
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UNiagaraSystem* HitVFX;
 

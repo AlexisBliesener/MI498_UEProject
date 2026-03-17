@@ -29,5 +29,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	UEnemyAnimation* AverageEnemyAnimation;
+	/// This enemies animation script
+	UPROPERTY()
+ 	UEnemyAnimation* AnimationScript = nullptr;
 };

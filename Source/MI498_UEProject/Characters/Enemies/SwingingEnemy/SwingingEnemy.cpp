@@ -40,7 +40,8 @@ void ASwingingEnemy::BeginPlay()
 {
     Super::BeginPlay();
     
-    SwingingEnemyAnimation = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
+    /// Gets reference to the animation script connected on the blueprint
+    AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
     
     CachedWorldPivot = GetActorTransform().TransformPosition(SwingCenterOffset);
     if (RealShip)
@@ -66,16 +67,16 @@ void ASwingingEnemy::BeginPlay()
     }
     
     OnStartSwing();
-    
 }
 
 void ASwingingEnemy::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     
-    if (SwingingEnemyAnimation)
+    /// Sets the movement speed of the enemy for animation
+    if (AnimationScript)
     {
-        SwingingEnemyAnimation->Speed = GetVelocity().Size();
+        AnimationScript->Speed = GetVelocity().Size();
     }
     
     if (RealShip)
@@ -211,7 +212,6 @@ void ASwingingEnemy::Drop()
 void ASwingingEnemy::Landed(const FHitResult& Hit)
 {
     Super::Landed(Hit);
-    
     OnLandedSwing();
 }
 

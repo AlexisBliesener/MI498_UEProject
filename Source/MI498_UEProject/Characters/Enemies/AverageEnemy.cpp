@@ -16,14 +16,17 @@ void AAverageEnemy::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	if (AverageEnemyAnimation)
+	/// Sets the movement speed of the enemy for animation
+	if (AnimationScript)
 	{
-		AverageEnemyAnimation->Speed = GetVelocity().Size();
+		AnimationScript->Speed = GetVelocity().Size();
 	}
 }
 
 void AAverageEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	AverageEnemyAnimation = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
+	
+	/// Gets reference to the animation script connected on the blueprint
+	AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
 }

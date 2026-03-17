@@ -43,10 +43,12 @@ void AHarpoon::ReturnToPlayer()
 
 void AHarpoon::ChangeSocketAttachment(bool HarpoonGunOut)
 {
+	/// Delay the socket switch slightly to line up with animation 
 	GetWorld()->GetTimerManager().SetTimer(
 		SocketSwitchTimer,
 		FTimerDelegate::CreateLambda([this, HarpoonGunOut]()
 		{
+			/// Attach the cable to the harpoon gun socket when the gun is equipped
 			if (HarpoonGunOut)
 			{
 				CableComponent->SetAttachEndToComponent(
@@ -54,6 +56,7 @@ void AHarpoon::ChangeSocketAttachment(bool HarpoonGunOut)
 					TEXT("HarpoonGunBaseSocket")
 				);
 			}
+			/// Otherwise attach the cable to the thigh socket when the gun is holstered
 			else
 			{
 				CableComponent->SetAttachEndToComponent(
