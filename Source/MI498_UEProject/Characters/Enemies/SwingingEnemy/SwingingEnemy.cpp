@@ -90,7 +90,7 @@ void ASwingingEnemy::Tick(float DeltaTime)
             
             if (UCharacterMovementComponent* moveComp = GetCharacterMovement())
             {
-                moveComp->SetMovementMode(MOVE_Falling);
+                moveComp->SetMovementMode(MOVE_Flying);
                 moveComp->Velocity += FVector(0.f, 0.f, 250.f); 
             }
         }
@@ -176,7 +176,7 @@ void ASwingingEnemy::AttachToSurface()
     
     if (UCharacterMovementComponent* moveComp = GetCharacterMovement())
     {
-        moveComp->SetMovementMode(MOVE_Falling); 
+        moveComp->SetMovementMode(MOVE_Flying); 
     }
 }
 
@@ -221,6 +221,7 @@ void ASwingingEnemy::HandleSwinging(float DeltaTime)
     
     float currentDistance = toAnchor.Size();
     FVector toAnchorNormal = toAnchor.GetSafeNormal();
+    moveComp->Velocity += FVector(0.f, 0.f, -980.f) * DeltaTime;
     FVector velocity = moveComp->Velocity;
     FVector planeVel = velocity - (FVector::DotProduct(velocity, SwingPlaneNormal) * SwingPlaneNormal);
     moveComp->Velocity = planeVel;
@@ -274,7 +275,7 @@ void ASwingingEnemy::HandleSwinging(float DeltaTime)
             // if stuck longer than threshold then push!
             if (StuckTimer >= StuckTimeThreshold)
             {
-                moveComp->SetMovementMode(MOVE_Falling);
+                moveComp->SetMovementMode(MOVE_Flying);
                 
                 FVector kickDir = FVector::CrossProduct(SwingPlaneNormal, toAnchorNormal).GetSafeNormal();
                 
@@ -378,7 +379,7 @@ FVector ASwingingEnemy::GetGroundPointUnderSwing() const
         FVector startPoint = CachedWorldPivot; 
         FVector localPivot = RealShip->GetActorTransform().InverseTransformPosition(startPoint);
         FVector fakePivot = HiddenShip->GetActorTransform().TransformPosition(localPivot);
-        FVector lookBox = FVector(500.f, 500.f, 10000.f); 
+        FVector lookBox = FVector(500.f, 500.f, 50000.f); 
 
         bool bFoundFloor = navSys->ProjectPointToNavigation(fakePivot, groundLocation, lookBox);
         
@@ -391,8 +392,8 @@ FVector ASwingingEnemy::GetGroundPointUnderSwing() const
         }
     }
 
-    // If it fails it will return the center of the world
-    return FVector::ZeroVector; 
+    // If it fails it will return the enemy's location 
+    return GetActorLocation() - FVector(0.f, 0.f, 100.f);
 }
 
 #if WITH_EDITOR
