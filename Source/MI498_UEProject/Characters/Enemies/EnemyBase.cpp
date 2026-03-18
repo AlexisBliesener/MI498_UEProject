@@ -4,7 +4,9 @@
 #include "EnemyBase.h"
 
 #include "Components/CapsuleComponent.h"
+#include "Components/ProgressBar.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
@@ -15,6 +17,7 @@
 #include "MI498_UEProject/Weapons/HarpoonGun/Harpoon.h"
 #include "MI498_UEProject/Weapons/Sword/Sword.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISense_Sight.h"
 #if WITH_EDITOR
 #include "DrawDebugHelpers.h"
@@ -29,6 +32,9 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	StimuliSourceComponent->RegisterWithPerceptionSystem();
 
+	HealthBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
+	HealthBarWidget->SetupAttachment(RootComponent);
+	HealthBarWidget->SetVisibility(false);
 }
 
 
@@ -37,6 +43,53 @@ void AEnemyBase::GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotati
 	OutLocation = GetActorLocation();
 	OutLocation.Z += EyeHeightOffset; 
 	OutRotation = GetActorRotation();
+}
+
+void AEnemyBase::SetEnabledEnemy(bool bEnabled)
+{
+	
+	SetActorEnableCollision(bEnabled);
+    
+	if (IsValid(GetCharacterMovement()))
+	{
+		GetCharacterMovement()->SetComponentTickEnabled(bEnabled);
+	}
+    
+	if (IsValid(CurrentWeapon))
+	{
+		CurrentWeapon->SetActorTickEnabled(bEnabled);
+	}
+    
+	AEnemyAIController* aiController = Cast<AEnemyAIController>(GetController());
+	if (IsValid(aiController))
+	{
+		aiController->SetActorTickEnabled(bEnabled);
+       
+		UStateTreeEnemyComponent* stateTreeComp = aiController->GetStateTreeAIComponent();
+		if (IsValid(stateTreeComp))
+		{
+			if (bEnabled)
+			{
+				stateTreeComp->StartStateTree(GetStateTree());
+			}
+			else
+			{
+				stateTreeComp->StopStateTree();
+			}
+		}
+       
+		UAIPerceptionComponent* perceptionComp = aiController->GetPerceptionComponent();
+		if (IsValid(perceptionComp))
+		{
+			perceptionComp->SetActive(bEnabled);
+		}
+	}
+    
+	UAIPerceptionStimuliSourceComponent* stimuliComp = FindComponentByClass<UAIPerceptionStimuliSourceComponent>();
+	if (IsValid(stimuliComp))
+	{
+		stimuliComp->SetActive(bEnabled);
+	}
 }
 
 void AEnemyBase::BeginPlay()
@@ -67,6 +120,8 @@ void AEnemyBase::BeginPlay()
 	}
 	
     GridSizeEQS = AttackStartDistance - 300.f;
+	
+	CameraManager = UGameplayStatics::GetPlayerCameraManager(this, 0);
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -101,6 +156,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 
 		Destroy();
 	}
+	UpdateHealthUI();
 
 	return DamageAmount;
 }
@@ -224,4 +280,28 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 void AEnemyBase::ResetShoot()
 {
 	bCanShoot = true;
+}
+
+void AEnemyBase::UpdateHealthUI() const
+{
+	if (HealthBarWidget && CameraManager)
+	{
+		if (UUserWidget* widgetObj = HealthBarWidget->GetUserWidgetObject())
+		{
+			if (UWidget* foundWidget = widgetObj->GetWidgetFromName(HealthBarWidgetName))
+			{
+				if (UProgressBar* healthProgressBar = Cast<UProgressBar>(foundWidget))
+				{
+					healthProgressBar->SetPercent(CurrentHealth / MaxHealth);
+				}
+			}else
+			{
+				//TODO: log widget not foundb ! 
+			}
+		}
+		
+		FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), CameraManager->GetCameraLocation());
+		HealthBarWidget->SetWorldRotation(lookRotation);
+		HealthBarWidget->SetVisibility(true);
+	}
 }

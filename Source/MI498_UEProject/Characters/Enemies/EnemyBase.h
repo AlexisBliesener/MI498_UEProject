@@ -3,10 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/WidgetComponent.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "Camera/PlayerCameraManager.h"
 #include "EnemyBase.generated.h"
 
+class UStateTree;
 class AWeaponBase;
 DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 
@@ -134,7 +137,18 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDeath();
 	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
+	/**
+	 * Enable/disable the AI system/Collision and character movement for the enemy 
+	 * @param bEnabled if true, it will activate the enemy 
+	 */
+	void SetEnabledEnemy(bool bEnabled);
 protected:
+	/// Reference for the health bar widget component 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Health")
+	UWidgetComponent* HealthBarWidget;
+	/// This should match exactly the widget name! 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default|Dev")
+	FName HealthBarWidgetName = TEXT("EnemyHealthBar");
 	virtual void BeginPlay() override;
 	/**
 	 * Applies damage to the enemy and handles its death if health reaches zero.
@@ -156,8 +170,17 @@ private:
 	bool bCanShoot = true;
 	/// Timer used to manage the cooldown period between enemy shots
 	FTimerHandle ShootTimer;
+	/// Cache the camera manager to make the health bar to face the player 
+	UPROPERTY()
+	APlayerCameraManager* CameraManager;
 	/**
 	 * Resets the shooting ability of the enemy.
 	 */
 	void ResetShoot();
+	
+	/**
+	 * This is called on damaged, it will update the value of the health bar and show it if it was invisible,
+	 * and it will face the player   
+	 */
+	void UpdateHealthUI() const;
 };
