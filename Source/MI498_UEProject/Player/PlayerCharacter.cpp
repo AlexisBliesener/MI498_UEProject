@@ -40,6 +40,9 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
+		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
+		TurnOffLowHealthEffect();
+		
 		OnPlayerDied();
 	}
 	
