@@ -28,6 +28,16 @@
 						</StateGroup>
 					</ChildrenList>
 				</Folder>
+				<StateGroup Name="LowHealthState" ID="{92FA54AE-E85C-41E0-B5C6-5CED93822BFA}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="2"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{D5D37433-17EE-4A30-9E97-B486E6F3D578}"/>
+						<State Name="Yes" ID="{0CE95CEF-AC50-4079-A62E-17E68380BC76}"/>
+						<State Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

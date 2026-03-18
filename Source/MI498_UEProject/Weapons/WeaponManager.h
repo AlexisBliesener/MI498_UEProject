@@ -4,7 +4,7 @@
 #include "Components/ActorComponent.h"
 #include "WeaponInterface.h"
 #include "HarpoonGun/HarpoonGun.h"
-#include "MI498_UEProject/Player/PlayerAnimation.h"
+#include "MI498_UEProject/Animation/PlayerAnimation.h"
 #include "WeaponManager.generated.h"
 
 class UPlayerAnimation;

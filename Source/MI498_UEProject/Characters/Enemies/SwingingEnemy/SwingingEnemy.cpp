@@ -10,10 +10,13 @@
 #include "TimerManager.h"
 #include "DrawDebugHelpers.h"
 #include "NavigationSystem.h"
+#include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
+#include "MI498_UEProject/Animation/EnemyAnimation.h"
 #include "MI498_UEProject/Weapons/Throw/BombKnife.h"
 
 // Sets default values
-ASwingingEnemy::ASwingingEnemy()
+ASwingingEnemy::ASwingingEnemy(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
     // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
@@ -37,7 +40,14 @@ void ASwingingEnemy::BeginPlay()
 {
     Super::BeginPlay();
     
+    /// Gets reference to the animation script connected on the blueprint
+    AnimationScript = Cast<UEnemyAnimation>(GetMesh()->GetAnimInstance());
+    
     CachedWorldPivot = GetActorTransform().TransformPosition(SwingCenterOffset);
+    if (RealShip)
+    {
+        LocalSwingPivot = RealShip->GetActorTransform().InverseTransformPosition(CachedWorldPivot);
+    }
     // This is used when the enemy wants to swing again, so they go to this point and then SWING
     GroundPointUnderSwing = GetGroundPointUnderSwing();
     // set the end of the cable to always follow the enemy mesh
@@ -56,13 +66,23 @@ void ASwingingEnemy::BeginPlay()
         weapon->ExplosionRadius = ExplosionRadius;
     }
     
-    GridSizeEQS = AttackStartDistance - 300.f;
+    OnStartSwing();
 }
 
 void ASwingingEnemy::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     
+    /// Sets the movement speed of the enemy for animation
+    if (AnimationScript)
+    {
+        AnimationScript->Speed = GetVelocity().Size();
+    }
+    
+    if (RealShip)
+    {
+        CachedWorldPivot = RealShip->GetActorTransform().TransformPosition(LocalSwingPivot);
+    }
     if (bIsShootingRope)
     {
         FVector currentAnchorLoc = AnchorMesh->GetComponentLocation();
@@ -119,7 +139,20 @@ void ASwingingEnemy::AttachToSurface()
     if (!GetWorld() || !AnchorMesh || !SwingCable) return;
 
     FVector startLoc = GetActorLocation();
-    AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    if (RealShip)
+    {
+        AnchorMesh->AttachToComponent(RealShip->GetRootComponent(), FAttachmentTransformRules::KeepWorldTransform);
+    }
+    else
+    {
+        AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    }
+
+    // Update point before setting it
+    if (RealShip)
+    {
+        CachedWorldPivot = RealShip->GetActorTransform().TransformPosition(LocalSwingPivot);
+    }
     AnchorMesh->SetWorldLocation(CachedWorldPivot);
 
     RecordedCableLength = CableLength;
@@ -174,6 +207,12 @@ void ASwingingEnemy::Drop()
     }
 
 
+}
+
+void ASwingingEnemy::Landed(const FHitResult& Hit)
+{
+    Super::Landed(Hit);
+    OnLandedSwing();
 }
 
 void ASwingingEnemy::HandleSwinging(float DeltaTime)
@@ -281,6 +320,8 @@ void ASwingingEnemy::DetachAndJumpToGround(FVector TargetLocation)
 {
     // drop the rope 
     Drop(); 
+    
+    OnEndSwing();
 
     FVector startLoc = GetActorLocation();
     UCharacterMovementComponent* moveComp = GetCharacterMovement();
@@ -326,11 +367,21 @@ void ASwingingEnemy::DetachAndJumpToGround(FVector TargetLocation)
 void ASwingingEnemy::ShootRopeAndSwing()
 {
     if (!GetWorld() || !AnchorMesh) return;
+    
+    OnStartSwing();
+    
     bIsShootingRope = true;
     bIsReelingIn = false;
     bIsSwinging = false;
 
-    AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    if (RealShip)
+    {
+        AnchorMesh->AttachToComponent(RealShip->GetRootComponent(), FAttachmentTransformRules::KeepWorldTransform);
+    }
+    else
+    {
+        AnchorMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+    }
     AnchorMesh->SetWorldLocation(GetActorLocation());
 
     // make the rope 0 length so it grows 
@@ -342,19 +393,23 @@ void ASwingingEnemy::ShootRopeAndSwing()
 FVector ASwingingEnemy::GetGroundPointUnderSwing() const
 {
     UNavigationSystemV1* navSys = UNavigationSystemV1::GetCurrent(GetWorld());
-    if (navSys != nullptr)
+    if (navSys != nullptr && HiddenShip != nullptr && RealShip != nullptr)
     {
         FNavLocation groundLocation;
         
         FVector startPoint = CachedWorldPivot; 
-        
+        FVector localPivot = RealShip->GetActorTransform().InverseTransformPosition(startPoint);
+        FVector fakePivot = HiddenShip->GetActorTransform().TransformPosition(localPivot);
         FVector lookBox = FVector(500.f, 500.f, 10000.f); 
 
-        bool bFoundFloor = navSys->ProjectPointToNavigation(startPoint, groundLocation, lookBox);
+        bool bFoundFloor = navSys->ProjectPointToNavigation(fakePivot, groundLocation, lookBox);
         
         if (bFoundFloor)
         {
-            return groundLocation.Location; 
+            // translate the result from the nav mesh to the real ship 
+            FVector localGround = HiddenShip->GetActorTransform().InverseTransformPosition(groundLocation.Location);
+            FVector realGround = RealShip->GetActorTransform().TransformPosition(localGround);
+            return realGround;
         }
     }
 

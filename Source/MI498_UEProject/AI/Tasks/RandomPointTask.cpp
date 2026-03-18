@@ -16,36 +16,49 @@ EStateTreeRunStatus FRandomPointTask::EnterState(FStateTreeExecutionContext& Con
 
 	if (!Data.Actor)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Actor is null"));
+		UE_LOG(EnemyAILog, Warning, TEXT("Actor is null"));
 		return EStateTreeRunStatus::Failed;
 	}
 
 	UWorld* World = Data.Actor->GetWorld();
 	if (!World)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("World is null"));
+		UE_LOG(EnemyAILog, Warning, TEXT("World is null"));
 		return EStateTreeRunStatus::Failed;
 	}
 
 	UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World);
 	if (!NavSys)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("NavSys is null"));
+		UE_LOG(EnemyAILog, Warning, TEXT("NavSys is null"));
 		return EStateTreeRunStatus::Failed;
 	}
 
-	FVector Origin = Data.Actor->EnemyInitLocation;
+	if (Data.Actor->RealShip == nullptr)
+	{
+		UE_LOG(EnemyAILog, Warning, TEXT("RealShip is null"));
+		return EStateTreeRunStatus::Failed;
+	}
+	if (Data.Actor->HiddenShip == nullptr)
+	{
+		UE_LOG(EnemyAILog, Warning, TEXT("HiddenShip is null"));
+		return EStateTreeRunStatus::Failed;
+	}
+	
+	FVector hiddenOrigin = Data.Actor->HiddenShip->GetActorTransform().TransformPosition(Data.Actor->LocalInitLocation);
+
 	FNavLocation NavLocation;
 
-	const bool bFound = NavSys->GetRandomReachablePointInRadius(Origin, Data.SearchRadius, NavLocation);
-	if (bFound)
+	// Get a point from navmesh using the hidden ship 
+	if (NavSys->GetRandomReachablePointInRadius(hiddenOrigin, Data.SearchRadius, NavLocation))
 	{
-		Data.RandomLocation = NavLocation.Location;
+		// translate that to the location on the real ship 
+		FVector localResult = Data.Actor->HiddenShip->GetActorTransform().InverseTransformPosition(NavLocation.Location);
+		FVector realResult = Data.Actor->RealShip->GetActorTransform().TransformPosition(localResult);
+
+		// return the location to the state tree
+		Data.RandomLocation = realResult; 
 		return EStateTreeRunStatus::Succeeded;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Could not find random location"));
-		return EStateTreeRunStatus::Failed;
-	}
+	return EStateTreeRunStatus::Failed;
 }

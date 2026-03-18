@@ -43,6 +43,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Output, meta = (AllowPrivateAccess = "true"))
 	StateTreeEnemyEvents CurrentStateTreeState;
 
+	virtual FPathFollowingRequestResult MoveTo(const FAIMoveRequest& MoveRequest, FNavPathSharedPtr* OutPath = nullptr) override;
 	/**
 	* initializes the enemy AI controller by setting up the components 
 	*/
@@ -60,6 +61,10 @@ public:
 	 * @return A pointer to the UStateTreeEnemyComponent, or nullptr if not.
 	 */
 	UStateTreeEnemyComponent* GetStateTreeAIComponent() const;
+	// Override of the team id and set it to 1 for the enemy 
+	virtual FGenericTeamId GetGenericTeamId() const override;
+	
+	virtual void SetFocalPoint(FVector NewFocus, EAIFocusPriority::Type InPriority = EAIFocusPriority::Gameplay) override;
 	/// Configuration for the AI's sight sense. 
 	UPROPERTY()
 	TObjectPtr<UAISenseConfig_Sight> SightConfig;

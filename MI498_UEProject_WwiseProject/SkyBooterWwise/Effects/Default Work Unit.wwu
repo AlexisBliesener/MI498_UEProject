@@ -10,6 +10,13 @@
 						</Reference>
 					</ReferenceList>
 				</Effect>
+				<Effect Name="DialogueMeter" ID="{B6DB0502-556E-49C9-8ADD-FEFD7E8FD00C}" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+					<ReferenceList>
+						<Reference Name="GameParameter">
+							<ObjectRef Name="DialogueVolume" ID="{63FDC56C-3FFB-4E77-AEBF-2E19A35CA15D}" WorkUnitID="{77BEE622-1575-46BF-9780-FD4792159506}"/>
+						</Reference>
+					</ReferenceList>
+				</Effect>
 			</ChildrenList>
 		</WorkUnit>
 	</Effects>
