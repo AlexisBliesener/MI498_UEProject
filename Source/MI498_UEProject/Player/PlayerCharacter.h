@@ -31,6 +31,14 @@ public:
 	/// Returns the walk speed of the player
 	int GetMaxWalkSpeed() const {return MaxWalkSpeed;}
 	
+	/// Event that will turn on low health effect in blueprint
+	UFUNCTION(BlueprintImplementableEvent)
+	void TurnOnLowHealthEffect();
+	
+	/// Event that will turn off low health effect in blueprint
+	UFUNCTION(BlueprintImplementableEvent)
+	void TurnOffLowHealthEffect();
+	
 	/// A Blueprintable function that will be called when the player lands on the ground
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPlayerLanded();
@@ -75,6 +83,8 @@ protected:
 	virtual void BeginPlay() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
+	
+	virtual void HealCharacter(float HealAmount) override;
 	
 	/// Scene component used as the start point for the upper ledge detection trace
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
@@ -180,6 +190,15 @@ private:
 	/// Reference to the players animation controller
 	UPROPERTY()
 	UPlayerAnimation* PlayerAnimation;
+	
+	/// If low health was hit
+	bool bLowHealthHit;
+	
+	/// How low health must be to trigger low health effect in percentage of health
+	float LowHealthPercentage = 0.1f;
+	
+	/// Timer that controls when low health effect will turn off
+	FTimerHandle LowHealthTimer;
 	
 	GENERATED_BODY()
 };

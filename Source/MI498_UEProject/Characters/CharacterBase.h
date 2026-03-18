@@ -38,5 +38,5 @@ protected:
 
 	// Give health to the character
 	UFUNCTION(BlueprintCallable, Category = "Health")
-	void HealCharacter(float HealAmount);
+	virtual void HealCharacter(float HealAmount);
 };

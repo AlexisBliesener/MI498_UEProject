@@ -45,6 +45,23 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	
 	OnPlayerTakeDamage();
 	
+	/// Start low health effect if below threshold
+	if (!bLowHealthHit && CurrentHealth <= MaxHealth * LowHealthPercentage)
+	{
+		bLowHealthHit = true;
+		TurnOnLowHealthEffect();
+		
+		// Turn off low health effect after 4 seconds
+		GetWorld()->GetTimerManager().SetTimer(
+		LowHealthTimer,
+		FTimerDelegate::CreateLambda([this]()
+		{
+			TurnOffLowHealthEffect();
+		}),
+		4.0f,
+		false);
+	}
+	
 	return DamageAmount;
 }
 
@@ -132,6 +149,16 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		{
 			GrabLedge(BodyRaycastOrigin->GetForwardVector());
 		}
+	}
+}
+
+void APlayerCharacter::HealCharacter(float HealAmount)
+{
+	Super::HealCharacter(HealAmount);
+	
+	if (CurrentHealth >= MaxHealth * LowHealthPercentage)
+	{
+		bLowHealthHit = false;
 	}
 }
 
