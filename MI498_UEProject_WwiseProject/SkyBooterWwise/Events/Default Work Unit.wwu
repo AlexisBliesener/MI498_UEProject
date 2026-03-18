@@ -243,6 +243,17 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="BruteSwing" ID="{E4E6BDE6-4D18-4100-80F7-84E1F00E6986}">
+							<ChildrenList>
+								<Action Name="" ID="{B2AE9630-6E0E-49BE-B305-A184B47B436A}" ShortID="752788254">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BrutePunchWoosh" ID="{85091B6F-0BD9-45FB-8681-AB931D570915}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
@@ -251,17 +262,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="PlayerSteps" ID="{0240AB1B-95E9-4FC0-B202-4F2930A93539}">
-							<ChildrenList>
-								<Action Name="" ID="{7080B465-E657-4B64-851C-A9E68604F8BD}" ShortID="707106637">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="FootstepSFXExample" ID="{7BF22196-A95D-415A-A3B4-667F3AACA6C9}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="PlayerJump" ID="{4E7837E2-5BE7-4E49-B817-63E4FD5BC71A}">
 							<ChildrenList>
 								<Action Name="" ID="{CCF87C0B-2B1A-4FFC-9C63-0EBFE81CB2BA}" ShortID="221070967">
@@ -384,6 +384,43 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="Steps" ID="{CA7181DC-87CE-494C-A85D-8211B56C180C}" ShortID="411623995">
+							<ChildrenList>
+								<Event Name="PlayerSteps" ID="{0240AB1B-95E9-4FC0-B202-4F2930A93539}">
+									<ChildrenList>
+										<Action Name="" ID="{7080B465-E657-4B64-851C-A9E68604F8BD}" ShortID="707106637">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="FootstepSFXExample" ID="{7BF22196-A95D-415A-A3B4-667F3AACA6C9}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayerStepMetal" ID="{BA8D19DD-27DB-4C74-BB3B-2D9243C17684}">
+									<ChildrenList>
+										<Action Name="" ID="{C991CFDE-8AB0-400C-AE73-C63D7A36D3F0}" ShortID="192973757">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Pegleg" ID="{482F0F5F-9D59-4903-A8C6-5EB4AA383458}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="PlayerStepNormal" ID="{8CDF358C-5E1B-406D-99C6-E4F00427CBC7}">
+									<ChildrenList>
+										<Action Name="" ID="{76AC5973-F28C-412A-8E3E-087C452FCF66}" ShortID="230784514">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Normal" ID="{0A86E547-0C2F-4AD1-B4AB-D7B39B440C8F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{16397EDE-6014-43D5-A5A4-9556A5AA6E6C}" ShortID="756890054">
@@ -478,6 +515,17 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SwingerSwing" ID="{3275A267-278E-48C3-81AE-8F42C9E99393}">
+							<ChildrenList>
+								<Action Name="" ID="{96EDC334-6F99-4D03-B224-9A46079380A6}" ShortID="8949520">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="RopeSwing" ID="{8626239F-366B-4B2F-A253-5238BB8C5385}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -791,6 +839,167 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="EnemyFootstep" ID="{762E7D5E-6630-47E6-BC0B-4D6EF51DA33B}" ShortID="324810192">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="BruteFootsteps" ID="{EAE3815A-7951-453D-9860-3BDAE998255A}">
+							<ChildrenList>
+								<Action Name="" ID="{E9BFD118-DACA-4FAB-BE1B-30E51B8D2BAB}" ShortID="396080544">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem1" ID="{0B505EFA-2980-4245-A72C-FA5E5ABA2576}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{47DEB2EA-1C95-440A-9B0B-D820A736AE8A}" ShortID="131307750">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem2" ID="{EE736D2F-F5B8-4116-9031-72C35A4DE4F2}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{E5AA41D8-2E35-4C77-B0D1-0CD651E2D97A}" ShortID="59457581">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem3" ID="{0C908131-37C2-4EB5-8D97-E57C870202FB}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{0CC7EC67-1815-4552-B4ED-0424C621773E}" ShortID="471870409">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.3"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem4" ID="{20F6ED92-A7B9-4180-8A8B-A974B8D8DA24}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{CDB723CB-672A-4C25-9E30-3BDD45DD8D15}" ShortID="910624505">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem5" ID="{C627AB17-E2DE-4469-BA0B-3269B388F1E7}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{317DB236-4C2D-435E-98D3-257FC4489C44}" ShortID="603661672">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Stem6" ID="{9F3070ED-05F0-41EF-AFBF-69BF3AB0435D}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="SwingerFootstep" ID="{BAE9C16B-96F0-4E63-BDF8-CEF73C040989}" ShortID="1008543170">
+							<ChildrenList>
+								<Event Name="SwingerFootstepsNormal" ID="{9667265C-B1C4-4904-B4E8-BBA9A780413D}">
+									<ChildrenList>
+										<Action Name="" ID="{91935A2F-5901-46CF-AAFF-020763F19366}" ShortID="88066211">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem1Normal" ID="{486DD85A-A7CF-4E1E-A9F1-7DC73A5668CB}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{F6885408-5E9A-432B-BCFC-2A82AB4BEA08}" ShortID="32595551">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem2Normal" ID="{0B07BAB3-79D3-4DFF-9F5D-6F57FAB605E0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{C0549D10-5571-4DFC-BA72-83077E34D712}" ShortID="210136688">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem3Normal" ID="{4F206D51-C80D-4544-A316-B2BFA591EC24}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{1C5199E4-6D61-47CD-AEB2-A838926414F3}" ShortID="529017587">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem4Normal" ID="{21FAB7D4-2997-4D94-9D29-587C89C8C47A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="SwingerFootstepsMetal" ID="{D414C847-4D25-404B-BFAE-63BF7F052638}">
+									<ChildrenList>
+										<Action Name="" ID="{43E1DC61-11AB-4443-B65E-2435740A4307}" ShortID="304472444">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem1Metal" ID="{306442D8-645E-4917-AEC6-80D4789B8FE6}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{174F5AFB-6CAB-462F-BA11-8B177A43F768}" ShortID="9328565">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem2Metal" ID="{673C42D2-ABB7-45F2-9F46-E4E32BD6ECA1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="AverageFootstep" ID="{DB68C459-9E49-4A8E-85E8-3D6D40AF8EE1}" ShortID="474027254">
+							<ChildrenList>
+								<Event Name="MetalStep" ID="{18499410-5552-4D0A-9BFE-B0A56809FE63}">
+									<ChildrenList>
+										<Action Name="" ID="{A6D63644-ADE5-4665-AD74-FBEB32DF2DD5}" ShortID="1072491018">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem2Metal" ID="{313D69FA-7913-45F8-BAB2-FE8737D04D66}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{21B2F166-9D02-4F10-8C79-E26423E37196}" ShortID="420621321">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem1Metal" ID="{482C116A-7859-490E-B629-456BDE982AE3}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="NormalStep" ID="{0D93189B-2587-49E9-8248-DAC582D49439}">
+									<ChildrenList>
+										<Action Name="" ID="{1D773A81-D1DA-4456-87FF-1982DF4113D8}" ShortID="860058160">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem1Normal" ID="{20A59B27-39B8-4492-93C8-57EE14F0054F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{E46FB68A-A4B6-44BD-BF8C-7943D4836093}" ShortID="841598647">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Stem2Normal" ID="{F8D28492-2F0C-4AC0-AC43-EA9A448F23D5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{35C21858-0531-4445-B43F-FA9D966A22E1}" ShortID="339052334">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BikeChain" ID="{9C76549F-1FFA-48A4-BA84-4959AB83CD66}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

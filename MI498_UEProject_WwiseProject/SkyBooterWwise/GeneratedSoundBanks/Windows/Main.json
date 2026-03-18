@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{20C69E8F-7C5B-2D15-4B97-CF45A5A270F9}",
+    "Hash": "{B773D01C-5968-90FB-9A58-CBD6B87730A6}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -32,6 +32,14 @@
       "CachePath": "FB/{FBD48F18-D80F-456F-A406-FCF6D4EFF51F}.wem"
      },
      {
+      "Id": "12572395",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "A4/{A431C1B4-D6DA-3470-C852-0607A0AE58BB}.wem"
+     },
+     {
       "Id": "17125242",
       "Language": "SFX",
       "Streaming": "false",
@@ -48,6 +56,14 @@
       "CachePath": "70/{708C8043-853C-35EB-FE15-B5DA476E92EC}.wem"
      },
      {
+      "Id": "29359421",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-003.wav",
+      "CachePath": "F1/{F14E1675-205E-D044-41B5-6AAF4DBA9BD6}.wem"
+     },
+     {
       "Id": "30228862",
       "Language": "SFX",
       "Streaming": "false",
@@ -62,6 +78,38 @@
       "Location": "Memory",
       "ShortName": "Cannon.wav",
       "CachePath": "92/{923110F5-2A28-15FE-B105-9EA4FED9A9E9}.wem"
+     },
+     {
+      "Id": "37486510",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-006.wav",
+      "CachePath": "E6/{E6AAE53C-5373-2191-A044-13386F8B028F}.wem"
+     },
+     {
+      "Id": "50541977",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodMetal.wav",
+      "CachePath": "D9/{D948A355-0C79-2EE3-9E76-ECA66BE0B921}.wem"
+     },
+     {
+      "Id": "64962804",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-002.wav",
+      "CachePath": "F2/{F2D794A7-D4EC-1A5A-7E07-311A0EF26DF0}.wem"
+     },
+     {
+      "Id": "86116095",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsMetal.wav",
+      "CachePath": "BA/{BA4E8A14-492B-D9D3-97B8-4B4F3ADE0F2E}.wem"
      },
      {
       "Id": "93500891",
@@ -88,6 +136,22 @@
       "CachePath": "60/{60204F27-74D7-E28B-BE0E-36C502B4F578}.wem"
      },
      {
+      "Id": "105716389",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-001.wav",
+      "CachePath": "1E/{1E70FD1B-D714-C943-2AF3-BA3B5F334E4F}.wem"
+     },
+     {
+      "Id": "109490712",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-002.wav",
+      "CachePath": "51/{514806A7-0BC3-250B-5F5D-2A5874975E5E}.wem"
+     },
+     {
       "Id": "118074255",
       "Language": "SFX",
       "Streaming": "false",
@@ -102,6 +166,14 @@
       "Location": "Memory",
       "ShortName": "BruteVA.wav",
       "CachePath": "A7/{A75759FC-4C2C-9E1F-EF2B-B57671F5060C}.wem"
+     },
+     {
+      "Id": "136033053",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-001.wav",
+      "CachePath": "64/{645D75E9-9A77-58AE-F662-E3504492EBC2}.wem"
      },
      {
       "Id": "139026441",
@@ -120,6 +192,14 @@
       "CachePath": "7C/{7CD19F03-9372-E627-D96C-0C74D62BB677}.wem"
      },
      {
+      "Id": "144084988",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBikeChain.wav",
+      "CachePath": "29/{290C33E6-1C36-82A9-9CC8-129BF285866A}.wem"
+     },
+     {
       "Id": "151765295",
       "Language": "SFX",
       "Streaming": "false",
@@ -128,12 +208,52 @@
       "CachePath": "B9/{B92FE5B5-FE05-919D-8456-9E169F583A4B}.wem"
      },
      {
+      "Id": "153382107",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-004.wav",
+      "CachePath": "70/{70B45C1C-13D7-93C0-F1AA-83BB9F1C780E}.wem"
+     },
+     {
+      "Id": "161260618",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBikeChain.wav",
+      "CachePath": "C5/{C5959817-2C0A-A7E3-E23C-06692BAD5283}.wem"
+     },
+     {
+      "Id": "173442005",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-003.wav",
+      "CachePath": "C0/{C0B85564-E494-86AD-D2BD-21E3F7B41C8E}.wem"
+     },
+     {
+      "Id": "178557755",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-002.wav",
+      "CachePath": "F8/{F87AA7A8-9EBC-2985-FF7B-53C33F06CE2D}.wem"
+     },
+     {
       "Id": "190724134",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Jump2.wav",
       "CachePath": "6C/{6CF1D943-FC66-BE38-99B1-864AE09B5800}.wem"
+     },
+     {
+      "Id": "191239999",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "CD/{CD340CFF-39DE-E846-886E-211AEA0FE2E9}.wem"
      },
      {
       "Id": "208714548",
@@ -160,12 +280,36 @@
       "CachePath": "F5/{F5BEF37A-F2FC-8D98-4F73-F93EA8BDA20E}.wem"
      },
      {
+      "Id": "219139896",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-005.wav",
+      "CachePath": "B7/{B7C67816-5016-A9A3-3073-290C1475D22C}.wem"
+     },
+     {
       "Id": "226120403",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordSlashExample.wav",
       "CachePath": "A2/{A2D0096C-AE2F-87C9-572E-058A28DE8C57}.wem"
+     },
+     {
+      "Id": "230154383",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-005.wav",
+      "CachePath": "50/{505362F9-3DD1-A490-E00B-009C97F57DC4}.wem"
+     },
+     {
+      "Id": "237225792",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-001.wav",
+      "CachePath": "6F/{6F01549A-C33A-8586-CB43-8F7B1B605FFC}.wem"
      },
      {
       "Id": "252701458",
@@ -192,12 +336,44 @@
       "CachePath": "26/{26BB7528-4E80-14E2-B045-AD9D657D00B2}.wem"
      },
      {
+      "Id": "266698385",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-006.wav",
+      "CachePath": "43/{430416A4-83F6-F294-A4B0-929FC0EC85E3}.wem"
+     },
+     {
       "Id": "272125692",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SprintExample.wav",
       "CachePath": "92/{92C28E82-427F-0688-3A4A-C55AFFC2C8B1}.wem"
+     },
+     {
+      "Id": "275765810",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodNormal.wav",
+      "CachePath": "67/{67DACE36-4F17-595A-C238-27A5A19B24B6}.wem"
+     },
+     {
+      "Id": "277035064",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-005.wav",
+      "CachePath": "DD/{DD222A91-F0C2-FD6B-E37C-322DF57370B2}.wem"
+     },
+     {
+      "Id": "280971423",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodNormal.wav",
+      "CachePath": "05/{057D7800-5C48-DEB9-A631-0AB06E9F4D02}.wem"
      },
      {
       "Id": "283319554",
@@ -208,12 +384,52 @@
       "CachePath": "74/{74F9264F-7BC0-8DDD-2899-5128DC4DEFD2}.wem"
      },
      {
+      "Id": "283633621",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-003.wav",
+      "CachePath": "29/{296A51A3-6140-3453-20A7-F6FF745AE27B}.wem"
+     },
+     {
       "Id": "287285638",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDeath.wav",
       "CachePath": "19/{198F06B3-C9CA-ACD1-74AA-8D2A18E9034E}.wem"
+     },
+     {
+      "Id": "289858461",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-002.wav",
+      "CachePath": "0D/{0D014BC4-4897-3945-03F1-3752DAE7F7F2}.wem"
+     },
+     {
+      "Id": "296876079",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-002.wav",
+      "CachePath": "4B/{4B228E0D-9372-38BD-11CD-E5B41151BA6A}.wem"
+     },
+     {
+      "Id": "297481343",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBikeChain.wav",
+      "CachePath": "6A/{6ACE3716-DF47-1B88-CC5D-224F69B89A1C}.wem"
+     },
+     {
+      "Id": "306717036",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-001.wav",
+      "CachePath": "22/{22EFD09A-A75A-FE20-D928-08AAB1E8AA64}.wem"
      },
      {
       "Id": "307726770",
@@ -256,6 +472,14 @@
       "CachePath": "52/{529BF466-3592-112B-FDA2-1681F6809AD2}.wem"
      },
      {
+      "Id": "332480870",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-001.wav",
+      "CachePath": "C3/{C38CF113-62AA-7F0E-D9CD-C5FC47172A31}.wem"
+     },
+     {
       "Id": "334114902",
       "Language": "SFX",
       "Streaming": "false",
@@ -286,6 +510,14 @@
       "Location": "Memory",
       "ShortName": "BombExplosionMOREBASS.wav",
       "CachePath": "33/{33D3AA89-8962-D491-FC31-16115CF692F3}.wem"
+     },
+     {
+      "Id": "366690037",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-003.wav",
+      "CachePath": "2C/{2C545A23-9F98-79F8-9A80-237BF50D5CF5}.wem"
      },
      {
       "Id": "373499443",
@@ -344,12 +576,36 @@
       "CachePath": "D8/{D8714FBD-C022-C5DA-918E-50F355266FA8}.wem"
      },
      {
+      "Id": "415328302",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBase.wav",
+      "CachePath": "BD/{BD634BDB-5A96-01E2-9E51-E4291A742D11}.wem"
+     },
+     {
       "Id": "417942832",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVA.wav",
       "CachePath": "D0/{D0933FA9-A933-9ECF-EF9D-1E610AA94513}.wem"
+     },
+     {
+      "Id": "423009465",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "19/{19B5B38A-66B2-E80C-3667-DE342EBCB619}.wem"
+     },
+     {
+      "Id": "434947864",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsMetal.wav",
+      "CachePath": "30/{3086AB89-76FA-1C6E-C65A-6B535119C548}.wem"
      },
      {
       "Id": "435335955",
@@ -384,12 +640,44 @@
       "CachePath": "E9/{E9F79973-E995-6455-6AA4-671EF89A9671}.wem"
      },
      {
+      "Id": "470389262",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBase.wav",
+      "CachePath": "C1/{C1094AFC-1F1D-4E0D-E26A-AAC8FB5D2232}.wem"
+     },
+     {
+      "Id": "471860474",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-002.wav",
+      "CachePath": "86/{8605A105-7966-09B2-4E19-E96261E9CD68}.wem"
+     },
+     {
+      "Id": "479339567",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-003.wav",
+      "CachePath": "63/{63099CAC-9B8B-B1FA-ECBA-3D1AA35A8E5D}.wem"
+     },
+     {
       "Id": "485182822",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerVaultDeeper.wav",
       "CachePath": "CF/{CFA21932-266A-4721-D419-877700EA9AAB}.wem"
+     },
+     {
+      "Id": "488885903",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-006.wav",
+      "CachePath": "7B/{7B7C2218-23A8-A503-3692-4C9B1957169E}.wem"
      },
      {
       "Id": "490112550",
@@ -408,12 +696,60 @@
       "CachePath": "7E/{7ED2E3B7-1631-A57D-D9F7-2249CB7FAB4A}.wem"
      },
      {
+      "Id": "497029722",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "03/{03F8099B-5D00-3F9E-59F9-89A1C57D7FD2}.wem"
+     },
+     {
+      "Id": "498848967",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-001.wav",
+      "CachePath": "B1/{B15C4EB1-DE4B-3CC5-6E2B-0BDB8A136CD8}.wem"
+     },
+     {
+      "Id": "499502064",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-006.wav",
+      "CachePath": "47/{47DD8308-D33B-256D-1394-4BDDCF48A667}.wem"
+     },
+     {
+      "Id": "504763035",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-001.wav",
+      "CachePath": "4E/{4ECF8339-7291-A231-BE62-68F62E011C4F}.wem"
+     },
+     {
+      "Id": "514551863",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-005.wav",
+      "CachePath": "61/{61C07087-80C5-3AA3-F777-3FD8C91234A9}.wem"
+     },
+     {
       "Id": "515834822",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "1PieceCollectedLine1.wav",
       "CachePath": "FB/{FB9CF5D7-D3F8-8F32-7CA9-EAB37CB7DA54}.wem"
+     },
+     {
+      "Id": "520608868",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-001.wav",
+      "CachePath": "D6/{D660336D-7906-6ED3-3535-2B5803F0FBCC}.wem"
      },
      {
       "Id": "526140554",
@@ -440,6 +776,22 @@
       "CachePath": "A4/{A4591057-30D6-0C6F-FFC3-9AE75DF5E888}.wem"
      },
      {
+      "Id": "540829907",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-006.wav",
+      "CachePath": "89/{895047F1-56E0-291A-8770-4E20C5FA37A2}.wem"
+     },
+     {
+      "Id": "550716093",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-005.wav",
+      "CachePath": "98/{98E32881-F45E-7B4C-B9AE-26D4A7FD8145}.wem"
+     },
+     {
       "Id": "554459309",
       "Language": "SFX",
       "Streaming": "false",
@@ -456,12 +808,28 @@
       "CachePath": "69/{69440CB6-767B-E11C-986C-3DB3FCB2952D}.wem"
      },
      {
+      "Id": "577488381",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-002.wav",
+      "CachePath": "76/{7630CFA5-5A67-888C-4037-DEA7219FEA6F}.wem"
+     },
+     {
       "Id": "579126070",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Woosh.wav",
       "CachePath": "F1/{F18727EF-C9DF-C19D-6CF0-6D72246662DE}.wem"
+     },
+     {
+      "Id": "584673978",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBase.wav",
+      "CachePath": "1A/{1A131CF5-494D-466E-3535-04113ABCAEAD}.wem"
      },
      {
       "Id": "590484918",
@@ -496,6 +864,14 @@
       "CachePath": "7C/{7CBD7927-85F3-9AB8-81FE-9B4C03FBC218}.wem"
      },
      {
+      "Id": "605561989",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodNormal.wav",
+      "CachePath": "6E/{6E2F6A85-8A1F-994F-EECC-F551D0E3D41F}.wem"
+     },
+     {
       "Id": "605626282",
       "Language": "SFX",
       "Streaming": "false",
@@ -520,12 +896,36 @@
       "CachePath": "3A/{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem"
      },
      {
+      "Id": "609911907",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-005.wav",
+      "CachePath": "1D/{1DC6B2B9-C4AE-FA4D-EA9B-046285AAB91C}.wem"
+     },
+     {
       "Id": "615624964",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "GrappleHookMissReel.wav",
       "CachePath": "53/{53038523-3F0A-43DE-3CB4-C746E737E8F1}.wem"
+     },
+     {
+      "Id": "618252127",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-005.wav",
+      "CachePath": "18/{181642A4-D1C2-FD25-291B-23B958EEB548}.wem"
+     },
+     {
+      "Id": "620832767",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "B2/{B2830D2D-1E92-14C2-2582-A514961C0AF8}.wem"
      },
      {
       "Id": "622150877",
@@ -552,6 +952,14 @@
       "CachePath": "A0/{A09F3856-A775-6063-BAE9-51F67DDBB6BA}.wem"
      },
      {
+      "Id": "639083872",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-002.wav",
+      "CachePath": "39/{39288DEF-4332-AEBE-8331-9A841803E076}.wem"
+     },
+     {
       "Id": "642013019",
       "Language": "SFX",
       "Streaming": "false",
@@ -576,6 +984,30 @@
       "CachePath": "9F/{9F8D0FAF-C5B0-DF41-56BC-E19B08E0DFCF}.wem"
      },
      {
+      "Id": "652248752",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodMetal.wav",
+      "CachePath": "EF/{EFC4EF47-2DAA-138A-1492-C0B8D6B8569D}.wem"
+     },
+     {
+      "Id": "654345293",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-006.wav",
+      "CachePath": "76/{76436246-FE4B-56E6-2683-C8FF16401C05}.wem"
+     },
+     {
+      "Id": "661039912",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-004.wav",
+      "CachePath": "B2/{B2B7F09C-C137-E18E-D612-D3923917DC9C}.wem"
+     },
+     {
       "Id": "664087683",
       "Language": "SFX",
       "Streaming": "false",
@@ -592,12 +1024,60 @@
       "CachePath": "5A/{5AE3F790-AE5E-474E-EE7F-A7CCE0FD22FF}.wem"
      },
      {
+      "Id": "676257027",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBase.wav",
+      "CachePath": "91/{91B334AE-5CBD-D73E-3B6E-F6943D81DCCA}.wem"
+     },
+     {
+      "Id": "696957011",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-001.wav",
+      "CachePath": "66/{66289CE6-D655-4EC0-3EC4-2DF9B8A016FE}.wem"
+     },
+     {
+      "Id": "705144487",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-005.wav",
+      "CachePath": "14/{1462DB2B-3E0C-5CCA-4D0D-A2DEBC52FAEB}.wem"
+     },
+     {
       "Id": "713593597",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Woosh.wav",
       "CachePath": "68/{689AD3F6-A335-1468-1D31-7A1C52D98D17}.wem"
+     },
+     {
+      "Id": "729630506",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodMetal.wav",
+      "CachePath": "3C/{3C221967-3570-E142-4787-89BBA05A6117}.wem"
+     },
+     {
+      "Id": "729828327",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-005.wav",
+      "CachePath": "E8/{E8E5E430-99AE-CC21-4B39-4BE9FACFAD0C}.wem"
+     },
+     {
+      "Id": "733059301",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-003.wav",
+      "CachePath": "67/{6757D3EB-0DCB-CE9D-A8D4-9DDA3686E88E}.wem"
      },
      {
       "Id": "750876961",
@@ -632,12 +1112,76 @@
       "CachePath": "33/{334D844B-58AF-EB13-0BC6-ADA1E8FBD636}.wem"
      },
      {
+      "Id": "763643214",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodMetal.wav",
+      "CachePath": "CC/{CCD545F6-4B53-3003-2E75-1DB23E324D80}.wem"
+     },
+     {
       "Id": "765843477",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
       "CachePath": "B3/{B3ECC5DD-2F69-33BE-3CF8-D092BD0C1EE0}.wem"
+     },
+     {
+      "Id": "775266389",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "RopeSwing.wav",
+      "CachePath": "DD/{DD51FA09-C1D8-E3EE-BAF0-D68233187915}.wem"
+     },
+     {
+      "Id": "780092636",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "E7/{E7DB6226-D8BB-E165-3896-433139CD6CC6}.wem"
+     },
+     {
+      "Id": "780703946",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-003.wav",
+      "CachePath": "24/{2443BF7D-CAF5-BCA8-06E4-EA9F7AB2A27F}.wem"
+     },
+     {
+      "Id": "785453003",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-005.wav",
+      "CachePath": "B5/{B557956C-0417-1A33-403F-F06DA76497CA}.wem"
+     },
+     {
+      "Id": "796215813",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-004.wav",
+      "CachePath": "3C/{3CC84F5D-A9F7-5145-FB3D-66702E11422E}.wem"
+     },
+     {
+      "Id": "796430645",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-006.wav",
+      "CachePath": "EA/{EAD713A1-9B22-6A91-E36D-8779161AE1BC}.wem"
+     },
+     {
+      "Id": "796556875",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodNormal.wav",
+      "CachePath": "90/{907CA2CD-4E90-01FE-E43E-22EDEA350287}.wem"
      },
      {
       "Id": "811032749",
@@ -672,6 +1216,22 @@
       "CachePath": "03/{03BC741C-56A0-9893-FB22-2A6D25FE19D0}.wem"
      },
      {
+      "Id": "823058991",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "D2/{D253C187-64E6-30C4-0C66-60F033784397}.wem"
+     },
+     {
+      "Id": "829136830",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "D4/{D48C5A71-C26A-31B8-928F-B7B1EF6160C2}.wem"
+     },
+     {
       "Id": "834233048",
       "Language": "SFX",
       "Streaming": "false",
@@ -685,7 +1245,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "52/{52A7AA0D-F402-37C7-1205-352799D471B5}.wem"
+      "CachePath": "F2/{F28D8DCF-62B2-9F19-3AF8-9E0563C16583}.wem"
+     },
+     {
+      "Id": "842524675",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-006.wav",
+      "CachePath": "0A/{0A02D221-328F-74BD-4D30-4A11453DFC77}.wem"
      },
      {
       "Id": "842662115",
@@ -702,6 +1270,30 @@
       "Location": "Memory",
       "ShortName": "SwingingEnemyVA.wav",
       "CachePath": "16/{168F7ECD-B2EB-DC5C-A2F2-32B5BBABF22C}.wem"
+     },
+     {
+      "Id": "864774635",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-006.wav",
+      "CachePath": "46/{467C7A69-F286-7643-DAF7-3E262C3A4315}.wem"
+     },
+     {
+      "Id": "890399975",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-002.wav",
+      "CachePath": "2F/{2FCB3709-2712-0599-68F8-19F414F4B84F}.wem"
+     },
+     {
+      "Id": "891731372",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsMetal.wav",
+      "CachePath": "D0/{D03486A8-FD85-731C-C2E0-4084D33DEF38}.wem"
      },
      {
       "Id": "894087048",
@@ -726,6 +1318,14 @@
       "Location": "Memory",
       "ShortName": "Death2.wav",
       "CachePath": "4D/{4D65DB4C-3BAF-AB81-EA84-F978E63D2A48}.wem"
+     },
+     {
+      "Id": "911682553",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBikeChain.wav",
+      "CachePath": "7C/{7C957487-F40F-4B38-85B6-BA0090E33AB4}.wem"
      },
      {
       "Id": "912806009",
@@ -760,6 +1360,14 @@
       "CachePath": "6F/{6FB3D05B-49CC-1069-2ECC-B8082F40B149}.wem"
      },
      {
+      "Id": "928986090",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "E5/{E5C9764C-3A1B-3DF6-EE50-4BD741A8A362}.wem"
+     },
+     {
       "Id": "940533753",
       "Language": "SFX",
       "Streaming": "false",
@@ -768,12 +1376,44 @@
       "CachePath": "D8/{D8A4F405-1525-C53C-371D-9755D1962B66}.wem"
      },
      {
+      "Id": "941469442",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsWoodNormal.wav",
+      "CachePath": "50/{5057387F-4283-8E22-175F-2C6593D263DA}.wem"
+     },
+     {
       "Id": "941547104",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Within Range of bomb location, Take 2.wav",
       "CachePath": "AE/{AEA4BC9D-4C1D-69EB-850D-1E180461ECA5}.wem"
+     },
+     {
+      "Id": "942996325",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsBase.wav",
+      "CachePath": "86/{86B4346D-4E0C-FACF-E41F-F39B2DC93621}.wem"
+     },
+     {
+      "Id": "944122239",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "AverageEnemyStepsMetal.wav",
+      "CachePath": "08/{08F27A24-79B8-C8E4-7C32-6D5BFC877359}.wem"
+     },
+     {
+      "Id": "949543773",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "90/{9010B111-A27C-CBC7-FF58-6E4EB3AFC407}.wem"
      },
      {
       "Id": "952159520",
@@ -800,6 +1440,14 @@
       "CachePath": "AC/{ACAAA037-7324-C5B4-5824-BFB4334C586F}.wem"
      },
      {
+      "Id": "966822859",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-004.wav",
+      "CachePath": "4F/{4F3E4238-501F-0181-2FB5-75F93EF3DDDC}.wem"
+     },
+     {
       "Id": "974919281",
       "Language": "SFX",
       "Streaming": "false",
@@ -816,12 +1464,28 @@
       "CachePath": "7C/{7CDE9A25-3BBF-F41A-0662-4BBEF74DF76F}.wem"
      },
      {
+      "Id": "989741732",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepStems-001.wav",
+      "CachePath": "34/{34CA719F-271D-8463-6EC2-462198967407}.wem"
+     },
+     {
       "Id": "990222415",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "One piece collected, Take 2.wav",
       "CachePath": "CA/{CA65100F-7AC6-FC10-790A-C875F5B1DCEE}.wem"
+     },
+     {
+      "Id": "992118632",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FootstepSFXExample.wav",
+      "CachePath": "6D/{6D49BE4C-4676-504A-F9D5-56DD3E0CD0E5}.wem"
      },
      {
       "Id": "1003084449",
@@ -840,6 +1504,14 @@
       "CachePath": "06/{0661CD17-F3BC-0EBE-8E8D-178BEB6A2219}.wem"
      },
      {
+      "Id": "1011080263",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-004.wav",
+      "CachePath": "4C/{4CF4AC72-141C-A5E8-9CA0-095FA7D4190B}.wem"
+     },
+     {
       "Id": "1014313509",
       "Language": "SFX",
       "Streaming": "false",
@@ -848,12 +1520,44 @@
       "CachePath": "9E/{9EFD9CA6-F03D-19D6-1BFC-A8693CF1EB95}.wem"
      },
      {
+      "Id": "1024731219",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-006.wav",
+      "CachePath": "7C/{7C31351A-511B-6F99-113D-BCA006FD81F5}.wem"
+     },
+     {
+      "Id": "1026265906",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-003.wav",
+      "CachePath": "21/{212AD7C9-6BBF-5FB2-D7A1-0394FA623EE1}.wem"
+     },
+     {
+      "Id": "1034653354",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-003.wav",
+      "CachePath": "10/{10F9BF84-A742-14B1-B709-083DC35477EA}.wem"
+     },
+     {
+      "Id": "1035843204",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "BrutePunchWoosh.wav",
+      "CachePath": "1F/{1FEE3712-8B74-021E-118C-8AD8A852EFAE}.wem"
+     },
+     {
       "Id": "1036155795",
       "Language": "SFX",
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "WeaponSwaps.wav",
-      "CachePath": "4C/{4C84019C-F0CE-58D3-1D45-ED78325C5833}.wem"
+      "CachePath": "46/{46341461-BB8D-0442-5F72-0E76FB1530C8}.wem"
      },
      {
       "Id": "1037545113",
@@ -862,6 +1566,14 @@
       "Location": "Memory",
       "ShortName": "Death1.wav",
       "CachePath": "C7/{C74E6475-C6BC-1267-2221-2BC22BD172CD}.wem"
+     },
+     {
+      "Id": "1048443078",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "SwingerFootstep-002.wav",
+      "CachePath": "72/{7241A8CA-8C8A-86DB-139B-FDEE7588FD13}.wem"
      },
      {
       "Id": "1051686944",
@@ -1176,6 +1888,113 @@
       ]
      },
      {
+      "Id": "82204924",
+      "Name": "BruteFootsteps",
+      "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\BruteFootsteps",
+      "GUID": "{EAE3815A-7951-453D-9860-3BDAE998255A}",
+      "Color": "10",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.65784466",
+      "DurationMax": "0.7255515",
+      "MediaRefs": [
+       {
+        "Id": "29359421"
+       },
+       {
+        "Id": "64962804"
+       },
+       {
+        "Id": "173442005"
+       },
+       {
+        "Id": "178557755"
+       },
+       {
+        "Id": "219139896"
+       },
+       {
+        "Id": "237225792"
+       },
+       {
+        "Id": "266698385"
+       },
+       {
+        "Id": "283633621"
+       },
+       {
+        "Id": "289858461"
+       },
+       {
+        "Id": "471860474"
+       },
+       {
+        "Id": "488885903"
+       },
+       {
+        "Id": "498848967"
+       },
+       {
+        "Id": "504763035"
+       },
+       {
+        "Id": "520608868"
+       },
+       {
+        "Id": "609911907"
+       },
+       {
+        "Id": "618252127"
+       },
+       {
+        "Id": "639083872"
+       },
+       {
+        "Id": "654345293"
+       },
+       {
+        "Id": "729828327"
+       },
+       {
+        "Id": "733059301"
+       },
+       {
+        "Id": "780703946"
+       },
+       {
+        "Id": "785453003"
+       },
+       {
+        "Id": "796430645"
+       },
+       {
+        "Id": "864774635"
+       },
+       {
+        "Id": "966822859"
+       },
+       {
+        "Id": "989741732"
+       }
+      ]
+     },
+     {
+      "Id": "3596401047",
+      "Name": "BruteSwing",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BruteSwing",
+      "GUID": "{E4E6BDE6-4D18-4100-80F7-84E1F00E6986}",
+      "Color": "8",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.7289547",
+      "DurationMax": "0.9730377",
+      "MediaRefs": [
+       {
+        "Id": "1035843204"
+       }
+      ]
+     },
+     {
       "Id": "2393348022",
       "Name": "Cannon",
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Cannon",
@@ -1401,6 +2220,43 @@
       ]
      },
      {
+      "Id": "2390202056",
+      "Name": "MetalStep",
+      "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\MetalStep",
+      "GUID": "{18499410-5552-4D0A-9BFE-B0A56809FE63}",
+      "Color": "10",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.38922763",
+      "DurationMax": "0.527458",
+      "MediaRefs": [
+       {
+        "Id": "50541977"
+       },
+       {
+        "Id": "86116095"
+       },
+       {
+        "Id": "434947864"
+       },
+       {
+        "Id": "652248752"
+       },
+       {
+        "Id": "729630506"
+       },
+       {
+        "Id": "763643214"
+       },
+       {
+        "Id": "891731372"
+       },
+       {
+        "Id": "944122239"
+       }
+      ]
+     },
+     {
       "Id": "2298039058",
       "Name": "MoveStart",
       "ObjectPath": "\\Events\\Default Work Unit\\Player\\MoveStart",
@@ -1463,6 +2319,61 @@
        },
        {
         "Id": "952159520"
+       }
+      ]
+     },
+     {
+      "Id": "2343736110",
+      "Name": "NormalStep",
+      "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\NormalStep",
+      "GUID": "{0D93189B-2587-49E9-8248-DAC582D49439}",
+      "Color": "10",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.6728934",
+      "DurationMax": "0.76019675",
+      "MediaRefs": [
+       {
+        "Id": "144084988"
+       },
+       {
+        "Id": "161260618"
+       },
+       {
+        "Id": "275765810"
+       },
+       {
+        "Id": "280971423"
+       },
+       {
+        "Id": "297481343"
+       },
+       {
+        "Id": "415328302"
+       },
+       {
+        "Id": "470389262"
+       },
+       {
+        "Id": "584673978"
+       },
+       {
+        "Id": "605561989"
+       },
+       {
+        "Id": "676257027"
+       },
+       {
+        "Id": "796556875"
+       },
+       {
+        "Id": "911682553"
+       },
+       {
+        "Id": "941469442"
+       },
+       {
+        "Id": "942996325"
        }
       ]
      },
@@ -1588,15 +2499,77 @@
       ]
      },
      {
-      "Id": "3084491839",
-      "Name": "PlayerSteps",
-      "ObjectPath": "\\Events\\Default Work Unit\\Player\\PlayerSteps",
-      "GUID": "{0240AB1B-95E9-4FC0-B202-4F2930A93539}",
+      "Id": "1748804309",
+      "Name": "PlayerStepMetal",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\Steps\\PlayerStepMetal",
+      "GUID": "{BA8D19DD-27DB-4C74-BB3B-2D9243C17684}",
       "Color": "13",
-      "DurationType": "Infinite",
+      "DurationType": "OneShot",
+      "DurationMin": "0.4496352",
+      "DurationMax": "0.561671",
       "MediaRefs": [
        {
+        "Id": "780092636"
+       },
+       {
+        "Id": "823058991"
+       },
+       {
+        "Id": "829136830"
+       },
+       {
+        "Id": "928986090"
+       },
+       {
+        "Id": "949543773"
+       },
+       {
+        "Id": "992118632"
+       }
+      ]
+     },
+     {
+      "Id": "3278075861",
+      "Name": "PlayerStepNormal",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\Steps\\PlayerStepNormal",
+      "GUID": "{8CDF358C-5E1B-406D-99C6-E4F00427CBC7}",
+      "Color": "13",
+      "DurationType": "OneShot",
+      "DurationMin": "0.39887848",
+      "DurationMax": "0.51419395",
+      "MediaRefs": [
+       {
+        "Id": "12572395"
+       },
+       {
+        "Id": "191239999"
+       },
+       {
+        "Id": "423009465"
+       },
+       {
+        "Id": "497029722"
+       },
+       {
+        "Id": "620832767"
+       },
+       {
         "Id": "841410472"
+       }
+      ]
+     },
+     {
+      "Id": "3084491839",
+      "Name": "PlayerSteps",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\Steps\\PlayerSteps",
+      "GUID": "{0240AB1B-95E9-4FC0-B202-4F2930A93539}",
+      "Color": "13",
+      "DurationType": "OneShot",
+      "DurationMin": "0.47501355",
+      "DurationMax": "0.53318477",
+      "MediaRefs": [
+       {
+        "Id": "928986090"
        }
       ]
      },
@@ -1719,6 +2692,132 @@
       ]
      },
      {
+      "Id": "3820954562",
+      "Name": "SwingerFootstepsMetal",
+      "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsMetal",
+      "GUID": "{D414C847-4D25-404B-BFAE-63BF7F052638}",
+      "Color": "10",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.32346517",
+      "DurationMax": "0.5843464",
+      "MediaRefs": [
+       {
+        "Id": "153382107"
+       },
+       {
+        "Id": "366690037"
+       },
+       {
+        "Id": "479339567"
+       },
+       {
+        "Id": "661039912"
+       },
+       {
+        "Id": "796215813"
+       },
+       {
+        "Id": "1011080263"
+       },
+       {
+        "Id": "1026265906"
+       },
+       {
+        "Id": "1034653354"
+       }
+      ]
+     },
+     {
+      "Id": "2663432212",
+      "Name": "SwingerFootstepsNormal",
+      "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsNormal",
+      "GUID": "{9667265C-B1C4-4904-B4E8-BBA9A780413D}",
+      "Color": "10",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "0.381523",
+      "DurationMax": "0.81720626",
+      "MediaRefs": [
+       {
+        "Id": "37486510"
+       },
+       {
+        "Id": "105716389"
+       },
+       {
+        "Id": "109490712"
+       },
+       {
+        "Id": "136033053"
+       },
+       {
+        "Id": "230154383"
+       },
+       {
+        "Id": "277035064"
+       },
+       {
+        "Id": "296876079"
+       },
+       {
+        "Id": "306717036"
+       },
+       {
+        "Id": "332480870"
+       },
+       {
+        "Id": "499502064"
+       },
+       {
+        "Id": "514551863"
+       },
+       {
+        "Id": "540829907"
+       },
+       {
+        "Id": "550716093"
+       },
+       {
+        "Id": "577488381"
+       },
+       {
+        "Id": "696957011"
+       },
+       {
+        "Id": "705144487"
+       },
+       {
+        "Id": "842524675"
+       },
+       {
+        "Id": "890399975"
+       },
+       {
+        "Id": "1024731219"
+       },
+       {
+        "Id": "1048443078"
+       }
+      ]
+     },
+     {
+      "Id": "4037835670",
+      "Name": "SwingerSwing",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\SwingerSwing",
+      "GUID": "{3275A267-278E-48C3-81AE-8F42C9E99393}",
+      "Color": "4",
+      "MaxAttenuation": "5000",
+      "DurationType": "OneShot",
+      "DurationMin": "1.1859262",
+      "DurationMax": "1.1859262",
+      "MediaRefs": [
+       {
+        "Id": "775266389"
+       }
+      ]
+     },
+     {
       "Id": "3604541648",
       "Name": "SwordDash",
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Sword\\SwordDash",
@@ -1782,8 +2881,8 @@
       "GUID": "{A09194FC-25A0-490C-9F40-E45B30804ED8}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "2.3544233",
-      "DurationMax": "2.3544233",
+      "DurationMin": "0.9438684",
+      "DurationMax": "0.9438684",
       "MediaRefs": [
        {
         "Id": "1036155795"
@@ -1859,6 +2958,6 @@
     ]
    }
   ],
-  "FileHash": "{183AAD82-6DBB-416B-EF97-A5884589CD48}"
+  "FileHash": "{DA86E51D-448E-ED9F-492B-658F26FA1A17}"
  }
 }
