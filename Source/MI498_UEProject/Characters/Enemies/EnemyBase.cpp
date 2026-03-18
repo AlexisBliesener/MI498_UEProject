@@ -5,6 +5,7 @@
 
 #include "Components/CapsuleComponent.h"
 #include "Components/ProgressBar.h"
+#include "Engine/DamageEvents.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -127,7 +128,50 @@ void AEnemyBase::BeginPlay()
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	EKillType killType = EKillType::None;
+	if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
+	if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
+	if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
+	if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::Barrel;
+	UParticleSystem* hitVFX;
+	FVector hitVFXScale;
+	switch (killType)
+	{
+		case EKillType::Blunderbuss:
+			hitVFX = HitBlunderbussVFX;
+			hitVFXScale = HitBlunderbussVFXScale;
+			break;
+		case EKillType::Sword:
+			hitVFX = HitSwordVFX;
+			hitVFXScale = HitSwordVFXScale;
+			break;
+		case EKillType::HarpoonGun:
+			hitVFX = HitHarpoonGunVFX;
+			hitVFXScale = HitHarpoonGunVFXScale;
+			break;
+		default: 
+			hitVFX = HitSwordVFX;
+			hitVFXScale = HitSwordVFXScale;
+			break;
+	}
 	
+	if (hitVFX)
+	{
+		FVector vfxLocation = GetActorLocation(); 
+		FRotator vfxRotation = FRotator::ZeroRotator;
+
+		if (DamageCauser)
+		{
+			vfxRotation = UKismetMathLibrary::FindLookAtRotation(vfxLocation, DamageCauser->GetActorLocation());
+		}
+		else if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
+		{
+			const FPointDamageEvent* pointDamageEvent = static_cast<const FPointDamageEvent*>(&DamageEvent);
+			vfxRotation = UKismetMathLibrary::MakeRotFromX(pointDamageEvent->HitInfo.ImpactNormal);
+		}
+
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitVFX, vfxLocation, vfxRotation, hitVFXScale);
+	}
 	OnTakeDamage();
 	
 	if (CurrentHealth <= 0.f)
@@ -136,11 +180,6 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
-		EKillType killType = EKillType::None;
-		if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
-		if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
-		if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
-		if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::Barrel;
 
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
 		
@@ -225,6 +264,11 @@ void AEnemyBase::UnPossessed()
 void AEnemyBase::Die()
 {
 	Super::Die();
+	
+	if (DeathVFX)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DeathVFX, GetActorLocation(), FRotator::ZeroRotator, DeathVFXScale);
+	}
 	
 	float randomFloat = UKismetMathLibrary::RandomFloatInRange(0.0f, 100.0f);
 

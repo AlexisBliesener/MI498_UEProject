@@ -149,6 +149,47 @@ protected:
 	/// This should match exactly the widget name! 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default|Dev")
 	FName HealthBarWidgetName = TEXT("EnemyHealthBar");
+	/**
+	 * The VFX when the enemy gets hit by a blunderbuss
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitBlunderbussVFX;
+	/**
+	 * The VFX when the enemy gets hit by a sword
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitSwordVFX;
+	/**
+	 * The VFX when the enemy gets hit by a harpoongun
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitHarpoonGunVFX;
+	/**
+	 * The VFX when the enemy dies
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Death")
+	UParticleSystem* DeathVFX;
+	/**
+	 * How big the hit Blunderbuss VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitBlunderbussVFXScale = FVector(0.2f, 0.2f, 0.2f);
+	/**
+	 * How big the hit sword VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitSwordVFXScale = FVector(0.2f, 0.2f, 0.2f);
+	/**
+	 * How big the hit HarpoonGun VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitHarpoonGunVFXScale = FVector(0.2f, 0.2f, 0.2f);
+
+	/**
+	 * How big the death VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Death")
+	FVector DeathVFXScale = FVector(0.5f, 0.5f, 0.5f);
 	virtual void BeginPlay() override;
 	/**
 	 * Applies damage to the enemy and handles its death if health reaches zero.
