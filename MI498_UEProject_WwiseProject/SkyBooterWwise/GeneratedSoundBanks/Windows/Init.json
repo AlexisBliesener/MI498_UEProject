@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{28AB4F05-884A-98FC-D0E3-0F513A9A735B}",
+    "Hash": "{BF74C836-6AF0-FD97-E08B-D96B9F3F25D0}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -197,6 +197,32 @@
      }
     ],
     "StateGroups": [
+     {
+      "Id": "76065630",
+      "Name": "LowHealthState",
+      "ObjectPath": "\\States\\Default Work Unit\\LowHealthState",
+      "GUID": "{92FA54AE-E85C-41E0-B5C6-5CED93822BFA}",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\None",
+        "GUID": "{D5D37433-17EE-4A30-9E97-B486E6F3D578}"
+       },
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\Yes",
+        "GUID": "{0CE95CEF-AC50-4079-A62E-17E68380BC76}"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\No",
+        "GUID": "{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"
+       }
+      ]
+     },
      {
       "Id": "100949179",
       "Name": "IsSprinting",
@@ -737,6 +763,6 @@
     ]
    }
   ],
-  "FileHash": "{452FAE5E-9F3F-A179-7F8F-814D4BF51127}"
+  "FileHash": "{0E9508BD-CA62-1D7F-DB24-D5EE24742E99}"
  }
 }
