@@ -1,15 +1,33 @@
 #include "Ship.h"
 
 #include "NavigationSystem.h"
+#include "Components/HierarchicalInstancedStaticMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "NavMesh/NavMeshBoundsVolume.h"
 #include "Engine/TargetPoint.h"
+#include "Components/LightComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 AShip::AShip()
 {
 	PrimaryActorTick.bCanEverTick = true;
+    
+    USceneComponent* SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
+    
+    RootComponent = SceneComponent;
+    ActivationBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ActivationBox"));
+    ActivationBox->SetupAttachment(RootComponent);
+    ActivationBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    ActivationBox->SetGenerateOverlapEvents(false);
+    TraceCollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TraceCollisionBox"));
+    TraceCollisionBox->SetupAttachment(RootComponent);
+    
+    TraceCollisionBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+    
+    TraceCollisionBox->SetCollisionResponseToAllChannels(ECR_Ignore);
+    TraceCollisionBox->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 }
 
 void AShip::Tick(float DeltaSeconds)
@@ -20,19 +38,94 @@ void AShip::Tick(float DeltaSeconds)
 	{
 		Fall(DeltaSeconds);
 	}
+    //TODO: DELETE DEBBUUGG!
+    if (APlayerController* playerController =  UGameplayStatics::GetPlayerController(GetWorld(), 0))
+    {
+        if (playerController->WasInputKeyJustPressed(EKeys::F6))
+        {
+
+            for (AActor* child : ActorsOnShip)
+            {
+                if (AEnemyBase* enemy = Cast<AEnemyBase>(child))
+                {
+                    enemy->SetEnabledEnemy(false);
+                    if (GEngine)
+                    {
+                        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("shhip---> %s"), *enemy->GetName()));
+                    }
+                }
+            }
+        }
+    }
 }
 
 void AShip::BeginPlay()
 {
     Super::BeginPlay();
+    // Create a HISM for each actor class that on the list 
+    for (FHISMGroup& group : ActorsHISMOnShip)
+    {
+        if (group.ActorClass)
+        {
+            group.HISMComp = NewObject<UHierarchicalInstancedStaticMeshComponent>(this);
+            group.HISMComp->SetMobility(EComponentMobility::Movable);
+            group.HISMComp->SetGenerateOverlapEvents(false);
+            
+            group.HISMComp->RegisterComponent();
+            group.HISMComp->AttachToComponent(GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
+        }
+    }
 
+    GetAttachedActors(ActorsOnShip, true, true);
+    // Start convert the actors to HISM 
+    for (AActor* child : ActorsOnShip)
+    {
+        if (!child) continue;
+
+        for (FHISMGroup& group : ActorsHISMOnShip)
+        {
+            if (group.ActorClass && child->IsA(group.ActorClass))
+            {
+                UStaticMeshComponent* meshComp = child->FindComponentByClass<UStaticMeshComponent>();
+                
+                if (meshComp && group.HISMComp)
+                {
+                    if (!group.bIsCopied && meshComp->GetStaticMesh())
+                    {
+                        group.HISMComp->SetStaticMesh(meshComp->GetStaticMesh());
+                        // Copy the materials only once since they are all the same mesh.... 
+                        int32 numMaterials = meshComp->GetNumMaterials();
+                        for (int32 i = 0; i < numMaterials; i++)
+                        {
+                            if (UMaterialInterface* material = meshComp->GetMaterial(i))
+                            {
+                                group.HISMComp->SetMaterial(i, material);
+                            }
+                        }
+                        group.bIsCopied = true; 
+                    }
+
+                    FTransform exactWorldTransform = meshComp->GetComponentTransform();
+                    group.HISMComp->AddInstance(exactWorldTransform, true);
+                }
+
+                child->Destroy();
+                break; 
+            }
+        }
+    }
+    
+
+    
+    GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.5f, true);
     DuplicateShipForNavigation();
+    
 }
 
 void AShip::Fall(const float DeltaTime) 
 {
 	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-	AddActorWorldOffset(FallOffset, true);
+    RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
 }
 
 void AShip::DuplicateShipForNavigation()
@@ -48,9 +141,7 @@ void AShip::DuplicateShipForNavigation()
     // Check if a NavMesh is attached to the real ship
     ANavMeshBoundsVolume* navMesh = nullptr;
 
-    TArray<AActor*> attachedActorsOnShip;
-    GetAttachedActors(attachedActorsOnShip);
-    for (AActor* child : attachedActorsOnShip)
+    for (AActor* child : ActorsOnShip)
     {
         if (!child) continue;
         // Check if the child is a nav mesh 
@@ -65,6 +156,8 @@ void AShip::DuplicateShipForNavigation()
             // Give the enemy the real ship and the fake ship
             enemy->RealShip = this; 
             enemy->HiddenShip = hiddenShipParent; 
+            EnemiesOnShip.Add(enemy);
+            //enemy->SetEnabledEnemy(false);
             continue;
         }
         
@@ -115,6 +208,84 @@ void AShip::DuplicateShipForNavigation()
     else
     {
         UE_LOG(EnemyAILog, Error, TEXT("HEY no NavMesh found on Ship: %s !!!!!!!!!!"), *GetName());    
+    }
+    // disable ship as default 
+    SetShipActive(false);
+}
+
+void AShip::CheckPlayerBox()
+{
+    if (APawn* player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
+    { 
+        bool bIsInsideNow = ActivationBox->Bounds.GetBox().IsInsideOrOn(player->GetActorLocation());
+
+        if (bIsInsideNow && !bIsPlayerInside)
+        {
+            SetShipActive(true);
+            bIsPlayerInside = true; 
+        }
+        else if (!bIsInsideNow && bIsPlayerInside)
+        {
+            SetShipActive(false);
+            bIsPlayerInside = false;
+        }
+    } 
+}
+
+void AShip::SetShipActive(bool bIsActive)
+{
+    
+    // Stop trace collision when the player is on the ship 
+    TraceCollisionBox->SetCollisionEnabled(bIsActive ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryOnly);
+
+    for (AEnemyBase* enemy : EnemiesOnShip)
+    {
+        if (IsValid(enemy))
+        {
+            enemy->SetEnabledEnemy(bIsActive);
+        }
+    }
+    for (FHISMGroup& group : ActorsHISMOnShip)
+    {
+        if (group.HISMComp)
+        {
+            if (bIsActive)
+            {
+                group.HISMComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+            }
+            else
+            {
+                group.HISMComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            }
+        }
+    }
+    
+    for (AActor* child : ActorsOnShip)
+    {
+        if (IsValid(child))
+        {
+            if (ActorsIgnored.Contains(child))
+            {
+                continue; 
+            }
+            child->SetActorEnableCollision(bIsActive);
+            child->SetActorTickEnabled(bIsActive);
+            TArray<ULightComponent*> lightComponents;
+            child->GetComponents(lightComponents);
+
+            for (ULightComponent* light : lightComponents)
+            {
+                if (IsValid(light))
+                {
+                    light->SetVisibility(bIsActive);
+                }
+            }
+            if (GEngine)
+            {
+                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("enabledldd ISS : %s"), *child->GetName()));
+            }
+        }
+        
     }
 }
 
