@@ -4,6 +4,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	255568847	GrappleReelInMiss			\Default Work Unit\Weapons\Grapple\GrappleReelInMiss	
 	317696810	ONePIeceCollectedDialogue			\Default Work Unit\VA\ONePIeceCollectedDialogue	
 	337406793	PlayerDamage			\Default Work Unit\Player\PlayerDamage	
+	372825398	HealthStabilize			\Default Work Unit\Player\HealthStabilize	
 	483409990	GrapplingHook			\Default Work Unit\Weapons\Grapple\GrapplingHook	
 	607254338	BlunderbussLight			\Default Work Unit\Weapons\Blunderbuss\BlunderbussLight	
 	735743455	Goku			\Default Work Unit\MemeEvents\Goku	
@@ -22,6 +23,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1748804309	PlayerStepMetal			\Default Work Unit\Player\Steps\PlayerStepMetal	
 	1911574110	AverageShot			\Default Work Unit\Weapons\EnemyWeapon\AverageShot	
 	1924096561	AdditionalPieceCollected			\Default Work Unit\VA\AdditionalPieceCollected	
+	1924267063	HealthLow			\Default Work Unit\Player\HealthLow	
 	2113341929	AverageEnemyDamage			\Default Work Unit\VA\AverageEnemyDamage	
 	2283933872	SwingEnemyDamage			\Default Work Unit\VA\SwingEnemyDamage	
 	2298039058	MoveStart			\Default Work Unit\Player\MoveStart	

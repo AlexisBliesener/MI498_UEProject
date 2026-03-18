@@ -81,6 +81,32 @@
 						</Bus>
 						<Bus Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}"/>
 					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="LowHealthState" ID="{92FA54AE-E85C-41E0-B5C6-5CED93822BFA}"/>
+								<StateGroupInfo Name="" ID="{9ADF4479-0F40-4CB4-9708-5342DE83189B}" ShortID="823448094"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Yes" ID="{0CE95CEF-AC50-4079-A62E-17E68380BC76}"/>
+								<CustomState Name="" ID="{0F957F95-995C-4B16-AE77-F568E3374730}" ShortID="979490393">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16" Value="60"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="None" ID="{D5D37433-17EE-4A30-9E97-B486E6F3D578}"/>
+								<CustomState Name="" ID="{4F4EAC67-EF8C-492C-85F4-F9173C06A74E}" ShortID="156014367"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
+								<CustomState Name="" ID="{CDA67D0C-DA84-4A33-BBDE-BC30E770C99B}" ShortID="995055381"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 					<ObjectLists>
 						<ObjectList Name="Effects">
 							<EffectSlot Name="" ID="{64450706-093A-4F9F-B4A4-8C583A33E36B}" ShortID="165482155">
@@ -89,50 +115,23 @@
 										<ObjectRef Name="DialogueMeter" ID="{B6DB0502-556E-49C9-8ADD-FEFD7E8FD00C}" WorkUnitID="{6F7604A2-2A30-4B2D-A39B-F223E2EC5D4E}"/>
 									</Reference>
 								</ReferenceList>
+								<StateInfo>
+									<CustomStateList>
+										<CustomState>
+											<StateRef Name="Yes" ID="{0CE95CEF-AC50-4079-A62E-17E68380BC76}"/>
+											<CustomState Name="" ID="{02B56659-1FA2-4AED-AD1F-E620D58CFB6A}" ShortID="285311987"/>
+										</CustomState>
+										<CustomState>
+											<StateRef Name="None" ID="{D5D37433-17EE-4A30-9E97-B486E6F3D578}"/>
+											<CustomState Name="" ID="{057C49BA-CBE8-450A-8170-E51C36274143}" ShortID="677668778"/>
+										</CustomState>
+										<CustomState>
+											<StateRef Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
+											<CustomState Name="" ID="{3793B0EE-54E9-4F7E-947F-48BDB93D3375}" ShortID="335666835"/>
+										</CustomState>
+									</CustomStateList>
+								</StateInfo>
 							</EffectSlot>
-						</ObjectList>
-						<ObjectList Name="RTPC">
-							<RTPC Name="" ID="{B82335DD-7025-4C68-BFA8-10365FDB4B10}" ShortID="608352387">
-								<PropertyList>
-									<Property Name="PropertyName" Type="string" Value="Lowpass"/>
-								</PropertyList>
-								<ReferenceList>
-									<Reference Name="ControlInput">
-										<ObjectRef Name="HPValue" ID="{EC028FB9-F690-40EB-9590-53FA988AD2D3}" WorkUnitID="{77BEE622-1575-46BF-9780-FD4792159506}"/>
-									</Reference>
-									<Reference Name="Curve">
-										<Custom>
-											<Curve Name="" ID="{367A8D55-BDF3-4E60-9EE8-35E9B8A88E05}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>75</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>19.86644</XPos>
-														<YPos>75</YPos>
-														<Flags>0</Flags>
-													</Point>
-													<Point>
-														<XPos>20.36728</XPos>
-														<YPos>0</YPos>
-														<Flags>0</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>0</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</Custom>
-									</Reference>
-								</ReferenceList>
-							</RTPC>
 						</ObjectList>
 					</ObjectLists>
 				</Bus>

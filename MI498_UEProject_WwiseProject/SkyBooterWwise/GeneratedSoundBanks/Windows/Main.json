@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{B773D01C-5968-90FB-9A58-CBD6B87730A6}",
+    "Hash": "{77FB2524-574E-2F20-D2D5-812324C6DBE3}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -2174,6 +2174,46 @@
       ]
      },
      {
+      "Id": "1924267063",
+      "Name": "HealthLow",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\HealthLow",
+      "GUID": "{4E20F8C8-6355-46BA-A9BD-B1DB85A3C433}",
+      "Color": "13",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "ActionSetState": [
+       {
+        "GroupId": "76065630",
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\Yes",
+        "GUID": "{0CE95CEF-AC50-4079-A62E-17E68380BC76}"
+       }
+      ]
+     },
+     {
+      "Id": "372825398",
+      "Name": "HealthStabilize",
+      "ObjectPath": "\\Events\\Default Work Unit\\Player\\HealthStabilize",
+      "GUID": "{8380BA50-F53B-4C60-BCB3-1EE9E589ED40}",
+      "Color": "13",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "ActionSetState": [
+       {
+        "GroupId": "76065630",
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\No",
+        "GUID": "{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"
+       }
+      ]
+     },
+     {
       "Id": "3934973449",
       "Name": "IronMan",
       "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\IronMan",
@@ -2926,6 +2966,32 @@
     ],
     "StateGroups": [
      {
+      "Id": "76065630",
+      "Name": "LowHealthState",
+      "ObjectPath": "\\States\\Default Work Unit\\LowHealthState",
+      "GUID": "{92FA54AE-E85C-41E0-B5C6-5CED93822BFA}",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\None",
+        "GUID": "{D5D37433-17EE-4A30-9E97-B486E6F3D578}"
+       },
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\Yes",
+        "GUID": "{0CE95CEF-AC50-4079-A62E-17E68380BC76}"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\No",
+        "GUID": "{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"
+       }
+      ]
+     },
+     {
       "Id": "3940648127",
       "Name": "IsMoving",
       "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving",
@@ -2958,6 +3024,6 @@
     ]
    }
   ],
-  "FileHash": "{DA86E51D-448E-ED9F-492B-658F26FA1A17}"
+  "FileHash": "{8A337794-3744-BBA8-FA91-DA6DCF22AE9E}"
  }
 }

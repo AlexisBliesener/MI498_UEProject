@@ -421,6 +421,34 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="HealthLow" ID="{4E20F8C8-6355-46BA-A9BD-B1DB85A3C433}">
+							<ChildrenList>
+								<Action Name="" ID="{2AA25BCC-D85B-4FD9-8B9E-61C09C34B396}" ShortID="623409975">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Yes" ID="{0CE95CEF-AC50-4079-A62E-17E68380BC76}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="HealthStabilize" ID="{8380BA50-F53B-4C60-BCB3-1EE9E589ED40}">
+							<ChildrenList>
+								<Action Name="" ID="{6CA2882B-EE17-4E8E-A5A5-752F9EFC753F}" ShortID="734808346">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{16397EDE-6014-43D5-A5A4-9556A5AA6E6C}" ShortID="756890054">
