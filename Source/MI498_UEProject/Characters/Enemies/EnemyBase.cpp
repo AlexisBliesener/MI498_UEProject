@@ -296,7 +296,7 @@ void AEnemyBase::UpdateHealthUI() const
 				}
 			}else
 			{
-				//TODO: log widget not foundb ! 
+				UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a valid healthbar widget!!"), *GetName());
 			}
 		}
 		

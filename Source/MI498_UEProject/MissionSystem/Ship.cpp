@@ -38,25 +38,6 @@ void AShip::Tick(float DeltaSeconds)
 	{
 		Fall(DeltaSeconds);
 	}
-    //TODO: DELETE DEBBUUGG!
-    if (APlayerController* playerController =  UGameplayStatics::GetPlayerController(GetWorld(), 0))
-    {
-        if (playerController->WasInputKeyJustPressed(EKeys::F6))
-        {
-
-            for (AActor* child : ActorsOnShip)
-            {
-                if (AEnemyBase* enemy = Cast<AEnemyBase>(child))
-                {
-                    enemy->SetEnabledEnemy(false);
-                    if (GEngine)
-                    {
-                        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("shhip---> %s"), *enemy->GetName()));
-                    }
-                }
-            }
-        }
-    }
 }
 
 void AShip::BeginPlay()
@@ -279,10 +260,6 @@ void AShip::SetShipActive(bool bIsActive)
                 {
                     light->SetVisibility(bIsActive);
                 }
-            }
-            if (GEngine)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("enabledldd ISS : %s"), *child->GetName()));
             }
         }
         
