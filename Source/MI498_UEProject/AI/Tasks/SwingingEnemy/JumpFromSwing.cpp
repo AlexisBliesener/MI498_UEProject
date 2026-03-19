@@ -19,7 +19,21 @@ EStateTreeRunStatus FJumpFromSwing::EnterState(FStateTreeExecutionContext& Conte
 	{
 		return EStateTreeRunStatus::Failed;	
 	}
+	FVector realPos = Data.Result;
+
+	if (Data.Actor->RealShip && Data.Actor->HiddenShip)
+	{
+		float distToFake = FVector::DistSquared(realPos, Data.Actor->HiddenShip->GetActorLocation());
+		float distToReal = FVector::DistSquared(realPos, Data.Actor->RealShip->GetActorLocation());
+
+		// if the point is closer on the fake ship then translate it to the real ship!
+		if (distToFake < distToReal)
+		{
+			FVector localPos = Data.Actor->HiddenShip->GetActorTransform().InverseTransformPosition(realPos);
+			realPos = Data.Actor->RealShip->GetActorTransform().TransformPosition(localPos);
+		}
+	}
 	
-	Data.Actor->DetachAndJumpToGround( Data.Result);
+	Data.Actor->DetachAndJumpToGround( realPos);
 	return EStateTreeRunStatus::Succeeded;
 }

@@ -40,10 +40,28 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
+		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
+		TurnOffLowHealthEffect();
+		
 		OnPlayerDied();
 	}
 	
 	OnPlayerTakeDamage();
+	
+	/// Start low health effect if below threshold
+	if (!bLowHealthHit && CurrentHealth <= MaxHealth * LowHealthPercentage)
+	{
+		bLowHealthHit = true;
+		TurnOnLowHealthEffect();
+		
+		// Turn off low health effect after 4 seconds
+		GetWorld()->GetTimerManager().SetTimer(
+		LowHealthTimer,
+		this,
+		&APlayerCharacter::TurnOffLowHealthEffect,
+		4.0f,
+		false);
+	}
 	
 	return DamageAmount;
 }
@@ -62,6 +80,9 @@ void APlayerCharacter::BeginPlay()
 
 	/// Set Scoring Manager
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
+	
+	// Turn off low health effect when the game starts.. 
+	TurnOffLowHealthEffect();
 }
 
 void APlayerCharacter::Tick(const float DeltaSeconds)
@@ -135,6 +156,16 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	}
 }
 
+void APlayerCharacter::HealCharacter(float HealAmount)
+{
+	Super::HealCharacter(HealAmount);
+	
+	if (CurrentHealth >= MaxHealth * LowHealthPercentage)
+	{
+		bLowHealthHit = false;
+	}
+}
+
 void APlayerCharacter::Jump()
 {
 	Super::Jump();
@@ -142,6 +173,10 @@ void APlayerCharacter::Jump()
 	PlayerAnimation->SetJumped(true);
 }
 
+FGenericTeamId APlayerCharacter::GetGenericTeamId() const
+{
+	return FGenericTeamId(0);
+}
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
 	OnPlayerGrabLedge();

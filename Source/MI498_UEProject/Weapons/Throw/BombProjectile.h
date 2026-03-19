@@ -30,8 +30,16 @@ public:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse,
 			   const FHitResult& Hit);
-protected:
 
+protected:
 	virtual void BeginPlay() override;
+	
+	/// Event for when the bomb is thrown
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnThrown();
+	
+	/// Event for when the bomb explodes
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnExplode();
 
 };

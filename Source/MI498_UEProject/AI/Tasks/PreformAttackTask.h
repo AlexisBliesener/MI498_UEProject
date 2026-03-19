@@ -11,7 +11,7 @@
  * Holds data for the Perform Attack Task.
  */
 USTRUCT(BlueprintType, meta = (DisplayName = "Get Random Location Data"))
-struct FPreformAttackTaskInstanceData
+struct FPreformAttacksTaskInstanceData
 {
 	GENERATED_BODY()
 
@@ -33,6 +33,12 @@ struct FPreformAttackTaskInstanceData
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config", meta = (Context, AllowDerivedTypes="true"))
 	bool bIsSecondaryAttack = false;
+	
+	/**
+	 * Run Forever? this will call perform attack on tick, and it will never trigger a state tree completion  
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config")
+	bool bRunForever = false;
 
 	/**
 	 * Pointer to the target actor used in the task.
@@ -49,7 +55,7 @@ struct MI498_UEPROJECT_API FPreformAttackTask : public FStateTreeTaskCommonBase
 {
 public:
 	GENERATED_BODY()
-	using FInstanceDataType = FPreformAttackTaskInstanceData;
+	using FInstanceDataType = FPreformAttacksTaskInstanceData;
 
 	/**
 	 * Gets the type of instance data used by this task.
@@ -66,4 +72,14 @@ public:
 	 */
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context,
 										   const FStateTreeTransitionResult& Transition) const override;
+	/**
+	 * Executes the task logic during the Tick phase of the StateTree.
+	 * This function is called periodically to update the task behavior as part
+	 * of the StateTree's execution loop.
+	 *
+	 * @param Context The execution context providing necessary runtime data and state.
+	 * @param DeltaTime The amount of time that has elapsed since the last Tick call.
+	 * @return The status of the task after the Tick operation.
+	 */
+	virtual EStateTreeRunStatus Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const override;
 };

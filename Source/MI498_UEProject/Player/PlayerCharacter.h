@@ -1,7 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PlayerAnimation.h"
+#include "GenericTeamAgentInterface.h"
+#include "../Animation/PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
@@ -14,7 +15,7 @@ class UScoringManager;
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
 UCLASS()
-class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase
+class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase, public IGenericTeamAgentInterface
 {
 public:
 	
@@ -29,6 +30,14 @@ public:
 	
 	/// Returns the walk speed of the player
 	int GetMaxWalkSpeed() const {return MaxWalkSpeed;}
+	
+	/// Event that will turn on low health effect in blueprint
+	UFUNCTION(BlueprintImplementableEvent)
+	void TurnOnLowHealthEffect();
+	
+	/// Event that will turn off low health effect in blueprint
+	UFUNCTION(BlueprintImplementableEvent)
+	void TurnOffLowHealthEffect();
 	
 	/// A Blueprintable function that will be called when the player lands on the ground
 	UFUNCTION(BlueprintImplementableEvent)
@@ -68,11 +77,14 @@ public:
 	
 	/// Override of the ACharacter Jump functions
 	virtual void Jump() override;
-
+	// Override of the team id and set it to 0 for the player 
+	virtual FGenericTeamId GetGenericTeamId() const override;
 protected:
 	virtual void BeginPlay() override;
 	
 	virtual void Tick(float DeltaSeconds) override;
+	
+	virtual void HealCharacter(float HealAmount) override;
 	
 	/// Scene component used as the start point for the upper ledge detection trace
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
@@ -178,6 +190,15 @@ private:
 	/// Reference to the players animation controller
 	UPROPERTY()
 	UPlayerAnimation* PlayerAnimation;
+	
+	/// If low health was hit
+	bool bLowHealthHit;
+	
+	/// How low health must be to trigger low health effect in percentage of health
+	float LowHealthPercentage = 0.1f;
+	
+	/// Timer that controls when low health effect will turn off
+	FTimerHandle LowHealthTimer;
 	
 	GENERATED_BODY()
 };
