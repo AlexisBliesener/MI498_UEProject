@@ -60,7 +60,7 @@ public:
 	 */
 	void SetShipActive(bool bIsActive);
 	/// Starts the falling behavior.
-	void StartFalling() { bFalling = true; }
+	void StartFalling();
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    

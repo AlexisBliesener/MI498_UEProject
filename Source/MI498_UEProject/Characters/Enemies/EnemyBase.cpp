@@ -121,13 +121,15 @@ void AEnemyBase::BeginPlay()
 	}
 	
     GridSizeEQS = AttackStartDistance - 300.f;
-	
-	CameraManager = UGameplayStatics::GetPlayerCameraManager(this, 0);
+
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	
+	UpdateHealthUI();
+	
 	EKillType killType = EKillType::None;
 	if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
 	if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
@@ -195,7 +197,6 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 
 		Destroy();
 	}
-	UpdateHealthUI();
 
 	return DamageAmount;
 }
@@ -328,7 +329,8 @@ void AEnemyBase::ResetShoot()
 
 void AEnemyBase::UpdateHealthUI() const
 {
-	if (HealthBarWidget && CameraManager)
+	APlayerCameraManager* cameraManager = UGameplayStatics::GetPlayerCameraManager(this, 0);
+	if (HealthBarWidget && cameraManager)
 	{
 		if (UUserWidget* widgetObj = HealthBarWidget->GetUserWidgetObject())
 		{
@@ -344,8 +346,14 @@ void AEnemyBase::UpdateHealthUI() const
 			}
 		}
 		
-		FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), CameraManager->GetCameraLocation());
+		FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), cameraManager->GetCameraLocation());
 		HealthBarWidget->SetWorldRotation(lookRotation);
 		HealthBarWidget->SetVisibility(true);
+	}else
+	{
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HealthBarWidget is null!"));
+		}
 	}
 }

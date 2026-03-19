@@ -219,14 +219,7 @@ void AShip::SetShipActive(bool bIsActive)
     
     // Stop trace collision when the player is on the ship 
     TraceCollisionBox->SetCollisionEnabled(bIsActive ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryOnly);
-
-    for (AEnemyBase* enemy : EnemiesOnShip)
-    {
-        if (IsValid(enemy))
-        {
-            enemy->SetEnabledEnemy(bIsActive);
-        }
-    }
+    
     for (FHISMGroup& group : ActorsHISMOnShip)
     {
         if (group.HISMComp)
@@ -264,6 +257,25 @@ void AShip::SetShipActive(bool bIsActive)
             }
         }
         
+    }
+    for (AEnemyBase* enemy : EnemiesOnShip)
+    {
+        if (IsValid(enemy))
+        {
+            enemy->SetEnabledEnemy(bIsActive);
+        }
+    }
+}
+
+void AShip::StartFalling()
+{
+    bFalling = true;
+    if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
+    {
+        if (!navSys->IsNavigationBuildingLocked(1))
+        {
+            navSys->AddNavigationBuildLock(1);
+        }
     }
 }
 

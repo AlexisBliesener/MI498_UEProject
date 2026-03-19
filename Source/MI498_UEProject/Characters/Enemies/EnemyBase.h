@@ -211,9 +211,6 @@ private:
 	bool bCanShoot = true;
 	/// Timer used to manage the cooldown period between enemy shots
 	FTimerHandle ShootTimer;
-	/// Cache the camera manager to make the health bar to face the player 
-	UPROPERTY()
-	APlayerCameraManager* CameraManager;
 	/**
 	 * Resets the shooting ability of the enemy.
 	 */
