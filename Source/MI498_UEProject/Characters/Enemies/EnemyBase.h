@@ -3,10 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/WidgetComponent.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "Camera/PlayerCameraManager.h"
 #include "EnemyBase.generated.h"
 
+class UStateTree;
 class AWeaponBase;
 DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 
@@ -134,7 +137,59 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDeath();
 	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
+	/**
+	 * Enable/disable the AI system/Collision and character movement for the enemy 
+	 * @param bEnabled if true, it will activate the enemy 
+	 */
+	void SetEnabledEnemy(bool bEnabled);
 protected:
+	/// Reference for the health bar widget component 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Health")
+	UWidgetComponent* HealthBarWidget;
+	/// This should match exactly the widget name! 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default|Dev")
+	FName HealthBarWidgetName = TEXT("EnemyHealthBar");
+	/**
+	 * The VFX when the enemy gets hit by a blunderbuss
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitBlunderbussVFX;
+	/**
+	 * The VFX when the enemy gets hit by a sword
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitSwordVFX;
+	/**
+	 * The VFX when the enemy gets hit by a harpoongun
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	UParticleSystem* HitHarpoonGunVFX;
+	/**
+	 * The VFX when the enemy dies
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Death")
+	UParticleSystem* DeathVFX;
+	/**
+	 * How big the hit Blunderbuss VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitBlunderbussVFXScale = FVector(0.2f, 0.2f, 0.2f);
+	/**
+	 * How big the hit sword VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitSwordVFXScale = FVector(0.2f, 0.2f, 0.2f);
+	/**
+	 * How big the hit HarpoonGun VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Hit")
+	FVector HitHarpoonGunVFXScale = FVector(0.2f, 0.2f, 0.2f);
+
+	/**
+	 * How big the death VFX should be
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Death")
+	FVector DeathVFXScale = FVector(0.5f, 0.5f, 0.5f);
 	virtual void BeginPlay() override;
 	/**
 	 * Applies damage to the enemy and handles its death if health reaches zero.
@@ -160,4 +215,10 @@ private:
 	 * Resets the shooting ability of the enemy.
 	 */
 	void ResetShoot();
+	
+	/**
+	 * This is called on damaged, it will update the value of the health bar and show it if it was invisible,
+	 * and it will face the player   
+	 */
+	void UpdateHealthUI() const;
 };

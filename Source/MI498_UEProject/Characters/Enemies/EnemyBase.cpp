@@ -4,7 +4,10 @@
 #include "EnemyBase.h"
 
 #include "Components/CapsuleComponent.h"
+#include "Components/ProgressBar.h"
+#include "Engine/DamageEvents.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
@@ -15,6 +18,7 @@
 #include "MI498_UEProject/Weapons/HarpoonGun/Harpoon.h"
 #include "MI498_UEProject/Weapons/Sword/Sword.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISense_Sight.h"
 #if WITH_EDITOR
 #include "DrawDebugHelpers.h"
@@ -29,6 +33,9 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
 	StimuliSourceComponent->RegisterWithPerceptionSystem();
 
+	HealthBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
+	HealthBarWidget->SetupAttachment(RootComponent);
+	HealthBarWidget->SetVisibility(false);
 }
 
 
@@ -37,6 +44,53 @@ void AEnemyBase::GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotati
 	OutLocation = GetActorLocation();
 	OutLocation.Z += EyeHeightOffset; 
 	OutRotation = GetActorRotation();
+}
+
+void AEnemyBase::SetEnabledEnemy(bool bEnabled)
+{
+	
+	SetActorEnableCollision(bEnabled);
+    
+	if (IsValid(GetCharacterMovement()))
+	{
+		GetCharacterMovement()->SetComponentTickEnabled(bEnabled);
+	}
+    
+	if (IsValid(CurrentWeapon))
+	{
+		CurrentWeapon->SetActorTickEnabled(bEnabled);
+	}
+    
+	AEnemyAIController* aiController = Cast<AEnemyAIController>(GetController());
+	if (IsValid(aiController))
+	{
+		aiController->SetActorTickEnabled(bEnabled);
+       
+		UStateTreeEnemyComponent* stateTreeComp = aiController->GetStateTreeAIComponent();
+		if (IsValid(stateTreeComp))
+		{
+			if (bEnabled)
+			{
+				stateTreeComp->StartStateTree(GetStateTree());
+			}
+			else
+			{
+				stateTreeComp->StopStateTree();
+			}
+		}
+       
+		UAIPerceptionComponent* perceptionComp = aiController->GetPerceptionComponent();
+		if (IsValid(perceptionComp))
+		{
+			perceptionComp->SetActive(bEnabled);
+		}
+	}
+    
+	UAIPerceptionStimuliSourceComponent* stimuliComp = FindComponentByClass<UAIPerceptionStimuliSourceComponent>();
+	if (IsValid(stimuliComp))
+	{
+		stimuliComp->SetActive(bEnabled);
+	}
 }
 
 void AEnemyBase::BeginPlay()
@@ -67,12 +121,59 @@ void AEnemyBase::BeginPlay()
 	}
 	
     GridSizeEQS = AttackStartDistance - 300.f;
+
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
+	UpdateHealthUI();
+	
+	EKillType killType = EKillType::None;
+	if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
+	if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
+	if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
+	if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::Barrel;
+	UParticleSystem* hitVFX;
+	FVector hitVFXScale;
+	switch (killType)
+	{
+		case EKillType::Blunderbuss:
+			hitVFX = HitBlunderbussVFX;
+			hitVFXScale = HitBlunderbussVFXScale;
+			break;
+		case EKillType::Sword:
+			hitVFX = HitSwordVFX;
+			hitVFXScale = HitSwordVFXScale;
+			break;
+		case EKillType::HarpoonGun:
+			hitVFX = HitHarpoonGunVFX;
+			hitVFXScale = HitHarpoonGunVFXScale;
+			break;
+		default: 
+			hitVFX = HitSwordVFX;
+			hitVFXScale = HitSwordVFXScale;
+			break;
+	}
+	
+	if (hitVFX)
+	{
+		FVector vfxLocation = GetActorLocation(); 
+		FRotator vfxRotation = FRotator::ZeroRotator;
+
+		if (DamageCauser)
+		{
+			vfxRotation = UKismetMathLibrary::FindLookAtRotation(vfxLocation, DamageCauser->GetActorLocation());
+		}
+		else if (DamageEvent.IsOfType(FPointDamageEvent::ClassID))
+		{
+			const FPointDamageEvent* pointDamageEvent = static_cast<const FPointDamageEvent*>(&DamageEvent);
+			vfxRotation = UKismetMathLibrary::MakeRotFromX(pointDamageEvent->HitInfo.ImpactNormal);
+		}
+
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitVFX, vfxLocation, vfxRotation, hitVFXScale);
+	}
 	OnTakeDamage();
 	
 	if (CurrentHealth <= 0.f)
@@ -81,11 +182,6 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
-		EKillType killType = EKillType::None;
-		if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
-		if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
-		if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
-		if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::Barrel;
 
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
 		
@@ -170,6 +266,11 @@ void AEnemyBase::Die()
 {
 	Super::Die();
 	
+	if (DeathVFX)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DeathVFX, GetActorLocation(), FRotator::ZeroRotator, DeathVFXScale);
+	}
+	
 	float randomFloat = UKismetMathLibrary::RandomFloatInRange(0.0f, 100.0f);
 
 	if (randomFloat <= PercentChanceOfHealthDrop && HealthItemClass)
@@ -224,4 +325,35 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 void AEnemyBase::ResetShoot()
 {
 	bCanShoot = true;
+}
+
+void AEnemyBase::UpdateHealthUI() const
+{
+	APlayerCameraManager* cameraManager = UGameplayStatics::GetPlayerCameraManager(this, 0);
+	if (HealthBarWidget && cameraManager)
+	{
+		if (UUserWidget* widgetObj = HealthBarWidget->GetUserWidgetObject())
+		{
+			if (UWidget* foundWidget = widgetObj->GetWidgetFromName(HealthBarWidgetName))
+			{
+				if (UProgressBar* healthProgressBar = Cast<UProgressBar>(foundWidget))
+				{
+					healthProgressBar->SetPercent(CurrentHealth / MaxHealth);
+				}
+			}else
+			{
+				UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s doesn't have a valid healthbar widget!!"), *GetName());
+			}
+		}
+		
+		FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), cameraManager->GetCameraLocation());
+		HealthBarWidget->SetWorldRotation(lookRotation);
+		HealthBarWidget->SetVisibility(true);
+	}else
+	{
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HealthBarWidget is null!"));
+		}
+	}
 }

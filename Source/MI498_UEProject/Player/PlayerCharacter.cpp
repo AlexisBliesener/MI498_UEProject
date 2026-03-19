@@ -57,10 +57,8 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		// Turn off low health effect after 4 seconds
 		GetWorld()->GetTimerManager().SetTimer(
 		LowHealthTimer,
-		FTimerDelegate::CreateLambda([this]()
-		{
-			TurnOffLowHealthEffect();
-		}),
+		this,
+		&APlayerCharacter::TurnOffLowHealthEffect,
 		4.0f,
 		false);
 	}
@@ -82,6 +80,9 @@ void APlayerCharacter::BeginPlay()
 
 	/// Set Scoring Manager
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
+	
+	// Turn off low health effect when the game starts.. 
+	TurnOffLowHealthEffect();
 }
 
 void APlayerCharacter::Tick(const float DeltaSeconds)
