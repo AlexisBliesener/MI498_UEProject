@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "Sword.generated.h"
 
+class UNiagaraSystem;
 /// Concrete weapon class representing a Sword
 /// Inherits from WeaponBase
 UCLASS()
@@ -52,9 +53,19 @@ public:
 	/// Amount of damage applied to actors hit during the dash
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int DashDamage = 6;
+	
+	/// Strength of knockback in forward and upward direction added to an enemy when hit
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FVector2D EnemyKnockbackForce = FVector2D(800, 500);
+	
+	/// The vfx that plays when the sword is swung
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UNiagaraSystem* SlashVFX;
 
 protected:
 	virtual void Tick(float DeltaSeconds) override;
+	
+	virtual void BeginPlay() override;
 
 	/// Current remaining dash charges.
 	UPROPERTY(BlueprintReadOnly)
@@ -95,7 +106,7 @@ private:
 	bool bCanUseSecondary = true;
 	
 	/// Time window (in seconds) before combo resets
-	float ComboResetTime = 0.6f;
+	float ComboResetTime = 0.1;
 	
 	/// Whether a dash reload timer is currently running.
 	bool bReloadingSecondary = false;
@@ -111,7 +122,7 @@ private:
 
 	/// Time when the dash hitbox was activated
 	float SwordDashHitboxStartTime = 0.f;
-
+	
 	/// Tracks actors already hit during the current dash
 	/// Prevents hitting the same actor multiple times
 	UPROPERTY()

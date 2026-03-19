@@ -8,9 +8,7 @@ public class MI498_UEProject : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "CableComponent", "AIModule", "GameplayStateTreeModule", "StateTreeModule", "NavigationSystem", "GameplayTags", "UMG" });
-
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "CableComponent", "AIModule", "GameplayStateTreeModule", "StateTreeModule", "NavigationSystem", "GameplayTags",  "Niagara" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

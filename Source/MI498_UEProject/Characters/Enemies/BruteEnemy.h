@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MI498_UEProject/Animation/EnemyAnimation.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "BruteEnemy.generated.h"
 
@@ -16,5 +17,14 @@ class MI498_UEPROJECT_API ABruteEnemy : public AEnemyBase
 public:
 	// Sets default values for this character's properties
 	ABruteEnemy(const FObjectInitializer& ObjectInitializer);
+	
+protected:
+	virtual void Tick(float DeltaSeconds) override;
+	virtual void BeginPlay() override;
+	
+private:
+	/// This enemies animation script
+	UPROPERTY()
+	UEnemyAnimation* AnimationScript = nullptr;
 
 };

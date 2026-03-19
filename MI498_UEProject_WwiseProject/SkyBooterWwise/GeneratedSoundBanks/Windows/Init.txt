@@ -1,8 +1,12 @@
 State Group	ID	Name			Wwise Object Path	Notes
+	76065630	LowHealthState			\Default Work Unit\LowHealthState	
 	100949179	IsSprinting			\Default Work Unit\PlayerStates\IsSprinting	
 	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
 
 State	ID	Name	State Group			Notes
+	748895195	None	LowHealthState			
+	979470758	Yes	LowHealthState			
+	1668749452	No	LowHealthState			
 	748895195	None	IsSprinting			
 	979470758	Yes	IsSprinting			
 	1668749452	No	IsSprinting			
@@ -12,7 +16,6 @@ State	ID	Name	State Group			Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	457444899	Combat_Effect			\Default Work Unit\Combat_Effect	
-	1440535996	HPValue			\Default Work Unit\HPValue	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	309504875	DialogueBus			\Default Work Unit\Main Audio Bus\DialogueBus	

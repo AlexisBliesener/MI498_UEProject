@@ -167,8 +167,18 @@ void AHarpoonGun::Tick(float DeltaSeconds)
 
 void AHarpoonGun::OnWeaponSwitched()
 {
-	if (bUsingADS && !Cast<AHarpoonGun>(PlayerCharacter->GetWeaponManager()->GetCurrentWeapon().GetObject()))
+	/// Check if the currently equipped weapon is still the harpoon gun
+	AHarpoonGun* reference = Cast<AHarpoonGun>(PlayerCharacter->GetWeaponManager()->GetCurrentWeapon().GetObject());
+
+	/// If the player was aiming down sights but the harpoon gun is no longer equipped stop ADS 
+	if (bUsingADS && reference == nullptr)
 	{
 		SecondaryAttackHoldEnd(GetInstigatorController(), nullptr);
+	}
+	
+	/// If a harpoon projectile exists, update which socket its cable attaches to
+	if (CurrentHarpoon != nullptr)
+	{
+		CurrentHarpoon->ChangeSocketAttachment(reference != nullptr);
 	}
 }

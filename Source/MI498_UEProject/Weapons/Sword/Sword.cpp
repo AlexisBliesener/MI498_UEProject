@@ -1,28 +1,23 @@
 #include "Sword.h"
-
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
 ASword::ASword()
 {
 	WeaponType = EWeaponType::Sword;
-	ComboResetTime = ReloadTime + 0.1f;
+	ComboResetTime = ReloadTime - 0.05f;
+	CurrentAmmo = 1;
 }
 
 void ASword::PrimaryAttack(AController* Controller, AActor* Target)
 {
-	/// Check if there is enough ammo to perform the primary attack
-	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
-	{
-		return;
-	}
-	CurrentAmmo -= PrimaryAttackNeededAmmo;
-
-	Super::PrimaryAttack(Controller);
-
-	SwingSword(Controller, Target);
+	/// No functionality
 }
 
 void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
@@ -33,7 +28,6 @@ void ASword::PrimaryAttackHold(AController* Controller, AActor* Target)
 		return;
 	}
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
-
 	Super::PrimaryAttackHold(Controller, Target);
 
 	SwingSword(Controller, Target);
@@ -80,7 +74,7 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 		// Add invincibility 
 		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
 	}
-	
+
 	// Deal Damage
 	bSwordDashHitboxActive = true;
 	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
@@ -107,7 +101,7 @@ void ASword::Tick(float DeltaSeconds)
 				false);
 		}
 	}
-	
+
 	/// Activate dash hitbox if necessary
 	if (bSwordDashHitboxActive)
 	{
@@ -121,6 +115,13 @@ void ASword::Tick(float DeltaSeconds)
 	}
 }
 
+void ASword::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	bFirstAttackInSequence = true;
+}
+
 void ASword::DashHitbox()
 {
 	/// Array to store all hit results from the sweep
@@ -128,7 +129,7 @@ void ASword::DashHitbox()
 
 	/// Get the player controller that owns this weapon
 	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
-	
+
 	/// Ignore player and self collision
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
@@ -170,11 +171,31 @@ void ASword::DashHitbox()
 
 		/// Add actor to the list so it can't be hit again during the same dash
 		DashHitActors.Add(actor);
-		
+
 		/// If the actor is an exploding barrel, trigger its explosion
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(actor))
 		{
 			barrel->Explode();
+		}
+
+		/// Calculate Knockback Direction
+		FVector KnockbackDir = actor->GetActorLocation() - GetOwner()->GetActorLocation();
+		if (KnockbackDir.Z < 0)
+		{
+			KnockbackDir.Z = 0;
+		}
+		KnockbackDir.Normalize();
+
+		/// Apply knockback to Character
+		if (AEnemyBase* HitEnemy = Cast<AEnemyBase>(actor))
+		{
+			if (AController* SolCon = HitEnemy->GetController())
+			{
+				SolCon->StopMovement();
+			}
+			// Apply the physical launch
+			HitEnemy->LaunchCharacter(
+				(KnockbackDir * EnemyKnockbackForce.X) + FVector::UpVector * EnemyKnockbackForce.Y, true, true);
 		}
 
 		/// Apply damage to the actor that was hit
@@ -198,15 +219,70 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 		&ASword::ResetCombo,
 		ComboResetTime,
 		false);
+	
+	bool cacheSwingDirection = bFirstAttackInSequence;
+	bFirstAttackInSequence = !bFirstAttackInSequence;
 
 	/// Get the player camera location and rotation for aiming
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	Controller->GetPlayerViewPoint(cameraLocation, cameraRotation);
 
+	if (SlashVFX)
+	{
+		/// Offset where the slash effect appears relative to the camera
+		FVector spawnOffset = FVector(50.f, 0.f, -20.f);
+
+		/// Scale of the slash visual effect
+		FVector spawnScale = FVector(0.5f, 0.5f, 1.f);
+
+		/// Rotation offset used to orient the slash effect
+		FRotator slashOffset;
+
+		/// Flip the slash direction depending on swing order
+		if (cacheSwingDirection)
+		{
+			slashOffset = FRotator(-180.f, 0.f, 30.f);
+		}
+		else
+		{
+			slashOffset = FRotator(0.f, 180.f, -30.f);
+		}
+
+		/// Get the owning character
+		ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner());
+
+		/// Camera used as the attachment point for the VFX
+		UCameraComponent* Camera = nullptr;
+
+		/// Find the camera component on the character
+		if (CharacterOwner)
+		{
+			Camera = CharacterOwner->FindComponentByClass<UCameraComponent>();
+		}
+	
+		/// Spawn the slash Niagara system attached to the camera
+		UNiagaraComponent* NiagaraComp =
+			UNiagaraFunctionLibrary::SpawnSystemAttached(
+				SlashVFX,
+				Camera,
+				NAME_None,
+				spawnOffset,
+				slashOffset,
+				EAttachLocation::KeepRelativeOffset,
+				true
+			);
+
+		/// Apply scale to the Niagara effect 
+		if (NiagaraComp)
+		{
+			NiagaraComp->SetRelativeScale3D(spawnScale);
+		}
+	}
+	
 	/// Prepare a hit result to store the outcome of the line trace
 	TArray<FHitResult> hitResults;
-	
+
 	/// Setup collision parameters for the trace
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
@@ -267,12 +343,12 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			}
 		}
 	}
-	
+
 	/// Apply Effects to all Unique Hit Actors
 	for (AActor* hitActor : damagedActors)
 	{
 		if (!hitActor) continue;
-		
+
 		// Exploding barrel
 		if (AExplodingBarrel* barrel = Cast<AExplodingBarrel>(hitActor))
 		{
@@ -288,8 +364,6 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			nullptr
 		);
 	}
-
-	bFirstAttackInSequence = !bFirstAttackInSequence;
 }
 
 void ASword::ReloadDashes()
