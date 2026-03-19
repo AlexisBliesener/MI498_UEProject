@@ -14,9 +14,7 @@ AShip::AShip()
 {
 	PrimaryActorTick.bCanEverTick = true;
     
-    USceneComponent* SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
-    
-    RootComponent = SceneComponent;
+    RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));;
     ActivationBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ActivationBox"));
     ActivationBox->SetupAttachment(RootComponent);
     ActivationBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
