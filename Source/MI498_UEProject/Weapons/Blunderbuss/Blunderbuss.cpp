@@ -91,7 +91,7 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool Primary)
 {
 	/// Ensure we have a valid player controller before applying recoil
-	if (!PlayerController) return;
+	if (!IsValid(PlayerController)) return;
 
 	/// Reset recoil tracking variables at the start of each shot
 	CurrentRecoilStep = 0;
