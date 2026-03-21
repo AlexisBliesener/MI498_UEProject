@@ -12,6 +12,7 @@
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
+#include "MI498_UEProject/MissionSystem/SideMissionController.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
@@ -130,7 +131,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	
 	UpdateHealthUI();
 	
-	EKillType killType = EKillType::None;
+	EKillType killType = EKillType::KillFloor;
 	if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
 	if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
 	if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;
@@ -182,8 +183,11 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
-
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
+		
+		/// Inform side mission controller of the kill
+		ASideMissionController* SideMissionController = ASideMissionController::Get(this);
+		SideMissionController->KilledEnemy(killType);
 		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))

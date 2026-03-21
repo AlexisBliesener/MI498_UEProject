@@ -27,7 +27,8 @@ enum class EKillType : uint8
 	Blunderbuss UMETA(DisplayName="Blunderbuss"),
 	Sword UMETA(DisplayName="Sword"),
 	HarpoonGun UMETA(DisplayName="HarpoonGun"),
-	Barrel UMETA(DisplayName="Barrel")
+	Barrel UMETA(DisplayName="Barrel"),
+	KillFloor UMETA(DisplayName="KillFloor"),
 };
 
 /// Scoring Manager
@@ -64,6 +65,10 @@ public:
 	/// Sets airborne state (used for airtime scoring & midair bonuses)
 	void SetInAir(bool val) { bInAir = val; }
 	
+	/// Adds score for completed side mission
+	UFUNCTION(BlueprintCallable)
+	void AddSideMissionScore(int Val) { Score += Val; SideMissionVal += Val; }
+	
 	/// Generic score adder accessible from Blueprint
 	UFUNCTION(BlueprintCallable)
 	void AddLootScore(const int Amount) { Score += Amount * GlobalScoreMult;  LootPickupVal += Amount * GlobalScoreMult;}
@@ -81,6 +86,10 @@ public:
 	/// Returns total score earned from successfully escaping / finishing the level
 	UFUNCTION(BlueprintCallable)
 	int GetEscapedVal() const { return EscapedVal; }
+	
+	/// Returns total score earned from side missions
+	UFUNCTION(BlueprintCallable)
+	int GetSideMissionVal() const { return SideMissionVal; }
 
 	/// Returns total score earned from opening the vault
 	UFUNCTION(BlueprintCallable)
@@ -258,6 +267,9 @@ private:
 
 	/// Total score accumulated from collecting bomb pieces
 	int BombPiecesVal = 0;
+	
+	/// Total score accumulated from side missions
+	int SideMissionVal = 0;
 
 	/// Total score gained from vault defense time (per-second vault scoring)
 	int VaultLootVal = 0;

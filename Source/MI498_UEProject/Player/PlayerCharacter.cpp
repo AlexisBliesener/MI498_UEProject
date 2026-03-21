@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "MI498_UEProject/MissionSystem/SideMissionController.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
@@ -127,6 +128,8 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	if (GetCharacterMovement()->IsFalling())
 	{
 		ScoringManager->SetInAir(true);
+		ASideMissionController* SideMissionController = ASideMissionController::Get(this);
+		SideMissionController->InAir();
 	}
 	else
 	{
@@ -242,6 +245,9 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 	Super::Landed(Hit);
 	
 	OnPlayerLanded();
+	
+	ASideMissionController* SideMissionController = ASideMissionController::Get(this);
+	SideMissionController->HitGround();
 }
 
 void APlayerCharacter::UpdateCameraOffset() const
