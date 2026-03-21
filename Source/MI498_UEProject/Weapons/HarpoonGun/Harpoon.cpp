@@ -98,6 +98,17 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	SetActorLocation(Hit.ImpactPoint);
 	bStuck = true;
 	
+	if (PlayerCharacter)
+	{
+		if (USkeletalMeshComponent* Mesh = PlayerCharacter->GetMesh())
+		{
+			if (UPlayerAnimation* Anim = Cast<UPlayerAnimation>(Mesh->GetAnimInstance()))
+			{
+				Anim->SetHarpoonAttached(true);
+			}
+		}
+	}
+	
 	/// If hit an exploding barrel
 	if (OtherActor)
 	{
@@ -206,6 +217,17 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	bFirstSwing = true;
 	bReelingPlayerInLastFrame = false;
 	bSwingingPlayerLastFrame = false;
+	
+	if (PlayerCharacter)
+	{
+		if (USkeletalMeshComponent* Mesh = PlayerCharacter->GetMesh())
+		{
+			if (UPlayerAnimation* Anim = Cast<UPlayerAnimation>(Mesh->GetAnimInstance()))
+			{
+				Anim->SetHarpoonAttached(false);
+			}
+		}
+	}
 
 	// Stop any projectile physics so manual movement takes over
 	ProjectileMovement->StopMovementImmediately();
