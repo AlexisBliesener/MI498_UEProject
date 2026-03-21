@@ -149,6 +149,9 @@ public:
 	 */
 	void SetEnabledEnemy(bool bEnabled);
 protected:
+	
+	/// Fires the primary weapon from blueprint
+	/// Used so the attack animation calls fire at the correct time
 	UFUNCTION(BlueprintCallable)
 	void FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target);
 	
