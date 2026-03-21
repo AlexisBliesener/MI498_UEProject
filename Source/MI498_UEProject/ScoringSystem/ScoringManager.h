@@ -64,6 +64,7 @@ public:
 	/// Sets airborne state (used for airtime scoring & midair bonuses)
 	void SetInAir(bool val) { bInAir = val; }
 	
+	/// Adds score for completed side mission
 	UFUNCTION(BlueprintCallable)
 	void AddSideMissionScore(int Val) { Score += Val; SideMissionVal += Val; }
 	
@@ -85,6 +86,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetEscapedVal() const { return EscapedVal; }
 	
+	/// Returns total score earned from side missions
 	UFUNCTION(BlueprintCallable)
 	int GetSideMissionVal() const { return SideMissionVal; }
 
@@ -265,6 +267,7 @@ private:
 	/// Total score accumulated from collecting bomb pieces
 	int BombPiecesVal = 0;
 	
+	/// Total score accumulated from side missions
 	int SideMissionVal = 0;
 
 	/// Total score gained from vault defense time (per-second vault scoring)

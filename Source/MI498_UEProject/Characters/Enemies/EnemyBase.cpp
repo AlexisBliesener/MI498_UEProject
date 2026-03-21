@@ -183,13 +183,11 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		
 		/// Add to score
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
-
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
 		
+		/// Inform side mission controller of the kill
 		ASideMissionController* SideMissionController = ASideMissionController::Get(this);
-		ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-		bool bIsInAir = PlayerCharacter->GetCharacterMovement()->IsFalling();
-		SideMissionController->KilledEnemy(bIsInAir, killType);
+		SideMissionController->KilledEnemy(killType);
 		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))
