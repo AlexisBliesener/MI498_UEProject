@@ -12,6 +12,7 @@
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/EnemyMovementComponent.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
+#include "MI498_UEProject/MissionSystem/SideMissionController.h"
 #include "MI498_UEProject/Weapons/WeaponBase.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
@@ -184,6 +185,11 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		UScoringManager* ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 
 		ScoringManager->AddKillEnemyScore(EnemyType, killType);
+		
+		ASideMissionController* SideMissionController = ASideMissionController::Get(this);
+		ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
+		bool bIsInAir = PlayerCharacter->GetCharacterMovement()->IsFalling();
+		SideMissionController->KilledEnemy(bIsInAir, killType);
 		
 		// Stop AI
 		if (AAIController* AI = Cast<AAIController>(GetController()))
