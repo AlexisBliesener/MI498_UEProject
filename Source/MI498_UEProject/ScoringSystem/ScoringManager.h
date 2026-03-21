@@ -27,7 +27,8 @@ enum class EKillType : uint8
 	Blunderbuss UMETA(DisplayName="Blunderbuss"),
 	Sword UMETA(DisplayName="Sword"),
 	HarpoonGun UMETA(DisplayName="HarpoonGun"),
-	Barrel UMETA(DisplayName="Barrel")
+	Barrel UMETA(DisplayName="Barrel"),
+	KillFloor UMETA(DisplayName="KillFloor"),
 };
 
 /// Scoring Manager

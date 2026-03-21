@@ -131,7 +131,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 	
 	UpdateHealthUI();
 	
-	EKillType killType = EKillType::None;
+	EKillType killType = EKillType::KillFloor;
 	if (Cast<ABlunderbuss>(DamageCauser)) killType = EKillType::Blunderbuss;
 	if (Cast<ASword>(DamageCauser)) killType = EKillType::Sword;
 	if (Cast<AHarpoon>(DamageCauser)) killType = EKillType::HarpoonGun;

@@ -73,7 +73,7 @@ void ASideMissionController::KilledEnemy(EKillType KillType)
 	LastKillType = KillType;
 	
 	/// Barrel/environmental kill mission
-	if (KillType == EKillType::Barrel)
+	if (KillType == EKillType::Barrel || KillType == EKillType::KillFloor)
 	{
 		TryUpdateSubMission("SideObj_04", 1);
 	}
