@@ -7,6 +7,7 @@
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 #include "Camera/PlayerCameraManager.h"
+#include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "EnemyBase.generated.h"
 
 class UStateTree;
@@ -136,6 +137,11 @@ public:
 	/// Event for when the enemy dies
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDeath();
+	
+	/// Event for when the enemy does its primary attack
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnPrimaryAttack(AWeaponBase* Weapon, AActor* Target);
+	
 	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
 	/**
 	 * Enable/disable the AI system/Collision and character movement for the enemy 
@@ -143,6 +149,12 @@ public:
 	 */
 	void SetEnabledEnemy(bool bEnabled);
 protected:
+	
+	/// Fires the primary weapon from blueprint
+	/// Used so the attack animation calls fire at the correct time
+	UFUNCTION(BlueprintCallable)
+	void FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target);
+	
 	/// Reference for the health bar widget component 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Health")
 	UWidgetComponent* HealthBarWidget;
