@@ -22,24 +22,29 @@ void AHarpoonGun::PrimaryAttack(AController* Controller, AActor* Target)
 
 	/// Get starting location from the harpoon gun socket
 	FTransform SocketTransform = PlayerCharacter->GetMesh()->GetSocketTransform("HarpoonGunBaseSocket");
-
+	
 	/// Get starting rotation from the camera direction
 	FVector CameraLocation;
 	FRotator CameraRotation;
 	PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
 
+	// Move forward by a small offset
+	FVector SpawnLocation = SocketTransform.GetLocation() + CameraRotation.Vector() * 200.f;
+
 	/// Configure spawn parameters for ownership and instigation
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = PlayerController->GetPawn();
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
+	// Spawn harpoon
 	CurrentHarpoon = GetWorld()->SpawnActor<AHarpoon>(
 		HarpoonBlueprint,
-		SocketTransform.GetLocation(),
+		SpawnLocation,
 		CameraRotation,
 		SpawnParams
 	);
-
+	
 	/// Initialize harpoon properties after spawning
 	CurrentHarpoon->SetRange(Range);
 	CurrentHarpoon->SetHarpoonGun(this);

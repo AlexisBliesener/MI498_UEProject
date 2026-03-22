@@ -24,8 +24,6 @@ AHarpoon::AHarpoon()
 
 	/// Projectile movement for initial harpoon flight
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
-	ProjectileMovement->InitialSpeed = Speed;
-	ProjectileMovement->MaxSpeed = Speed;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
 	ProjectileMovement->ProjectileGravityScale = 0.f;
@@ -74,7 +72,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
                      FVector NormalImpulse, const FHitResult& Hit)
 {
 	/// Ignore further hits if already stuck, invalid actor, or hitting the owning player
-	if (bStuck || !OtherActor || OtherActor->GetUniqueID() == GetOwner()->GetOwner()->GetUniqueID())
+	if (bStuck || !OtherActor || OtherActor->GetUniqueID() == PlayerCharacter->GetUniqueID())
 	{
 		return;
 	}
@@ -84,7 +82,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	
 	/// Set player height variables
 	AttachedPlayerHeight = PlayerCharacter->GetActorLocation().Z;
-	PrevPlayerHeight = 10000000000000000000;
+	PrevPlayerHeight = 10000000000;
 	CurrentPlayerHeight = PlayerCharacter->GetActorLocation().Z;
 
 	/// Stop projectile movement when the harpoon sticks
@@ -157,18 +155,36 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 void AHarpoon::BeginPlay()
 {
 	Super::BeginPlay();
+
 	PlayerCharacter = Cast<APlayerCharacter>(GetOwner()->GetOwner());
 	PlayerCharacterMovementComponent = PlayerCharacter->GetCharacterMovement();
-	
-	/// Do not allow the harpoon to collide with the player
-	if (PlayerCharacter)
+
+	if (PlayerCharacter && PlayerCharacterMovementComponent)
 	{
+		// Ignore collisions with player
 		Collision->IgnoreActorWhenMoving(PlayerCharacter, true);
+
+		// Attach cable to gun
+		CableComponent->bAttachEnd = true;
+		CableComponent->SetAttachEndToComponent(PlayerCharacter->GetMesh(), TEXT("HarpoonGunBaseSocket"));
+		
+		// Use the camera forward vector
+		FVector CameraLocation;
+		FRotator CameraRotation;
+		PlayerCharacter->GetController()->GetPlayerViewPoint(CameraLocation, CameraRotation);
+		FVector FireDirection = CameraRotation.Vector().GetSafeNormal();
+
+		// Add player velocity for momentum
+		FVector InitialVelocity = FireDirection * Speed + PlayerCharacterMovementComponent->Velocity;
+
+		// Set projectile movement
+		ProjectileMovement->Velocity = InitialVelocity;
+		ProjectileMovement->InitialSpeed = InitialVelocity.Size();
+		ProjectileMovement->MaxSpeed = InitialVelocity.Size();
+
+		// Make sure gravity is off
+		ProjectileMovement->ProjectileGravityScale = 0.f;
 	}
-	
-	/// Attach end of the rope to the harpoon gun socket
-	CableComponent->bAttachEnd = true;
-	CableComponent->SetAttachEndToComponent(PlayerCharacter->GetMesh(),TEXT("HarpoonGunBaseSocket"));
 }
 
 void AHarpoon::Tick(float DeltaTime)
