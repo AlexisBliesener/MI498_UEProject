@@ -43,6 +43,18 @@ public:
 	/// Scale applied to the Harpoon Gun weapon bone.
 	UPROPERTY(BlueprintReadOnly)
 	FVector HarpoonGunBoneScale = FVector(0);
+	
+	/// Scale applied to the blunderbuss reload tools bones
+	UPROPERTY(BlueprintReadOnly)
+	FVector BlunderbussReloadToolsScale = FVector(0);
+	
+	/// Sets the blunderbuss reload tools to be visible
+	UFUNCTION(BlueprintCallable)
+	void SetBlunderbussReloadToolsVisible() {BlunderbussReloadToolsScale = FVector(1);}
+	
+	/// Sets the blunderbuss reload tools to be invisible
+	UFUNCTION(BlueprintCallable)
+	void SetBlunderbussReloadToolsInvisible() {BlunderbussReloadToolsScale = FVector(0);}
 
 	/// Updates internal animation state based on the currently equipped weapon.
 	void SetCurrentWeapon(EWeaponType Weapon);
@@ -52,6 +64,9 @@ public:
 
 	/// Sets whether the character has initiated a jump.
 	void SetJumped(const bool Val) { bJumped = Val; }
+	
+	/// Sets if the harpoon is currently attached to something
+	void SetHarpoonAttached(const bool Val) { bHarpoonAttached = Val; }
 
 	/// Sets the look direction of the player for animation movement
 	void SetLookRotation(float Val) { LookRotation = Val; }
@@ -72,6 +87,10 @@ protected:
 	/// True while the character is airborne (falling or jumping).
 	UPROPERTY(BlueprintReadOnly)
 	bool bInAir = false;
+	
+	/// True if the harpoon is currently attached to something
+	UPROPERTY(BlueprintReadOnly)
+	bool bHarpoonAttached = false;
 
 private:
 	/// The weapon the player held previous to current

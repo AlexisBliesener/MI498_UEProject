@@ -292,6 +292,14 @@ UStateTree* AEnemyBase::GetStateTree() const
 	return CurrentStateTree;
 }
 
+void AEnemyBase::FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target)
+{
+	if (IWeaponInterface* WeaponInterface = Cast<IWeaponInterface>(CurrentWeapon))
+	{
+		WeaponInterface->PrimaryAttack(GetController(), Target);
+	}
+}
+ 
 void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 {
 
@@ -310,7 +318,7 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 			Weapon->SecondaryAttack(GetController(), Target);
 		}else
 		{
-			Weapon->PrimaryAttack(GetController(), Target);
+			OnPrimaryAttack(CurrentWeapon, Target);
 		}
 	}
 
