@@ -3,28 +3,39 @@
 
 void UPlayerAnimation::SetCurrentWeapon(EWeaponType Weapon)
 {
+	PrevWeapon = CurrentWeapon;
+	CurrentWeapon = Weapon;
+	
+	GetWorld()->GetTimerManager().ClearTimer(WeaponScaleTimerHandle);
+
+	GetWorld()->GetTimerManager().SetTimer(
+		WeaponScaleTimerHandle,
+		FTimerDelegate::CreateUObject(this, &UPlayerAnimation::ApplyWeaponScale, Weapon),
+		0.2f,
+		false
+	);
+}
+
+void UPlayerAnimation::ApplyWeaponScale(EWeaponType Weapon)
+{
+	// Reset all
+	BlunderbussBoneScale = FVector::ZeroVector;
+	SwordBoneScale = FVector::ZeroVector;
+	HarpoonGunBoneScale = FVector::ZeroVector;
+
+	// Activate the correct one
 	switch (Weapon)
 	{
 	case EWeaponType::Blunderbuss:
 		BlunderbussBoneScale = FVector(1.0f);
-		SwordBoneScale = FVector(0);
-		HarpoonGunBoneScale = FVector(0);
-		PrevWeapon = CurrentWeapon;
-		CurrentWeapon = EWeaponType::Blunderbuss;
 		break;
+
 	case EWeaponType::Sword:
-		BlunderbussBoneScale = FVector(0);
 		SwordBoneScale = FVector(1.0f);
-		HarpoonGunBoneScale = FVector(0);
-		PrevWeapon = CurrentWeapon;
-		CurrentWeapon = EWeaponType::Sword;
 		break;
+
 	case EWeaponType::HarpoonGun:
-		BlunderbussBoneScale = FVector(0);
-		SwordBoneScale = FVector(0);
 		HarpoonGunBoneScale = FVector(1.0f);
-		PrevWeapon = CurrentWeapon;
-		CurrentWeapon = EWeaponType::HarpoonGun;
 		break;
 	}
 }
@@ -61,6 +72,6 @@ EWeaponTransitionMontageToPlay UPlayerAnimation::GetTransitionMontageToPlay()
 		}
 		break;
 	}
-	
+
 	return EWeaponTransitionMontageToPlay::None;
 }

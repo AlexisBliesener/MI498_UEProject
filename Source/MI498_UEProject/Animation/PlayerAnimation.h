@@ -98,6 +98,10 @@ private:
 	
 	/// The weapon the player is currently holding
 	EWeaponType CurrentWeapon = EWeaponType::Blunderbuss;
+	
+	void ApplyWeaponScale(EWeaponType Weapon);
+	
+	FTimerHandle WeaponScaleTimerHandle;
 
 	GENERATED_BODY()
 };
