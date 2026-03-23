@@ -29,6 +29,16 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
+	
+	if (CurrentAmmo == 1)
+	{
+		ReloadTime = OneAmmoReloadTime;
+	}
+	else
+	{
+		ReloadTime = TwoAmmoReloadTime;
+	}
+	
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
 
@@ -52,6 +62,8 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 	{
 		return;
 	}
+	
+	ReloadTime = TwoAmmoReloadTime;
 
 	Super::SecondaryAttack(Controller, Target);
 
@@ -69,6 +81,13 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 		PlayerKnockback(playerController, SecondaryAttackKnockbackForce);
 		ApplyCameraRecoil(playerController, false);
 	}
+}
+
+void ABlunderbuss::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	OneAmmoReloadTime = ReloadTime;
 }
 
 void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int KnockbackForce) const

@@ -32,6 +32,9 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int TwoAmmoReloadTime = 1;
+	
 	/// How much force is applied to the player when firing the weapon in air during the primary attack
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int PrimaryAttackKnockbackForce = 500;
@@ -68,6 +71,7 @@ public:
 	UNiagaraSystem* TracerVFX;
 
 protected:
+	virtual void BeginPlay() override;
 
 private:
 	/// Applies physical knockback and camera recoil to the firing player
@@ -108,6 +112,8 @@ private:
 	/// Total duration of the recoil curve.
 	/// Determined dynamically from the last keyframe.
 	float RecoilTime = 0;
+	
+	float OneAmmoReloadTime = 0.5f;
 	
 	GENERATED_BODY()
 };
