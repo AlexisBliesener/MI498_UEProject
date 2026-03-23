@@ -1,4 +1,6 @@
 #include "Blunderbuss.h"
+
+#include "NiagaraComponent.h"
 #include "../../Player/PlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -196,7 +198,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 
 	/// Track actors hit and the closest hit distance for each
 	TMap<AActor*, float> damagedActors;
-	
+
 	/// Perform multiple box sweeps arranged in a circular grid pattern
 	for (float i = -2; i < 3; i++)
 	{
@@ -228,6 +230,44 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				FCollisionShape::MakeBox(halfSize),
 				traceParams
 			);
+
+
+			if (TracerVFX)
+			{
+				FVector tracerEnd = end;
+
+				if (sliceHits.Num() > 0)
+				{
+					tracerEnd = sliceHits[0].ImpactPoint;
+				}
+
+				APawn* Pawn = Controller ? Controller->GetPawn() : nullptr;
+				if (!Pawn) return;
+
+				ACharacter* PlayerCharacter = Cast<ACharacter>(Pawn);
+				if (!PlayerCharacter) return;
+
+				USkeletalMeshComponent* MeshComp = PlayerCharacter->GetMesh();
+				if (!MeshComp) return;
+
+				UNiagaraComponent* tracer = UNiagaraFunctionLibrary::SpawnSystemAttached(
+					TracerVFX,
+					MeshComp,
+					TEXT("BlunderBussBaseSocket"),
+					FVector::ZeroVector,
+					FRotator::ZeroRotator,
+					EAttachLocation::SnapToTarget,
+					true
+				);
+
+				if (tracer)
+				{
+					const FTransform socketTransform = MeshComp->GetSocketTransform(TEXT("BlunderBussBaseSocket"));
+					FVector startOffset = socketTransform.GetUnitAxis(EAxis::X) * -i * 1.5f + socketTransform.GetUnitAxis(EAxis::Z) * j * 1.5f;
+					tracer->SetVectorParameter(TEXT("Start"), socketTransform.GetLocation() + startOffset);
+					tracer->SetVectorParameter(TEXT("End"), tracerEnd);
+				}
+			}
 
 			/// Process every hit detected in this sweep
 			for (const FHitResult& hit : sliceHits)

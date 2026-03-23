@@ -63,6 +63,9 @@ public:
 	/// The vfx that will be played when the blunderbuss shot hits something
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UNiagaraSystem* HitVFX;
+	
+	UPROPERTY(EditDefaultsOnly)
+	UNiagaraSystem* TracerVFX;
 
 protected:
 
