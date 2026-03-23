@@ -190,6 +190,12 @@ void AHarpoon::BeginPlay()
 void AHarpoon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	/// Return harpoon back to gun if the enemies it is stuck to dies
+	if (bStuckToEnemy && !IsValid(HarpoonedEnemy))
+	{
+		ReturnToPlayer();
+	}
 	
 	/// Vector from player to harpoon
 	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
