@@ -56,48 +56,14 @@ void AShip::BeginPlay()
     }
 
     GetAttachedActors(ActorsOnShip, true, true);
+    // We should duplicate the ship before we convert the actors on the ship to HISM so the navmesh build on the actors before the conversion! 
+    DuplicateShipForNavigation();
     // Start convert the actors to HISM 
-    for (AActor* child : ActorsOnShip)
-    {
-        if (!child) continue;
-
-        for (FHISMGroup& group : ActorsHISMOnShip)
-        {
-            if (group.ActorClass && child->IsA(group.ActorClass))
-            {
-                UStaticMeshComponent* meshComp = child->FindComponentByClass<UStaticMeshComponent>();
-                
-                if (meshComp && group.HISMComp)
-                {
-                    if (!group.bIsCopied && meshComp->GetStaticMesh())
-                    {
-                        group.HISMComp->SetStaticMesh(meshComp->GetStaticMesh());
-                        // Copy the materials only once since they are all the same mesh.... 
-                        int32 numMaterials = meshComp->GetNumMaterials();
-                        for (int32 i = 0; i < numMaterials; i++)
-                        {
-                            if (UMaterialInterface* material = meshComp->GetMaterial(i))
-                            {
-                                group.HISMComp->SetMaterial(i, material);
-                            }
-                        }
-                        group.bIsCopied = true; 
-                    }
-
-                    FTransform exactWorldTransform = meshComp->GetComponentTransform();
-                    group.HISMComp->AddInstance(exactWorldTransform, true);
-                }
-
-                child->Destroy();
-                break; 
-            }
-        }
-    }
+    ConvertSMToHISM();
     
 
     
     GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.5f, true);
-    DuplicateShipForNavigation();
     
 }
 
@@ -212,6 +178,46 @@ void AShip::CheckPlayerBox()
             bIsPlayerInside = false;
         }
     } 
+}
+
+void AShip::ConvertSMToHISM()
+{
+    for (AActor* child : ActorsOnShip)
+    {
+        if (!child) continue;
+
+        for (FHISMGroup& group : ActorsHISMOnShip)
+        {
+            if (group.ActorClass && child->IsA(group.ActorClass))
+            {
+                UStaticMeshComponent* meshComp = child->FindComponentByClass<UStaticMeshComponent>();
+                
+                if (meshComp && group.HISMComp)
+                {
+                    if (!group.bIsCopied && meshComp->GetStaticMesh())
+                    {
+                        group.HISMComp->SetStaticMesh(meshComp->GetStaticMesh());
+                        // Copy the materials only once since they are all the same mesh.... 
+                        int32 numMaterials = meshComp->GetNumMaterials();
+                        for (int32 i = 0; i < numMaterials; i++)
+                        {
+                            if (UMaterialInterface* material = meshComp->GetMaterial(i))
+                            {
+                                group.HISMComp->SetMaterial(i, material);
+                            }
+                        }
+                        group.bIsCopied = true; 
+                    }
+
+                    FTransform exactWorldTransform = meshComp->GetComponentTransform();
+                    group.HISMComp->AddInstance(exactWorldTransform, true);
+                }
+
+                child->Destroy();
+                break; 
+            }
+        }
+    }
 }
 
 void AShip::SetShipActive(bool bIsActive)

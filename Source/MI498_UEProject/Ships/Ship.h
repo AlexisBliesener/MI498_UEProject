@@ -98,4 +98,8 @@ protected:
 private:
 	/// Tracks whether the ship is currently falling.
 	bool bFalling = false;
+	/**
+	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
+	 */
+	void ConvertSMToHISM();
 };
