@@ -99,8 +99,10 @@ private:
 	/// The weapon the player is currently holding
 	EWeaponType CurrentWeapon = EWeaponType::Blunderbuss;
 	
+	/// Applies the change in weapon bone scale
 	void ApplyWeaponScale(EWeaponType Weapon);
 	
+	/// handles delay between weapon bone scaling
 	FTimerHandle WeaponScaleTimerHandle;
 
 	GENERATED_BODY()
