@@ -70,6 +70,10 @@ void ABombKnife::PrimaryAttack(AController* Controller, AActor* Target)
 		bomb->ExplosionRadius = ExplosionRadius;
 		bomb->Collision->IgnoreActorWhenMoving(character, true);
 		bomb->Movement->Velocity = launchVelocity;
+		if (character->RealShip)
+		{
+			bomb->AttachToActor(character->RealShip, FAttachmentTransformRules::KeepWorldTransform);
+		}
 		bomb->Movement->Activate(); // go fly 
 	}
 }

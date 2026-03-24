@@ -81,6 +81,8 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Dev")
 	TSubclassOf<AActor> HealthItemClass;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Default|Dev")
+	bool bIsAttacking = false;
 	/// The type of this enemy used for scoring
 	UPROPERTY(EditAnywhere)
 	EEnemyType EnemyType;

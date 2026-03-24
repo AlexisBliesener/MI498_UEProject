@@ -12,6 +12,10 @@ EStateTreeRunStatus FPreformAttackTask::EnterState(FStateTreeExecutionContext& C
 	
 	// Get the instance data for this task
 	const FPreformAttacksTaskInstanceData& Data = Context.GetInstanceData(*this);
+	if (Data.Actor && Data.Target)
+	{
+		Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+	}
 
 	return EStateTreeRunStatus::Running;
 }
@@ -24,14 +28,17 @@ EStateTreeRunStatus FPreformAttackTask::Tick(FStateTreeExecutionContext& Context
 		return EStateTreeRunStatus::Failed;
 	}
 	
-	// TODO: Create a different task for set foucs!!
 	Data.AIController->SetFocus(Data.Target, EAIFocusPriority::Gameplay);
-	Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
-	
-	if (!Data.bRunForever)
+	if (Data.bWaitUntilAttackIsFinished && Data.Actor->bIsAttacking)
 	{
-		return EStateTreeRunStatus::Succeeded;
+		return EStateTreeRunStatus::Running;
 	}
 	
-	return EStateTreeRunStatus::Running;
+	if (Data.bRunForever)
+	{
+		Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+		return EStateTreeRunStatus::Running;
+	}
+	
+	return EStateTreeRunStatus::Succeeded;
 }

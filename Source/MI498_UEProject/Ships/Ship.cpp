@@ -56,56 +56,22 @@ void AShip::BeginPlay()
     }
 
     GetAttachedActors(ActorsOnShip, true, true);
+    // We should duplicate the ship before we convert the actors on the ship to HISM so the navmesh build on the actors before the conversion! 
+    DuplicateShipForNavigation();
     // Start convert the actors to HISM 
-    for (AActor* child : ActorsOnShip)
-    {
-        if (!child) continue;
-
-        for (FHISMGroup& group : ActorsHISMOnShip)
-        {
-            if (group.ActorClass && child->IsA(group.ActorClass))
-            {
-                UStaticMeshComponent* meshComp = child->FindComponentByClass<UStaticMeshComponent>();
-                
-                if (meshComp && group.HISMComp)
-                {
-                    if (!group.bIsCopied && meshComp->GetStaticMesh())
-                    {
-                        group.HISMComp->SetStaticMesh(meshComp->GetStaticMesh());
-                        // Copy the materials only once since they are all the same mesh.... 
-                        int32 numMaterials = meshComp->GetNumMaterials();
-                        for (int32 i = 0; i < numMaterials; i++)
-                        {
-                            if (UMaterialInterface* material = meshComp->GetMaterial(i))
-                            {
-                                group.HISMComp->SetMaterial(i, material);
-                            }
-                        }
-                        group.bIsCopied = true; 
-                    }
-
-                    FTransform exactWorldTransform = meshComp->GetComponentTransform();
-                    group.HISMComp->AddInstance(exactWorldTransform, true);
-                }
-
-                child->Destroy();
-                break; 
-            }
-        }
-    }
+    ConvertSMToHISM();
     
 
     
     GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.5f, true);
-    DuplicateShipForNavigation();
     
 }
 
 void AShip::Fall(const float DeltaTime) 
 {
 	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-    RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-    
+   // RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
+    RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset, RootComponent->GetComponentRotation());
     /// Tell all connected rowboats to fall
     OnShipFall.Broadcast(FallSpeed);
 }
@@ -118,8 +84,7 @@ void AShip::DuplicateShipForNavigation()
     
     FActorSpawnParameters shipSpawnParms;
     shipSpawnParms.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    ATargetPoint* hiddenShipParent = GetWorld()->SpawnActor<ATargetPoint>(ATargetPoint::StaticClass(), hiddenShipLocation, hiddenShipRotation, shipSpawnParms);
-
+    HiddenShip = GetWorld()->SpawnActor<ATargetPoint>(ATargetPoint::StaticClass(), hiddenShipLocation, hiddenShipRotation, shipSpawnParms);
     // Check if a NavMesh is attached to the real ship
     ANavMeshBoundsVolume* navMesh = nullptr;
 
@@ -137,7 +102,7 @@ void AShip::DuplicateShipForNavigation()
         {
             // Give the enemy the real ship and the fake ship
             enemy->RealShip = this; 
-            enemy->HiddenShip = hiddenShipParent; 
+            enemy->HiddenShip = HiddenShip; 
             EnemiesOnShip.Add(enemy);
             //enemy->SetEnabledEnemy(false);
             continue;
@@ -150,9 +115,9 @@ void AShip::DuplicateShipForNavigation()
 
         AActor* hiddenChild = GetWorld()->SpawnActor<AActor>(child->GetClass(), hiddenShipLocation, hiddenShipRotation, childSpawnParms);
 
-        if (hiddenChild && hiddenShipParent)
+        if (hiddenChild && HiddenShip)
         {
-            hiddenChild->AttachToActor(hiddenShipParent, FAttachmentTransformRules::KeepRelativeTransform);
+            hiddenChild->AttachToActor(HiddenShip, FAttachmentTransformRules::KeepRelativeTransform);
             
             // match transforms
             hiddenChild->SetActorRelativeLocation(child->GetRootComponent()->GetRelativeLocation());
@@ -162,6 +127,20 @@ void AShip::DuplicateShipForNavigation()
             // hiddenChild->GetRootComponent()->SetCanEverAffectNavigation(true);
             hiddenChild->GetRootComponent()->UpdateBounds();
         }
+        TArray<UPrimitiveComponent*> primitiveComponents;
+        child->GetComponents(primitiveComponents);
+        for (UPrimitiveComponent* primitiveComponent : primitiveComponents)
+        {
+            if (primitiveComponent)
+            {
+                // we don't need this actor to affect the navigation anymore because we have a different instance of this actor in the fake ship.. 
+                // even though i locked the build (i know nothing about this function i just found a function in the source code called AddNavigationBuildLock
+                // and the name feels like it does something but i couldn't find any official document about it) 
+                // but disabling "SetCanEverAffectNavigation" for some reason gives us a little bit of a good performance :) 
+                primitiveComponent->SetCanEverAffectNavigation(false); 
+            }
+        }
+        
     }
 
     // move the navmesh to the hidden ship 
@@ -173,7 +152,7 @@ void AShip::DuplicateShipForNavigation()
 
         // Attach to the new hidden ship
         FAttachmentTransformRules navAttachRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, false);
-        navMesh->AttachToActor(hiddenShipParent, navAttachRules);
+        navMesh->AttachToActor(HiddenShip, navAttachRules);
         
         // match transforms
         navMesh->SetActorRelativeLocation(originalRelativeLocation);
@@ -212,6 +191,46 @@ void AShip::CheckPlayerBox()
             bIsPlayerInside = false;
         }
     } 
+}
+
+void AShip::ConvertSMToHISM()
+{
+    for (AActor* child : ActorsOnShip)
+    {
+        if (!child) continue;
+
+        for (FHISMGroup& group : ActorsHISMOnShip)
+        {
+            if (group.ActorClass && child->IsA(group.ActorClass))
+            {
+                UStaticMeshComponent* meshComp = child->FindComponentByClass<UStaticMeshComponent>();
+                
+                if (meshComp && group.HISMComp)
+                {
+                    if (!group.bIsCopied && meshComp->GetStaticMesh())
+                    {
+                        group.HISMComp->SetStaticMesh(meshComp->GetStaticMesh());
+                        // Copy the materials only once since they are all the same mesh.... 
+                        int32 numMaterials = meshComp->GetNumMaterials();
+                        for (int32 i = 0; i < numMaterials; i++)
+                        {
+                            if (UMaterialInterface* material = meshComp->GetMaterial(i))
+                            {
+                                group.HISMComp->SetMaterial(i, material);
+                            }
+                        }
+                        group.bIsCopied = true; 
+                    }
+
+                    FTransform exactWorldTransform = meshComp->GetComponentTransform();
+                    group.HISMComp->AddInstance(exactWorldTransform, true);
+                }
+
+                child->Destroy();
+                break; 
+            }
+        }
+    }
 }
 
 void AShip::SetShipActive(bool bIsActive)
@@ -276,6 +295,17 @@ void AShip::StartFalling()
         {
             navSys->AddNavigationBuildLock(1);
         }
+    }
+}
+
+void AShip::AddEnemyToShip(AEnemyBase* Enemy)
+{
+    if (Enemy)
+    {
+        Enemy->RealShip = this;
+        Enemy->HiddenShip = HiddenShip;
+        EnemiesOnShip.Add(Enemy);
+        Enemy->SetEnabledEnemy(bIsPlayerInside);
     }
 }
 

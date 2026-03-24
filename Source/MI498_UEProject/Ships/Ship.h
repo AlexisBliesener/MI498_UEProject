@@ -61,6 +61,11 @@ public:
 	void SetShipActive(bool bIsActive);
 	/// Starts the falling behavior.
 	void StartFalling();
+	/**
+	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
+	 * @param Enemy the enemy that to be added 
+	 */
+	void AddEnemyToShip(AEnemyBase* Enemy);
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
@@ -76,6 +81,9 @@ protected:
 	FTimerHandle PlayerCheckTimer;
 	/// local is player inside the ship?
 	bool bIsPlayerInside = false;
+	/// Hidden ship related to the current ship (used for the AI navmesh) 
+	UPROPERTY()
+	AActor* HiddenShip;
 	virtual void Tick(float DeltaSeconds) override;
 
 	virtual void BeginPlay() override;
@@ -98,4 +106,8 @@ protected:
 private:
 	/// Tracks whether the ship is currently falling.
 	bool bFalling = false;
+	/**
+	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
+	 */
+	void ConvertSMToHISM();
 };
