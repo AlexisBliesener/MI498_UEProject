@@ -34,7 +34,7 @@ public:
 	
 	/// How much time it will take to reload the blunderbuss if it is missing two ammo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int TwoAmmoReloadTime = 1;
+	float TwoAmmoReloadTime = 1;
 	
 	/// How much force is applied to the player when firing the weapon in air during the primary attack
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
