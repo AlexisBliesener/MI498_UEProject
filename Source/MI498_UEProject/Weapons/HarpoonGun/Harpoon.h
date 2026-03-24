@@ -172,6 +172,7 @@ private:
 	/// The timer that handles the rope socket switch
 	FTimerHandle SocketSwitchTimer;
 	
+	/// The location of the harpoon in the last frame
 	FVector PreviousAnchorLocation;
 	
 	/// The players character movement component

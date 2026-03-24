@@ -30,14 +30,8 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
 	
-	if (CurrentAmmo == 1)
-	{
-		ReloadTime = OneAmmoReloadTime;
-	}
-	else
-	{
-		ReloadTime = TwoAmmoReloadTime;
-	}
+	/// Sets reload time based on ammo left
+	ReloadTime = CurrentAmmo == 1 ? OneAmmoReloadTime : TwoAmmoReloadTime;
 	
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
@@ -62,8 +56,6 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 	{
 		return;
 	}
-	
-	ReloadTime = TwoAmmoReloadTime;
 
 	Super::SecondaryAttack(Controller, Target);
 
@@ -72,6 +64,10 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 
 	// Consume ammo required for a secondary shot
 	CurrentAmmo -= SecondaryAttackNeededAmmo;
+	
+	/// Sets reload time based on ammo left
+	ReloadTime = TwoAmmoReloadTime;
+	
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, true);
 
@@ -86,8 +82,12 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 void ABlunderbuss::BeginPlay()
 {
 	Super::BeginPlay();
-	
 	OneAmmoReloadTime = ReloadTime;
+	
+	// Cache player mesh
+	ACharacter* PlayerCharacter = Cast<ACharacter>(GetOwner());
+	USkeletalMeshComponent* MeshComp = PlayerCharacter->GetMesh();
+	PlayerMesh = MeshComp;
 }
 
 void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int KnockbackForce) const
@@ -249,29 +249,21 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				FCollisionShape::MakeBox(halfSize),
 				traceParams
 			);
-
-
+			
+			/// Create tracer line vfx
 			if (TracerVFX)
 			{
+				/// Set end point of tracer line
 				FVector tracerEnd = end;
-
 				if (sliceHits.Num() > 0)
 				{
 					tracerEnd = sliceHits[0].ImpactPoint;
 				}
-
-				APawn* Pawn = Controller ? Controller->GetPawn() : nullptr;
-				if (!Pawn) return;
-
-				ACharacter* PlayerCharacter = Cast<ACharacter>(Pawn);
-				if (!PlayerCharacter) return;
-
-				USkeletalMeshComponent* MeshComp = PlayerCharacter->GetMesh();
-				if (!MeshComp) return;
-
+				
+				/// Spawn tracer line attached to blunderbuss socket
 				UNiagaraComponent* tracer = UNiagaraFunctionLibrary::SpawnSystemAttached(
 					TracerVFX,
-					MeshComp,
+					PlayerMesh,
 					TEXT("BlunderBussBaseSocket"),
 					FVector::ZeroVector,
 					FRotator::ZeroRotator,
@@ -279,9 +271,10 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 					true
 				);
 
+				/// Offset start location into circular grid
 				if (tracer)
 				{
-					const FTransform socketTransform = MeshComp->GetSocketTransform(TEXT("BlunderBussBaseSocket"));
+					const FTransform socketTransform = PlayerMesh->GetSocketTransform(TEXT("BlunderBussBaseSocket"));
 					FVector startOffset = socketTransform.GetUnitAxis(EAxis::X) * -i * 1.5f + socketTransform.GetUnitAxis(EAxis::Z) * j * 1.5f;
 					tracer->SetVectorParameter(TEXT("Start"), socketTransform.GetLocation() + startOffset);
 					tracer->SetVectorParameter(TEXT("End"), tracerEnd);

@@ -32,6 +32,7 @@ public:
 	/// @param Target The optional target actor for the attack. This is usually used by the enemy but it can be used for the player too 
 	virtual void SecondaryAttack(AController* Controller, AActor* Target = nullptr) override;
 	
+	/// How much time it will take to reload the blunderbuss if it is missing two ammo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int TwoAmmoReloadTime = 1;
 	
@@ -67,6 +68,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UNiagaraSystem* HitVFX;
 	
+	/// The beam vfx that will be used to make the blunderbuss tracer lines
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraSystem* TracerVFX;
 
@@ -113,7 +115,12 @@ private:
 	/// Determined dynamically from the last keyframe.
 	float RecoilTime = 0;
 	
+	/// The time it takes to reload one ammo
 	float OneAmmoReloadTime = 0.5f;
+	
+	/// Caches mesh of the player
+	UPROPERTY()
+	USkeletalMeshComponent* PlayerMesh;
 	
 	GENERATED_BODY()
 };
