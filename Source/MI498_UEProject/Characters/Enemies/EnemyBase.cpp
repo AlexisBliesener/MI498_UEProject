@@ -312,7 +312,7 @@ void AEnemyBase::FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target)
 void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 {
 
-	if (!Target || !bCanShoot)
+	if (!Target || !bCanShoot || bIsAttacking)
 		return;
 	
 	if (!CurrentWeapon)
@@ -322,6 +322,7 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 	}
 	if (IWeaponInterface* Weapon = Cast<IWeaponInterface>(CurrentWeapon))
 	{
+		bIsAttacking = true;
 		if (bIsSecondaryAttack)
 		{
 			Weapon->SecondaryAttack(GetController(), Target);
