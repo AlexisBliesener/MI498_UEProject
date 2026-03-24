@@ -95,6 +95,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
 	bStuck = true;
+	PreviousAnchorLocation = GetActorLocation();
 	
 	if (PlayerCharacter)
 	{
@@ -122,10 +123,16 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	{
 		Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
+		FTransform WorldTransform = GetActorTransform();
+
 		AttachToComponent(
-			OtherActor->GetRootComponent(),
-			FAttachmentTransformRules::KeepWorldTransform
+			OtherComp,
+			FAttachmentTransformRules::KeepWorldTransform,
+			Hit.BoneName
 		);
+
+		// Reapply transform AFTER attach
+		SetActorTransform(WorldTransform);
 	}
 
 	/// Check if HitResult hit an enemy and apply damage
@@ -313,6 +320,25 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 				tangentialVel *= ExtraFirstSwingForce / tangentialVel.Size();
 				bFirstSwing = false;
 			}
+			// Compute frame-to-frame harpoon displacement
+			FVector HarpoonDelta = GetActorLocation() - PreviousAnchorLocation;
+
+			// Only apply if harpoon moved (magnitude > small threshold)
+			if (!HarpoonDelta.IsNearlyZero(0.01f))
+			{
+				// Check if rope is stretched beyond CableLength
+		
+					float mult = (ToHarpoon.Size() / CableLength);
+					if (mult > 1.1f) { mult *= 2.0f; }
+
+					// Apply the pulling velocity along rope + anchor movement
+					tangentialVel += ToHarpoonNormal * PlayerCharacter->GetMaxWalkSpeed() * 13.7f * DeltaTime * mult;
+		
+			}
+
+			// Update previous location for next frame
+			PreviousAnchorLocation = GetActorLocation();
+		
 				
 			// Apply tangential velocity to maintain swinging motion
 			if (!tangentialVel.IsNearlyZero())
@@ -384,7 +410,7 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 		PlayerCharacter->LaunchCharacter(ToHarpoonNormal * ZipPullStrength * DeltaTime,true, true  );
 
 		// Update cable length as player moves
-		CableLength = FVector::Distance(GetActorLocation(),GetOwner()->GetOwner()->GetActorLocation());
+		CableLength = FVector::Distance(GetActorLocation(), PlayerCharacter->GetActorLocation());
 	}
 	// Harpoon not stuck to anything
 	else

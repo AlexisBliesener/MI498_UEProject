@@ -172,6 +172,8 @@ private:
 	/// The timer that handles the rope socket switch
 	FTimerHandle SocketSwitchTimer;
 	
+	FVector PreviousAnchorLocation;
+	
 	/// The players character movement component
 	UPROPERTY()
 	UCharacterMovementComponent* PlayerCharacterMovementComponent = nullptr;
