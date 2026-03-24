@@ -96,7 +96,7 @@ void AShip::BeginPlay()
     
 
     
-    GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.5f, true);
+    GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.05f, true);
     DuplicateShipForNavigation();
     
 }
