@@ -84,8 +84,7 @@ void AShip::DuplicateShipForNavigation()
     
     FActorSpawnParameters shipSpawnParms;
     shipSpawnParms.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-    ATargetPoint* hiddenShipParent = GetWorld()->SpawnActor<ATargetPoint>(ATargetPoint::StaticClass(), hiddenShipLocation, hiddenShipRotation, shipSpawnParms);
-
+    HiddenShip = GetWorld()->SpawnActor<ATargetPoint>(ATargetPoint::StaticClass(), hiddenShipLocation, hiddenShipRotation, shipSpawnParms);
     // Check if a NavMesh is attached to the real ship
     ANavMeshBoundsVolume* navMesh = nullptr;
 
@@ -103,7 +102,7 @@ void AShip::DuplicateShipForNavigation()
         {
             // Give the enemy the real ship and the fake ship
             enemy->RealShip = this; 
-            enemy->HiddenShip = hiddenShipParent; 
+            enemy->HiddenShip = HiddenShip; 
             EnemiesOnShip.Add(enemy);
             //enemy->SetEnabledEnemy(false);
             continue;
@@ -116,9 +115,9 @@ void AShip::DuplicateShipForNavigation()
 
         AActor* hiddenChild = GetWorld()->SpawnActor<AActor>(child->GetClass(), hiddenShipLocation, hiddenShipRotation, childSpawnParms);
 
-        if (hiddenChild && hiddenShipParent)
+        if (hiddenChild && HiddenShip)
         {
-            hiddenChild->AttachToActor(hiddenShipParent, FAttachmentTransformRules::KeepRelativeTransform);
+            hiddenChild->AttachToActor(HiddenShip, FAttachmentTransformRules::KeepRelativeTransform);
             
             // match transforms
             hiddenChild->SetActorRelativeLocation(child->GetRootComponent()->GetRelativeLocation());
@@ -153,7 +152,7 @@ void AShip::DuplicateShipForNavigation()
 
         // Attach to the new hidden ship
         FAttachmentTransformRules navAttachRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, false);
-        navMesh->AttachToActor(hiddenShipParent, navAttachRules);
+        navMesh->AttachToActor(HiddenShip, navAttachRules);
         
         // match transforms
         navMesh->SetActorRelativeLocation(originalRelativeLocation);
@@ -296,6 +295,17 @@ void AShip::StartFalling()
         {
             navSys->AddNavigationBuildLock(1);
         }
+    }
+}
+
+void AShip::AddEnemyToShip(AEnemyBase* Enemy)
+{
+    if (Enemy)
+    {
+        Enemy->RealShip = this;
+        Enemy->HiddenShip = HiddenShip;
+        EnemiesOnShip.Add(Enemy);
+        Enemy->SetEnabledEnemy(bIsPlayerInside);
     }
 }
 
