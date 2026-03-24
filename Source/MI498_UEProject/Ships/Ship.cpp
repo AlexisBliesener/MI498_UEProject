@@ -70,8 +70,8 @@ void AShip::BeginPlay()
 void AShip::Fall(const float DeltaTime) 
 {
 	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-    RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-    
+   // RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
+    RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset, RootComponent->GetComponentRotation());
     /// Tell all connected rowboats to fall
     OnShipFall.Broadcast(FallSpeed);
 }
@@ -128,6 +128,20 @@ void AShip::DuplicateShipForNavigation()
             // hiddenChild->GetRootComponent()->SetCanEverAffectNavigation(true);
             hiddenChild->GetRootComponent()->UpdateBounds();
         }
+        TArray<UPrimitiveComponent*> primitiveComponents;
+        child->GetComponents(primitiveComponents);
+        for (UPrimitiveComponent* primitiveComponent : primitiveComponents)
+        {
+            if (primitiveComponent)
+            {
+                // we don't need this actor to affect the navigation anymore because we have a different instance of this actor in the fake ship.. 
+                // even though i locked the build (i know nothing about this function i just found a function in the source code called AddNavigationBuildLock
+                // and the name feels like it does something but i couldn't find any official document about it) 
+                // but disabling "SetCanEverAffectNavigation" for some reason gives us a little bit of a good performance :) 
+                primitiveComponent->SetCanEverAffectNavigation(false); 
+            }
+        }
+        
     }
 
     // move the navmesh to the hidden ship 
