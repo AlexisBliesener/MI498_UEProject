@@ -5,6 +5,7 @@
 
 #include "PistolProjectile.h"
 #include "GameFramework/Character.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 
 
 APistol::APistol()
@@ -15,7 +16,7 @@ APistol::APistol()
 void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 {
 	Super::PrimaryAttack(Controller, Target);
-	if (const ACharacter* character = Cast<ACharacter>(Controller->GetPawn()))
+	if (const AEnemyBase* enemy = Cast<AEnemyBase>(Controller->GetPawn()))
 	{
 		FActorSpawnParameters params;
 		params.Owner = Controller->GetPawn();
@@ -23,7 +24,7 @@ void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 		params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		
 		
-		USkeletalMeshComponent* enemyMesh = character->GetMesh();
+		USkeletalMeshComponent* enemyMesh = enemy->GetMesh();
 		FVector spawnLocation;
 		if (enemyMesh && enemyMesh->DoesSocketExist(SocketName))
 		{
@@ -32,7 +33,7 @@ void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 		else
 		{
 			// fallback when there is no socket exists 
-			spawnLocation = character->GetActorLocation() + FVector(0.f, 20.f, 60.f);
+			spawnLocation = enemy->GetActorLocation() + FVector(0.f, 20.f, 60.f);
 		}
 		FVector aimAtLocation = Target->GetActorLocation() + FVector(0.f, 0.f, 60.f);;
 		FRotator lookAtRot = (aimAtLocation - spawnLocation).Rotation();
@@ -45,6 +46,11 @@ void APistol::PrimaryAttack(AController* Controller, AActor* Target)
 		if (projectile)
 		{
 			projectile->Damage = Damage;
+			if (enemy->RealShip)
+			{
+				// attach the bullet to the ship so it moves with the ship when it's falling  
+				projectile->AttachToActor(enemy->RealShip, FAttachmentTransformRules::KeepWorldTransform);
+			}
 		}
 	}
 }

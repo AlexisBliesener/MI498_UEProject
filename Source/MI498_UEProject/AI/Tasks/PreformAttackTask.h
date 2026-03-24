@@ -41,6 +41,11 @@ struct FPreformAttacksTaskInstanceData
 	bool bRunForever = false;
 
 	/**
+	 * If true, the task will not be finished until the bIsAttacking in the enemy set to false!  
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Config")
+	bool bWaitUntilAttackIsFinished = false;
+	/**
 	 * Pointer to the target actor used in the task.
 	 */
 	UPROPERTY(EditAnywhere, Category="Input")

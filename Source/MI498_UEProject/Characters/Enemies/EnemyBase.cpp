@@ -51,10 +51,19 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 {
 	
 	SetActorEnableCollision(bEnabled);
-    
-	if (IsValid(GetCharacterMovement()))
+	if (UCharacterMovementComponent* movementComponent = GetCharacterMovement())
 	{
-		GetCharacterMovement()->SetComponentTickEnabled(bEnabled);
+		movementComponent->SetComponentTickEnabled(bEnabled);
+        
+		if (bEnabled)
+		{
+			movementComponent->SetMovementMode(MOVE_Walking);
+		}
+		else
+		{
+			movementComponent->SetMovementMode(MOVE_None);
+			movementComponent->Velocity = FVector::ZeroVector;
+		}
 	}
     
 	if (IsValid(CurrentWeapon))
@@ -303,7 +312,7 @@ void AEnemyBase::FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target)
 void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 {
 
-	if (!Target || !bCanShoot)
+	if (!Target || !bCanShoot || bIsAttacking)
 		return;
 	
 	if (!CurrentWeapon)
@@ -313,6 +322,7 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 	}
 	if (IWeaponInterface* Weapon = Cast<IWeaponInterface>(CurrentWeapon))
 	{
+		bIsAttacking = true;
 		if (bIsSecondaryAttack)
 		{
 			Weapon->SecondaryAttack(GetController(), Target);

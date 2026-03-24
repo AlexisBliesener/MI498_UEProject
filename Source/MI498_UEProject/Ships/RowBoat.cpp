@@ -75,11 +75,8 @@ void ARowBoat::Tick(float DeltaTime)
 		/// Adjust yaw so the boat mesh faces forward correctly
 		LookRotation.Yaw += 90.f;
 
-		/// Apply rotation to the boat base
-		RowBoatBase->SetWorldRotation(LookRotation);
-
-		/// Apply position to the boat base
-		RowBoatBase->SetWorldLocation(NewLocation);
+		/// Apply position, rotation to the boat base
+		RowBoatBase->SetWorldLocationAndRotationNoPhysics(NewLocation, LookRotation);
 
 		/// If the boat is falling, apply fall movement
 		if (bFalling)
@@ -98,8 +95,9 @@ void ARowBoat::Fall(const float DeltaTime)
 	/// Calculate downward movement based on fall speed
 	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
 
-	/// Move the entire actor downward while checking for collisions
-	AddActorWorldOffset(FallOffset, true);
+	/// Move the entire actor downward while not checking for collisions
+	RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset,  RootComponent->GetComponentRotation());
+	//AddActorWorldOffset(FallOffset, true);
 }
 
 void ARowBoat::HandleShipBeginsFall(const float ShipFallSpeed)

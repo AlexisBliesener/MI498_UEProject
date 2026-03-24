@@ -84,16 +84,6 @@ void AMissionController::Tick(float DeltaSeconds)
 
 			ExplodeVaultDoor();
 		}
-		if (playrController->WasInputKeyJustPressed(EKeys::F10))
-		{
-			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
-			NavSys->AddNavigationBuildLock(1);
-		}
-		if (playrController->WasInputKeyJustPressed(EKeys::F9))
-		{
-			UNavigationSystemV1* NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
-			NavSys->RemoveNavigationBuildLock(1);
-		}
 	}
 }
 
@@ -232,11 +222,24 @@ void AMissionController::SpawnEnemies()
 		FRotator Rotation = SpawnPoint->GetActorRotation();
 
 		/// Spawn enemy instance
-		GetWorld()->SpawnActor<AEnemyBase>(
+		AEnemyBase* enemySpawned = GetWorld()->SpawnActor<AEnemyBase>(
 			AverageEnemy,
 			Location,
 			Rotation
 		);
+		
+		// It's important to add the enemy to the ship so the AI can work!!
+		if (enemySpawned)
+		{
+			// since the spawn points is attached to the ship we can get the ship by getting the parent 
+			if (AShip* parentShip = Cast<AShip>(SpawnPoint->GetAttachParentActor()))
+			{
+				parentShip->AddEnemyToShip(enemySpawned);
+			}else
+			{
+				UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s couldn't find a ship for them!!!!"), *enemySpawned->GetName());
+			}
+		}
 	}
 }
 
