@@ -79,7 +79,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 
 	/// Blueprint event for SFX
 	OnAttach();
-	
+
 	/// Set player height variables
 	AttachedPlayerHeight = PlayerCharacter->GetActorLocation().Z;
 	PrevPlayerHeight = 10000000000;
@@ -95,7 +95,8 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	/// Snap harpoon to the impact point and mark as stuck
 	SetActorLocation(Hit.ImpactPoint);
 	bStuck = true;
-	
+	PreviousAnchorLocation = GetActorLocation();
+
 	if (PlayerCharacter)
 	{
 		if (USkeletalMeshComponent* Mesh = PlayerCharacter->GetMesh())
@@ -106,7 +107,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 			}
 		}
 	}
-	
+
 	/// If hit an exploding barrel
 	if (OtherActor)
 	{
@@ -117,15 +118,18 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 			return;
 		}
 	}
-	
+
 	if (OtherActor)
 	{
 		Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
+		/// Attach harpoon to actor it hit
+		FTransform WorldTransform = GetActorTransform();
 		AttachToComponent(
-			OtherActor->GetRootComponent(),
-			FAttachmentTransformRules::KeepWorldTransform
-		);
+			OtherComp,
+			FAttachmentTransformRules::KeepWorldTransform,
+			Hit.BoneName);
+		SetActorTransform(WorldTransform);
 	}
 
 	/// Check if HitResult hit an enemy and apply damage
@@ -134,9 +138,9 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 		bStuckToEnemy = true;
 		HarpoonedEnemy = Cast<AEnemyBase>(OtherActor);
 		HarpoonedEnemy->GetCharacterMovement()->DisableMovement();
-		
+
 		/// Return harpoon if the shot kills the enemy
-		if (HarpoonedEnemy->CurrentHealth - HarpoonGun->Damage <=0)
+		if (HarpoonedEnemy->CurrentHealth - HarpoonGun->Damage <= 0)
 		{
 			ReturnToPlayer();
 		}
@@ -148,7 +152,6 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 			this,
 			nullptr
 		);
-
 	}
 }
 
@@ -167,7 +170,7 @@ void AHarpoon::BeginPlay()
 		// Attach cable to gun
 		CableComponent->bAttachEnd = true;
 		CableComponent->SetAttachEndToComponent(PlayerCharacter->GetMesh(), TEXT("HarpoonGunBaseSocket"));
-		
+
 		// Use the camera forward vector
 		FVector CameraLocation;
 		FRotator CameraRotation;
@@ -190,24 +193,30 @@ void AHarpoon::BeginPlay()
 void AHarpoon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+
+	/// Return harpoon back to gun if the enemies it is stuck to dies
+	if (bStuckToEnemy && !IsValid(HarpoonedEnemy))
+	{
+		ReturnToPlayer();
+	}
+
 	/// Vector from player to harpoon
 	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
 	FVector toHarpoonNormal = toHarpoon.GetSafeNormal();
-	
+
 	/// Set up the cable visually to tile the material
 	VisualCableLength = FVector::Distance(GetActorLocation(), PlayerCharacter->GetActorLocation());
-	float tileMaterial = VisualCableLength/30.f;
+	float tileMaterial = VisualCableLength / 30.f;
 	if (!FMath::IsNearlyEqual(tileMaterial, PrevTileMaterial, 0.01f))
 	{
 		CableComponent->TileMaterial = tileMaterial;
 		CableComponent->MarkRenderStateDirty();
 		PrevTileMaterial = tileMaterial;
 	}
-	
+
 	/// Set rope cable length
 	CableComponent->CableLength = VisualCableLength;
-	
+
 	/// Cache player height
 	PrevPlayerHeight = CurrentPlayerHeight;
 	CurrentPlayerHeight = PlayerCharacter->GetActorLocation().Z;
@@ -233,7 +242,7 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	bFirstSwing = true;
 	bReelingPlayerInLastFrame = false;
 	bSwingingPlayerLastFrame = false;
-	
+
 	if (PlayerCharacter)
 	{
 		if (USkeletalMeshComponent* Mesh = PlayerCharacter->GetMesh())
@@ -249,8 +258,9 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	ProjectileMovement->StopMovementImmediately();
 	ProjectileMovement->Deactivate();
 	Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	
-	FVector toSocket = (GetActorLocation() - PlayerCharacter->GetMesh()->GetSocketLocation("HarpoonGunBaseSocket")).GetSafeNormal();
+
+	FVector toSocket = (GetActorLocation() - PlayerCharacter->GetMesh()->GetSocketLocation("HarpoonGunBaseSocket")).
+		GetSafeNormal();
 
 	// Move the harpoon back toward the player at a constant return speed
 	SetActorLocation(GetActorLocation() - toSocket * ReturnSpeed * DeltaTime);
@@ -260,7 +270,7 @@ void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToH
 	{
 		// Blueprint event for SFX when locking back in
 		OnLockIntoGun();
-		
+
 		HarpoonGun->DestroyCurrentHarpoon();
 	}
 }
@@ -280,34 +290,50 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 	{
 		// If player is grounded and rope is stretched beyond its cable length,
 		// apply a pulling force toward the anchor to enforce rope constraint
-		if (!PlayerCharacterMovementComponent->IsFalling() && ToHarpoon.Size() > CableLength )
+		if (!PlayerCharacterMovementComponent->IsFalling() && ToHarpoon.Size() > CableLength)
 		{
-			float mult = (ToHarpoon.Size()/ CableLength);
-			if (mult > 1.1) { mult *=2;}
-			PlayerCharacterMovementComponent->Velocity += ToHarpoonNormal * PlayerCharacter->GetMaxWalkSpeed()* 13.7f * DeltaTime * mult;
-		} 
+			float mult = (ToHarpoon.Size() / CableLength);
+			if (mult > 1.1) { mult *= 2; }
+			PlayerCharacterMovementComponent->Velocity += ToHarpoonNormal * PlayerCharacter->GetMaxWalkSpeed() * 13.7f *
+				DeltaTime * mult;
+		}
 		else if (!PlayerCharacterMovementComponent->IsFalling())
 		{
-	
 		}
 		else if (ToHarpoon.Size() > CableLength || bFirstSwing)
 		{
 			// Get the player's current velocity
 			FVector velocity = PlayerCharacterMovementComponent->Velocity;
-				
+
 			// Calculate the velocity component along the rope direction 
 			FVector radialVel = FVector::DotProduct(velocity, ToHarpoonNormal) * ToHarpoonNormal;
 
 			// Remove radial component to keep only perpendicular motion 
 			FVector tangentialVel = velocity - radialVel;
-				
+
 			// On the first swing frame, boost tangential speed
 			if (bFirstSwing)
 			{
 				tangentialVel *= ExtraFirstSwingForce / tangentialVel.Size();
 				bFirstSwing = false;
 			}
-				
+
+			// Compute frame-to-frame harpoon displacement
+			FVector HarpoonDelta = GetActorLocation() - PreviousAnchorLocation;
+
+			// Pull player into harpoon if the harpoon is moving away
+			if (!HarpoonDelta.IsNearlyZero(0.01f))
+			{
+				float mult = (ToHarpoon.Size() / CableLength);
+				if (mult > 1.1f) { mult *= 2.0f; }
+
+				tangentialVel += ToHarpoonNormal * PlayerCharacter->GetMaxWalkSpeed() * 13.7f * DeltaTime * mult;
+			}
+
+			// Update previous location for next frame
+			PreviousAnchorLocation = GetActorLocation();
+
+
 			// Apply tangential velocity to maintain swinging motion
 			if (!tangentialVel.IsNearlyZero())
 			{
@@ -333,7 +359,7 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 	bFirstSwing = true;
 	bSwingingPlayerLastFrame = false;
 	AttachedPlayerHeight = PlayerCharacter->GetActorLocation().Z;
-	
+
 	// Harpoon is stuck and attached to an enemy
 	if (bStuck && bStuckToEnemy)
 	{
@@ -347,10 +373,13 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 			HarpoonedEnemy->GetCapsuleComponent()->IgnoreActorWhenMoving(this, true);
 
 			// Try pulling enemy directly toward player (full 3D direction)
-			if (!HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() - ToHarpoonNormal * EnemyPullStrength * DeltaTime,true)) 
+			if (!HarpoonedEnemy->SetActorLocation(
+				HarpoonedEnemy->GetActorLocation() - ToHarpoonNormal * EnemyPullStrength * DeltaTime, true))
 			{
 				// If blocked , fallback to horizontal-only pull
-				HarpoonedEnemy->SetActorLocation(HarpoonedEnemy->GetActorLocation() -FVector(ToHarpoon.X, ToHarpoon.Y, 0.f).GetSafeNormal() *EnemyPullStrength * DeltaTime,true);
+				HarpoonedEnemy->SetActorLocation(
+					HarpoonedEnemy->GetActorLocation() - FVector(ToHarpoon.X, ToHarpoon.Y, 0.f).GetSafeNormal() *
+					EnemyPullStrength * DeltaTime, true);
 			}
 		}
 		// If enemy is still far but not yet pulling, enable pull mode
@@ -375,10 +404,10 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 		}
 
 		// Launch player toward harpoon location
-		PlayerCharacter->LaunchCharacter(ToHarpoonNormal * ZipPullStrength * DeltaTime,true, true  );
+		PlayerCharacter->LaunchCharacter(ToHarpoonNormal * ZipPullStrength * DeltaTime, true, true);
 
 		// Update cable length as player moves
-		CableLength = FVector::Distance(GetActorLocation(),GetOwner()->GetOwner()->GetActorLocation());
+		CableLength = FVector::Distance(GetActorLocation(), PlayerCharacter->GetActorLocation());
 	}
 	// Harpoon not stuck to anything
 	else
@@ -392,4 +421,3 @@ void AHarpoon::HandleZip(const FVector& ToHarpoon, const FVector& ToHarpoonNorma
 		}
 	}
 }
-
