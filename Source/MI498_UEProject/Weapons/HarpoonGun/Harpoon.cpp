@@ -39,6 +39,13 @@ void AHarpoon::ReturnToPlayer()
 {
 	bReturnToPlayer = true;
 	CurrentReloadingTimeStarted = GetWorld()->GetTimeSeconds();
+	// Release the enemy and reset their state if the enemy was attached to the harpoon
+	if (bStuckToEnemy && IsValid(HarpoonedEnemy))
+	{
+		HarpoonedEnemy->GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+		HarpoonedEnemy = nullptr;
+		bStuckToEnemy = false;
+	}
 }
 
 void AHarpoon::ChangeSocketAttachment(bool HarpoonGunOut)
