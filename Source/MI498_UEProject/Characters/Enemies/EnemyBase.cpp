@@ -51,10 +51,19 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 {
 	
 	SetActorEnableCollision(bEnabled);
-    
-	if (IsValid(GetCharacterMovement()))
+	if (UCharacterMovementComponent* movementComponent = GetCharacterMovement())
 	{
-		GetCharacterMovement()->SetComponentTickEnabled(bEnabled);
+		movementComponent->SetComponentTickEnabled(bEnabled);
+        
+		if (bEnabled)
+		{
+			movementComponent->SetMovementMode(MOVE_Walking);
+		}
+		else
+		{
+			movementComponent->SetMovementMode(MOVE_None);
+			movementComponent->Velocity = FVector::ZeroVector;
+		}
 	}
     
 	if (IsValid(CurrentWeapon))
