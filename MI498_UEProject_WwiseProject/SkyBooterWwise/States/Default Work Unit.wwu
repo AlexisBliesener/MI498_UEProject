@@ -47,6 +47,16 @@
 						<State Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="GoingUp" ID="{A2795536-C901-4C1F-A1BE-529412A26316}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="2"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{EADCA184-30B0-4416-A7C6-1FF328EDB715}"/>
+						<State Name="Yes" ID="{6C39216A-69EC-4296-B1CA-45D6E7CAA309}"/>
+						<State Name="No" ID="{82D71F51-275D-4D6B-AE57-847DD3F44B9A}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>
