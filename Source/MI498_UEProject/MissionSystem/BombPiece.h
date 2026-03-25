@@ -4,7 +4,7 @@
 #include "BombPiece.generated.h"
 
 /// Dynamic multicast delegate that is broadcast when a bomb piece is collected
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBombPieceCollected);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnBombPieceCollected, int32, index);
 
 /// Actor representing a collectible bomb piece in the world
 /// Responsible for notifying listeners when it has been collected
@@ -19,7 +19,7 @@ public:
 	/// Called to mark this bomb piece as collected
 	/// Broadcasts the OnBombPieceCollected delegate
 	UFUNCTION(BlueprintCallable)
-	void BombPieceCollected();
+	void BombPieceCollected(int32 index);
 
 protected:
 

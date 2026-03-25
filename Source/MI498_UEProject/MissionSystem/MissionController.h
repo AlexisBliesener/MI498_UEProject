@@ -90,15 +90,15 @@ public:
 
 	/// Fired when first bomb piece is collected
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnFirstBombPieceCollected();
+	void OnFirstBombPieceCollected(int32 index);
 
 	/// Fired when second bomb piece is collected
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnSecondBombPieceCollected();
+	void OnSecondBombPieceCollected(int32 index);
 
 	/// Fired when third bomb piece is collected
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnThirdBombPieceCollected();
+	void OnThirdBombPieceCollected(int32 index);
 
 	/// Fired when player approaches exit cannon
 	UFUNCTION(BlueprintImplementableEvent)
@@ -138,7 +138,7 @@ protected:
 private:
 	/// Delegate handler for bomb piece collection
 	UFUNCTION()
-	void HandleBombPieceCollected();
+	void HandleBombPieceCollected(int32 index);
 	
 	/// Delegate handler for vault door interaction
 	UFUNCTION()

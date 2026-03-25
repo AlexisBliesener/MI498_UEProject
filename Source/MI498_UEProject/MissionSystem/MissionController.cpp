@@ -87,7 +87,7 @@ void AMissionController::Tick(float DeltaSeconds)
 	}
 }
 
-void AMissionController::HandleBombPieceCollected()
+void AMissionController::HandleBombPieceCollected(int32 index)
 {
 	/// Award score for collecting bomb piece
 	ScoringManager->AddBombPieceScore();
@@ -96,15 +96,15 @@ void AMissionController::HandleBombPieceCollected()
 	/// Trigger contextual VA based on progress
 	if (BombPiecesCollected == 1)
 	{
-		OnFirstBombPieceCollected();
+		OnFirstBombPieceCollected(index);
 	}
 	else if (BombPiecesCollected == 2)
 	{
-		OnSecondBombPieceCollected();
+		OnSecondBombPieceCollected(index);
 	}
 	else
 	{
-		OnThirdBombPieceCollected();
+		OnThirdBombPieceCollected(index);
 	}
 }
 
