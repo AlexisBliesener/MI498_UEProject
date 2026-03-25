@@ -3,7 +3,14 @@
 	<SoundcasterSessions>
 		<WorkUnit Name="Default Work Unit" ID="{AE3500BE-0752-4EFF-8528-97462887C453}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundcasterSession Name="TestCaster" ID="{53C1996B-1859-49A3-884E-532BC7025009}"/>
+				<SoundcasterSession Name="TestCaster" ID="{53C1996B-1859-49A3-884E-532BC7025009}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+					</ModuleList>
+				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundcasterSessions>

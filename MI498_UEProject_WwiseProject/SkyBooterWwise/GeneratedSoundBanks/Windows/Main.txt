@@ -61,9 +61,15 @@ Event	ID	Name			Wwise Object Path	Notes
 	4037835670	SwingerSwing			\Default Work Unit\Environment\SwingerSwing	
 
 State Group	ID	Name			Wwise Object Path	Notes
+	84387996	NumberofBombPieces			\Default Work Unit\PlayerStates\NumberofBombPieces	
 	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
 
 State	ID	Name	State Group			Notes
+	678209053	Two	NumberofBombPieces			
+	748895195	None	NumberofBombPieces			
+	766521211	Zero	NumberofBombPieces			
+	912956111	Three	NumberofBombPieces			
+	1064933119	One	NumberofBombPieces			
 	748895195	None	IsMoving			
 	979470758	Yes	IsMoving			
 	1668749452	No	IsMoving			
@@ -77,67 +83,69 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	6767003	Damage 2	.cache\CB\{CB603883-E93A-89FC-B41F-84701AF690D2}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage 2		13534
 	9982857	OnceLeaveVaultLine3	.cache\FB\{FBD48F18-D80F-456F-A406-FCF6D4EFF51F}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\OnceLeaveVaultLine3		84510
-	12572395	FootstepSFXExample_02	.cache\A4\{A431C1B4-D6DA-3470-C852-0607A0AE58BB}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_02		25864
+	12572395	FootstepSFXExample_02	.cache\01\{01381F0F-D914-9F4D-6149-A8FFF2670B84}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_02		25864
 	17125242	PickUpBombPiecePickUp	.cache\6C\{6CE4066B-816A-2749-EF6E-79CEE1A15D71}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		30514
 	26282397	SwordDash_mixdown_02	.cache\70\{708C8043-853C-35EB-FE15-B5DA476E92EC}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_02		57691
-	29359421	FootstepStems-003_02	.cache\F1\{F14E1675-205E-D044-41B5-6AAF4DBA9BD6}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_02		15394
+	29359421	FootstepStems-003_02	.cache\46\{46F6B6AA-0229-4DDD-8D94-CF860A7B2CD1}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_02		15394
 	30228862	BombExplode	.cache\46\{46F816B7-EB3C-49E4-96DB-6C74815CC49F}.wem		\Containers\Default Work Unit\Weapons\BombExplode		71607
 	34328720	CannonFuseLoop	.cache\92\{923110F5-2A28-15FE-B105-9EA4FED9A9E9}.wem		\Containers\Default Work Unit\Environment\CannonFireSequence\CannonFuseLoop		91911
-	37486510	SwingerFootstep-006_01	.cache\E6\{E6AAE53C-5373-2191-A044-13386F8B028F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_01		12855
-	50541977	AverageEnemyStepsWoodMetal_01	.cache\D9\{D948A355-0C79-2EE3-9E76-ECA66BE0B921}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_01		15425
-	64962804	FootstepStems-002_01	.cache\F2\{F2D794A7-D4EC-1A5A-7E07-311A0EF26DF0}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_01		16918
-	86116095	AverageEnemyStepsMetal_02	.cache\BA\{BA4E8A14-492B-D9D3-97B8-4B4F3ADE0F2E}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_02		13273
+	37486510	SwingerFootstep-006_01	.cache\A6\{A6930F39-EA4D-A6A4-4070-27B5DF409ACC}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_01		12855
+	50541977	AverageEnemyStepsWoodMetal_01	.cache\0D\{0D289C20-15AE-583A-7C65-946FCE4F1D0D}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_01		15425
+	64962804	FootstepStems-002_01	.cache\93\{9301E64A-EC4A-9A95-5614-77C1322222F5}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_01		16918
+	86116095	AverageEnemyStepsMetal_02	.cache\8E\{8ECF83FF-0D5A-EC3C-8BC9-DE3C7CB611D4}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_02		13273
 	93500891	SwingingEnemyVA_03	.cache\64\{64F0B032-32E4-DB52-5FDE-23D4A5D6332F}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_03		49405
 	97296079	AfterBlastingOut	.cache\2E\{2E6AA071-7382-2EB9-FEBB-4C566F06B500}.wem		\Containers\Default Work Unit\VA\VA\AfterBlastingOut		37895
 	101624672	Line3	.cache\60\{60204F27-74D7-E28B-BE0E-36C502B4F578}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line3		94892
-	105716389	SwingerFootstep-001	.cache\1E\{1E70FD1B-D714-C943-2AF3-BA3B5F334E4F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001		13634
-	109490712	SwingerFootstep-002_04	.cache\51\{514806A7-0BC3-250B-5F5D-2A5874975E5E}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_04		13013
+	105716389	SwingerFootstep-001	.cache\F2\{F29EAAC7-7E5A-2DF4-96DF-0ACBA7C1F52F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001		13634
+	109490712	SwingerFootstep-002_04	.cache\1A\{1A66EDCA-1C33-9417-59B7-2CE74489CCDC}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_04		13013
 	118074255	AfterBombExplode	.cache\88\{88A03933-9BAF-59E8-699F-8B7516F65616}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterBombExplode		286116
 	122737040	BruteVA	.cache\A7\{A75759FC-4C2C-9E1F-EF2B-B57671F5060C}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA		38724
-	136033053	SwingerFootstep-001_02	.cache\64\{645D75E9-9A77-58AE-F662-E3504492EBC2}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_02		13684
+	136033053	SwingerFootstep-001_02	.cache\57\{5779E8D1-4DEB-2AD5-7422-73C52195434F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_02		13684
 	139026441	Line3	.cache\CA\{CAE31E66-43FE-E183-28E0-83D7E7BDF309}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line3		309519
 	143782066	Goku	.cache\7C\{7CD19F03-9372-E627-D96C-0C74D62BB677}.wem		\Containers\Default Work Unit\MemeStuff\Goku		63188
-	144084988	AverageEnemyStepsBikeChain_02	.cache\29\{290C33E6-1C36-82A9-9CC8-129BF285866A}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_02		20669
+	144084988	AverageEnemyStepsBikeChain_02	.cache\D7\{D7E83837-1337-EA63-16B2-C445E67D36DC}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_02		20669
 	151765295	PlayerDamageStuff	.cache\B9\{B92FE5B5-FE05-919D-8456-9E169F583A4B}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff		27539
-	153382107	SwingerFootstep-004_03	.cache\70\{70B45C1C-13D7-93C0-F1AA-83BB9F1C780E}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_03		10816
-	161260618	AverageEnemyStepsBikeChain_03	.cache\C5\{C5959817-2C0A-A7E3-E23C-06692BAD5283}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_03		21786
-	173442005	FootstepStems-003_03	.cache\C0\{C0B85564-E494-86AD-D2BD-21E3F7B41C8E}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_03		12189
-	178557755	FootstepStems-002_03	.cache\F8\{F87AA7A8-9EBC-2985-FF7B-53C33F06CE2D}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_03		12637
+	153382107	SwingerFootstep-004_03	.cache\2F\{2F8389C5-AB54-446F-066B-C23780C23C8E}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_03		10816
+	161260618	AverageEnemyStepsBikeChain_03	.cache\BA\{BABB9EC7-F6E1-AD45-E995-47532257BC20}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_03		21786
+	173442005	FootstepStems-003_03	.cache\EC\{EC24BF5D-35DB-F55A-098F-2752325800AE}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_03		12189
+	178557755	FootstepStems-002_03	.cache\34\{34748A81-A550-374C-8518-00CA1D2BA3A1}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_03		12637
 	190724134	Jump2	.cache\6C\{6CF1D943-FC66-BE38-99B1-864AE09B5800}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump2		13314
-	191239999	FootstepSFXExample_01	.cache\CD\{CD340CFF-39DE-E846-886E-211AEA0FE2E9}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_01		20255
+	191239999	FootstepSFXExample_01	.cache\5E\{5EA931B0-293B-B33A-0E04-0205BDEE1AA4}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_01		20255
+	196317867	Song of the Boats in the Sky - NoBattle Cymbals	.cache\87\{87CE176A-6262-8508-2B6F-1558E5A7A385}.wem		\Containers\Music\MusicControler\NonCombatTheme\NonCombatTheme\Song of the Boats in the Sky - NoBattle Cymbals		1927399
 	208714548	StartMissionLine2	.cache\F7\{F7F5B1E9-2524-553C-75AE-F4587ED48807}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine2		120328
 	210626020	GrappleStrikeLocation	.cache\C8\{C8F23ADB-4E28-F926-A497-EEBABD66A00D}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleStrikeLocation		60471
+	212962631	Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp	.cache\6D\{6D1C2DC5-32FA-1BCA-02E1-7F5457B7DF36}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp		2998196
 	218262969	Grapple	.cache\F5\{F5BEF37A-F2FC-8D98-4F73-F93EA8BDA20E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		64900
-	219139896	FootstepStems-005_04	.cache\B7\{B7C67816-5016-A9A3-3073-290C1475D22C}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_04		6162
+	219139896	FootstepStems-005_04	.cache\C9\{C9399E11-BA8E-5724-8EC7-23A7A7905AE1}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_04		6162
 	226120403	SwordSlashExample_02	.cache\A2\{A2D0096C-AE2F-87C9-572E-058A28DE8C57}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		32852
-	230154383	SwingerFootstep-005_04	.cache\50\{505362F9-3DD1-A490-E00B-009C97F57DC4}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_04		12080
-	237225792	FootstepStems-001	.cache\6F\{6F01549A-C33A-8586-CB43-8F7B1B605FFC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001		7300
+	230154383	SwingerFootstep-005_04	.cache\F5\{F5D0337D-96C3-E73A-7FB7-2E925506B680}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_04		12080
+	237225792	FootstepStems-001	.cache\D7\{D761D181-3464-6149-7BEA-29BC0EE865CA}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001		7300
 	252701458	SwingingEnemyVA_06	.cache\26\{26E5597D-18DA-9EF5-2AFB-20CE016B3AF3}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_06		27395
 	257199122	Line1	.cache\F7\{F70E13AA-6812-DCA3-F2AB-375165920867}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line1		130287
 	264388359	Line2	.cache\26\{26BB7528-4E80-14E2-B045-AD9D657D00B2}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line2		154536
-	266698385	FootstepStems-006_03	.cache\43\{430416A4-83F6-F294-A4B0-929FC0EC85E3}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_03		7829
+	266698385	FootstepStems-006_03	.cache\56\{56DF4B67-5920-248B-747F-FDC737C3A1F3}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_03		7829
 	272125692	Sprint	.cache\92\{92C28E82-427F-0688-3A4A-C55AFFC2C8B1}.wem		\Containers\Default Work Unit\Player\Sprint		43740
-	275765810	AverageEnemyStepsWoodNormal_03	.cache\67\{67DACE36-4F17-595A-C238-27A5A19B24B6}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_03		15537
-	277035064	SwingerFootstep-005_02	.cache\DD\{DD222A91-F0C2-FD6B-E37C-322DF57370B2}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_02		12650
-	280971423	AverageEnemyStepsWoodNormal_02	.cache\05\{057D7800-5C48-DEB9-A631-0AB06E9F4D02}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_02		15302
+	275765810	AverageEnemyStepsWoodNormal_03	.cache\4B\{4BB84F93-C5AA-8248-31FF-0B3E5EDEBDD4}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_03		15537
+	277035064	SwingerFootstep-005_02	.cache\64\{64B48D3F-C2E2-FB56-69A0-EF3F4AD8A41A}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_02		12650
+	280971423	AverageEnemyStepsWoodNormal_02	.cache\78\{7869411E-0410-1B14-5256-78A18D291CC1}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_02		15302
 	283319554	Line4	.cache\74\{74F9264F-7BC0-8DDD-2899-5128DC4DEFD2}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\Line4		176295
-	283633621	FootstepStems-003	.cache\29\{296A51A3-6140-3453-20A7-F6FF745AE27B}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003		15685
+	283633621	FootstepStems-003	.cache\37\{37E22433-EC90-53A9-6041-A779F57F7F52}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003		15685
 	287285638	PlayerDeath	.cache\19\{198F06B3-C9CA-ACD1-74AA-8D2A18E9034E}.wem		\Containers\Default Work Unit\Player\PlayerDeath		139958
-	289858461	FootstepStems-002	.cache\0D\{0D014BC4-4897-3945-03F1-3752DAE7F7F2}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002		16548
-	296876079	SwingerFootstep-002_02	.cache\4B\{4B228E0D-9372-38BD-11CD-E5B41151BA6A}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_02		11952
-	297481343	AverageEnemyStepsBikeChain	.cache\6A\{6ACE3716-DF47-1B88-CC5D-224F69B89A1C}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain		21761
-	306717036	SwingerFootstep-001_04	.cache\22\{22EFD09A-A75A-FE20-D928-08AAB1E8AA64}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_04		13636
+	289858461	FootstepStems-002	.cache\73\{73E11F33-0C95-CBCF-E914-D059CCCDAC89}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002		16548
+	296876079	SwingerFootstep-002_02	.cache\57\{57E85094-8620-1DD6-9700-ABD28A5E7B07}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_02		11952
+	297481343	AverageEnemyStepsBikeChain	.cache\DA\{DADA741D-EDFE-D432-4FC0-7890EDE800A8}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain		21761
+	306717036	SwingerFootstep-001_04	.cache\76\{76464DA8-FE4F-AB3F-5696-D59787A3AC48}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_04		13636
 	307726770	SwingingEnemyVA_01	.cache\72\{7231FA18-263F-CC2C-AF66-1DD5BDFCAD8A}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_01		45207
 	319526224	Line1	.cache\A3\{A3508C5E-0D3E-4EEA-1481-F75ED9B906D3}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line1		331215
 	320129325	SwordDash_mixdown_01	.cache\77\{772C43EA-03B8-116D-3F7C-9A819D7FB91D}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		63999
 	324181781	AllPiecesCollectedLine1	.cache\DA\{DA953890-6D3D-25BA-DEDC-0066ED8916C4}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine1		42009
 	326381219	Fortnite Default Dance Greenscreen_01	.cache\52\{529BF466-3592-112B-FDA2-1681F6809AD2}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		316974
-	332480870	SwingerFootstep-001_01	.cache\C3\{C38CF113-62AA-7F0E-D9CD-C5FC47172A31}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_01		13686
+	332480870	SwingerFootstep-001_01	.cache\C5\{C5A448F5-4C89-3D55-AB26-3D957498B8FC}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_01		13686
 	334114902	SwingingEnemyVA_02	.cache\CB\{CB32A65C-0170-611C-AC16-11A14858B477}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_02		44328
 	347333693	SwingingEnemyVA	.cache\46\{4673CDEC-DFD3-B48B-4686-FE805E1CDB97}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA		51721
 	352819618	BruteVA_03	.cache\B1\{B11A9F2F-6DE8-76BF-600E-15FC24DF083F}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_03		40333
 	362207851	BombExplosionMOREBASS	.cache\33\{33D3AA89-8962-D491-FC31-16115CF692F3}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\BombExplosionMOREBASS		134342
-	366690037	SwingerFootstep-003_02	.cache\2C\{2C545A23-9F98-79F8-9A80-237BF50D5CF5}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_02		12274
+	366690037	SwingerFootstep-003_02	.cache\95\{95A90863-B70D-C9D9-2EF7-A5BFC9F6B00E}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_02		12274
 	373499443	SwordDash_mixdown	.cache\44\{44A40850-85CE-755C-EA97-2C7BFE70E62C}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown		53162
 	377840418	GrappleHookReelIn	.cache\E9\{E959B35C-95AB-4273-73D3-DE1FDFFDCDC2}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleHookReelIn		88227
 	395064389	BruteVA_01	.cache\94\{948429D5-7C30-2879-E798-56881889D985}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_01		48999
@@ -145,130 +153,130 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	398618583	AllPiecesCollectedLine2	.cache\13\{13AB6852-0045-2A41-99D5-8AE306B53083}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine2		40933
 	410939690	OnceInRangeBombLine4	.cache\5F\{5FA1E1A4-F532-9C61-069D-7D5851503B3B}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine4		52328
 	413622913	Line2	.cache\D8\{D8714FBD-C022-C5DA-918E-50F355266FA8}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line2		294236
-	415328302	AverageEnemyStepsBase	.cache\BD\{BD634BDB-5A96-01E2-9E51-E4291A742D11}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase		15968
+	415328302	AverageEnemyStepsBase	.cache\A7\{A710468A-A797-121D-183D-BB385D6FA7C2}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase		15968
 	417942832	BruteVA_05	.cache\D0\{D0933FA9-A933-9ECF-EF9D-1E610AA94513}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_05		35993
-	423009465	FootstepSFXExample_03	.cache\19\{19B5B38A-66B2-E80C-3667-DE342EBCB619}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_03		23873
-	434947864	AverageEnemyStepsMetal_03	.cache\30\{3086AB89-76FA-1C6E-C65A-6B535119C548}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_03		13292
+	423009465	FootstepSFXExample_03	.cache\7E\{7E1043FE-2704-F6BB-2E25-FFF3ABF81C81}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_03		23873
+	434947864	AverageEnemyStepsMetal_03	.cache\EE\{EED4F695-62C6-2924-D5D0-6EA1F0F311A8}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_03		13292
 	435335955	Line2	.cache\3A\{3A47EA05-01CA-FD98-5A14-AB615472A318}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line2		90255
 	440570578	Damage1AverageEnemy	.cache\DC\{DC895CB6-A423-0530-DE2A-7FDC3856B782}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage1AverageEnemy		31240
 	446377387	AfterBombPlant	.cache\0C\{0CE85249-F44A-211C-6EA7-6059A99B7954}.wem		\Containers\Default Work Unit\VA\VA\AfterBombPlant		217236
 	467384341	AfterPlantingBombLine3	.cache\E9\{E9F79973-E995-6455-6AA4-671EF89A9671}.wem		\Containers\Default Work Unit\VA\VA\AfterBombExplode\AfterPlantingBombLine3		110352
-	470389262	AverageEnemyStepsBase_01	.cache\C1\{C1094AFC-1F1D-4E0D-E26A-AAC8FB5D2232}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_01		15521
-	471860474	FootstepStems-002_04	.cache\86\{8605A105-7966-09B2-4E19-E96261E9CD68}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_04		13071
-	479339567	SwingerFootstep-003_01	.cache\63\{63099CAC-9B8B-B1FA-ECBA-3D1AA35A8E5D}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_01		10999
+	470389262	AverageEnemyStepsBase_01	.cache\0A\{0A3B25EF-A741-5917-AB6F-2D3E47060C2C}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_01		15521
+	471860474	FootstepStems-002_04	.cache\55\{55A2EF47-D8A6-A40A-1C8F-D05571F0A2A7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_04		13071
+	479339567	SwingerFootstep-003_01	.cache\9A\{9AA58E71-1AAF-E037-C5E1-4DAB70AD2F53}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_01		10999
+	480644522	Song of the Boats in the Sky - NoBattle Strings	.cache\FB\{FBD9519C-E84F-ABFB-AA2D-BFD56EC28283}.wem		\Containers\Music\MusicControler\NonCombatTheme\NonCombatTheme\Song of the Boats in the Sky - NoBattle Strings		9200493
 	485182822	PlayerVaultDeeper	.cache\CF\{CFA21932-266A-4721-D419-877700EA9AAB}.wem		\Containers\Default Work Unit\Player\PlayerVaultDeeper		66320
-	488885903	FootstepStems-006_01	.cache\7B\{7B7C2218-23A8-A503-3692-4C9B1957169E}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_01		7555
+	488885903	FootstepStems-006_01	.cache\AC\{ACB4B5AF-FD16-EE60-6FC6-40F663BAF070}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_01		7555
 	490112550	AdditionalPieceCollectedLine1	.cache\D4\{D4E384BB-969C-F30F-8C56-955182CC6126}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine1		80534
 	490285420	IRON MAN - Opening_01	.cache\7E\{7ED2E3B7-1631-A57D-D9F7-2249CB7FAB4A}.wem		\Containers\Default Work Unit\MemeStuff\IRON MAN - Opening_01		2008067
-	497029722	FootstepSFXExample_05	.cache\03\{03F8099B-5D00-3F9E-59F9-89A1C57D7FD2}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_05		17678
-	498848967	FootstepStems-001_04	.cache\B1\{B15C4EB1-DE4B-3CC5-6E2B-0BDB8A136CD8}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_04		7418
-	499502064	SwingerFootstep-006_04	.cache\47\{47DD8308-D33B-256D-1394-4BDDCF48A667}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_04		13024
-	504763035	FootstepStems-001_01	.cache\4E\{4ECF8339-7291-A231-BE62-68F62E011C4F}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_01		6986
-	514551863	SwingerFootstep-005_03	.cache\61\{61C07087-80C5-3AA3-F777-3FD8C91234A9}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_03		12721
+	497029722	FootstepSFXExample_05	.cache\B9\{B9A493F2-EBF1-A6CB-8DAB-51C42673FF3A}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_05		17678
+	498848967	FootstepStems-001_04	.cache\25\{255FA160-8A88-59BC-1272-28B42EF8CF88}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_04		7418
+	499502064	SwingerFootstep-006_04	.cache\A9\{A9666E1E-1F73-BAEA-6C5C-81AEA36EB676}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_04		13024
+	504763035	FootstepStems-001_01	.cache\96\{96881EA9-9CE2-59FB-625F-AB9A8E7F3DA6}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_01		6986
+	514551863	SwingerFootstep-005_03	.cache\48\{48C025EE-0B9C-A670-E857-1230752E98C2}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_03		12721
 	515834822	1PieceCollectedLine1	.cache\FB\{FB9CF5D7-D3F8-8F32-7CA9-EAB37CB7DA54}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine1		86865
-	520608868	FootstepStems-001_02	.cache\D6\{D660336D-7906-6ED3-3535-2B5803F0FBCC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_02		6872
+	520608868	FootstepStems-001_02	.cache\88\{888698B2-8916-FA3B-C426-0DB8FEC6C1C7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_02		6872
 	526140554	Death1AverageEnemy	.cache\F9\{F968AA32-37AC-61D3-97E2-369458A9A0EA}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death1AverageEnemy		27430
 	528280226	EnemyShot	.cache\45\{452131ED-97AB-472D-617B-E644860BB15B}.wem		\Containers\Default Work Unit\Weapons\EnemyShot		102002
 	528352743	Damage1	.cache\A4\{A4591057-30D6-0C6F-FFC3-9AE75DF5E888}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage1		15434
-	540829907	SwingerFootstep-006	.cache\89\{895047F1-56E0-291A-8770-4E20C5FA37A2}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006		13546
-	550716093	SwingerFootstep-005_01	.cache\98\{98E32881-F45E-7B4C-B9AE-26D4A7FD8145}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_01		13164
+	540829907	SwingerFootstep-006	.cache\B7\{B7705008-2141-B86F-7306-91BBB6B108B6}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006		13546
+	550716093	SwingerFootstep-005_01	.cache\56\{56142438-ADE6-13C1-AE31-C95FB43511CC}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005_01		13164
 	554459309	StartMissionLine6	.cache\BA\{BA8E9358-E98F-D366-FB66-1692482E1EDA}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\StartMissionLine6		90887
 	577135639	Line1	.cache\69\{69440CB6-767B-E11C-986C-3DB3FCB2952D}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line1		275984
-	577488381	SwingerFootstep-002	.cache\76\{7630CFA5-5A67-888C-4037-DEA7219FEA6F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002		13873
+	577488381	SwingerFootstep-002	.cache\90\{90D78CE6-CEBC-D105-A202-5A72E24B69E4}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002		13873
 	579126070	Woosh	.cache\F1\{F18727EF-C9DF-C19D-6CF0-6D72246662DE}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh		22262
-	584673978	AverageEnemyStepsBase_03	.cache\1A\{1A131CF5-494D-466E-3535-04113ABCAEAD}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_03		15974
+	584673978	AverageEnemyStepsBase_03	.cache\58\{58461705-9575-708C-DA57-4CBA5BAA5D0A}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_03		15974
 	590484918	TakeDamageBase_01	.cache\8F\{8F1768F9-301D-0521-73C5-778808FA75F8}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase_01		38521
 	594437619	Death4AverageEnemy	.cache\B9\{B9ADB74E-D9C6-801B-83D7-735CF9ED6C69}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death4AverageEnemy		58745
-	597547971	Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)	.cache\34\{34C39319-749E-F363-488A-82E46C730CBE}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)		8908382
 	604625095	Line1	.cache\7C\{7CBD7927-85F3-9AB8-81FE-9B4C03FBC218}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line1		204820
-	605561989	AverageEnemyStepsWoodNormal_04	.cache\6E\{6E2F6A85-8A1F-994F-EECC-F551D0E3D41F}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_04		15694
+	605561989	AverageEnemyStepsWoodNormal_04	.cache\F5\{F56FDBB5-55F9-E262-73B9-71B308BE7A62}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_04		15694
 	605626282	AllPiecesLine2	.cache\7C\{7C650FF2-2ED7-D5D0-55A0-32E71EFA6A95}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesLine2		40487
 	605770747	BlunderbussReload	.cache\B3\{B3FC2A95-1343-73D3-4230-D00E04106DF1}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		99242
 	606848002	Damage3AverageEnemy	.cache\3A\{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage3AverageEnemy		25059
-	609911907	FootstepStems-005_01	.cache\1D\{1DC6B2B9-C4AE-FA4D-EA9B-046285AAB91C}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_01		6075
+	609911907	FootstepStems-005_01	.cache\88\{88E8C40E-77C8-DDB2-F4ED-D2E0A7D7FCF7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_01		6075
 	615624964	GrappleSnapBack	.cache\53\{53038523-3F0A-43DE-3CB4-C746E737E8F1}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleSnapBack		40748
-	618252127	FootstepStems-005	.cache\18\{181642A4-D1C2-FD25-291B-23B958EEB548}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005		6690
-	620832767	FootstepSFXExample_04	.cache\B2\{B2830D2D-1E92-14C2-2582-A514961C0AF8}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_04		21444
+	618252127	FootstepStems-005	.cache\32\{32361AB2-EDB5-2347-3EB0-F60F4BD52D9A}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005		6690
+	620832767	FootstepSFXExample_04	.cache\53\{5390FC15-8E44-8B59-6210-6C5A6FB47BE0}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_04		21444
 	622150877	Woosh_04	.cache\21\{2196D982-96E9-494D-0F52-0CD6BC96FB9F}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_04		17963
 	634837452	Death3Average1	.cache\0D\{0D942964-85FD-B753-E28D-800018C7FE9B}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death3Average1		48846
 	636053045	Death5Average1	.cache\A0\{A09F3856-A775-6063-BAE9-51F67DDBB6BA}.wem		\Containers\Default Work Unit\VA\DeathAverageEnemy\Death5Average1		82683
-	639083872	FootstepStems-002_02	.cache\39\{39288DEF-4332-AEBE-8331-9A841803E076}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_02		16563
-	642013019	Song of the Boats in the Sky - Battle Brass	.cache\AC\{AC01DCA3-4CB0-08DD-4EBA-28B2602C8EA0}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Brass		7423840
+	639083872	FootstepStems-002_02	.cache\55\{55E866D8-ACCC-8470-E014-58A8C2F70CED}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_02		16563
+	642013019	Song of the Boats in the Sky - Battle Brass	.cache\CF\{CF90497C-AA1B-4A24-2327-3B60209BC0D8}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Brass		7630087
 	647190144	Land	.cache\30\{30D08F5C-DB0C-0A32-2E12-EF7AF69098C5}.wem		\Containers\Default Work Unit\Player\Land		49346
 	649368430	CannonShot	.cache\9F\{9F8D0FAF-C5B0-DF41-56BC-E19B08E0DFCF}.wem		\Containers\Default Work Unit\Environment\CannonShot		146532
-	652248752	AverageEnemyStepsWoodMetal_02	.cache\EF\{EFC4EF47-2DAA-138A-1492-C0B8D6B8569D}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_02		15338
-	654345293	FootstepStems-006	.cache\76\{76436246-FE4B-56E6-2683-C8FF16401C05}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006		7759
-	661039912	SwingerFootstep-004_01	.cache\B2\{B2B7F09C-C137-E18E-D612-D3923917DC9C}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_01		10663
+	652248752	AverageEnemyStepsWoodMetal_02	.cache\48\{48D434F8-C4B2-3FC5-12B1-8FBD739AF69E}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_02		15338
+	654345293	FootstepStems-006	.cache\45\{45668E26-48AD-CF3F-1DCF-21B2BEF63B4C}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006		7759
+	661039912	SwingerFootstep-004_01	.cache\D8\{D8B1C3C2-6739-277F-690F-0712F261E05C}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_01		10663
 	664087683	Jump1	.cache\5B\{5B2F8639-24A5-3E2C-A1A1-CDFA21CDFEA9}.wem		\Containers\Default Work Unit\Player\JumpGrunt\Jump1		11775
-	672011565	Song of the Boats in the Sky - Battle Woodwinds	.cache\5A\{5AE3F790-AE5E-474E-EE7F-A7CCE0FD22FF}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Woodwinds		6902639
-	676257027	AverageEnemyStepsBase_04	.cache\91\{91B334AE-5CBD-D73E-3B6E-F6943D81DCCA}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_04		15748
-	696957011	SwingerFootstep-001_03	.cache\66\{66289CE6-D655-4EC0-3EC4-2DF9B8A016FE}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_03		14071
-	705144487	SwingerFootstep-005	.cache\14\{1462DB2B-3E0C-5CCA-4D0D-A2DEBC52FAEB}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005		13257
+	672011565	Song of the Boats in the Sky - Battle Woodwinds	.cache\C1\{C155EC73-ED5B-E2DF-A3ED-FDBAF0190937}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Woodwinds		7042654
+	676257027	AverageEnemyStepsBase_04	.cache\36\{363E73FD-C03E-5A41-F70E-95DE6AFF3E85}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_04		15748
+	696957011	SwingerFootstep-001_03	.cache\3B\{3B72199F-A082-DB95-AF44-ED4F0A5F09F9}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_03		14071
+	705144487	SwingerFootstep-005	.cache\CF\{CF86F9B6-6F66-EDC3-7A39-8612085D24F0}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem3Normal\SwingerFootstep-005		13257
 	713593597	Woosh_01	.cache\68\{689AD3F6-A335-1468-1D31-7A1C52D98D17}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_01		29567
-	729630506	AverageEnemyStepsWoodMetal_03	.cache\3C\{3C221967-3570-E142-4787-89BBA05A6117}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_03		15080
-	729828327	FootstepStems-005_03	.cache\E8\{E8E5E430-99AE-CC21-4B39-4BE9FACFAD0C}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_03		7494
-	733059301	FootstepStems-003_04	.cache\67\{6757D3EB-0DCB-CE9D-A8D4-9DDA3686E88E}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_04		13015
+	729630506	AverageEnemyStepsWoodMetal_03	.cache\5F\{5F12327F-533D-D86F-0A31-5A3F659BA29F}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal_03		15080
+	729828327	FootstepStems-005_03	.cache\FA\{FAEF9055-A000-0D6B-F4C3-07D5D4637011}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_03		7494
+	733059301	FootstepStems-003_04	.cache\74\{7494CC4E-AD10-3C9E-945A-60EF7E70B773}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_04		13015
 	750876961	SwordSlashExample_01	.cache\05\{0586ECD5-E996-20B6-F1A8-96E2DD847F11}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_01		40933
 	751347334	BlunderbussLight	.cache\EC\{ECDAA65E-D20F-57B3-6CA9-4F797940DB13}.wem		\Containers\Default Work Unit\Weapons\BlunderbussLight		86555
 	754839197	1PIeceCollectedLine6	.cache\2F\{2F79BAC2-DF89-B41A-6036-DC085DC75C7A}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PIeceCollectedLine6		23051
 	762224343	AdditionalPieceCollectedLine2	.cache\33\{334D844B-58AF-EB13-0BC6-ADA1E8FBD636}.wem		\Containers\Default Work Unit\VA\VA\AdditionalPieceCollected\AdditionalPieceCollectedLine2		80428
-	763643214	AverageEnemyStepsWoodMetal	.cache\CC\{CCD545F6-4B53-3003-2E75-1DB23E324D80}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal		15865
+	763643214	AverageEnemyStepsWoodMetal	.cache\8A\{8A9781F0-CF37-1F54-8938-E1AAA78DCDFB}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Metal\AverageEnemyStepsWoodMetal		15865
 	765843477	Line4	.cache\B3\{B3ECC5DD-2F69-33BE-3CF8-D092BD0C1EE0}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line4		145332
-	775266389	RopeSwing	.cache\DD\{DD51FA09-C1D8-E3EE-BAF0-D68233187915}.wem		\Containers\Default Work Unit\Environment\RopeSwing		63686
-	780092636	FootstepSFXExample_02	.cache\E7\{E7DB6226-D8BB-E165-3896-433139CD6CC6}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_02		30012
-	780703946	FootstepStems-003_01	.cache\24\{2443BF7D-CAF5-BCA8-06E4-EA9F7AB2A27F}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_01		14285
-	785453003	FootstepStems-005_02	.cache\B5\{B557956C-0417-1A33-403F-F06DA76497CA}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_02		7961
-	796215813	SwingerFootstep-004_02	.cache\3C\{3CC84F5D-A9F7-5145-FB3D-66702E11422E}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_02		10761
-	796430645	FootstepStems-006_02	.cache\EA\{EAD713A1-9B22-6A91-E36D-8779161AE1BC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_02		7416
-	796556875	AverageEnemyStepsWoodNormal	.cache\90\{907CA2CD-4E90-01FE-E43E-22EDEA350287}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal		16564
+	775266389	RopeSwing	.cache\ED\{ED33F6AA-EBE7-51B1-5D91-73565C80CDA7}.wem		\Containers\Default Work Unit\Environment\RopeSwing		63686
+	780092636	FootstepSFXExample_02	.cache\71\{71C02FBA-A250-07AC-BC0E-B6993BB8545B}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_02		30012
+	780703946	FootstepStems-003_01	.cache\96\{96898C36-3B2B-DBC6-8CF4-2DBF13B2A1A7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem3\FootstepStems-003_01		14285
+	785453003	FootstepStems-005_02	.cache\5C\{5CBF8398-F6E7-44A8-69E9-E2DB6D550C0C}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_02		7961
+	796215813	SwingerFootstep-004_02	.cache\54\{54BFBC15-1F5F-775D-558A-59730DFB0740}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_02		10761
+	796430645	FootstepStems-006_02	.cache\81\{81ABBE7F-DCF5-CB78-4A7A-0687C3F14CEC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_02		7416
+	796556875	AverageEnemyStepsWoodNormal	.cache\7A\{7A9BF129-4BC3-B929-081C-F541E8A774DE}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal		16564
+	810740447	Song of the Boats in the Sky - Battle Perc 2 Low Drums	.cache\33\{330DE030-5348-805A-464E-5CAB789DC547}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 2 Low Drums		8868906
 	811032749	SwingingEnemyVA_04	.cache\55\{55D2E159-3803-E640-6039-ED6C1CA4B67B}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_04		39330
 	817289263	OvenDingDone	.cache\55\{554EF721-0AAF-B965-0A84-B578B293BD5E}.wem		\Containers\Default Work Unit\Weapons\OvenDingDone		22390
 	818030058	SwordSlashExample	.cache\73\{734AC0ED-05EF-1EA2-CA02-4F3D98848254}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample		37924
 	818367138	PlayerDamageStuff_02	.cache\03\{03BC741C-56A0-9893-FB22-2A6D25FE19D0}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_02		29505
-	823058991	FootstepSFXExample_03	.cache\D2\{D253C187-64E6-30C4-0C66-60F033784397}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_03		26764
-	829136830	FootstepSFXExample_04	.cache\D4\{D48C5A71-C26A-31B8-928F-B7B1EF6160C2}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_04		28368
+	823058991	FootstepSFXExample_03	.cache\1E\{1EAF428B-C0E4-F570-DD90-1512FAB64834}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_03		26764
+	829136830	FootstepSFXExample_04	.cache\4C\{4CD32193-18C4-648B-9816-926786EBFA94}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_04		28368
 	834233048	BruteVA_02	.cache\5D\{5D7C6F77-079C-41DF-8470-535934000A87}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_02		43700
-	841410472	FootstepSFXExample	.cache\F2\{F28D8DCF-62B2-9F19-3AF8-9E0563C16583}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample		18924
-	842524675	SwingerFootstep-006_02	.cache\0A\{0A02D221-328F-74BD-4D30-4A11453DFC77}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_02		11434
-	842662115	Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)	.cache\F4\{F473B4D0-8B6C-3883-FE2D-1EA3B4005834}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)		2999431
+	841410472	FootstepSFXExample	.cache\97\{97D04C0F-CE70-5CB1-CDB1-2B116315463D}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample		18924
+	842524675	SwingerFootstep-006_02	.cache\1C\{1C6C87B0-1AD8-48FF-7747-BF85F221C13D}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_02		11434
 	845335227	SwingingEnemyVA_05	.cache\16\{168F7ECD-B2EB-DC5C-A2F2-32B5BBABF22C}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\SwingingEnemyVA_05		47288
-	864774635	FootstepStems-006_04	.cache\46\{467C7A69-F286-7643-DAF7-3E262C3A4315}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_04		7468
-	890399975	SwingerFootstep-002_03	.cache\2F\{2FCB3709-2712-0599-68F8-19F414F4B84F}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_03		12908
-	891731372	AverageEnemyStepsMetal	.cache\D0\{D03486A8-FD85-731C-C2E0-4084D33DEF38}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal		14414
+	864774635	FootstepStems-006_04	.cache\A4\{A4A7A51B-14B4-F5DC-FC4A-71FD4A7194A2}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_04		7468
+	890399975	SwingerFootstep-002_03	.cache\E5\{E5EF9E6E-3909-F27B-658F-6E550B7CDCE1}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_03		12908
+	891731372	AverageEnemyStepsMetal	.cache\2F\{2F3AFECD-F265-958E-E70F-2ED7DC8FCC6C}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal		14414
 	894087048	PlayerDamageStuff_01	.cache\F7\{F783D4AD-1B62-26EC-50F9-2BFE47D44D19}.wem		\Containers\Default Work Unit\Player\PlayerDamage\PlayerDamageStuff_01		32673
 	894823102	Woosh_03	.cache\E0\{E0F37F6A-5684-8673-4B92-EE50530EAEAB}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_03		19776
 	901896633	Death2	.cache\4D\{4D65DB4C-3BAF-AB81-EA84-F978E63D2A48}.wem		\Containers\Default Work Unit\Player\DeathCry\Death2		65015
-	911682553	AverageEnemyStepsBikeChain_01	.cache\7C\{7C957487-F40F-4B38-85B6-BA0090E33AB4}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_01		24637
+	911682553	AverageEnemyStepsBikeChain_01	.cache\6A\{6ACB2841-9CB3-4564-8350-85B664A6BD33}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain_01		24637
 	912806009	KitchenTimerClick	.cache\80\{806D8BE6-4F8C-0641-03F6-8CEFB89A0A22}.wem		\Containers\Default Work Unit\Weapons\KitchenTimerClick		190883
 	921292567	WindStart	.cache\D0\{D07408BE-F3C6-63A0-E7C9-6137A5E49E30}.wem		\Containers\Default Work Unit\Environment\WindStart		202053
 	924573326	Jump	.cache\3D\{3D496F86-AD3A-13BA-1E2A-06E32D3E7529}.wem		\Containers\Default Work Unit\Player\Jump		44176
 	926414663	Woosh_02	.cache\6F\{6FB3D05B-49CC-1069-2ECC-B8082F40B149}.wem		\Containers\Default Work Unit\Weapons\BombThrowWoosh\Woosh_02		24888
-	928986090	FootstepSFXExample	.cache\E5\{E5C9764C-3A1B-3DF6-EE50-4BD741A8A362}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample		28061
+	928986090	FootstepSFXExample	.cache\B7\{B79025E8-F7B3-402C-7310-60E73C10A972}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample		28061
 	940533753	BruteVA_04	.cache\D8\{D8A4F405-1525-C53C-371D-9755D1962B66}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_04		33962
-	941469442	AverageEnemyStepsWoodNormal_01	.cache\50\{5057387F-4283-8E22-175F-2C6593D263DA}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_01		15288
+	941469442	AverageEnemyStepsWoodNormal_01	.cache\12\{123D6684-7FE2-CB8C-437F-B3674DE3B7A3}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_01		15288
 	941547104	Line2	.cache\AE\{AEA4BC9D-4C1D-69EB-850D-1E180461ECA5}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\Line2		243244
-	942996325	AverageEnemyStepsBase_02	.cache\86\{86B4346D-4E0C-FACF-E41F-F39B2DC93621}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_02		14114
-	944122239	AverageEnemyStepsMetal_01	.cache\08\{08F27A24-79B8-C8E4-7C32-6D5BFC877359}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_01		14818
-	949543773	FootstepSFXExample_01	.cache\90\{9010B111-A27C-CBC7-FF58-6E4EB3AFC407}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_01		28595
+	942996325	AverageEnemyStepsBase_02	.cache\4E\{4E6EA868-0518-3A1F-3EBF-065808646596}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Normal\AverageEnemyStepsBase_02		14114
+	944122239	AverageEnemyStepsMetal_01	.cache\B0\{B07EA871-218C-B56D-7D33-4B190EBCA09C}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_01		14818
+	949543773	FootstepSFXExample_01	.cache\B6\{B64EE11A-3F98-4CEB-2017-3791411118FA}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_01		28595
 	952159520	OnceInRangeBombLine3	.cache\27\{276DFA58-5649-3AE1-B651-B7F1C0A8F25B}.wem		\Containers\Default Work Unit\VA\VA\NearVaultDialogue\OnceInRangeBombLine3		48327
 	960224522	Line5	.cache\F4\{F4F6CD16-92F2-FE71-48E5-A011B6DF261C}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line5		254374
 	964124677	Line4	.cache\AC\{ACAAA037-7324-C5B4-5824-BFB4334C586F}.wem		\Containers\Default Work Unit\VA\VA\StartMissionDialogue\Line4		402502
-	966822859	FootstepStems-004	.cache\4F\{4F3E4238-501F-0181-2FB5-75F93EF3DDDC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem4\FootstepStems-004		16691
+	966822859	FootstepStems-004	.cache\06\{065B37F2-CA51-96FF-A096-F2C2B94D4676}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem4\FootstepStems-004		16691
 	974919281	BlunderbussHeavy	.cache\24\{246E5509-5B49-C324-6C3E-75B18FA36D1B}.wem		\Containers\Default Work Unit\Weapons\BlunderbussHeavy		93696
 	985203243	Avengers Suite (Theme)_01	.cache\7C\{7CDE9A25-3BBF-F41A-0662-4BBEF74DF76F}.wem		\Containers\Default Work Unit\MemeStuff\Avengers Suite (Theme)_01		2481779
-	989741732	FootstepStems-001_03	.cache\34\{34CA719F-271D-8463-6EC2-462198967407}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_03		6991
+	989741732	FootstepStems-001_03	.cache\55\{55157A6E-F35B-3187-2DF5-742E9871FB70}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_03		6991
 	990222415	Line5	.cache\CA\{CA65100F-7AC6-FC10-790A-C875F5B1DCEE}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line5		140332
-	992118632	FootstepSFXExample_05	.cache\6D\{6D49BE4C-4676-504A-F9D5-56DD3E0CD0E5}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_05		27596
-	1003084449	Song of the Boats in the Sky - Battle Strings	.cache\3B\{3BC44EA1-B040-6615-8D6C-610ED2621DBB}.wem		\Containers\Music\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Strings		8331505
+	992118632	FootstepSFXExample_05	.cache\15\{15F8A48F-3921-1AF2-E09D-68A6A8619032}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_05		27596
+	1003084449	Song of the Boats in the Sky - Battle Strings	.cache\1E\{1E86C1D0-7EF2-CC64-6869-933CDB93B3C4}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Strings		8578546
 	1005692176	1PieceCollectedLine3	.cache\06\{0661CD17-F3BC-0EBE-8E8D-178BEB6A2219}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\1PieceCollectedLine3		51171
-	1011080263	SwingerFootstep-004	.cache\4C\{4CF4AC72-141C-A5E8-9CA0-095FA7D4190B}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004		11384
+	1011080263	SwingerFootstep-004	.cache\7D\{7DE79078-2218-2DDB-4448-D73D1E144FC6}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004		11384
 	1014313509	GrappleMissReel	.cache\9E\{9EFD9CA6-F03D-19D6-1BFC-A8693CF1EB95}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\GrappleMissReel		98332
-	1024731219	SwingerFootstep-006_03	.cache\7C\{7C31351A-511B-6F99-113D-BCA006FD81F5}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_03		12019
-	1026265906	SwingerFootstep-003	.cache\21\{212AD7C9-6BBF-5FB2-D7A1-0394FA623EE1}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003		12217
-	1034653354	SwingerFootstep-003_03	.cache\10\{10F9BF84-A742-14B1-B709-083DC35477EA}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_03		11421
-	1035843204	BrutePunchWoosh	.cache\1F\{1FEE3712-8B74-021E-118C-8AD8A852EFAE}.wem		\Containers\Default Work Unit\Weapons\BrutePunchWoosh		28768
-	1036155795	WeaponSwaps	.cache\46\{46341461-BB8D-0442-5F72-0E76FB1530C8}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		50769
+	1024731219	SwingerFootstep-006_03	.cache\5E\{5E72205D-969C-A028-2212-7F269FE0BA8C}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem4Normal\SwingerFootstep-006_03		12019
+	1026265906	SwingerFootstep-003	.cache\D9\{D95FA72F-FCBC-981F-1C80-731D61DA8899}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003		12217
+	1034653354	SwingerFootstep-003_03	.cache\BF\{BFF939D0-6DD6-45E7-B720-EBF0A4A6A949}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Metal\SwingerFootstep-003_03		11421
+	1035843204	BrutePunchWoosh	.cache\FF\{FFC60DF5-C9DE-AA7D-539E-FF2C95C15137}.wem		\Containers\Default Work Unit\Weapons\BrutePunchWoosh		28768
+	1036155795	WeaponSwaps	.cache\2E\{2E5AC486-DD33-CCF1-820A-0EE2CF1D2165}.wem		\Containers\Default Work Unit\Weapons\WeaponSwaps		50769
 	1037545113	Death1	.cache\C7\{C74E6475-C6BC-1267-2221-2BC22BD172CD}.wem		\Containers\Default Work Unit\Player\DeathCry\Death1		58920
-	1048443078	SwingerFootstep-002_01	.cache\72\{7241A8CA-8C8A-86DB-139B-FDEE7588FD13}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_01		13220
+	1048443078	SwingerFootstep-002_01	.cache\A6\{A6BAE1F3-9757-9D7C-9CCF-39B4F4A1A23D}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_01		13220
 	1051686944	TakeDamageBase	.cache\B3\{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase		45722
 

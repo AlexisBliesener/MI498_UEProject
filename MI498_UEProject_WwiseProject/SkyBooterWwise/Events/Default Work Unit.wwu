@@ -542,7 +542,7 @@
 								<Action Name="" ID="{B51614E0-AB4E-4908-BB53-92B32E659A90}" ShortID="882831173">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

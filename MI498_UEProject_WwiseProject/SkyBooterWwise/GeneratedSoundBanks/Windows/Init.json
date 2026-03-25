@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{BF74C836-6AF0-FD97-E08B-D96B9F3F25D0}",
+    "Hash": "{F22DA345-DCE6-25FB-DC2A-031181269C40}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -220,6 +220,50 @@
         "Name": "No",
         "ObjectPath": "\\States\\Default Work Unit\\LowHealthState\\No",
         "GUID": "{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"
+       }
+      ]
+     },
+     {
+      "Id": "84387996",
+      "Name": "NumberofBombPieces",
+      "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces",
+      "GUID": "{32B3C862-8609-4A4C-89A9-85F491F8BB07}",
+      "Color": "12",
+      "States": [
+       {
+        "Id": "678209053",
+        "Name": "Two",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Two",
+        "GUID": "{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}",
+        "Color": "12"
+       },
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\None",
+        "GUID": "{17130597-B836-4F50-A3C2-F613117636B1}",
+        "Color": "12"
+       },
+       {
+        "Id": "766521211",
+        "Name": "Zero",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Zero",
+        "GUID": "{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}",
+        "Color": "12"
+       },
+       {
+        "Id": "912956111",
+        "Name": "Three",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Three",
+        "GUID": "{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}",
+        "Color": "12"
+       },
+       {
+        "Id": "1064933119",
+        "Name": "One",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\One",
+        "GUID": "{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}",
+        "Color": "12"
        }
       ]
      },
@@ -763,6 +807,6 @@
     ]
    }
   ],
-  "FileHash": "{0E9508BD-CA62-1D7F-DB24-D5EE24742E99}"
+  "FileHash": "{8C2A4D65-D7C5-7E7B-9CB3-19B1037C0A32}"
  }
 }

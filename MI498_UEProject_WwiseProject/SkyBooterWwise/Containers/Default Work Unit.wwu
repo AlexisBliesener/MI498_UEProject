@@ -3996,7 +3996,6 @@
 							<ChildrenList>
 								<RandomSequenceContainer Name="AdditionalPieceCollected" ID="{03761475-4C40-47D3-802E-D135F4B2A427}" ShortID="560830416">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4098,7 +4097,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="AfterBombExplode" ID="{3F0C0627-9A69-4F98-A31D-E533A193C1D7}" ShortID="178088460">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4231,7 +4229,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="EscapeShipDialogue" ID="{BA6EF528-CB73-4224-9227-A8E878273946}" ShortID="941516234">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4335,7 +4332,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="FirstPieceCollectedDialogue" ID="{7D57644C-C9BE-430A-9BA8-345FC3AABD39}" ShortID="455276104">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4607,7 +4603,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="LeaveVaultDialogue" ID="{48B2027D-EF51-4966-AAAA-F9BD98E55D33}" ShortID="759782476">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4747,7 +4742,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="NearVaultDialogue" ID="{6E843674-62C1-4E23-8F13-9E4C3709E5E1}" ShortID="576425019">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -4935,7 +4929,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="OnceAllPiecesCollectedDialogue" ID="{08A34B90-DB61-4BD1-B360-41296580C959}" ShortID="211130183">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -5052,41 +5045,6 @@
 												<ActiveSource Name="AllPiecesCollectedLine1" ID="{568F5DB0-8E93-40DE-B233-2CFEA5DA5642}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="AllPiecesCollectedLine2" ID="{3CA3CFD2-B5D5-4088-92C7-C7DCBCBD9592}" ShortID="564882987">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-6</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="AllPiecesCollectedLine2" ID="{31484E3E-037F-4CBE-B252-51695CE80977}">
-													<PropertyList>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.205401961774711"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.0289669433272028"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.51944780347433"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>AllPiecesCollectedLine2.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="398618583"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="AllPiecesCollectedLine2" ID="{31484E3E-037F-4CBE-B252-51695CE80977}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="AllPiecesLine2" ID="{3A11FA04-4FDD-4284-9D78-01823F691544}" ShortID="582714699">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
@@ -5158,7 +5116,6 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="StartMissionDialogue" ID="{19C701EC-6F70-4F55-BAB2-C5475E29F62A}" ShortID="958492519">
 									<PropertyList>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>

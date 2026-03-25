@@ -1,5 +1,6 @@
 State Group	ID	Name			Wwise Object Path	Notes
 	76065630	LowHealthState			\Default Work Unit\LowHealthState	
+	84387996	NumberofBombPieces			\Default Work Unit\PlayerStates\NumberofBombPieces	
 	100949179	IsSprinting			\Default Work Unit\PlayerStates\IsSprinting	
 	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
 
@@ -7,6 +8,11 @@ State	ID	Name	State Group			Notes
 	748895195	None	LowHealthState			
 	979470758	Yes	LowHealthState			
 	1668749452	No	LowHealthState			
+	678209053	Two	NumberofBombPieces			
+	748895195	None	NumberofBombPieces			
+	766521211	Zero	NumberofBombPieces			
+	912956111	Three	NumberofBombPieces			
+	1064933119	One	NumberofBombPieces			
 	748895195	None	IsSprinting			
 	979470758	Yes	IsSprinting			
 	1668749452	No	IsSprinting			

@@ -3,57 +3,57 @@
 	<Containers>
 		<WorkUnit Name="Music" ID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}" PersistMode="Standalone">
 			<ChildrenList>
-				<MusicPlaylistContainer Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" ShortID="503006294">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="10"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-						<Property Name="Tempo" Type="Real64" Value="72"/>
-					</PropertyList>
+				<MusicSwitchContainer Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" ShortID="1069585310">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-						</Reference>
-						<Reference Name="PlaylistRoot">
-							<Custom>
-								<MusicPlaylistItem Name="" ID="{DCD4A669-26F0-427A-B6C0-9E31116CE6A4}" ShortID="390154685">
-									<ChildrenList>
-										<MusicPlaylistItem Name="" ID="{BCEBB41A-F955-47F1-A414-8E9A5263D5A2}" ShortID="241061929">
-											<PropertyList>
-												<Property Name="LoopCount" Type="int16" Value="0">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{77B0876A-3DD1-40D3-BF80-D79AB0233729}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Segment">
-													<ObjectRef Name="CombatTheme" ID="{3201B68E-0B1C-4D5E-BB6B-2C4AFCB5BF06}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
-												</Reference>
-											</ReferenceList>
-										</MusicPlaylistItem>
-									</ChildrenList>
-								</MusicPlaylistItem>
-							</Custom>
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
 						</Reference>
 						<Reference Name="TransitionRoot">
 							<Custom>
-								<MusicTransition Name="Root" ID="{05C3690C-7AF4-4A3C-9603-C7C05E50124A}">
+								<MusicTransition Name="Root" ID="{8FD9251F-477B-4537-BC24-9D31225D4B33}">
 									<PropertyList>
 										<Property Name="IsFolder" Type="bool" Value="True"/>
 									</PropertyList>
 									<ChildrenList>
-										<MusicTransition Name="Transition" ID="{FA0DDCBD-D0F1-4B2E-B226-8A6328C634F7}">
+										<MusicTransition Name="Transition" ID="{4381DC52-D010-48B2-97DF-CB1357092A0B}">
 											<TransitionInfo/>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{BCDB4095-762E-4DFE-8EB3-F0CEDCA98C09}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="0"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="NonCombatTheme" ID="{01565899-FCAB-4EBB-95A4-0F21D946C8B9}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<SourceFadeOut>
+													<MusicFade Name="Source Fade-out" ID="{896F3067-0588-4952-A4A8-81FDEF0BE09A}">
+														<PropertyList>
+															<Property Name="FadeTime" Type="Real64" Value="0.6"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</SourceFadeOut>
+												<DestinationFadeIn>
+													<MusicFade Name="Destination Fade-in" ID="{C811649A-ED94-4657-A3F8-564289BBEE3F}">
+														<PropertyList>
+															<Property Name="FadeTime" Type="Real64" Value="0.6"/>
+														</PropertyList>
+													</MusicFade>
+												</DestinationFadeIn>
+											</TransitionInfo>
 										</MusicTransition>
 									</ChildrenList>
 									<TransitionInfo/>
@@ -62,15 +62,513 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<MusicSegment Name="CombatTheme" ID="{3201B68E-0B1C-4D5E-BB6B-2C4AFCB5BF06}" ShortID="276393600">
+						<MusicPlaylistContainer Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" ShortID="503006294">
 							<PropertyList>
-								<Property Name="EndPosition" Type="Real64" Value="176983.379501385"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-20</Value>
-									</ValueList>
-								</Property>
+								<Property Name="Color" Type="int16" Value="10"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="72"/>
 							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{DCD4A669-26F0-427A-B6C0-9E31116CE6A4}" ShortID="390154685">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{BCEBB41A-F955-47F1-A414-8E9A5263D5A2}" ShortID="241061929">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0">
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{77B0876A-3DD1-40D3-BF80-D79AB0233729}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="CombatTheme" ID="{3201B68E-0B1C-4D5E-BB6B-2C4AFCB5BF06}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{05C3690C-7AF4-4A3C-9603-C7C05E50124A}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{FA0DDCBD-D0F1-4B2E-B226-8A6328C634F7}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="CombatTheme" ID="{3201B68E-0B1C-4D5E-BB6B-2C4AFCB5BF06}" ShortID="276393600">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="176983.379501385"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-20</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Song of the Boats in the Sky - Battle Brass" ID="{5E049C0E-8D50-405D-9303-A1A04842927F}" ShortID="806872303">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{3A20D981-791C-4B2C-B8F0-ADA02ABB4ACF}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - Battle Brass" ID="{83BCD63E-6ECE-420B-BBBB-C57077027A7A}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - Battle Brass.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="642013019"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<StateInfo>
+												<StateGroupList>
+													<StateGroupInfo>
+														<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+														<StateGroupInfo Name="" ID="{44E67F06-3866-4D2D-843E-BC17F3B66249}" ShortID="1002398150"/>
+													</StateGroupInfo>
+												</StateGroupList>
+												<CustomStateList>
+													<CustomState>
+														<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+														<CustomState Name="" ID="{9964B5F0-80A3-4D32-A76A-18D831FEC644}" ShortID="780641618">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+														<CustomState Name="" ID="{9A2DC159-6E36-47D6-AEA7-265C1B8D4327}" ShortID="238152211">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+														<CustomState Name="" ID="{3B8953F0-1230-4488-9CAB-EF9D666B4F99}" ShortID="6878761"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+														<CustomState Name="" ID="{A9062B9E-4C61-4E7B-8DFC-FB3DC325723F}" ShortID="204891969">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+														<CustomState Name="" ID="{C02D125A-C976-4D27-8A66-288777893D2F}" ShortID="494893728">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+												</CustomStateList>
+											</StateInfo>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{83D1F670-5A15-41A9-B6AE-E76DB4175910}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - Battle Brass" ID="{26F3A4A9-90D5-4767-A21D-117243CB9E38}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - Battle Brass" ID="{83BCD63E-6ECE-420B-BBBB-C57077027A7A}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+										<MusicTrack Name="Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp" ID="{A0F4F4CA-662F-4422-8284-83F745E34312}" ShortID="565800418">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{15FB5672-386A-4337-BF71-02FFCEF3E8C7}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp" ID="{13B80753-5239-4680-BCD7-B1F1193A3205}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="212962631"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<StateInfo>
+												<StateGroupList>
+													<StateGroupInfo>
+														<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+														<StateGroupInfo Name="" ID="{E45CDC1A-6231-4010-99E4-09F8234C02B8}" ShortID="842592383"/>
+													</StateGroupInfo>
+												</StateGroupList>
+												<CustomStateList>
+													<CustomState>
+														<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+														<CustomState Name="" ID="{D96B3ECD-9F96-456A-B86F-69A6F14B7673}" ShortID="1028241014">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+														<CustomState Name="" ID="{79F19886-3CCC-4854-B095-5FB587467764}" ShortID="562412358">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+														<CustomState Name="" ID="{4325959A-A78F-46E6-9613-4168B7979AE8}" ShortID="17075412"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+														<CustomState Name="" ID="{10767A9A-E70F-4CE5-B238-0B07C241189E}" ShortID="884347355">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+														<CustomState Name="" ID="{FBEE7169-6E24-4987-8B8F-B763EE60875E}" ShortID="899266921">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+												</CustomStateList>
+											</StateInfo>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{BDC12907-4BF0-47EA-937E-082723B1A933}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp" ID="{42D44C9A-D2C9-425C-899B-79C6EA89AB2A}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp" ID="{13B80753-5239-4680-BCD7-B1F1193A3205}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+										<MusicTrack Name="Song of the Boats in the Sky - Battle Perc 2 Low Drums" ID="{9EAB1359-7EBB-42E0-9595-466112551D3D}" ShortID="333263421">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{25601FEE-FC02-4DCB-9A1E-99EDEC88DFCB}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - Battle Perc 2 Low Drums" ID="{D03BCE3B-5DE7-4276-A2A0-68B4DDCC3EB9}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - Battle Perc 2 Low Drums.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="810740447"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<StateInfo>
+												<StateGroupList>
+													<StateGroupInfo>
+														<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+														<StateGroupInfo Name="" ID="{DAD1AC08-CD77-4D4B-8E97-76E2116F3DD7}" ShortID="1016826021"/>
+													</StateGroupInfo>
+												</StateGroupList>
+												<CustomStateList>
+													<CustomState>
+														<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+														<CustomState Name="" ID="{C7D711F2-4BA3-488A-9CAB-14071F69EA39}" ShortID="392172465"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+														<CustomState Name="" ID="{2D0B0785-0CDD-4D1D-BA20-1E22BDDA81A9}" ShortID="691830730"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+														<CustomState Name="" ID="{4BD37E3A-3D63-4189-A892-0FA5A63D7E73}" ShortID="1010628477"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+														<CustomState Name="" ID="{2C1518C5-374C-43C3-80DE-1E7467249657}" ShortID="484765831"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+														<CustomState Name="" ID="{31A6DFE5-8A70-4DC2-A373-136100068398}" ShortID="405171713"/>
+													</CustomState>
+												</CustomStateList>
+											</StateInfo>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{3DF0C0EF-375E-4708-AF2F-539A911320CD}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - Battle Perc 2 Low Drums" ID="{F284335F-F566-44CF-A81D-67EE4AB87359}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - Battle Perc 2 Low Drums" ID="{D03BCE3B-5DE7-4276-A2A0-68B4DDCC3EB9}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+										<MusicTrack Name="Song of the Boats in the Sky - Battle Strings" ID="{3D41BD7B-CE73-4E46-8FAE-86B7B488E444}" ShortID="343957731">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{9EEA8456-C82D-4004-8DDA-F9CB8403DFAD}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - Battle Strings" ID="{D558DF7C-F16B-4F61-BA1E-C35E6267CD62}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - Battle Strings.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1003084449"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<StateInfo>
+												<StateGroupList>
+													<StateGroupInfo>
+														<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+														<StateGroupInfo Name="" ID="{1643D38D-62BB-4D26-B10A-19BBB370F3A3}" ShortID="205307570"/>
+													</StateGroupInfo>
+												</StateGroupList>
+												<CustomStateList>
+													<CustomState>
+														<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+														<CustomState Name="" ID="{F8A9C923-EEC8-4F23-8756-6227D1E5FF64}" ShortID="185406131"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+														<CustomState Name="" ID="{12B58127-F764-4454-8B53-BC6BBC3C428B}" ShortID="755968853"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+														<CustomState Name="" ID="{8E0FFF55-F6CF-4C3A-9800-DEC708C707A4}" ShortID="175620085"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+														<CustomState Name="" ID="{C004BA13-69F5-48FA-A7E3-2517F7FB70DC}" ShortID="730075726"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+														<CustomState Name="" ID="{4B1DF6FB-318B-46AD-8EF9-711484290C4D}" ShortID="415420989"/>
+													</CustomState>
+												</CustomStateList>
+											</StateInfo>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{0CE9AC8D-A8E7-4B36-890A-42FA9B7087C5}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - Battle Strings" ID="{72F30041-6AC3-469A-9F7A-D51F8FCE9C8A}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - Battle Strings" ID="{D558DF7C-F16B-4F61-BA1E-C35E6267CD62}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+										<MusicTrack Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{E95167DC-1B75-43B4-9263-46E6D9272E99}" ShortID="950831726">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{23892884-CD6C-416F-A858-10909B8866E5}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{FDEF8F50-CB46-407F-9C91-EC4E2DFE8136}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - Battle Woodwinds.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="672011565"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<StateInfo>
+												<StateGroupList>
+													<StateGroupInfo>
+														<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+														<StateGroupInfo Name="" ID="{1BFE32F9-0065-45B1-9857-69FAF6DE2F67}" ShortID="946142303"/>
+													</StateGroupInfo>
+												</StateGroupList>
+												<CustomStateList>
+													<CustomState>
+														<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+														<CustomState Name="" ID="{6D16A460-B056-43AA-B398-C2A3282A97B7}" ShortID="529707350">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+														<CustomState Name="" ID="{CF7E88A3-D375-4C36-9CA1-EFD920F4A115}" ShortID="863401411">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+														<CustomState Name="" ID="{62408D7D-F3E1-4B00-8657-D0FEC4015710}" ShortID="141372687"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+														<CustomState Name="" ID="{C5D8597C-59B5-49E7-9CD3-BA3C0AC4C220}" ShortID="699781949"/>
+													</CustomState>
+													<CustomState>
+														<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+														<CustomState Name="" ID="{74C5DB05-F60C-4500-A6D5-957874A7AC00}" ShortID="593912536">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64" Value="-108"/>
+															</PropertyList>
+														</CustomState>
+													</CustomState>
+												</CustomStateList>
+											</StateInfo>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{167E0E83-B48B-4D93-BA26-6F8A47DA7D92}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{EEDC5CFF-DC17-4F72-A237-A223C5097631}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{FDEF8F50-CB46-407F-9C91-EC4E2DFE8136}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<MusicCue Name="Entry Cue" ID="{5C3FB8F2-F152-49CB-8C3A-A3BDAD46B894}"/>
+											<MusicCue Name="Exit Cue" ID="{F57C5AA2-6882-4A4F-BFAD-4A3E25CA13AC}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="172291.666666667"/>
+												</PropertyList>
+											</MusicCue>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+						<MusicPlaylistContainer Name="NonCombatTheme" ID="{01565899-FCAB-4EBB-95A4-0F21D946C8B9}" ShortID="299271659">
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
@@ -78,545 +576,311 @@
 								<Reference Name="OutputBus">
 									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
 								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{BE6F1A68-8BA6-4DF4-9562-11B5EFB346A8}" ShortID="1068439682">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{201937FF-49B5-44E3-A1E8-A373FD5FA5A2}" ShortID="905899628">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="NonCombatTheme" ID="{3FCA5250-8618-4D11-AEDD-ACE1E1B85850}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{4FEFAADC-9D0F-4B0C-A968-58AB5A5F2E5A}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{ABAF8813-DFF7-4DFD-A2E0-735497F4F2EC}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<MusicTrack Name="Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)" ID="{F4DE0B83-D252-410D-900A-F70863002D91}" ShortID="663030506">
+								<MusicSegment Name="NonCombatTheme" ID="{3FCA5250-8618-4D11-AEDD-ACE1E1B85850}" ShortID="297612363">
 									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="176081.081081081"/>
+										<Property Name="Tempo" Type="Real64" Value="72"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>-20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
 										</Reference>
-										<Reference Name="TransitionRoot">
-											<Custom>
-												<MusicTransition Name="Root" ID="{216C03C7-C026-4212-A7E6-F055882FCCA6}">
-													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
-													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</Custom>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)" ID="{303779BC-9B26-4EFF-A80C-50E91F7B13FD}">
-											<Language>SFX</Language>
-											<AudioFile>Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn. Kick).wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="597547971"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<MusicTrackSequence Name="" ID="{0D9743C2-AC2B-4BB2-9C2E-F69F0D77032E}">
-												<ObjectLists>
-													<ObjectList Name="Clips">
-														<MusicClip Name="Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)" ID="{ED28B9B0-EDD0-4FA6-8991-B4764D2E6481}">
+										<MusicTrack Name="Song of the Boats in the Sky - NoBattle Cymbals" ID="{5660573C-9233-4466-8AE8-A0A2CA73BD92}" ShortID="782219486">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{5FD0AFA6-4FCB-4670-BCA6-AA7C99A8B597}">
 															<PropertyList>
-																<Property Name="EndTrimOffset" Type="Real64" Value="172291.666666665"/>
-																<Property Name="FadeInMode" Type="int16" Value="0"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="10.0733435951988"/>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
 															</PropertyList>
-															<AudioSourceRef Name="Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn_ Kick)" ID="{303779BC-9B26-4EFF-A80C-50E91F7B13FD}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{A2AD3D23-5799-4A1D-A2DA-0AC233E58777}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{14141457-C594-4B17-B3F6-3A6EA71CEAAE}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{51CCC9B4-9DDF-413C-B971-36430EAD6771}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
-														</MusicClip>
-													</ObjectList>
-												</ObjectLists>
-											</MusicTrackSequence>
-										</ObjectList>
-									</ObjectLists>
-								</MusicTrack>
-								<MusicTrack Name="Song of the Boats in the Sky - Battle Strings" ID="{1841D4B0-C1C0-497E-87D5-492BA2E1C6E1}" ShortID="1064210530">
-									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-										</Reference>
-										<Reference Name="TransitionRoot">
-											<Custom>
-												<MusicTransition Name="Root" ID="{9EEA31FE-36B9-482E-9BE2-339FDA25E72D}">
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - NoBattle Cymbals" ID="{5854B06A-F305-4C5E-BBF7-B5B0BE59DD6B}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - NoBattle Cymbals.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="196317867"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{C7A054E9-4493-4FA4-8D94-1586F10DB7D0}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - NoBattle Cymbals" ID="{5FBB937D-D388-47F5-AF92-9FFCD2148190}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - NoBattle Cymbals" ID="{5854B06A-F305-4C5E-BBF7-B5B0BE59DD6B}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+										<MusicTrack Name="Song of the Boats in the Sky - NoBattle Strings" ID="{394761A7-DE92-45CD-AA11-F735400EDBB9}" ShortID="995220086">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{87E4AEB6-AA8F-4DDF-B0A1-D9E26CBC3DAD}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Song of the Boats in the Sky - NoBattle Strings" ID="{3A4D7F5A-FDFD-4C61-BB47-B8EB1947897E}">
+													<Language>SFX</Language>
+													<AudioFile>Song of the Boats in the Sky - NoBattle Strings.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="480644522"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<MusicTrackSequence Name="" ID="{C61A14B5-52FF-4188-A47E-A7CBFC12F385}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<MusicClip Name="Song of the Boats in the Sky - NoBattle Strings" ID="{AA99283A-34BE-4EE8-9621-5F937D434441}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="174888.729166667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Song of the Boats in the Sky - NoBattle Strings" ID="{3A4D7F5A-FDFD-4C61-BB47-B8EB1947897E}"/>
+																</MusicClip>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<StateInfo>
+										<StateGroupList>
+											<StateGroupInfo>
+												<StateGroupRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}"/>
+												<StateGroupInfo Name="" ID="{F6413126-C7B2-466A-8280-4BEFD5DEAA01}" ShortID="616249754"/>
+											</StateGroupInfo>
+										</StateGroupList>
+										<CustomStateList>
+											<CustomState>
+												<StateRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+												<CustomState Name="" ID="{146C1840-0723-4CBF-BDF6-2D51FFBCC9EC}" ShortID="1040759257">
 													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
+														<Property Name="Volume" Type="Real64" Value="-108"/>
 													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Song of the Boats in the Sky - Battle Strings" ID="{B1776A8C-23CE-4AE2-AD87-AFF5CAAEAC2B}">
-											<Language>SFX</Language>
-											<AudioFile>Song of the Boats in the Sky - Battle Strings.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="1003084449"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<MusicTrackSequence Name="" ID="{3C58D8EC-0976-4B26-A71B-465EC21EF12E}">
-												<ObjectLists>
-													<ObjectList Name="Clips">
-														<MusicClip Name="Song of the Boats in the Sky - Battle Strings" ID="{73D63DFD-391D-47B6-B405-B3A07917B964}">
-															<PropertyList>
-																<Property Name="EndTrimOffset" Type="Real64" Value="172291.666666666"/>
-																<Property Name="FadeInMode" Type="int16" Value="0"/>
-																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-															</PropertyList>
-															<AudioSourceRef Name="Song of the Boats in the Sky - Battle Strings" ID="{B1776A8C-23CE-4AE2-AD87-AFF5CAAEAC2B}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{43270392-66DB-460B-B13F-B8857BE84304}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{04EE64C9-48B2-47CF-BD9F-070FA0131F4C}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{DCF5A155-98B3-4D61-8D77-7F7441944B61}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
-														</MusicClip>
-													</ObjectList>
-												</ObjectLists>
-											</MusicTrackSequence>
-										</ObjectList>
-									</ObjectLists>
-								</MusicTrack>
-								<MusicTrack Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{1A9F0CE2-91A4-419F-976D-BFC9A7FECCF5}" ShortID="882077134">
-									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-										</Reference>
-										<Reference Name="TransitionRoot">
-											<Custom>
-												<MusicTransition Name="Root" ID="{47D21B5E-78AC-4EA4-AC19-5DF4A66135EB}">
+												</CustomState>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+												<CustomState Name="" ID="{AA9A4B16-90DC-40AC-A43E-790F7DB17925}" ShortID="284635289"/>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+												<CustomState Name="" ID="{8B955971-B8CF-4FE4-96B6-C619138922BB}" ShortID="765482592">
 													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
+														<Property Name="Volume" Type="Real64" Value="-108"/>
 													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{BC45ABA6-D9D1-4A33-8FFF-318479CC892F}">
-											<Language>SFX</Language>
-											<AudioFile>Song of the Boats in the Sky - Battle Woodwinds.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="672011565"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<MusicTrackSequence Name="" ID="{599941DD-B39E-46D3-B79C-B70AEB072AE3}">
-												<ObjectLists>
-													<ObjectList Name="Clips">
-														<MusicClip Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{98A6967E-1B9D-4EA0-A7F9-C9BDD05513A5}">
-															<PropertyList>
-																<Property Name="EndTrimOffset" Type="Real64" Value="172291.666666667"/>
-																<Property Name="FadeInMode" Type="int16" Value="0"/>
-																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-															</PropertyList>
-															<AudioSourceRef Name="Song of the Boats in the Sky - Battle Woodwinds" ID="{BC45ABA6-D9D1-4A33-8FFF-318479CC892F}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{2E065F2D-4BC9-403D-B56A-E7F8EB8BCBC3}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{29DB633D-F401-4E29-ADBB-0E21195A9D72}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{EB0CC3D3-0E37-4FB3-A087-537FC91C846D}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
-														</MusicClip>
-													</ObjectList>
-												</ObjectLists>
-											</MusicTrackSequence>
-										</ObjectList>
-									</ObjectLists>
-								</MusicTrack>
-								<MusicTrack Name="Song of the Boats in the Sky - Battle Brass" ID="{21767547-23C4-49B2-8815-E95469398166}" ShortID="720173645">
-									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-										</Reference>
-										<Reference Name="TransitionRoot">
-											<Custom>
-												<MusicTransition Name="Root" ID="{834F886E-3330-421F-AA27-75DE0FFE5B98}">
+												</CustomState>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+												<CustomState Name="" ID="{3C208F79-B1A5-413F-B375-446E84470CB9}" ShortID="442942765">
 													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
+														<Property Name="Volume" Type="Real64" Value="-108"/>
 													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Song of the Boats in the Sky - Battle Brass" ID="{3C1276F4-8419-4C39-9D35-1F0E41914370}">
-											<Language>SFX</Language>
-											<AudioFile>Song of the Boats in the Sky - Battle Brass.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="642013019"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
+												</CustomState>
+											</CustomState>
+											<CustomState>
+												<StateRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+												<CustomState Name="" ID="{73F927E7-D731-401D-BC61-75E8174DB0CD}" ShortID="871041427"/>
+											</CustomState>
+										</CustomStateList>
+									</StateInfo>
 									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<MusicTrackSequence Name="" ID="{899F1580-DCB1-42F6-A5E2-451C66504AFD}">
-												<ObjectLists>
-													<ObjectList Name="Clips">
-														<MusicClip Name="Song of the Boats in the Sky - Battle Brass" ID="{595E1BD3-8FE5-4400-988E-17584966DE35}">
-															<PropertyList>
-																<Property Name="EndTrimOffset" Type="Real64" Value="172291.666666666"/>
-																<Property Name="FadeInMode" Type="int16" Value="0"/>
-																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-															</PropertyList>
-															<AudioSourceRef Name="Song of the Boats in the Sky - Battle Brass" ID="{3C1276F4-8419-4C39-9D35-1F0E41914370}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{92300604-573F-4C71-8E3D-E36FE5E745B2}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{6634D128-96D3-439A-A439-ED33D7AB6C3A}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{DFA59D56-218A-48C4-A18C-F3A0370B47E4}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
-														</MusicClip>
-													</ObjectList>
-												</ObjectLists>
-											</MusicTrackSequence>
+										<ObjectList Name="Cues">
+											<MusicCue Name="Entry Cue" ID="{B7033ECC-BC98-453F-9FC3-F6FD7A23FA9B}"/>
+											<MusicCue Name="Exit Cue" ID="{51ABC11A-D8A5-44FC-913A-8195C5E1CF1F}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="174000"/>
+												</PropertyList>
+											</MusicCue>
 										</ObjectList>
 									</ObjectLists>
-								</MusicTrack>
-								<MusicTrack Name="Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)" ID="{516A1E9B-5D58-448B-8A98-AF787601BC32}" ShortID="513547609">
-									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
-										</Reference>
-										<Reference Name="TransitionRoot">
-											<Custom>
-												<MusicTransition Name="Root" ID="{519DF1B3-587C-4C40-905F-E175204C8DAD}">
-													<PropertyList>
-														<Property Name="IsFolder" Type="bool" Value="True"/>
-													</PropertyList>
-													<TransitionInfo/>
-												</MusicTransition>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)" ID="{217079C8-9DB6-40E3-BF63-0367B0B623AF}">
-											<Language>SFX</Language>
-											<AudioFile>Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp).wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="842662115"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<MusicTrackSequence Name="" ID="{0AAA22E9-780A-4E5B-AA30-76B8A025068F}">
-												<ObjectLists>
-													<ObjectList Name="Clips">
-														<MusicClip Name="Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)" ID="{1E9DDB20-9877-429D-AE39-2690190E3359}">
-															<PropertyList>
-																<Property Name="EndTrimOffset" Type="Real64" Value="172291.666666667"/>
-																<Property Name="FadeInMode" Type="int16" Value="0"/>
-																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-															</PropertyList>
-															<AudioSourceRef Name="Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp)" ID="{217079C8-9DB6-40E3-BF63-0367B0B623AF}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{92E58874-6874-452D-8476-A642F6A7DEC8}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{D79EB8F1-D582-4888-ADDB-CC185086001F}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{1DE02787-331C-44FD-B9CA-999477423693}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>172.29167</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
-														</MusicClip>
-													</ObjectList>
-												</ObjectLists>
-											</MusicTrackSequence>
-										</ObjectList>
-									</ObjectLists>
-								</MusicTrack>
+								</MusicSegment>
 							</ChildrenList>
-							<ObjectLists>
-								<ObjectList Name="Cues">
-									<MusicCue Name="Entry Cue" ID="{5C3FB8F2-F152-49CB-8C3A-A3BDAD46B894}"/>
-									<MusicCue Name="Exit Cue" ID="{F57C5AA2-6882-4A4F-BFAD-4A3E25CA13AC}">
-										<PropertyList>
-											<Property Name="CueType" Type="int16" Value="1"/>
-											<Property Name="TimeMs" Type="Real64" Value="172291.666666667"/>
-										</PropertyList>
-									</MusicCue>
-								</ObjectList>
-							</ObjectLists>
-						</MusicSegment>
+						</MusicPlaylistContainer>
 					</ChildrenList>
-				</MusicPlaylistContainer>
+					<ObjectLists>
+						<ObjectList Name="Arguments">
+							<PluginInnerObject Name="" ID="{DE3B7A0B-A7B3-4F56-858D-8D995A460418}" PluginName="MusicArgumentsSlot" CompanyID="0" PluginID="89">
+								<ReferenceList>
+									<Reference Name="Argument">
+										<ObjectRef Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+									</Reference>
+								</ReferenceList>
+							</PluginInnerObject>
+						</ObjectList>
+						<ObjectList Name="Entries">
+							<MultiSwitchEntry Name="" ID="{BC6EDBF1-458C-41D3-9C3E-3CA0A93531EF}">
+								<ReferenceList>
+									<Reference Name="AudioNode">
+										<ObjectRef Name="NonCombatTheme" ID="{01565899-FCAB-4EBB-95A4-0F21D946C8B9}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+									</Reference>
+								</ReferenceList>
+								<ObjectLists>
+									<ObjectList Name="EntryPath">
+										<PluginInnerObject Name="" ID="{C248B6BC-FBDB-4CBE-8B8B-201DDE79B137}" PluginName="EntryPathSlot" CompanyID="0" PluginID="88">
+											<ReferenceList>
+												<Reference Name="EntryPathObject">
+													<ObjectRef Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+												</Reference>
+											</ReferenceList>
+										</PluginInnerObject>
+									</ObjectList>
+								</ObjectLists>
+							</MultiSwitchEntry>
+							<MultiSwitchEntry Name="" ID="{20AE4DDF-E5C1-45DF-BEA0-C78169831C08}">
+								<ReferenceList>
+									<Reference Name="AudioNode">
+										<ObjectRef Name="NonCombatTheme" ID="{01565899-FCAB-4EBB-95A4-0F21D946C8B9}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+									</Reference>
+								</ReferenceList>
+								<ObjectLists>
+									<ObjectList Name="EntryPath">
+										<PluginInnerObject Name="" ID="{A2CBC5ED-8FFD-4873-859E-ACAF31D470C6}" PluginName="EntryPathSlot" CompanyID="0" PluginID="88">
+											<ReferenceList>
+												<Reference Name="EntryPathObject">
+													<ObjectRef Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+												</Reference>
+											</ReferenceList>
+										</PluginInnerObject>
+									</ObjectList>
+								</ObjectLists>
+							</MultiSwitchEntry>
+							<MultiSwitchEntry Name="" ID="{A9D8FB1C-9A3A-4025-995B-E4749F6F9A5A}">
+								<ReferenceList>
+									<Reference Name="AudioNode">
+										<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+									</Reference>
+								</ReferenceList>
+								<ObjectLists>
+									<ObjectList Name="EntryPath">
+										<PluginInnerObject Name="" ID="{DB7A0B97-0418-4F93-AABA-C3B8D5F68392}" PluginName="EntryPathSlot" CompanyID="0" PluginID="88">
+											<ReferenceList>
+												<Reference Name="EntryPathObject">
+													<ObjectRef Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+												</Reference>
+											</ReferenceList>
+										</PluginInnerObject>
+									</ObjectList>
+								</ObjectLists>
+							</MultiSwitchEntry>
+							<MultiSwitchEntry Name="" ID="{463E6992-0520-4075-919C-86F045C35429}">
+								<ReferenceList>
+									<Reference Name="AudioNode">
+										<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+									</Reference>
+								</ReferenceList>
+								<ObjectLists>
+									<ObjectList Name="EntryPath">
+										<PluginInnerObject Name="" ID="{A79E5690-7F5D-4192-A21D-F13D6AA4F3A0}" PluginName="EntryPathSlot" CompanyID="0" PluginID="88">
+											<ReferenceList>
+												<Reference Name="EntryPathObject">
+													<ObjectRef Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+												</Reference>
+											</ReferenceList>
+										</PluginInnerObject>
+									</ObjectList>
+								</ObjectLists>
+							</MultiSwitchEntry>
+							<MultiSwitchEntry Name="" ID="{88483D61-D373-4140-B19E-713EAF1E58BD}">
+								<ReferenceList>
+									<Reference Name="AudioNode">
+										<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+									</Reference>
+								</ReferenceList>
+								<ObjectLists>
+									<ObjectList Name="EntryPath">
+										<PluginInnerObject Name="" ID="{478D1CF1-897B-4A11-9C3A-0B76B3E15F38}" PluginName="EntryPathSlot" CompanyID="0" PluginID="88">
+											<ReferenceList>
+												<Reference Name="EntryPathObject">
+													<ObjectRef Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}" WorkUnitID="{3DDD5B5E-8FC1-41D8-B058-3EDE4A464A99}"/>
+												</Reference>
+											</ReferenceList>
+										</PluginInnerObject>
+									</ObjectList>
+								</ObjectLists>
+							</MultiSwitchEntry>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSwitchContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</Containers>
