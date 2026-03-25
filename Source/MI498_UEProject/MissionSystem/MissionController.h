@@ -68,6 +68,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<AShip>> Ships;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> VaultBeacon;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AActor> PlayerShipBeacon;
+	
 	/// A Blueprintable function that will be called when the mission starts
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMissionStarted();
