@@ -21,6 +21,17 @@ void AMissionController::BeginPlay()
 	
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 	
+	/// Set beacons invisible
+	if (VaultBeacon)
+	{
+		VaultBeacon->SetActorHiddenInGame(true);  
+	}
+	
+	if (PlayerShipBeacon)
+	{
+		PlayerShipBeacon->SetActorHiddenInGame(true);  
+	}
+	
 	/// Set how many bomb peices are needed to complete stage one
 	NeededBombPieces = BombPieces.Num();
 	
@@ -105,6 +116,12 @@ void AMissionController::HandleBombPieceCollected(int32 index)
 	else
 	{
 		OnThirdBombPieceCollected(index);
+		
+		/// Enable vault beacon
+		if (VaultBeacon)
+		{
+			VaultBeacon->SetActorHiddenInGame(false);  
+		}
 	}
 }
 
@@ -135,6 +152,18 @@ void AMissionController::ExplodeVaultDoor()
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
 	VaultDoor->Destroy();
+	
+	/// enable player ship beacon
+	if (PlayerShipBeacon)
+	{
+		PlayerShipBeacon->SetActorHiddenInGame(false);  
+	}
+	
+	/// Disable vault beacon
+	if (VaultBeacon)
+	{
+		VaultBeacon->SetActorHiddenInGame(true);  
+	}
 
 	/// Start falling ships
 	for (TObjectPtr<AShip> ship : Ships)
