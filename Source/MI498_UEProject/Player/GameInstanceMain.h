@@ -19,4 +19,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Settings")
 	float MouseSens = 1.0f;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool GameRestarted = false;
+	
 };

@@ -26,6 +26,15 @@
 								<State Name="No" ID="{DDCE2AF2-5CEC-421E-AB2E-B56674246487}"/>
 							</ChildrenList>
 						</StateGroup>
+						<StateGroup Name="NumberofBombPieces" ID="{32B3C862-8609-4A4C-89A9-85F491F8BB07}">
+							<ChildrenList>
+								<State Name="None" ID="{17130597-B836-4F50-A3C2-F613117636B1}"/>
+								<State Name="Zero" ID="{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}"/>
+								<State Name="One" ID="{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}"/>
+								<State Name="Two" ID="{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}"/>
+								<State Name="Three" ID="{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}"/>
+							</ChildrenList>
+						</StateGroup>
 					</ChildrenList>
 				</Folder>
 				<StateGroup Name="LowHealthState" ID="{92FA54AE-E85C-41E0-B5C6-5CED93822BFA}">
@@ -36,6 +45,16 @@
 						<State Name="None" ID="{D5D37433-17EE-4A30-9E97-B486E6F3D578}"/>
 						<State Name="Yes" ID="{0CE95CEF-AC50-4079-A62E-17E68380BC76}"/>
 						<State Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="GoingUp" ID="{A2795536-C901-4C1F-A1BE-529412A26316}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="2"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{EADCA184-30B0-4416-A7C6-1FF328EDB715}"/>
+						<State Name="Yes" ID="{6C39216A-69EC-4296-B1CA-45D6E7CAA309}"/>
+						<State Name="No" ID="{82D71F51-275D-4D6B-AE57-847DD3F44B9A}"/>
 					</ChildrenList>
 				</StateGroup>
 			</ChildrenList>

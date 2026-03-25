@@ -176,6 +176,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="NoAmmoClick" ID="{04A9A93E-DE73-4F70-944A-821770718A79}">
+									<ChildrenList>
+										<Action Name="" ID="{A0E33BA5-F656-480D-A321-8FF53B3F24BE}" ShortID="1066895692">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="CantShoot" ID="{FD41F250-F7AE-4F29-8CE2-FE8520297FFD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="EnemyWeapon" ID="{B76E8E7F-3BFB-4B2E-BA75-56ED46B4AB2E}" ShortID="928251717">
@@ -542,7 +553,7 @@
 								<Action Name="" ID="{B51614E0-AB4E-4908-BB53-92B32E659A90}" ShortID="882831173">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="CombatTheme" ID="{FE0D77B1-58FF-47C7-87D2-1A3A595C0970}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -554,6 +565,17 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="RopeSwing" ID="{8626239F-366B-4B2F-A253-5238BB8C5385}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WindPlatform" ID="{DAD1116F-B0D0-46F5-A5CF-533E580F6AA5}">
+							<ChildrenList>
+								<Action Name="" ID="{0D884BE6-6CE3-46E4-A048-3E5FE415703D}" ShortID="37873234">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -862,6 +884,28 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="DamageSwingEnemy" ID="{E68BD8EB-A563-4997-B57D-48E88DF901DD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="RestartGameDialogue" ID="{931642BD-F84C-4947-9ED7-072B1DDDA007}">
+							<ChildrenList>
+								<Action Name="" ID="{0858CD27-771D-4085-8E53-711852782D29}" ShortID="66146063">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Restart" ID="{1F9DF40D-C30D-4264-BB83-0FAFBF330962}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="CaptainDeathDialogue" ID="{788C06ED-0FDB-4113-9F67-B529368EC58C}">
+							<ChildrenList>
+								<Action Name="" ID="{65E04BFA-A844-4177-880C-C4745E6B3CCD}" ShortID="977281066">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

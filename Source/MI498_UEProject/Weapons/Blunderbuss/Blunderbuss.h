@@ -71,6 +71,10 @@ public:
 	/// The beam vfx that will be used to make the blunderbuss tracer lines
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraSystem* TracerVFX;
+	
+	/// An event that will call when the blunderbuss is fired with not enough ammo
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnFiredWithNotEnoughAmmo();
 
 protected:
 	virtual void BeginPlay() override;

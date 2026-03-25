@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{77FB2524-574E-2F20-D2D5-812324C6DBE3}",
+    "Hash": "{6FDC2AE6-C2CE-39D5-B109-D254AF74369D}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -37,7 +37,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "A4/{A431C1B4-D6DA-3470-C852-0607A0AE58BB}.wem"
+      "CachePath": "01/{01381F0F-D914-9F4D-6149-A8FFF2670B84}.wem"
      },
      {
       "Id": "17125242",
@@ -61,7 +61,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
-      "CachePath": "F1/{F14E1675-205E-D044-41B5-6AAF4DBA9BD6}.wem"
+      "CachePath": "46/{46F6B6AA-0229-4DDD-8D94-CF860A7B2CD1}.wem"
      },
      {
       "Id": "30228862",
@@ -85,7 +85,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-006.wav",
-      "CachePath": "E6/{E6AAE53C-5373-2191-A044-13386F8B028F}.wem"
+      "CachePath": "A6/{A6930F39-EA4D-A6A4-4070-27B5DF409ACC}.wem"
      },
      {
       "Id": "50541977",
@@ -93,7 +93,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodMetal.wav",
-      "CachePath": "D9/{D948A355-0C79-2EE3-9E76-ECA66BE0B921}.wem"
+      "CachePath": "0D/{0D289C20-15AE-583A-7C65-946FCE4F1D0D}.wem"
      },
      {
       "Id": "64962804",
@@ -101,7 +101,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-002.wav",
-      "CachePath": "F2/{F2D794A7-D4EC-1A5A-7E07-311A0EF26DF0}.wem"
+      "CachePath": "93/{9301E64A-EC4A-9A95-5614-77C1322222F5}.wem"
      },
      {
       "Id": "86116095",
@@ -109,7 +109,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsMetal.wav",
-      "CachePath": "BA/{BA4E8A14-492B-D9D3-97B8-4B4F3ADE0F2E}.wem"
+      "CachePath": "8E/{8ECF83FF-0D5A-EC3C-8BC9-DE3C7CB611D4}.wem"
      },
      {
       "Id": "93500891",
@@ -141,7 +141,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-001.wav",
-      "CachePath": "1E/{1E70FD1B-D714-C943-2AF3-BA3B5F334E4F}.wem"
+      "CachePath": "F2/{F29EAAC7-7E5A-2DF4-96DF-0ACBA7C1F52F}.wem"
      },
      {
       "Id": "109490712",
@@ -149,7 +149,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-002.wav",
-      "CachePath": "51/{514806A7-0BC3-250B-5F5D-2A5874975E5E}.wem"
+      "CachePath": "1A/{1A66EDCA-1C33-9417-59B7-2CE74489CCDC}.wem"
      },
      {
       "Id": "118074255",
@@ -173,7 +173,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-001.wav",
-      "CachePath": "64/{645D75E9-9A77-58AE-F662-E3504492EBC2}.wem"
+      "CachePath": "57/{5779E8D1-4DEB-2AD5-7422-73C52195434F}.wem"
      },
      {
       "Id": "139026441",
@@ -197,7 +197,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBikeChain.wav",
-      "CachePath": "29/{290C33E6-1C36-82A9-9CC8-129BF285866A}.wem"
+      "CachePath": "D7/{D7E83837-1337-EA63-16B2-C445E67D36DC}.wem"
      },
      {
       "Id": "151765295",
@@ -213,7 +213,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-004.wav",
-      "CachePath": "70/{70B45C1C-13D7-93C0-F1AA-83BB9F1C780E}.wem"
+      "CachePath": "2F/{2F8389C5-AB54-446F-066B-C23780C23C8E}.wem"
      },
      {
       "Id": "161260618",
@@ -221,7 +221,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBikeChain.wav",
-      "CachePath": "C5/{C5959817-2C0A-A7E3-E23C-06692BAD5283}.wem"
+      "CachePath": "BA/{BABB9EC7-F6E1-AD45-E995-47532257BC20}.wem"
      },
      {
       "Id": "173442005",
@@ -229,7 +229,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
-      "CachePath": "C0/{C0B85564-E494-86AD-D2BD-21E3F7B41C8E}.wem"
+      "CachePath": "EC/{EC24BF5D-35DB-F55A-098F-2752325800AE}.wem"
      },
      {
       "Id": "178557755",
@@ -237,7 +237,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-002.wav",
-      "CachePath": "F8/{F87AA7A8-9EBC-2985-FF7B-53C33F06CE2D}.wem"
+      "CachePath": "34/{34748A81-A550-374C-8518-00CA1D2BA3A1}.wem"
      },
      {
       "Id": "190724134",
@@ -253,7 +253,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "CD/{CD340CFF-39DE-E846-886E-211AEA0FE2E9}.wem"
+      "CachePath": "5E/{5EA931B0-293B-B33A-0E04-0205BDEE1AA4}.wem"
+     },
+     {
+      "Id": "196317867",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - NoBattle Cymbals.wav",
+      "CachePath": "87/{87CE176A-6262-8508-2B6F-1558E5A7A385}.wem"
      },
      {
       "Id": "208714548",
@@ -272,6 +280,14 @@
       "CachePath": "C8/{C8F23ADB-4E28-F926-A497-EEBABD66A00D}.wem"
      },
      {
+      "Id": "212962631",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp.wav",
+      "CachePath": "6D/{6D1C2DC5-32FA-1BCA-02E1-7F5457B7DF36}.wem"
+     },
+     {
       "Id": "218262969",
       "Language": "SFX",
       "Streaming": "false",
@@ -285,7 +301,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
-      "CachePath": "B7/{B7C67816-5016-A9A3-3073-290C1475D22C}.wem"
+      "CachePath": "C9/{C9399E11-BA8E-5724-8EC7-23A7A7905AE1}.wem"
      },
      {
       "Id": "226120403",
@@ -301,7 +317,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
-      "CachePath": "50/{505362F9-3DD1-A490-E00B-009C97F57DC4}.wem"
+      "CachePath": "F5/{F5D0337D-96C3-E73A-7FB7-2E925506B680}.wem"
      },
      {
       "Id": "237225792",
@@ -309,7 +325,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-001.wav",
-      "CachePath": "6F/{6F01549A-C33A-8586-CB43-8F7B1B605FFC}.wem"
+      "CachePath": "D7/{D761D181-3464-6149-7BEA-29BC0EE865CA}.wem"
      },
      {
       "Id": "252701458",
@@ -341,7 +357,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
-      "CachePath": "43/{430416A4-83F6-F294-A4B0-929FC0EC85E3}.wem"
+      "CachePath": "56/{56DF4B67-5920-248B-747F-FDC737C3A1F3}.wem"
      },
      {
       "Id": "272125692",
@@ -357,7 +373,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodNormal.wav",
-      "CachePath": "67/{67DACE36-4F17-595A-C238-27A5A19B24B6}.wem"
+      "CachePath": "4B/{4BB84F93-C5AA-8248-31FF-0B3E5EDEBDD4}.wem"
      },
      {
       "Id": "277035064",
@@ -365,7 +381,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
-      "CachePath": "DD/{DD222A91-F0C2-FD6B-E37C-322DF57370B2}.wem"
+      "CachePath": "64/{64B48D3F-C2E2-FB56-69A0-EF3F4AD8A41A}.wem"
      },
      {
       "Id": "280971423",
@@ -373,7 +389,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodNormal.wav",
-      "CachePath": "05/{057D7800-5C48-DEB9-A631-0AB06E9F4D02}.wem"
+      "CachePath": "78/{7869411E-0410-1B14-5256-78A18D291CC1}.wem"
      },
      {
       "Id": "283319554",
@@ -389,7 +405,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
-      "CachePath": "29/{296A51A3-6140-3453-20A7-F6FF745AE27B}.wem"
+      "CachePath": "37/{37E22433-EC90-53A9-6041-A779F57F7F52}.wem"
      },
      {
       "Id": "287285638",
@@ -405,7 +421,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-002.wav",
-      "CachePath": "0D/{0D014BC4-4897-3945-03F1-3752DAE7F7F2}.wem"
+      "CachePath": "73/{73E11F33-0C95-CBCF-E914-D059CCCDAC89}.wem"
      },
      {
       "Id": "296876079",
@@ -413,7 +429,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-002.wav",
-      "CachePath": "4B/{4B228E0D-9372-38BD-11CD-E5B41151BA6A}.wem"
+      "CachePath": "57/{57E85094-8620-1DD6-9700-ABD28A5E7B07}.wem"
      },
      {
       "Id": "297481343",
@@ -421,7 +437,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBikeChain.wav",
-      "CachePath": "6A/{6ACE3716-DF47-1B88-CC5D-224F69B89A1C}.wem"
+      "CachePath": "DA/{DADA741D-EDFE-D432-4FC0-7890EDE800A8}.wem"
      },
      {
       "Id": "306717036",
@@ -429,7 +445,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-001.wav",
-      "CachePath": "22/{22EFD09A-A75A-FE20-D928-08AAB1E8AA64}.wem"
+      "CachePath": "76/{76464DA8-FE4F-AB3F-5696-D59787A3AC48}.wem"
      },
      {
       "Id": "307726770",
@@ -477,7 +493,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-001.wav",
-      "CachePath": "C3/{C38CF113-62AA-7F0E-D9CD-C5FC47172A31}.wem"
+      "CachePath": "C5/{C5A448F5-4C89-3D55-AB26-3D957498B8FC}.wem"
      },
      {
       "Id": "334114902",
@@ -517,7 +533,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-003.wav",
-      "CachePath": "2C/{2C545A23-9F98-79F8-9A80-237BF50D5CF5}.wem"
+      "CachePath": "95/{95A90863-B70D-C9D9-2EF7-A5BFC9F6B00E}.wem"
      },
      {
       "Id": "373499443",
@@ -581,7 +597,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBase.wav",
-      "CachePath": "BD/{BD634BDB-5A96-01E2-9E51-E4291A742D11}.wem"
+      "CachePath": "A7/{A710468A-A797-121D-183D-BB385D6FA7C2}.wem"
      },
      {
       "Id": "417942832",
@@ -597,7 +613,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "19/{19B5B38A-66B2-E80C-3667-DE342EBCB619}.wem"
+      "CachePath": "7E/{7E1043FE-2704-F6BB-2E25-FFF3ABF81C81}.wem"
      },
      {
       "Id": "434947864",
@@ -605,7 +621,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsMetal.wav",
-      "CachePath": "30/{3086AB89-76FA-1C6E-C65A-6B535119C548}.wem"
+      "CachePath": "EE/{EED4F695-62C6-2924-D5D0-6EA1F0F311A8}.wem"
      },
      {
       "Id": "435335955",
@@ -645,7 +661,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBase.wav",
-      "CachePath": "C1/{C1094AFC-1F1D-4E0D-E26A-AAC8FB5D2232}.wem"
+      "CachePath": "0A/{0A3B25EF-A741-5917-AB6F-2D3E47060C2C}.wem"
      },
      {
       "Id": "471860474",
@@ -653,7 +669,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-002.wav",
-      "CachePath": "86/{8605A105-7966-09B2-4E19-E96261E9CD68}.wem"
+      "CachePath": "55/{55A2EF47-D8A6-A40A-1C8F-D05571F0A2A7}.wem"
      },
      {
       "Id": "479339567",
@@ -661,7 +677,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-003.wav",
-      "CachePath": "63/{63099CAC-9B8B-B1FA-ECBA-3D1AA35A8E5D}.wem"
+      "CachePath": "9A/{9AA58E71-1AAF-E037-C5E1-4DAB70AD2F53}.wem"
+     },
+     {
+      "Id": "480644522",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - NoBattle Strings.wav",
+      "CachePath": "FB/{FBD9519C-E84F-ABFB-AA2D-BFD56EC28283}.wem"
      },
      {
       "Id": "485182822",
@@ -677,7 +701,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
-      "CachePath": "7B/{7B7C2218-23A8-A503-3692-4C9B1957169E}.wem"
+      "CachePath": "AC/{ACB4B5AF-FD16-EE60-6FC6-40F663BAF070}.wem"
      },
      {
       "Id": "490112550",
@@ -701,7 +725,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "03/{03F8099B-5D00-3F9E-59F9-89A1C57D7FD2}.wem"
+      "CachePath": "B9/{B9A493F2-EBF1-A6CB-8DAB-51C42673FF3A}.wem"
      },
      {
       "Id": "498848967",
@@ -709,7 +733,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-001.wav",
-      "CachePath": "B1/{B15C4EB1-DE4B-3CC5-6E2B-0BDB8A136CD8}.wem"
+      "CachePath": "25/{255FA160-8A88-59BC-1272-28B42EF8CF88}.wem"
      },
      {
       "Id": "499502064",
@@ -717,7 +741,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-006.wav",
-      "CachePath": "47/{47DD8308-D33B-256D-1394-4BDDCF48A667}.wem"
+      "CachePath": "A9/{A9666E1E-1F73-BAEA-6C5C-81AEA36EB676}.wem"
      },
      {
       "Id": "504763035",
@@ -725,7 +749,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-001.wav",
-      "CachePath": "4E/{4ECF8339-7291-A231-BE62-68F62E011C4F}.wem"
+      "CachePath": "96/{96881EA9-9CE2-59FB-625F-AB9A8E7F3DA6}.wem"
      },
      {
       "Id": "514551863",
@@ -733,7 +757,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
-      "CachePath": "61/{61C07087-80C5-3AA3-F777-3FD8C91234A9}.wem"
+      "CachePath": "48/{48C025EE-0B9C-A670-E857-1230752E98C2}.wem"
      },
      {
       "Id": "515834822",
@@ -749,7 +773,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-001.wav",
-      "CachePath": "D6/{D660336D-7906-6ED3-3535-2B5803F0FBCC}.wem"
+      "CachePath": "88/{888698B2-8916-FA3B-C426-0DB8FEC6C1C7}.wem"
      },
      {
       "Id": "526140554",
@@ -781,7 +805,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-006.wav",
-      "CachePath": "89/{895047F1-56E0-291A-8770-4E20C5FA37A2}.wem"
+      "CachePath": "B7/{B7705008-2141-B86F-7306-91BBB6B108B6}.wem"
      },
      {
       "Id": "550716093",
@@ -789,7 +813,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
-      "CachePath": "98/{98E32881-F45E-7B4C-B9AE-26D4A7FD8145}.wem"
+      "CachePath": "56/{56142438-ADE6-13C1-AE31-C95FB43511CC}.wem"
      },
      {
       "Id": "554459309",
@@ -813,7 +837,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-002.wav",
-      "CachePath": "76/{7630CFA5-5A67-888C-4037-DEA7219FEA6F}.wem"
+      "CachePath": "90/{90D78CE6-CEBC-D105-A202-5A72E24B69E4}.wem"
      },
      {
       "Id": "579126070",
@@ -829,7 +853,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBase.wav",
-      "CachePath": "1A/{1A131CF5-494D-466E-3535-04113ABCAEAD}.wem"
+      "CachePath": "58/{58461705-9575-708C-DA57-4CBA5BAA5D0A}.wem"
      },
      {
       "Id": "590484918",
@@ -848,14 +872,6 @@
       "CachePath": "B9/{B9ADB74E-D9C6-801B-83D7-735CF9ED6C69}.wem"
      },
      {
-      "Id": "597547971",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "Song of the Boats in the Sky - Battle Perc 2 (Toms, Sn. Kick).wav",
-      "CachePath": "34/{34C39319-749E-F363-488A-82E46C730CBE}.wem"
-     },
-     {
       "Id": "604625095",
       "Language": "SFX",
       "Streaming": "false",
@@ -869,7 +885,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodNormal.wav",
-      "CachePath": "6E/{6E2F6A85-8A1F-994F-EECC-F551D0E3D41F}.wem"
+      "CachePath": "F5/{F56FDBB5-55F9-E262-73B9-71B308BE7A62}.wem"
      },
      {
       "Id": "605626282",
@@ -901,7 +917,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
-      "CachePath": "1D/{1DC6B2B9-C4AE-FA4D-EA9B-046285AAB91C}.wem"
+      "CachePath": "88/{88E8C40E-77C8-DDB2-F4ED-D2E0A7D7FCF7}.wem"
      },
      {
       "Id": "615624964",
@@ -917,7 +933,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
-      "CachePath": "18/{181642A4-D1C2-FD25-291B-23B958EEB548}.wem"
+      "CachePath": "32/{32361AB2-EDB5-2347-3EB0-F60F4BD52D9A}.wem"
      },
      {
       "Id": "620832767",
@@ -925,7 +941,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "B2/{B2830D2D-1E92-14C2-2582-A514961C0AF8}.wem"
+      "CachePath": "53/{5390FC15-8E44-8B59-6210-6C5A6FB47BE0}.wem"
      },
      {
       "Id": "622150877",
@@ -957,7 +973,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-002.wav",
-      "CachePath": "39/{39288DEF-4332-AEBE-8331-9A841803E076}.wem"
+      "CachePath": "55/{55E866D8-ACCC-8470-E014-58A8C2F70CED}.wem"
      },
      {
       "Id": "642013019",
@@ -965,7 +981,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Song of the Boats in the Sky - Battle Brass.wav",
-      "CachePath": "AC/{AC01DCA3-4CB0-08DD-4EBA-28B2602C8EA0}.wem"
+      "CachePath": "CF/{CF90497C-AA1B-4A24-2327-3B60209BC0D8}.wem"
      },
      {
       "Id": "647190144",
@@ -989,7 +1005,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodMetal.wav",
-      "CachePath": "EF/{EFC4EF47-2DAA-138A-1492-C0B8D6B8569D}.wem"
+      "CachePath": "48/{48D434F8-C4B2-3FC5-12B1-8FBD739AF69E}.wem"
      },
      {
       "Id": "654345293",
@@ -997,7 +1013,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
-      "CachePath": "76/{76436246-FE4B-56E6-2683-C8FF16401C05}.wem"
+      "CachePath": "45/{45668E26-48AD-CF3F-1DCF-21B2BEF63B4C}.wem"
      },
      {
       "Id": "661039912",
@@ -1005,7 +1021,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-004.wav",
-      "CachePath": "B2/{B2B7F09C-C137-E18E-D612-D3923917DC9C}.wem"
+      "CachePath": "D8/{D8B1C3C2-6739-277F-690F-0712F261E05C}.wem"
      },
      {
       "Id": "664087683",
@@ -1021,7 +1037,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Song of the Boats in the Sky - Battle Woodwinds.wav",
-      "CachePath": "5A/{5AE3F790-AE5E-474E-EE7F-A7CCE0FD22FF}.wem"
+      "CachePath": "C1/{C155EC73-ED5B-E2DF-A3ED-FDBAF0190937}.wem"
      },
      {
       "Id": "676257027",
@@ -1029,7 +1045,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBase.wav",
-      "CachePath": "91/{91B334AE-5CBD-D73E-3B6E-F6943D81DCCA}.wem"
+      "CachePath": "36/{363E73FD-C03E-5A41-F70E-95DE6AFF3E85}.wem"
      },
      {
       "Id": "696957011",
@@ -1037,7 +1053,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-001.wav",
-      "CachePath": "66/{66289CE6-D655-4EC0-3EC4-2DF9B8A016FE}.wem"
+      "CachePath": "3B/{3B72199F-A082-DB95-AF44-ED4F0A5F09F9}.wem"
      },
      {
       "Id": "705144487",
@@ -1045,7 +1061,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
-      "CachePath": "14/{1462DB2B-3E0C-5CCA-4D0D-A2DEBC52FAEB}.wem"
+      "CachePath": "CF/{CF86F9B6-6F66-EDC3-7A39-8612085D24F0}.wem"
      },
      {
       "Id": "713593597",
@@ -1061,7 +1077,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodMetal.wav",
-      "CachePath": "3C/{3C221967-3570-E142-4787-89BBA05A6117}.wem"
+      "CachePath": "5F/{5F12327F-533D-D86F-0A31-5A3F659BA29F}.wem"
      },
      {
       "Id": "729828327",
@@ -1069,7 +1085,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
-      "CachePath": "E8/{E8E5E430-99AE-CC21-4B39-4BE9FACFAD0C}.wem"
+      "CachePath": "FA/{FAEF9055-A000-0D6B-F4C3-07D5D4637011}.wem"
      },
      {
       "Id": "733059301",
@@ -1077,7 +1093,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
-      "CachePath": "67/{6757D3EB-0DCB-CE9D-A8D4-9DDA3686E88E}.wem"
+      "CachePath": "74/{7494CC4E-AD10-3C9E-945A-60EF7E70B773}.wem"
      },
      {
       "Id": "750876961",
@@ -1117,7 +1133,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodMetal.wav",
-      "CachePath": "CC/{CCD545F6-4B53-3003-2E75-1DB23E324D80}.wem"
+      "CachePath": "8A/{8A9781F0-CF37-1F54-8938-E1AAA78DCDFB}.wem"
      },
      {
       "Id": "765843477",
@@ -1133,7 +1149,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "RopeSwing.wav",
-      "CachePath": "DD/{DD51FA09-C1D8-E3EE-BAF0-D68233187915}.wem"
+      "CachePath": "ED/{ED33F6AA-EBE7-51B1-5D91-73565C80CDA7}.wem"
      },
      {
       "Id": "780092636",
@@ -1141,7 +1157,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "E7/{E7DB6226-D8BB-E165-3896-433139CD6CC6}.wem"
+      "CachePath": "71/{71C02FBA-A250-07AC-BC0E-B6993BB8545B}.wem"
      },
      {
       "Id": "780703946",
@@ -1149,7 +1165,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
-      "CachePath": "24/{2443BF7D-CAF5-BCA8-06E4-EA9F7AB2A27F}.wem"
+      "CachePath": "96/{96898C36-3B2B-DBC6-8CF4-2DBF13B2A1A7}.wem"
      },
      {
       "Id": "785453003",
@@ -1157,7 +1173,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
-      "CachePath": "B5/{B557956C-0417-1A33-403F-F06DA76497CA}.wem"
+      "CachePath": "5C/{5CBF8398-F6E7-44A8-69E9-E2DB6D550C0C}.wem"
      },
      {
       "Id": "796215813",
@@ -1165,7 +1181,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-004.wav",
-      "CachePath": "3C/{3CC84F5D-A9F7-5145-FB3D-66702E11422E}.wem"
+      "CachePath": "54/{54BFBC15-1F5F-775D-558A-59730DFB0740}.wem"
      },
      {
       "Id": "796430645",
@@ -1173,7 +1189,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
-      "CachePath": "EA/{EAD713A1-9B22-6A91-E36D-8779161AE1BC}.wem"
+      "CachePath": "81/{81ABBE7F-DCF5-CB78-4A7A-0687C3F14CEC}.wem"
      },
      {
       "Id": "796556875",
@@ -1181,7 +1197,15 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodNormal.wav",
-      "CachePath": "90/{907CA2CD-4E90-01FE-E43E-22EDEA350287}.wem"
+      "CachePath": "7A/{7A9BF129-4BC3-B929-081C-F541E8A774DE}.wem"
+     },
+     {
+      "Id": "810740447",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Song of the Boats in the Sky - Battle Perc 2 Low Drums.wav",
+      "CachePath": "33/{330DE030-5348-805A-464E-5CAB789DC547}.wem"
      },
      {
       "Id": "811032749",
@@ -1221,7 +1245,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "D2/{D253C187-64E6-30C4-0C66-60F033784397}.wem"
+      "CachePath": "1E/{1EAF428B-C0E4-F570-DD90-1512FAB64834}.wem"
      },
      {
       "Id": "829136830",
@@ -1229,7 +1253,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "D4/{D48C5A71-C26A-31B8-928F-B7B1EF6160C2}.wem"
+      "CachePath": "4C/{4CD32193-18C4-648B-9816-926786EBFA94}.wem"
      },
      {
       "Id": "834233048",
@@ -1245,7 +1269,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "F2/{F28D8DCF-62B2-9F19-3AF8-9E0563C16583}.wem"
+      "CachePath": "97/{97D04C0F-CE70-5CB1-CDB1-2B116315463D}.wem"
      },
      {
       "Id": "842524675",
@@ -1253,15 +1277,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-006.wav",
-      "CachePath": "0A/{0A02D221-328F-74BD-4D30-4A11453DFC77}.wem"
-     },
-     {
-      "Id": "842662115",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "Song of the Boats in the Sky - Battle Perc 1 (Cymbals Timp).wav",
-      "CachePath": "F4/{F473B4D0-8B6C-3883-FE2D-1EA3B4005834}.wem"
+      "CachePath": "1C/{1C6C87B0-1AD8-48FF-7747-BF85F221C13D}.wem"
      },
      {
       "Id": "845335227",
@@ -1277,7 +1293,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
-      "CachePath": "46/{467C7A69-F286-7643-DAF7-3E262C3A4315}.wem"
+      "CachePath": "A4/{A4A7A51B-14B4-F5DC-FC4A-71FD4A7194A2}.wem"
      },
      {
       "Id": "890399975",
@@ -1285,7 +1301,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-002.wav",
-      "CachePath": "2F/{2FCB3709-2712-0599-68F8-19F414F4B84F}.wem"
+      "CachePath": "E5/{E5EF9E6E-3909-F27B-658F-6E550B7CDCE1}.wem"
      },
      {
       "Id": "891731372",
@@ -1293,7 +1309,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsMetal.wav",
-      "CachePath": "D0/{D03486A8-FD85-731C-C2E0-4084D33DEF38}.wem"
+      "CachePath": "2F/{2F3AFECD-F265-958E-E70F-2ED7DC8FCC6C}.wem"
      },
      {
       "Id": "894087048",
@@ -1325,7 +1341,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBikeChain.wav",
-      "CachePath": "7C/{7C957487-F40F-4B38-85B6-BA0090E33AB4}.wem"
+      "CachePath": "6A/{6ACB2841-9CB3-4564-8350-85B664A6BD33}.wem"
      },
      {
       "Id": "912806009",
@@ -1365,7 +1381,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "E5/{E5C9764C-3A1B-3DF6-EE50-4BD741A8A362}.wem"
+      "CachePath": "B7/{B79025E8-F7B3-402C-7310-60E73C10A972}.wem"
      },
      {
       "Id": "940533753",
@@ -1381,7 +1397,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsWoodNormal.wav",
-      "CachePath": "50/{5057387F-4283-8E22-175F-2C6593D263DA}.wem"
+      "CachePath": "12/{123D6684-7FE2-CB8C-437F-B3674DE3B7A3}.wem"
      },
      {
       "Id": "941547104",
@@ -1397,7 +1413,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsBase.wav",
-      "CachePath": "86/{86B4346D-4E0C-FACF-E41F-F39B2DC93621}.wem"
+      "CachePath": "4E/{4E6EA868-0518-3A1F-3EBF-065808646596}.wem"
      },
      {
       "Id": "944122239",
@@ -1405,7 +1421,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "AverageEnemyStepsMetal.wav",
-      "CachePath": "08/{08F27A24-79B8-C8E4-7C32-6D5BFC877359}.wem"
+      "CachePath": "B0/{B07EA871-218C-B56D-7D33-4B190EBCA09C}.wem"
      },
      {
       "Id": "949543773",
@@ -1413,7 +1429,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "90/{9010B111-A27C-CBC7-FF58-6E4EB3AFC407}.wem"
+      "CachePath": "B6/{B64EE11A-3F98-4CEB-2017-3791411118FA}.wem"
      },
      {
       "Id": "952159520",
@@ -1445,7 +1461,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-004.wav",
-      "CachePath": "4F/{4F3E4238-501F-0181-2FB5-75F93EF3DDDC}.wem"
+      "CachePath": "06/{065B37F2-CA51-96FF-A096-F2C2B94D4676}.wem"
      },
      {
       "Id": "974919281",
@@ -1469,7 +1485,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepStems-001.wav",
-      "CachePath": "34/{34CA719F-271D-8463-6EC2-462198967407}.wem"
+      "CachePath": "55/{55157A6E-F35B-3187-2DF5-742E9871FB70}.wem"
      },
      {
       "Id": "990222415",
@@ -1485,7 +1501,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
-      "CachePath": "6D/{6D49BE4C-4676-504A-F9D5-56DD3E0CD0E5}.wem"
+      "CachePath": "15/{15F8A48F-3921-1AF2-E09D-68A6A8619032}.wem"
      },
      {
       "Id": "1003084449",
@@ -1493,7 +1509,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Song of the Boats in the Sky - Battle Strings.wav",
-      "CachePath": "3B/{3BC44EA1-B040-6615-8D6C-610ED2621DBB}.wem"
+      "CachePath": "1E/{1E86C1D0-7EF2-CC64-6869-933CDB93B3C4}.wem"
      },
      {
       "Id": "1005692176",
@@ -1509,7 +1525,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-004.wav",
-      "CachePath": "4C/{4CF4AC72-141C-A5E8-9CA0-095FA7D4190B}.wem"
+      "CachePath": "7D/{7DE79078-2218-2DDB-4448-D73D1E144FC6}.wem"
      },
      {
       "Id": "1014313509",
@@ -1525,7 +1541,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-006.wav",
-      "CachePath": "7C/{7C31351A-511B-6F99-113D-BCA006FD81F5}.wem"
+      "CachePath": "5E/{5E72205D-969C-A028-2212-7F269FE0BA8C}.wem"
      },
      {
       "Id": "1026265906",
@@ -1533,7 +1549,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-003.wav",
-      "CachePath": "21/{212AD7C9-6BBF-5FB2-D7A1-0394FA623EE1}.wem"
+      "CachePath": "D9/{D95FA72F-FCBC-981F-1C80-731D61DA8899}.wem"
      },
      {
       "Id": "1034653354",
@@ -1541,7 +1557,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-003.wav",
-      "CachePath": "10/{10F9BF84-A742-14B1-B709-083DC35477EA}.wem"
+      "CachePath": "BF/{BFF939D0-6DD6-45E7-B720-EBF0A4A6A949}.wem"
      },
      {
       "Id": "1035843204",
@@ -1549,7 +1565,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BrutePunchWoosh.wav",
-      "CachePath": "1F/{1FEE3712-8B74-021E-118C-8AD8A852EFAE}.wem"
+      "CachePath": "FF/{FFC60DF5-C9DE-AA7D-539E-FF2C95C15137}.wem"
      },
      {
       "Id": "1036155795",
@@ -1557,7 +1573,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "WeaponSwaps.wav",
-      "CachePath": "46/{46341461-BB8D-0442-5F72-0E76FB1530C8}.wem"
+      "CachePath": "2E/{2E5AC486-DD33-CCF1-820A-0EE2CF1D2165}.wem"
      },
      {
       "Id": "1037545113",
@@ -1573,7 +1589,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwingerFootstep-002.wav",
-      "CachePath": "72/{7241A8CA-8C8A-86DB-139B-FDEE7588FD13}.wem"
+      "CachePath": "A6/{A6BAE1F3-9757-9D7C-9CCF-39B4F4A1A23D}.wem"
      },
      {
       "Id": "1051686944",
@@ -1605,8 +1621,8 @@
       "GUID": "{E2D48174-52A6-40BE-8228-A9F7BED515C3}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "5.5461607",
-      "DurationMax": "5.5461607",
+      "DurationMin": "2.7124257",
+      "DurationMax": "2.833735",
       "MediaRefs": [
        {
         "Id": "490112550"
@@ -1623,8 +1639,8 @@
       "GUID": "{DE755A3F-BCD6-43B8-80E2-2A47E7922E7D}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "9.0878105",
-      "DurationMax": "9.0878105",
+      "DurationMin": "1.525939",
+      "DurationMax": "3.7884812",
       "MediaRefs": [
        {
         "Id": "101624672"
@@ -1778,8 +1794,8 @@
       "GUID": "{9BA36833-F1FB-40BA-8255-37150F66A3E4}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "11.1829605",
-      "DurationMax": "11.1829605",
+      "DurationMin": "4.10186",
+      "DurationMax": "7.081101",
       "MediaRefs": [
        {
         "Id": "118074255"
@@ -2029,21 +2045,118 @@
       "GUID": "{8D5F3422-297B-460F-B95A-20213D3F8F66}",
       "Color": "4",
       "DurationType": "Infinite",
-      "MediaRefs": [
+      "SwitchContainers": [
        {
-        "Id": "597547971"
+        "SwitchValue": {
+         "GroupType": "State",
+         "GroupId": "84387996",
+         "Id": "748895195",
+         "GUID": "{17130597-B836-4F50-A3C2-F613117636B1}",
+         "Color": "12"
+        },
+        "MediaRefs": [
+         {
+          "Id": "196317867"
+         },
+         {
+          "Id": "480644522"
+         }
+        ]
        },
        {
-        "Id": "642013019"
+        "SwitchValue": {
+         "GroupType": "State",
+         "GroupId": "84387996",
+         "Id": "766521211",
+         "GUID": "{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}",
+         "Color": "12"
+        },
+        "MediaRefs": [
+         {
+          "Id": "196317867"
+         },
+         {
+          "Id": "480644522"
+         }
+        ]
        },
        {
-        "Id": "672011565"
+        "SwitchValue": {
+         "GroupType": "State",
+         "GroupId": "84387996",
+         "Id": "678209053",
+         "GUID": "{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}",
+         "Color": "12"
+        },
+        "MediaRefs": [
+         {
+          "Id": "212962631"
+         },
+         {
+          "Id": "642013019"
+         },
+         {
+          "Id": "672011565"
+         },
+         {
+          "Id": "810740447"
+         },
+         {
+          "Id": "1003084449"
+         }
+        ]
        },
        {
-        "Id": "842662115"
+        "SwitchValue": {
+         "GroupType": "State",
+         "GroupId": "84387996",
+         "Id": "912956111",
+         "GUID": "{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}",
+         "Color": "12"
+        },
+        "MediaRefs": [
+         {
+          "Id": "212962631"
+         },
+         {
+          "Id": "642013019"
+         },
+         {
+          "Id": "672011565"
+         },
+         {
+          "Id": "810740447"
+         },
+         {
+          "Id": "1003084449"
+         }
+        ]
        },
        {
-        "Id": "1003084449"
+        "SwitchValue": {
+         "GroupType": "State",
+         "GroupId": "84387996",
+         "Id": "1064933119",
+         "GUID": "{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}",
+         "Color": "12"
+        },
+        "MediaRefs": [
+         {
+          "Id": "212962631"
+         },
+         {
+          "Id": "642013019"
+         },
+         {
+          "Id": "672011565"
+         },
+         {
+          "Id": "810740447"
+         },
+         {
+          "Id": "1003084449"
+         }
+        ]
        }
       ]
      },
@@ -2054,8 +2167,8 @@
       "GUID": "{79D230BE-F7C4-4DAD-80E9-4FFCD80702F7}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "4.987143",
-      "DurationMax": "4.987143",
+      "DurationMin": "1.939057",
+      "DurationMax": "3.048086",
       "MediaRefs": [
        {
         "Id": "257199122"
@@ -2245,8 +2358,8 @@
       "GUID": "{8C1B9EB7-BFF1-4848-8345-77DF0421B495}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "11.305146",
-      "DurationMax": "11.305146",
+      "DurationMin": "3.1595",
+      "DurationMax": "4.577896",
       "MediaRefs": [
        {
         "Id": "9982857"
@@ -2345,8 +2458,8 @@
       "GUID": "{46FAAB44-0015-42BD-BF1B-8FD2E9A01D27}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "14.662733",
-      "DurationMax": "14.662733",
+      "DurationMin": "1.7081069",
+      "DurationMax": "5.8665094",
       "MediaRefs": [
        {
         "Id": "410939690"
@@ -2424,8 +2537,8 @@
       "GUID": "{BE4D7794-FE62-41C2-9897-3FF1AFC95644}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "18.94581",
-      "DurationMax": "18.94581",
+      "DurationMin": "0.82800615",
+      "DurationMax": "6.335422",
       "MediaRefs": [
        {
         "Id": "413622913"
@@ -2650,8 +2763,8 @@
       "GUID": "{7F385BCC-3E54-4AA7-8271-17030CDAC1BD}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "36.199135",
-      "DurationMax": "36.199135",
+      "DurationMin": "3.2204516",
+      "DurationMax": "8.888717",
       "MediaRefs": [
        {
         "Id": "139026441"
@@ -2992,6 +3105,50 @@
       ]
      },
      {
+      "Id": "84387996",
+      "Name": "NumberofBombPieces",
+      "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces",
+      "GUID": "{32B3C862-8609-4A4C-89A9-85F491F8BB07}",
+      "Color": "12",
+      "States": [
+       {
+        "Id": "678209053",
+        "Name": "Two",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Two",
+        "GUID": "{96F77A85-4DD7-4E3E-9EA1-179DBDD2C920}",
+        "Color": "12"
+       },
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\None",
+        "GUID": "{17130597-B836-4F50-A3C2-F613117636B1}",
+        "Color": "12"
+       },
+       {
+        "Id": "766521211",
+        "Name": "Zero",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Zero",
+        "GUID": "{2194D222-9B41-4C1F-8B46-56DB9A91F8D9}",
+        "Color": "12"
+       },
+       {
+        "Id": "912956111",
+        "Name": "Three",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\Three",
+        "GUID": "{64C3067C-C669-4C3D-A6B1-9AB7BF68EEDB}",
+        "Color": "12"
+       },
+       {
+        "Id": "1064933119",
+        "Name": "One",
+        "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\NumberofBombPieces\\One",
+        "GUID": "{C6C0770B-26A5-4914-BAEF-8F7FF389D8B2}",
+        "Color": "12"
+       }
+      ]
+     },
+     {
       "Id": "3940648127",
       "Name": "IsMoving",
       "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving",
@@ -3024,6 +3181,6 @@
     ]
    }
   ],
-  "FileHash": "{8A337794-3744-BBA8-FA91-DA6DCF22AE9E}"
+  "FileHash": "{C0DCC94E-840C-0C58-B045-62D6A12DB332}"
  }
 }

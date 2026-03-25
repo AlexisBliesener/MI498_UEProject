@@ -19,6 +19,7 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 	// Check if there is enough ammo to perform the primary attack
 	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
 	{
+		OnFiredWithNotEnoughAmmo();
 		return;
 	}
 
@@ -54,6 +55,7 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 	// Check if there is enough ammo to perform the secondary attack
 	if (CurrentAmmo - SecondaryAttackNeededAmmo < 0)
 	{
+		OnFiredWithNotEnoughAmmo();
 		return;
 	}
 
