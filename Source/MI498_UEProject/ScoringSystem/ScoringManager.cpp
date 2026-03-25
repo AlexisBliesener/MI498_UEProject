@@ -101,17 +101,17 @@ FString UScoringManager::GetRank() const
 void UScoringManager::Tick(float DeltaTime)
 {
 	/// Airtime Bonus Timer Logic
-	if (bInAir && !bAirborneSet)
-	{
-		bAirborneSet = true;
-		GetWorld()->GetTimerManager().SetTimer(AirtimeTimerHandle, this, &UScoringManager::AddAirtimeScore,
-		                                       SecToAddAirtime, true);
-	}
-	else if (!bInAir && bAirborneSet)
-	{
-		bAirborneSet = false;
-		GetWorld()->GetTimerManager().ClearTimer(AirtimeTimerHandle);
-	}
+	// if (bInAir && !bAirborneSet)
+	// {
+	// 	bAirborneSet = true;
+	// 	GetWorld()->GetTimerManager().SetTimer(AirtimeTimerHandle, this, &UScoringManager::AddAirtimeScore,
+	// 	                                       SecToAddAirtime, true);
+	// }
+	// else if (!bInAir && bAirborneSet)
+	// {
+	// 	bAirborneSet = false;
+	// 	GetWorld()->GetTimerManager().ClearTimer(AirtimeTimerHandle);
+	// }
 
 	/// On-Screen Score Smooth Update Logic
 	if (!bOnScreenScoreUpdating && OnScreenScore != Score)

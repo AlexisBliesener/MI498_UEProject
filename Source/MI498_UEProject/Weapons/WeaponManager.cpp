@@ -77,7 +77,6 @@ void UWeaponManager::BeginPlay()
 		if (!Mesh) return;
 
 		PlayerAnimation = Cast<UPlayerAnimation>(Mesh->GetAnimInstance());
-		
 	}
 	
 	/// Cache the enhanced input component for action binding
@@ -331,13 +330,6 @@ void UWeaponManager::HandleReload()
 	if (!bCanUseWeapons) return;
 	
 	CurrentWeapon->Reload();
-	
-	// Reload harpoon additionally if it is not the current weapon
-	AWeaponBase* WeaponObject = Cast<AWeaponBase>( WeaponOptions[CurrentWeaponIndex].GetObject());
-	if (WeaponObject->WeaponType != EWeaponType::HarpoonGun)
-	{
-		HarpoonGunWeapon->Reload();
-	}
 }
 
 void UWeaponManager::UpdateWeaponAnimation()
