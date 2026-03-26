@@ -2807,13 +2807,18 @@
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="2"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
 									<Custom>
 										<Attenuation Name="PlatformAttenuation" ID="{7BD29020-E696-4016-981C-1A2B19166CEA}" ShortID="554909722">
 											<PropertyList>
-												<Property Name="RadiusMax" Type="Real64" Value="2000"/>
+												<Property Name="RadiusMax" Type="Real64" Value="1000"/>
 											</PropertyList>
 											<CurveUsageInfoList>
 												<VolumeDryUsage>
@@ -2829,12 +2834,12 @@
 																	<Flags>5</Flags>
 																</Point>
 																<Point>
-																	<XPos>1742.42424</XPos>
+																	<XPos>871.21212</XPos>
 																	<YPos>-1.16918</YPos>
 																	<Flags>0</Flags>
 																</Point>
 																<Point>
-																	<XPos>2000</XPos>
+																	<XPos>1000</XPos>
 																	<YPos>-200</YPos>
 																	<Flags>37</Flags>
 																</Point>
@@ -2938,32 +2943,6 @@
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
-							<StateInfo>
-								<StateGroupList>
-									<StateGroupInfo>
-										<StateGroupRef Name="GoingUp" ID="{A2795536-C901-4C1F-A1BE-529412A26316}"/>
-										<StateGroupInfo Name="" ID="{34AA2CA4-4D7F-4EFB-9194-AF7583E4F38B}" ShortID="559165795"/>
-									</StateGroupInfo>
-								</StateGroupList>
-								<CustomStateList>
-									<CustomState>
-										<StateRef Name="Yes" ID="{6C39216A-69EC-4296-B1CA-45D6E7CAA309}"/>
-										<CustomState Name="" ID="{7CD2AFAB-4EF1-4F3D-A6E1-A1F3B151D897}" ShortID="828129384">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32" Value="1000"/>
-											</PropertyList>
-										</CustomState>
-									</CustomState>
-									<CustomState>
-										<StateRef Name="None" ID="{EADCA184-30B0-4416-A7C6-1FF328EDB715}"/>
-										<CustomState Name="" ID="{8737CEC1-1704-4351-BEFB-03705E918039}" ShortID="1034697602"/>
-									</CustomState>
-									<CustomState>
-										<StateRef Name="No" ID="{82D71F51-275D-4D6B-AE57-847DD3F44B9A}"/>
-										<CustomState Name="" ID="{A3DABD42-8C2D-4744-938B-F8968BE8A86F}" ShortID="906617919"/>
-									</CustomState>
-								</CustomStateList>
-							</StateInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="WindPlatforms" ID="{EAE46070-F220-47F3-ADBC-55F010BE79C6}" Platform="Linked"/>
 							</ActiveSourceList>

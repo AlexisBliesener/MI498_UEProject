@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{6FDC2AE6-C2CE-39D5-B109-D254AF74369D}",
+    "Hash": "{EA984505-822E-BDB4-C114-E39BCC739920}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -184,6 +184,14 @@
       "CachePath": "CA/{CAE31E66-43FE-E183-28E0-83D7E7BDF309}.wem"
      },
      {
+      "Id": "142150595",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Once More, Hit _em Strong.wav",
+      "CachePath": "29/{29F31738-8D7A-5BED-2A48-7FAD6929439B}.wem"
+     },
+     {
       "Id": "143782066",
       "Language": "SFX",
       "Streaming": "false",
@@ -256,6 +264,14 @@
       "CachePath": "5E/{5EA931B0-293B-B33A-0E04-0205BDEE1AA4}.wem"
      },
      {
+      "Id": "195070762",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Tale of Saoirse Skye.wav",
+      "CachePath": "5F/{5FEFE66B-9EC2-5BB0-E4A5-7E80585BF4F4}.wem"
+     },
+     {
       "Id": "196317867",
       "Language": "SFX",
       "Streaming": "false",
@@ -286,6 +302,14 @@
       "Location": "Memory",
       "ShortName": "Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp.wav",
       "CachePath": "6D/{6D1C2DC5-32FA-1BCA-02E1-7F5457B7DF36}.wem"
+     },
+     {
+      "Id": "216690498",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Can'tShoot.wav",
+      "CachePath": "51/{517BDBA6-5EBC-F898-1C95-6A3B1DA19C22}.wem"
      },
      {
       "Id": "218262969",
@@ -358,6 +382,14 @@
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
       "CachePath": "56/{56DF4B67-5920-248B-747F-FDC737C3A1F3}.wem"
+     },
+     {
+      "Id": "271538463",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Can'tShoot.wav",
+      "CachePath": "11/{112CFDC0-8F42-C3CE-57EA-0CBA5BA01258}.wem"
      },
      {
       "Id": "272125692",
@@ -454,6 +486,14 @@
       "Location": "Memory",
       "ShortName": "SwingingEnemyVA.wav",
       "CachePath": "72/{7231FA18-263F-CC2C-AF66-1DD5BDFCAD8A}.wem"
+     },
+     {
+      "Id": "309072419",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Fly High.wav",
+      "CachePath": "09/{090C5349-60F0-D18C-45D3-3B8C18919CF1}.wem"
      },
      {
       "Id": "319526224",
@@ -566,14 +606,6 @@
       "Location": "Memory",
       "ShortName": "Damage2AverageEnemy.wav",
       "CachePath": "FB/{FBFFF844-145A-C323-E303-5FCD3CD327EF}.wem"
-     },
-     {
-      "Id": "398618583",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "AllPiecesCollectedLine2.wav",
-      "CachePath": "13/{13AB6852-0045-2A41-99D5-8AE306B53083}.wem"
      },
      {
       "Id": "410939690",
@@ -726,6 +758,14 @@
       "Location": "Memory",
       "ShortName": "FootstepSFXExample.wav",
       "CachePath": "B9/{B9A493F2-EBF1-A6CB-8DAB-51C42673FF3A}.wem"
+     },
+     {
+      "Id": "497598887",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "58/{5840449D-9F5C-F30F-2BA9-1A80D52F2F22}.wem"
      },
      {
       "Id": "498848967",
@@ -912,6 +952,14 @@
       "CachePath": "3A/{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem"
      },
      {
+      "Id": "609894285",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "One More Haul_01.wav",
+      "CachePath": "42/{42C68569-2813-6E4E-640E-184BCA25CDE6}.wem"
+     },
+     {
       "Id": "609911907",
       "Language": "SFX",
       "Streaming": "false",
@@ -950,6 +998,14 @@
       "Location": "Memory",
       "ShortName": "Woosh.wav",
       "CachePath": "21/{2196D982-96E9-494D-0F52-0CD6BC96FB9F}.wem"
+     },
+     {
+      "Id": "623774283",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "3B/{3BB355E9-99BA-EAE0-14E0-B17F690F2F90}.wem"
      },
      {
       "Id": "634837452",
@@ -1024,6 +1080,14 @@
       "CachePath": "D8/{D8B1C3C2-6739-277F-690F-0712F261E05C}.wem"
      },
      {
+      "Id": "663495787",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "D3/{D3FC0284-ACD0-769A-1C61-7C7B39B1116E}.wem"
+     },
+     {
       "Id": "664087683",
       "Language": "SFX",
       "Streaming": "false",
@@ -1072,6 +1136,22 @@
       "CachePath": "68/{689AD3F6-A335-1468-1D31-7A1C52D98D17}.wem"
      },
      {
+      "Id": "726746848",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Can'tShoot.wav",
+      "CachePath": "3F/{3FCCC638-CE15-9393-BF6D-9453880A3885}.wem"
+     },
+     {
+      "Id": "728262529",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "14/{143227E0-C192-E6AD-36A1-07C6143BDDE0}.wem"
+     },
+     {
       "Id": "729630506",
       "Language": "SFX",
       "Streaming": "false",
@@ -1094,6 +1174,14 @@
       "Location": "Memory",
       "ShortName": "FootstepStems-003.wav",
       "CachePath": "74/{7494CC4E-AD10-3C9E-945A-60EF7E70B773}.wem"
+     },
+     {
+      "Id": "748900090",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "12/{1204FD42-65FA-9597-BB44-DA9FCDF4F6D4}.wem"
      },
      {
       "Id": "750876961",
@@ -1174,6 +1262,14 @@
       "Location": "Memory",
       "ShortName": "FootstepStems-005.wav",
       "CachePath": "5C/{5CBF8398-F6E7-44A8-69E9-E2DB6D550C0C}.wem"
+     },
+     {
+      "Id": "789664690",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Can'tShoot.wav",
+      "CachePath": "23/{23D38FA7-6BC3-7789-C70B-02CD2640B231}.wem"
      },
      {
       "Id": "796215813",
@@ -1296,6 +1392,14 @@
       "CachePath": "A4/{A4A7A51B-14B4-F5DC-FC4A-71FD4A7194A2}.wem"
      },
      {
+      "Id": "877310184",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "9E/{9EDAF7FE-011C-5308-75DF-94C0E9DEEE1A}.wem"
+     },
+     {
       "Id": "890399975",
       "Language": "SFX",
       "Streaming": "false",
@@ -1336,6 +1440,14 @@
       "CachePath": "4D/{4D65DB4C-3BAF-AB81-EA84-F978E63D2A48}.wem"
      },
      {
+      "Id": "906620199",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "WindPlatforms.wav",
+      "CachePath": "8D/{8D0C8ADE-D46A-1251-464D-C17EA3627EAF}.wem"
+     },
+     {
       "Id": "911682553",
       "Language": "SFX",
       "Streaming": "false",
@@ -1374,6 +1486,14 @@
       "Location": "Memory",
       "ShortName": "Woosh.wav",
       "CachePath": "6F/{6FB3D05B-49CC-1069-2ECC-B8082F40B149}.wem"
+     },
+     {
+      "Id": "928339904",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinsPickUp.wav",
+      "CachePath": "13/{1389C6AC-6DBC-839D-91F6-61F3168BB026}.wem"
      },
      {
       "Id": "928986090",
@@ -1470,6 +1590,22 @@
       "Location": "Memory",
       "ShortName": "BlunderbussHeavyExample3wav.wav",
       "CachePath": "24/{246E5509-5B49-C324-6C3E-75B18FA36D1B}.wem"
+     },
+     {
+      "Id": "977805667",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Swing, Pirate, Plunder again_01.wav",
+      "CachePath": "E6/{E623EFCB-D39E-0C6B-6EF8-CEB850C37679}.wem"
+     },
+     {
+      "Id": "981681180",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CAPTAIN.wav",
+      "CachePath": "51/{51AFF11B-08EF-94D8-250D-39D1A4D3E858}.wem"
      },
      {
       "Id": "985203243",
@@ -1652,9 +1788,6 @@
         "Id": "324181781"
        },
        {
-        "Id": "398618583"
-       },
-       {
         "Id": "605626282"
        }
       ]
@@ -1717,7 +1850,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\AverageShot",
       "GUID": "{ABECBF33-B4BA-4333-8C08-326D535D504A}",
       "Color": "8",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "1.5157181",
       "DurationMax": "2.1128173",
@@ -1844,7 +1977,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\BombTravel",
       "GUID": "{61C08C02-27BD-40D1-AA64-253664F409EE}",
       "Color": "8",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "Infinite",
       "MediaRefs": [
        {
@@ -1909,7 +2042,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\BruteFootsteps",
       "GUID": "{EAE3815A-7951-453D-9860-3BDAE998255A}",
       "Color": "10",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.65784466",
       "DurationMax": "0.7255515",
@@ -2000,7 +2133,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BruteSwing",
       "GUID": "{E4E6BDE6-4D18-4100-80F7-84E1F00E6986}",
       "Color": "8",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.7289547",
       "DurationMax": "0.9730377",
@@ -2035,6 +2168,60 @@
       "MediaRefs": [
        {
         "Id": "34328720"
+       }
+      ]
+     },
+     {
+      "Id": "3377723229",
+      "Name": "CaptainDeathDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\CaptainDeathDialogue",
+      "GUID": "{788C06ED-0FDB-4113-9F67-B529368EC58C}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "MediaRefs": [
+       {
+        "Id": "195070762"
+       },
+       {
+        "Id": "309072419"
+       },
+       {
+        "Id": "981681180"
+       }
+      ]
+     },
+     {
+      "Id": "2752428610",
+      "Name": "CoinPickUp",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\CoinPickUp",
+      "GUID": "{463BB931-E6B9-43D7-A502-24D00DD8AB7C}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "0.2315118",
+      "DurationMax": "0.65679824",
+      "MediaRefs": [
+       {
+        "Id": "497598887"
+       },
+       {
+        "Id": "623774283"
+       },
+       {
+        "Id": "663495787"
+       },
+       {
+        "Id": "728262529"
+       },
+       {
+        "Id": "748900090"
+       },
+       {
+        "Id": "877310184"
+       },
+       {
+        "Id": "928339904"
        }
       ]
      },
@@ -2378,7 +2565,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\MetalStep",
       "GUID": "{18499410-5552-4D0A-9BFE-B0A56809FE63}",
       "Color": "10",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.38922763",
       "DurationMax": "0.527458",
@@ -2476,12 +2663,36 @@
       ]
      },
      {
+      "Id": "3169697678",
+      "Name": "NoAmmoClick",
+      "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\Blunderbuss\\NoAmmoClick",
+      "GUID": "{04A9A93E-DE73-4F70-944A-821770718A79}",
+      "Color": "8",
+      "DurationType": "OneShot",
+      "DurationMin": "0.26822522",
+      "DurationMax": "0.33485335",
+      "MediaRefs": [
+       {
+        "Id": "216690498"
+       },
+       {
+        "Id": "271538463"
+       },
+       {
+        "Id": "726746848"
+       },
+       {
+        "Id": "789664690"
+       }
+      ]
+     },
+     {
       "Id": "2343736110",
       "Name": "NormalStep",
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\NormalStep",
       "GUID": "{0D93189B-2587-49E9-8248-DAC582D49439}",
       "Color": "10",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.6728934",
       "DurationMax": "0.76019675",
@@ -2742,6 +2953,27 @@
       ]
      },
      {
+      "Id": "1279779502",
+      "Name": "RestartGameDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\RestartGameDialogue",
+      "GUID": "{931642BD-F84C-4947-9ED7-072B1DDDA007}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0",
+      "MediaRefs": [
+       {
+        "Id": "142150595"
+       },
+       {
+        "Id": "609894285"
+       },
+       {
+        "Id": "977805667"
+       }
+      ]
+     },
+     {
       "Id": "1296465089",
       "Name": "Sprint",
       "ObjectPath": "\\Events\\Default Work Unit\\Player\\Sprint",
@@ -2831,7 +3063,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\SwingerBombExplode",
       "GUID": "{621D51FD-01A7-4A65-969B-F54A859172AF}",
       "Color": "8",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "1.2734656",
       "DurationMax": "1.2734656",
@@ -2850,7 +3082,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsMetal",
       "GUID": "{D414C847-4D25-404B-BFAE-63BF7F052638}",
       "Color": "10",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.32346517",
       "DurationMax": "0.5843464",
@@ -2887,7 +3119,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsNormal",
       "GUID": "{9667265C-B1C4-4904-B4E8-BBA9A780413D}",
       "Color": "10",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "0.381523",
       "DurationMax": "0.81720626",
@@ -2960,7 +3192,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\SwingerSwing",
       "GUID": "{3275A267-278E-48C3-81AE-8F42C9E99393}",
       "Color": "4",
-      "MaxAttenuation": "5000",
+      "MaxAttenuation": "2000",
       "DurationType": "OneShot",
       "DurationMin": "1.1859262",
       "DurationMax": "1.1859262",
@@ -3041,6 +3273,42 @@
         "Id": "1036155795"
        }
       ]
+     },
+     {
+      "Id": "3448399554",
+      "Name": "WindPlatformDown",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindPlatformDown",
+      "GUID": "{ADB626B5-F6AE-4C6C-8E68-280E14AF77D0}",
+      "Color": "4",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
+      "Id": "4157966138",
+      "Name": "WindPlatformStart",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindPlatformStart",
+      "GUID": "{DAD1116F-B0D0-46F5-A5CF-533E580F6AA5}",
+      "Color": "4",
+      "MaxAttenuation": "1000",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "906620199"
+       }
+      ]
+     },
+     {
+      "Id": "122758369",
+      "Name": "WindPlatformUp",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindPlatformUp",
+      "GUID": "{A057882C-001E-4970-AC05-E4155DD8F9B9}",
+      "Color": "4",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      },
      {
       "Id": "3414304297",
@@ -3181,6 +3449,6 @@
     ]
    }
   ],
-  "FileHash": "{C0DCC94E-840C-0C58-B045-62D6A12DB332}"
+  "FileHash": "{0D273399-79BC-994F-6287-EB93E36A6099}"
  }
 }
