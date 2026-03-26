@@ -63,6 +63,31 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		4.0f,
 		false);
 	}
+
+	AActor* SourceActor = nullptr;
+
+	// Prefer pawn instigator
+	if (DamageCauser)
+	{
+		if (APawn* InstigatorPawn = DamageCauser->GetInstigator())
+		{
+			SourceActor = InstigatorPawn;
+		}
+	}
+
+	// Fallback to pawn
+	if (!SourceActor && EventInstigator && EventInstigator->GetPawn())
+	{
+		SourceActor = EventInstigator->GetPawn();
+	}
+
+	// fallback to actor
+	if (!SourceActor && DamageCauser)
+	{
+		SourceActor = DamageCauser;
+	}
+
+	BP_OnDamageIndicator(SourceActor);
 	
 	return DamageAmount;
 }
