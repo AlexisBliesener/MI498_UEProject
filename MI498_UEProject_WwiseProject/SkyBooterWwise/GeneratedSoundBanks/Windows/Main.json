@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{EA984505-822E-BDB4-C114-E39BCC739920}",
+    "Hash": "{2EDFAFF9-53B4-11DE-C879-62D4D003F262}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -2178,8 +2178,8 @@
       "GUID": "{788C06ED-0FDB-4113-9F67-B529368EC58C}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0",
+      "DurationMin": "2.6226733",
+      "DurationMax": "5.598854",
       "MediaRefs": [
        {
         "Id": "195070762"
@@ -2812,14 +2812,23 @@
       "GUID": "{560EBDBD-52E8-4EC9-82B4-AB1D97D4FB92}",
       "Color": "13",
       "DurationType": "OneShot",
-      "DurationMin": "2.6430833",
-      "DurationMax": "2.7033541",
+      "DurationMin": "3.6226733",
+      "DurationMax": "6.598854",
       "MediaRefs": [
+       {
+        "Id": "195070762"
+       },
        {
         "Id": "287285638"
        },
        {
+        "Id": "309072419"
+       },
+       {
         "Id": "901896633"
+       },
+       {
+        "Id": "981681180"
        },
        {
         "Id": "1037545113"
@@ -2953,14 +2962,35 @@
       ]
      },
      {
+      "Id": "3026806422",
+      "Name": "ResetGameDialogue",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\ResetGameDialogue",
+      "GUID": "{B9CFEACD-4CD9-4719-B0F2-C671E2B53605}",
+      "Color": "6",
+      "DurationType": "OneShot",
+      "DurationMin": "2.5959632",
+      "DurationMax": "4.6684585",
+      "MediaRefs": [
+       {
+        "Id": "142150595"
+       },
+       {
+        "Id": "609894285"
+       },
+       {
+        "Id": "977805667"
+       }
+      ]
+     },
+     {
       "Id": "1279779502",
       "Name": "RestartGameDialogue",
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\RestartGameDialogue",
       "GUID": "{931642BD-F84C-4947-9ED7-072B1DDDA007}",
       "Color": "6",
       "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0",
+      "DurationMin": "2.5959632",
+      "DurationMax": "4.6684585",
       "MediaRefs": [
        {
         "Id": "142150595"
@@ -3280,10 +3310,13 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindPlatformDown",
       "GUID": "{ADB626B5-F6AE-4C6C-8E68-280E14AF77D0}",
       "Color": "4",
-      "MaxAttenuation": "0",
-      "DurationType": "OneShot",
-      "DurationMin": "0",
-      "DurationMax": "0"
+      "MaxAttenuation": "1000",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "906620199"
+       }
+      ]
      },
      {
       "Id": "4157966138",
@@ -3449,6 +3482,6 @@
     ]
    }
   ],
-  "FileHash": "{0D273399-79BC-994F-6287-EB93E36A6099}"
+  "FileHash": "{3D2883A1-A2C0-C94D-D0A1-1CDF1774E8B0}"
  }
 }

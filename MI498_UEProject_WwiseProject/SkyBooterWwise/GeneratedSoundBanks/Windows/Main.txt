@@ -44,6 +44,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2810013852	LeaveVaultDialogue			\Default Work Unit\VA\LeaveVaultDialogue	
 	2811709593	EscapeCannonDialogue			\Default Work Unit\VA\EscapeCannonDialogue	
 	2892267865	BombTravel			\Default Work Unit\Weapons\EnemyWeapon\BombTravel	
+	3026806422	ResetGameDialogue			\Default Work Unit\VA\ResetGameDialogue	
 	3084491839	PlayerSteps			\Default Work Unit\Player\Steps\PlayerSteps	
 	3169697678	NoAmmoClick			\Default Work Unit\Weapons\Blunderbuss\NoAmmoClick	
 	3203772045	FinalBattle			\Default Work Unit\MemeEvents\FinalBattle	

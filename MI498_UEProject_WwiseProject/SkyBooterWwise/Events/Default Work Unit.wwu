@@ -393,6 +393,16 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{1A072234-6457-4314-89C1-62D51524C9AA}" ShortID="140437649">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Folder Name="Steps" ID="{CA7181DC-87CE-494C-A85D-8211B56C180C}" ShortID="411623995">
@@ -944,6 +954,24 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ResetGameDialogue" ID="{B9CFEACD-4CD9-4719-B0F2-C671E2B53605}">
+							<ChildrenList>
+								<Action Name="" ID="{EB2C4457-3613-45CF-8369-657DBC9156CD}" ShortID="58849934">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+								<Action Name="" ID="{8FB00EB8-D3D0-491A-9645-C8EE50E2065B}" ShortID="144423392">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Restart" ID="{1F9DF40D-C30D-4264-BB83-0FAFBF330962}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
