@@ -26,6 +26,7 @@ AShip::AShip()
     
     TraceCollisionBox->SetCollisionResponseToAllChannels(ECR_Ignore);
     TraceCollisionBox->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+    TraceCollisionBox->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 }
 
 void AShip::Tick(float DeltaSeconds)
@@ -182,11 +183,17 @@ void AShip::CheckPlayerBox()
         {
             SetShipActive(true);
             bIsPlayerInside = true; 
+            bIsCannonAiming = false;
         }
         else if (!bIsInsideNow && bIsPlayerInside)
         {
-            SetShipActive(false);
             bIsPlayerInside = false;
+            
+            // ONLY deactivate the ship if the cannon is NOT currently aiming at the ship 
+            if (!bIsCannonAiming)
+            {
+                SetShipActive(false);
+            }
         }
     } 
 }
@@ -304,6 +311,40 @@ void AShip::AddEnemyToShip(AEnemyBase* Enemy)
         Enemy->HiddenShip = HiddenShip;
         EnemiesOnShip.Add(Enemy);
         Enemy->SetEnabledEnemy(bIsPlayerInside);
+    }
+}
+
+void AShip::SetCannonAiming(bool bIsAiming, AShip* LastShipActivated)
+{
+    if (IsValid(LastShipActivated))
+    {
+        // avoid duplicated calls if it's already active...
+        if (LastShipActivated == this && bIsCannonAiming)
+        {
+            return;
+        }
+        // if the last ship is not this ship then disable the old ship 
+        if (LastShipActivated != this)
+        {
+            LastShipActivated->SetCannonAiming(false, nullptr);
+        }
+    }
+    
+    bIsCannonAiming = bIsAiming;
+    
+    if (bIsPlayerInside)
+    {
+        return;
+    }
+    
+    
+    if (bIsCannonAiming && !bIsPlayerInside)
+    {
+        SetShipActive(true);
+    }
+    else if (!bIsCannonAiming && !bIsPlayerInside)
+    {
+        SetShipActive(false);
     }
 }
 

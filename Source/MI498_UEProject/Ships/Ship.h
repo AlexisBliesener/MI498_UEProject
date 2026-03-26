@@ -53,6 +53,11 @@ public:
 	
 	/// Event broadcast when the ship begins to fall
 	FOnShipFall OnShipFall;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bIsCannonAiming = false;
+	
+	
 
 	/**
 	 * Enable/Disable all collision on the ship and turn off all ai systems for the enemies 
@@ -66,6 +71,9 @@ public:
 	 * @param Enemy the enemy that to be added 
 	 */
 	void AddEnemyToShip(AEnemyBase* Enemy);
+	
+	UFUNCTION(BlueprintCallable, Category = "Ship|Cannon")
+	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
