@@ -2807,13 +2807,18 @@
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="2"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
 									<Custom>
 										<Attenuation Name="PlatformAttenuation" ID="{7BD29020-E696-4016-981C-1A2B19166CEA}" ShortID="554909722">
 											<PropertyList>
-												<Property Name="RadiusMax" Type="Real64" Value="2000"/>
+												<Property Name="RadiusMax" Type="Real64" Value="1000"/>
 											</PropertyList>
 											<CurveUsageInfoList>
 												<VolumeDryUsage>
@@ -2829,12 +2834,12 @@
 																	<Flags>5</Flags>
 																</Point>
 																<Point>
-																	<XPos>1742.42424</XPos>
+																	<XPos>871.21212</XPos>
 																	<YPos>-1.16918</YPos>
 																	<Flags>0</Flags>
 																</Point>
 																<Point>
-																	<XPos>2000</XPos>
+																	<XPos>1000</XPos>
 																	<YPos>-200</YPos>
 																	<Flags>37</Flags>
 																</Point>
@@ -2938,32 +2943,6 @@
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
-							<StateInfo>
-								<StateGroupList>
-									<StateGroupInfo>
-										<StateGroupRef Name="GoingUp" ID="{A2795536-C901-4C1F-A1BE-529412A26316}"/>
-										<StateGroupInfo Name="" ID="{34AA2CA4-4D7F-4EFB-9194-AF7583E4F38B}" ShortID="559165795"/>
-									</StateGroupInfo>
-								</StateGroupList>
-								<CustomStateList>
-									<CustomState>
-										<StateRef Name="Yes" ID="{6C39216A-69EC-4296-B1CA-45D6E7CAA309}"/>
-										<CustomState Name="" ID="{7CD2AFAB-4EF1-4F3D-A6E1-A1F3B151D897}" ShortID="828129384">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32" Value="1000"/>
-											</PropertyList>
-										</CustomState>
-									</CustomState>
-									<CustomState>
-										<StateRef Name="None" ID="{EADCA184-30B0-4416-A7C6-1FF328EDB715}"/>
-										<CustomState Name="" ID="{8737CEC1-1704-4351-BEFB-03705E918039}" ShortID="1034697602"/>
-									</CustomState>
-									<CustomState>
-										<StateRef Name="No" ID="{82D71F51-275D-4D6B-AE57-847DD3F44B9A}"/>
-										<CustomState Name="" ID="{A3DABD42-8C2D-4744-938B-F8968BE8A86F}" ShortID="906617919"/>
-									</CustomState>
-								</CustomStateList>
-							</StateInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="WindPlatforms" ID="{EAE46070-F220-47F3-ADBC-55F010BE79C6}" Platform="Linked"/>
 							</ActiveSourceList>
@@ -6021,6 +6000,7 @@
 								</Sound>
 								<RandomSequenceContainer Name="Restart" ID="{1F9DF40D-C30D-4264-BB83-0FAFBF330962}" ShortID="766764597">
 									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -6028,7 +6008,7 @@
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+											<ObjectRef Name="PlayerDeathBus" ID="{977C7EA2-D77B-4510-B8E3-823E4464FF9B}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
@@ -6111,9 +6091,35 @@
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Playlist">
+											<PluginInnerObject Name="" ID="{3A01E774-4303-4FE8-8AC2-047A982A6806}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="Once More, Hit _em Strong" ID="{EB0C990C-A54E-4E56-8543-7BB85030F3B0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{B599283E-9C60-45E3-B763-E027866F190C}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="One More Haul_01" ID="{1C9EE65A-C6E8-4B12-B757-4C5E079FAC87}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{92F27718-2653-4B8E-80C8-80E64ABD60DA}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="Swing, Pirate, Plunder again_01" ID="{CE1C5FDE-D468-4140-9EB8-CF9AC17890D5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+										</ObjectList>
+									</ObjectLists>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" ShortID="236937128">
 									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 									</PropertyList>
 									<ReferenceList>
@@ -6121,7 +6127,7 @@
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+											<ObjectRef Name="PlayerDeathBus" ID="{977C7EA2-D77B-4510-B8E3-823E4464FF9B}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
@@ -6209,6 +6215,31 @@
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Playlist">
+											<PluginInnerObject Name="" ID="{874ADCAF-E999-4CFE-A219-B4F9F6E758A5}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="CAPTAIN" ID="{EB909213-ADED-4A34-834E-371BD643F962}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{A676B09E-6747-47BA-95E4-42AD4F01C4F6}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="Fly High" ID="{CB86E3AA-F8A3-45D8-B74E-8ADEA3026FDF}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{097E3879-FDCC-4266-B1C6-692D70F391B9}" PluginName="PlaylistSlot" CompanyID="0" PluginID="86">
+												<ReferenceList>
+													<Reference Name="PlaylistObject">
+														<ObjectRef Name="Tale of Saoirse Skye" ID="{3DE702EA-9E83-4A5D-AA15-6E66146E387D}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+													</Reference>
+												</ReferenceList>
+											</PluginInnerObject>
+										</ObjectList>
+									</ObjectLists>
 								</RandomSequenceContainer>
 							</ChildrenList>
 						</PropertyContainer>

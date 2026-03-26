@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{6CB95B60-D65B-44F1-A671-7A26EFFEA5AA}" SchemaVersion="133">
 	<Switches>
-		<WorkUnit Name="Default Work Unit" ID="{6CB95B60-D65B-44F1-A671-7A26EFFEA5AA}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{6CB95B60-D65B-44F1-A671-7A26EFFEA5AA}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="GoingUp" ID="{9E75750C-11B6-4A36-AC2E-C92CA1D7B4FB}">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="20"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Switch Name="Yes" ID="{8F9AAF1E-B995-4363-A4CC-0823DEC755DF}"/>
+						<Switch Name="No" ID="{32F8247B-A88F-4371-A52F-95BC2F5B5FA4}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</Switches>
 </WwiseDocument>

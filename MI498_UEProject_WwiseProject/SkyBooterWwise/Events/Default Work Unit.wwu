@@ -393,6 +393,16 @@
 										</Reference>
 									</ReferenceList>
 								</Action>
+								<Action Name="" ID="{1A072234-6457-4314-89C1-62D51524C9AA}" ShortID="140437649">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Folder Name="Steps" ID="{CA7181DC-87CE-494C-A85D-8211B56C180C}" ShortID="411623995">
@@ -570,9 +580,47 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="WindPlatform" ID="{DAD1116F-B0D0-46F5-A5CF-533E580F6AA5}">
+						<Event Name="WindPlatformStart" ID="{DAD1116F-B0D0-46F5-A5CF-533E580F6AA5}">
 							<ChildrenList>
 								<Action Name="" ID="{0D884BE6-6CE3-46E4-A048-3E5FE415703D}" ShortID="37873234">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="CoinPickUp" ID="{463BB931-E6B9-43D7-A502-24D00DD8AB7C}">
+							<ChildrenList>
+								<Action Name="" ID="{40EA87D4-E236-43C6-9A66-AA7FDB492613}" ShortID="594345977">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LootPickUp" ID="{D8CA36B5-25C7-4EEE-91B9-9AC656C1F9F0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WindPlatformUp" ID="{A057882C-001E-4970-AC05-E4155DD8F9B9}">
+							<ChildrenList>
+								<Action Name="" ID="{9A814590-4185-45B1-9A33-EB3798120387}" ShortID="325872629">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="13"/>
+										<Property Name="FadeTime" Type="Real64" Value="2"/>
+										<Property Name="Pitch" Type="int32" Value="1000"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="WindPlatformDown" ID="{ADB626B5-F6AE-4C6C-8E68-280E14AF77D0}">
+							<ChildrenList>
+								<Action Name="" ID="{E491A7FD-8FA1-4FE3-9EED-D3189DFED444}" ShortID="311645823">
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
@@ -906,6 +954,24 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="CaptainDeath" ID="{ED930C8E-6BA0-4796-ADED-DC6B1036C188}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ResetGameDialogue" ID="{B9CFEACD-4CD9-4719-B0F2-C671E2B53605}">
+							<ChildrenList>
+								<Action Name="" ID="{EB2C4457-3613-45CF-8369-657DBC9156CD}" ShortID="58849934">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+								<Action Name="" ID="{8FB00EB8-D3D0-491A-9645-C8EE50E2065B}" ShortID="144423392">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Restart" ID="{1F9DF40D-C30D-4264-BB83-0FAFBF330962}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

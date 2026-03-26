@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{F22DA345-DCE6-25FB-DC2A-031181269C40}",
+    "Hash": "{F43A8DBB-1E41-6091-AD66-FD718DD0D3E9}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -324,6 +324,31 @@
         "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsMoving\\No",
         "GUID": "{837C4033-06EA-4F8D-990E-47320598FB93}",
         "Color": "12"
+       }
+      ]
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "554220858",
+      "Name": "GoingUp",
+      "ObjectPath": "\\Switches\\Default Work Unit\\GoingUp",
+      "GUID": "{9E75750C-11B6-4A36-AC2E-C92CA1D7B4FB}",
+      "Color": "20",
+      "Switches": [
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\Switches\\Default Work Unit\\GoingUp\\Yes",
+        "GUID": "{8F9AAF1E-B995-4363-A4CC-0823DEC755DF}",
+        "Color": "20"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\Switches\\Default Work Unit\\GoingUp\\No",
+        "GUID": "{32F8247B-A88F-4371-A52F-95BC2F5B5FA4}",
+        "Color": "20"
        }
       ]
      }
@@ -807,6 +832,6 @@
     ]
    }
   ],
-  "FileHash": "{8C2A4D65-D7C5-7E7B-9CB3-19B1037C0A32}"
+  "FileHash": "{926D2AEA-D0F8-4B3B-8ED8-0FFAB9C27D99}"
  }
 }
