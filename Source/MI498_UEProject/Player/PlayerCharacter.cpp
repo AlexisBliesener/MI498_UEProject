@@ -231,6 +231,8 @@ void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 
 void APlayerCharacter::PullUp(const FVector& TowardsLedge)
 {
+	OnPullUp();
+	
 	LaunchCharacter(GetActorUpVector() * PullUpToLedgeForce, true, true);
 	
 	FTimerDelegate delegate;
