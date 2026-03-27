@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{2EDFAFF9-53B4-11DE-C879-62D4D003F262}",
+    "Hash": "{D1C51D83-B330-B158-EE3F-57CE40D1D70C}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -3310,13 +3310,10 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\WindPlatformDown",
       "GUID": "{ADB626B5-F6AE-4C6C-8E68-280E14AF77D0}",
       "Color": "4",
-      "MaxAttenuation": "1000",
-      "DurationType": "Infinite",
-      "MediaRefs": [
-       {
-        "Id": "906620199"
-       }
-      ]
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
      },
      {
       "Id": "4157966138",
@@ -3482,6 +3479,6 @@
     ]
    }
   ],
-  "FileHash": "{3D2883A1-A2C0-C94D-D0A1-1CDF1774E8B0}"
+  "FileHash": "{1B682633-DB4B-3E94-0BF9-426D15C7CFCE}"
  }
 }

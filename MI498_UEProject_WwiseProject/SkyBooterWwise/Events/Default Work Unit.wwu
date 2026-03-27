@@ -621,6 +621,9 @@
 						<Event Name="WindPlatformDown" ID="{ADB626B5-F6AE-4C6C-8E68-280E14AF77D0}">
 							<ChildrenList>
 								<Action Name="" ID="{E491A7FD-8FA1-4FE3-9EED-D3189DFED444}" ShortID="311645823">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="13"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
