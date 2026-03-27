@@ -144,6 +144,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPrimaryAttack(AWeaponBase* Weapon, AActor* Target);
 	
+	/// Event for when the enemy does its seconodary attack
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSecondaryAttack(AWeaponBase* Weapon, AActor* Target);
+	
 	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
 	/**
 	 * Enable/disable the AI system/Collision and character movement for the enemy 
@@ -156,6 +160,11 @@ protected:
 	/// Used so the attack animation calls fire at the correct time
 	UFUNCTION(BlueprintCallable)
 	void FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target);
+	
+	/// Fires the secondary weapon from blueprint
+	/// Used so the attack animation calls fire at the correct time
+	UFUNCTION(BlueprintCallable)
+	void FireSecondaryAttack(AWeaponBase* Weapon, AActor* Target);
 	
 	/// Reference for the health bar widget component 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Health")
