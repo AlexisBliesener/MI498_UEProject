@@ -28,6 +28,10 @@ public:
 		OnInteract.Broadcast(InstigatorActor);
 	}
 	
+	/// If this interactable should be allowed to be interacted with
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanInteractWith = true;
+	
 protected:
 private:
 	GENERATED_BODY()
