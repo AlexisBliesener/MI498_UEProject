@@ -343,6 +343,12 @@ void UWeaponManager::HandleJump()
 	}
 }
 
+void UWeaponManager::SetCanUseWeapons(bool Val)
+{
+	bCanUseWeapons = Val;
+	HarpoonGunWeapon->Reload();
+}
+
 void UWeaponManager::HandleReload()
 {
 	if (!bCanUseWeapons) return;

@@ -82,7 +82,7 @@ public:
 	
 	/// Sets if weapons are allowed to be used or not
 	UFUNCTION(BlueprintCallable)
-	void SetCanUseWeapons(bool Val) {bCanUseWeapons = Val;}
+	void SetCanUseWeapons(bool Val);
 
 protected:
 	/// Called when the component is initialized at game start
