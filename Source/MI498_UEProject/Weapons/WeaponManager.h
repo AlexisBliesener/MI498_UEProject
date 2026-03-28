@@ -105,7 +105,7 @@ protected:
 	void HandleSecondaryAttackHoldEnd();
 	
 	/// Handles reloading the current weapon
-	void HandleReload();
+	void HandleReload() const;
 
 private:
 	/// Starts the scroll wheel cooldown
