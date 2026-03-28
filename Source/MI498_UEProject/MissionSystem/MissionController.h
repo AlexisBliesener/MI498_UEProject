@@ -105,6 +105,10 @@ public:
 	/// Fired when third bomb piece is collected
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnThirdBombPieceCollected(int32 index);
+	
+	/// Fired 5 sec after third bomb piece is collected
+	UFUNCTION(BlueprintImplementableEvent)
+	void DelayedCallThirdBombPieceCollected(int32 index);
 
 	/// Fired when player approaches exit cannon
 	UFUNCTION(BlueprintImplementableEvent)

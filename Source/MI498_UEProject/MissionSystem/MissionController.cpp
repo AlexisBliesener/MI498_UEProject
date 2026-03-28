@@ -7,6 +7,7 @@
 #include "VaultDoor.h"
 #include "VaultRoom.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
+#include "MI498_UEProject/Interactables/InteractableComponent.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
@@ -117,6 +118,15 @@ void AMissionController::HandleBombPieceCollected(int32 index)
 	{
 		OnThirdBombPieceCollected(index);
 		
+		/// Update the UI icon 5 seconds after (show combined bomb then vault door)
+		FTimerHandle TimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, index]()
+		{
+			DelayedCallThirdBombPieceCollected(index);
+		}, 5.0f, false);
+		
+		VaultDoor->EnableInteract();
+		
 		/// Enable vault beacon
 		if (VaultBeacon)
 		{
@@ -184,6 +194,7 @@ void AMissionController::HandleOnEnterExitPlatform()
 
 void AMissionController::HandleInVaultStatusChange(bool Status)
 {
+	if (BombPiecesCollected != 3) return;
 	if (Status)
 	{
 		if (!bNearVaultVaLinePlayed)
