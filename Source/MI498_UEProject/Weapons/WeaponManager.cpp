@@ -221,9 +221,25 @@ void UWeaponManager::HandleSelectWeaponThree()
 	OnWeaponSwitch.Broadcast();
 }
 
+void UWeaponManager::HandleScrollCooldown()
+{
+	bScrollOnCooldown = true;
+	GetWorld()->GetTimerManager().SetTimer(
+		ScrollCooldownHandle,
+		FTimerDelegate::CreateLambda([this]()
+		{
+			bScrollOnCooldown = false;
+		}),
+		0.35f,
+		false
+	);
+}
+
 void UWeaponManager::HandleSelectWeaponPrev()
 {
-	if (!bCanUseWeapons) return;
+	if (!bCanUseWeapons || bScrollOnCooldown) return;
+	
+	HandleScrollCooldown();
 	
 	CurrentWeaponIndex--;
 	if (CurrentWeaponIndex < 0)
@@ -240,7 +256,9 @@ void UWeaponManager::HandleSelectWeaponPrev()
 
 void UWeaponManager::HandleSelectWeaponNext()
 {
-	if (!bCanUseWeapons) return;
+	if (!bCanUseWeapons || bScrollOnCooldown) return;
+
+	HandleScrollCooldown();
 	
 	CurrentWeaponIndex++;
 	if (CurrentWeaponIndex >= WeaponOptions.Num())
