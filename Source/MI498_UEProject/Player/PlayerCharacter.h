@@ -64,6 +64,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerGrabLedge();
 	
+	/// A Blueprintable function that will be called when the player pulls up from the ledge grab
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPullUp();
+	
 	/// Grants temporary invincibility for the specified duration
 	/// @param Seconds - How long invincibility should last
 	void AddInvincibility(float Seconds);
