@@ -273,6 +273,8 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 	
 	OnPlayerLanded();
 	
+	GetCharacterMovement()->GravityScale = 1.0f;
+	
 	ASideMissionController* SideMissionController = ASideMissionController::Get(this);
 	SideMissionController->HitGround();
 }

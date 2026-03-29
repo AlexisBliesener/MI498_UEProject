@@ -82,7 +82,7 @@ public:
 	
 	/// Sets if weapons are allowed to be used or not
 	UFUNCTION(BlueprintCallable)
-	void SetCanUseWeapons(bool Val) {bCanUseWeapons = Val;}
+	void SetCanUseWeapons(bool Val);
 
 protected:
 	/// Called when the component is initialized at game start
@@ -108,6 +108,9 @@ protected:
 	void HandleReload();
 
 private:
+	/// Starts the scroll wheel cooldown
+	void HandleScrollCooldown();
+	
 	/// Enhanced input component used for binding input actions
 	UPROPERTY()
 	TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;
@@ -141,4 +144,10 @@ private:
 
 	/// True if weapons are currently allowed to be used
 	bool bCanUseWeapons = true;
+	
+	/// If the scroll wheel to switch weapons is currently cooling down
+	bool bScrollOnCooldown = false;
+	
+	/// Timer to handle the scroll wheel cooldown
+	FTimerHandle ScrollCooldownHandle;
 };

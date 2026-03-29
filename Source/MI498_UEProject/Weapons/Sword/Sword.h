@@ -5,6 +5,9 @@
 #include "GameFramework/Actor.h"
 #include "Sword.generated.h"
 
+class UCameraComponent;
+class APlayerCharacter;
+class UCharacterMovementComponent;
 class UNiagaraSystem;
 /// Concrete weapon class representing a Sword
 /// Inherits from WeaponBase
@@ -53,6 +56,10 @@ public:
 	/// Amount of damage applied to actors hit during the dash
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int DashDamage = 6;
+	
+	/// The time gravity is turned off during a sword dash
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float DashGravityOffTime = 0.15f;
 	
 	/// Strength of knockback in forward and upward direction added to an enemy when hit
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -127,6 +134,31 @@ private:
 	/// Prevents hitting the same actor multiple times
 	UPROPERTY()
 	TSet<AActor*> DashHitActors;
+	
+	/// Timer handle that controls turning off gravity during the sword dash
+	FTimerHandle SwordDashGravityTimerHandler;
+	
+	/// Cache of the player movement component
+	UPROPERTY()
+	UCharacterMovementComponent* playerMovementComponent = nullptr;
+	
+	/// Cache of the player character
+	UPROPERTY()
+	APlayerCharacter* playerCharacter = nullptr;
+	
+	/// Cache of the player controller
+	UPROPERTY()
+	APlayerController* playerController = nullptr;
+	
+	/// Cache of the players camera
+	UPROPERTY()
+	UCameraComponent* Camera = nullptr;
+	
+	/// Half size of the box that sweeps for sword swing damage
+	FVector SwingHalfSize = FVector(30, 33, 50);
+	
+	/// Half size of the box used for the sweep collision of dash 
+	FVector DashHalfSize = FVector(10, 10, 10);
 	
 	GENERATED_BODY()
 };

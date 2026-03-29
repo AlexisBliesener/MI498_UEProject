@@ -54,27 +54,35 @@ void ASword::SecondaryAttack(AController* Controller, AActor* Target)
 		SecondaryCooldownTime,
 		false);
 
-	if (APlayerController* playerController = Cast<APlayerController>(Controller))
-	{
-		Super::SecondaryAttack(Controller, Target);
+	Super::SecondaryAttack(Controller, Target);
 
-		/// Get the player camera location and rotation for dash direction
-		FVector cameraLocation;
-		FRotator cameraRotation;
-		playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-		FVector cameraForwardVector = cameraRotation.Vector();
+	/// Get the player camera location and rotation for dash direction
+	FVector cameraLocation;
+	FRotator cameraRotation;
+	playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
+	
+	/// Dashes the player forward in look direction
+	playerCharacter->LaunchCharacter(cameraRotation.Vector() * DashForce, true, true);
 
-		/// Get a reference to the owning player character
-		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(GetOwner());
+	/// Turn off gravity during dash
+	playerMovementComponent->GravityScale = 0.0f;
+	GetWorld()->GetTimerManager().ClearTimer(SwordDashGravityTimerHandler);
+	GetWorld()->GetTimerManager().SetTimer(
+		SwordDashGravityTimerHandler,
+		[this]()
+		{
+			if (playerCharacter && playerMovementComponent)
+			{
+				playerMovementComponent->GravityScale = 1.f;
+			}
+		},
+		DashGravityOffTime,
+		false
+	);
 
-		/// Dashes the player forward in look direction
-		FVector launchVelocity = cameraForwardVector * DashForce;
-		playerCharacter->LaunchCharacter(launchVelocity, true, true);
-
-		// Add invincibility 
-		playerCharacter->AddInvincibility(DashInvincibilitySeconds);
-	}
-
+	// Add invincibility 
+	playerCharacter->AddInvincibility(DashInvincibilitySeconds);
+	
 	// Deal Damage
 	bSwordDashHitboxActive = true;
 	SwordDashHitboxStartTime = GetWorld()->GetTimeSeconds();
@@ -88,8 +96,7 @@ void ASword::Tick(float DeltaSeconds)
 	// Reload if necessary
 	if (CurrentDashCharges != DashCharges && !bReloadingSecondary)
 	{
-		APlayerCharacter* playerCharacter = Cast<APlayerCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-		if (playerCharacter->GetCharacterMovement()->IsMovingOnGround())
+		if (playerMovementComponent->IsMovingOnGround())
 		{
 			bCanUseSecondary = false;
 			bReloadingSecondary = true;
@@ -118,8 +125,14 @@ void ASword::Tick(float DeltaSeconds)
 void ASword::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	bFirstAttackInSequence = true;
+	
+	/// Cache player components
+	playerCharacter = Cast<APlayerCharacter>(GetOwner());
+	playerMovementComponent = playerCharacter->GetCharacterMovement();
+	playerController = Cast<APlayerController>(playerCharacter->GetInstigatorController());
+	Camera = playerCharacter->FindComponentByClass<UCameraComponent>();
 }
 
 void ASword::DashHitbox()
@@ -127,26 +140,19 @@ void ASword::DashHitbox()
 	/// Array to store all hit results from the sweep
 	TArray<FHitResult> hitResults;
 
-	/// Get the player controller that owns this weapon
-	APlayerController* playerController = Cast<APlayerController>(GetOwner()->GetInstigatorController());
-
 	/// Ignore player and self collision
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
 	traceParams.AddIgnoredActor(GetOwner());
 
-	/// Half size of the box used for the sweep collision
-	FVector halfSize = FVector(10, 10, 10);
-
 	/// Get the current viewpoint of the player (camera position and direction)
 	FVector cameraLocation;
 	FRotator cameraRotation;
 	playerController->GetPlayerViewPoint(cameraLocation, cameraRotation);
-	FVector forward = cameraRotation.Vector();
 
 	/// Calculate start and end positions of the hitbox
 	FVector start = cameraLocation;
-	FVector end = start + forward * 200.f;
+	FVector end = start + cameraRotation.Vector() * 200.f;
 
 	/// Perform a box sweep from start to end to detect actors in the dash path
 	GetWorld()->SweepMultiByChannel(
@@ -155,7 +161,7 @@ void ASword::DashHitbox()
 		end,
 		cameraRotation.Quaternion(),
 		ECC_Visibility,
-		FCollisionShape::MakeBox(halfSize),
+		FCollisionShape::MakeBox(DashHalfSize),
 		traceParams);
 
 	/// Loop through every actor hit by the sweep
@@ -179,7 +185,7 @@ void ASword::DashHitbox()
 		}
 
 		/// Calculate Knockback Direction
-		FVector KnockbackDir = actor->GetActorLocation() - GetOwner()->GetActorLocation();
+		FVector KnockbackDir = actor->GetActorLocation() - playerCharacter->GetActorLocation();
 		if (KnockbackDir.Z < 0)
 		{
 			KnockbackDir.Z = 0;
@@ -219,7 +225,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 		&ASword::ResetCombo,
 		ComboResetTime,
 		false);
-	
+
 	bool cacheSwingDirection = bFirstAttackInSequence;
 	bFirstAttackInSequence = !bFirstAttackInSequence;
 
@@ -249,18 +255,6 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			slashOffset = FRotator(0.f, 180.f, -30.f);
 		}
 
-		/// Get the owning character
-		ACharacter* CharacterOwner = Cast<ACharacter>(GetOwner());
-
-		/// Camera used as the attachment point for the VFX
-		UCameraComponent* Camera = nullptr;
-
-		/// Find the camera component on the character
-		if (CharacterOwner)
-		{
-			Camera = CharacterOwner->FindComponentByClass<UCameraComponent>();
-		}
-	
 		/// Spawn the slash Niagara system attached to the camera
 		UNiagaraComponent* NiagaraComp =
 			UNiagaraFunctionLibrary::SpawnSystemAttached(
@@ -279,7 +273,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 			NiagaraComp->SetRelativeScale3D(spawnScale);
 		}
 	}
-	
+
 	/// Prepare a hit result to store the outcome of the line trace
 	TArray<FHitResult> hitResults;
 
@@ -287,9 +281,6 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 	FCollisionQueryParams traceParams;
 	traceParams.AddIgnoredActor(this);
 	traceParams.AddIgnoredActor(GetOwner());
-
-	/// Half size of the box thats sweeps for damage
-	FVector halfSize = FVector(30, 33, 50);
 
 	/// Calculate Direction Vectors from Camera Rotation
 	FVector forward = cameraRotation.Vector();
@@ -324,7 +315,7 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 				end,
 				cameraRotation.Quaternion(),
 				ECC_Visibility,
-				FCollisionShape::MakeBox(halfSize),
+				FCollisionShape::MakeBox(SwingHalfSize),
 				traceParams
 			);
 

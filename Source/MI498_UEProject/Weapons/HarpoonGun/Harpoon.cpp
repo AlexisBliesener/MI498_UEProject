@@ -208,7 +208,7 @@ void AHarpoon::Tick(float DeltaTime)
 	}
 
 	/// Vector from player to harpoon
-	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
+	FVector toHarpoon = CableComponent->GetComponentLocation() - PlayerCharacter->GetActorLocation();
 	FVector toHarpoonNormal = toHarpoon.GetSafeNormal();
 
 	/// Set up the cable visually to tile the material
@@ -241,6 +241,9 @@ void AHarpoon::Tick(float DeltaTime)
 	{
 		HandleZip(toHarpoon, toHarpoonNormal, DeltaTime);
 	}
+	
+	// Update previous location for next frame
+	PreviousAnchorLocation = GetActorLocation();
 }
 
 void AHarpoon::HandleReturnToPlayer(const FVector& ToHarpoon, const FVector& ToHarpoonNormal, float DeltaTime)
@@ -307,17 +310,14 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 		else if (!PlayerCharacterMovementComponent->IsFalling())
 		{
 		}
-		else if (ToHarpoon.Size() > CableLength || bFirstSwing)
+		else 
 		{
-			// Get the player's current velocity
-			FVector velocity = PlayerCharacterMovementComponent->Velocity;
-
 			// Calculate the velocity component along the rope direction 
-			FVector radialVel = FVector::DotProduct(velocity, ToHarpoonNormal) * ToHarpoonNormal;
+			FVector radialVel = FVector::DotProduct(PlayerCharacterMovementComponent->Velocity, ToHarpoonNormal) * ToHarpoonNormal;
 
 			// Remove radial component to keep only perpendicular motion 
-			FVector tangentialVel = velocity - radialVel;
-
+			FVector tangentialVel = PlayerCharacterMovementComponent->Velocity - radialVel;
+			
 			// On the first swing frame, boost tangential speed
 			if (bFirstSwing)
 			{
@@ -327,25 +327,25 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 
 			// Compute frame-to-frame harpoon displacement
 			FVector HarpoonDelta = GetActorLocation() - PreviousAnchorLocation;
+			
+			if (ToHarpoon.Size() > CableLength)
+			{
+				// Apply the pull
+				tangentialVel += -radialVel * DeltaTime * FMath::Min(60.f * ToHarpoon.Size() / CableLength, 60.f);
+			}
 
 			// Pull player into harpoon if the harpoon is moving away
 			if (!HarpoonDelta.IsNearlyZero(0.01f))
 			{
-				float mult = (ToHarpoon.Size() / CableLength);
-				if (mult > 1.1f) { mult *= 2.0f; }
-
-				tangentialVel += ToHarpoonNormal * PlayerCharacter->GetMaxWalkSpeed() * 13.7f * DeltaTime * mult;
+				PlayerCharacter->LaunchCharacter(ToHarpoonNormal * (HarpoonDelta.Size() / DeltaTime) * 0.9f, true, true);
 			}
-
-			// Update previous location for next frame
-			PreviousAnchorLocation = GetActorLocation();
-
-
-			// Apply tangential velocity to maintain swinging motion
-			if (!tangentialVel.IsNearlyZero())
+			else
 			{
-				PlayerCharacterMovementComponent->Velocity = tangentialVel;
-				//PlayerCharacter->LaunchCharacter(tangentialVel,true,  true );
+				// Apply tangential velocity to maintain swinging motion
+				if (!tangentialVel.IsNearlyZero())
+				{
+					PlayerCharacterMovementComponent->Velocity = tangentialVel;
+				}
 			}
 		}
 	}
