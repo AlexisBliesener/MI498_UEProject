@@ -349,7 +349,7 @@ void UWeaponManager::SetCanUseWeapons(bool Val)
 	HarpoonGunWeapon->Reload();
 }
 
-void UWeaponManager::HandleReload() const
+void UWeaponManager::HandleReload() 
 {
 	if (!bCanUseWeapons) return;
 	CurrentWeapon->Reload();
