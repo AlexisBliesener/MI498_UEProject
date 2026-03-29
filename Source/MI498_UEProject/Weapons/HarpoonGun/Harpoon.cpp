@@ -208,7 +208,7 @@ void AHarpoon::Tick(float DeltaTime)
 	}
 
 	/// Vector from player to harpoon
-	FVector toHarpoon = GetActorLocation() - PlayerCharacter->GetActorLocation();
+	FVector toHarpoon = CableComponent->GetComponentLocation() - PlayerCharacter->GetActorLocation();
 	FVector toHarpoonNormal = toHarpoon.GetSafeNormal();
 
 	/// Set up the cable visually to tile the material
