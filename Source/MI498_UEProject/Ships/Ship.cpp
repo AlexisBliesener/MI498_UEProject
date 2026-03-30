@@ -106,7 +106,11 @@ void AShip::DuplicateShipForNavigation()
             //enemy->SetEnabledEnemy(false);
             continue;
         }
-        
+        if (Cast<AController>(child))
+        {
+            // we don't need to copy the controller since it would be already attached to the enemy....
+            continue;
+        }
         
         FActorSpawnParameters childSpawnParms;
         childSpawnParms.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;

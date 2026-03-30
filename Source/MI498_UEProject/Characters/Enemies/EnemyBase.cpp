@@ -203,6 +203,12 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		{
 			AI->StopMovement();
 			AI->UnPossess();
+			AI->Destroy();
+		}
+		
+		if (IsValid(CurrentWeapon))
+		{
+			CurrentWeapon->Destroy();
 		}
 
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
