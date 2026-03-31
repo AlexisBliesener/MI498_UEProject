@@ -8,6 +8,7 @@
 #include "Engine/TargetPoint.h"
 #include "Components/LightComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Navigation/NavLinkProxy.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 AShip::AShip()
@@ -87,6 +88,8 @@ void AShip::DuplicateShipForNavigation()
     // Check if a NavMesh is attached to the real ship
     ANavMeshBoundsVolume* navMesh = nullptr;
 
+    // we need to move the nav links in the ships to the fake ship so it works with the ai navigation 
+    TArray<ANavLinkProxy*> navLinks;
     for (AActor* child : ActorsOnShip)
     {
         if (!child) continue;
@@ -94,6 +97,11 @@ void AShip::DuplicateShipForNavigation()
         if (ANavMeshBoundsVolume* navMeshRef = Cast<ANavMeshBoundsVolume>(child))
         {
             navMesh = navMeshRef;
+            continue; 
+        }
+        if (ANavLinkProxy* navLinkRef = Cast<ANavLinkProxy>(child))
+        {
+            navLinks.Add(navLinkRef);
             continue; 
         }
         // Check if the child is enemy, it will just set the references to the ships and then go to the next child
@@ -172,6 +180,27 @@ void AShip::DuplicateShipForNavigation()
     else
     {
         UE_LOG(EnemyAILog, Error, TEXT("HEY no NavMesh found on Ship: %s !!!!!!!!!!"), *GetName());    
+    }
+    
+    for (ANavLinkProxy* navLink : navLinks)
+    {
+        FVector originalRelativeLocation = navLink->GetRootComponent()->GetRelativeLocation();
+        FRotator originalRelativeRotation = navLink->GetRootComponent()->GetRelativeRotation();
+        FVector originalRelativeScale = navLink->GetRootComponent()->GetRelativeScale3D();
+
+        FAttachmentTransformRules navAttachRules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, false);
+        // reattach it to the actor of the hidden ship and move it to the same location that is in the real ship
+        navLink->AttachToActor(HiddenShip, navAttachRules);
+        navLink->SetActorRelativeLocation(originalRelativeLocation);
+        navLink->SetActorRelativeRotation(originalRelativeRotation);
+        navLink->SetActorRelativeScale3D(originalRelativeScale);
+
+        UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+        if (navSys)
+        {
+            // sicne we moved the nav link we need to update the navigation system to see the new chagnes....
+            navSys->UpdateActorAndComponentsInNavOctree(*navLink);
+        }
     }
     // disable ship as default 
     SetShipActive(false);
