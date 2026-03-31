@@ -141,6 +141,7 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	{
 		AIController->CurrentStateTreeState = StateTreeEnemyEvents::Search;
 		AIController->AcquiredTarget = nullptr;
+		AIController->ClearFocus(EAIFocusPriority::Gameplay);
 	}
 
 	OnSightStimulusForgotten(TargetActor);
