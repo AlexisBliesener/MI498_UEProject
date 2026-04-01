@@ -76,17 +76,25 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 	{
 		aiController->SetActorTickEnabled(bEnabled);
        
-		UStateTreeEnemyComponent* stateTreeComp = aiController->GetStateTreeAIComponent();
-		if (IsValid(stateTreeComp))
+		// UStateTreeEnemyComponent* stateTreeComp = aiController->GetStateTreeAIComponent();
+		// if (IsValid(stateTreeComp))
+		//  {
+		// 	 if (bEnabled)
+		// 	 {
+		// 		 stateTreeComp->StartStateTree(GetStateTree());
+		// 	 }
+		// 	 else
+		//	 {
+		// 		 stateTreeComp->StopStateTree();
+		// 	 }
+		//  }
+		if (bEnabled)
 		{
-			if (bEnabled)
-			{
-				stateTreeComp->StartStateTree(GetStateTree());
-			}
-			else
-			{
-				stateTreeComp->StopStateTree();
-			}
+			StunEnd();
+		}
+		else
+		{
+			StunMe();
 		}
        
 		UAIPerceptionComponent* perceptionComp = aiController->GetPerceptionComponent();
@@ -100,6 +108,30 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 	if (IsValid(stimuliComp))
 	{
 		stimuliComp->SetActive(bEnabled);
+	}
+}
+
+void AEnemyBase::StunMe()
+{
+	const FGameplayTag containerTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Stunned"));
+	if (AEnemyAIController* enemyAIController = Cast<AEnemyAIController>(GetController()))
+	{
+		CurrentTags.AddTag(containerTag);
+		GetCharacterMovement()->DisableMovement();
+		FStateTreeEvent event(containerTag);
+		enemyAIController->GetStateTreeAIComponent()->SendStateTreeEvent(event);
+	}
+}
+
+void AEnemyBase::StunEnd()
+{
+	if (AEnemyAIController* enemyAIController = Cast<AEnemyAIController>(GetController()))
+	{
+		const FGameplayTag containerTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Stunned"));
+		CurrentTags.RemoveTag(containerTag);
+		GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+		FStateTreeEvent event(FGameplayTag::RequestGameplayTag(FName("StateTree.Event.StunEnd")));
+		enemyAIController->GetStateTreeAIComponent()->SendStateTreeEvent(event);
 	}
 }
 

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Components/WidgetComponent.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
@@ -83,6 +84,12 @@ public:
 	TSubclassOf<AActor> HealthItemClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Default|Dev")
 	bool bIsAttacking = false;
+	
+	/**
+	 * The current tags that the enemy holds 
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Dev")
+	FGameplayTagContainer CurrentTags;
 	/// The type of this enemy used for scoring
 	UPROPERTY(EditAnywhere)
 	EEnemyType EnemyType;
@@ -154,6 +161,15 @@ public:
 	 * @param bEnabled if true, it will activate the enemy 
 	 */
 	void SetEnabledEnemy(bool bEnabled);
+	
+	/**
+	 * Stun the enemy they won't be able to do anything.. poor enemy.. 
+	 */
+	void StunMe();
+	/**
+	* Release the enemy they will move to attack after that  
+	*/
+	void StunEnd();
 protected:
 	
 	/// Fires the primary weapon from blueprint
