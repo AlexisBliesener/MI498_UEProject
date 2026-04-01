@@ -265,6 +265,24 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="SwingerPunch" ID="{38DD02D9-DA49-440B-8727-E0FDAD02A6F7}">
+							<ChildrenList>
+								<Action Name="" ID="{1D853E48-4AFE-4F64-9BD5-AA8AD7D922E7}" ShortID="702594233">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Wooshing" ID="{B602E704-C3CA-4271-A916-9332BF9A100F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{3AE19093-9B30-4B8A-AB37-17B42C772945}" ShortID="655492534">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Wooshing_01" ID="{7429F584-679E-4DC9-A5D8-28B3759CC5D1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{3F1B2991-C20F-421C-B490-C7E4E9C97647}" ShortID="62675082">
@@ -627,6 +645,115 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="WindPlatforms" ID="{A63EB802-ACB3-4642-B002-9CA82C594CD5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Ambience" ID="{4A6C8673-D290-4C90-8C82-5FD1712542BE}" ShortID="288754228">
+							<ChildrenList>
+								<Event Name="Sails" ID="{530731D8-DC10-4C6B-87F9-39548FB7782F}">
+									<ChildrenList>
+										<Action Name="" ID="{AC4CB07B-C41C-473B-B968-246B535CE77B}" ShortID="698383898">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ClothLayer" ID="{FDB165D4-8460-4ED8-80FA-34ECFC4373B8}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="WoodCreak" ID="{D006261B-9511-4826-819D-F7A368FD3EF9}">
+									<ChildrenList>
+										<Action Name="" ID="{326056D0-D1B8-4989-971E-55EB100EC631}" ShortID="25326599">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="WoodCreakAmbienceLayer" ID="{C6EC3C34-E7EB-42C6-BC9D-61D2793148EB}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Wind" ID="{0C63D0F0-E51F-41B2-93C8-2DB88A40C857}">
+									<ChildrenList>
+										<Action Name="" ID="{BAB942B1-9BFB-4AC7-B406-BD0372F8C9C6}" ShortID="159763194">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="AmbienceWindLayer" ID="{121F1503-FB21-4ED5-A90E-7483B4B534E0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Event Name="LeverClick" ID="{8406CFAB-B772-4E55-B49F-52B15813F89D}">
+							<ChildrenList>
+								<Action Name="" ID="{7826C641-F45D-49C8-8D9C-1A91591BF314}" ShortID="439138708">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LevelChainClick" ID="{1220380A-5BD4-40D7-AB0B-8DE7F6BA745A}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{982BAE7C-82BC-4EB7-B2B7-8BA2984E467D}" ShortID="99831003">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.45"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MetalLayer" ID="{FEFF0C8C-5704-4F10-8744-3D20297D58DF}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{BD748FED-8004-4E92-B335-4D6F01D5B482}" ShortID="430118219">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.45"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WoodLayer" ID="{2CF09EA1-DA3F-4D67-9E09-764039AC5DA2}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Chest" ID="{DAC0ADAB-BC40-405F-8279-859DAADBB16F}">
+							<ChildrenList>
+								<Action Name="" ID="{BAF75C67-E3E4-4BB8-8940-30FEAF2F11CC}" ShortID="500271147">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="WoodImpact" ID="{8D73E025-E26C-45A5-9E94-F181221B0664}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{A1CDC6B4-3455-47F7-9593-09EBCCA2B948}" ShortID="1064851133">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.01"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Friction" ID="{C5797BDD-1D44-499B-95E9-D97217535076}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{D680BD74-45FE-4AFE-8DA9-28CE58037507}" ShortID="319807362">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Creak" ID="{AFD12176-352A-4351-A558-A297CAB56BFE}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{AE71F368-56CD-438A-8553-40465CC587DB}" ShortID="77741550">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.54"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MetalClick" ID="{CF079633-1843-4EC2-A701-337178441DA0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1141,6 +1268,25 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="UIEvents" ID="{D68E4832-0327-4926-8728-B44EC22C6455}" ShortID="263432004">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="22"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="PageTurn" ID="{8F69B608-498B-4A54-B250-C5E8939D4482}">
+							<ChildrenList>
+								<Action Name="" ID="{2CD16069-5D1E-471C-8B95-0A0DBC7DD701}" ShortID="107906280">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PageFlipSound" ID="{AAE678F6-8EFB-463D-8B3D-8161D01522AD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
