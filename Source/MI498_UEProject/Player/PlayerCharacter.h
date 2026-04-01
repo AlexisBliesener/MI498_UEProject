@@ -5,6 +5,7 @@
 #include "../Animation/PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "Engine/DamageEvents.h"
+#include "Perception/AISightTargetInterface.h"
 #include "PlayerCharacter.generated.h"
 
 
@@ -16,7 +17,7 @@ class UScoringManager;
 ///
 /// Handles player-specific movement behavior such as walking and sprinting.
 UCLASS()
-class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase, public IGenericTeamAgentInterface
+class MI498_UEPROJECT_API APlayerCharacter : public ACharacterBase, public IGenericTeamAgentInterface, public IAISightTargetInterface 
 {
 public:
 	
@@ -81,6 +82,7 @@ public:
 		OverrideCameraFOV = OverrideValue;
 	}
 	
+	virtual UAISense_Sight::EVisibilityResult CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData = nullptr,const FOnPendingVisibilityQueryProcessedDelegate* Delegate = nullptr) override;
 	/// Returns the weapons manager
 	UWeaponManager* GetWeaponManager() {return WeaponManager;}
 	
@@ -152,6 +154,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	UPlayerAnimation* GetPlayerAnimation() {return PlayerAnimation;}
 
+	/// Default Sight Collision Channel this will be getting from the project settings
+	TEnumAsByte<ECollisionChannel> DefaultSightCollisionChannel;
 private:
 	/// Called automatically by the engine when the character lands on the ground
 	/// Used to trigger Blueprint landing events
