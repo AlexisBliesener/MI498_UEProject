@@ -12,5 +12,7 @@ enum class StateTreeEnemyEvents : uint8
     Idle       UMETA(DisplayName = "Idle"),
     Patrol     UMETA(DisplayName = "Patrol"),
     Attack     UMETA(DisplayName = "Attack"),
-    Search     UMETA(DisplayName = "Search")
+    Search     UMETA(DisplayName = "Search"),
+    Stunned    UMETA(DisplayName = "Stunned"),
+    StunEnd    UMETA(DisplayName = "StunEnd")
 };

@@ -8,6 +8,7 @@
 #include "Perception/AISenseConfig_Damage.h"
 #include "Perception/AISenseConfig_Prediction.h"
 #include "AITypes.h"
+#include "NavigationSystem.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 
@@ -59,7 +60,8 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 		if (MoveRequest.IsMoveToActorRequest() && MoveRequest.GetGoalActor())
 		{
 			realTarget = MoveRequest.GetGoalActor()->GetActorLocation();
-			realTarget.Z = enemy->GetActorLocation().Z; // ignore the height in enemy movement since most of the time the player will be in the air 
+			// we don't want to use it anymore since we are doing a ProjectPointToNavigation, the ai will get the nearest point to that location in moveto funciton  
+			//realTarget.Z = enemy->GetActorLocation().Z; // ignore the height in enemy movement since most of the time the player will be in the air 
 		}
 		else 
 		{
@@ -81,6 +83,11 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 			FVector localTarget = enemy->RealShip->GetActorTransform().InverseTransformPosition(realTarget);
 			hiddenTarget = enemy->HiddenShip->GetActorTransform().TransformPosition(localTarget);
 		}
+		
+		// it's taking a reference of the hiddentarget and changing it to a valid point if the hiddentarget was not on a valid navmesh point!
+		CheckAndGetAValidPointOnNavMesh(hiddenTarget, realTarget);
+		
+		
 		// This fixes when the MoveTo task has a target as an ACTOR not a destination  
 		// because we're using the fake ship for the navmesh, so we need to ignore the given actor and translate it to the fake ship
 		// and unreal doesn't allow changing FAIMoveRequest to use a destination instead of an actor after it's created
@@ -101,7 +108,35 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 
 	return Super::MoveTo(MoveRequest, OutPath);
 }
+void AEnemyAIController::CheckAndGetAValidPointOnNavMesh(FVector& TargetPoint, FVector& RealTarget)
+{
+	AEnemyBase* enemy = Cast<AEnemyBase>(GetPawn());
+	if (!enemy || !enemy->RealShip || !enemy->HiddenShip) return;
 
+	UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+	if (navSys)
+	{
+		FNavLocation projectedTarget;
+        
+		FVector searchExtent(100.f, 100.f, 250.f); 
+		// change the point only when it's not in the navmesh!! (We don't want to change the original point that was on the navmesh!!)
+		if (navSys->ProjectPointToNavigation(TargetPoint, projectedTarget, searchExtent))
+		{
+			TargetPoint = projectedTarget.Location;
+		}
+		else
+		{
+			FVector localEnemyPos = enemy->RealShip->GetActorTransform().InverseTransformPosition(enemy->GetActorLocation());
+			FVector enemyHiddenLocation = enemy->HiddenShip->GetActorTransform().TransformPosition(localEnemyPos);
+
+			FVector hitLocation;
+			if (navSys->NavigationRaycast(this, enemyHiddenLocation, TargetPoint, hitLocation))
+			{
+				TargetPoint = hitLocation;
+			}
+		}
+	}
+}
 UStateTreeEnemyComponent* AEnemyAIController::GetStateTreeAIComponent() const
 {
 	return StateTreeAIComponent;

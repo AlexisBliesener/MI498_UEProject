@@ -71,4 +71,6 @@ public:
 private:
 	/// Last event for the swinging enemy 
 	SwingingEnemyEnums LastEvent = SwingingEnemyEnums::Idle;
+	/// Stunned Tag cache 
+	FGameplayTag StunnedTag;
 };

@@ -80,7 +80,7 @@ void APlayerCharacterController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	if (PlayerCharacter->GetCharacterMovement()->IsMovingOnGround() && !PlayerCharacter->GetVelocity().IsNearlyZero())
+	if (IsValid(PlayerCharacter) && PlayerCharacter->GetCharacterMovement()->IsMovingOnGround() && !PlayerCharacter->GetVelocity().IsNearlyZero())
 	{
 		OnMove();
 	}
