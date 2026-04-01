@@ -29,7 +29,7 @@ void AHarpoonGun::PrimaryAttack(AController* Controller, AActor* Target)
 	PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
 
 	// Move forward by a small offset
-	FVector SpawnLocation = SocketTransform.GetLocation() + CameraRotation.Vector() * 200.f;
+	FVector SpawnLocation = SocketTransform.GetLocation() + CameraRotation.Vector() ;
 
 	/// Configure spawn parameters for ownership and instigation
 	FActorSpawnParameters SpawnParams;

@@ -4,6 +4,7 @@
 #include "GenericTeamAgentInterface.h"
 #include "../Animation/PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
+#include "Engine/DamageEvents.h"
 #include "PlayerCharacter.generated.h"
 
 
@@ -54,10 +55,18 @@ public:
 	/// A Blueprintable function that will be called when the player takes damage
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerTakeDamage();
+
+	// A Blueprintable function that will be called for damage indicator sake
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_OnDamageIndicator(AActor* DamageSource);
 	
 	/// A Blueprintable function that will be called when the player ledge grabs
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerGrabLedge();
+	
+	/// A Blueprintable function that will be called when the player pulls up from the ledge grab
+	UFUNCTION(BlueprintImplementableEvent, Category="Player")
+	void OnPullUp();
 	
 	/// Grants temporary invincibility for the specified duration
 	/// @param Seconds - How long invincibility should last

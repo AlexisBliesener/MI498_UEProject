@@ -308,6 +308,14 @@ void AEnemyBase::FirePrimaryAttack(AWeaponBase* Weapon, AActor* Target)
 		WeaponInterface->PrimaryAttack(GetController(), Target);
 	}
 }
+
+void AEnemyBase::FireSecondaryAttack(AWeaponBase* Weapon, AActor* Target)
+{
+	if (IWeaponInterface* WeaponInterface = Cast<IWeaponInterface>(CurrentWeapon))
+	{
+		WeaponInterface->SecondaryAttack(GetController(), Target);
+	}
+}
  
 void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 {
@@ -325,7 +333,7 @@ void AEnemyBase::Attack(AActor* Target, bool bIsSecondaryAttack)
 		bIsAttacking = true;
 		if (bIsSecondaryAttack)
 		{
-			Weapon->SecondaryAttack(GetController(), Target);
+			OnSecondaryAttack(CurrentWeapon, Target);
 		}else
 		{
 			OnPrimaryAttack(CurrentWeapon, Target);

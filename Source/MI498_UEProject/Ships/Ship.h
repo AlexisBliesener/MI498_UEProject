@@ -53,6 +53,12 @@ public:
 	
 	/// Event broadcast when the ship begins to fall
 	FOnShipFall OnShipFall;
+	
+	/// if the cannon is currently aiming at the ship
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bIsCannonAiming = false;
+	
+	
 
 	/**
 	 * Enable/Disable all collision on the ship and turn off all ai systems for the enemies 
@@ -66,6 +72,14 @@ public:
 	 * @param Enemy the enemy that to be added 
 	 */
 	void AddEnemyToShip(AEnemyBase* Enemy);
+	
+	/**
+	 * Activate the ship when the line's trace hit the trace collision box 
+	 * @param bIsAiming is the cannon aiming at the ship right now?
+	 * @param LastShipActivated If the last ship is not the same as the current ship, then it will deactivate the old one!
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Ship|Cannon")
+	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    

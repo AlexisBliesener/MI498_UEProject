@@ -63,6 +63,31 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		4.0f,
 		false);
 	}
+
+	AActor* SourceActor = nullptr;
+
+	// Prefer pawn instigator
+	if (DamageCauser)
+	{
+		if (APawn* InstigatorPawn = DamageCauser->GetInstigator())
+		{
+			SourceActor = InstigatorPawn;
+		}
+	}
+
+	// Fallback to pawn
+	if (!SourceActor && EventInstigator && EventInstigator->GetPawn())
+	{
+		SourceActor = EventInstigator->GetPawn();
+	}
+
+	// fallback to actor
+	if (!SourceActor && DamageCauser)
+	{
+		SourceActor = DamageCauser;
+	}
+
+	BP_OnDamageIndicator(SourceActor);
 	
 	return DamageAmount;
 }
@@ -206,6 +231,8 @@ void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 
 void APlayerCharacter::PullUp(const FVector& TowardsLedge)
 {
+	OnPullUp();
+	
 	LaunchCharacter(GetActorUpVector() * PullUpToLedgeForce, true, true);
 	
 	FTimerDelegate delegate;
@@ -245,6 +272,8 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 	Super::Landed(Hit);
 	
 	OnPlayerLanded();
+	
+	GetCharacterMovement()->GravityScale = 1.0f;
 	
 	ASideMissionController* SideMissionController = ASideMissionController::Get(this);
 	SideMissionController->HitGround();

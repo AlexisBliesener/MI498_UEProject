@@ -19,6 +19,10 @@ public:
 	/// Broadcasts the interaction event 
 	UFUNCTION(BlueprintCallable)
 	void VaultDoorInteract();
+	
+	/// Allows door to be interacted with
+	UFUNCTION(BlueprintImplementableEvent)
+	void EnableInteract();
 
 
 protected:
