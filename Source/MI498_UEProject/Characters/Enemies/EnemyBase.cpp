@@ -29,6 +29,7 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	PrimaryActorTick.bCanEverTick = true;
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 	UAIPerceptionStimuliSourceComponent* StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimulusSourceComponent"));
 	StimuliSourceComponent->ComponentTags.Add(FName("Player"));
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());

@@ -71,7 +71,8 @@ public:
 	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
 	 * @param Enemy the enemy that to be added 
 	 */
-	void AddEnemyToShip(AEnemyBase* Enemy);
+	UFUNCTION()
+	AEnemyBase* SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform);
 	
 	/**
 	 * Activate the ship when the line's trace hit the trace collision box 
