@@ -2,14 +2,12 @@
 #include "BombPiece.h"
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
-#include "NavigationSystem.h"
 #include "OutsideVaultDoor.h"
 #include "PlantedBomb.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
 #include "VaultTreasure.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
-#include "MI498_UEProject/Interactables/InteractableComponent.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 
 
@@ -21,25 +19,28 @@ AMissionController::AMissionController()
 void AMissionController::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
 	
+	/// cache player controller
+	PlayerController = GetWorld()->GetFirstPlayerController();
+
 	/// Set beacons invisible
 	if (VaultBeacon)
 	{
-		VaultBeacon->SetActorHiddenInGame(true);  
+		VaultBeacon->SetActorHiddenInGame(true);
 	}
-	
+
 	if (PlayerShipBeacon)
 	{
-		PlayerShipBeacon->SetActorHiddenInGame(true);  
+		PlayerShipBeacon->SetActorHiddenInGame(true);
 	}
-	
+
 	/// Set how many bomb peices are needed to complete stage one
 	NeededBombPieces = BombPieces.Num();
-	
+
 	OnMissionStarted();
-	
+
 	/// Bind to all bomb piece collected events
 	for (ABombPiece* Piece : BombPieces)
 	{
@@ -51,30 +52,31 @@ void AMissionController::BeginPlay()
 			);
 		}
 	}
-	
+
+	/// The time total time the player has to spend in the vault
 	InVaultTime = EnemyWaves.Num() * TimeInBetweenSpawningEnemyWaves;
-	
+
 	/// Bind to exit cannon component events
 	UExitCannonComponent* CannonComp = ExitCannon->FindComponentByClass<UExitCannonComponent>();
-	
+
 	CannonComp->OnNearExitCannon.AddDynamic(
 		this,
 		&AMissionController::HandleOnNearExitCannon);
-	
+
 	CannonComp->OnShotFromCannon.AddDynamic(
 		this,
 		&AMissionController::HandleOnNearExitCannon);
-	
+
 	/// Bind to vault door interaction event
 	VaultDoor->OnVaultDoorInteract.AddDynamic(
 		this,
 		&AMissionController::HandleVaultDoorInteract);
-	
+
 	/// Bind to vault room enter/exit status event
 	VaultRoom->OnVaultDoorInteract.AddDynamic(
 		this,
 		&AMissionController::HandleInVaultStatusChange);
-	
+
 	/// Bind to exit platform enter event
 	ExitPlatform->OnEnterExitPlatform.AddDynamic(
 		this,
@@ -84,7 +86,7 @@ void AMissionController::BeginPlay()
 void AMissionController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	
+
 	/// Check Stage One completion condition
 	if (CurrentState == EMissionState::StageOne)
 	{
@@ -93,20 +95,17 @@ void AMissionController::Tick(float DeltaSeconds)
 			StageOneFinish(true);
 		}
 	}
-	if (APlayerController* playrController = GetWorld()->GetFirstPlayerController())
+
+	/// Debug keys
+	if (PlayerController->WasInputKeyJustPressed(EKeys::F7))
 	{
-		if (playrController->WasInputKeyJustPressed(EKeys::F7))
-		{
-			
-			ExplodeVaultDoor();
-		}
-		if (playrController->WasInputKeyJustPressed(EKeys::F6))
-		{
-			HandleBombPieceCollected(0);
-			HandleBombPieceCollected(1);
-			HandleBombPieceCollected(2);
-		}
-		
+		ExplodeVaultDoor();
+	}
+	if (PlayerController->WasInputKeyJustPressed(EKeys::F6))
+	{
+		HandleBombPieceCollected(0);
+		HandleBombPieceCollected(1);
+		HandleBombPieceCollected(2);
 	}
 }
 
@@ -115,7 +114,7 @@ void AMissionController::HandleBombPieceCollected(int32 index)
 	/// Award score for collecting bomb piece
 	ScoringManager->AddBombPieceScore();
 	BombPiecesCollected++;
-	
+
 	/// Trigger contextual VA based on progress
 	if (BombPiecesCollected == 1)
 	{
@@ -128,20 +127,20 @@ void AMissionController::HandleBombPieceCollected(int32 index)
 	else
 	{
 		OnThirdBombPieceCollected(index);
-		
+
 		/// Update the UI icon 5 seconds after (show combined bomb then vault door)
 		FTimerHandle TimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, index]()
 		{
 			DelayedCallThirdBombPieceCollected(index);
 		}, 5.0f, false);
-		
+
 		VaultDoor->EnableInteract();
-		
+
 		/// Enable vault beacon
 		if (VaultBeacon)
 		{
-			VaultBeacon->SetActorHiddenInGame(false);  
+			VaultBeacon->SetActorHiddenInGame(false);
 		}
 	}
 }
@@ -152,12 +151,12 @@ void AMissionController::HandleVaultDoorInteract()
 	if (CurrentState == EMissionState::StageTwo)
 	{
 		OnBombPlanted();
-		
+
 		/// Lock the outside vault door
 		OutsideVaultDoor->LockDoor();
-		
+
 		PlantedBomb->BombAppear();
-		
+
 		/// Delay vault explosion
 		GetWorldTimerManager().SetTimer(
 			MissionTimerHandle,
@@ -176,17 +175,17 @@ void AMissionController::ExplodeVaultDoor()
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
 	VaultDoor->Destroy();
-	
+
 	/// enable player ship beacon
 	if (PlayerShipBeacon)
 	{
-		PlayerShipBeacon->SetActorHiddenInGame(false);  
+		PlayerShipBeacon->SetActorHiddenInGame(false);
 	}
-	
+
 	/// Disable vault beacon
 	if (VaultBeacon)
 	{
-		VaultBeacon->SetActorHiddenInGame(true);  
+		VaultBeacon->SetActorHiddenInGame(true);
 	}
 
 	/// Start falling ships
@@ -251,9 +250,10 @@ void AMissionController::SecondInVault()
 		ScoringManager->AddVaultSecScore();
 		SecondsInVault++;
 
+		/// Make loot slowly dispear
 		for (TObjectPtr<AActor> loot : VaultTreasure->LootToShrink)
 		{
-			// Get actor height (full height)
+			// Get actor height 
 			float Height = loot->GetSimpleCollisionHalfHeight() * 2.f;
 
 			// Move down by 1 / InVaultTime fraction of height
@@ -265,41 +265,47 @@ void AMissionController::SecondInVault()
 	}
 }
 
+void AMissionController::EndSpawningEnemies()
+{
+	/// Stop vault timer when all waves are clear
+	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+
+	/// Unlock the outside vault door
+	OutsideVaultDoor->UnlockDoor();
+
+	GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
+
+	/// Start mission time by StageThreeAdditionalTime seconds
+	float seconds = StageThreeAdditionalTime;
+
+	/// Start the mission timer to flee
+	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
+
+	FTimerDelegate delegate;
+	delegate.BindUObject(this, &AMissionController::StageThreeFinish, false);
+
+	GetWorldTimerManager().SetTimer(
+		MissionTimerHandle,
+		delegate,
+		seconds,
+		false);
+}
+
 void AMissionController::SpawnEnemies()
 {
-	if (CurrentWave >= EnemyWaves.Num()) 
+	/// End the enemy wave phase
+	if (CurrentWave >= EnemyWaves.Num())
 	{
-		/// Stop vault timer when all waves are clear
-		GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
-		
-		/// Unlock the outside vault door
-		OutsideVaultDoor->UnlockDoor();
-		
-		GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
-		
-		/// Start mission time by StageThreeAdditionalTime seconds
-		float seconds = StageThreeAdditionalTime;
-		
-		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
-		
-		FTimerDelegate delegate;
-		delegate.BindUObject(this, &AMissionController::StageThreeFinish, false);
-		
-		GetWorldTimerManager().SetTimer(
-			MissionTimerHandle,
-			delegate,
-			seconds,
-			false);
-		
+		EndSpawningEnemies();
 		return;
 	}
-	
+
 	for (int i = 0; i < EnemyWaves[CurrentWave].Enemies.Num(); i++)
 	{
 		if (i >= EnemySpawnPoints.Num()) continue;
-		
+
 		AActor* SpawnPoint = EnemySpawnPoints[i];
-		
+
 		if (!SpawnPoint) continue;
 
 		/// Spawn enemy instance
@@ -308,7 +314,7 @@ void AMissionController::SpawnEnemies()
 			SpawnPoint->GetActorLocation(),
 			SpawnPoint->GetActorRotation()
 		);
-		
+
 		// It's important to add the enemy to the ship so the AI can work!!
 		if (enemySpawned)
 		{
@@ -321,7 +327,7 @@ void AMissionController::SpawnEnemies()
 			UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real"));
 		}
 	}
-	
+
 	CurrentWave++;
 }
 
@@ -344,7 +350,7 @@ void AMissionController::StageTwoFinish(const bool Result)
 	{
 		/// Start Stage 3
 		CurrentState = EMissionState::StageThree;
-		
+
 		/// Start repeating timer while inside vault
 		GetWorldTimerManager().SetTimer(
 			InVaultTimerHandle,
@@ -352,10 +358,10 @@ void AMissionController::StageTwoFinish(const bool Result)
 			&AMissionController::SecondInVault,
 			TimeInVaultToCollectSingleLoot,
 			true);
-		
+
 		/// Spawn initial enemy wave
 		SpawnEnemies();
-		
+
 		/// Start repeating enemy wave spawner timer
 		GetWorldTimerManager().SetTimer(
 			EnemyWaveSpawnerTimerHandle,
