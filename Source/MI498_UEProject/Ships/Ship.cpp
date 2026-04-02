@@ -336,15 +336,20 @@ void AShip::StartFalling()
     }
 }
 
-void AShip::AddEnemyToShip(AEnemyBase* Enemy)
+AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform)
 {
-    if (Enemy)
+    if (AEnemyBase* enemy = GetWorld()->SpawnActorDeferred<AEnemyBase>(Enemy,Transform))
     {
-        Enemy->RealShip = this;
-        Enemy->HiddenShip = HiddenShip;
-        EnemiesOnShip.Add(Enemy);
-        Enemy->SetEnabledEnemy(bIsPlayerInside);
+        enemy->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+        enemy->RealShip = this;
+        enemy->HiddenShip = HiddenShip;
+        UGameplayStatics::FinishSpawningActor(enemy, Transform);
+        EnemiesOnShip.Add(enemy);
+        //enemy->SetEnabledEnemy(bIsPlayerInside);
+        return enemy;
     }
+    UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());
+    return nullptr;
 }
 
 void AShip::SetCannonAiming(bool bIsAiming, AShip* LastShipActivated)
