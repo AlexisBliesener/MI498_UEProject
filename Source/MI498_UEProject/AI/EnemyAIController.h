@@ -96,4 +96,6 @@ protected:
 	 */
 	UFUNCTION()
 	void OnTargetPerceptionForgotten(AActor* Actor);
+private:
+	void CheckAndGetAValidPointOnNavMesh(FVector& TargetPoint, FVector& RealTarget);
 };

@@ -40,7 +40,7 @@ void AHarpoon::ReturnToPlayer()
 	// Release the enemy and reset their state if the enemy was attached to the harpoon
 	if (bStuckToEnemy && IsValid(HarpoonedEnemy))
 	{
-		HarpoonedEnemy->GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+		HarpoonedEnemy->StunEnd();
 		HarpoonedEnemy = nullptr;
 		bStuckToEnemy = false;
 	}
@@ -144,7 +144,7 @@ void AHarpoon::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPri
 	{
 		bStuckToEnemy = true;
 		HarpoonedEnemy = Cast<AEnemyBase>(OtherActor);
-		HarpoonedEnemy->GetCharacterMovement()->DisableMovement();
+		HarpoonedEnemy->StunMe();
 
 		/// Return harpoon if the shot kills the enemy
 		if (HarpoonedEnemy->CurrentHealth - HarpoonGun->Damage <= 0)

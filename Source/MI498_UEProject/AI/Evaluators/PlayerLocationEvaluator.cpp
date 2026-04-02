@@ -9,6 +9,7 @@ void UPlayerLocationEvaluator::TreeStart(FStateTreeExecutionContext& Context)
 {
 	Super::TreeStart(Context);
 
+	StunnedTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Stunned"));
 }
 
 void UPlayerLocationEvaluator::TreeStop(FStateTreeExecutionContext& Context)
@@ -58,6 +59,11 @@ void UPlayerLocationEvaluator::Tick(FStateTreeExecutionContext& Context, const f
 	// melee range
 	bTargetInMeleeRange = (distSquared <= FMath::Square(Actor->MeleeRange)) && (distZ <= Actor->MeleeZTolerance);
 
+	if (Actor->CurrentTags.HasTag(StunnedTag))
+	{
+		LastEvent = SwingingEnemyEnums::Idle;
+		return;
+	}
 	
 	if (bTargetInMeleeRange && !(Actor->bIsSwinging))
 	{

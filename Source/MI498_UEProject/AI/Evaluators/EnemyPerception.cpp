@@ -141,6 +141,7 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	{
 		AIController->CurrentStateTreeState = StateTreeEnemyEvents::Search;
 		AIController->AcquiredTarget = nullptr;
+		AIController->ClearFocus(EAIFocusPriority::Gameplay);
 	}
 
 	OnSightStimulusForgotten(TargetActor);
@@ -197,6 +198,14 @@ void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 
 		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Search"));
 		LastEvent = StateTreeEnemyEvents::Search;
+		break;
+	case StateTreeEnemyEvents::Stunned:
+		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.Stunned"));
+		LastEvent = StateTreeEnemyEvents::Stunned;
+		break;
+	case StateTreeEnemyEvents::StunEnd:
+		EventTag = FGameplayTag::RequestGameplayTag(FName("StateTree.Event.StunEnd"));
+		LastEvent = StateTreeEnemyEvents::StunEnd;
 		break;
 	default:
 		return; 

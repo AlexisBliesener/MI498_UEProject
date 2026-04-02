@@ -5,8 +5,10 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/MissionSystem/SideMissionController.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "Perception/AIPerceptionComponent.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -29,6 +31,7 @@ APlayerCharacter::APlayerCharacter()
 	Camera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
 	// ECC_GameTraceChannel1 is only for the player
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Block);
+	DefaultSightCollisionChannel = GET_AI_CONFIG_VAR(DefaultSightCollisionChannel);
 }
 
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -95,6 +98,23 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 void APlayerCharacter::AddInvincibility(const float Seconds)
 {
 	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
+}
+
+UAISense_Sight::EVisibilityResult APlayerCharacter::CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData, const FOnPendingVisibilityQueryProcessedDelegate* Delegate)
+{
+	FHitResult hitResult;
+	// start checking against location first from the center of the character 
+	bool bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation, GetActorLocation(), DefaultSightCollisionChannel, FCollisionQueryParams(SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
+	OutNumberOfLoSChecksPerformed = 1;
+	if(!bIsHit || hitResult.GetActor() != this)
+	{
+		// if we don't see the center of the character, we'll use the camera location (the player's point of view)
+		bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation, Camera->GetComponentLocation(), DefaultSightCollisionChannel, FCollisionQueryParams(SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
+		OutNumberOfLoSChecksPerformed++;
+	}
+	OutSeenLocation = hitResult.Location;
+	OutSightStrength = 1;
+	return bIsHit && hitResult.GetActor() == this ? UAISense_Sight::EVisibilityResult::Visible : UAISense_Sight::EVisibilityResult::NotVisible;
 }
 
 void APlayerCharacter::BeginPlay()
