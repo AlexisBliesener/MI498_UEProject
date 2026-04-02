@@ -3,9 +3,11 @@
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "NavigationSystem.h"
+#include "OutsideVaultDoor.h"
 #include "PlantedBomb.h"
 #include "VaultDoor.h"
 #include "VaultRoom.h"
+#include "VaultTreasure.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/InteractableComponent.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
@@ -50,6 +52,8 @@ void AMissionController::BeginPlay()
 		}
 	}
 	
+	InVaultTime = EnemyWaves.Num() * TimeInBetweenSpawningEnemyWaves;
+	
 	/// Bind to exit cannon component events
 	UExitCannonComponent* CannonComp = ExitCannon->FindComponentByClass<UExitCannonComponent>();
 	
@@ -93,9 +97,16 @@ void AMissionController::Tick(float DeltaSeconds)
 	{
 		if (playrController->WasInputKeyJustPressed(EKeys::F7))
 		{
-
+			
 			ExplodeVaultDoor();
 		}
+		if (playrController->WasInputKeyJustPressed(EKeys::F6))
+		{
+			HandleBombPieceCollected(0);
+			HandleBombPieceCollected(1);
+			HandleBombPieceCollected(2);
+		}
+		
 	}
 }
 
@@ -141,6 +152,9 @@ void AMissionController::HandleVaultDoorInteract()
 	if (CurrentState == EMissionState::StageTwo)
 	{
 		OnBombPlanted();
+		
+		/// Lock the outside vault door
+		OutsideVaultDoor->LockDoor();
 		
 		PlantedBomb->BombAppear();
 		
@@ -202,20 +216,9 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 			bNearVaultVaLinePlayed = true;
 			OnNearVault();
 		}
-		
-		/// Start repeating timer while inside vault
-		GetWorldTimerManager().SetTimer(
-			InVaultTimerHandle,
-			this,
-			&AMissionController::SecondInVault,
-			TimeInVaultToCollectSingleLoot,
-			true);
 	}
 	else
 	{
-		/// Stop vault timer when player exits
-		GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
-		
 		if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
 		{
 			bOnLeaveVaultVaLinePlayed = true;
@@ -247,40 +250,79 @@ void AMissionController::SecondInVault()
 	{
 		ScoringManager->AddVaultSecScore();
 		SecondsInVault++;
+
+		for (TObjectPtr<AActor> loot : VaultTreasure->LootToShrink)
+		{
+			// Get actor height (full height)
+			float Height = loot->GetSimpleCollisionHalfHeight() * 2.f;
+
+			// Move down by 1 / InVaultTime fraction of height
+			FVector Location = loot->GetActorLocation();
+			Location.Z -= Height / InVaultTime;
+
+			loot->SetActorLocation(Location);
+		}
 	}
 }
 
 void AMissionController::SpawnEnemies()
 {
-	if (!AverageEnemy) return;
-
-	for (AActor* SpawnPoint : EnemySpawnPoints)
+	if (CurrentWave >= EnemyWaves.Num()) 
 	{
+		/// Stop vault timer when all waves are clear
+		GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+		
+		/// Unlock the outside vault door
+		OutsideVaultDoor->UnlockDoor();
+		
+		GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
+		
+		/// Start mission time by StageThreeAdditionalTime seconds
+		float seconds = StageThreeAdditionalTime;
+		
+		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
+		
+		FTimerDelegate delegate;
+		delegate.BindUObject(this, &AMissionController::StageThreeFinish, false);
+		
+		GetWorldTimerManager().SetTimer(
+			MissionTimerHandle,
+			delegate,
+			seconds,
+			false);
+		
+		return;
+	}
+	
+	for (int i = 0; i < EnemyWaves[CurrentWave].Enemies.Num(); i++)
+	{
+		if (i >= EnemySpawnPoints.Num()) continue;
+		
+		AActor* SpawnPoint = EnemySpawnPoints[i];
+		
 		if (!SpawnPoint) continue;
-
-		FVector Location = SpawnPoint->GetActorLocation();
-		FRotator Rotation = SpawnPoint->GetActorRotation();
 
 		/// Spawn enemy instance
 		AEnemyBase* enemySpawned = GetWorld()->SpawnActor<AEnemyBase>(
-			AverageEnemy,
-			Location,
-			Rotation
+			EnemyWaves[CurrentWave].Enemies[i],
+			SpawnPoint->GetActorLocation(),
+			SpawnPoint->GetActorRotation()
 		);
 		
 		// It's important to add the enemy to the ship so the AI can work!!
 		if (enemySpawned)
 		{
-			// since the spawn points is attached to the ship we can get the ship by getting the parent 
-			if (AShip* parentShip = Cast<AShip>(SpawnPoint->GetAttachParentActor()))
-			{
-				parentShip->AddEnemyToShip(enemySpawned);
-			}else
-			{
-				UE_LOG(EnemyLog, Error, TEXT("Enemy named: %s couldn't find a ship for them!!!!"), *enemySpawned->GetName());
-			}
+			UE_LOG(EnemyLog, Error, TEXT("Enemy attaching"));
+			/// Attach to parent ship
+			ParentShip->AddEnemyToShip(enemySpawned);
+		}
+		else
+		{
+			UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real"));
 		}
 	}
+	
+	CurrentWave++;
 }
 
 void AMissionController::StageOneFinish(const bool Result)
@@ -303,20 +345,13 @@ void AMissionController::StageTwoFinish(const bool Result)
 		/// Start Stage 3
 		CurrentState = EMissionState::StageThree;
 		
-		/// Extend remaining mission time by StageThreeAdditionalTime seconds
-		float seconds = GetWorldTimerManager().GetTimerRemaining(MissionTimerHandle);
-		seconds += StageThreeAdditionalTime;
-		
-		GetWorldTimerManager().ClearTimer(MissionTimerHandle);
-		
-		FTimerDelegate delegate;
-		delegate.BindUObject(this, &AMissionController::StageThreeFinish, false);
-		
+		/// Start repeating timer while inside vault
 		GetWorldTimerManager().SetTimer(
-			MissionTimerHandle,
-			delegate,
-			seconds,
-			false);
+			InVaultTimerHandle,
+			this,
+			&AMissionController::SecondInVault,
+			TimeInVaultToCollectSingleLoot,
+			true);
 		
 		/// Spawn initial enemy wave
 		SpawnEnemies();

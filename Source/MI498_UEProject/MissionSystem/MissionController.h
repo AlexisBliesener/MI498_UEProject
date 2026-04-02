@@ -4,6 +4,8 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class AVaultTreasure;
+class AOutsideVaultDoor;
 class APlantedBomb;
 class UExitCannonComponent;
 class UScoringManager;
@@ -22,6 +24,15 @@ enum class EMissionState : uint8
 	StageThree UMETA(DisplayName = "StageThree")
 };
 
+USTRUCT(BlueprintType)
+struct FEnemyWave
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<AEnemyBase>> Enemies;
+};
+
 /// Central mission flow controller
 /// Coordinates objectives, timers, enemy waves, and stage transitions
 UCLASS(Blueprintable, BlueprintType)
@@ -31,6 +42,14 @@ public:
 	AMissionController();
 	
 	virtual void BeginPlay() override;
+	
+	/// The treasure in the vault
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AVaultTreasure> VaultTreasure;
+	
+	/// The door outside of the vault, will lock during wave portion
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AOutsideVaultDoor> OutsideVaultDoor;
 	
 	/// Bomb piece actors required for Stage One completion
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -48,9 +67,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AExitPlatform> ExitPlatform;
 	
-	/// Enemy class to spawn for combat waves
+	/// Array of enemies to spawn each wave
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<AEnemyBase> AverageEnemy;
+	TArray<FEnemyWave> EnemyWaves;
 	
 	/// World actors used as enemy spawn locations
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -59,6 +78,10 @@ public:
 	/// Actor containing the exit cannon component
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> ExitCannon;
+	
+	/// The ship the enemies get spawned on
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<AShip> ParentShip;
 	
 	/// Bomb that will explode the vault door
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -224,6 +247,12 @@ private:
 	/// Scoring system instance
 	UPROPERTY()
 	UScoringManager * ScoringManager = nullptr;
+	
+	/// The current wave of enemies the vault is on
+	int CurrentWave = 0;
+	
+	/// The amount of time it is going to take to get everything from the vault
+	float InVaultTime = 0;
 	
 	GENERATED_BODY()
 };
