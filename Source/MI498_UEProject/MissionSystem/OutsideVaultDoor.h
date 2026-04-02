@@ -1,5 +1,4 @@
 #pragma once
-
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "OutsideVaultDoor.generated.h"
@@ -17,9 +16,5 @@ public:
 	/// Blueprint event that calls to unlock the door
 	UFUNCTION(BlueprintImplementableEvent)
 	void UnlockDoor();
-	
-protected:
-
-private:
 	
 };

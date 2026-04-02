@@ -24,6 +24,7 @@ enum class EMissionState : uint8
 	StageThree UMETA(DisplayName = "StageThree")
 };
 
+/// Struct to be able to show arrays of enemies in the editor
 USTRUCT(BlueprintType)
 struct FEnemyWave
 {
@@ -91,9 +92,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<AShip>> Ships;
 	
+	/// The beacon on the vault, enabled when all three bomb pieces are collected
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> VaultBeacon;
 	
+	/// The beacon on the player ship, enabled when the player is fleeing
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> PlayerShipBeacon;
 	
@@ -211,6 +214,9 @@ private:
 	/// Handles completion or timeout of Stage Three
 	void StageThreeFinish(bool Result);
 	
+	/// When the vault waves are done call this to start the next phase
+	void EndSpawningEnemies();
+	
 	/// How many bomb pieces are needed to make the bomb
 	int NeededBombPieces;
 	
@@ -247,6 +253,10 @@ private:
 	/// Scoring system instance
 	UPROPERTY()
 	UScoringManager * ScoringManager = nullptr;
+	
+	/// Cache of the player controller
+	UPROPERTY()
+	APlayerController* PlayerController = nullptr;
 	
 	/// The current wave of enemies the vault is on
 	int CurrentWave = 0;
