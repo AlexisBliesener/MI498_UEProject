@@ -359,6 +359,8 @@ void ASword::SwingSword(AController* Controller, AActor* Target)
 
 void ASword::ReloadDashes()
 {
+	OnReloadDashes();
+	
 	bReloadingSecondary = false;
 	bCanUseSecondary = true;
 	CurrentDashCharges = DashCharges;
