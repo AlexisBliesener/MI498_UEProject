@@ -92,6 +92,8 @@ void APlayerCharacterController::Tick(float DeltaSeconds)
 
 void APlayerCharacterController::HandleLook(const FInputActionValue& InputActionValue)
 {
+	if (PlayerCharacter->GetDead()) return;
+	
 	FVector2D lookInput = InputActionValue.Get<FVector2D>();
 	
 	if (bMovementBeingSlowed)

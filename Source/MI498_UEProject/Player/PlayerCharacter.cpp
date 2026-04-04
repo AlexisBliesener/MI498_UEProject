@@ -36,6 +36,8 @@ APlayerCharacter::APlayerCharacter()
 
 float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
+	if (bDied) return DamageAmount;
+	
 	if (InvincibilityTimer >= GetWorld()->GetTimeSeconds())
 	{
 		return 0;
@@ -44,10 +46,16 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
+		bDied = true;
+		
 		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
 		TurnOffLowHealthEffect();
 		
+		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
+		playerController->SetAcceptMovementInput(false);
+		
 		OnPlayerDied();
+		return DamageAmount;
 	}
 	
 	OnPlayerTakeDamage();
@@ -135,6 +143,8 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
+	if (bDied) return;
+	
 	/// Update speed on animation controller
 	if (PlayerAnimation != nullptr)
 	{
@@ -208,6 +218,8 @@ void APlayerCharacter::HealCharacter(float HealAmount)
 {
 	Super::HealCharacter(HealAmount);
 	
+	if (bDied) return;
+	
 	if (CurrentHealth >= MaxHealth * LowHealthPercentage)
 	{
 		bLowHealthHit = false;
@@ -218,6 +230,8 @@ void APlayerCharacter::Jump()
 {
 	Super::Jump();
 	
+	if (bDied) return;
+	
 	PlayerAnimation->SetJumped(true);
 }
 
@@ -227,6 +241,8 @@ FGenericTeamId APlayerCharacter::GetGenericTeamId() const
 }
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
+	if (bDied) return;
+	
 	OnPlayerGrabLedge();
 	
 	// Get custom player controller and disable movement input
@@ -290,6 +306,7 @@ void APlayerCharacter::ReenableMovement()
 void APlayerCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
+	if (bDied) return;
 	
 	OnPlayerLanded();
 	
