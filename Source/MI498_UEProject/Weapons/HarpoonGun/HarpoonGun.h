@@ -68,6 +68,10 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AHarpoon> HarpoonBlueprint;
 	
+	/// True when the player is currently aiming down sights.
+	UPROPERTY(BlueprintReadOnly)
+	bool bUsingADS = false;
+	
 	/// FOV will change to this value when ADS
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int ADSFOV = 40;
@@ -96,9 +100,6 @@ private:
 	
 	/// True if player should swing on harpoon, false if player should zip to harpoon
 	bool bSwingMode = true;
-	
-	/// True when the player is currently aiming down sights.
-	bool bUsingADS = false;
 	
 	/// Cached reference to the owning player character.
 	UPROPERTY()

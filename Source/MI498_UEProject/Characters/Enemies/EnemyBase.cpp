@@ -29,6 +29,7 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UEnemyMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	PrimaryActorTick.bCanEverTick = true;
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 	UAIPerceptionStimuliSourceComponent* StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimulusSourceComponent"));
 	StimuliSourceComponent->ComponentTags.Add(FName("Player"));
 	StimuliSourceComponent->RegisterForSense(TSubclassOf<UAISense_Sight>());
@@ -246,7 +247,7 @@ float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
 
-		Destroy();
+		//Destroy();
 	}
 
 	return DamageAmount;

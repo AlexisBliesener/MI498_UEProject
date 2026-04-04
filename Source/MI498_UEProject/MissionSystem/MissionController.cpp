@@ -309,23 +309,7 @@ void AMissionController::SpawnEnemies()
 		if (!SpawnPoint) continue;
 
 		/// Spawn enemy instance
-		AEnemyBase* enemySpawned = GetWorld()->SpawnActor<AEnemyBase>(
-			EnemyWaves[CurrentWave].Enemies[i],
-			SpawnPoint->GetActorLocation(),
-			SpawnPoint->GetActorRotation()
-		);
-
-		// It's important to add the enemy to the ship so the AI can work!!
-		if (enemySpawned)
-		{
-			UE_LOG(EnemyLog, Error, TEXT("Enemy attaching"));
-			/// Attach to parent ship
-			ParentShip->AddEnemyToShip(enemySpawned);
-		}
-		else
-		{
-			UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real"));
-		}
+		ParentShip->SpawnEnemyOnShip(EnemyWaves[CurrentWave].Enemies[i],SpawnPoint->GetTransform());
 	}
 
 	CurrentWave++;
