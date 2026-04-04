@@ -16,6 +16,9 @@ ABlunderbuss::ABlunderbuss()
 
 void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 {
+	// Return if currently reloading 
+	if (bReloading) return;
+
 	// Check if there is enough ammo to perform the primary attack
 	if (CurrentAmmo - PrimaryAttackNeededAmmo < 0)
 	{
@@ -30,10 +33,10 @@ void ABlunderbuss::PrimaryAttack(AController* Controller, AActor* Target)
 
 	// Consume ammo required for a primary shot
 	CurrentAmmo -= PrimaryAttackNeededAmmo;
-	
+
 	/// Sets reload time based on ammo left
 	ReloadTime = CurrentAmmo == 1 ? OneAmmoReloadTime : TwoAmmoReloadTime;
-	
+
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, false);
 
@@ -52,6 +55,9 @@ void ABlunderbuss::PrimaryAttackHold(AController* Controller, AActor* Target)
 
 void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 {
+	// Return if currently reloading 
+	if (bReloading) return;
+
 	// Check if there is enough ammo to perform the secondary attack
 	if (CurrentAmmo - SecondaryAttackNeededAmmo < 0)
 	{
@@ -66,10 +72,10 @@ void ABlunderbuss::SecondaryAttack(AController* Controller, AActor* Target)
 
 	// Consume ammo required for a secondary shot
 	CurrentAmmo -= SecondaryAttackNeededAmmo;
-	
+
 	/// Sets reload time based on ammo left
 	ReloadTime = TwoAmmoReloadTime;
-	
+
 	// Update HUD
 	OnAmmoChanged.Broadcast(CurrentAmmo, MaxAmmo, true);
 
@@ -85,7 +91,7 @@ void ABlunderbuss::BeginPlay()
 {
 	Super::BeginPlay();
 	OneAmmoReloadTime = ReloadTime;
-	
+
 	// Cache player mesh
 	ACharacter* PlayerCharacter = Cast<ACharacter>(GetOwner());
 	USkeletalMeshComponent* MeshComp = PlayerCharacter->GetMesh();
@@ -111,85 +117,73 @@ void ABlunderbuss::PlayerKnockback(APlayerController* PlayerController, int Knoc
 	}
 }
 
+struct FRecoilInstance
+{
+	int Step = 0;
+	float Time = 0.f;
+	bool bReset = false;
+	FTimerHandle Handle;
+};
+
 void ABlunderbuss::ApplyCameraRecoil(APlayerController* PlayerController, bool Primary)
 {
-	/// Ensure we have a valid player controller before applying recoil
 	if (!IsValid(PlayerController)) return;
 
-	/// Reset recoil tracking variables at the start of each shot
-	CurrentRecoilStep = 0;
-	CurrentRecoilTime = 0;
+	FRecoilInstance* Recoil = new FRecoilInstance();
+	Recoil->Step = 0;
+	Recoil->Time = 0.f;
+	Recoil->bReset = false;
+	float LocalRecoilTime = 0.f;
 
-	if (Primary)
+	if (Primary && PrimaryRecoilCurve)
 	{
-		/// Use the primary recoil curve if firing primary
-		if (PrimaryRecoilCurve)
-		{
-			/// Access the internal rich curve to determine total recoil duration
-			FRichCurve* richCurve = &PrimaryRecoilCurve->FloatCurve;
-
-			if (richCurve)
-			{
-				/// Get the last keyframe time to determine total recoil time
-				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
-				RecoilTime = Keys[Keys.Num() - 1].Time;
-			}
-		}
+		const TArray<FRichCurveKey>& Keys = PrimaryRecoilCurve->FloatCurve.GetConstRefOfKeys();
+		LocalRecoilTime = Keys.Last().Time;
 	}
-	else
+	else if (!Primary && SecondaryRecoilCurve)
 	{
-		/// Use the secondary recoil curve if firing secondary
-		if (SecondaryRecoilCurve)
-		{
-			/// Access the internal rich curve to determine total recoil duration
-			FRichCurve* richCurve = &SecondaryRecoilCurve->FloatCurve;
-
-			if (richCurve)
-			{
-				/// Get the last keyframe time to determine total recoil time
-				const TArray<FRichCurveKey>& Keys = richCurve->GetConstRefOfKeys();
-				RecoilTime = Keys[Keys.Num() - 1].Time;
-			}
-		}
+		const TArray<FRichCurveKey>& Keys = SecondaryRecoilCurve->FloatCurve.GetConstRefOfKeys();
+		LocalRecoilTime = Keys.Last().Time;
 	}
 
-	/// Apply recoil gradually over time using a repeating timer
+	FTimerDelegate RecoilDelegate = FTimerDelegate::CreateLambda(
+		[this, PlayerController, Primary, Recoil, LocalRecoilTime]()
+		{
+			if (!PlayerController || !Recoil) return;
+
+			float Value = 0.f;
+
+			if (Primary && PrimaryRecoilCurve)
+			{
+				Value = PrimaryRecoilCurve->GetFloatValue(Recoil->Time);
+			}
+			else if (!Primary && SecondaryRecoilCurve)
+			{
+				Value = SecondaryRecoilCurve->GetFloatValue(Recoil->Time);
+			}
+
+			PlayerController->AddPitchInput(Value);
+
+			Recoil->Step++;
+			Recoil->Time += LocalRecoilTime / RecoilSteps;
+
+			if (Recoil->Step >= RecoilSteps / 2 && !Recoil->bReset)
+			{
+				Recoil->Step = 0;
+				Recoil->bReset = true;
+			}
+			else if (Recoil->Step >= RecoilSteps / 2 && Recoil->bReset)
+			{
+				GetWorld()->GetTimerManager().ClearTimer(Recoil->Handle);
+				delete Recoil;
+			}
+		}
+	);
+
 	GetWorld()->GetTimerManager().SetTimer(
-		RecoilTimerHandle,
-		FTimerDelegate::CreateLambda([this, PlayerController, Primary]()
-		{
-			/// Validate controller again inside timer callback
-			if (!PlayerController) return;
-
-			/// Apply pitch input based on the current recoil curve value
-			if (Primary)
-			{
-				PlayerController->AddPitchInput(PrimaryRecoilCurve->GetFloatValue(CurrentRecoilTime));
-			}
-			else
-			{
-				PlayerController->AddPitchInput(SecondaryRecoilCurve->GetFloatValue(CurrentRecoilTime));
-			}
-
-			/// Advance recoil step and time
-			CurrentRecoilStep++;
-			CurrentRecoilTime += RecoilTime / RecoilSteps;
-
-			/// After half the steps, begin reset phase
-			if (CurrentRecoilStep >= RecoilSteps / 2 && !bResetRecoil)
-			{
-				CurrentRecoilStep = 0;
-				bResetRecoil = true;
-			}
-			/// After completing reset phase, stop the timer
-			else if (CurrentRecoilStep >= RecoilSteps / 2 && bResetRecoil)
-			{
-				bResetRecoil = false;
-				GetWorld()->GetTimerManager().ClearTimer(RecoilTimerHandle);
-			}
-		}),
-		/// Interval between recoil updates
-		RecoilTime / RecoilSteps,
+		Recoil->Handle,
+		RecoilDelegate,
+		LocalRecoilTime / RecoilSteps,
 		true
 	);
 }
@@ -251,7 +245,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				FCollisionShape::MakeBox(halfSize),
 				traceParams
 			);
-			
+
 			/// Create tracer line vfx
 			if (TracerVFX)
 			{
@@ -261,7 +255,7 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				{
 					tracerEnd = sliceHits[0].ImpactPoint;
 				}
-				
+
 				/// Spawn tracer line attached to blunderbuss socket
 				UNiagaraComponent* tracer = UNiagaraFunctionLibrary::SpawnSystemAttached(
 					TracerVFX,
@@ -277,7 +271,8 @@ void ABlunderbuss::Fire(AController* Controller, AActor* Target, int CurrentDama
 				if (tracer)
 				{
 					const FTransform socketTransform = PlayerMesh->GetSocketTransform(TEXT("BlunderBussBaseSocket"));
-					FVector startOffset = socketTransform.GetUnitAxis(EAxis::X) * -i * 1.5f + socketTransform.GetUnitAxis(EAxis::Z) * j * 1.5f;
+					FVector startOffset = socketTransform.GetUnitAxis(EAxis::X) * -i * 1.5f + socketTransform.
+						GetUnitAxis(EAxis::Z) * j * 1.5f;
 					tracer->SetVectorParameter(TEXT("Start"), socketTransform.GetLocation() + startOffset);
 					tracer->SetVectorParameter(TEXT("End"), tracerEnd);
 				}
