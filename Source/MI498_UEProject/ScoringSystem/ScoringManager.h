@@ -37,6 +37,9 @@ UCLASS(BlueprintType, Blueprintable)
 class MI498_UEPROJECT_API UScoringManager : public UGameInstanceSubsystem, public FTickableGameObject
 {
 public:
+	/// Reset all scoring to zero
+	void ResetScore();
+	
 	/// Returns the actual accumulated score
 	UFUNCTION(BlueprintCallable)
 	int GetScore() const { return Score; }
