@@ -1,5 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "GameInstanceMain.h"
 
+#include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+
+void UGameInstanceMain::ResetGame()
+{
+	UScoringManager* ScoringManager = GetSubsystem<UScoringManager>();
+	ScoringManager->ResetScore();
+	
+	GameRestarted = true;
+}

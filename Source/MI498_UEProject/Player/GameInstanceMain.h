@@ -22,4 +22,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool GameRestarted = false;
 	
+	/// Resets anything that needs to be reset on game restart
+	UFUNCTION(BlueprintCallable)
+	void ResetGame();
+	
 };

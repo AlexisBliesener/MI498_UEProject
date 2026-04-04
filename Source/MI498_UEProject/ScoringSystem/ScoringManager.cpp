@@ -1,5 +1,27 @@
 #include "ScoringManager.h"
 
+void UScoringManager::ResetScore()
+{
+	EscapedVal = 0;
+	OpenVaultVal = 0;
+	BombPiecesVal = 0;
+	SideMissionVal = 0;
+	VaultLootVal = 0;
+	AverageEnemyKillsVal = 0;
+	BruteKillsVal = 0;
+	SwingerKillVal = 0;
+	LootPickupVal = 0;
+	BreakableWallsVal = 0;
+	AirtimeVal = 0;
+	CurrentComboKillMult = 1;
+	OnScreenScore = 0;
+	Score = 0;
+	GlobalScoreMult = 1;
+	bInAir = false;
+	bAirborneSet = false;
+	bOnScreenScoreUpdating = false;
+}
+
 void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 {
 	// Base score to be calculated for this kill
@@ -56,7 +78,7 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 
 	/// Final score application
 	Score += add;
-	
+
 	/// Add to specific kill enemy score total
 	switch (Killed)
 	{
