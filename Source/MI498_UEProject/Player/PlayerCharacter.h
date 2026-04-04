@@ -82,6 +82,9 @@ public:
 		OverrideCameraFOV = OverrideValue;
 	}
 	
+	/// Get if the player has died
+	bool GetDead() {return bDied;}
+	
 	virtual UAISense_Sight::EVisibilityResult CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData = nullptr,const FOnPendingVisibilityQueryProcessedDelegate* Delegate = nullptr) override;
 	/// Returns the weapons manager
 	UWeaponManager* GetWeaponManager() {return WeaponManager;}
@@ -212,6 +215,9 @@ private:
 	
 	/// Timer that controls when low health effect will turn off
 	FTimerHandle LowHealthTimer;
+	
+	/// True if the player has died
+	bool bDied = false;
 	
 	GENERATED_BODY()
 };
