@@ -30,4 +30,8 @@ public:
 	/// Has the cutscene played before?
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsIntroCutScenePlayed = true;
+	/// Resets anything that needs to be reset on game restart
+	UFUNCTION(BlueprintCallable)
+	void ResetGame();
+	
 };
