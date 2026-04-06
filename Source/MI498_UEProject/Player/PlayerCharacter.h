@@ -114,7 +114,7 @@ protected:
 	
 	/// Forward trace distance used to detect a wall at body level
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float MaxDistanceFromLedge = 50;
+	float MaxDistanceFromLedge = 100;
 	
 	/// Min field of view
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -142,7 +142,7 @@ protected:
 	
 	/// Upward launch strength used during ledge pull-up step
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PullUpToLedgeForce = 700;
+	float PullUpToLedgeForce = 730;
 	
 	/// Forward launch strength used to move player onto ledge
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -218,6 +218,9 @@ private:
 	
 	/// True if the player has died
 	bool bDied = false;
+	
+	/// True if the can fall off ledge check should be running
+	bool bCanFallOffLedge = true;
 	
 	GENERATED_BODY()
 };
