@@ -28,7 +28,7 @@ APlayerCharacter::APlayerCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
 	Camera->SetupAttachment(RootComponent);
 	Camera->bUsePawnControlRotation = true;
-	Camera->SetRelativeLocation(FVector(0.f, 0.f, 64.f));
+	Camera->SetRelativeLocation(FVector(-15.f, 0.f, 64.f));
 	// ECC_GameTraceChannel1 is only for the player
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Block);
 	DefaultSightCollisionChannel = GET_AI_CONFIG_VAR(DefaultSightCollisionChannel);
@@ -209,7 +209,49 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		// If wall detected but upper space is clear, ledge detected
 		if (bodyResult && !grabResult)
 		{
-			GrabLedge(BodyRaycastOrigin->GetForwardVector());
+			GrabLedge(GetMesh()->GetForwardVector());
+		}
+	}
+	
+	/// Decide if player is standing off a ledge
+	if (bCanFallOffLedge && GetCharacterMovement()->IsMovingOnGround() )
+	{
+		TArray<FVector> Directions = {
+			-GetActorForwardVector(),
+			GetActorRightVector(),
+			-GetActorRightVector()
+		};
+		
+		FVector BestDir = FVector::ZeroVector;
+
+		for (FVector Dir : Directions)
+		{
+			FVector Start = GetActorLocation() + Dir * 40.f;
+			FVector End = Start - FVector(0, 0, 100.f);
+
+			FHitResult Hit;
+			FCollisionQueryParams Params;
+			Params.AddIgnoredActor(this);
+
+			bool bHit = GetWorld()->LineTraceSingleByChannel(
+				Hit,
+				Start,
+				End,
+				ECC_Visibility,
+				Params
+			);
+
+			if (!bHit) 
+			{
+				BestDir += Dir;
+			}
+		}
+		
+		if (!BestDir.IsNearlyZero())
+		{
+			FVector PushDir = BestDir.GetSafeNormal();
+			AddMovementInput(PushDir.GetSafeNormal(), 0.3f);
+
 		}
 	}
 }
@@ -242,7 +284,7 @@ FGenericTeamId APlayerCharacter::GetGenericTeamId() const
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
 	if (bDied) return;
-	
+	bCanFallOffLedge = false;
 	OnPlayerGrabLedge();
 	
 	// Get custom player controller and disable movement input
@@ -301,6 +343,7 @@ void APlayerCharacter::ReenableMovement()
 	playerController->SetAcceptMovementInput(true);
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 	bIsGrabbing = false;
+	bCanFallOffLedge = true;
 }
 
 void APlayerCharacter::Landed(const FHitResult& Hit)
@@ -342,5 +385,5 @@ void APlayerCharacter::UpdateCameraOffset() const
 	}
 
 	// Apply new relative camera position
-	Camera->SetRelativeLocation(FVector(newX, 0.f, newZ));
+	Camera->SetRelativeLocation(FVector(newX - 15, 0.f, newZ));
 }
