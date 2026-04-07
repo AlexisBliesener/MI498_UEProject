@@ -29,5 +29,5 @@ public:
 	FOnCutSceneStopped OnCutSceneStopped;
 	/// Has the cutscene played before?
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	bool bIsIntroCutScenePlayed = false;
+	bool bIsIntroCutScenePlayed = true;
 };
