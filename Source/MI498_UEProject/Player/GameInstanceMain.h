@@ -6,6 +6,8 @@
 #include "Engine/GameInstance.h"
 #include "GameInstanceMain.generated.h"
 
+/// Dynamic multicast delegate that is broadcast when a bomb piece is collected
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCutSceneStopped);
 /**
  * 
  */
@@ -22,4 +24,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool GameRestarted = false;
 	
+	/// This event will be called when the cutscene stopped  
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnCutSceneStopped OnCutSceneStopped;
+	/// Has the cutscene played before?
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool bIsIntroCutScenePlayed = false;
 };
