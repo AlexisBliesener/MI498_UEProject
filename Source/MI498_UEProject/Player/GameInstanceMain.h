@@ -39,4 +39,7 @@ public:
 	/// Has the cutscene played before?
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsIntroCutScenePlayed = true;
+	/// Has the cutscene skipped?
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool bIsIntroCutSceneSkipped = false;
 };

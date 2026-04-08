@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "RunAfterCutsceneFinished.generated.h"
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnWaitCutsceneFinished);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnWaitCutsceneFinished, bool, bHasSkipped);
 /**
  *  This task is going to wait until the intro cutscene is finished,
  *  OnFinished will be trigger when the intro cutscene is finished OR it's already finished before

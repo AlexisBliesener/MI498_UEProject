@@ -17,7 +17,7 @@ void URunAfterCutsceneFinished::Activate()
 {
 	if (!WorldContext)
 	{
-		OnFinished.Broadcast();
+		OnFinished.Broadcast(false);
 		SetReadyToDestroy();
 		return;
 	}
@@ -26,7 +26,7 @@ void URunAfterCutsceneFinished::Activate()
 	{
 		if (gameInstance->bIsIntroCutScenePlayed)
 		{
-			OnFinished.Broadcast();
+			OnFinished.Broadcast(gameInstance->bIsIntroCutSceneSkipped);
 			SetReadyToDestroy();
 			return;
 		}
@@ -36,7 +36,7 @@ void URunAfterCutsceneFinished::Activate()
 	}
 	else
 	{
-		OnFinished.Broadcast();
+		OnFinished.Broadcast(false);
 		SetReadyToDestroy();
 	}
 }
@@ -48,10 +48,12 @@ void URunAfterCutsceneFinished::CutsceneCompleted()
 		if (UGameInstanceMain* gameInstance = Cast<UGameInstanceMain>(UGameplayStatics::GetGameInstance(WorldContext)))
 		{
 			gameInstance->OnCutSceneStopped.RemoveDynamic(this, &URunAfterCutsceneFinished::CutsceneCompleted);
+			OnFinished.Broadcast(gameInstance->bIsIntroCutSceneSkipped);
+			SetReadyToDestroy();
+			return;
 		}
 	}
 
-	OnFinished.Broadcast();
-
+	OnFinished.Broadcast(false);
 	SetReadyToDestroy();
 }
