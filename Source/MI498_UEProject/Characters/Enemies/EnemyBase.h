@@ -8,11 +8,13 @@
 #include "MI498_UEProject/Characters/CharacterBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
 #include "Camera/PlayerCameraManager.h"
+#include "MI498_UEProject/AI/Enums/StateTreeEnemyEvents.h"
 #include "MI498_UEProject/Weapons/WeaponInterface.h"
 #include "EnemyBase.generated.h"
 
 class UStateTree;
 class AWeaponBase;
+class AJumpNavLinkProxy;
 DECLARE_LOG_CATEGORY_EXTERN(EnemyLog, Log, All);
 
 /**
@@ -59,6 +61,9 @@ public:
 	/** Maximum sight distance to not see the target that has been already seen. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
 	float LoseSightRadius = AttackStartDistance + 300.f;
+	/** The jump force that added when the enemy jump using smart link proxy */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|Combat")
+	float JumpForceNavMesh = 250.f;	
 	/**
 	 * Damage amount for the enemy primary attack
 	 */
@@ -90,6 +95,9 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default|Dev")
 	FGameplayTagContainer CurrentTags;
+	/// This filter is used to hide the jump point (when the state of the enemy is attacking or searching)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Default|Dev")
+	TSubclassOf<UNavigationQueryFilter> NoAttackJumpFilter;
 	/// The type of this enemy used for scoring
 	UPROPERTY(EditAnywhere)
 	EEnemyType EnemyType;
@@ -122,6 +130,9 @@ public:
 	/// A reference to the fake ship (that has the nav mesh) that the enemy is on it 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> HiddenShip;
+	/// Current state of the enemy
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	StateTreeEnemyEvents CurrentState = StateTreeEnemyEvents::Idle;
 	/**
 	 * Makes the enemy attack the given target.
 	 * @param Target The actor to be attacked.
@@ -147,6 +158,14 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDeath();
 	
+	/// Event for when the jump starts
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnJumpStart();
+	
+	/// Event for when the jump ends 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnJumpEnd();
+	
 	/// Event for when the enemy does its primary attack
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPrimaryAttack(AWeaponBase* Weapon, AActor* Target);
@@ -170,6 +189,13 @@ public:
 	* Release the enemy they will move to attack after that  
 	*/
 	void StunEnd();
+	
+	/**
+	 * This is called when the enemy reaches a jump nav link point 
+	 * @param InNavLink the NavLinkProxy 
+	 */
+	UFUNCTION()
+	void OnSmartLinkJump(AJumpNavLinkProxy* InNavLink);
 protected:
 	
 	/// Fires the primary weapon from blueprint
@@ -229,6 +255,10 @@ protected:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Default|VFX|Death")
 	FVector DeathVFXScale = FVector(0.5f, 0.5f, 0.5f);
+	/// Is the enemy currently jumping? 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool bIsJumping = false;
+	
 	virtual void BeginPlay() override;
 	/**
 	 * Applies damage to the enemy and handles its death if health reaches zero.
@@ -242,12 +272,16 @@ protected:
 	                         class AController* EventInstigator, AActor* DamageCauser) override;
 	
 	virtual bool ShouldTickIfViewportsOnly() const override;
+	virtual void Landed(const FHitResult& Hit) override;
 private:
 	///  State tree used for AI logic of the player or enemy.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player|AI", meta = (AllowPrivateAccess = "true"))
 	UStateTree* CurrentStateTree;
 	/// Indicates if the enemy can currently shoot to prevents shooting during cooldown.
 	bool bCanShoot = true;
+	/// Current nav link proxy when the jump happened 
+	UPROPERTY()
+	TObjectPtr<AJumpNavLinkProxy> CurrentNavLink = nullptr;
 	/// Timer used to manage the cooldown period between enemy shots
 	FTimerHandle ShootTimer;
 	/**

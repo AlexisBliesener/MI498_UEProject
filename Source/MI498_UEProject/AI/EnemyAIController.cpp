@@ -9,6 +9,7 @@
 #include "Perception/AISenseConfig_Prediction.h"
 #include "AITypes.h"
 #include "NavigationSystem.h"
+#include "NavFilters/NavigationQueryFilter.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 
@@ -97,7 +98,15 @@ FPathFollowingRequestResult AEnemyAIController::MoveTo(const FAIMoveRequest& Mov
 		newRequest.SetUsePathfinding(MoveRequest.IsUsingPathfinding());
 		newRequest.SetAllowPartialPath(MoveRequest.IsUsingPartialPaths());
 		newRequest.SetProjectGoalLocation(MoveRequest.IsProjectingGoal());
-		newRequest.SetNavigationFilter(MoveRequest.GetNavigationFilter());
+		if ((enemy->CurrentState != StateTreeEnemyEvents::Attack && enemy->CurrentState != StateTreeEnemyEvents::Search)  && enemy->NoAttackJumpFilter)
+		{
+			// force the AI to use the filter that blocks jumping
+			newRequest.SetNavigationFilter(enemy->NoAttackJumpFilter);
+		}
+		else
+		{
+			newRequest.SetNavigationFilter(MoveRequest.GetNavigationFilter());
+		}
 		newRequest.SetCanStrafe(MoveRequest.CanStrafe());
 		newRequest.SetReachTestIncludesAgentRadius(MoveRequest.IsReachTestIncludingAgentRadius());
 		newRequest.SetReachTestIncludesGoalRadius(MoveRequest.IsReachTestIncludingGoalRadius());
