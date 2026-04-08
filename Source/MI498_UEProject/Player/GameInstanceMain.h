@@ -6,6 +6,7 @@
 #include "Engine/GameInstance.h"
 #include "GameInstanceMain.generated.h"
 
+class UScoringData;
 /**
  * 
  */
@@ -15,6 +16,10 @@ class MI498_UEPROJECT_API UGameInstanceMain : public UGameInstance
 	GENERATED_BODY()
 	
 public:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Config")
+	UScoringData* ScoringData;
+	
 	// Mouse sensitivity, editable and accessible in Blueprint
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Settings")
 	float MouseSens = 1.0f;
