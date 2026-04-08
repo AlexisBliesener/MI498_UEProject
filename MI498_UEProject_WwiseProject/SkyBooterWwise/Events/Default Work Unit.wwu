@@ -139,6 +139,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="SwordReload" ID="{7D64989A-9876-4734-B6C4-85FF9E5110FA}">
+									<ChildrenList>
+										<Action Name="" ID="{4A7FA5D1-8FC5-41D1-9BFF-FB40183B4359}" ShortID="885452474">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SwordReload" ID="{0929805E-26AD-4633-A4EE-1F6089C2D70B}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Blunderbuss" ID="{8D2C942F-3786-4CC5-AC15-7264B1E5BF4C}" ShortID="711933565">
@@ -759,6 +770,50 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="BarrelExplode" ID="{71CBBDC5-FDBC-4658-B63E-3A72E8D5B509}">
+							<ChildrenList>
+								<Action Name="" ID="{A045BCCF-93E0-4771-A5A8-4E2D0BE25F04}" ShortID="486658822">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BarrelExplode" ID="{A38600A1-BB98-4AB0-8163-26B2D6CAEDA9}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PlayerEnterCanon" ID="{B0DBC8D1-BDF5-407E-8B73-B5B63AE5523E}">
+							<ChildrenList>
+								<Action Name="" ID="{E1DB2327-E115-40B9-88C4-2BB405699D8B}" ShortID="639191388">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PlayerEnterCanon" ID="{A70F9A94-5549-4BAC-9BDD-3E9B2F8EEE37}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="DoorOpen" ID="{65C55BEB-5F4D-4B0C-8B12-8F33E695ADF8}">
+							<ChildrenList>
+								<Action Name="" ID="{F9FD5880-4DFC-497C-BA0A-7AAB9B15C9D1}" ShortID="184368182">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DoorOpen2" ID="{A4719713-C036-4737-9837-7A572AB468C1}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="HealPickUp" ID="{18CE5601-7FEA-41FB-9414-34A66A30BC78}">
+							<ChildrenList>
+								<Action Name="" ID="{831A16CD-1423-4110-8AF9-FBDA4E78856F}" ShortID="809128466">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="HealPickUpLouder2" ID="{557D3708-A86B-4211-BCF2-CBECCAC90DFB}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="MemeEvents" ID="{29D172A6-0252-4F28-BE8B-4ECAD23BE8A7}" ShortID="421133730">
@@ -1102,6 +1157,28 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Restart" ID="{1F9DF40D-C30D-4264-BB83-0FAFBF330962}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="BruteDeath" ID="{2F2B85C6-4810-49D0-96F7-CC5DCCE0B6A1}">
+							<ChildrenList>
+								<Action Name="" ID="{F5753D15-762C-4255-AF70-85F04DCFCDBF}" ShortID="514583707">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DeathBruteEnemy" ID="{663D4F82-1346-4355-9F29-E95F7C59C549}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SwingerDeath" ID="{EF4E1AA7-9896-49CB-AA7F-B4530AFF1C83}">
+							<ChildrenList>
+								<Action Name="" ID="{74629EAE-9A37-429E-AD5A-B69C3E1595CA}" ShortID="619496794">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="DeathSwingerEnemy" ID="{5FA7D16A-CE68-4B08-B6E2-B2828A05EEE4}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
