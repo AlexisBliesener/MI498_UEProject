@@ -113,4 +113,11 @@ private:
 	 */
 	UFUNCTION()
 	void SendEventToStateTree(const StateTreeEnemyEvents Event);
+	
+	/**
+	 * Update the state to the enemy class 
+	 * @param NewEvent the new event for the update 
+	 */
+	UFUNCTION()
+	void UpdateEnemyState(const StateTreeEnemyEvents& NewEvent) const;
 };

@@ -216,6 +216,15 @@ void UEnemyPerception::SendEventToStateTree(const StateTreeEnemyEvents Event)
 	{
 		FStateTreeEvent event(EventTag);
 		StateTreeAIComponent->SendStateTreeEvent(event);
+		UpdateEnemyState(Event);
+	}
+}
+
+void UEnemyPerception::UpdateEnemyState(const StateTreeEnemyEvents& NewEvent) const
+{
+	if (IsValid(Actor))
+	{
+		Actor->CurrentState = NewEvent;
 	}
 }
 
