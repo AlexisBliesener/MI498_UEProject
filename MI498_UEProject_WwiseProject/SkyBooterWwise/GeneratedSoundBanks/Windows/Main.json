@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{3617DFD3-CF1C-06C8-B7EF-82EE9D2CCB1B}",
+    "Hash": "{4FDDB60C-A8EC-0BB6-4788-498433F2B4DF}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -53,7 +53,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "A1/{A1E8A846-E8F0-F19C-34CD-65F6DA8C889C}.wem"
+      "CachePath": "51/{51770566-17BF-D634-CBA0-90211329CA6C}.wem"
      },
      {
       "Id": "25803472",
@@ -85,7 +85,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Hit1.wav",
-      "CachePath": "78/{78F5EC82-66A8-DA44-6F7E-E33A4B9C3CB8}.wem"
+      "CachePath": "C6/{C6345756-D10C-A3F7-45B1-ECE2583C002A}.wem"
      },
      {
       "Id": "30228862",
@@ -133,7 +133,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Dying1.wav",
-      "CachePath": "12/{127EEF52-1484-BDD8-C231-0E768BA82223}.wem"
+      "CachePath": "96/{9685D266-F7A0-A99F-BD63-DC32CAAB4BE9}.wem"
      },
      {
       "Id": "64962804",
@@ -149,7 +149,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Dying3.wav",
-      "CachePath": "05/{0536E8EA-31DB-66D7-CA16-24CAC4FF9D89}.wem"
+      "CachePath": "AB/{ABCEB459-DBF7-22F2-EDAF-4BCB5C80F4D6}.wem"
      },
      {
       "Id": "71399008",
@@ -165,7 +165,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "1E/{1E568EC8-B907-D5B2-0AF5-68A6D3DA8AE8}.wem"
+      "CachePath": "39/{39D26B13-906A-72AE-1E19-03F37290A759}.wem"
      },
      {
       "Id": "86116095",
@@ -221,7 +221,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Sip4_01.wav",
-      "CachePath": "78/{78F87ABE-1A5E-F966-C567-A5A6AF5BF7E4}.wem"
+      "CachePath": "B5/{B5701A2C-7F14-1387-5E5A-10E0238F5AF6}.wem"
      },
      {
       "Id": "118074255",
@@ -237,7 +237,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "StandStill2.wav",
-      "CachePath": "20/{20173D52-14DB-1F44-C9EE-A2E5E52580C5}.wem"
+      "CachePath": "FA/{FA8B396F-8F29-1B47-82A8-352DAF208DA7}.wem"
      },
      {
       "Id": "122737040",
@@ -293,7 +293,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "A7/{A754585D-C32A-09EF-336B-32EB7BC93226}.wem"
+      "CachePath": "44/{4462D9D8-D084-501C-1494-0FB743442268}.wem"
      },
      {
       "Id": "153382107",
@@ -341,7 +341,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "93/{936E6DDD-172C-CCC8-18CC-326612BAE901}.wem"
+      "CachePath": "F2/{F22EF247-0619-DEB8-6181-54D2E8C49925}.wem"
      },
      {
       "Id": "189880052",
@@ -389,7 +389,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Annoying1.wav",
-      "CachePath": "A8/{A88A7921-8983-A8BE-F087-9DAD973E562F}.wem"
+      "CachePath": "9F/{9F988AFA-94AC-F2A4-ADB6-18ABDFBACE75}.wem"
      },
      {
       "Id": "208714548",
@@ -437,7 +437,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "09/{09EB021B-A087-9CA0-79DC-21ABCD52BF49}.wem"
+      "CachePath": "18/{1894D8A9-C178-9C9E-5DD3-BF720C7BE88C}.wem"
      },
      {
       "Id": "219139896",
@@ -469,7 +469,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BarrelExplode.wav",
-      "CachePath": "EB/{EB6E1DBC-9154-10E3-BE5A-379101B02700}.wem"
+      "CachePath": "AC/{AC5FA3C7-B2CD-B26D-22EF-53259BCA16B0}.wem"
      },
      {
       "Id": "237225792",
@@ -597,7 +597,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Dying2.wav",
-      "CachePath": "4D/{4D417D3C-F99C-AF69-6447-F8C6BC0AE0C4}.wem"
+      "CachePath": "29/{29AA2185-F4E7-93D3-642F-FF24D238994C}.wem"
      },
      {
       "Id": "296876079",
@@ -669,7 +669,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Hit2.wav",
-      "CachePath": "42/{4274794D-315A-A420-69F7-B236BB4B05B8}.wem"
+      "CachePath": "FC/{FC16D603-BBEA-D2A2-8DFA-7A4E64ABD3D2}.wem"
      },
      {
       "Id": "332480870",
@@ -837,7 +837,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Hit5.wav",
-      "CachePath": "25/{25344435-CF75-41EF-8877-75850A5D0B70}.wem"
+      "CachePath": "17/{17466437-6A5D-4053-B8D8-14A8D73E6FD7}.wem"
      },
      {
       "Id": "467384341",
@@ -853,7 +853,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Paid2.wav",
-      "CachePath": "4E/{4EE79CBC-D712-B173-B6FA-A4BD6C652D3D}.wem"
+      "CachePath": "FE/{FED20215-0C99-498C-CDC1-BBDD68D8AA24}.wem"
      },
      {
       "Id": "470389262",
@@ -973,7 +973,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerEnterCanon.wav",
-      "CachePath": "09/{09949EB8-4C7B-6A74-82E4-2E86417FF64C}.wem"
+      "CachePath": "2F/{2F220A80-5391-CC8A-01A3-20637D24F23C}.wem"
      },
      {
       "Id": "514551863",
@@ -1037,7 +1037,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "EE/{EEB68B98-ADA3-BB04-11B1-583AB0A2D37F}.wem"
+      "CachePath": "01/{0107C3CA-9D9A-5686-DE22-A86A4302DFE0}.wem"
      },
      {
       "Id": "549495155",
@@ -1133,7 +1133,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "CA/{CA9EABEF-5A03-A4BF-B6BC-C9412EB6679B}.wem"
+      "CachePath": "94/{94D8A4D6-DB18-FC57-B6B1-A373BD127394}.wem"
      },
      {
       "Id": "598376372",
@@ -1421,7 +1421,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Laughter1.wav",
-      "CachePath": "0A/{0AA2F503-35CD-896D-58EE-7790B2986149}.wem"
+      "CachePath": "27/{27EFC8D8-1D98-54CA-9D46-CD5D56689267}.wem"
      },
      {
       "Id": "726746848",
@@ -1461,7 +1461,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "CC/{CCD134F3-6760-969C-FF52-701FE777CD08}.wem"
+      "CachePath": "1B/{1B61EEA2-AF7F-3B46-1CAE-10F3A950C7C5}.wem"
      },
      {
       "Id": "733059301",
@@ -1645,7 +1645,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "0B/{0BFB3F65-A750-B94A-009E-533FBEA50189}.wem"
+      "CachePath": "FF/{FFE57BB8-2527-8208-7692-DB1254F32F89}.wem"
      },
      {
       "Id": "823058991",
@@ -1677,7 +1677,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Bomb3.wav",
-      "CachePath": "AE/{AE11DEFF-339F-5745-3D3B-621E498285CD}.wem"
+      "CachePath": "92/{92AC3CD0-BDC9-7240-F4FD-15B64D69F2E0}.wem"
      },
      {
       "Id": "841410472",
@@ -1733,7 +1733,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "SwordReload.wav",
-      "CachePath": "8C/{8C92309C-372B-0CD6-D02E-51CDF50E5C24}.wem"
+      "CachePath": "BE/{BE89555C-E208-C988-F728-DDB1D9E93CF9}.wem"
      },
      {
       "Id": "877310184",
@@ -1773,7 +1773,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BruteVAString.wav",
-      "CachePath": "FA/{FAEA30BC-5D3C-57E1-EA91-A9D0A791472D}.wem"
+      "CachePath": "C0/{C010CCFD-4850-4687-5F04-44F6FBE9ED3E}.wem"
      },
      {
       "Id": "894087048",
@@ -1781,7 +1781,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "PlayerDamageStuff.wav",
-      "CachePath": "59/{599D8703-D3F7-ED2F-7ACA-5B71321350D6}.wem"
+      "CachePath": "A8/{A8CAAE8E-6EAD-A0F4-C193-5EBBD4E3D251}.wem"
      },
      {
       "Id": "894823102",
@@ -1797,7 +1797,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "DoorOpen2.wav",
-      "CachePath": "B9/{B9078571-6CF9-CF4A-FA80-888883B0BD0A}.wem"
+      "CachePath": "08/{0869B355-92A1-FBD9-2921-1C3DA259B36E}.wem"
      },
      {
       "Id": "901896633",
@@ -1893,7 +1893,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "NotAgain2.wav",
-      "CachePath": "55/{553C6B5B-9B83-917D-5310-FF12836D6282}.wem"
+      "CachePath": "C9/{C9DA466F-8541-2F8B-682A-2DE17B75135B}.wem"
      },
      {
       "Id": "940533753",
@@ -2005,7 +2005,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Hit3.wav",
-      "CachePath": "F8/{F875F8D6-B817-BC60-A90C-4C4D22A3047E}.wem"
+      "CachePath": "C2/{C2421E20-7218-58FF-008F-9B30F75DA8FD}.wem"
      },
      {
       "Id": "974919281",
@@ -2085,7 +2085,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "HealPickUpLouder2.wav",
-      "CachePath": "A5/{A5A8DEA3-3D81-5454-9046-FAD77CC38401}.wem"
+      "CachePath": "BE/{BE52D192-82F8-19DF-E2C0-27A792D7C8D5}.wem"
      },
      {
       "Id": "1011080263",
@@ -3618,6 +3618,17 @@
       ]
      },
      {
+      "Id": "3490528151",
+      "Name": "ResetDialogueBox",
+      "ObjectPath": "\\Events\\Default Work Unit\\VA\\ResetDialogueBox",
+      "GUID": "{61E6CAE7-A478-4A6F-AB6D-F55470D9C911}",
+      "Color": "6",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
       "Id": "3026806422",
       "Name": "ResetGameDialogue",
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\ResetGameDialogue",
@@ -4257,6 +4268,6 @@
     ]
    }
   ],
-  "FileHash": "{148C94B7-58F9-A2E9-2249-537D222BFD68}"
+  "FileHash": "{BA9378C0-919F-E7FE-3EAA-9020873B0EA0}"
  }
 }
