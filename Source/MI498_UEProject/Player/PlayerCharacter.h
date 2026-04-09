@@ -222,5 +222,8 @@ private:
 	/// True if the can fall off ledge check should be running
 	bool bCanFallOffLedge = true;
 	
+	/// The players gravity scale when the game starts
+	float StartingGravityScale = 1;
+	
 	GENERATED_BODY()
 };
