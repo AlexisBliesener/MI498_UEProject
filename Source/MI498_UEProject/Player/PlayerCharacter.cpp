@@ -14,16 +14,16 @@
 APlayerCharacter::APlayerCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
+
 	/// Create weapon manager
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("Weapons Manger"));
-	
+
 	// Create raycast origins
 	GrabRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("GrabRaycastOrigin"));
 	GrabRaycastOrigin->SetupAttachment(RootComponent);
 	BodyRaycastOrigin = CreateDefaultSubobject<USceneComponent>(TEXT("BodyRaycastOrigin"));
 	BodyRaycastOrigin->SetupAttachment(RootComponent);
-	
+
 	/// Add first person camera
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("PlayerCamera"));
 	Camera->SetupAttachment(RootComponent);
@@ -34,45 +34,46 @@ APlayerCharacter::APlayerCharacter()
 	DefaultSightCollisionChannel = GET_AI_CONFIG_VAR(DefaultSightCollisionChannel);
 }
 
-float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
+float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+                                   class AController* EventInstigator, AActor* DamageCauser)
 {
 	if (bDied) return DamageAmount;
-	
+
 	if (InvincibilityTimer >= GetWorld()->GetTimeSeconds())
 	{
 		return 0;
 	}
-	
+
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	if (CurrentHealth <= 0.f)
 	{
 		bDied = true;
-		
+
 		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
 		TurnOffLowHealthEffect();
-		
+
 		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 		playerController->SetAcceptMovementInput(false);
-		
+
 		OnPlayerDied();
 		return DamageAmount;
 	}
-	
+
 	OnPlayerTakeDamage();
-	
+
 	/// Start low health effect if below threshold
 	if (!bLowHealthHit && CurrentHealth <= MaxHealth * LowHealthPercentage)
 	{
 		bLowHealthHit = true;
 		TurnOnLowHealthEffect();
-		
+
 		// Turn off low health effect after 4 seconds
 		GetWorld()->GetTimerManager().SetTimer(
-		LowHealthTimer,
-		this,
-		&APlayerCharacter::TurnOffLowHealthEffect,
-		4.0f,
-		false);
+			LowHealthTimer,
+			this,
+			&APlayerCharacter::TurnOffLowHealthEffect,
+			4.0f,
+			false);
 	}
 
 	AActor* SourceActor = nullptr;
@@ -99,7 +100,7 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	}
 
 	BP_OnDamageIndicator(SourceActor);
-	
+
 	return DamageAmount;
 }
 
@@ -108,33 +109,49 @@ void APlayerCharacter::AddInvincibility(const float Seconds)
 	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
 }
 
-UAISense_Sight::EVisibilityResult APlayerCharacter::CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData, const FOnPendingVisibilityQueryProcessedDelegate* Delegate)
+UAISense_Sight::EVisibilityResult APlayerCharacter::CanBeSeenFrom(const FCanBeSeenFromContext& Context,
+                                                                  FVector& OutSeenLocation,
+                                                                  int32& OutNumberOfLoSChecksPerformed,
+                                                                  int32& OutNumberOfAsyncLosCheckRequested,
+                                                                  float& OutSightStrength, int32* UserData,
+                                                                  const FOnPendingVisibilityQueryProcessedDelegate*
+                                                                  Delegate)
 {
 	FHitResult hitResult;
 	// start checking against location first from the center of the character 
-	bool bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation, GetActorLocation(), DefaultSightCollisionChannel, FCollisionQueryParams(SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
+	bool bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation, GetActorLocation(),
+	                                                   DefaultSightCollisionChannel,
+	                                                   FCollisionQueryParams(
+		                                                   SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
 	OutNumberOfLoSChecksPerformed = 1;
-	if(!bIsHit || hitResult.GetActor() != this)
+	if (!bIsHit || hitResult.GetActor() != this)
 	{
 		// if we don't see the center of the character, we'll use the camera location (the player's point of view)
-		bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation, Camera->GetComponentLocation(), DefaultSightCollisionChannel, FCollisionQueryParams(SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
+		bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, Context.ObserverLocation,
+		                                              Camera->GetComponentLocation(), DefaultSightCollisionChannel,
+		                                              FCollisionQueryParams(
+			                                              SCENE_QUERY_STAT(AILineOfSight), true, Context.IgnoreActor));
 		OutNumberOfLoSChecksPerformed++;
 	}
 	OutSeenLocation = hitResult.Location;
 	OutSightStrength = 1;
-	return bIsHit && hitResult.GetActor() == this ? UAISense_Sight::EVisibilityResult::Visible : UAISense_Sight::EVisibilityResult::NotVisible;
+	return bIsHit && hitResult.GetActor() == this
+		       ? UAISense_Sight::EVisibilityResult::Visible
+		       : UAISense_Sight::EVisibilityResult::NotVisible;
 }
 
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	StartingGravityScale = GetCharacterMovement()->GravityScale;
+
 	/// Set animation controller
 	PlayerAnimation = Cast<UPlayerAnimation>(GetMesh()->GetAnimInstance());
 
 	/// Set Scoring Manager
 	ScoringManager = GetGameInstance()->GetSubsystem<UScoringManager>();
-	
+
 	// Turn off low health effect when the game starts.. 
 	TurnOffLowHealthEffect();
 }
@@ -142,9 +159,9 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	
+
 	if (bDied) return;
-	
+
 	/// Update speed on animation controller
 	if (PlayerAnimation != nullptr)
 	{
@@ -153,7 +170,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		PlayerAnimation->SetJumped(false);
 		PlayerAnimation->SetLookRotation(GetControlRotation().Pitch);
 	}
-	
+
 	UpdateCameraOffset();
 
 	// Velocity cap
@@ -162,7 +179,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	{
 		GetCharacterMovement()->Velocity = GetCharacterMovement()->Velocity.GetClampedToMaxSize(MaxVelocity);
 	}
-	
+
 	// FOV change based on velocity
 	if (bOverrideCameraFOV)
 	{
@@ -178,7 +195,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 
 		Camera->SetFieldOfView(FMath::Lerp(Camera->FieldOfView, NewFOV, LerpToNewFOVSpeed));
 	}
-	
+
 	/// Set if player is in air for score
 	if (GetCharacterMovement()->IsFalling())
 	{
@@ -190,7 +207,7 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 	{
 		ScoringManager->SetInAir(false);
 	}
-	
+
 	// Decide if the player can grab ledge
 	if (!GetCharacterMovement()->IsMovingOnGround() && !bIsGrabbing)
 	{
@@ -199,59 +216,89 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 		FVector grabEnd = grabStart + GrabRaycastOrigin->GetForwardVector() * MinLedgeSize;
 		FHitResult grabHit;
 		bool grabResult = GetWorld()->LineTraceSingleByChannel(grabHit, grabStart, grabEnd, ECC_Visibility);
-	
+
 		// Lower trace — checks if wall exists in front of body
 		FVector bodyStart = BodyRaycastOrigin->GetComponentLocation();
 		FVector bodyEnd = bodyStart + BodyRaycastOrigin->GetForwardVector() * MaxDistanceFromLedge;
 		FHitResult bodyHit;
 		bool bodyResult = GetWorld()->LineTraceSingleByChannel(bodyHit, bodyStart, bodyEnd, ECC_Visibility);
-	
+
 		// If wall detected but upper space is clear, ledge detected
 		if (bodyResult && !grabResult)
 		{
 			GrabLedge(GetMesh()->GetForwardVector());
 		}
 	}
-	
-	/// Decide if player is standing off a ledge
-	if (bCanFallOffLedge && GetCharacterMovement()->IsMovingOnGround() )
-	{
-		TArray<FVector> Directions = {
-			-GetActorForwardVector(),
-			GetActorRightVector(),
-			-GetActorRightVector()
-		};
-		
-		FVector BestDir = FVector::ZeroVector;
 
-		for (FVector Dir : Directions)
+	if (bCanFallOffLedge && GetCharacterMovement()->IsMovingOnGround())
+	{
+		FVector MeshLocation = GetMesh()->GetComponentLocation();
+
+		/// Check if mesh is over ground
+		FVector DownEnd = MeshLocation - FVector(0, 0, 100.f);
+
+		FHitResult DownHit;
+		FCollisionQueryParams DownParams;
+		DownParams.AddIgnoredActor(this);
+
+		bool bMeshOverGround = GetWorld()->LineTraceSingleByChannel(
+			DownHit,
+			MeshLocation,
+			DownEnd,
+			ECC_Visibility,
+			DownParams
+		);
+
+		/// Stop if mesh is over ground
+		if (bMeshOverGround)
 		{
-			FVector Start = GetActorLocation() + Dir * 40.f;
+			return;
+		}
+
+		FVector BackDir = -GetActorForwardVector();
+		FVector RightDir = GetActorRightVector();
+		FVector LeftDir = -GetActorRightVector();
+
+		auto IsGroundMissing = [&](FVector Dir)
+		{
+			FVector Start = MeshLocation + Dir * 80.f;
 			FVector End = Start - FVector(0, 0, 100.f);
 
 			FHitResult Hit;
 			FCollisionQueryParams Params;
 			Params.AddIgnoredActor(this);
 
-			bool bHit = GetWorld()->LineTraceSingleByChannel(
+			return !GetWorld()->LineTraceSingleByChannel(
 				Hit,
 				Start,
 				End,
 				ECC_Visibility,
 				Params
 			);
+		};
 
-			if (!bHit) 
-			{
-				BestDir += Dir;
-			}
-		}
-		
-		if (!BestDir.IsNearlyZero())
+		FVector PushDir = FVector::ZeroVector;
+
+		bool bRightOff = IsGroundMissing(RightDir);
+		bool bLeftOff = IsGroundMissing(LeftDir);
+
+		// Pick fall off direction
+		if (bRightOff && !bLeftOff)
 		{
-			FVector PushDir = BestDir.GetSafeNormal();
-			AddMovementInput(PushDir.GetSafeNormal(), 0.3f);
+			PushDir = RightDir;
+		}
+		else if (bLeftOff && !bRightOff)
+		{
+			PushDir = LeftDir;
+		}
+		else if (IsGroundMissing(BackDir))
+		{
+			PushDir = BackDir;
+		}
 
+		if (!PushDir.IsNearlyZero())
+		{
+			AddMovementInput(PushDir.GetSafeNormal(), 0.3f);
 		}
 	}
 }
@@ -259,9 +306,9 @@ void APlayerCharacter::Tick(const float DeltaSeconds)
 void APlayerCharacter::HealCharacter(float HealAmount)
 {
 	Super::HealCharacter(HealAmount);
-	
+
 	if (bDied) return;
-	
+
 	if (CurrentHealth >= MaxHealth * LowHealthPercentage)
 	{
 		bLowHealthHit = false;
@@ -271,9 +318,9 @@ void APlayerCharacter::HealCharacter(float HealAmount)
 void APlayerCharacter::Jump()
 {
 	Super::Jump();
-	
+
 	if (bDied) return;
-	
+
 	PlayerAnimation->SetJumped(true);
 }
 
@@ -281,60 +328,60 @@ FGenericTeamId APlayerCharacter::GetGenericTeamId() const
 {
 	return FGenericTeamId(0);
 }
+
 void APlayerCharacter::GrabLedge(const FVector& TowardsLedge)
 {
 	if (bDied) return;
 	bCanFallOffLedge = false;
 	OnPlayerGrabLedge();
-	
+
 	// Get custom player controller and disable movement input
 	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 	playerController->SetAcceptMovementInput(false);
-	
+
 	bIsGrabbing = true;
 
 	// stop movement and gravity
 	GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 	GetCharacterMovement()->StopMovementImmediately();
-	
+
 	FTimerDelegate delegate;
 	delegate.BindUFunction(this, FName("PullUp"), TowardsLedge);
-	
+
 	GetWorld()->GetTimerManager().SetTimer(
-	TimerHandle,
-	delegate,
-	0.1f,   
-	false);
+		TimerHandle,
+		delegate,
+		0.1f,
+		false);
 }
 
 void APlayerCharacter::PullUp(const FVector& TowardsLedge)
 {
 	OnPullUp();
-	
+
 	LaunchCharacter(GetActorUpVector() * PullUpToLedgeForce, true, true);
-	
+
 	FTimerDelegate delegate;
 	delegate.BindUFunction(this, FName("StepForward"), TowardsLedge);
-	
+
 	GetWorld()->GetTimerManager().SetTimer(
-	TimerHandle,
-	delegate,
-	0.5f,   
-	false  
-);
+		TimerHandle,
+		delegate,
+		0.5f,
+		false
+	);
 }
 
 void APlayerCharacter::StepForward(const FVector& TowardsLedge)
 {
 	LaunchCharacter(TowardsLedge * StepForwardToLedgeForce, true, true);
 	GetWorld()->GetTimerManager().SetTimer(
-	TimerHandle,
-	this,
-	&APlayerCharacter::ReenableMovement,
-	0.1f,   
-	false  
-);
-
+		TimerHandle,
+		this,
+		&APlayerCharacter::ReenableMovement,
+		0.1f,
+		false
+	);
 }
 
 void APlayerCharacter::ReenableMovement()
@@ -350,11 +397,11 @@ void APlayerCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
 	if (bDied) return;
-	
+
 	OnPlayerLanded();
-	
-	GetCharacterMovement()->GravityScale = 1.0f;
-	
+
+	GetCharacterMovement()->GravityScale = StartingGravityScale;
+
 	ASideMissionController* SideMissionController = ASideMissionController::Get(this);
 	SideMissionController->HitGround();
 }
