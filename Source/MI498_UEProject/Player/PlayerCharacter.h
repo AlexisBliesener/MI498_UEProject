@@ -52,6 +52,14 @@ public:
 	/// A Blueprintable function that will be called when the player's health hits 0
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerDied();
+
+	// A blueprint callable function that will revive the player for respawn
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void RevivePlayer(float ReviveHealth);
+
+	// A blueprint function that is called when the player is revived.
+	UFUNCTION(BlueprintImplementableEvent, Category = "Player")
+	void OnPlayerRevived();
 	
 	/// A Blueprintable function that will be called when the player takes damage
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
