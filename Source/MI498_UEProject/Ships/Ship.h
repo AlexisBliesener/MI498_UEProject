@@ -55,7 +55,7 @@ public:
 	FOnShipFall OnShipFall;
 
 	UPROPERTY(EditAnywhere)
-	int32 DebugSlot = 0;
+	int32 ShipIndex = 0;
 	
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

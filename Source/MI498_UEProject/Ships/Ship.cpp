@@ -77,7 +77,11 @@ void AShip::Fall(const float DeltaTime)
     }
     else
     {
-        FallAccumulator += DeltaTime;
+        // Stagger updates across frames using ship index
+        if (GFrameCounter % 8 != ShipIndex)
+            return;
+
+        FallAccumulator += DeltaTime * 8.f;
         if (FallAccumulator < FallInterval)
             return;
 
