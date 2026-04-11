@@ -59,6 +59,7 @@ public:
 	void OnStopMove();
 	
 	/// Sets if the player is allowed to move 
+	UFUNCTION(BlueprintCallable)
 	void SetAcceptMovementInput(const bool Val) { bAcceptMovementInput = Val; }
 	
 	/// Enables or disables slowed player movement and camera look speed.
