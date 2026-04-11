@@ -104,6 +104,22 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 	return DamageAmount;
 }
 
+void APlayerCharacter::RevivePlayer(float ReviveHealth)
+{
+	if (!bDied) return;
+
+	bDied = false;
+	CurrentHealth = FMath::Max(ReviveHealth, 1.0f);
+
+	APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
+	if (playerController)
+	{
+		playerController->SetAcceptMovementInput(true);
+	}
+
+	OnPlayerRevived();
+}
+
 void APlayerCharacter::AddInvincibility(const float Seconds)
 {
 	InvincibilityTimer = GetWorld()->GetTimeSeconds() + Seconds;
