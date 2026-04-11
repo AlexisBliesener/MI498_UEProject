@@ -53,12 +53,13 @@ public:
 	
 	/// Event broadcast when the ship begins to fall
 	FOnShipFall OnShipFall;
+
+	UPROPERTY(EditAnywhere)
+	int32 DebugSlot = 0;
 	
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
-	
-	
 
 	/**
 	 * Enable/Disable all collision on the ship and turn off all ai systems for the enemies 
@@ -66,6 +67,7 @@ public:
 	 */
 	void SetShipActive(bool bIsActive);
 	/// Starts the falling behavior.
+	UFUNCTION(BlueprintCallable, Category = "Ship")
 	void StartFalling();
 	/**
 	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
@@ -125,4 +127,10 @@ private:
 	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
 	 */
 	void ConvertSMToHISM();
+
+	float FallAccumulator = 0.f;
+	static constexpr float FallInterval = 0.25f;
+
+
+
 };

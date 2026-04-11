@@ -32,12 +32,12 @@ AShip::AShip()
 
 void AShip::Tick(float DeltaSeconds)
 {
-	Super::Tick(DeltaSeconds);
+    Super::Tick(DeltaSeconds);
 
-	if (bFalling)
-	{
-		Fall(DeltaSeconds);
-	}
+    if (bFalling)
+    {
+        Fall(DeltaSeconds);
+    }
 }
 
 void AShip::BeginPlay()
@@ -67,13 +67,27 @@ void AShip::BeginPlay()
     
 }
 
-void AShip::Fall(const float DeltaTime) 
+void AShip::Fall(const float DeltaTime)
 {
-	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-   // RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-    RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset, RootComponent->GetComponentRotation());
-    /// Tell all connected rowboats to fall
-    OnShipFall.Broadcast(FallSpeed);
+    if (bIsPlayerInside)
+    {
+        FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
+        RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
+        OnShipFall.Broadcast(FallSpeed);
+    }
+    else
+    {
+        FallAccumulator += DeltaTime;
+        if (FallAccumulator < FallInterval)
+            return;
+
+        FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * FallAccumulator);
+        RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
+        OnShipFall.Broadcast(FallSpeed);
+
+        FallAccumulator = 0.f;
+    }
+
 }
 
 void AShip::DuplicateShipForNavigation()
@@ -209,26 +223,26 @@ void AShip::DuplicateShipForNavigation()
 void AShip::CheckPlayerBox()
 {
     if (APawn* player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
-    { 
+    {
         bool bIsInsideNow = ActivationBox->Bounds.GetBox().IsInsideOrOn(player->GetActorLocation());
 
         if (bIsInsideNow && !bIsPlayerInside)
         {
             SetShipActive(true);
-            bIsPlayerInside = true; 
+            bIsPlayerInside = true;
             bIsCannonAiming = false;
         }
         else if (!bIsInsideNow && bIsPlayerInside)
         {
             bIsPlayerInside = false;
-            
+
             // ONLY deactivate the ship if the cannon is NOT currently aiming at the ship 
             if (!bIsCannonAiming)
             {
                 SetShipActive(false);
             }
         }
-    } 
+    }
 }
 
 void AShip::ConvertSMToHISM()
@@ -273,7 +287,6 @@ void AShip::ConvertSMToHISM()
 
 void AShip::SetShipActive(bool bIsActive)
 {
-    
     // Stop trace collision when the player is on the ship 
     TraceCollisionBox->SetCollisionEnabled(bIsActive ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryOnly);
     
