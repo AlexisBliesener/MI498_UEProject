@@ -144,6 +144,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnShotFromExitCannon();
 	
+	/// Event that calls to update the score image during the vault loot collection
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateScoreImage(int ImageNum);
+	
 	/// How much additional time the player will get to complete stage three, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int StageThreeAdditionalTime = 180;
