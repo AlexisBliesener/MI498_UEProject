@@ -216,14 +216,6 @@ void AMissionController::HandleInVaultStatusChange(bool Status)
 			OnNearVault();
 		}
 	}
-	else
-	{
-		if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
-		{
-			bOnLeaveVaultVaLinePlayed = true;
-			OnLeaveVault();
-		}
-	}
 }
 
 void AMissionController::HandleOnNearExitCannon()
@@ -249,6 +241,28 @@ void AMissionController::SecondInVault()
 	{
 		ScoringManager->AddVaultSecScore();
 		SecondsInVault++;
+		
+		float Progress = SecondsInVault / InVaultTime;
+		if (Progress < 0.2f)
+		{
+			UpdateScoreImage(5);
+		}
+		else if (Progress < 0.4f)
+		{
+			UpdateScoreImage(4);
+		}
+		else if (Progress < 0.6f)
+		{
+			UpdateScoreImage(3);
+		}
+		else if (Progress < 0.8f)
+		{
+			UpdateScoreImage(2);
+		}
+		else
+		{
+			UpdateScoreImage(1);
+		}
 
 		/// Make loot slowly dispear
 		for (TObjectPtr<AActor> loot : VaultTreasure->LootToShrink)
@@ -269,6 +283,8 @@ void AMissionController::EndSpawningEnemies()
 {
 	/// Stop vault timer when all waves are clear
 	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+	
+	UpdateScoreImage(0);
 
 	/// Unlock the outside vault door
 	OutsideVaultDoor->UnlockDoor();
@@ -280,6 +296,12 @@ void AMissionController::EndSpawningEnemies()
 
 	/// Start the mission timer to flee
 	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
+	
+	if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
+	{
+		bOnLeaveVaultVaLinePlayed = true;
+		OnLeaveVault();
+	}
 
 	FTimerDelegate delegate;
 	delegate.BindUObject(this, &AMissionController::StageThreeFinish, false);
