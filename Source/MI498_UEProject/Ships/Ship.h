@@ -37,6 +37,9 @@ class MI498_UEPROJECT_API AShip : public AActor
 
 public:
 	AShip();
+	
+	/// Tracks whether the ship is currently falling.
+	bool bFalling = false;
 
 	/// Speed at which the ship falls (units per second).
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -121,8 +124,6 @@ protected:
 	void CheckPlayerBox();
 	
 private:
-	/// Tracks whether the ship is currently falling.
-	bool bFalling = false;
 	/**
 	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
 	 */

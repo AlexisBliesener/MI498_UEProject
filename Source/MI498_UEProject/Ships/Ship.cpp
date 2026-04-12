@@ -9,6 +9,7 @@
 #include "Components/LightComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Navigation/NavLinkProxy.h"
+#include "../Player/PlayerCharacter.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 AShip::AShip()
@@ -293,6 +294,12 @@ void AShip::SetShipActive(bool bIsActive)
 {
     // Stop trace collision when the player is on the ship 
     TraceCollisionBox->SetCollisionEnabled(bIsActive ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryOnly);
+    
+    if (bIsActive)
+    {
+        APlayerCharacter* player = Cast<APlayerCharacter>( UGameplayStatics::GetPlayerPawn(GetWorld(), 0) );
+        player->SetCurrentShip(this);
+    }
     
     for (FHISMGroup& group : ActorsHISMOnShip)
     {
