@@ -72,9 +72,7 @@ void AShip::Fall(const float DeltaTime)
 {
     if (bIsPlayerInside)
     {
-        FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-        RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-        OnShipFall.Broadcast(FallSpeed);
+        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallSpeed * DeltaTime), false, nullptr, ETeleportType::TeleportPhysics);
     }
     else
     {
@@ -82,17 +80,13 @@ void AShip::Fall(const float DeltaTime)
         if (GFrameCounter % 8 != ShipIndex)
             return;
 
-        FallAccumulator += DeltaTime * 8.f;
+        FallAccumulator += DeltaTime * 8.f * FallSpeed;
         if (FallAccumulator < FallInterval)
             return;
-
-        FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * FallAccumulator);
-        RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-        OnShipFall.Broadcast(FallSpeed);
-
+        
+        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallAccumulator), false, nullptr, ETeleportType::TeleportPhysics);
         FallAccumulator = 0.f;
     }
-
 }
 
 void AShip::DuplicateShipForNavigation()
@@ -351,6 +345,7 @@ void AShip::SetShipActive(bool bIsActive)
 void AShip::StartFalling()
 {
     bFalling = true;
+    OnShipFall.Broadcast(FallSpeed);
     if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
     {
         if (!navSys->IsNavigationBuildingLocked(1))

@@ -130,8 +130,7 @@ private:
 	void ConvertSMToHISM();
 
 	float FallAccumulator = 0.f;
-	static constexpr float FallInterval = 0.25f;
-
+	static constexpr float FallInterval = 5.f;
 
 
 };
