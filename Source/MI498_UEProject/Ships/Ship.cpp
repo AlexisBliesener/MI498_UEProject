@@ -291,8 +291,10 @@ void AShip::SetShipActive(bool bIsActive)
     
     if (bIsActive)
     {
-        APlayerCharacter* player = Cast<APlayerCharacter>( UGameplayStatics::GetPlayerPawn(GetWorld(), 0) );
-        player->SetCurrentShip(this);
+        if (APlayerCharacter* player = Cast<APlayerCharacter>( UGameplayStatics::GetPlayerPawn(GetWorld(), 0) ))
+        {
+            player->SetCurrentShip(this);
+        }
     }
     
     for (FHISMGroup& group : ActorsHISMOnShip)

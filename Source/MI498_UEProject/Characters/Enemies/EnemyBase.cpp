@@ -469,3 +469,14 @@ void AEnemyBase::UpdateHealthUI() const
 		}
 	}
 }
+
+
+bool AEnemyBase::IsFacingPlayer(AActor* Player, float Tolerance) const
+{
+	if (!Player) return false;
+
+	FVector directionToPlayer = (Player->GetActorLocation() - GetActorLocation()).GetSafeNormal2D();
+
+	float dotResult = FVector::DotProduct(GetActorForwardVector().GetSafeNormal2D(), directionToPlayer);
+	return dotResult >= Tolerance; 
+}
