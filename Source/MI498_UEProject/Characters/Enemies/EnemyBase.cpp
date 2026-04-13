@@ -53,6 +53,18 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 {
 	
 	SetActorEnableCollision(bEnabled);
+	
+	if (bEnabled)
+	{
+		GetMesh()->SetComponentTickEnabled(true);
+		GetMesh()->bPauseAnims = false;
+	}
+	else
+	{
+		GetMesh()->SetComponentTickEnabled(false);
+		GetMesh()->bPauseAnims = true;
+	}
+	
 	if (UCharacterMovementComponent* movementComponent = GetCharacterMovement())
 	{
 		movementComponent->SetComponentTickEnabled(bEnabled);
