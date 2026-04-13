@@ -156,7 +156,7 @@ protected:
 	
 	/// Upward launch strength used during ledge pull-up step
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PullUpToLedgeForce = 730;
+	float PullUpToLedgeForce = 750;
 	
 	/// Forward launch strength used to move player onto ledge
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
