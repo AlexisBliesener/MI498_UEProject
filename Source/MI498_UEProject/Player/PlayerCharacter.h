@@ -4,11 +4,11 @@
 #include "GenericTeamAgentInterface.h"
 #include "../Animation/PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
-#include "Engine/DamageEvents.h"
 #include "Perception/AISightTargetInterface.h"
 #include "PlayerCharacter.generated.h"
 
 
+class AShip;
 class UWeaponManager;
 class UCameraComponent;
 class UScoringManager;
@@ -92,6 +92,12 @@ public:
 	
 	/// Get if the player has died
 	bool GetDead() {return bDied;}
+	
+	/// Get the current ship the player is on
+	AShip* GetCurrentShip() {return CurrentShip;}
+	
+	/// Set the current ship the player is on
+	void SetCurrentShip(AShip* Ship) {CurrentShip = Ship;}
 	
 	virtual UAISense_Sight::EVisibilityResult CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData = nullptr,const FOnPendingVisibilityQueryProcessedDelegate* Delegate = nullptr) override;
 	/// Returns the weapons manager
@@ -232,6 +238,10 @@ private:
 	
 	/// The players gravity scale when the game starts
 	float StartingGravityScale = 1;
+	
+	/// The ship the player is current on
+	UPROPERTY()
+	AShip* CurrentShip;
 	
 	GENERATED_BODY()
 };

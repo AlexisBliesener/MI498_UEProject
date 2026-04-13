@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/Interactables/ExplodingBarrel.h"
+#include "../../Ships/Ship.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
 AHarpoon::AHarpoon()
@@ -327,6 +328,14 @@ void AHarpoon::HandleSwing(const FVector& ToHarpoon, const FVector& ToHarpoonNor
 
 			// Compute frame-to-frame harpoon displacement
 			FVector HarpoonDelta = GetActorLocation() - PreviousAnchorLocation;
+			// reduce harpoon delta by ship fall speed
+			AShip* Ship = PlayerCharacter->GetCurrentShip();
+			if (Ship && Ship->bFalling)
+			{
+				FVector ShipVelocity = FVector(0.f, 0.f, -Ship->FallSpeed);
+
+				HarpoonDelta -= ShipVelocity * DeltaTime;
+			}
 			
 			if (ToHarpoon.Size() > CableLength)
 			{
