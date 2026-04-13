@@ -38,7 +38,8 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 
 	HealthBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
 	HealthBarWidget->SetupAttachment(RootComponent);
-	HealthBarWidget->SetVisibility(false);
+	HealthBarWidget->SetVisibility(true);
+	HealthBarWidget->SetComponentTickEnabled(false);
 }
 
 
@@ -177,7 +178,10 @@ void AEnemyBase::BeginPlay()
 	}
 	
     GridSizeEQS = AttackStartDistance - 300.f;
-
+	if (UUserWidget* healthbar = HealthBarWidget->GetUserWidgetObject())
+	{
+		healthbar->SetRenderOpacity(0.0f);
+	}
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -446,6 +450,7 @@ void AEnemyBase::UpdateHealthUI() const
 	{
 		if (UUserWidget* widgetObj = HealthBarWidget->GetUserWidgetObject())
 		{
+			widgetObj->SetRenderOpacity(1.0f);
 			if (UWidget* foundWidget = widgetObj->GetWidgetFromName(HealthBarWidgetName))
 			{
 				if (UProgressBar* healthProgressBar = Cast<UProgressBar>(foundWidget))
