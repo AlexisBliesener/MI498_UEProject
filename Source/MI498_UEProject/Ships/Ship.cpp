@@ -11,6 +11,7 @@
 #include "Navigation/NavLinkProxy.h"
 #include "../Player/PlayerCharacter.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/AI/Components/SyncTransformOnHiddenShipComponent.h"
 
 AShip::AShip()
 {
@@ -150,6 +151,11 @@ void AShip::DuplicateShipForNavigation()
             hiddenChild->SetActorHiddenInGame(true); 
             // hiddenChild->GetRootComponent()->SetCanEverAffectNavigation(true);
             hiddenChild->GetRootComponent()->UpdateBounds();
+            
+            if (USyncTransformOnHiddenShipComponent* syncComponent = child->FindComponentByClass<USyncTransformOnHiddenShipComponent>())
+            {
+                syncComponent->HiddeActor = hiddenChild;
+            }
         }
         TArray<UPrimitiveComponent*> primitiveComponents;
         child->GetComponents(primitiveComponents);
