@@ -26,9 +26,10 @@ EStateTreeRunStatus FProbabilityAttackTask::EnterState(FStateTreeExecutionContex
 	}
 
 	// Success: Perform the attack
-	Data.AIController->SetFocus(Data.Target);
+	//Data.AIController->SetFocus(Data.Target);
 	Data.Actor->Attack(Data.Target, false); 
     
+	//Data.AIController->ClearFocus(EAssetTypeCategories::Gameplay);
 	return EStateTreeRunStatus::Succeeded;
 }
 

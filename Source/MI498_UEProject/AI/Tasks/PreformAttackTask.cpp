@@ -12,9 +12,9 @@ EStateTreeRunStatus FPreformAttackTask::EnterState(FStateTreeExecutionContext& C
 	
 	// Get the instance data for this task
 	const FPreformAttacksTaskInstanceData& Data = Context.GetInstanceData(*this);
-	if (Data.Actor && Data.Target)
+	if (Data.Actor && Data.Target && Data.AIController)
 	{
-		Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+		Data.AIController->SetFocus(Data.Target);
 	}
 
 	return EStateTreeRunStatus::Running;
@@ -28,7 +28,16 @@ EStateTreeRunStatus FPreformAttackTask::Tick(FStateTreeExecutionContext& Context
 		return EStateTreeRunStatus::Failed;
 	}
 	
-	Data.AIController->SetFocus(Data.Target, EAIFocusPriority::Gameplay);
+	if (!Data.Actor->IsFacingPlayer(Data.Target, 0.90f))
+	{
+		return EStateTreeRunStatus::Running; 
+	}
+	
+	if (!Data.Actor->bIsAttacking)
+	{
+		Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+	}
+	
 	if (Data.bWaitUntilAttackIsFinished && Data.Actor->bIsAttacking)
 	{
 		return EStateTreeRunStatus::Running;
@@ -36,9 +45,22 @@ EStateTreeRunStatus FPreformAttackTask::Tick(FStateTreeExecutionContext& Context
 	
 	if (Data.bRunForever)
 	{
-		Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+		if (Data.Actor->GetCanShoot() && !Data.Actor->bIsAttacking)
+		{
+			Data.Actor->Attack(Data.Target, Data.bIsSecondaryAttack);
+		}
 		return EStateTreeRunStatus::Running;
 	}
 	
 	return EStateTreeRunStatus::Succeeded;
+}
+
+void FPreformAttackTask::ExitState(FStateTreeExecutionContext& Context,
+	const FStateTreeTransitionResult& Transition) const
+{
+	const FPreformAttacksTaskInstanceData& data = Context.GetInstanceData(*this);
+	if (data.AIController)
+	{
+		data.AIController->ClearFocus(EAIFocusPriority::Gameplay);
+	}
 }

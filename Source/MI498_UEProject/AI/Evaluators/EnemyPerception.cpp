@@ -90,16 +90,10 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 	if (TargetActor && IsValid(Actor) && Actor->RealShip && Actor->HiddenShip)
 	{
 		FVector realPos = TargetActor->GetActorLocation();
-		FVector playerSpeed = TargetActor->GetVelocity();
 
 		FVector localPos = Actor->RealShip->GetActorTransform().InverseTransformPosition(realPos);
-		FVector localSpeed = Actor->RealShip->GetActorTransform().InverseTransformVector(playerSpeed);
 
-		localSpeed.Z = 0.f;
-
-		FVector predictedLocalPos = localPos + (localSpeed * 1.3f); // 1.3 is predicted time 
-
-		FVector fakeLoc = Actor->HiddenShip->GetActorTransform().TransformPosition(predictedLocalPos);
+		FVector fakeLoc = Actor->HiddenShip->GetActorTransform().TransformPosition(localPos);
 
 		UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(Actor->GetWorld());
 		if (navSys)
@@ -110,19 +104,6 @@ void UEnemyPerception::HandleSightStimulusForgotten(AActor* TargetActor)
 			if (navSys->ProjectPointToNavigation(fakeLoc, groundLocation, lookBox))
 			{
 				fakeLoc = groundLocation.Location;
-			}
-			else
-			{
-				// if the location is outside the map after the predication then fallback to the ground loc 
-				FVector currentFakeLoc = Actor->HiddenShip->GetActorTransform().TransformPosition(localPos);
-				if (navSys->ProjectPointToNavigation(currentFakeLoc, groundLocation, lookBox))
-				{
-					fakeLoc = groundLocation.Location;
-				}
-				else
-				{
-					fakeLoc = currentFakeLoc; 
-				}
 			}
 		}
 

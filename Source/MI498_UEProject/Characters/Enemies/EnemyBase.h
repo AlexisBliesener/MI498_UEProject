@@ -196,6 +196,20 @@ public:
 	 */
 	UFUNCTION()
 	void OnSmartLinkJump(AJumpNavLinkProxy* InNavLink);
+	
+	/**
+	 * Can the enemy shoot? 
+	 * @return true, if the enemy can shoot 
+	 */
+	bool GetCanShoot() const {return bCanShoot;}
+	
+	/**
+	 * Is the enemy currently facing the player? the attack won't happen until this becomes true !!
+	 * @param Player the target which is the player 
+	 * @param Tolerance tolerance 
+	 * @return 
+	 */
+	bool IsFacingPlayer(AActor* Player, float Tolerance) const;
 protected:
 	
 	/// Fires the primary weapon from blueprint
