@@ -37,6 +37,9 @@ class MI498_UEPROJECT_API AShip : public AActor
 
 public:
 	AShip();
+	
+	/// Tracks whether the ship is currently falling.
+	bool bFalling = false;
 
 	/// Speed at which the ship falls (units per second).
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -53,12 +56,13 @@ public:
 	
 	/// Event broadcast when the ship begins to fall
 	FOnShipFall OnShipFall;
+
+	UPROPERTY(EditAnywhere)
+	int32 ShipIndex = 0;
 	
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
-	
-	
 
 	/**
 	 * Enable/Disable all collision on the ship and turn off all ai systems for the enemies 
@@ -66,6 +70,7 @@ public:
 	 */
 	void SetShipActive(bool bIsActive);
 	/// Starts the falling behavior.
+	UFUNCTION(BlueprintCallable, Category = "Ship")
 	void StartFalling();
 	/**
 	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
@@ -119,10 +124,13 @@ protected:
 	void CheckPlayerBox();
 	
 private:
-	/// Tracks whether the ship is currently falling.
-	bool bFalling = false;
 	/**
 	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
 	 */
 	void ConvertSMToHISM();
+
+	float FallAccumulator = 0.f;
+	static constexpr float FallInterval = 5.f;
+
+
 };

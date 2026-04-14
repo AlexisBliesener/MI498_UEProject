@@ -4,11 +4,11 @@
 #include "GenericTeamAgentInterface.h"
 #include "../Animation/PlayerAnimation.h"
 #include "MI498_UEProject/Characters/CharacterBase.h"
-#include "Engine/DamageEvents.h"
 #include "Perception/AISightTargetInterface.h"
 #include "PlayerCharacter.generated.h"
 
 
+class AShip;
 class UWeaponManager;
 class UCameraComponent;
 class UScoringManager;
@@ -52,6 +52,14 @@ public:
 	/// A Blueprintable function that will be called when the player's health hits 0
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
 	void OnPlayerDied();
+
+	// A blueprint callable function that will revive the player for respawn
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void RevivePlayer(float ReviveHealth);
+
+	// A blueprint function that is called when the player is revived.
+	UFUNCTION(BlueprintImplementableEvent, Category = "Player")
+	void OnPlayerRevived();
 	
 	/// A Blueprintable function that will be called when the player takes damage
 	UFUNCTION(BlueprintImplementableEvent, Category="Player")
@@ -84,6 +92,12 @@ public:
 	
 	/// Get if the player has died
 	bool GetDead() {return bDied;}
+	
+	/// Get the current ship the player is on
+	AShip* GetCurrentShip() {return CurrentShip;}
+	
+	/// Set the current ship the player is on
+	void SetCurrentShip(AShip* Ship) {CurrentShip = Ship;}
 	
 	virtual UAISense_Sight::EVisibilityResult CanBeSeenFrom(const FCanBeSeenFromContext& Context,FVector& OutSeenLocation, int32& OutNumberOfLoSChecksPerformed, int32& OutNumberOfAsyncLosCheckRequested,float& OutSightStrength, int32* UserData = nullptr,const FOnPendingVisibilityQueryProcessedDelegate* Delegate = nullptr) override;
 	/// Returns the weapons manager
@@ -142,7 +156,7 @@ protected:
 	
 	/// Upward launch strength used during ledge pull-up step
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PullUpToLedgeForce = 730;
+	float PullUpToLedgeForce = 750;
 	
 	/// Forward launch strength used to move player onto ledge
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -221,6 +235,13 @@ private:
 	
 	/// True if the can fall off ledge check should be running
 	bool bCanFallOffLedge = true;
+	
+	/// The players gravity scale when the game starts
+	float StartingGravityScale = 1;
+	
+	/// The ship the player is current on
+	UPROPERTY()
+	AShip* CurrentShip;
 	
 	GENERATED_BODY()
 };

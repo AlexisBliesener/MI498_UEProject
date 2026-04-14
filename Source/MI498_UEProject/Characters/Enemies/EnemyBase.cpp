@@ -21,6 +21,7 @@
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISense_Sight.h"
+#include "MI498_UEProject/AI/NavLinks/JumpNavLinkProxy.h"
 #if WITH_EDITOR
 #include "DrawDebugHelpers.h"
 #endif
@@ -52,6 +53,18 @@ void AEnemyBase::SetEnabledEnemy(bool bEnabled)
 {
 	
 	SetActorEnableCollision(bEnabled);
+	
+	if (bEnabled)
+	{
+		GetMesh()->SetComponentTickEnabled(true);
+		GetMesh()->bPauseAnims = false;
+	}
+	else
+	{
+		GetMesh()->SetComponentTickEnabled(false);
+		GetMesh()->bPauseAnims = true;
+	}
+	
 	if (UCharacterMovementComponent* movementComponent = GetCharacterMovement())
 	{
 		movementComponent->SetComponentTickEnabled(bEnabled);
@@ -257,6 +270,36 @@ bool AEnemyBase::ShouldTickIfViewportsOnly() const
 {
 	// Only tick in the editor if Debug is enabled 
 	return bDebug;
+}
+
+void AEnemyBase::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+	
+	if (bIsJumping && CurrentNavLink)
+	{
+		bIsJumping = false;
+		CurrentNavLink->ResumePathFollowing(this);
+		CurrentNavLink = nullptr;
+		if (AAIController* aiController = Cast<AAIController>(GetController()))
+		{
+			aiController->ResumeMove(FAIRequestID::CurrentRequest); 
+		}
+	}
+	
+	
+	OnJumpEnd();
+}
+
+void AEnemyBase::OnSmartLinkJump(AJumpNavLinkProxy* InNavLink)
+{
+	bIsJumping = true;
+	CurrentNavLink = InNavLink;
+	if (AAIController* aiController = Cast<AAIController>(GetController()))
+	{
+		aiController->PauseMove(FAIRequestID::CurrentRequest); 
+	}
+	OnJumpStart();
 }
 
 void AEnemyBase::Tick(float DeltaTime)

@@ -9,6 +9,7 @@
 #include "Components/LightComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Navigation/NavLinkProxy.h"
+#include "../Player/PlayerCharacter.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 
 AShip::AShip()
@@ -32,12 +33,12 @@ AShip::AShip()
 
 void AShip::Tick(float DeltaSeconds)
 {
-	Super::Tick(DeltaSeconds);
+    Super::Tick(DeltaSeconds);
 
-	if (bFalling)
-	{
-		Fall(DeltaSeconds);
-	}
+    if (bFalling)
+    {
+        Fall(DeltaSeconds);
+    }
 }
 
 void AShip::BeginPlay()
@@ -67,13 +68,25 @@ void AShip::BeginPlay()
     
 }
 
-void AShip::Fall(const float DeltaTime) 
+void AShip::Fall(const float DeltaTime)
 {
-	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-   // RootComponent->AddWorldOffset(FallOffset, false, nullptr, ETeleportType::TeleportPhysics);
-    RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset, RootComponent->GetComponentRotation());
-    /// Tell all connected rowboats to fall
-    OnShipFall.Broadcast(FallSpeed);
+    if (bIsPlayerInside)
+    {
+        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallSpeed * DeltaTime), false, nullptr, ETeleportType::TeleportPhysics);
+    }
+    else
+    {
+        // Stagger updates across frames using ship index
+        if (GFrameCounter % 8 != ShipIndex)
+            return;
+
+        FallAccumulator += DeltaTime * 8.f * FallSpeed;
+        if (FallAccumulator < FallInterval)
+            return;
+        
+        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallAccumulator), false, nullptr, ETeleportType::TeleportPhysics);
+        FallAccumulator = 0.f;
+    }
 }
 
 void AShip::DuplicateShipForNavigation()
@@ -209,26 +222,26 @@ void AShip::DuplicateShipForNavigation()
 void AShip::CheckPlayerBox()
 {
     if (APawn* player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0))
-    { 
+    {
         bool bIsInsideNow = ActivationBox->Bounds.GetBox().IsInsideOrOn(player->GetActorLocation());
 
         if (bIsInsideNow && !bIsPlayerInside)
         {
             SetShipActive(true);
-            bIsPlayerInside = true; 
+            bIsPlayerInside = true;
             bIsCannonAiming = false;
         }
         else if (!bIsInsideNow && bIsPlayerInside)
         {
             bIsPlayerInside = false;
-            
+
             // ONLY deactivate the ship if the cannon is NOT currently aiming at the ship 
             if (!bIsCannonAiming)
             {
                 SetShipActive(false);
             }
         }
-    } 
+    }
 }
 
 void AShip::ConvertSMToHISM()
@@ -273,9 +286,14 @@ void AShip::ConvertSMToHISM()
 
 void AShip::SetShipActive(bool bIsActive)
 {
-    
     // Stop trace collision when the player is on the ship 
     TraceCollisionBox->SetCollisionEnabled(bIsActive ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryOnly);
+    
+    if (bIsActive)
+    {
+        APlayerCharacter* player = Cast<APlayerCharacter>( UGameplayStatics::GetPlayerPawn(GetWorld(), 0) );
+        player->SetCurrentShip(this);
+    }
     
     for (FHISMGroup& group : ActorsHISMOnShip)
     {
@@ -327,6 +345,7 @@ void AShip::SetShipActive(bool bIsActive)
 void AShip::StartFalling()
 {
     bFalling = true;
+    OnShipFall.Broadcast(FallSpeed);
     if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
     {
         if (!navSys->IsNavigationBuildingLocked(1))
