@@ -38,7 +38,8 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& ObjectInitializer)
 
 	HealthBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
 	HealthBarWidget->SetupAttachment(RootComponent);
-	HealthBarWidget->SetVisibility(false);
+	HealthBarWidget->SetVisibility(true);
+	HealthBarWidget->SetComponentTickEnabled(false);
 }
 
 
@@ -177,7 +178,10 @@ void AEnemyBase::BeginPlay()
 	}
 	
     GridSizeEQS = AttackStartDistance - 300.f;
-
+	if (UUserWidget* healthbar = HealthBarWidget->GetUserWidgetObject())
+	{
+		healthbar->SetRenderOpacity(0.0f);
+	}
 }
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
@@ -281,6 +285,7 @@ void AEnemyBase::Landed(const FHitResult& Hit)
 		bIsJumping = false;
 		CurrentNavLink->ResumePathFollowing(this);
 		CurrentNavLink = nullptr;
+		OnJumpEnd();
 		if (AAIController* aiController = Cast<AAIController>(GetController()))
 		{
 			aiController->ResumeMove(FAIRequestID::CurrentRequest); 
@@ -288,7 +293,6 @@ void AEnemyBase::Landed(const FHitResult& Hit)
 	}
 	
 	
-	OnJumpEnd();
 }
 
 void AEnemyBase::OnSmartLinkJump(AJumpNavLinkProxy* InNavLink)
@@ -446,6 +450,7 @@ void AEnemyBase::UpdateHealthUI() const
 	{
 		if (UUserWidget* widgetObj = HealthBarWidget->GetUserWidgetObject())
 		{
+			widgetObj->SetRenderOpacity(1.0f);
 			if (UWidget* foundWidget = widgetObj->GetWidgetFromName(HealthBarWidgetName))
 			{
 				if (UProgressBar* healthProgressBar = Cast<UProgressBar>(foundWidget))
@@ -468,4 +473,15 @@ void AEnemyBase::UpdateHealthUI() const
 			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HealthBarWidget is null!"));
 		}
 	}
+}
+
+
+bool AEnemyBase::IsFacingPlayer(AActor* Player, float Tolerance) const
+{
+	if (!Player) return false;
+
+	FVector directionToPlayer = (Player->GetActorLocation() - GetActorLocation()).GetSafeNormal2D();
+
+	float dotResult = FVector::DotProduct(GetActorForwardVector().GetSafeNormal2D(), directionToPlayer);
+	return dotResult >= Tolerance; 
 }
