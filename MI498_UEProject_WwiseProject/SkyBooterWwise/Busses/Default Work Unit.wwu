@@ -80,6 +80,19 @@
 							</DuckingList>
 						</Bus>
 						<Bus Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}"/>
+						<Bus Name="StingerBus" ID="{6A757FF4-B8D1-4681-AE86-A1FEFA5CAAF6}">
+							<DuckingList>
+								<DuckItem>
+									<BusRef Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}"/>
+									<DuckingParam>
+										<Volume>-8</Volume>
+										<FadeInTime>0.200000002980232</FadeInTime>
+										<FadeOutTime>0.200000002980232</FadeOutTime>
+										<FadeCurve>FadeLinear</FadeCurve>
+									</DuckingParam>
+								</DuckItem>
+							</DuckingList>
+						</Bus>
 					</ChildrenList>
 					<StateInfo>
 						<StateGroupList>

@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{E91F48E0-D6E6-B35F-5D82-E6B248FE551A}",
+    "Hash": "{919878E4-9F8D-F6FA-68A3-4AE72AF27B68}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -58,6 +58,12 @@
       "Name": "DialogueBus",
       "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\DialogueBus",
       "GUID": "{7AB74CEF-B203-45A3-A661-020B11678DEC}"
+     },
+     {
+      "Id": "1580920053",
+      "Name": "StingerBus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\StingerBus",
+      "GUID": "{6A757FF4-B8D1-4681-AE86-A1FEFA5CAAF6}"
      },
      {
       "Id": "1966988073",
@@ -832,6 +838,6 @@
     ]
    }
   ],
-  "FileHash": "{6E7E68BF-6EC0-8FF3-0D9B-93D4FFF66619}"
+  "FileHash": "{6544C19F-D3DE-3DEE-2363-E8FE9BDB7CF3}"
  }
 }

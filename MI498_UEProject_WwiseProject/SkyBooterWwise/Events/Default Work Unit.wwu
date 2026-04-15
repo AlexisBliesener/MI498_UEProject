@@ -696,6 +696,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="Lamps" ID="{BADB8A7B-11B2-4752-9C5F-82C0B9F16BA4}">
+									<ChildrenList>
+										<Action Name="" ID="{542E6CED-B163-4954-A3F5-795F47C02566}" ShortID="14033265">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="LampAmbience" ID="{323A2BCA-12C6-4325-A95F-D7AEB076F857}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Event Name="LeverClick" ID="{8406CFAB-B772-4E55-B49F-52B15813F89D}">
@@ -709,7 +720,7 @@
 								</Action>
 								<Action Name="" ID="{982BAE7C-82BC-4EB7-B2B7-8BA2984E467D}" ShortID="99831003">
 									<PropertyList>
-										<Property Name="Delay" Type="Real64" Value="0.45"/>
+										<Property Name="Delay" Type="Real64" Value="0.2"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
@@ -719,7 +730,7 @@
 								</Action>
 								<Action Name="" ID="{BD748FED-8004-4E92-B335-4D6F01D5B482}" ShortID="430118219">
 									<PropertyList>
-										<Property Name="Delay" Type="Real64" Value="0.45"/>
+										<Property Name="Delay" Type="Real64" Value="0.2"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
@@ -809,6 +820,54 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="HealPickUpLouder2" ID="{557D3708-A86B-4211-BCF2-CBECCAC90DFB}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MissionCompleteStinger" ID="{B31937C6-8C49-4F82-9E08-1FE8E594B2CE}">
+							<ChildrenList>
+								<Action Name="" ID="{43F233F2-FC17-40C5-83CD-C89475D52E40}" ShortID="478316319">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MissionComplete" ID="{17F36767-CE3E-4A3D-99EC-D9534C024064}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="NewObjective" ID="{84572E5F-1C47-486A-B7F3-A0FF621A4BDC}">
+							<ChildrenList>
+								<Action Name="" ID="{5FBDC1DD-52DC-47D6-B289-A0B3B809A4E9}" ShortID="559400810">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="NewObjective" ID="{4174C335-BBD6-4C4F-B680-75E97CDF2AF4}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="LongCoin" ID="{597B444A-BE62-49A4-88B1-932B41DD4575}">
+							<ChildrenList>
+								<Action Name="" ID="{5C8B8605-0479-4A56-940B-2B0521D87C87}" ShortID="920936601">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LongCoinSound" ID="{99B1C1A9-1477-40F8-A416-89B5CA4AC5F0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="LongCoinStop" ID="{4ACCB370-F156-485D-AE7C-8C7D95304CFA}">
+							<ChildrenList>
+								<Action Name="" ID="{16DA6185-F030-41AA-A1D2-89B77BC020A4}" ShortID="387712006">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="LongCoinSound" ID="{99B1C1A9-1477-40F8-A416-89B5CA4AC5F0}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
