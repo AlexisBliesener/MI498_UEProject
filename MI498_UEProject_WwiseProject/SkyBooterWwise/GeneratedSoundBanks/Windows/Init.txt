@@ -25,6 +25,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	309504875	DialogueBus			\Default Work Unit\Main Audio Bus\DialogueBus	
+	1580920053	StingerBus			\Default Work Unit\Main Audio Bus\StingerBus	
 	1966988073	TestBus			\Default Work Unit\TestBus	
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
 	2769824834	Combat_Bus			\Default Work Unit\Main Audio Bus\Combat_Bus	

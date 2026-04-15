@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{399B286E-C6EC-CF5B-CFB0-43DD9B7A983F}",
+    "Hash": "{4D9550EC-7662-283F-D862-E9B2C9B1AEDA}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -197,7 +197,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "LevelChainClick.wav",
-      "CachePath": "54/{541024FD-ACC7-2C22-63F9-24FC47107C95}.wem"
+      "CachePath": "21/{21BBDD1B-ECDD-47C5-ED0C-BE10EB52380F}.wem"
      },
      {
       "Id": "105716389",
@@ -1256,6 +1256,14 @@
       "CachePath": "3B/{3BB355E9-99BA-EAE0-14E0-B17F690F2F90}.wem"
      },
      {
+      "Id": "626758462",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "NewObjective.wav",
+      "CachePath": "21/{21A41E33-6682-CE0D-FF96-D203898672A9}.wem"
+     },
+     {
       "Id": "634837452",
       "Language": "SFX",
       "Streaming": "false",
@@ -1309,7 +1317,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Cannon.wav",
-      "CachePath": "9F/{9F8D0FAF-C5B0-DF41-56BC-E19B08E0DFCF}.wem"
+      "CachePath": "DB/{DBF058EA-7410-7ED4-77FA-80FC51FFDEB0}.wem"
      },
      {
       "Id": "652248752",
@@ -1368,6 +1376,14 @@
       "CachePath": "C1/{C155EC73-ED5B-E2DF-A3ED-FDBAF0190937}.wem"
      },
      {
+      "Id": "675026351",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "FlameQuiver.wav",
+      "CachePath": "BB/{BB396DB1-9E4E-1374-C952-B20B33412923}.wem"
+     },
+     {
       "Id": "676257027",
       "Language": "SFX",
       "Streaming": "false",
@@ -1406,6 +1422,14 @@
       "Location": "Memory",
       "ShortName": "SwingerFootstep-005.wav",
       "CachePath": "CF/{CF86F9B6-6F66-EDC3-7A39-8612085D24F0}.wem"
+     },
+     {
+      "Id": "713522260",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "MissionComplete.wav",
+      "CachePath": "48/{48842BE8-E7A2-D4C7-7A98-4DC7768B70D7}.wem"
      },
      {
       "Id": "713593597",
@@ -1966,6 +1990,14 @@
       "Location": "Memory",
       "ShortName": "OnceInRangeBombLine3.wav",
       "CachePath": "27/{276DFA58-5649-3AE1-B651-B7F1C0A8F25B}.wem"
+     },
+     {
+      "Id": "956812388",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "CoinLong.wav",
+      "CachePath": "DA/{DA05F873-D251-A0EA-71C1-79F8B40F7731}.wem"
      },
      {
       "Id": "960224522",
@@ -2653,8 +2685,8 @@
       "GUID": "{F60E5D41-8921-41B6-9DAF-E41E617B2D7F}",
       "Color": "4",
       "DurationType": "OneShot",
-      "DurationMin": "3.73828",
-      "DurationMax": "3.73828",
+      "DurationMin": "3.2282662",
+      "DurationMax": "3.2282662",
       "MediaRefs": [
        {
         "Id": "649368430"
@@ -3117,6 +3149,20 @@
       ]
      },
      {
+      "Id": "4135178078",
+      "Name": "Lamps",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Ambience\\Lamps",
+      "GUID": "{BADB8A7B-11B2-4752-9C5F-82C0B9F16BA4}",
+      "Color": "4",
+      "MaxAttenuation": "3000",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "675026351"
+       }
+      ]
+     },
+     {
       "Id": "2810013852",
       "Name": "LeaveVaultDialogue",
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\LeaveVaultDialogue",
@@ -3144,8 +3190,8 @@
       "GUID": "{8406CFAB-B772-4E55-B49F-52B15813F89D}",
       "Color": "4",
       "DurationType": "OneShot",
-      "DurationMin": "0.80330455",
-      "DurationMax": "1.4481014",
+      "DurationMin": "0.55330455",
+      "DurationMax": "1.1981014",
       "MediaRefs": [
        {
         "Id": "71399008"
@@ -3186,6 +3232,30 @@
       ]
      },
      {
+      "Id": "1030568432",
+      "Name": "LongCoin",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\LongCoin",
+      "GUID": "{597B444A-BE62-49A4-88B1-932B41DD4575}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "956812388"
+       }
+      ]
+     },
+     {
+      "Id": "3053856664",
+      "Name": "LongCoinStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\LongCoinStop",
+      "GUID": "{4ACCB370-F156-485D-AE7C-8C7D95304CFA}",
+      "Color": "4",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
       "Id": "2390202056",
       "Name": "MetalStep",
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\MetalStep",
@@ -3219,6 +3289,21 @@
        },
        {
         "Id": "944122239"
+       }
+      ]
+     },
+     {
+      "Id": "3853833402",
+      "Name": "MissionCompleteStinger",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\MissionCompleteStinger",
+      "GUID": "{B31937C6-8C49-4F82-9E08-1FE8E594B2CE}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "2.6477187",
+      "DurationMax": "2.6477187",
+      "MediaRefs": [
+       {
+        "Id": "713522260"
        }
       ]
      },
@@ -3285,6 +3370,21 @@
        },
        {
         "Id": "952159520"
+       }
+      ]
+     },
+     {
+      "Id": "708975870",
+      "Name": "NewObjective",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\NewObjective",
+      "GUID": "{84572E5F-1C47-486A-B7F3-A0FF621A4BDC}",
+      "Color": "4",
+      "DurationType": "OneShot",
+      "DurationMin": "2",
+      "DurationMax": "2",
+      "MediaRefs": [
+       {
+        "Id": "626758462"
        }
       ]
      },
@@ -4268,6 +4368,6 @@
     ]
    }
   ],
-  "FileHash": "{2F54075A-4DAB-03CF-2296-33F012FFDA42}"
+  "FileHash": "{AA438BE7-65CD-B95A-7951-B51001E942AD}"
  }
 }
