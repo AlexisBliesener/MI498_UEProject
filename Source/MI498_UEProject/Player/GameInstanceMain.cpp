@@ -9,3 +9,11 @@ void UGameInstanceMain::ResetGame()
 	
 	GameRestarted = true;
 }
+
+void UGameInstanceMain::Init()
+{
+	Super::Init();
+	
+	UScoringManager* ScoringManager = GetSubsystem<UScoringManager>();
+	ScoringManager->SetConfig(ScoringData);
+}

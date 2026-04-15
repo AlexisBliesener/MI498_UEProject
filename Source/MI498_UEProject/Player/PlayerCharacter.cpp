@@ -116,8 +116,6 @@ void APlayerCharacter::RevivePlayer(float ReviveHealth)
 	{
 		playerController->SetAcceptMovementInput(true);
 	}
-
-	OnPlayerRevived();
 }
 
 void APlayerCharacter::AddInvincibility(const float Seconds)
