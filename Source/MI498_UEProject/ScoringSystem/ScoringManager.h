@@ -42,6 +42,7 @@ public:
 	void SetConfig(UScoringData* Data) {Config = Data;}
 	
 	/// Reset all scoring to zero
+	UFUNCTION(BlueprintCallable)
 	void ResetScore();
 	
 	/// Returns the actual accumulated score
