@@ -33,6 +33,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ResetGame();
 	
+	virtual void Init() override;
+	
 	/// This event will be called when the cutscene stopped  
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnCutSceneStopped OnCutSceneStopped;

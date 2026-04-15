@@ -12,7 +12,6 @@ void UScoringManager::ResetScore()
 	SwingerKillVal = 0;
 	LootPickupVal = 0;
 	BreakableWallsVal = 0;
-	AirtimeVal = 0;
 	CurrentComboKillMult = 1;
 	OnScreenScore = 0;
 	Score = 0;
@@ -31,15 +30,15 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 	switch (Killed)
 	{
 	case EEnemyType::AverageEnemy:
-		add = AverageEnemyKillScore;
+		add = Config->AverageEnemyKillScore;
 		break;
 
 	case EEnemyType::Brute:
-		add = BruteKillScore;
+		add = Config->BruteKillScore;
 		break;
 
 	case EEnemyType::Swinger:
-		add = SwingerKillScore;
+		add = Config->SwingerKillScore;
 		break;
 
 	default:
@@ -49,7 +48,7 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 	/// If the player switches weapons between kills
 	if (LastKilledWith != KilledBy && KilledBy != EKillType::Barrel)
 	{
-		CurrentComboKillMult += ComboKillModifier;
+		CurrentComboKillMult += Config->ComboKillModifier;
 		add *= CurrentComboKillMult;
 	}
 	/// If same weapon used consecutively, reset multiplier
@@ -64,7 +63,7 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 	/// Mid-air bonus
 	if (bInAir)
 	{
-		add += InAirKillBonus;
+		add += Config->InAirKillBonus;
 	}
 
 	/// Apply global score multiplier
@@ -73,7 +72,7 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 	/// Barrel bonus multiplier
 	if (KilledBy == EKillType::Barrel)
 	{
-		add *= BombBarrelKillModifier;
+		add *= Config->BombBarrelKillModifier;
 	}
 
 	/// Final score application
@@ -101,19 +100,19 @@ void UScoringManager::AddKillEnemyScore(EEnemyType Killed, EKillType KilledBy)
 
 FString UScoringManager::GetRank() const
 {
-	if (Score < CRankScore)
+	if (Score < Config->CRankScore)
 	{
 		return TEXT("D");
 	}
-	if (Score < BRankScore)
+	if (Score < Config->BRankScore)
 	{
 		return TEXT("C");
 	}
-	if (Score < ARankScore)
+	if (Score < Config->ARankScore)
 	{
 		return TEXT("B");
 	}
-	if (Score < SRankScore)
+	if (Score < Config->SRankScore)
 	{
 		return TEXT("A");
 	}
@@ -122,25 +121,12 @@ FString UScoringManager::GetRank() const
 
 void UScoringManager::Tick(float DeltaTime)
 {
-	/// Airtime Bonus Timer Logic
-	// if (bInAir && !bAirborneSet)
-	// {
-	// 	bAirborneSet = true;
-	// 	GetWorld()->GetTimerManager().SetTimer(AirtimeTimerHandle, this, &UScoringManager::AddAirtimeScore,
-	// 	                                       SecToAddAirtime, true);
-	// }
-	// else if (!bInAir && bAirborneSet)
-	// {
-	// 	bAirborneSet = false;
-	// 	GetWorld()->GetTimerManager().ClearTimer(AirtimeTimerHandle);
-	// }
-
 	/// On-Screen Score Smooth Update Logic
 	if (!bOnScreenScoreUpdating && OnScreenScore != Score)
 	{
 		bOnScreenScoreUpdating = true;
 		GetWorld()->GetTimerManager().SetTimer(OnScreenScoreTimerHandle, this, &UScoringManager::UpdateOnScreenScore,
-		                                       SecToUpdateOnScreenScore, true);
+		                                       Config->SecToUpdateOnScreenScore, true);
 	}
 }
 
@@ -152,13 +138,6 @@ TStatId UScoringManager::GetStatId() const
 bool UScoringManager::IsTickable() const
 {
 	return FTickableGameObject::IsTickable();
-}
-
-void UScoringManager::AddAirtimeScore()
-{
-	/// Adds score every second while player is airborne
-	Score += AirtimeScore * GlobalScoreMult;
-	AirtimeVal += AirtimeScore * GlobalScoreMult;
 }
 
 void UScoringManager::UpdateOnScreenScore()
