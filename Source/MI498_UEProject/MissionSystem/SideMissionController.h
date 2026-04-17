@@ -54,12 +54,6 @@ private:
 	/// Timestamp of when the player started being in air
 	float TimeInAirStarted = 0;
 	
-	/// Stores timestamps of recent kills for time-based missions
-	TArray<float> KilledInTime;
-	
-	/// Current index for circular buffer of kill timestamps
-	int KilledInTimeIndex = 0;
-	
 	/// Cached singleton instance of this controller
 	static ASideMissionController* CachedInstance;
 	
