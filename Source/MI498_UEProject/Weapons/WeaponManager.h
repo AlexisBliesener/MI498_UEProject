@@ -7,6 +7,7 @@
 #include "MI498_UEProject/Animation/PlayerAnimation.h"
 #include "WeaponManager.generated.h"
 
+class ASword;
 class UPlayerAnimation;
 class UInputMappingContext;
 class UInputAction;
@@ -83,6 +84,10 @@ public:
 	/// Sets if weapons are allowed to be used or not
 	UFUNCTION(BlueprintCallable)
 	void SetCanUseWeapons(bool Val);
+	
+	/// Reloads the sword dashes (for when the player enters the cannon)
+	UFUNCTION(BlueprintCallable)
+	void ReloadSword();
 
 protected:
 	/// Called when the component is initialized at game start
@@ -137,6 +142,10 @@ private:
 	/// Cache of the harpoon gun 
 	UPROPERTY()
 	AHarpoonGun* HarpoonGunWeapon = nullptr;
+	
+	/// Cache of the sword 
+	UPROPERTY()
+	ASword* SwordWeapon = nullptr;
 	
 	/// The index in the weapon options array of the currently selected weapon
 	UPROPERTY()
