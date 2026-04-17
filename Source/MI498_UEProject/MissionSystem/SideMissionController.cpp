@@ -8,9 +8,6 @@ ASideMissionController* ASideMissionController::CachedInstance = nullptr;
 ASideMissionController::ASideMissionController()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
-	/// Initialize array to store timestamps of last 4 kills 
-	KilledInTime.Init(-1, 4);
 }
 
 void ASideMissionController::BeginPlay()
@@ -77,16 +74,25 @@ void ASideMissionController::KilledEnemy(EKillType KillType)
 	{
 		TryUpdateSubMission("SideObj_04", 1);
 	}
-	
-	/// Store kill timestamp in circular buffer
-	KilledInTime[KilledInTimeIndex] = GetWorld()->GetTimeSeconds();
 
 	/// Update timed kill mission (kills within window)
 	TryUpdateSubMission("SideObj_06", 1);
 	
-	/// Advance circular buffer index
-	KilledInTimeIndex++;
-	KilledInTimeIndex %= 4;
+	// Create a timer handle 
+	FTimerHandle TimerHandle;
+
+	// Schedule removal after 10 seconds
+	GetWorld()->GetTimerManager().SetTimer(
+		TimerHandle,
+		FTimerDelegate::CreateLambda([this]()
+		{
+			if (!IsValid(this)) return;
+
+			TryUpdateSubMission("SideObj_06", -1);
+		}),
+		10.0f,
+		false
+	);
 }
 
 /// Called when player enters the air
@@ -122,18 +128,5 @@ void ASideMissionController::Tick(float DeltaSeconds)
 		
 		/// Reset timer for next interval
 		TimeInAirStarted = GetWorld()->GetTimeSeconds();
-	}
-	
-	/// Check kill timestamps for expiration 
-	for (int i = 0; i < 4; i++)
-	{
-		if (KilledInTime[i] < 0) continue;
-		
-		/// If kill is too old, remove it and decrement mission progress
-		if (KilledInTime[i] + 10 < GetWorld()->GetTimeSeconds())
-		{
-			KilledInTime[i] = -1;
-			TryUpdateSubMission("SideObj_06", -1);
-		}
 	}
 }
