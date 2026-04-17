@@ -51,6 +51,8 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 
 		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
 		TurnOffLowHealthEffect();
+		
+		WeaponManager->HarpoonGunWeapon->Reload();
 
 		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 		playerController->SetAcceptMovementInput(false);

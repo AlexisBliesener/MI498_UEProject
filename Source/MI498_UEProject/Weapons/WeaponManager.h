@@ -88,6 +88,10 @@ public:
 	/// Reloads the sword dashes (for when the player enters the cannon)
 	UFUNCTION(BlueprintCallable)
 	void ReloadSword();
+	
+	/// Cache of the harpoon gun 
+	UPROPERTY()
+	AHarpoonGun* HarpoonGunWeapon = nullptr;
 
 protected:
 	/// Called when the component is initialized at game start
@@ -138,10 +142,6 @@ private:
 	
 	/// Updates animation state based on the current weapon.
 	void UpdateWeaponAnimation();
-	
-	/// Cache of the harpoon gun 
-	UPROPERTY()
-	AHarpoonGun* HarpoonGunWeapon = nullptr;
 	
 	/// Cache of the sword 
 	UPROPERTY()
