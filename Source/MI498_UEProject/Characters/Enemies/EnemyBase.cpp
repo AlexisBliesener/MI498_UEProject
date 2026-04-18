@@ -291,10 +291,6 @@ void AEnemyBase::Landed(const FHitResult& Hit)
 		CurrentNavLink->ResumePathFollowing(this);
 		CurrentNavLink = nullptr;
 		OnJumpEnd();
-		if (AAIController* aiController = Cast<AAIController>(GetController()))
-		{
-			aiController->ResumeMove(FAIRequestID::CurrentRequest); 
-		}
 	}
 	
 	
@@ -304,10 +300,6 @@ void AEnemyBase::OnSmartLinkJump(AJumpNavLinkProxy* InNavLink)
 {
 	bIsJumping = true;
 	CurrentNavLink = InNavLink;
-	if (AAIController* aiController = Cast<AAIController>(GetController()))
-	{
-		aiController->PauseMove(FAIRequestID::CurrentRequest); 
-	}
 	OnJumpStart();
 }
 
