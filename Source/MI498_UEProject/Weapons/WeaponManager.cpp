@@ -6,6 +6,7 @@
 #include "WeaponInterface.h"
 #include "Blunderbuss/Blunderbuss.h"
 #include "HarpoonGun/HarpoonGun.h"
+#include "Sword/Sword.h"
 
 /// Define a custom logging category for weapon manager messages
 DEFINE_LOG_CATEGORY(WeaponManagerLog);
@@ -52,6 +53,11 @@ void UWeaponManager::BeginPlay()
 			if (AHarpoonGun* Harpoon = Cast<AHarpoonGun>(spawnedActor))
 			{
 				HarpoonGunWeapon = Harpoon;
+			}
+			
+			if (ASword* Sword = Cast<ASword>(spawnedActor))
+			{
+				SwordWeapon = Sword;
 			}
 		}
 	}
@@ -233,6 +239,11 @@ void UWeaponManager::HandleScrollCooldown()
 		0.35f,
 		false
 	);
+}
+
+void UWeaponManager::ReloadSword()
+{
+	SwordWeapon->ReloadDashes();
 }
 
 void UWeaponManager::HandleSelectWeaponPrev()

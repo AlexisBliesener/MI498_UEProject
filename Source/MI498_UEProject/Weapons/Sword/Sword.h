@@ -37,6 +37,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnReloadDashes();
 	
+	/// Refills dash charges back to maximum and re-enables dash use.
+	void ReloadDashes();
+	
 	/// How much force is applied to the player when dashing
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int DashForce = 700;
@@ -92,10 +95,6 @@ private:
 	/// @param Controller - Controller performing the swing
 	/// @param Target - Optional target actor reference
 	void SwingSword(AController* Controller, AActor* Target = nullptr);
-	
-	/// Refills dash charges back to maximum and re-enables dash use.
-	UFUNCTION()
-	void ReloadDashes();
 	
 	/// Sets whether the secondary ability can be used.
 	UFUNCTION()
