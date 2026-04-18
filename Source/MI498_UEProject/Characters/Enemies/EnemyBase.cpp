@@ -186,6 +186,11 @@ void AEnemyBase::BeginPlay()
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
+	if (CurrentHealth <= 0.f && bDied == true)
+	{
+		OnDeath(); // Call the animation 
+		return 0.f;
+	}
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
 	UpdateHealthUI();
@@ -364,7 +369,7 @@ void AEnemyBase::UnPossessed()
 void AEnemyBase::Die()
 {
 	Super::Die();
-	
+	bDied = true;
 	if (DeathVFX)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DeathVFX, GetActorLocation(), FRotator::ZeroRotator, DeathVFXScale);
