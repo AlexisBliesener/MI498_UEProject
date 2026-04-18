@@ -119,20 +119,24 @@ void AMissionController::HandleBombPieceCollected(int32 index)
 	if (BombPiecesCollected == 1)
 	{
 		OnFirstBombPieceCollected(index);
+		OnMainMissionObjectiveChange();
 	}
 	else if (BombPiecesCollected == 2)
 	{
 		OnSecondBombPieceCollected(index);
+		OnMainMissionObjectiveChange();
 	}
 	else
 	{
 		OnThirdBombPieceCollected(index);
+		OnMainMissionObjectiveChange();
 
 		/// Update the UI icon 5 seconds after (show combined bomb then vault door)
 		FTimerHandle TimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this, index]()
 		{
 			DelayedCallThirdBombPieceCollected(index);
+			OnMainMissionObjectiveChange();
 		}, 5.0f, false);
 
 		VaultDoor->EnableInteract();
@@ -175,6 +179,8 @@ void AMissionController::ExplodeVaultDoor()
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
 	VaultDoor->Destroy();
+	
+	OnMainMissionObjectiveChange();
 
 	/// enable player ship beacon
 	if (PlayerShipBeacon)
@@ -285,6 +291,8 @@ void AMissionController::EndSpawningEnemies()
 	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
 	
 	UpdateScoreImage(0);
+	
+	OnMainMissionObjectiveChange();
 
 	/// Unlock the outside vault door
 	OutsideVaultDoor->UnlockDoor();

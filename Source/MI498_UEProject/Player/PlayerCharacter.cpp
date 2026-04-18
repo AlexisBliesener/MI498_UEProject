@@ -51,6 +51,8 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 
 		GetWorld()->GetTimerManager().ClearTimer(LowHealthTimer);
 		TurnOffLowHealthEffect();
+		
+		WeaponManager->HarpoonGunWeapon->Reload();
 
 		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 		playerController->SetAcceptMovementInput(false);
@@ -116,8 +118,6 @@ void APlayerCharacter::RevivePlayer(float ReviveHealth)
 	{
 		playerController->SetAcceptMovementInput(true);
 	}
-
-	OnPlayerRevived();
 }
 
 void APlayerCharacter::AddInvincibility(const float Seconds)

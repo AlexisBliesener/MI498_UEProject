@@ -10,7 +10,6 @@ class MI498_UEPROJECT_API UScoringData : public UDataAsset
     GENERATED_BODY()
 
 public:
-
     // === Core Score Values ===
     UPROPERTY(EditAnywhere, BlueprintReadOnly)
     int BombPieceScore = 5000;

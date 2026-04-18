@@ -9,6 +9,14 @@
 							<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 							<Position X="0" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="MissionComplete" ID="{17F36767-CE3E-4A3D-99EC-D9534C024064}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="NewObjective" ID="{4174C335-BBD6-4C4F-B680-75E97CDF2AF4}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+							<Position X="2" Y="0"/>
+						</Module>
 					</ModuleList>
 				</SoundcasterSession>
 			</ChildrenList>

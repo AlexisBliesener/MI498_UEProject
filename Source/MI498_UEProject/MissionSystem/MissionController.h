@@ -116,6 +116,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnBombExplode();
 	
+	/// Fired when any change to the main objective icons occur
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnMainMissionObjectiveChange();
+	
 	/// Fired when the bomb is planted
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnBombPlanted();
