@@ -174,6 +174,8 @@ void AMissionController::HandleVaultDoorInteract()
 
 void AMissionController::ResetBombPlant()
 {
+	CurrentWave = 0;
+	SecondsInVault = 0;
 	OutsideVaultDoor->LockDoor();
 	PlantedBomb->BombAppear();
 	OnBombMissionRestart();
