@@ -1,5 +1,6 @@
 ﻿#include "MissionController.h"
 #include "BombPiece.h"
+#include "CloudSpawner.h"
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "OutsideVaultDoor.h"
@@ -176,6 +177,7 @@ void AMissionController::ResetBombPlant()
 {
 	CurrentWave = 0;
 	SecondsInVault = 0;
+	CloudSpawner->Reset();
 	OutsideVaultDoor->LockDoor();
 	PlantedBomb->BombAppear();
 	OnBombMissionRestart();
@@ -230,8 +232,8 @@ void AMissionController::ExplodeVaultDoor()
 	{
 		VaultBeacon->SetActorHiddenInGame(true);
 	}
-
-	/// TODO: Alternative for ship falling
+	
+	CloudSpawner->Activate();
 }
 
 void AMissionController::HandleOnEnterExitPlatform()

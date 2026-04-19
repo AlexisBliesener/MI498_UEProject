@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class ACloudSpawner;
 class AVaultTreasure;
 class AOutsideVaultDoor;
 class APlantedBomb;
@@ -43,6 +44,10 @@ public:
 	AMissionController();
 	
 	virtual void BeginPlay() override;
+	
+	/// Cloud spawner to spawn clouds and move sky up
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<ACloudSpawner> CloudSpawner;
 	
 	/// The treasure in the vault
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
