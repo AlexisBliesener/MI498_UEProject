@@ -105,6 +105,9 @@ protected:
 	/// Used to clean up input bindings
 	virtual void OnUnPossess() override;
 
+	/// Called BeginPlay to set input before possession.
+	virtual void BeginPlay() override;
+
 	UPROPERTY()
 	UGameInstanceMain* GameInstanceMain;
 	

@@ -11,6 +11,22 @@
 /// Defines the log category used by the player character controller
 DEFINE_LOG_CATEGORY(PlayerLog);
 
+
+void APlayerCharacterController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	UEnhancedInputLocalPlayerSubsystem* InputSubsystem =
+		ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
+
+	if (IsValid(InputSubsystem))
+	{
+		InputSubsystem->ClearAllMappings();
+		InputSubsystem->AddMappingContext(InputMappingContext, 0);
+	}
+}
+
+
 void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 {
 	Super::OnPossess(PossessedPawn);
@@ -40,8 +56,8 @@ void APlayerCharacterController::OnPossess(APawn* PossessedPawn)
 	}
 	
 	/// Reset existing input mappings and apply this controller's mapping context
-	InputSubsystem->ClearAllMappings();
-	InputSubsystem->AddMappingContext(InputMappingContext, 0);
+	//InputSubsystem->ClearAllMappings();
+	//InputSubsystem->AddMappingContext(InputMappingContext, 0);
 	
 	/// Bind inputs
 	if (ActionMove)
