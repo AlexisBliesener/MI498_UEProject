@@ -167,6 +167,11 @@ public:
 	/// Get remaining time
 	UFUNCTION(BlueprintCallable, Category = "Mission|Timer")
 	float GetRemainingMissionTime() const;
+
+	// Function called to reset bomb plant
+	UFUNCTION(BlueprintCallable)
+	void ResetBombPlant();
+
 	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
@@ -178,6 +183,10 @@ protected:
 	/// Blueprint event fired when the mission succeeds
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSucceedMission();
+
+	// Blueprint event fired when bomb plant resets.
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnBombMissionRestart();
 	
 private:
 	/// Delegate handler for bomb piece collection

@@ -64,6 +64,12 @@ public:
 		SetGlobalScoreMult(Config->AfterBombPlantGlobalMult);
 	}
 
+	/// Resets global score multiplier, used when resetting bomb plant
+	void ResetGlobalScoreMult()
+	{
+		SetGlobalScoreMult(1);
+	}
+
 	/// Adds score when finishing the level
 	void AddFinishLevelScore() { Score += Config->FinishLevelScore; EscapedVal += Config->FinishLevelScore;}
 

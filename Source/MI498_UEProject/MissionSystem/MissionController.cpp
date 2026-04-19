@@ -171,6 +171,41 @@ void AMissionController::HandleVaultDoorInteract()
 	}
 }
 
+
+void AMissionController::ResetBombPlant()
+{
+	OutsideVaultDoor->LockDoor();
+	PlantedBomb->BombAppear();
+	OnBombMissionRestart();
+	VaultDoor->SetVaultDoorEnabled(true);
+	ScoringManager->ResetGlobalScoreMult();
+	
+	/// reset beacons that are triggered on bomb explode
+	if (!PlayerShipBeacon)
+	{
+		PlayerShipBeacon->SetActorHiddenInGame(true);
+	}
+
+	/// Disable vault beacon
+	if (!VaultBeacon)
+	{
+		VaultBeacon->SetActorHiddenInGame(false);
+	}
+
+	//Clear Timers
+	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+	GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
+
+	/// Delay vault explosion
+	GetWorldTimerManager().SetTimer(
+		MissionTimerHandle,
+		this,
+		&AMissionController::ExplodeVaultDoor,
+		7,
+		false);
+}
+
+
 void AMissionController::ExplodeVaultDoor()
 {
 	/// Trigger explosion effects and scoring
@@ -178,7 +213,7 @@ void AMissionController::ExplodeVaultDoor()
 	OnBombExplode();
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
-	VaultDoor->Destroy();
+	VaultDoor->SetVaultDoorEnabled(false);
 	
 	OnMainMissionObjectiveChange();
 
