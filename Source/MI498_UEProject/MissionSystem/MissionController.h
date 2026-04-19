@@ -97,6 +97,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<AShip>> Ships;
 	
+	/// Array of ships to rotate when vault explodes
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<AShip>> ShipsToRotate;
+	
 	/// The beacon on the vault, enabled when all three bomb pieces are collected
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<AActor> VaultBeacon;

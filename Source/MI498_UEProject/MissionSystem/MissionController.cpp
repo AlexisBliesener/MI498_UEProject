@@ -207,6 +207,16 @@ void AMissionController::ResetBombPlant()
 		&AMissionController::ExplodeVaultDoor,
 		7,
 		false);
+	
+	/// Unrotate non important espace ships
+	for (AShip* Ship : ShipsToRotate)
+	{
+		if (!Ship) continue;
+
+		FRotator ZeroRotator = FRotator(0,0,0);
+
+		Ship->SetActorRotation(ZeroRotator);
+	}
 }
 
 
@@ -234,6 +244,20 @@ void AMissionController::ExplodeVaultDoor()
 	}
 	
 	CloudSpawner->Activate();
+
+	/// Rotate non important espace ships
+	for (AShip* Ship : ShipsToRotate)
+	{
+		if (!Ship) continue;
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-180.f, 180.f), // Pitch
+			FMath::RandRange(-180.f, 180.f), // Yaw
+			FMath::RandRange(-180.f, 180.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
+	}
 }
 
 void AMissionController::HandleOnEnterExitPlatform()
