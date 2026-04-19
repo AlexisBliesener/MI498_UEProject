@@ -371,3 +371,16 @@ void AShip::SetCannonAiming(bool bIsAiming, AShip* LastShipActivated)
     }
 }
 
+void AShip::DestroyAllEnemiesOnShip()
+{
+    for (AEnemyBase* Enemy : EnemiesOnShip)
+    {
+        if (IsValid(Enemy))
+        {
+            Enemy->Destroy();
+        }
+    }
+
+    EnemiesOnShip.Empty(); 
+}
+

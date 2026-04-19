@@ -67,6 +67,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Ship|Cannon")
 	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
+	void DestroyAllEnemiesOnShip();
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
