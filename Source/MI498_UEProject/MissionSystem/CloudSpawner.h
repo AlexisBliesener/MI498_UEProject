@@ -21,7 +21,8 @@ public:
 
 protected:
 	virtual void Tick(float DeltaTime) override;
-	
+	void TriggerShipExplosions();
+
 	// Skysphere
 	UPROPERTY(EditAnywhere, Category = "Clouds")
 	AActor* SkySphere;
@@ -72,6 +73,8 @@ private:
 	
 	/// Spawns a new cloud
 	void SpawnCloud();
+	
+	TArray<AActor*> FoundExplosions;
 	
 	/// If the cloud spawner is currently active
 	bool bActive = false;

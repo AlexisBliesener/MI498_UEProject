@@ -36,6 +36,9 @@ AShip::AShip()
 void AShip::BeginPlay()
 {
     Super::BeginPlay();
+    
+    RockOffset = FMath::RandRange(0.f, 2 * PI);
+    
     // Create a HISM for each actor class that on the list 
     for (FHISMGroup& group : ActorsHISMOnShip)
     {
@@ -368,5 +371,19 @@ void AShip::SetCannonAiming(bool bIsAiming, AShip* LastShipActivated)
     {
         SetShipActive(false);
     }
+}
+
+void AShip::Tick(float DeltaSeconds)
+{
+    Super::Tick(DeltaSeconds);
+    
+    RockTime += DeltaSeconds * RockSpeed;
+
+    float RollOffset = FMath::Sin(RockTime + RockOffset) * RockAngle;
+
+    FRotator NewRotation = GetActorRotation();
+    NewRotation.Pitch = RollOffset;
+
+    SetActorRotation(NewRotation);
 }
 

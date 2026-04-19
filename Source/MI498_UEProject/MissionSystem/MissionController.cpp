@@ -217,6 +217,15 @@ void AMissionController::ResetBombPlant()
 
 		Ship->SetActorRotation(ZeroRotator);
 	}
+	
+	for (AShip* Ship : ShipPathBack)
+	{
+		if (!Ship) continue;
+
+		FRotator ZeroRotator = FRotator(0,0,0);
+
+		Ship->SetActorRotation(ZeroRotator);
+	}
 }
 
 
@@ -254,6 +263,19 @@ void AMissionController::ExplodeVaultDoor()
 			FMath::RandRange(-180.f, 180.f), // Pitch
 			FMath::RandRange(-180.f, 180.f), // Yaw
 			FMath::RandRange(-180.f, 180.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
+	}
+	
+	for (AShip* Ship : ShipPathBack)
+	{
+		if (!Ship) continue;
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-20.f, 20.f), // Pitch
+			FMath::RandRange(-20.f, 20.f), // Yaw
+			FMath::RandRange(-20.f, 20.f)  // Roll
 		);
 
 		Ship->SetActorRotation(RandomRotation);
