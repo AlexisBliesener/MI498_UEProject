@@ -24,18 +24,6 @@ void ARowBoat::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("RowBoat: No spline component found."));
 	}
-
-	/// Bind to the ship's fall event if a ship is assigned
-	if (ConnectedShip)
-	{
-		ConnectedShip->OnShipFall.AddDynamic(
-			this,
-			&ARowBoat::HandleShipBeginsFall);
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("RowBoat: ConnectedShip is null."));
-	}
 	
 	/// Get spline length
 	SplineLength = Spline->GetSplineLength();
@@ -77,34 +65,9 @@ void ARowBoat::Tick(float DeltaTime)
 
 		/// Apply position, rotation to the boat base
 		RowBoatBase->SetWorldLocationAndRotationNoPhysics(NewLocation, LookRotation);
-
-		/// If the boat is falling, apply fall movement
-		if (bFalling)
-		{
-			Fall(DeltaTime);
-		}
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Spline or row boat base is null"));
 	}
-}
-
-void ARowBoat::Fall(const float DeltaTime)
-{
-	/// Calculate downward movement based on fall speed
-	FVector FallOffset = FVector(0.f, 0.f, -FallSpeed * DeltaTime);
-
-	/// Move the entire actor downward while not checking for collisions
-	RootComponent->SetWorldLocationAndRotationNoPhysics(RootComponent->GetComponentLocation() + FallOffset,  RootComponent->GetComponentRotation());
-	//AddActorWorldOffset(FallOffset, true);
-}
-
-void ARowBoat::HandleShipBeginsFall(const float ShipFallSpeed)
-{
-	/// Enable falling behavior
-	bFalling = true;
-
-	/// Store the fall speed received from the ship
-	FallSpeed = ShipFallSpeed;
 }

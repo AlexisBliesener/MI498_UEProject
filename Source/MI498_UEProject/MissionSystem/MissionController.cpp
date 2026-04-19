@@ -231,11 +231,7 @@ void AMissionController::ExplodeVaultDoor()
 		VaultBeacon->SetActorHiddenInGame(true);
 	}
 
-	/// Start falling ships
-	for (TObjectPtr<AShip> ship : Ships)
-	{
-		ship->StartFalling();
-	}
+	/// TODO: Alternative for ship falling
 }
 
 void AMissionController::HandleOnEnterExitPlatform()

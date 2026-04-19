@@ -32,15 +32,6 @@ AShip::AShip()
     TraceCollisionBox->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 }
 
-void AShip::Tick(float DeltaSeconds)
-{
-    Super::Tick(DeltaSeconds);
-
-    if (bFalling)
-    {
-        Fall(DeltaSeconds);
-    }
-}
 
 void AShip::BeginPlay()
 {
@@ -67,27 +58,6 @@ void AShip::BeginPlay()
     
     GetWorldTimerManager().SetTimer(PlayerCheckTimer, this, &AShip::CheckPlayerBox, 0.05f, true);
     
-}
-
-void AShip::Fall(const float DeltaTime)
-{
-    if (bIsPlayerInside)
-    {
-        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallSpeed * DeltaTime), false, nullptr, ETeleportType::TeleportPhysics);
-    }
-    else
-    {
-        // Stagger updates across frames using ship index
-        if (GFrameCounter % 8 != ShipIndex)
-            return;
-
-        FallAccumulator += DeltaTime * 8.f * FallSpeed;
-        if (FallAccumulator < FallInterval)
-            return;
-        
-        RootComponent->AddWorldOffset(FVector(0.f, 0.f, -FallAccumulator), false, nullptr, ETeleportType::TeleportPhysics);
-        FallAccumulator = 0.f;
-    }
 }
 
 void AShip::DuplicateShipForNavigation()
@@ -346,19 +316,6 @@ void AShip::SetShipActive(bool bIsActive)
         if (IsValid(enemy))
         {
             enemy->SetEnabledEnemy(bIsActive);
-        }
-    }
-}
-
-void AShip::StartFalling()
-{
-    bFalling = true;
-    OnShipFall.Broadcast(FallSpeed);
-    if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
-    {
-        if (!navSys->IsNavigationBuildingLocked(1))
-        {
-            navSys->AddNavigationBuildLock(1);
         }
     }
 }
