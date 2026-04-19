@@ -69,16 +69,6 @@ public:
 	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
 
 protected:
-	virtual void Tick(float DeltaSeconds) override;
-	float RockTime = 0.f;
-
-	UPROPERTY(EditAnywhere, Category="Ship Movement")
-	float RockSpeed = 0.2f;   // how fast it rocks
-	float RockOffset = 0.f;
-	
-	UPROPERTY(EditAnywhere, Category="Ship Movement")
-	float RockAngle = 3.0f;  // max degrees each side
-	
 	/// All actors attached to the ship, they will be added to that list on the start    
 	UPROPERTY()
 	TArray<AActor*> ActorsOnShip; 
