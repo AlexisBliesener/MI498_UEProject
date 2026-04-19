@@ -23,12 +23,7 @@ struct FHISMGroup
 	/// this is a flag used to see if we have the main instance converted or not.. 
 	bool bIsCopied = false;
 };
-/// Delegate that calls when the ship begins to falls
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
-	FOnShipFall,
-	float,
-	speed
-);
+
 /// falls downward when triggered.
 UCLASS()
 class MI498_UEPROJECT_API AShip : public AActor
@@ -38,12 +33,6 @@ class MI498_UEPROJECT_API AShip : public AActor
 public:
 	AShip();
 	
-	/// Tracks whether the ship is currently falling.
-	bool bFalling = false;
-
-	/// Speed at which the ship falls (units per second).
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int FallSpeed = 100;
 	/// If the player is inside the activation box, the ship and all actors attached to the ship will be enabled (collision)
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default|Dev")
 	UBoxComponent* ActivationBox;
@@ -54,12 +43,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default|Dev")
 	UBoxComponent* TraceCollisionBox;
 	
-	/// Event broadcast when the ship begins to fall
-	FOnShipFall OnShipFall;
-
-	UPROPERTY(EditAnywhere)
-	int32 ShipIndex = 0;
-	
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
@@ -69,9 +52,7 @@ public:
 	 * @param bIsActive if true, the ship will be active..
 	 */
 	void SetShipActive(bool bIsActive);
-	/// Starts the falling behavior.
-	UFUNCTION(BlueprintCallable, Category = "Ship")
-	void StartFalling();
+
 	/**
 	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
 	 * @param Enemy the enemy that to be added 
@@ -86,6 +67,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Ship|Cannon")
 	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
+	void DestroyAllEnemiesOnShip();
 
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
@@ -104,17 +86,14 @@ protected:
 	/// Hidden ship related to the current ship (used for the AI navmesh) 
 	UPROPERTY()
 	AActor* HiddenShip;
-	virtual void Tick(float DeltaSeconds) override;
 
 	virtual void BeginPlay() override;
-	/// Applies downward movement each frame.
-	void Fall(float DeltaTime);
+
 	/**
 	 * it makes a copy ship far under the map and 
 	 * moves the nav mesh on the ship to the copy one so the ai can use it 
 	 */
 	void DuplicateShipForNavigation();
-
 	
 	/**
 	 * This function is called on the timer, it will check if the player inside the ship or not 
@@ -128,9 +107,4 @@ private:
 	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
 	 */
 	void ConvertSMToHISM();
-
-	float FallAccumulator = 0.f;
-	static constexpr float FallInterval = 5.f;
-
-
 };
