@@ -330,7 +330,7 @@ AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform co
         enemy->HiddenShip = HiddenShip;
         UGameplayStatics::FinishSpawningActor(enemy, Transform);
         EnemiesOnShip.Add(enemy);
-        //enemy->SetEnabledEnemy(bIsPlayerInside);
+        enemy->SetEnabledEnemy(bIsPlayerInside);
         return enemy;
     }
     UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());
