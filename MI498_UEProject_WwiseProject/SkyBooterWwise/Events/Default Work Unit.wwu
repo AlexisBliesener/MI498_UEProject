@@ -873,6 +873,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="MenuMusic" ID="{6A6FD591-4D66-486A-AED1-777366C85EDF}">
+							<ChildrenList>
+								<Action Name="" ID="{7983A134-E1D3-423B-97B9-2ACBB66637E1}" ShortID="53405975">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Menu" ID="{FE062AFA-62F1-4FE9-A522-9907F78C6DAB}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="MemeEvents" ID="{29D172A6-0252-4F28-BE8B-4ECAD23BE8A7}" ShortID="421133730">
@@ -1139,7 +1150,7 @@
 								<Action Name="" ID="{556B2842-16DE-472C-83B3-497707D8CDDA}" ShortID="544354352">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="DeathAverageEnemy" ID="{8D554F26-0861-4ECC-B437-E22AAF5C034C}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+											<ObjectRef Name="DeathAverage" ID="{AD2E95A3-DA55-4032-9CB4-7A1E15A36C7D}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1226,7 +1237,7 @@
 								<Action Name="" ID="{F5753D15-762C-4255-AF70-85F04DCFCDBF}" ShortID="514583707">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="DeathBruteEnemy" ID="{663D4F82-1346-4355-9F29-E95F7C59C549}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+											<ObjectRef Name="DeathBrute" ID="{ECF0C36D-BA4D-4F8B-8276-AFCE648531D7}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1237,7 +1248,7 @@
 								<Action Name="" ID="{74629EAE-9A37-429E-AD5A-B69C3E1595CA}" ShortID="619496794">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="DeathSwingerEnemy" ID="{5FA7D16A-CE68-4B08-B6E2-B2828A05EEE4}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+											<ObjectRef Name="DeathSwinger" ID="{8B240C6D-C2F1-4CB2-9A18-5DEB17F44C21}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
