@@ -24,6 +24,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void EnableInteract();
 
+	/// Allows to enable or disable vault door state
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetVaultDoorEnabled (bool Enabled);
+
 
 protected:
 

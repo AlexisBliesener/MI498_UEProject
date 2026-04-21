@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "MissionController.generated.h"
 
+class ACloudSpawner;
 class AVaultTreasure;
 class AOutsideVaultDoor;
 class APlantedBomb;
@@ -43,6 +44,10 @@ public:
 	AMissionController();
 	
 	virtual void BeginPlay() override;
+	
+	/// Cloud spawner to spawn clouds and move sky up
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<ACloudSpawner> CloudSpawner;
 	
 	/// The treasure in the vault
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -91,6 +96,14 @@ public:
 	/// Array of ships in the level
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<AShip>> Ships;
+	
+	/// Array of ships to rotate when vault explodes
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<AShip>> ShipsToRotate;
+	
+	/// Array of ships to slightly tilt, in the path back
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<AShip>> ShipPathBack;
 	
 	/// The beacon on the vault, enabled when all three bomb pieces are collected
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -167,6 +180,11 @@ public:
 	/// Get remaining time
 	UFUNCTION(BlueprintCallable, Category = "Mission|Timer")
 	float GetRemainingMissionTime() const;
+
+	// Function called to reset bomb plant
+	UFUNCTION(BlueprintCallable)
+	void ResetBombPlant();
+
 	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
@@ -178,6 +196,10 @@ protected:
 	/// Blueprint event fired when the mission succeeds
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSucceedMission();
+
+	// Blueprint event fired when bomb plant resets.
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnBombMissionRestart();
 	
 private:
 	/// Delegate handler for bomb piece collection

@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{4D9550EC-7662-283F-D862-E9B2C9B1AEDA}",
+    "Hash": "{0324D4CB-CAE5-5FE7-4354-21B3F69E6A1E}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -197,7 +197,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "LevelChainClick.wav",
-      "CachePath": "21/{21BBDD1B-ECDD-47C5-ED0C-BE10EB52380F}.wem"
+      "CachePath": "6B/{6B759C8D-98DC-5E4E-EC80-F08EB724090D}.wem"
      },
      {
       "Id": "105716389",
@@ -1261,7 +1261,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "NewObjective.wav",
-      "CachePath": "21/{21A41E33-6682-CE0D-FF96-D203898672A9}.wem"
+      "CachePath": "3C/{3C8B8A05-994D-E8F9-A394-2A1F6DECBCD9}.wem"
      },
      {
       "Id": "634837452",
@@ -1317,7 +1317,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "Cannon.wav",
-      "CachePath": "DB/{DBF058EA-7410-7ED4-77FA-80FC51FFDEB0}.wem"
+      "CachePath": "BA/{BA4685DB-975D-02A3-A49B-008AB4A50F71}.wem"
      },
      {
       "Id": "652248752",
@@ -1381,7 +1381,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "FlameQuiver.wav",
-      "CachePath": "BB/{BB396DB1-9E4E-1374-C952-B20B33412923}.wem"
+      "CachePath": "A5/{A5F18BA9-89D3-0AE2-37D1-2DFF2FE01D35}.wem"
      },
      {
       "Id": "676257027",
@@ -1429,7 +1429,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "MissionComplete.wav",
-      "CachePath": "48/{48842BE8-E7A2-D4C7-7A98-4DC7768B70D7}.wem"
+      "CachePath": "6A/{6A5ED3DF-8C4E-4FFB-83F2-688F2FFE8344}.wem"
      },
      {
       "Id": "713593597",
@@ -1997,7 +1997,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "CoinLong.wav",
-      "CachePath": "DA/{DA05F873-D251-A0EA-71C1-79F8B40F7731}.wem"
+      "CachePath": "BD/{BDEB5F68-8E45-85BC-6461-9C490AD05F4A}.wem"
      },
      {
       "Id": "960224522",
@@ -2184,6 +2184,14 @@
       "CachePath": "C7/{C74E6475-C6BC-1267-2221-2BC22BD172CD}.wem"
      },
      {
+      "Id": "1046011913",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Skybooter Menu demo.wav",
+      "CachePath": "00/{00232985-2165-1ECB-0ED9-01E540F3AD18}.wem"
+     },
+     {
       "Id": "1048443078",
       "Language": "SFX",
       "Streaming": "false",
@@ -2298,7 +2306,6 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\AverageEnemyDeath",
       "GUID": "{C4D36737-4FD3-4D61-8834-CECC25CC0A14}",
       "Color": "6",
-      "MaxAttenuation": "5000",
       "DurationType": "OneShot",
       "DurationMin": "0.65947",
       "DurationMax": "2.247752",
@@ -2540,7 +2547,6 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\BruteDeath",
       "GUID": "{2F2B85C6-4810-49D0-96F7-CC5DCCE0B6A1}",
       "Color": "6",
-      "MaxAttenuation": "5000",
       "DurationType": "OneShot",
       "DurationMin": "1.308906",
       "DurationMax": "2.3500817",
@@ -3154,7 +3160,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\Ambience\\Lamps",
       "GUID": "{BADB8A7B-11B2-4752-9C5F-82C0B9F16BA4}",
       "Color": "4",
-      "MaxAttenuation": "3000",
+      "MaxAttenuation": "1000",
       "DurationType": "Infinite",
       "MediaRefs": [
        {
@@ -3254,6 +3260,19 @@
       "DurationType": "OneShot",
       "DurationMin": "0",
       "DurationMax": "0"
+     },
+     {
+      "Id": "679636833",
+      "Name": "MenuMusic",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\MenuMusic",
+      "GUID": "{6A6FD591-4D66-486A-AED1-777366C85EDF}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1046011913"
+       }
+      ]
      },
      {
       "Id": "2390202056",
@@ -3903,7 +3922,6 @@
       "ObjectPath": "\\Events\\Default Work Unit\\VA\\SwingerDeath",
       "GUID": "{EF4E1AA7-9896-49CB-AA7F-B4530AFF1C83}",
       "Color": "6",
-      "MaxAttenuation": "5000",
       "DurationType": "OneShot",
       "DurationMin": "1.1753827",
       "DurationMax": "3.2589006",
@@ -4368,6 +4386,6 @@
     ]
    }
   ],
-  "FileHash": "{AA438BE7-65CD-B95A-7951-B51001E942AD}"
+  "FileHash": "{DAB8767C-7720-26A2-1119-5F72D0463333}"
  }
 }

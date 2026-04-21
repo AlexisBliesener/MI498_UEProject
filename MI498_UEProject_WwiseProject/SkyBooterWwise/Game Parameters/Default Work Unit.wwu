@@ -28,6 +28,34 @@
 						<Property Name="Min" Type="Real64" Value="-48"/>
 					</PropertyList>
 				</GameParameter>
+				<Folder Name="Settings" ID="{ED954136-7CF3-4B92-9426-2A00BAD5EC40}" ShortID="1017900192">
+					<ChildrenList>
+						<GameParameter Name="SFX" ID="{2A919A97-84D6-4195-B9DF-7C20CD7F4E4E}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="1"/>
+								<Property Name="Max" Type="Real64" Value="2"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Music" ID="{CC406B42-A89D-4EB6-912F-21D00C15D82D}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="1"/>
+								<Property Name="Max" Type="Real64" Value="2"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Master" ID="{B0FE3CE3-E1EC-49F4-8244-76817883194A}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="1"/>
+								<Property Name="Max" Type="Real64" Value="2"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Voices" ID="{DCE74BBC-E30A-4B2F-BC97-B6C72AAEC577}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="1"/>
+								<Property Name="Max" Type="Real64" Value="2"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>

@@ -1,5 +1,6 @@
 ﻿#include "MissionController.h"
 #include "BombPiece.h"
+#include "CloudSpawner.h"
 #include "ExitCannonComponent.h"
 #include "ExitPlatform.h"
 #include "OutsideVaultDoor.h"
@@ -171,6 +172,63 @@ void AMissionController::HandleVaultDoorInteract()
 	}
 }
 
+
+void AMissionController::ResetBombPlant()
+{
+	CurrentWave = 0;
+	SecondsInVault = 0;
+	CloudSpawner->Reset();
+	OutsideVaultDoor->LockDoor();
+	PlantedBomb->BombAppear();
+	OnBombMissionRestart();
+	VaultDoor->SetVaultDoorEnabled(true);
+	ScoringManager->ResetGlobalScoreMult();
+	
+	/// reset beacons that are triggered on bomb explode
+	if (!PlayerShipBeacon)
+	{
+		PlayerShipBeacon->SetActorHiddenInGame(true);
+	}
+
+	/// Disable vault beacon
+	if (!VaultBeacon)
+	{
+		VaultBeacon->SetActorHiddenInGame(false);
+	}
+
+	//Clear Timers
+	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+	GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
+
+	/// Delay vault explosion
+	GetWorldTimerManager().SetTimer(
+		MissionTimerHandle,
+		this,
+		&AMissionController::ExplodeVaultDoor,
+		7,
+		false);
+	
+	/// Unrotate non important espace ships
+	for (AShip* Ship : ShipsToRotate)
+	{
+		if (!Ship) continue;
+
+		FRotator ZeroRotator = FRotator(0,0,0);
+
+		Ship->SetActorRotation(ZeroRotator);
+	}
+	
+	for (AShip* Ship : ShipPathBack)
+	{
+		if (!Ship) continue;
+
+		FRotator ZeroRotator = FRotator(0,0,0);
+
+		Ship->SetActorRotation(ZeroRotator);
+	}
+}
+
+
 void AMissionController::ExplodeVaultDoor()
 {
 	/// Trigger explosion effects and scoring
@@ -178,7 +236,7 @@ void AMissionController::ExplodeVaultDoor()
 	OnBombExplode();
 	ScoringManager->AddOpenVaultScore();
 	StageTwoFinish(true);
-	VaultDoor->Destroy();
+	VaultDoor->SetVaultDoorEnabled(false);
 	
 	OnMainMissionObjectiveChange();
 
@@ -193,11 +251,36 @@ void AMissionController::ExplodeVaultDoor()
 	{
 		VaultBeacon->SetActorHiddenInGame(true);
 	}
+	
+	CloudSpawner->Activate();
 
-	/// Start falling ships
-	for (TObjectPtr<AShip> ship : Ships)
+	/// Rotate non important espace ships
+	for (AShip* Ship : ShipsToRotate)
 	{
-		ship->StartFalling();
+		if (!Ship) continue;
+		
+		Ship->DestroyAllEnemiesOnShip();
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-180.f, 180.f), // Pitch
+			FMath::RandRange(-180.f, 180.f), // Yaw
+			FMath::RandRange(-180.f, 180.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
+	}
+	
+	for (AShip* Ship : ShipPathBack)
+	{
+		if (!Ship) continue;
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-10.f, 10.f), // Pitch
+			FMath::RandRange(-10.f, 10.f), // Yaw
+			FMath::RandRange(-10.f, 10.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
 	}
 }
 

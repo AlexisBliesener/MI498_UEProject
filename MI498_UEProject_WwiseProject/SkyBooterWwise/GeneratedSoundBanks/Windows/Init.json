@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{919878E4-9F8D-F6FA-68A3-4AE72AF27B68}",
+    "Hash": "{F0BEDD0B-6947-1E19-AED5-D4051C90B2BB}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -72,6 +72,12 @@
       "GUID": "{F482BAD0-64FE-46DB-97D2-04C0D4AF50FE}"
      },
      {
+      "Id": "1971575107",
+      "Name": "DialogueBus2",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\DialogueBus2",
+      "GUID": "{E96CB578-DF73-4848-8BA2-97130EBCE78F}"
+     },
+     {
       "Id": "2246998526",
       "Name": "Main Audio Bus",
       "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus",
@@ -104,6 +110,12 @@
       "GUID": "{F0694937-29F4-4E28-8ADA-52B396A6D9AA}"
      },
      {
+      "Id": "3803850708",
+      "Name": "SFXBus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Main Audio Bus\\SFXBus",
+      "GUID": "{BF1FFEB6-5F0E-4026-BB35-1E5C037B080E}"
+     },
+     {
       "Id": "4112775838",
       "Name": "PlayerDeathBus",
       "ObjectPath": "\\Busses\\Default Work Unit\\PlayerDeathBus",
@@ -117,6 +129,12 @@
      }
     ],
     "GameParameters": [
+     {
+      "Id": "393239870",
+      "Name": "SFX",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Settings\\SFX",
+      "GUID": "{2A919A97-84D6-4195-B9DF-7C20CD7F4E4E}"
+     },
      {
       "Id": "457444899",
       "Name": "Combat_Effect",
@@ -178,6 +196,12 @@
       "GUID": "{536FA72C-8C7E-4C8B-AE03-EF34FDADC314}"
      },
      {
+      "Id": "3313685232",
+      "Name": "Voices",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Settings\\Voices",
+      "GUID": "{DCE74BBC-E30A-4B2F-BC97-B6C72AAEC577}"
+     },
+     {
       "Id": "3715662592",
       "Name": "SS_Air_Storm",
       "ObjectPath": "\\Game Parameters\\Factory Soundseed Air Game Syncs\\SS_Air_Storm",
@@ -194,6 +218,18 @@
       "Name": "SS_Air_Presence",
       "ObjectPath": "\\Game Parameters\\Factory Soundseed Air Game Syncs\\SS_Air_Presence",
       "GUID": "{E3B7811A-7B2F-490F-B44F-5FE51B468041}"
+     },
+     {
+      "Id": "3991942870",
+      "Name": "Music",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Settings\\Music",
+      "GUID": "{CC406B42-A89D-4EB6-912F-21D00C15D82D}"
+     },
+     {
+      "Id": "4056684167",
+      "Name": "Master",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Settings\\Master",
+      "GUID": "{B0FE3CE3-E1EC-49F4-8244-76817883194A}"
      },
      {
       "Id": "4160247818",
@@ -300,6 +336,32 @@
         "ObjectPath": "\\States\\Default Work Unit\\PlayerStates\\IsSprinting\\No",
         "GUID": "{DDCE2AF2-5CEC-421E-AB2E-B56674246487}",
         "Color": "12"
+       }
+      ]
+     },
+     {
+      "Id": "3604647259",
+      "Name": "MainMenu",
+      "ObjectPath": "\\States\\Default Work Unit\\MainMenu",
+      "GUID": "{EFEB9C82-FCBA-45AE-80DC-7B00ECE57D34}",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\MainMenu\\None",
+        "GUID": "{BB452A66-A09D-4FEA-BD39-AF33029C1C1F}"
+       },
+       {
+        "Id": "979470758",
+        "Name": "Yes",
+        "ObjectPath": "\\States\\Default Work Unit\\MainMenu\\Yes",
+        "GUID": "{13C9AAAF-6EC7-4750-B443-1C7239A9138F}"
+       },
+       {
+        "Id": "1668749452",
+        "Name": "No",
+        "ObjectPath": "\\States\\Default Work Unit\\MainMenu\\No",
+        "GUID": "{920B5AA2-37B6-49DC-AE5C-CFF2D5E7C22D}"
        }
       ]
      },
@@ -838,6 +900,6 @@
     ]
    }
   ],
-  "FileHash": "{6544C19F-D3DE-3DEE-2363-E8FE9BDB7CF3}"
+  "FileHash": "{69CDEFE2-8C44-0A96-9600-46582743BA0C}"
  }
 }
