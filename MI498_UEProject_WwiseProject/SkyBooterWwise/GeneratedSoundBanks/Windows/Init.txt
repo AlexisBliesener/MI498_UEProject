@@ -2,6 +2,7 @@ State Group	ID	Name			Wwise Object Path	Notes
 	76065630	LowHealthState			\Default Work Unit\LowHealthState	
 	84387996	NumberofBombPieces			\Default Work Unit\PlayerStates\NumberofBombPieces	
 	100949179	IsSprinting			\Default Work Unit\PlayerStates\IsSprinting	
+	3604647259	MainMenu			\Default Work Unit\MainMenu	
 	3940648127	IsMoving			\Default Work Unit\PlayerStates\IsMoving	
 
 State	ID	Name	State Group			Notes
@@ -16,20 +17,29 @@ State	ID	Name	State Group			Notes
 	748895195	None	IsSprinting			
 	979470758	Yes	IsSprinting			
 	1668749452	No	IsSprinting			
+	748895195	None	MainMenu			
+	979470758	Yes	MainMenu			
+	1668749452	No	MainMenu			
 	748895195	None	IsMoving			
 	979470758	Yes	IsMoving			
 	1668749452	No	IsMoving			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\Settings\SFX	
 	457444899	Combat_Effect			\Default Work Unit\Combat_Effect	
+	3313685232	Voices			\Default Work Unit\Settings\Voices	
+	3991942870	Music			\Default Work Unit\Settings\Music	
+	4056684167	Master			\Default Work Unit\Settings\Master	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	309504875	DialogueBus			\Default Work Unit\Main Audio Bus\DialogueBus	
 	1580920053	StingerBus			\Default Work Unit\Main Audio Bus\StingerBus	
 	1966988073	TestBus			\Default Work Unit\TestBus	
+	1971575107	DialogueBus2			\Default Work Unit\Main Audio Bus\DialogueBus2	
 	2246998526	Main Audio Bus			\Default Work Unit\Main Audio Bus	
 	2769824834	Combat_Bus			\Default Work Unit\Main Audio Bus\Combat_Bus	
 	2886307548	MusicBus			\Default Work Unit\Main Audio Bus\MusicBus	
+	3803850708	SFXBus			\Default Work Unit\Main Audio Bus\SFXBus	
 	4112775838	PlayerDeathBus			\Default Work Unit\PlayerDeathBus	
 	4293657029	Steps_Bus			\Default Work Unit\Main Audio Bus\Steps_Bus	
 
