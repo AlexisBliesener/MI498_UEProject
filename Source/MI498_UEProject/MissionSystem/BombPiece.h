@@ -21,6 +21,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void BombPieceCollected(int32 index);
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void PocketBombPiece();
+
 protected:
 
 private:
