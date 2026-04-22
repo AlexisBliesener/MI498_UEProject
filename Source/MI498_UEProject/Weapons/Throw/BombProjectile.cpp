@@ -3,6 +3,7 @@
 
 #include "BombProjectile.h"
 
+#include "NiagaraFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "MI498_UEProject/Player/PlayerCharacter.h"
 
@@ -56,6 +57,10 @@ void ABombProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 		);
 		SetActorScale3D(FVector::ZeroVector);
 		
+		if (ExplosionVFX)
+		{
+			UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ExplosionVFX,GetActorLocation(),FRotator(0.f, 90.f, 0.f), FVector(0.2f),true,true,ENCPoolMethod::None,true);
+		}
 		OnExplode();
 		
 		Destroy();
@@ -78,6 +83,10 @@ float ABombProjectile::TakeDamage(float DamageAmount, const FDamageEvent& Damage
 		return 0.f;
 	}
 	
+	if (ExplosionVFX)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ExplosionVFX,GetActorLocation(),FRotator(0.f, 90.f, 0.f), FVector(0.2f),true,true,ENCPoolMethod::None,true);
+	}
 	OnExplode();
 	
     // If player shoots the bomb early it explodes mid air
