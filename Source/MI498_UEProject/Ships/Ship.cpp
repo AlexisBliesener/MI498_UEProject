@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Navigation/NavLinkProxy.h"
 #include "../Player/PlayerCharacter.h"
+#include "EnvironmentQuery/EnvQueryManager.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/SyncTransformOnHiddenShipComponent.h"
 
@@ -323,14 +324,14 @@ void AShip::SetShipActive(bool bIsActive)
 
 AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform)
 {
-    if (AEnemyBase* enemy = GetWorld()->SpawnActorDeferred<AEnemyBase>(Enemy,Transform))
+    if (AEnemyBase* enemy = GetWorld()->SpawnActorDeferred<AEnemyBase>(Enemy,Transform,nullptr,nullptr,ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn))
     {
         enemy->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
         enemy->RealShip = this;
         enemy->HiddenShip = HiddenShip;
         UGameplayStatics::FinishSpawningActor(enemy, Transform);
         EnemiesOnShip.Add(enemy);
-        //enemy->SetEnabledEnemy(bIsPlayerInside);
+        enemy->SetEnabledEnemy(bIsPlayerInside);
         return enemy;
     }
     UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());
@@ -384,3 +385,61 @@ void AShip::DestroyAllEnemiesOnShip()
     EnemiesOnShip.Empty(); 
 }
 
+
+void AShip::TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints)
+{
+    if (!SpawnEQS || !HiddenShip) return;
+
+    FEnvQueryRequest spawnQueryRequest(SpawnEQS, this);
+
+
+    FQueryFinishedSignature delegate = FQueryFinishedSignature::CreateUObject(this, &AShip::OnSpawnEQSFinished, EnemiesToSpawn, EnemySpawnPoints);
+
+    spawnQueryRequest.Execute(EEnvQueryRunMode::AllMatching, delegate);
+}
+
+void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints)
+{
+    if (!Result->IsSuccessful() || Result->Items.Num() == 0)
+    {
+        if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 20.0f, FColor::Red, TEXT("EQS SPAWN FAILED !!!!!!"));
+        }
+        if (EnemySpawnPoints.Num() > 0)
+        {
+            for (int32 i = 0; i < EnemiesToSpawn.Num(); i++)
+            {
+                TSubclassOf<AEnemyBase> enemyClass = EnemiesToSpawn[i];
+                if (!enemyClass) continue;
+
+                AActor* fallbackPoint = EnemySpawnPoints[i % EnemySpawnPoints.Num()];
+                if (IsValid(fallbackPoint))
+                {
+                    FTransform spawnTransform = fallbackPoint->GetActorTransform();
+                    SpawnEnemyOnShip(enemyClass, spawnTransform);
+                }
+            }
+        }
+        return; 
+    }
+
+    int32 totalPoints = Result->Items.Num();
+    
+    for (int32 i = 0; i < EnemiesToSpawn.Num(); i++)
+    {
+        TSubclassOf<AEnemyBase> enemyClass = EnemiesToSpawn[i];
+        if (!enemyClass) continue;
+
+        FVector hiddenLocation = Result->GetItemAsLocation(i % totalPoints);
+        
+        FVector localPos = HiddenShip->GetActorTransform().InverseTransformPosition(hiddenLocation);
+        FVector realLocation = GetActorTransform().TransformPosition(localPos);
+        realLocation.Z += enemyClass.GetDefaultObject()->GetDefaultHalfHeight();
+        FTransform spawnTransform;
+        spawnTransform.SetLocation(realLocation);
+        spawnTransform.SetRotation(FQuat::Identity); 
+
+        SpawnEnemyOnShip(enemyClass, spawnTransform);
+    }
+}

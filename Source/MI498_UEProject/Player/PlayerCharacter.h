@@ -86,9 +86,6 @@ public:
 		OverrideCameraFOV = OverrideValue;
 	}
 	
-	/// Get if the player has died
-	bool GetDead() {return bDied;}
-	
 	/// Get the current ship the player is on
 	AShip* GetCurrentShip() {return CurrentShip;}
 	
@@ -225,9 +222,6 @@ private:
 	
 	/// Timer that controls when low health effect will turn off
 	FTimerHandle LowHealthTimer;
-	
-	/// True if the player has died
-	bool bDied = false;
 	
 	/// True if the can fall off ledge check should be running
 	bool bCanFallOffLedge = true;

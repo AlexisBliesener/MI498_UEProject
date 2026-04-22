@@ -210,6 +210,12 @@ public:
 	 * @return 
 	 */
 	bool IsFacingPlayer(AActor* Player, float Tolerance) const;
+	
+	/**
+	 * Is the enemy currently jumping?
+	 * @return true if they're jumping in that frame
+	 */
+	bool IsJumping() const {return bIsJumping;}
 protected:
 	
 	/// Fires the primary weapon from blueprint

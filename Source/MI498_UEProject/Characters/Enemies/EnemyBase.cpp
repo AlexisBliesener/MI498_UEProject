@@ -186,6 +186,11 @@ void AEnemyBase::BeginPlay()
 
 float AEnemyBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser)
 {
+	if (CurrentHealth <= 0.f && bDied == true)
+	{
+		OnDeath(); // Call the animation 
+		return 0.f;
+	}
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	
 	UpdateHealthUI();
@@ -286,10 +291,6 @@ void AEnemyBase::Landed(const FHitResult& Hit)
 		CurrentNavLink->ResumePathFollowing(this);
 		CurrentNavLink = nullptr;
 		OnJumpEnd();
-		if (AAIController* aiController = Cast<AAIController>(GetController()))
-		{
-			aiController->ResumeMove(FAIRequestID::CurrentRequest); 
-		}
 	}
 	
 	
@@ -299,10 +300,6 @@ void AEnemyBase::OnSmartLinkJump(AJumpNavLinkProxy* InNavLink)
 {
 	bIsJumping = true;
 	CurrentNavLink = InNavLink;
-	if (AAIController* aiController = Cast<AAIController>(GetController()))
-	{
-		aiController->PauseMove(FAIRequestID::CurrentRequest); 
-	}
 	OnJumpStart();
 }
 
@@ -364,7 +361,7 @@ void AEnemyBase::UnPossessed()
 void AEnemyBase::Die()
 {
 	Super::Die();
-	
+	bDied = true;
 	if (DeathVFX)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DeathVFX, GetActorLocation(), FRotator::ZeroRotator, DeathVFXScale);
