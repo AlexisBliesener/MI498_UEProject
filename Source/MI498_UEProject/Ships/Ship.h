@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "EnvironmentQuery/EnvQuery.h"
 #include "GameFramework/Actor.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "Ship.generated.h"
@@ -68,7 +69,28 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Ship|Cannon")
 	void SetCannonAiming(bool bIsAiming, AShip* LastShipActivated);
 	void DestroyAllEnemiesOnShip();
+	
+	/**
+	 * Start to call the EQS to get a hidden point from the player's view 
+	 * @param EnemiesToSpawn enemy type
+	 * @param EnemySpawnPoints fallback spawn points if the eqs failed.. 		
+	 */
+	void TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints);
 
+	/**
+	 * This is called after the EQS finished and start to spawn the enemy  
+	 * @param Result the final result of the eqs 
+	 * @param EnemiesToSpawn what enemies to spawn using these points
+	 * @param EnemySpawnPoints fallback list if the eqs failed 
+	 */
+	void OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn,TArray<AActor*> EnemySpawnPoints);
+
+	
+	/**
+	 * Get the hidden ship reference 
+	 * @return the hidden ship
+	 */
+	AActor* GetHiddenShip() const { return HiddenShip; }
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
 	UPROPERTY()
@@ -107,4 +129,8 @@ private:
 	 * It handles the conversion on ActorsHISMOnShip from static mesh to hierarchical instanced static mesh
 	 */
 	void ConvertSMToHISM();
+	
+	/// Spawn EQS reference 
+	UPROPERTY(EditDefaultsOnly, Category="Default|Dev")
+	UEnvQuery* SpawnEQS;
 };
