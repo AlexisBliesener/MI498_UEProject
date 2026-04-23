@@ -1,6 +1,8 @@
 #include "MoveToCustomTask.h"
+#include "AIController.h"
 #include "StateTreeExecutionContext.h"
 #include "StateTreeExecutionTypes.h"
+#include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 
 bool FMoveToCustomTask::Link(FStateTreeLinker& Linker)
 {
@@ -19,6 +21,17 @@ EStateTreeRunStatus FMoveToCustomTask::Tick(FStateTreeExecutionContext& Context,
     
 	if (instanceData.MoveToTask)
 	{
+		if (instanceData.AIController)
+		{
+			if (AEnemyBase* enemy = Cast<AEnemyBase>(instanceData.AIController->GetPawn()))
+			{
+
+				if (enemy->IsJumping())
+				{
+					return EStateTreeRunStatus::Running;
+				}
+			}
+		}
 		if (instanceData.bTrackMovingGoal && instanceData.TargetActor)
 		{
 			// get the player location right now

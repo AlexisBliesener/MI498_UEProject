@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NiagaraSystem.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
@@ -24,6 +25,9 @@ public:
 	UProjectileMovementComponent* Movement;
 	/// The explosion radius of the bomb, any object/characters on this radius will get damage! 
 	float ExplosionRadius = 300.f;
+	/// explosion vfx i think? 
+	UPROPERTY(EditDefaultsOnly)
+	UNiagaraSystem* ExplosionVFX;
 	virtual float TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator,
 		AActor* DamageCauser) override;
 	virtual void Tick(float DeltaTime) override;

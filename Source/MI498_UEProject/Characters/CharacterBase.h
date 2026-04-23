@@ -28,6 +28,9 @@ public:
 	FOnDamage OnDamage;
 	virtual void Die() {};
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator,AActor* DamageCauser) override;
+	
+	/// Get if the chartacter has died
+	bool GetDead() {return bDied;}
 protected:
 	/// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,4 +42,6 @@ protected:
 	// Give health to the character
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	virtual void HealCharacter(float HealAmount);
+	/// True if the character has died
+	bool bDied = false;
 };

@@ -47,6 +47,16 @@
 						<State Name="No" ID="{7F07D653-36C0-4D4A-B5C0-05CBF7E4596D}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="MainMenu" ID="{EFEB9C82-FCBA-45AE-80DC-7B00ECE57D34}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{BB452A66-A09D-4FEA-BD39-AF33029C1C1F}"/>
+						<State Name="Yes" ID="{13C9AAAF-6EC7-4750-B443-1C7239A9138F}"/>
+						<State Name="No" ID="{920B5AA2-37B6-49DC-AE5C-CFF2D5E7C22D}"/>
+					</ChildrenList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

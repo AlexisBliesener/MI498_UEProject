@@ -100,6 +100,9 @@ void AMissionController::Tick(float DeltaSeconds)
 	/// Debug keys
 	if (PlayerController->WasInputKeyJustPressed(EKeys::F7))
 	{
+//		TArray<TSubclassOf<AEnemyBase>> BruteEnemies;
+//		BruteEnemies.Add( EnemyWaves[0].Enemies[0]);
+//		ParentShip->TrySpawnEnemyUsingEQS(BruteEnemies);
 		ExplodeVaultDoor();
 	}
 	if (PlayerController->WasInputKeyJustPressed(EKeys::F6))
@@ -412,18 +415,20 @@ void AMissionController::SpawnEnemies()
 		EndSpawningEnemies();
 		return;
 	}
-
-	for (int i = 0; i < EnemyWaves[CurrentWave].Enemies.Num(); i++)
-	{
-		if (i >= EnemySpawnPoints.Num()) continue;
-
-		AActor* SpawnPoint = EnemySpawnPoints[i];
-
-		if (!SpawnPoint) continue;
-
-		/// Spawn enemy instance
-		ParentShip->SpawnEnemyOnShip(EnemyWaves[CurrentWave].Enemies[i],SpawnPoint->GetTransform());
-	}
+	
+	ParentShip->TrySpawnEnemyUsingEQS(EnemyWaves[CurrentWave].Enemies, EnemySpawnPoints);
+	
+	// for (int i = 0; i < EnemyWaves[CurrentWave].Enemies.Num(); i++)
+	// {
+	// 	if (i >= EnemySpawnPoints.Num()) continue;
+	//
+	// 	AActor* SpawnPoint = EnemySpawnPoints[i];
+	//
+	// 	if (!SpawnPoint) continue;
+	//
+	// 	/// Spawn enemy instance
+	// 	ParentShip->SpawnEnemyOnShip(EnemyWaves[CurrentWave].Enemies[i],SpawnPoint->GetTransform());
+	// }
 
 	CurrentWave++;
 }

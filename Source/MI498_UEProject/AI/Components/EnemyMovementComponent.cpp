@@ -41,7 +41,10 @@ FVector UEnemyMovementComponent::GetActorFeetLocation() const
 void UEnemyMovementComponent::RequestPathMove(const FVector& MoveInput)
 {
 	AEnemyBase* enemy = Cast<AEnemyBase>(GetOwner());
-    
+	if (enemy && enemy->IsJumping())
+	{
+		return;
+	}   
 	if (enemy && enemy->RealShip && enemy->HiddenShip)
 	{
 		FVector localPos = enemy->HiddenShip->GetActorTransform().InverseTransformVector(MoveInput);
