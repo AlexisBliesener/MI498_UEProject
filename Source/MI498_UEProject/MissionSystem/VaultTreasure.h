@@ -13,6 +13,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<AActor*> LootToShrink;
 	
-	virtual void BeginPlay() override;
+	/// The original scale of all the loot objects
+	TArray<FVector> LootOriginalScale;
 	
+	/// The original position of all the loot objects
+	TArray<FVector> LootOriginalPosition;
+	
+	virtual void BeginPlay() override;
 };

@@ -20,6 +20,8 @@ void AVaultTreasure::BeginPlay()
 		if (ChildActor && ChildActor->ActorHasTag(FName("LootPiece")))
 		{
 			LootToShrink.Add(ChildActor);
+			LootOriginalScale.Add(ChildActor->GetActorScale());
+			LootOriginalPosition.Add(ChildActor->GetActorLocation());
 		}
 	}
 }
