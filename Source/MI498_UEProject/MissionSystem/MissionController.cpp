@@ -236,13 +236,17 @@ void AMissionController::ExplodeVaultDoor()
 {
 	/// Trigger explosion effects and scoring
 	PlantedBomb->BombExplode();
-	OnBombExplode();
-	ScoringManager->AddOpenVaultScore();
-	StageTwoFinish(true);
+	if (bHasCutscenePlayed)
+	{
+		CutSceneFinish();
+	}
+	else
+	{
+		OnBombCutsceneStart();
+		bHasCutscenePlayed = true;
+		PlantedBomb->bHasCutscenePlayed = true;
+	}
 	VaultDoor->SetVaultDoorEnabled(false);
-	
-	OnMainMissionObjectiveChange();
-
 	/// enable player ship beacon
 	if (PlayerShipBeacon)
 	{
@@ -253,37 +257,6 @@ void AMissionController::ExplodeVaultDoor()
 	if (VaultBeacon)
 	{
 		VaultBeacon->SetActorHiddenInGame(true);
-	}
-	
-	CloudSpawner->Activate();
-
-	/// Rotate non important espace ships
-	for (AShip* Ship : ShipsToRotate)
-	{
-		if (!Ship) continue;
-		
-		Ship->DestroyAllEnemiesOnShip();
-
-		FRotator RandomRotation = FRotator(
-			FMath::RandRange(-180.f, 180.f), // Pitch
-			FMath::RandRange(-180.f, 180.f), // Yaw
-			FMath::RandRange(-180.f, 180.f)  // Roll
-		);
-
-		Ship->SetActorRotation(RandomRotation);
-	}
-	
-	for (AShip* Ship : ShipPathBack)
-	{
-		if (!Ship) continue;
-
-		FRotator RandomRotation = FRotator(
-			FMath::RandRange(-10.f, 10.f), // Pitch
-			FMath::RandRange(-10.f, 10.f), // Yaw
-			FMath::RandRange(-10.f, 10.f)  // Roll
-		);
-
-		Ship->SetActorRotation(RandomRotation);
 	}
 }
 
@@ -407,7 +380,7 @@ void AMissionController::EndSpawningEnemies()
 		false);
 }
 
-void AMissionController::SpawnEnemies()
+void AMissionController::SpawnEnemies(bool bIsActive)
 {
 	/// End the enemy wave phase
 	if (CurrentWave >= EnemyWaves.Num())
@@ -416,7 +389,7 @@ void AMissionController::SpawnEnemies()
 		return;
 	}
 	
-	ParentShip->TrySpawnEnemyUsingEQS(EnemyWaves[CurrentWave].Enemies, EnemySpawnPoints);
+	ParentShip->TrySpawnEnemyUsingEQS(EnemyWaves[CurrentWave].Enemies, EnemySpawnPoints, bIsActive);
 	
 	// for (int i = 0; i < EnemyWaves[CurrentWave].Enemies.Num(); i++)
 	// {
@@ -462,7 +435,7 @@ void AMissionController::StageTwoFinish(const bool Result)
 			true);
 
 		/// Spawn initial enemy wave
-		SpawnEnemies();
+		// SpawnEnemies();
 
 		/// Start repeating enemy wave spawner timer
 		GetWorldTimerManager().SetTimer(
@@ -488,6 +461,56 @@ void AMissionController::StageThreeFinish(const bool Result)
 	{
 		OnFailedMission();
 	}
+}
+
+void AMissionController::CutSceneFinish()
+{
+	OnBombExplode();
+	ScoringManager->AddOpenVaultScore();
+	StageTwoFinish(true);
+	
+	OnMainMissionObjectiveChange();
+	
+	
+	CloudSpawner->Activate();
+
+	/// Rotate non important espace ships
+	for (AShip* Ship : ShipsToRotate)
+	{
+		if (!Ship) continue;
+		
+		Ship->DestroyAllEnemiesOnShip();
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-180.f, 180.f), // Pitch
+			FMath::RandRange(-180.f, 180.f), // Yaw
+			FMath::RandRange(-180.f, 180.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
+	}
+	
+	for (AShip* Ship : ShipPathBack)
+	{
+		if (!Ship) continue;
+
+		FRotator RandomRotation = FRotator(
+			FMath::RandRange(-10.f, 10.f), // Pitch
+			FMath::RandRange(-10.f, 10.f), // Yaw
+			FMath::RandRange(-10.f, 10.f)  // Roll
+		);
+
+		Ship->SetActorRotation(RandomRotation);
+	}
+	
+	for (AEnemyBase* enemy : ParentShip->PendingEnemies)
+	{
+		if (!enemy) continue;
+		// reactivate the enemies 
+		enemy->SetEnabledEnemy(true);
+	}
+	
+	ParentShip->PendingEnemies.Empty();
 }
 
 float AMissionController::GetRemainingMissionTime() const

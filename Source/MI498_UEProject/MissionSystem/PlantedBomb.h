@@ -15,4 +15,7 @@ public:
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void BombExplode();
+	/// Has the bomb cutscene played?  
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bHasCutscenePlayed = false;
 };

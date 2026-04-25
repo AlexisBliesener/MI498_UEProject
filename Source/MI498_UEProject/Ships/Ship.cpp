@@ -322,7 +322,7 @@ void AShip::SetShipActive(bool bIsActive)
     }
 }
 
-AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform)
+AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform, bool bIsActive)
 {
     if (AEnemyBase* enemy = GetWorld()->SpawnActorDeferred<AEnemyBase>(Enemy,Transform,nullptr,nullptr,ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn))
     {
@@ -331,7 +331,14 @@ AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform co
         enemy->HiddenShip = HiddenShip;
         UGameplayStatics::FinishSpawningActor(enemy, Transform);
         EnemiesOnShip.Add(enemy);
-        enemy->SetEnabledEnemy(bIsPlayerInside);
+        if (bIsPlayerInside)
+        { 
+            enemy->SetEnabledEnemy(bIsActive);
+        }
+        if (!bIsActive)
+        {
+            PendingEnemies.Add(enemy);
+        }
         return enemy;
     }
     UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());
@@ -386,19 +393,19 @@ void AShip::DestroyAllEnemiesOnShip()
 }
 
 
-void AShip::TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints)
+void AShip::TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints, bool bIsActive)
 {
     if (!SpawnEQS || !HiddenShip) return;
 
     FEnvQueryRequest spawnQueryRequest(SpawnEQS, this);
 
 
-    FQueryFinishedSignature delegate = FQueryFinishedSignature::CreateUObject(this, &AShip::OnSpawnEQSFinished, EnemiesToSpawn, EnemySpawnPoints);
+    FQueryFinishedSignature delegate = FQueryFinishedSignature::CreateUObject(this, &AShip::OnSpawnEQSFinished, EnemiesToSpawn, EnemySpawnPoints, bIsActive);
 
     spawnQueryRequest.Execute(EEnvQueryRunMode::AllMatching, delegate);
 }
 
-void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints)
+void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints, bool bIsActive)
 {
     if (!Result->IsSuccessful() || Result->Items.Num() == 0)
     {
@@ -417,7 +424,7 @@ void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubcl
                 if (IsValid(fallbackPoint))
                 {
                     FTransform spawnTransform = fallbackPoint->GetActorTransform();
-                    SpawnEnemyOnShip(enemyClass, spawnTransform);
+                    SpawnEnemyOnShip(enemyClass, spawnTransform, bIsActive);
                 }
             }
         }
@@ -440,6 +447,6 @@ void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubcl
         spawnTransform.SetLocation(realLocation);
         spawnTransform.SetRotation(FQuat::Identity); 
 
-        SpawnEnemyOnShip(enemyClass, spawnTransform);
+        SpawnEnemyOnShip(enemyClass, spawnTransform, bIsActive);
     }
 }

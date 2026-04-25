@@ -129,6 +129,12 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnBombExplode();
 	
+	/// Fired when the vault bomb cutscene should start
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnBombCutsceneStart();
+	/// This function will be get called when the cutscene of the exploding vault is finished!
+	UFUNCTION(BlueprintCallable)
+	void CutSceneFinish();
 	/// Fired when any change to the main objective icons occur
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnMainMissionObjectiveChange();
@@ -233,8 +239,15 @@ private:
 	void SecondInVault();
 
 	/// Spawns enemies at all configured spawn points
-	void SpawnEnemies();
+	UFUNCTION(blueprintCallable)
+	void SpawnEnemies(bool bIsActive = true);
 	
+	
+	/**
+	 * Double declaration to pass the true value for the active so 
+	 * the timer doesn't complain, is this stupid? yes 
+	 */
+	void SpawnEnemies() {SpawnEnemies(true);}
 	/// Handles completion or timeout of Stage One
 	void StageOneFinish(bool Result);
 
@@ -294,5 +307,6 @@ private:
 	/// The amount of time it is going to take to get everything from the vault
 	float InVaultTime = 0;
 	
+	bool bHasCutscenePlayed = false;
 	GENERATED_BODY()
 };

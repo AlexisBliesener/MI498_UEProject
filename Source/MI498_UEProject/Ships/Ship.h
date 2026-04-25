@@ -44,6 +44,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default|Dev")
 	UBoxComponent* TraceCollisionBox;
 	
+	/// Enemies that spawn but they're not active yet
+	UPROPERTY()
+	TArray<TObjectPtr<AEnemyBase>> PendingEnemies;
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
@@ -56,10 +59,12 @@ public:
 
 	/**
 	 * Add enemy to the ship and set their hidden ship so they can move using the hidden navmesh!
-	 * @param Enemy the enemy that to be added 
+	 * @param Enemy the enemy that to be added
+	 * @param Transform transform to spawn the enemy on 
+	 * @param bIsActive do you want to activate the enemy when they are spawned?	
 	 */
 	UFUNCTION()
-	AEnemyBase* SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform);
+	AEnemyBase* SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform const& Transform, bool bIsActive = true);
 	
 	/**
 	 * Activate the ship when the line's trace hit the trace collision box 
@@ -73,17 +78,19 @@ public:
 	/**
 	 * Start to call the EQS to get a hidden point from the player's view 
 	 * @param EnemiesToSpawn enemy type
-	 * @param EnemySpawnPoints fallback spawn points if the eqs failed.. 		
+	 * @param EnemySpawnPoints fallback spawn points if the eqs failed..
+	 * @param bIsActive do you want to activate the enemy when they are spawned?	
 	 */
-	void TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints);
+	void TrySpawnEnemyUsingEQS(TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn, TArray<AActor*> EnemySpawnPoints,bool bIsActive);
 
 	/**
 	 * This is called after the EQS finished and start to spawn the enemy  
 	 * @param Result the final result of the eqs 
 	 * @param EnemiesToSpawn what enemies to spawn using these points
-	 * @param EnemySpawnPoints fallback list if the eqs failed 
+	 * @param EnemySpawnPoints fallback list if the eqs failed
+	 * @param bIsActive do you want to activate the enemy when they are spawned?	
 	 */
-	void OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn,TArray<AActor*> EnemySpawnPoints);
+	void OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubclassOf<AEnemyBase>> EnemiesToSpawn,TArray<AActor*> EnemySpawnPoints, bool bIsActive);
 
 	
 	/**
