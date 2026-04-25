@@ -45,10 +45,10 @@ void ACloudSpawner::Reset()
 	{
 		if (!Actor) continue;
 
-		UNiagaraComponent* NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
-		if (!NiagaraComp) continue;
+		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
+		if (!NiagaraComp.IsValid()) continue;
 		
-		if (NiagaraComp)
+		if (NiagaraComp.IsValid())
 		{
 			NiagaraComp->Activate(false);
 		}
@@ -154,24 +154,20 @@ void ACloudSpawner::TriggerShipExplosions()
 {
 	if (!bActive) return;
 
-	float AccumulatedDelay = 0.f;
-
 	for (AActor* Actor : FoundExplosions)
 	{
 		if (!Actor) continue;
 
-		UNiagaraComponent* NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
-		if (!NiagaraComp) continue;
+		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
+		if (!NiagaraComp.IsValid()) continue;
 
 		float Delay = FMath::RandRange(0.3f, 3.0f);
-		AccumulatedDelay += Delay;
 
 		FTimerDelegate Delegate;
 		Delegate.BindWeakLambda(this, [this, NiagaraComp]()
 		{
-			if (NiagaraComp)
+			if (NiagaraComp.IsValid())
 			{
-				
 				NiagaraComp->Activate(true);
 			}
 		});
@@ -180,7 +176,7 @@ void ACloudSpawner::TriggerShipExplosions()
 		GetWorld()->GetTimerManager().SetTimer(
 			LocalHandle,
 			Delegate,
-			AccumulatedDelay,
+			Delay,
 			false
 		);
 	}

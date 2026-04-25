@@ -187,6 +187,13 @@ void AMissionController::ResetBombPlant()
 	VaultDoor->SetVaultDoorEnabled(true);
 	ScoringManager->ResetGlobalScoreMult();
 	
+	/// Reset loot location and scale
+	for (int i = 0; i < VaultTreasure->LootToShrink.Num(); i++)
+	{
+		VaultTreasure->LootToShrink[i]->SetActorLocation(VaultTreasure->LootOriginalPosition[i]);
+		VaultTreasure->LootToShrink[i]->SetActorScale3D(VaultTreasure->LootOriginalScale[i]);
+	}
+	
 	/// reset beacons that are triggered on bomb explode
 	if (!PlayerShipBeacon)
 	{
