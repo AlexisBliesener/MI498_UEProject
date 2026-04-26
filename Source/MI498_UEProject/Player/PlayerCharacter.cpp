@@ -6,8 +6,15 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
+#include "MI498_UEProject/Interactables/ExplodingBarrel.h"
 #include "MI498_UEProject/MissionSystem/SideMissionController.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "MI498_UEProject/Weapons/Blunderbuss/Blunderbuss.h"
+#include "MI498_UEProject/Weapons/Pistol/Pistol.h"
+#include "MI498_UEProject/Weapons/Punch/Punch.h"
+#include "MI498_UEProject/Weapons/Sword/Sword.h"
+#include "MI498_UEProject/Weapons/Throw/BombKnife.h"
+#include "MI498_UEProject/Weapons/Throw/BombProjectile.h"
 #include "Perception/AIPerceptionComponent.h"
 
 
@@ -56,8 +63,15 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 
 		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 		playerController->SetAcceptMovementInput(false);
-
-		OnPlayerDied();
+		
+		EKillType killType = EKillType::KillFloor;
+		if (Cast<APistolProjectile>(DamageCauser)) killType = EKillType::None;
+		if (Cast<APunch>(DamageCauser)) killType = EKillType::None;
+		if (Cast<ABombKnife>(DamageCauser)) killType = EKillType::None;
+		if (Cast<ABombProjectile>(DamageCauser)) killType = EKillType::None;
+		if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::None;
+		
+		OnPlayerDied(killType == EKillType::KillFloor);
 		return DamageAmount;
 	}
 
