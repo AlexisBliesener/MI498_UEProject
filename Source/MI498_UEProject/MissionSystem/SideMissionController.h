@@ -38,6 +38,20 @@ public:
 	/// Called when the player lands on the ground
 	void HitGround();
 	
+	/**
+	 * Add a submission increment to a list 
+	 * you can call UpdatePendingSubMission() Later to call TryUpdateSubMission with the pending values 
+	 * @param SubMissionRowName submission row name obviously 
+	 * @param IncrementValue how much to increment the row
+	 */
+	UFUNCTION(BlueprintCallable)
+	void AddPendingSubMission(FName SubMissionRowName, int32 IncrementValue);
+
+	/**
+	 * Update the pending increment and remove them from the list!
+	 */
+	UFUNCTION(BlueprintCallable)
+	void UpdatePendingSubMission();
 protected:
 
 	/// Per-frame update function
@@ -59,4 +73,6 @@ private:
 	
 	/// Stores the previous kill type for combo/alternation tracking
 	EKillType LastKillType = EKillType::None;
+	/// Stores the pending updated values!
+	TMap<FName, int32> PendingSubMissionUpdates;
 };

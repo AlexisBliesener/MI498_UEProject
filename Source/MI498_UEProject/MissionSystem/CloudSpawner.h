@@ -11,7 +11,7 @@ class MI498_UEPROJECT_API ACloudSpawner : public AActor
 
 public:
 	ACloudSpawner();
-	void BeginPlay();
+	virtual void BeginPlay() override;
 	
 	/// Resets the clouds and the sky moving up
 	void Reset();
@@ -65,7 +65,9 @@ private:
 	FTimerHandle SpawnTimer;
 
 	/// Track clouds + their speeds
+	UPROPERTY()
 	TArray<AActor*> SpawnedClouds;
+	UPROPERTY()
 	TMap<AActor*, float> CloudSpeeds;
 	
 	/// The starting location of the sky sphere
@@ -74,6 +76,7 @@ private:
 	/// Spawns a new cloud
 	void SpawnCloud();
 	
+	UPROPERTY()
 	TArray<AActor*> FoundExplosions;
 	
 	/// If the cloud spawner is currently active

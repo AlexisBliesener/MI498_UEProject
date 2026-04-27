@@ -27,6 +27,7 @@ void ACloudSpawner::Reset()
 	for (int32 i = SpawnedClouds.Num() - 1; i >= 0; i--)
 	{
 		AActor* Cloud = SpawnedClouds[i];
+		if (!IsValid(Cloud)) continue;
 		Cloud->Destroy();
 		CloudSpeeds.Remove(Cloud);
 		SpawnedClouds.RemoveAt(i);
@@ -44,7 +45,7 @@ void ACloudSpawner::Reset()
 
 	for (AActor* Actor : FoundExplosions)
 	{
-		if (!Actor) continue;
+		if (!IsValid(Actor)) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
 		TWeakObjectPtr<UDecalComponent> DecalComp = Actor->FindComponentByClass<UDecalComponent>();
@@ -100,7 +101,7 @@ void ACloudSpawner::SpawnCloud()
 	// Spawn
 	AActor* Cloud = GetWorld()->SpawnActor<AActor>(CloudClass, SpawnLocation, RandomRotation);
 
-	if (!Cloud) return;
+	if (!IsValid(Cloud)) return;
 
 	// Random scale
 	float Scale = FMath::RandRange(MinScale.X, MaxScale.X);
@@ -124,7 +125,7 @@ void ACloudSpawner::Tick(float DeltaTime)
 	{
 		AActor* Cloud = SpawnedClouds[i];
 
-		if (!Cloud)
+		if (!IsValid(Cloud))
 		{
 			SpawnedClouds.RemoveAt(i);
 			continue;
@@ -162,7 +163,7 @@ void ACloudSpawner::TriggerShipExplosions()
 
 	for (AActor* Actor : FoundExplosions)
 	{
-		if (!Actor) continue;
+		if (!IsValid(Actor)) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
 		TWeakObjectPtr<UDecalComponent> DecalComp = Actor->FindComponentByClass<UDecalComponent>();
