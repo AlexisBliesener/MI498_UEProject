@@ -116,6 +116,28 @@ void ASideMissionController::HitGround()
 	ResetSubMission("SideObj_03");
 }
 
+void ASideMissionController::AddPendingSubMission(FName SubMissionRowName, int32 IncrementValue)
+{
+	int32& currentIncrement = PendingSubMissionUpdates.FindOrAdd(SubMissionRowName);
+	currentIncrement += IncrementValue;
+}
+
+void ASideMissionController::UpdatePendingSubMission()
+{
+	/// So i think this needed because when we update the original map and if one of the pending missions 
+	/// it will add it to the list again which i'm pretty sure unreal will cry about it....  
+	TMap<FName, int32> tempPendingSubMissions = PendingSubMissionUpdates;
+    
+	PendingSubMissionUpdates.Empty();
+	for (const TTuple<FName, int32>& updateSubMission : tempPendingSubMissions)
+	{
+		if (updateSubMission.Value != 0)
+		{
+			TryUpdateSubMission(updateSubMission.Key, updateSubMission.Value);
+		}
+	}
+}
+
 /// Tick function runs every frame
 void ASideMissionController::Tick(float DeltaSeconds)
 {
