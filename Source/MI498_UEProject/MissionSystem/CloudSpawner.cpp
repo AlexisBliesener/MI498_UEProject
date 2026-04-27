@@ -43,7 +43,7 @@ void ACloudSpawner::Reset()
 
 	for (AActor* Actor : FoundExplosions)
 	{
-		if (!Actor) continue;
+		if (!IsValid(Actor)) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
 		if (!NiagaraComp.IsValid()) continue;
@@ -156,7 +156,7 @@ void ACloudSpawner::TriggerShipExplosions()
 
 	for (AActor* Actor : FoundExplosions)
 	{
-		if (!Actor) continue;
+		if (!IsValid(Actor)) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
 		if (!NiagaraComp.IsValid()) continue;
