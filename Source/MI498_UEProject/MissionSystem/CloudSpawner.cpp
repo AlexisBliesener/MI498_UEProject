@@ -3,6 +3,7 @@
 #include "NiagaraComponent.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
+#include "Components/DecalComponent.h"
 #include "Engine/Engine.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -46,11 +47,16 @@ void ACloudSpawner::Reset()
 		if (!Actor) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
-		if (!NiagaraComp.IsValid()) continue;
+		TWeakObjectPtr<UDecalComponent> DecalComp = Actor->FindComponentByClass<UDecalComponent>();
 		
 		if (NiagaraComp.IsValid())
 		{
 			NiagaraComp->Activate(false);
+		}
+		
+		if (DecalComp.IsValid())
+		{
+			DecalComp->SetVisibility(false);
 		}
 	}
 
@@ -159,16 +165,21 @@ void ACloudSpawner::TriggerShipExplosions()
 		if (!Actor) continue;
 
 		TWeakObjectPtr<UNiagaraComponent> NiagaraComp = Actor->FindComponentByClass<UNiagaraComponent>();
-		if (!NiagaraComp.IsValid()) continue;
+		TWeakObjectPtr<UDecalComponent> DecalComp = Actor->FindComponentByClass<UDecalComponent>();
 
 		float Delay = FMath::RandRange(0.3f, 3.0f);
 
 		FTimerDelegate Delegate;
-		Delegate.BindWeakLambda(this, [this, NiagaraComp]()
+		Delegate.BindWeakLambda(this, [this, NiagaraComp, DecalComp]()
 		{
 			if (NiagaraComp.IsValid())
 			{
 				NiagaraComp->Activate(true);
+			}
+			
+			if (DecalComp.IsValid())
+			{
+				DecalComp->SetVisibility(true);
 			}
 		});
 
