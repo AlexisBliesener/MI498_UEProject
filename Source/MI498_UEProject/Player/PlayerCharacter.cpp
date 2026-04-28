@@ -65,6 +65,7 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		playerController->SetAcceptMovementInput(false);
 		
 		EKillType killType = EKillType::KillFloor;
+		if (DamageCauser == nullptr) killType = EKillType::None;
 		if (Cast<APistolProjectile>(DamageCauser)) killType = EKillType::None;
 		if (Cast<APunch>(DamageCauser)) killType = EKillType::None;
 		if (Cast<ABombKnife>(DamageCauser)) killType = EKillType::None;
