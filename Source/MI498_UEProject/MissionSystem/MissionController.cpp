@@ -280,7 +280,6 @@ void AMissionController::ExplodeVaultDoor()
 	else
 	{
 		OnBombCutsceneStart();
-		bHasCutscenePlayed = true;
 		PlantedBomb->bHasCutscenePlayed = true;
 	}
 	VaultDoor->SetVaultDoorEnabled(false);
@@ -512,6 +511,10 @@ void AMissionController::CutSceneFinish()
 	
 	OnMainMissionObjectiveChange();
 	
+	if (!bHasCutscenePlayed)
+	{
+		bHasCutscenePlayed = true;
+	}
 	
 	CloudSpawner->Activate();
 
