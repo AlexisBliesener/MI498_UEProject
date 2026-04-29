@@ -301,6 +301,7 @@ void AMissionController::HandleOnEnterExitPlatform()
 	/// Level completion condition (Stage Three)
 	if (CurrentState == EMissionState::StageThree)
 	{
+		CurrentState = EMissionState::StageCompleted;
 		ScoringManager->AddFinishLevelScore();
 		StageThreeFinish(true);
 	}

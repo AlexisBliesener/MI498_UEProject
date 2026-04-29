@@ -22,7 +22,8 @@ enum class EMissionState : uint8
 {
 	StageOne UMETA(DisplayName = "StageOne"),
 	StageTwo UMETA(DisplayName = "StageTwo"),
-	StageThree UMETA(DisplayName = "StageThree")
+	StageThree UMETA(DisplayName = "StageThree"),
+	StageCompleted UMETA(DisplayName = "StageCompleted")
 };
 
 /// Struct to be able to show arrays of enemies in the editor
