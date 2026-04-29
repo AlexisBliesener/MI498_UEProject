@@ -64,15 +64,19 @@ float APlayerCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const
 		APlayerCharacterController* playerController = Cast<APlayerCharacterController>(GetController());
 		playerController->SetAcceptMovementInput(false);
 		
-		EKillType killType = EKillType::KillFloor;
-		if (DamageCauser == nullptr) killType = EKillType::None;
-		if (Cast<APistolProjectile>(DamageCauser)) killType = EKillType::None;
-		if (Cast<APunch>(DamageCauser)) killType = EKillType::None;
-		if (Cast<ABombKnife>(DamageCauser)) killType = EKillType::None;
-		if (Cast<ABombProjectile>(DamageCauser)) killType = EKillType::None;
-		if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::None;
-		
-		OnPlayerDied(killType == EKillType::KillFloor);
+		// EKillType killType = EKillType::KillFloor;
+		// if (DamageCauser == nullptr) killType = EKillType::None;
+		// if (Cast<APistolProjectile>(DamageCauser)) killType = EKillType::None;
+		// if (Cast<APunch>(DamageCauser)) killType = EKillType::None;
+		// if (Cast<ABombKnife>(DamageCauser)) killType = EKillType::None;
+		// if (Cast<ABombProjectile>(DamageCauser)) killType = EKillType::None;
+		// if (Cast<AExplodingBarrel>(DamageCauser)) killType = EKillType::None;
+		bool bIsKillFloor = false;
+		if (DamageCauser && DamageCauser->ActorHasTag(FName("KillFloor")))
+		{
+			bIsKillFloor = true;
+		}
+		OnPlayerDied(bIsKillFloor);
 		return DamageAmount;
 	}
 
