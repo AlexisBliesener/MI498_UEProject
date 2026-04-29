@@ -207,6 +207,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnBombMissionRestart();
 	
+	/// If the on leave vault va line has played
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bOnLeaveVaultVaLinePlayed = false;
 private:
 	/// Delegate handler for bomb piece collection
 	UFUNCTION()
@@ -255,6 +258,7 @@ private:
 	void StageTwoFinish(bool Result);
 
 	/// Handles completion or timeout of Stage Three
+	UFUNCTION()
 	void StageThreeFinish(bool Result);
 	
 	/// When the vault waves are done call this to start the next phase
@@ -287,8 +291,6 @@ private:
 	/// If the near vault va line has played
 	bool bNearVaultVaLinePlayed = false;
 	
-	/// If the on leave vault va line has played
-	bool bOnLeaveVaultVaLinePlayed = false;
 	
 	/// If the near exit cannon VA line has played
 	bool bOnNearExitCannonVaLinePlayed = false;

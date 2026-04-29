@@ -208,6 +208,7 @@ void AMissionController::ResetBombPlant()
 
 	//Clear Timers
 	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 	GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
 
 	/// Delay vault explosion
@@ -371,10 +372,11 @@ void AMissionController::EndSpawningEnemies()
 	/// Start the mission timer to flee
 	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 	
+	OnLeaveVault();
+	
 	if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
 	{
 		bOnLeaveVaultVaLinePlayed = true;
-		OnLeaveVault();
 	}
 
 	FTimerDelegate delegate;
@@ -442,7 +444,10 @@ void AMissionController::StageTwoFinish(const bool Result)
 			true);
 
 		/// Spawn initial enemy wave
-		// SpawnEnemies();
+		if (bHasCutscenePlayed)
+		{
+			SpawnEnemies(true);
+		}
 
 		/// Start repeating enemy wave spawner timer
 		GetWorldTimerManager().SetTimer(
