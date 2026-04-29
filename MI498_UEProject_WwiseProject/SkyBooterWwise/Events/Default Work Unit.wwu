@@ -1526,6 +1526,76 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Hover" ID="{5B283E04-D6F6-4095-BBC6-CAAF559D71C8}">
+							<ChildrenList>
+								<Action Name="" ID="{A86EA81C-150A-4421-88CA-46281AAD4008}" ShortID="556902598">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="HoverClick" ID="{D1539711-B708-48A8-9E5B-55A17857701E}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PaperScrollOpen" ID="{CAB8141F-335F-43BD-A083-A2629479107E}">
+							<ChildrenList>
+								<Action Name="" ID="{2BD111BA-7E1D-49B0-9197-131AAFC2275F}" ShortID="45181408">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PaperScroll" ID="{E23A948B-6CCF-4F99-B48B-7AB99D2B2DF3}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PaperScrollClose" ID="{0197BDD7-0C98-4B38-91B7-B1CCA4A4EEB5}">
+							<ChildrenList>
+								<Action Name="" ID="{AF060BBB-0656-4A2A-A438-E052394064E0}" ShortID="128327685">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PaperScrollClose" ID="{E67A1A32-E2CF-4D55-9805-9C2C48E9811B}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TimerClickStart" ID="{5768C3F0-3096-481F-91A5-B9D3E1991ED3}">
+							<ChildrenList>
+								<Action Name="" ID="{C7CEB4FF-D407-4B53-B5FD-885BEA73F87E}" ShortID="156033427">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TimerClick" ID="{37EEBC6D-0426-4C42-9455-AD3B8F0D837F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TimerClickEnd" ID="{F878ABA1-8AD1-413C-AF54-15FAEF664D55}">
+							<ChildrenList>
+								<Action Name="" ID="{BF999AAB-F301-405A-B975-7FD214520A52}" ShortID="571648095">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TimerClick" ID="{37EEBC6D-0426-4C42-9455-AD3B8F0D837F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SliderClick" ID="{0DFFCA11-9B6B-461A-ADF2-BEC6528FAFD8}">
+							<ChildrenList>
+								<Action Name="" ID="{7C0BAB90-D649-4437-9ACB-E56C39CBB6A8}" ShortID="301819736">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ClickSoundBar_mixdown" ID="{23B48786-EEA3-4B9D-8248-58544597D9E5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
