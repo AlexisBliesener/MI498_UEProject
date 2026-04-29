@@ -11,7 +11,7 @@
 ASword::ASword()
 {
 	WeaponType = EWeaponType::Sword;
-	ComboResetTime = ReloadTime - 0.05f;
+	ComboResetTime = ReloadTime + 0.2f;
 	CurrentAmmo = 1;
 }
 
