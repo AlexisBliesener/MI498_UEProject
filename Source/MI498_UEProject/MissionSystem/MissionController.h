@@ -192,6 +192,12 @@ public:
 	void ResetBombPlant();
 
 	
+	/**
+	 * Kill all enemies that spawned form the vault door 
+	 */
+	UFUNCTION(BlueprintCallable)
+	void KillAllSpawnedEnemies();
+	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	

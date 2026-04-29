@@ -1,4 +1,5 @@
 ﻿#include "MissionController.h"
+#include "AIController.h"
 #include "BombPiece.h"
 #include "CloudSpawner.h"
 #include "ExitCannonComponent.h"
@@ -10,6 +11,7 @@
 #include "VaultTreasure.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "MI498_UEProject/Weapons/WeaponBase.h"
 
 
 AMissionController::AMissionController()
@@ -237,6 +239,33 @@ void AMissionController::ResetBombPlant()
 
 		Ship->SetActorRotation(ZeroRotator);
 	}
+}
+
+void AMissionController::KillAllSpawnedEnemies()
+{
+	if (ParentShip)
+	{
+		for (AEnemyBase* enemy : ParentShip->SpawnedEnemies)
+		{
+			if (!IsValid(enemy)) continue;
+			
+			if (AAIController* aiController = Cast<AAIController>(enemy->GetController()))
+			{
+				aiController->StopMovement();
+				aiController->UnPossess();
+				aiController->Destroy();
+			}
+		
+			if (IsValid(enemy->CurrentWeapon))
+			{
+				enemy->CurrentWeapon->Destroy();
+			}
+			
+			enemy->Destroy();
+		}
+	}
+	
+	ParentShip->SpawnedEnemies.Empty();
 }
 
 

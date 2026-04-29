@@ -339,6 +339,7 @@ AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform co
         {
             PendingEnemies.Add(enemy);
         }
+        SpawnedEnemies.Add(enemy);
         return enemy;
     }
     UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());

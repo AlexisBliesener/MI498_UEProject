@@ -47,6 +47,9 @@ public:
 	/// Enemies that spawn but they're not active yet
 	UPROPERTY()
 	TArray<TObjectPtr<AEnemyBase>> PendingEnemies;
+	/// All enemies spawned after the vault explosion
+	UPROPERTY()
+	TArray<TObjectPtr<AEnemyBase>> SpawnedEnemies;
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
