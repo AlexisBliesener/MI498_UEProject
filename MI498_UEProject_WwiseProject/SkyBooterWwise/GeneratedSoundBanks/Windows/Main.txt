@@ -24,6 +24,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1111375134	BombPlantDialogue			\Default Work Unit\VA\BombPlantDialogue	
 	1147677277	StartMissionDialogue			\Default Work Unit\VA\StartMissionDialogue	
 	1159713994	MoveStop			\Default Work Unit\Player\MoveStop	
+	1218812578	SliderClick			\Default Work Unit\UIEvents\SliderClick	
 	1256484890	SwingerDeath			\Default Work Unit\VA\SwingerDeath	
 	1279779502	RestartGameDialogue			\Default Work Unit\VA\RestartGameDialogue	
 	1296465089	Sprint			\Default Work Unit\Player\Sprint	
@@ -59,6 +60,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2793670947	GrappleStrikeTarget			\Default Work Unit\Weapons\Grapple\GrappleStrikeTarget	
 	2810013852	LeaveVaultDialogue			\Default Work Unit\VA\LeaveVaultDialogue	
 	2811709593	EscapeCannonDialogue			\Default Work Unit\VA\EscapeCannonDialogue	
+	2869459374	PaperScrollOpen			\Default Work Unit\UIEvents\PaperScrollOpen	
 	2892267865	BombTravel			\Default Work Unit\Weapons\EnemyWeapon\BombTravel	
 	3026806422	ResetGameDialogue			\Default Work Unit\VA\ResetGameDialogue	
 	3053856664	LongCoinStop			\Default Work Unit\Environment\LongCoinStop	
@@ -74,16 +76,21 @@ Event	ID	Name			Wwise Object Path	Notes
 	3490528151	ResetDialogueBox			\Default Work Unit\VA\ResetDialogueBox	
 	3524716652	VaultExplosion			\Default Work Unit\Environment\VaultExplosion	
 	3533915211	NearVaultDialogue			\Default Work Unit\VA\NearVaultDialogue	
+	3562623046	ScoreScreenMusic			\Default Work Unit\Environment\ScoreScreenMusic	
+	3568219931	TimerClickEnd			\Default Work Unit\UIEvents\TimerClickEnd	
 	3596401047	BruteSwing			\Default Work Unit\Weapons\BruteSwing	
 	3604541648	SwordDash			\Default Work Unit\Weapons\Sword\SwordDash	
 	3655061974	BombExplodedDialogue			\Default Work Unit\VA\BombExplodedDialogue	
 	3733692670	CombatMusic			\Default Work Unit\Environment\CombatMusic	
+	3753593413	Hover			\Default Work Unit\UIEvents\Hover	
 	3820954562	SwingerFootstepsMetal			\Default Work Unit\EnemyFootstep\SwingerFootstep\SwingerFootstepsMetal	
 	3853833402	MissionCompleteStinger			\Default Work Unit\Environment\MissionCompleteStinger	
+	3881768768	TimerClickStart			\Default Work Unit\UIEvents\TimerClickStart	
 	3917958992	BarrelExplode			\Default Work Unit\Environment\BarrelExplode	
 	3934973449	IronMan			\Default Work Unit\MemeEvents\IronMan	
 	4004669316	AverageEnemyDeath			\Default Work Unit\VA\AverageEnemyDeath	
 	4008126242	PlayerJump			\Default Work Unit\Player\PlayerJump	
+	4016250506	PaperScrollClose			\Default Work Unit\UIEvents\PaperScrollClose	
 	4034933843	Jonesy			\Default Work Unit\MemeEvents\Jonesy	
 	4037835670	SwingerSwing			\Default Work Unit\Environment\SwingerSwing	
 	4135178078	Lamps			\Default Work Unit\Environment\Ambience\Lamps	
@@ -116,6 +123,7 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	6767003	Damage 2	.cache\CB\{CB603883-E93A-89FC-B41F-84701AF690D2}.wem		\Containers\Default Work Unit\Player\DamageGrunt\Damage 2		13534
+	8960508	PageFlick_01	.cache\D8\{D8C3D0E2-B2BA-B64F-4745-1A5DC5578293}.wem		\Containers\Default Work Unit\UI\HoverClick\PageFlick_01		8998
 	9982857	OnceLeaveVaultLine3	.cache\FB\{FBD48F18-D80F-456F-A406-FCF6D4EFF51F}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\OnceLeaveVaultLine3		84510
 	12572395	FootstepSFXExample_02	.cache\01\{01381F0F-D914-9F4D-6149-A8FFF2670B84}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Normal\FootstepSFXExample_02		25864
 	17125242	PickUpBombPiecePickUp	.cache\6C\{6CE4066B-816A-2749-EF6E-79CEE1A15D71}.wem		\Containers\Default Work Unit\Environment\PickUpBombPiecePickUp		30514
@@ -132,6 +140,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	57905895	Dying1	.cache\96\{9685D266-F7A0-A99F-BD63-DC32CAAB4BE9}.wem		\Containers\Default Work Unit\VA\DeathSwinger\Dying1		40150
 	64962804	FootstepStems-002_01	.cache\93\{9301E64A-EC4A-9A95-5614-77C1322222F5}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002_01		16918
 	66141499	Dying3	.cache\AB\{ABCEB459-DBF7-22F2-EDAF-4BCB5C80F4D6}.wem		\Containers\Default Work Unit\VA\DeathSwinger\Dying3		50251
+	68966023	PageFlick	.cache\6F\{6F239B44-E537-B077-D1F0-FCB726BE6517}.wem		\Containers\Default Work Unit\UI\HoverClick\PageFlick		9038
 	71399008	ImpactWoodLayer_03	.cache\F3\{F37A70F1-8174-11C0-E73B-05157E39E026}.wem		\Containers\Default Work Unit\Environment\LeverSFX\WoodLayer\ImpactWoodLayer_03		10899
 	80756975	BruteVAString_05	.cache\39\{39D26B13-906A-72AE-1E19-03F37290A759}.wem		\Containers\Default Work Unit\VA\DeathBrute\BruteVAString_05		55871
 	86116095	AverageEnemyStepsMetal_02	.cache\8E\{8ECF83FF-0D5A-EC3C-8BC9-DE3C7CB611D4}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem1Metal\AverageEnemyStepsMetal_02		13273
@@ -167,6 +176,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	212962631	Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp	.cache\6D\{6D1C2DC5-32FA-1BCA-02E1-7F5457B7DF36}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 1 Cymbals Timp		2998196
 	216690498	Can'tShoot	.cache\51\{517BDBA6-5EBC-F898-1C95-6A3B1DA19C22}.wem		\Containers\Default Work Unit\Weapons\CantShoot\Can'tShoot		13088
 	218262969	Grapple	.cache\F5\{F5BEF37A-F2FC-8D98-4F73-F93EA8BDA20E}.wem		\Containers\Default Work Unit\Weapons\GrappleHook\Grapple		64900
+	218782940	PageFlick_02	.cache\C1\{C11D1D15-3DE1-1EFB-BFFE-8D08C752DE44}.wem		\Containers\Default Work Unit\UI\HoverClick\PageFlick_02		9633
 	219124446	BruteVAString_03	.cache\18\{1894D8A9-C178-9C9E-5DD3-BF720C7BE88C}.wem		\Containers\Default Work Unit\VA\DeathBrute\BruteVAString_03		89208
 	219139896	FootstepStems-005_04	.cache\C9\{C9399E11-BA8E-5724-8EC7-23A7A7905AE1}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_04		6162
 	226120403	SwordSlashExample_02	.cache\A2\{A2D0096C-AE2F-87C9-572E-058A28DE8C57}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample_02		32852
@@ -178,6 +188,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	257199122	Line1	.cache\F7\{F70E13AA-6812-DCA3-F2AB-375165920867}.wem		\Containers\Default Work Unit\VA\VA\EscapeShipDialogue\Line1		130287
 	264388359	Line2	.cache\26\{26BB7528-4E80-14E2-B045-AD9D657D00B2}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line2		154536
 	266698385	FootstepStems-006_03	.cache\56\{56DF4B67-5920-248B-747F-FDC737C3A1F3}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_03		7829
+	271031959	PageFlick_03	.cache\95\{955F172C-C482-2CB8-8E62-D900A8FBFB42}.wem		\Containers\Default Work Unit\UI\HoverClick\PageFlick_03		7890
 	271538463	Can'tShoot_03	.cache\11\{112CFDC0-8F42-C3CE-57EA-0CBA5BA01258}.wem		\Containers\Default Work Unit\Weapons\CantShoot\Can'tShoot_03		13240
 	272125692	Sprint	.cache\92\{92C28E82-427F-0688-3A4A-C55AFFC2C8B1}.wem		\Containers\Default Work Unit\Player\Sprint		43740
 	275765810	AverageEnemyStepsWoodNormal_03	.cache\4B\{4BB84F93-C5AA-8248-31FF-0B3E5EDEBDD4}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_03		15537
@@ -189,6 +200,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	289858461	FootstepStems-002	.cache\73\{73E11F33-0C95-CBCF-E914-D059CCCDAC89}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem2\FootstepStems-002		16548
 	291080044	Dying2	.cache\29\{29AA2185-F4E7-93D3-642F-FF24D238994C}.wem		\Containers\Default Work Unit\VA\DeathSwinger\Dying2		64720
 	296876079	SwingerFootstep-002_02	.cache\57\{57E85094-8620-1DD6-9700-ABD28A5E7B07}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_02		11952
+	297449485	PaperScrollClose	.cache\AE\{AEF995BC-2F8D-D739-5149-69BB3583E01A}.wem		\Containers\Default Work Unit\UI\Scroll\PaperScrollClose		77317
 	297481343	AverageEnemyStepsBikeChain	.cache\DA\{DADA741D-EDFE-D432-4FC0-7890EDE800A8}.wem		\Containers\Default Work Unit\EnemySteps\Average\BikeChain\AverageEnemyStepsBikeChain		21761
 	306717036	SwingerFootstep-001_04	.cache\76\{76464DA8-FE4F-AB3F-5696-D59787A3AC48}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_04		13636
 	309072419	Fly High	.cache\09\{090C5349-60F0-D18C-45D3-3B8C18919CF1}.wem		\Containers\Default Work Unit\VA\VA\CaptainDeath\Fly High		203495
@@ -196,6 +208,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	320129325	SwordDash_mixdown_01	.cache\77\{772C43EA-03B8-116D-3F7C-9A819D7FB91D}.wem		\Containers\Default Work Unit\Weapons\SwordDash\SwordDash_mixdown_01		63999
 	324181781	AllPiecesCollectedLine1	.cache\DA\{DA953890-6D3D-25BA-DEDC-0066ED8916C4}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesCollectedLine1		42009
 	326381219	Fortnite Default Dance Greenscreen_01	.cache\52\{529BF466-3592-112B-FDA2-1681F6809AD2}.wem		\Containers\Default Work Unit\MemeStuff\Fortnite Default Dance Greenscreen_01		316974
+	327341251	ClickSoundBar_mixdown	.cache\96\{965B11E4-1CA3-59F3-E355-5C9E7A288F9F}.wem		\Containers\Default Work Unit\UI\ClickSoundBar_mixdown		4671
 	329759464	Hit2	.cache\FC\{FC16D603-BBEA-D2A2-8DFA-7A4E64ABD3D2}.wem		\Containers\Default Work Unit\VA\DamageSwingEnemy\Hit2		25556
 	332480870	SwingerFootstep-001_01	.cache\C5\{C5A448F5-4C89-3D55-AB26-3D957498B8FC}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem1Normal\SwingerFootstep-001_01		13686
 	352819618	BruteVA_03	.cache\B1\{B11A9F2F-6DE8-76BF-600E-15FC24DF083F}.wem		\Containers\Default Work Unit\VA\DamageBruteEnemy\BruteVA_03		40333
@@ -261,7 +274,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	604625095	Line1	.cache\7C\{7CBD7927-85F3-9AB8-81FE-9B4C03FBC218}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line1		204820
 	605561989	AverageEnemyStepsWoodNormal_04	.cache\F5\{F56FDBB5-55F9-E262-73B9-71B308BE7A62}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_04		15694
 	605626282	AllPiecesLine2	.cache\7C\{7C650FF2-2ED7-D5D0-55A0-32E71EFA6A95}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesLine2		40487
-	605770747	BlunderbussReload	.cache\B3\{B3FC2A95-1343-73D3-4230-D00E04106DF1}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		99242
+	605770747	BlunderbussReload	.cache\DB\{DB8D0F42-D789-C289-40DC-ED6DAFE88815}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		64935
 	606848002	Damage3AverageEnemy	.cache\3A\{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage3AverageEnemy		25059
 	609894285	One More Haul_01	.cache\42\{42C68569-2813-6E4E-640E-184BCA25CDE6}.wem		\Containers\Default Work Unit\VA\VA\Restart\One More Haul_01		239513
 	609911907	FootstepStems-005_01	.cache\88\{88E8C40E-77C8-DDB2-F4ED-D2E0A7D7FCF7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_01		6075
@@ -318,6 +331,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	796215813	SwingerFootstep-004_02	.cache\54\{54BFBC15-1F5F-775D-558A-59730DFB0740}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Metal\SwingerFootstep-004_02		10761
 	796430645	FootstepStems-006_02	.cache\81\{81ABBE7F-DCF5-CB78-4A7A-0687C3F14CEC}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem6\FootstepStems-006_02		7416
 	796556875	AverageEnemyStepsWoodNormal	.cache\7A\{7A9BF129-4BC3-B929-081C-F541E8A774DE}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal		16564
+	807327565	PaperScroll	.cache\2F\{2FE58F42-86F1-A841-9D73-8DF2507052A0}.wem		\Containers\Default Work Unit\UI\Scroll\PaperScroll		67239
 	810740447	Song of the Boats in the Sky - Battle Perc 2 Low Drums	.cache\33\{330DE030-5348-805A-464E-5CAB789DC547}.wem		\Containers\Music\MusicControler\CombatTheme\CombatTheme\Song of the Boats in the Sky - Battle Perc 2 Low Drums		8868906
 	817289263	OvenDingDone	.cache\55\{554EF721-0AAF-B965-0A84-B578B293BD5E}.wem		\Containers\Default Work Unit\Weapons\OvenDingDone		22390
 	818030058	SwordSlashExample	.cache\73\{734AC0ED-05EF-1EA2-CA02-4F3D98848254}.wem		\Containers\Default Work Unit\Weapons\SwordSlash\SwordSlashExample		37924
@@ -372,6 +386,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	977805667	Swing, Pirate, Plunder again_01	.cache\E6\{E623EFCB-D39E-0C6B-6EF8-CEB850C37679}.wem		\Containers\Default Work Unit\VA\VA\Restart\Swing, Pirate, Plunder again_01		180410
 	981681180	CAPTAIN	.cache\51\{51AFF11B-08EF-94D8-250D-39D1A4D3E858}.wem		\Containers\Default Work Unit\VA\VA\CaptainDeath\CAPTAIN		108008
 	985203243	Avengers Suite (Theme)_01	.cache\7C\{7CDE9A25-3BBF-F41A-0662-4BBEF74DF76F}.wem		\Containers\Default Work Unit\MemeStuff\Avengers Suite (Theme)_01		2481779
+	986850366	TimerClick	.cache\4E\{4E82A7C0-E508-310C-F597-B8DBF379478B}.wem		\Containers\Default Work Unit\UI\TimerClick		31320
 	989741732	FootstepStems-001_03	.cache\55\{55157A6E-F35B-3187-2DF5-742E9871FB70}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem1\FootstepStems-001_03		6991
 	990222415	Line5	.cache\CA\{CA65100F-7AC6-FC10-790A-C875F5B1DCEE}.wem		\Containers\Default Work Unit\VA\VA\FirstPieceCollectedDialogue\Line5		140332
 	992118632	FootstepSFXExample_05	.cache\15\{15F8A48F-3921-1AF2-E09D-68A6A8619032}.wem		\Containers\Default Work Unit\Player\PlayerSteps\Pegleg\FootstepSFXExample_05		27596
@@ -389,4 +404,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1046011913	Skybooter Menu demo	.cache\00\{00232985-2165-1ECB-0ED9-01E540F3AD18}.wem		\Containers\Music\Menu\MenuMusic\Skybooter Menu demo		3637760
 	1048443078	SwingerFootstep-002_01	.cache\A6\{A6BAE1F3-9757-9D7C-9CCF-39B4F4A1A23D}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_01		13220
 	1051686944	TakeDamageBase	.cache\B3\{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase		45722
+	1071959338	Better Score Screen	.cache\70\{70344904-BED5-9FAF-4369-6B1800A4571A}.wem		\Containers\Music\ScoreTheme\Better Score Screen\Better Score Screen		2815313
 
