@@ -84,12 +84,7 @@ void ASideMissionController::KilledEnemy(EKillType KillType)
 	// Schedule removal after 10 seconds
 	GetWorld()->GetTimerManager().SetTimer(
 		TimerHandle,
-		FTimerDelegate::CreateLambda([this]()
-		{
-			if (!IsValid(this)) return;
-
-			TryUpdateSubMission("SideObj_06", -1);
-		}),
+		FTimerDelegate::CreateUObject(this, &ASideMissionController::TryUpdateSubMission, FName("SideObj_06"), -1),
 		10.0f,
 		false
 	);
