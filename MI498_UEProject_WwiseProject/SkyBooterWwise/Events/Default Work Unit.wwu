@@ -589,6 +589,28 @@
 						</Event>
 						<Event Name="CombatMusic" ID="{8D5F3422-297B-460F-B95A-20213D3F8F66}">
 							<ChildrenList>
+								<Action Name="" ID="{4ADF714B-D47B-47EF-8746-0597F11F397B}" ShortID="1041090998">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Menu" ID="{FE062AFA-62F1-4FE9-A522-9907F78C6DAB}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{0D7C6289-CF61-470B-B2D7-0975EA384F64}" ShortID="1000996896">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{B51614E0-AB4E-4908-BB53-92B32E659A90}" ShortID="882831173">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -875,10 +897,58 @@
 						</Event>
 						<Event Name="MenuMusic" ID="{6A6FD591-4D66-486A-AED1-777366C85EDF}">
 							<ChildrenList>
+								<Action Name="" ID="{33A73335-DEA1-426A-A7AF-8190A033C669}" ShortID="1016169646">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{268F56D7-61EB-45CB-9921-0377E3FD08B2}" ShortID="100578988">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{7983A134-E1D3-423B-97B9-2ACBB66637E1}" ShortID="53405975">
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Menu" ID="{FE062AFA-62F1-4FE9-A522-9907F78C6DAB}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ScoreScreenMusic" ID="{84DB4D84-C26B-41E5-9779-2B1B26902918}">
+							<ChildrenList>
+								<Action Name="" ID="{AC6DED68-1147-4349-87F7-33D22491C863}" ShortID="726772578">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{1362401B-0971-4069-BBDF-0DD02ABD4B3D}" ShortID="156886118">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

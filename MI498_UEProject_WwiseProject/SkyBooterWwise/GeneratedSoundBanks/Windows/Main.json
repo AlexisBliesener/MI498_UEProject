@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{1F7D47A1-95BC-ACFE-0131-BEB2B69B111D}",
+    "Hash": "{964CB017-A9B2-95E6-A73C-146372E50088}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -1237,7 +1237,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BlunderbussReload.wav",
-      "CachePath": "4D/{4D8B6246-AF23-9557-7750-2FCB04E536AD}.wem"
+      "CachePath": "DB/{DB8D0F42-D789-C289-40DC-ED6DAFE88815}.wem"
      },
      {
       "Id": "606848002",
@@ -2270,6 +2270,14 @@
       "Location": "Memory",
       "ShortName": "TakeDamageBase.wav",
       "CachePath": "B3/{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem"
+     },
+     {
+      "Id": "1071959338",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Better Score Screen.wav",
+      "CachePath": "70/{70344904-BED5-9FAF-4369-6B1800A4571A}.wem"
      }
     ],
     "Plugins": {
@@ -3941,6 +3949,19 @@
       }
      },
      {
+      "Id": "3562623046",
+      "Name": "ScoreScreenMusic",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\ScoreScreenMusic",
+      "GUID": "{84DB4D84-C26B-41E5-9779-2B1B26902918}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1071959338"
+       }
+      ]
+     },
+     {
       "Id": "1218812578",
       "Name": "SliderClick",
       "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\SliderClick",
@@ -4543,6 +4564,6 @@
     ]
    }
   ],
-  "FileHash": "{8D59B38D-4139-33B1-0D87-34F9100FFEC6}"
+  "FileHash": "{AF51FAB0-AA58-75AF-A30B-5EA5C22E7333}"
  }
 }

@@ -76,6 +76,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3490528151	ResetDialogueBox			\Default Work Unit\VA\ResetDialogueBox	
 	3524716652	VaultExplosion			\Default Work Unit\Environment\VaultExplosion	
 	3533915211	NearVaultDialogue			\Default Work Unit\VA\NearVaultDialogue	
+	3562623046	ScoreScreenMusic			\Default Work Unit\Environment\ScoreScreenMusic	
 	3568219931	TimerClickEnd			\Default Work Unit\UIEvents\TimerClickEnd	
 	3596401047	BruteSwing			\Default Work Unit\Weapons\BruteSwing	
 	3604541648	SwordDash			\Default Work Unit\Weapons\Sword\SwordDash	
@@ -273,7 +274,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	604625095	Line1	.cache\7C\{7CBD7927-85F3-9AB8-81FE-9B4C03FBC218}.wem		\Containers\Default Work Unit\VA\VA\LeaveVaultDialogue\Line1		204820
 	605561989	AverageEnemyStepsWoodNormal_04	.cache\F5\{F56FDBB5-55F9-E262-73B9-71B308BE7A62}.wem		\Containers\Default Work Unit\EnemySteps\Average\Stem2Normal\AverageEnemyStepsWoodNormal_04		15694
 	605626282	AllPiecesLine2	.cache\7C\{7C650FF2-2ED7-D5D0-55A0-32E71EFA6A95}.wem		\Containers\Default Work Unit\VA\VA\OnceAllPiecesCollectedDialogue\AllPiecesLine2		40487
-	605770747	BlunderbussReload	.cache\4D\{4D8B6246-AF23-9557-7750-2FCB04E536AD}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		64935
+	605770747	BlunderbussReload	.cache\DB\{DB8D0F42-D789-C289-40DC-ED6DAFE88815}.wem		\Containers\Default Work Unit\Weapons\BlunderbussReload		64935
 	606848002	Damage3AverageEnemy	.cache\3A\{3A1595C3-7ADC-C7BF-4FC5-C10FFF8F2B03}.wem		\Containers\Default Work Unit\VA\DamageAverageEnemy\Damage3AverageEnemy		25059
 	609894285	One More Haul_01	.cache\42\{42C68569-2813-6E4E-640E-184BCA25CDE6}.wem		\Containers\Default Work Unit\VA\VA\Restart\One More Haul_01		239513
 	609911907	FootstepStems-005_01	.cache\88\{88E8C40E-77C8-DDB2-F4ED-D2E0A7D7FCF7}.wem		\Containers\Default Work Unit\EnemySteps\Brute\Stem5\FootstepStems-005_01		6075
@@ -403,4 +404,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1046011913	Skybooter Menu demo	.cache\00\{00232985-2165-1ECB-0ED9-01E540F3AD18}.wem		\Containers\Music\Menu\MenuMusic\Skybooter Menu demo		3637760
 	1048443078	SwingerFootstep-002_01	.cache\A6\{A6BAE1F3-9757-9D7C-9CCF-39B4F4A1A23D}.wem		\Containers\Default Work Unit\EnemySteps\Swinger\Stem2Normal\SwingerFootstep-002_01		13220
 	1051686944	TakeDamageBase	.cache\B3\{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem		\Containers\Default Work Unit\Environment\DamageBase\TakeDamageBase		45722
+	1071959338	Better Score Screen	.cache\70\{70344904-BED5-9FAF-4369-6B1800A4571A}.wem		\Containers\Music\ScoreTheme\Better Score Screen\Better Score Screen		2815313
 

@@ -911,7 +911,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-9</Value>
+								<Value>-10</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -1114,6 +1114,127 @@
 							</CustomState>
 						</CustomStateList>
 					</StateInfo>
+				</MusicPlaylistContainer>
+				<MusicPlaylistContainer Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" ShortID="1021469774">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="MusicBus" ID="{F0694937-29F4-4E28-8ADA-52B396A6D9AA}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+						</Reference>
+						<Reference Name="PlaylistRoot">
+							<Custom>
+								<MusicPlaylistItem Name="" ID="{B1D2A2C5-A176-4432-B9C7-1A491A7BCB54}" ShortID="113337652">
+									<ChildrenList>
+										<MusicPlaylistItem Name="" ID="{E420F8C3-849B-4641-9908-ACA937B002FD}" ShortID="765603068">
+											<PropertyList>
+												<Property Name="LoopCount" Type="int16" Value="0"/>
+												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Segment">
+													<ObjectRef Name="Better Score Screen" ID="{E20FDA46-48FF-4DBC-B716-7389024FE4FD}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+												</Reference>
+											</ReferenceList>
+										</MusicPlaylistItem>
+									</ChildrenList>
+								</MusicPlaylistItem>
+							</Custom>
+						</Reference>
+						<Reference Name="TransitionRoot">
+							<Custom>
+								<MusicTransition Name="Root" ID="{D8090C40-55A6-44A2-B348-FFAC7DE59088}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{DCFE418F-A3FF-447F-9D8A-96EE1D298E3E}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</Custom>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Better Score Screen" ID="{E20FDA46-48FF-4DBC-B716-7389024FE4FD}" ShortID="140878375">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="53277.7291666667"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Better Score Screen" ID="{BCDC3652-057C-4F85-B731-9E99B8F9A990}" ShortID="859575067">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{159CC9FB-B625-491C-ADFD-F4E067FD37A8}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Better Score Screen" ID="{D61EDCE6-DAF4-44B1-9696-6ADDDA1EC550}">
+											<Language>SFX</Language>
+											<AudioFile>Better Score Screen.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1071959338"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<MusicTrackSequence Name="" ID="{6118C593-11B5-4347-969E-F554A47D667A}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<MusicClip Name="Better Score Screen" ID="{73311D43-B394-449C-BC7D-6D259215250C}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="53277.7291666667"/>
+																<Property Name="FadeInDuration" Type="Real64" Value="740.625626902423"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="576.04215425744"/>
+															</PropertyList>
+															<AudioSourceRef Name="Better Score Screen" ID="{D61EDCE6-DAF4-44B1-9696-6ADDDA1EC550}"/>
+														</MusicClip>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<MusicCue Name="Entry Cue" ID="{1082910B-AB17-4329-9656-802496113D82}"/>
+									<MusicCue Name="Exit Cue" ID="{F976CCED-BC24-4432-BD3B-68E2DE7D2A2C}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="53277.7291666667"/>
+										</PropertyList>
+									</MusicCue>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+					</ChildrenList>
 				</MusicPlaylistContainer>
 			</ChildrenList>
 		</WorkUnit>
