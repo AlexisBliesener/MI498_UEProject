@@ -47,6 +47,9 @@ public:
 	/// Enemies that spawn but they're not active yet
 	UPROPERTY()
 	TArray<TObjectPtr<AEnemyBase>> PendingEnemies;
+	/// All enemies spawned after the vault explosion
+	UPROPERTY()
+	TArray<TObjectPtr<AEnemyBase>> SpawnedEnemies;
 	/// if the cannon is currently aiming at the ship
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsCannonAiming = false;
@@ -98,6 +101,13 @@ public:
 	 * @return the hidden ship
 	 */
 	AActor* GetHiddenShip() const { return HiddenShip; }
+	
+	/**
+	 * This will loop through all the actors in the map and it will check if the 
+	 * actor is inside the current ship or not using the TraceCollisionBox area  
+	 */
+	UFUNCTION(CallInEditor, Category = "Default")
+	void CheckAllActorsOnShip() const;
 protected:
 	/// All actors attached to the ship, they will be added to that list on the start    
 	UPROPERTY()

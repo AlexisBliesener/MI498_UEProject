@@ -22,7 +22,8 @@ enum class EMissionState : uint8
 {
 	StageOne UMETA(DisplayName = "StageOne"),
 	StageTwo UMETA(DisplayName = "StageTwo"),
-	StageThree UMETA(DisplayName = "StageThree")
+	StageThree UMETA(DisplayName = "StageThree"),
+	StageCompleted UMETA(DisplayName = "StageCompleted")
 };
 
 /// Struct to be able to show arrays of enemies in the editor
@@ -192,6 +193,12 @@ public:
 	void ResetBombPlant();
 
 	
+	/**
+	 * Kill all enemies that spawned form the vault door 
+	 */
+	UFUNCTION(BlueprintCallable)
+	void KillAllSpawnedEnemies();
+	
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	
@@ -207,6 +214,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnBombMissionRestart();
 	
+	/// If the on leave vault va line has played
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bOnLeaveVaultVaLinePlayed = false;
 private:
 	/// Delegate handler for bomb piece collection
 	UFUNCTION()
@@ -255,6 +265,7 @@ private:
 	void StageTwoFinish(bool Result);
 
 	/// Handles completion or timeout of Stage Three
+	UFUNCTION()
 	void StageThreeFinish(bool Result);
 	
 	/// When the vault waves are done call this to start the next phase
@@ -287,8 +298,6 @@ private:
 	/// If the near vault va line has played
 	bool bNearVaultVaLinePlayed = false;
 	
-	/// If the on leave vault va line has played
-	bool bOnLeaveVaultVaLinePlayed = false;
 	
 	/// If the near exit cannon VA line has played
 	bool bOnNearExitCannonVaLinePlayed = false;
