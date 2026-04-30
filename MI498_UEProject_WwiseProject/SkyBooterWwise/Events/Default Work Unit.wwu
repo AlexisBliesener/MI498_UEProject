@@ -589,6 +589,33 @@
 						</Event>
 						<Event Name="CombatMusic" ID="{8D5F3422-297B-460F-B95A-20213D3F8F66}">
 							<ChildrenList>
+								<Action Name="" ID="{4ADF714B-D47B-47EF-8746-0597F11F397B}" ShortID="1041090998">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Menu" ID="{FE062AFA-62F1-4FE9-A522-9907F78C6DAB}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{0D7C6289-CF61-470B-B2D7-0975EA384F64}" ShortID="1000996896">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{B51614E0-AB4E-4908-BB53-92B32E659A90}" ShortID="882831173">
 									<ReferenceList>
 										<Reference Name="Target">
@@ -875,10 +902,58 @@
 						</Event>
 						<Event Name="MenuMusic" ID="{6A6FD591-4D66-486A-AED1-777366C85EDF}">
 							<ChildrenList>
+								<Action Name="" ID="{33A73335-DEA1-426A-A7AF-8190A033C669}" ShortID="1016169646">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{268F56D7-61EB-45CB-9921-0377E3FD08B2}" ShortID="100578988">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
 								<Action Name="" ID="{7983A134-E1D3-423B-97B9-2ACBB66637E1}" ShortID="53405975">
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="Menu" ID="{FE062AFA-62F1-4FE9-A522-9907F78C6DAB}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ScoreScreenMusic" ID="{84DB4D84-C26B-41E5-9779-2B1B26902918}">
+							<ChildrenList>
+								<Action Name="" ID="{AC6DED68-1147-4349-87F7-33D22491C863}" ShortID="726772578">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MusicControler" ID="{BE6EE17A-FE1B-42E9-BA7E-63EA6159019F}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{1362401B-0971-4069-BBDF-0DD02ABD4B3D}" ShortID="156886118">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ScoreTheme" ID="{190B59D2-E263-4FD2-ABCC-FC12EE905477}" WorkUnitID="{7DA0D9C7-8EFB-49E1-9DBD-D5B11B6A80EE}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1521,6 +1596,76 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="PageFlipSound" ID="{AAE678F6-8EFB-463D-8B3D-8161D01522AD}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Hover" ID="{5B283E04-D6F6-4095-BBC6-CAAF559D71C8}">
+							<ChildrenList>
+								<Action Name="" ID="{A86EA81C-150A-4421-88CA-46281AAD4008}" ShortID="556902598">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="HoverClick" ID="{D1539711-B708-48A8-9E5B-55A17857701E}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PaperScrollOpen" ID="{CAB8141F-335F-43BD-A083-A2629479107E}">
+							<ChildrenList>
+								<Action Name="" ID="{2BD111BA-7E1D-49B0-9197-131AAFC2275F}" ShortID="45181408">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PaperScroll" ID="{E23A948B-6CCF-4F99-B48B-7AB99D2B2DF3}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="PaperScrollClose" ID="{0197BDD7-0C98-4B38-91B7-B1CCA4A4EEB5}">
+							<ChildrenList>
+								<Action Name="" ID="{AF060BBB-0656-4A2A-A438-E052394064E0}" ShortID="128327685">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="PaperScrollClose" ID="{E67A1A32-E2CF-4D55-9805-9C2C48E9811B}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TimerClickStart" ID="{5768C3F0-3096-481F-91A5-B9D3E1991ED3}">
+							<ChildrenList>
+								<Action Name="" ID="{C7CEB4FF-D407-4B53-B5FD-885BEA73F87E}" ShortID="156033427">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TimerClick" ID="{37EEBC6D-0426-4C42-9455-AD3B8F0D837F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TimerClickEnd" ID="{F878ABA1-8AD1-413C-AF54-15FAEF664D55}">
+							<ChildrenList>
+								<Action Name="" ID="{BF999AAB-F301-405A-B975-7FD214520A52}" ShortID="571648095">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+										<Property Name="Scope" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TimerClick" ID="{37EEBC6D-0426-4C42-9455-AD3B8F0D837F}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SliderClick" ID="{0DFFCA11-9B6B-461A-ADF2-BEC6528FAFD8}">
+							<ChildrenList>
+								<Action Name="" ID="{7C0BAB90-D649-4437-9ACB-E56C39CBB6A8}" ShortID="301819736">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ClickSoundBar_mixdown" ID="{23B48786-EEA3-4B9D-8248-58544597D9E5}" WorkUnitID="{546E869C-9900-45C4-A439-4FF02B745BE5}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

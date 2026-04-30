@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<Attenuation Name="EnemyAttenuation" ID="{46DED7A4-0398-4148-BC7E-B5DF33E572C3}" ShortID="1013793697">
 					<PropertyList>
-						<Property Name="RadiusMax" Type="Real64" Value="2000"/>
+						<Property Name="RadiusMax" Type="Real64" Value="1500"/>
 					</PropertyList>
 					<CurveUsageInfoList>
 						<VolumeDryUsage>
@@ -21,17 +21,17 @@
 											<Flags>5</Flags>
 										</Point>
 										<Point>
-											<XPos>1195.20494</XPos>
+											<XPos>896.403705</XPos>
 											<YPos>-4.30783</YPos>
 											<Flags>0</Flags>
 										</Point>
 										<Point>
-											<XPos>1436.311</XPos>
+											<XPos>1077.23325</XPos>
 											<YPos>-8.33651</YPos>
 											<Flags>0</Flags>
 										</Point>
 										<Point>
-											<XPos>2000</XPos>
+											<XPos>1500</XPos>
 											<YPos>-200</YPos>
 											<Flags>37</Flags>
 										</Point>

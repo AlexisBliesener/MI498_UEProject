@@ -1346,6 +1346,11 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1387,6 +1392,11 @@
 											</Modifier>
 										</ModifierInfo>
 									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -1804,7 +1814,7 @@
 										<Property Name="FadeOutDuration" Type="Real64" Value="0.272096394918051"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="TrimBegin" Type="Real64" Value="0.21540964597679"/>
-										<Property Name="TrimEnd" Type="Real64" Value="2.43375097979503"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.48045029335148"/>
 									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>BlunderbussReload.wav</AudioFile>
@@ -1831,6 +1841,11 @@
 											</Modifier>
 										</ModifierInfo>
 									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -1982,6 +1997,11 @@
 						<Sound Name="BombExplode" ID="{FB47D254-9C02-4ECD-95ED-FAAE31595234}" ShortID="771944899">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="2"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -2398,6 +2418,11 @@
 											</Modifier>
 										</ModifierInfo>
 									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -4953,6 +4978,11 @@
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-16</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -5781,7 +5811,7 @@
 								<Property Name="3DSpatialization" Type="int16" Value="2"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>6</Value>
+										<Value>3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -5913,7 +5943,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -6133,7 +6163,7 @@
 								<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>4</Value>
+										<Value>1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8012,6 +8042,11 @@
 						<RandomSequenceContainer Name="DeathSwinger" ID="{8B240C6D-C2F1-4CB2-9A18-5DEB17F44C21}" ShortID="831433311">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -8348,6 +8383,11 @@
 						<RandomSequenceContainer Name="DeathBrute" ID="{ECF0C36D-BA4D-4F8B-8276-AFCE648531D7}" ShortID="791704742">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -8735,6 +8775,11 @@
 						<RandomSequenceContainer Name="DeathAverage" ID="{AD2E95A3-DA55-4032-9CB4-7A1E15A36C7D}" ShortID="719999756">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11649,6 +11694,332 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="PageFlipSound" ID="{6E2560BB-3C06-4B6A-BC0C-D687CF8B6BEB}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<RandomSequenceContainer Name="HoverClick" ID="{D1539711-B708-48A8-9E5B-55A17857701E}" ShortID="579137685">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{28E79F4A-7AC8-4210-9739-3CB25E9623AF}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="100"/>
+													<Property Name="Min" Type="Real64" Value="-100"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFXBus" ID="{BF1FFEB6-5F0E-4026-BB35-1E5C037B080E}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="PageFlick" ID="{B32F9546-B505-41D1-8DA6-2C1F43543FBE}" ShortID="61819964">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PageFlick" ID="{D9C7A5DB-154E-4BA1-B29E-723C51AD6AEC}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.10592017734752"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.33156794379739"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.5282769316879"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PageFlick.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="68966023"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PageFlick" ID="{D9C7A5DB-154E-4BA1-B29E-723C51AD6AEC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="PageFlick_01" ID="{ED5A1255-E53A-4453-AA1F-36B5C704CAFC}" ShortID="791195483">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PageFlick" ID="{3C25950C-E966-4BAE-A41E-212918A4AFEF}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.10592017734752"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.62663129497977"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.82334028287027"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PageFlick.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="8960508"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PageFlick" ID="{3C25950C-E966-4BAE-A41E-212918A4AFEF}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="PageFlick_02" ID="{6436FB53-E4B1-43AA-9BAD-EF7E213EC036}" ShortID="703652359">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PageFlick" ID="{BDB3D87B-891C-4DE1-B6A2-AD632E6B6517}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.10592017734752"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.91412891920875"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.10327218014586"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PageFlick.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="218782940"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PageFlick" ID="{BDB3D87B-891C-4DE1-B6A2-AD632E6B6517}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="PageFlick_03" ID="{A5D9181A-DEF2-442D-83EE-71D58B3553C3}" ShortID="242460884">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PageFlick" ID="{E2B4E1BC-A644-4096-B5A8-AA1E0BD7CB67}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.10592017734752"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.22432372429792"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.39076980437484"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PageFlick.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="271031959"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PageFlick" ID="{E2B4E1BC-A644-4096-B5A8-AA1E0BD7CB67}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<Folder Name="Scroll" ID="{3699F8B5-A9AD-4513-AC54-E98EE3B3F768}" ShortID="868641501">
+							<ChildrenList>
+								<Sound Name="PaperScroll" ID="{E23A948B-6CCF-4F99-B48B-7AB99D2B2DF3}" ShortID="922300679">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>20</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFXBus" ID="{BF1FFEB6-5F0E-4026-BB35-1E5C037B080E}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PaperScroll" ID="{BAD3F5B1-4C59-4A33-9E6D-A54B841DEDAC}">
+											<Language>SFX</Language>
+											<AudioFile>PaperScroll.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="503496407"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="PaperScroll_01" ID="{F47904C1-D25A-4733-A792-8496055FB832}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.169533015699948"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.13813801279255"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.43161208545588"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PaperScroll.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="807327565"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PaperScroll_01" ID="{F47904C1-D25A-4733-A792-8496055FB832}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="PaperScrollClose" ID="{E67A1A32-E2CF-4D55-9805-9C2C48E9811B}" ShortID="75477540">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>20</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFXBus" ID="{BF1FFEB6-5F0E-4026-BB35-1E5C037B080E}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PaperScroll_01" ID="{379CF687-3BE6-4DE1-81D9-3086CE300F51}">
+											<Language>SFX</Language>
+											<AudioFile>PaperScroll.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="503496407"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="PaperScroll" ID="{AF037FCF-1A42-45D8-AB82-D62AD299AFA6}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.169533015699948"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.65137715292912"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.12694224245535"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>PaperScroll.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="297449485"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="PaperScroll" ID="{AF037FCF-1A42-45D8-AB82-D62AD299AFA6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Sound Name="TimerClick" ID="{37EEBC6D-0426-4C42-9455-AD3B8F0D837F}" ShortID="256171655">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>40</Value>
+									</ValueList>
+								</Property>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TimerClick" ID="{6B63E52B-BCD2-469E-A311-964D372DD5FE}">
+									<Language>SFX</Language>
+									<AudioFile>TimerClick.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="986850366"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="TimerClick" ID="{6B63E52B-BCD2-469E-A311-964D372DD5FE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ClickSoundBar_mixdown" ID="{23B48786-EEA3-4B9D-8248-58544597D9E5}" ShortID="46343673">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{DEAC728C-9CE2-484F-B21E-FF150501761F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8386937A-C556-4031-A2B7-A43DE7CDCF27}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ClickSoundBar_mixdown" ID="{3CEBC98D-C71E-49D8-ADC9-B30A32BDC5D8}">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.0752215180490539"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ClickSoundBar_mixdown.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="327341251"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="ClickSoundBar_mixdown" ID="{3CEBC98D-C71E-49D8-ADC9-B30A32BDC5D8}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

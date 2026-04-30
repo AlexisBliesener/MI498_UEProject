@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{E749C40B-8E0B-4D1F-A31F-2AAF068ADE6F}",
     "Language": "SFX",
-    "Hash": "{0324D4CB-CAE5-5FE7-4354-21B3F69E6A1E}",
+    "Hash": "{CCCBA579-C4EB-3A7C-950A-6AA235A25C48}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
     "ShortName": "Main",
     "Path": "Main.bnk",
@@ -22,6 +22,14 @@
       "Location": "Memory",
       "ShortName": "Damage 2.wav",
       "CachePath": "CB/{CB603883-E93A-89FC-B41F-84701AF690D2}.wem"
+     },
+     {
+      "Id": "8960508",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PageFlick.wav",
+      "CachePath": "D8/{D8C3D0E2-B2BA-B64F-4745-1A5DC5578293}.wem"
      },
      {
       "Id": "9982857",
@@ -150,6 +158,14 @@
       "Location": "Memory",
       "ShortName": "Dying3.wav",
       "CachePath": "AB/{ABCEB459-DBF7-22F2-EDAF-4BCB5C80F4D6}.wem"
+     },
+     {
+      "Id": "68966023",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PageFlick.wav",
+      "CachePath": "6F/{6F239B44-E537-B077-D1F0-FCB726BE6517}.wem"
      },
      {
       "Id": "71399008",
@@ -432,6 +448,14 @@
       "CachePath": "F5/{F5BEF37A-F2FC-8D98-4F73-F93EA8BDA20E}.wem"
      },
      {
+      "Id": "218782940",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PageFlick.wav",
+      "CachePath": "C1/{C11D1D15-3DE1-1EFB-BFFE-8D08C752DE44}.wem"
+     },
+     {
       "Id": "219124446",
       "Language": "SFX",
       "Streaming": "false",
@@ -518,6 +542,14 @@
       "Location": "Memory",
       "ShortName": "FootstepStems-006.wav",
       "CachePath": "56/{56DF4B67-5920-248B-747F-FDC737C3A1F3}.wem"
+     },
+     {
+      "Id": "271031959",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PageFlick.wav",
+      "CachePath": "95/{955F172C-C482-2CB8-8E62-D900A8FBFB42}.wem"
      },
      {
       "Id": "271538463",
@@ -608,6 +640,14 @@
       "CachePath": "57/{57E85094-8620-1DD6-9700-ABD28A5E7B07}.wem"
      },
      {
+      "Id": "297449485",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PaperScroll.wav",
+      "CachePath": "AE/{AEF995BC-2F8D-D739-5149-69BB3583E01A}.wem"
+     },
+     {
       "Id": "297481343",
       "Language": "SFX",
       "Streaming": "false",
@@ -662,6 +702,14 @@
       "Location": "Memory",
       "ShortName": "Fortnite Default Dance Greenscreen_01.wav",
       "CachePath": "52/{529BF466-3592-112B-FDA2-1681F6809AD2}.wem"
+     },
+     {
+      "Id": "327341251",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "ClickSoundBar_mixdown.wav",
+      "CachePath": "96/{965B11E4-1CA3-59F3-E355-5C9E7A288F9F}.wem"
      },
      {
       "Id": "329759464",
@@ -1189,7 +1237,7 @@
       "Streaming": "false",
       "Location": "Memory",
       "ShortName": "BlunderbussReload.wav",
-      "CachePath": "B3/{B3FC2A95-1343-73D3-4230-D00E04106DF1}.wem"
+      "CachePath": "DB/{DB8D0F42-D789-C289-40DC-ED6DAFE88815}.wem"
      },
      {
       "Id": "606848002",
@@ -1640,6 +1688,14 @@
       "CachePath": "7A/{7A9BF129-4BC3-B929-081C-F541E8A774DE}.wem"
      },
      {
+      "Id": "807327565",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "PaperScroll.wav",
+      "CachePath": "2F/{2FE58F42-86F1-A841-9D73-8DF2507052A0}.wem"
+     },
+     {
       "Id": "810740447",
       "Language": "SFX",
       "Streaming": "false",
@@ -2072,6 +2128,14 @@
       "CachePath": "7C/{7CDE9A25-3BBF-F41A-0662-4BBEF74DF76F}.wem"
      },
      {
+      "Id": "986850366",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "TimerClick.wav",
+      "CachePath": "4E/{4E82A7C0-E508-310C-F597-B8DBF379478B}.wem"
+     },
+     {
       "Id": "989741732",
       "Language": "SFX",
       "Streaming": "false",
@@ -2206,6 +2270,14 @@
       "Location": "Memory",
       "ShortName": "TakeDamageBase.wav",
       "CachePath": "B3/{B38FADC4-D919-CECD-E98C-C697A0C3064F}.wem"
+     },
+     {
+      "Id": "1071959338",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "Better Score Screen.wav",
+      "CachePath": "70/{70344904-BED5-9FAF-4369-6B1800A4571A}.wem"
      }
     ],
     "Plugins": {
@@ -2339,7 +2411,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\AverageShot",
       "GUID": "{ABECBF33-B4BA-4333-8C08-326D535D504A}",
       "Color": "8",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "1.5157181",
       "DurationMax": "2.1128173",
@@ -2355,7 +2427,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\BarrelExplode",
       "GUID": "{71CBBDC5-FDBC-4658-B63E-3A72E8D5B509}",
       "Color": "4",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "1.8634921",
       "DurationMax": "2.3478532",
@@ -2417,8 +2489,8 @@
       "GUID": "{83FB556A-763D-4E9C-822B-47610D6C2241}",
       "Color": "8",
       "DurationType": "OneShot",
-      "DurationMin": "2.2183414",
-      "DurationMax": "2.2183414",
+      "DurationMin": "1.2650406",
+      "DurationMax": "1.2650406",
       "MediaRefs": [
        {
         "Id": "605770747"
@@ -2482,7 +2554,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\BombTravel",
       "GUID": "{61C08C02-27BD-40D1-AA64-253664F409EE}",
       "Color": "8",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "Infinite",
       "MediaRefs": [
        {
@@ -2583,7 +2655,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\BruteFootsteps",
       "GUID": "{EAE3815A-7951-453D-9860-3BDAE998255A}",
       "Color": "10",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.65784466",
       "DurationMax": "0.7255515",
@@ -2674,7 +2746,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\BruteSwing",
       "GUID": "{E4E6BDE6-4D18-4100-80F7-84E1F00E6986}",
       "Color": "8",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.7289547",
       "DurationMax": "0.9730377",
@@ -3130,6 +3202,30 @@
       ]
      },
      {
+      "Id": "3753593413",
+      "Name": "Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\Hover",
+      "GUID": "{5B283E04-D6F6-4095-BBC6-CAAF559D71C8}",
+      "Color": "22",
+      "DurationType": "OneShot",
+      "DurationMin": "0.15710416",
+      "DurationMax": "0.20840593",
+      "MediaRefs": [
+       {
+        "Id": "8960508"
+       },
+       {
+        "Id": "68966023"
+       },
+       {
+        "Id": "218782940"
+       },
+       {
+        "Id": "271031959"
+       }
+      ]
+     },
+     {
       "Id": "3934973449",
       "Name": "IronMan",
       "ObjectPath": "\\Events\\Default Work Unit\\MemeEvents\\IronMan",
@@ -3280,7 +3376,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\MetalStep",
       "GUID": "{18499410-5552-4D0A-9BFE-B0A56809FE63}",
       "Color": "10",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.38922763",
       "DurationMax": "0.527458",
@@ -3437,7 +3533,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\AverageFootstep\\NormalStep",
       "GUID": "{0D93189B-2587-49E9-8248-DAC582D49439}",
       "Color": "10",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.6728934",
       "DurationMax": "0.76019675",
@@ -3528,6 +3624,36 @@
       "MediaRefs": [
        {
         "Id": "882482859"
+       }
+      ]
+     },
+     {
+      "Id": "4016250506",
+      "Name": "PaperScrollClose",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\PaperScrollClose",
+      "GUID": "{0197BDD7-0C98-4B38-91B7-B1CCA4A4EEB5}",
+      "Color": "22",
+      "DurationType": "OneShot",
+      "DurationMin": "1.4755651",
+      "DurationMax": "1.4755651",
+      "MediaRefs": [
+       {
+        "Id": "297449485"
+       }
+      ]
+     },
+     {
+      "Id": "2869459374",
+      "Name": "PaperScrollOpen",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\PaperScrollOpen",
+      "GUID": "{CAB8141F-335F-43BD-A083-A2629479107E}",
+      "Color": "22",
+      "DurationType": "OneShot",
+      "DurationMin": "1.2934741",
+      "DurationMax": "1.2934741",
+      "MediaRefs": [
+       {
+        "Id": "807327565"
        }
       ]
      },
@@ -3823,6 +3949,34 @@
       }
      },
      {
+      "Id": "3562623046",
+      "Name": "ScoreScreenMusic",
+      "ObjectPath": "\\Events\\Default Work Unit\\Environment\\ScoreScreenMusic",
+      "GUID": "{84DB4D84-C26B-41E5-9779-2B1B26902918}",
+      "Color": "4",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1071959338"
+       }
+      ]
+     },
+     {
+      "Id": "1218812578",
+      "Name": "SliderClick",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\SliderClick",
+      "GUID": "{0DFFCA11-9B6B-461A-ADF2-BEC6528FAFD8}",
+      "Color": "22",
+      "DurationType": "OneShot",
+      "DurationMin": "0.075221516",
+      "DurationMax": "0.075221516",
+      "MediaRefs": [
+       {
+        "Id": "327341251"
+       }
+      ]
+     },
+     {
       "Id": "1296465089",
       "Name": "Sprint",
       "ObjectPath": "\\Events\\Default Work Unit\\Player\\Sprint",
@@ -3903,7 +4057,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\EnemyWeapon\\SwingerBombExplode",
       "GUID": "{621D51FD-01A7-4A65-969B-F54A859172AF}",
       "Color": "8",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "1.2734656",
       "DurationMax": "1.2734656",
@@ -3955,7 +4109,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsMetal",
       "GUID": "{D414C847-4D25-404B-BFAE-63BF7F052638}",
       "Color": "10",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.32346517",
       "DurationMax": "0.5843464",
@@ -3992,7 +4146,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\EnemyFootstep\\SwingerFootstep\\SwingerFootstepsNormal",
       "GUID": "{9667265C-B1C4-4904-B4E8-BBA9A780413D}",
       "Color": "10",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.381523",
       "DurationMax": "0.81720626",
@@ -4065,7 +4219,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Weapons\\SwingerPunch",
       "GUID": "{38DD02D9-DA49-440B-8727-E0FDAD02A6F7}",
       "Color": "8",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "0.57194483",
       "DurationMax": "0.7149896",
@@ -4087,7 +4241,7 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Environment\\SwingerSwing",
       "GUID": "{3275A267-278E-48C3-81AE-8F42C9E99393}",
       "Color": "4",
-      "MaxAttenuation": "2000",
+      "MaxAttenuation": "1500",
       "DurationType": "OneShot",
       "DurationMin": "1.1859262",
       "DurationMax": "1.1859262",
@@ -4151,6 +4305,30 @@
        },
        {
         "Id": "818030058"
+       }
+      ]
+     },
+     {
+      "Id": "3568219931",
+      "Name": "TimerClickEnd",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\TimerClickEnd",
+      "GUID": "{F878ABA1-8AD1-413C-AF54-15FAEF664D55}",
+      "Color": "22",
+      "MaxAttenuation": "0",
+      "DurationType": "OneShot",
+      "DurationMin": "0",
+      "DurationMax": "0"
+     },
+     {
+      "Id": "3881768768",
+      "Name": "TimerClickStart",
+      "ObjectPath": "\\Events\\Default Work Unit\\UIEvents\\TimerClickStart",
+      "GUID": "{5768C3F0-3096-481F-91A5-B9D3E1991ED3}",
+      "Color": "22",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "986850366"
        }
       ]
      },
@@ -4386,6 +4564,6 @@
     ]
    }
   ],
-  "FileHash": "{DAB8767C-7720-26A2-1119-5F72D0463333}"
+  "FileHash": "{28E45214-5871-7B65-0E8C-756789892B30}"
  }
 }
