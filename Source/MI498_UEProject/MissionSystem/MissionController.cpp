@@ -1,4 +1,5 @@
 ﻿#include "MissionController.h"
+#include "AIController.h"
 #include "BombPiece.h"
 #include "CloudSpawner.h"
 #include "ExitCannonComponent.h"
@@ -10,6 +11,7 @@
 #include "VaultTreasure.h"
 #include "MI498_UEProject/Characters/Enemies/EnemyBase.h"
 #include "MI498_UEProject/ScoringSystem/ScoringManager.h"
+#include "MI498_UEProject/Weapons/WeaponBase.h"
 
 
 AMissionController::AMissionController()
@@ -208,6 +210,7 @@ void AMissionController::ResetBombPlant()
 
 	//Clear Timers
 	GetWorldTimerManager().ClearTimer(InVaultTimerHandle);
+	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 	GetWorld()->GetTimerManager().ClearTimer(EnemyWaveSpawnerTimerHandle);
 
 	/// Delay vault explosion
@@ -238,6 +241,33 @@ void AMissionController::ResetBombPlant()
 	}
 }
 
+void AMissionController::KillAllSpawnedEnemies()
+{
+	if (ParentShip)
+	{
+		for (AEnemyBase* enemy : ParentShip->SpawnedEnemies)
+		{
+			if (!IsValid(enemy)) continue;
+			
+			if (AAIController* aiController = Cast<AAIController>(enemy->GetController()))
+			{
+				aiController->StopMovement();
+				aiController->UnPossess();
+				aiController->Destroy();
+			}
+		
+			if (IsValid(enemy->CurrentWeapon))
+			{
+				enemy->CurrentWeapon->Destroy();
+			}
+			
+			enemy->Destroy();
+		}
+	}
+	
+	ParentShip->SpawnedEnemies.Empty();
+}
+
 
 void AMissionController::ExplodeVaultDoor()
 {
@@ -250,7 +280,6 @@ void AMissionController::ExplodeVaultDoor()
 	else
 	{
 		OnBombCutsceneStart();
-		bHasCutscenePlayed = true;
 		PlantedBomb->bHasCutscenePlayed = true;
 	}
 	VaultDoor->SetVaultDoorEnabled(false);
@@ -272,6 +301,7 @@ void AMissionController::HandleOnEnterExitPlatform()
 	/// Level completion condition (Stage Three)
 	if (CurrentState == EMissionState::StageThree)
 	{
+		CurrentState = EMissionState::StageCompleted;
 		ScoringManager->AddFinishLevelScore();
 		StageThreeFinish(true);
 	}
@@ -371,10 +401,11 @@ void AMissionController::EndSpawningEnemies()
 	/// Start the mission timer to flee
 	GetWorldTimerManager().ClearTimer(MissionTimerHandle);
 	
+	OnLeaveVault();
+	
 	if (!bOnLeaveVaultVaLinePlayed && CurrentState == EMissionState::StageThree)
 	{
 		bOnLeaveVaultVaLinePlayed = true;
-		OnLeaveVault();
 	}
 
 	FTimerDelegate delegate;
@@ -442,7 +473,10 @@ void AMissionController::StageTwoFinish(const bool Result)
 			true);
 
 		/// Spawn initial enemy wave
-		// SpawnEnemies();
+		if (bHasCutscenePlayed)
+		{
+			SpawnEnemies(true);
+		}
 
 		/// Start repeating enemy wave spawner timer
 		GetWorldTimerManager().SetTimer(
@@ -478,6 +512,10 @@ void AMissionController::CutSceneFinish()
 	
 	OnMainMissionObjectiveChange();
 	
+	if (!bHasCutscenePlayed)
+	{
+		bHasCutscenePlayed = true;
+	}
 	
 	CloudSpawner->Activate();
 

@@ -13,6 +13,9 @@
 #include "EnvironmentQuery/EnvQueryManager.h"
 #include "MI498_UEProject/AI/EnemyAIController.h"
 #include "MI498_UEProject/AI/Components/SyncTransformOnHiddenShipComponent.h"
+#if WITH_EDITOR
+#include "EngineUtils.h"
+#endif
 
 AShip::AShip()
 {
@@ -339,6 +342,7 @@ AEnemyBase* AShip::SpawnEnemyOnShip(TSubclassOf<AEnemyBase> Enemy, FTransform co
         {
             PendingEnemies.Add(enemy);
         }
+        SpawnedEnemies.Add(enemy);
         return enemy;
     }
     UE_LOG(EnemyLog, Error, TEXT("Enemy spawned isnt real. Ship: %s"), *GetName());
@@ -449,4 +453,47 @@ void AShip::OnSpawnEQSFinished(TSharedPtr<FEnvQueryResult> Result, TArray<TSubcl
 
         SpawnEnemyOnShip(enemyClass, spawnTransform, bIsActive);
     }
+}
+
+void AShip::CheckAllActorsOnShip() const
+{
+#if WITH_EDITOR
+    if (!IsValid(TraceCollisionBox) || (!GEngine)) return;
+    
+    int totalUnattached = 0;
+
+    for (TActorIterator<AActor> it(GetWorld()); it; ++it)
+    {
+        AActor* foundActor = *it;
+
+        if (!IsValid(foundActor) || foundActor == this) continue;
+        // group actors are annoying.. so we don't want to include them :) 
+        if (foundActor->GetClass()->GetName() == TEXT("GroupActor")) continue;
+
+        if (TraceCollisionBox->Bounds.GetBox().IsInsideOrOn(foundActor->GetActorLocation()))
+        {
+            AActor* topParent = foundActor;
+            while (topParent->GetAttachParentActor() != nullptr)
+            {
+                topParent = topParent->GetAttachParentActor();
+            }
+
+            if (topParent == this)
+            {
+                continue;
+            }
+            
+            totalUnattached++;
+            
+            if (topParent != foundActor)
+            {
+                UE_LOG(LogTemp, Error, TEXT("%s: %s IS INSIDE THE CURRENT SHIP BUT IT'S ATTACHED TO %s !!!!!"), *GetActorNameOrLabel(),  *foundActor->GetActorNameOrLabel(),*topParent->GetActorNameOrLabel());
+                continue;
+            }
+            UE_LOG(LogTemp, Error, TEXT("%s: %s IS INSIDE BUT NOT ATTACHED TO THE CURRENT SHIP!!!!!"), *GetActorNameOrLabel(),  *foundActor->GetActorNameOrLabel());
+        }
+    }
+
+    UE_LOG(LogTemp, Error, TEXT("%s: %d ARE WRONG ATTACHED!!"), *GetActorNameOrLabel(), totalUnattached);
+#endif
 }
